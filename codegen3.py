@@ -67,10 +67,13 @@ class APIResource:
 
     @property
     def config_class_name(self) -> str | None:
-        if not self.nonconstructor_methods:
+        if not self.nonconstructor_methods and not self.configurable_properties:
             return None
         else:
-            return self.model_class_name + 'Config'
+            if self.resource_type == 'Interface':
+                return snake_to_camel(self.module_info.namespace) + self.model_class_name + 'Config'
+            else:
+                return self.model_class_name + 'Config'
 
     @property
     def config_class_fullname(self) -> str | None:
@@ -186,10 +189,15 @@ class APIResource:
         if self.resource_type == 'Enum':
             return f'{self.obj.__module__}.{self.obj.__qualname__}'
         elif self.resource_type == 'Interface':
+            if self.obj in (constructs.IConstruct, aws_cdk.IResource):
+                return 'models.AnyResource'
             ret = _implementations.get(self.obj)
             if not ret:
                 ... # TODO: find 'obtainable from' classes
                 return 'models.UnsupportedResource'
+            # if len(ret) > 20:
+            #     print('overloaded', basename)
+            #     return 'models.UnsupportedResource'
             return f'typing.Union[{", ".join(str(r) for r in ret if ".experimental." not in r.as_python_annotation())}]'
         if self.resource_type == 'Construct':
             ret = f'{basename}Def'
@@ -252,7 +260,20 @@ class APIResource:
                 props.append(member_name)
         return props
 
-
+    @property
+    def configurable_properties(self) -> dict[str, Any]:
+        ret = {}
+        for member_name, value in self.inspect_members():
+            if member_name in ('node',):
+                continue
+            if type(value) is property:
+                sig = inspect.signature(value.fget)
+                rt = sig.return_annotation
+                if rt in reverse_resources:
+                    return_resource = reverse_resources[rt]
+                    if return_resource.nonconstructor_methods:
+                        ret[member_name] = return_resource
+        return ret
 
 class UnSet:
     ...
@@ -741,7 +762,8 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
         s += ')'
 
 
-    if resource.nonconstructor_methods:
+
+    if resource.nonconstructor_methods or resource.configurable_properties:
         s += f'\n    resource_config: typing.Optional[{model_config_class_name}] = pydantic.Field(None)'
         _module_param_classes[resource.module_name].append(resource.model_class_fullname)
         s += '\n\n'
@@ -767,7 +789,13 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
             if is_reserved:
                 s += f', alias={method.method_name!r}'
             s += ')'
-
+        for property_name, return_resource in resource.configurable_properties.items():
+            if return_resource.resource_type == 'Interface' and return_resource.nonconstructor_methods:
+                prop_config_name = f'models._interface_methods.{return_resource.config_class_name}'
+            else:
+                prop_config_name = return_resource.config_class_fullname
+            if prop_config_name is not None:
+                s += f'\n    {property_name}_config: typing.Optional[{prop_config_name}] = pydantic.Field(None)'
 
     for method in resource.methods:
         if not method.parameters(exclude=['self']) and not method.clean_return_type in reverse_resources:
@@ -924,7 +952,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
 
 def render_iface_methods(resource: APIResource) -> str:
     assert resource.resource_type == 'Interface'
-    class_name = resource.model_class_name
+    class_name = f'{snake_to_camel(resource.module_info.namespace)}{resource.model_class_name}'
     config_class_name = resource.config_class_name
     s = ''
     if not resource.nonconstructor_methods:
