@@ -90,21 +90,20 @@ class CodePipelineFileSetDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['produced_by']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_artifact']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.pipelines.CodePipelineFileSet'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_artifact']
     ...
 
 
+    from_artifact: typing.Optional[CodePipelineFileSetDefFromArtifactParams] = pydantic.Field(None, description='Turn a CodePipeline Artifact into a FileSet.')
     resource_config: typing.Optional[CodePipelineFileSetDefConfig] = pydantic.Field(None)
 
 
 class CodePipelineFileSetDefConfig(pydantic.BaseModel):
-    from_artifact: typing.Optional[list[CodePipelineFileSetDefFromArtifactParams]] = pydantic.Field(None, description='Turn a CodePipeline Artifact into a FileSet.')
     produced_by: typing.Optional[list[CodePipelineFileSetDefProducedByParams]] = pydantic.Field(None, description='Mark the given Step as the producer for this FileSet.\nThis method can only be called once.')
     producer_config: typing.Optional[models.pipelines.StepDefConfig] = pydantic.Field(None)
 
 class CodePipelineFileSetDefFromArtifactParams(pydantic.BaseModel):
     artifact: models.aws_codepipeline.ArtifactDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.pipelines.CodePipelineFileSetDefConfig]] = pydantic.Field(None)
     ...
 
 class CodePipelineFileSetDefProducedByParams(pydantic.BaseModel):
@@ -439,17 +438,17 @@ class StackDeploymentDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add_stack_dependency', 'add_stack_steps']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_artifact']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.pipelines.StackDeployment'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_artifact']
     ...
 
 
+    from_artifact: typing.Optional[StackDeploymentDefFromArtifactParams] = pydantic.Field(None, description='Build a ``StackDeployment`` from a Stack Artifact in a Cloud Assembly.')
     resource_config: typing.Optional[StackDeploymentDefConfig] = pydantic.Field(None)
 
 
 class StackDeploymentDefConfig(pydantic.BaseModel):
     add_stack_dependency: typing.Optional[list[StackDeploymentDefAddStackDependencyParams]] = pydantic.Field(None, description='Add a dependency on another stack.')
     add_stack_steps: typing.Optional[list[StackDeploymentDefAddStackStepsParams]] = pydantic.Field(None, description='Adds steps to each phase of the stack.')
-    from_artifact: typing.Optional[list[StackDeploymentDefFromArtifactParams]] = pydantic.Field(None, description='Build a ``StackDeployment`` from a Stack Artifact in a Cloud Assembly.')
 
 class StackDeploymentDefAddStackDependencyParams(pydantic.BaseModel):
     stack_deployment: models.pipelines.StackDeploymentDef = pydantic.Field(..., description='-')
@@ -463,7 +462,6 @@ class StackDeploymentDefAddStackStepsParams(pydantic.BaseModel):
 
 class StackDeploymentDefFromArtifactParams(pydantic.BaseModel):
     stack_artifact: models.cx_api.CloudFormationStackArtifactDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.pipelines.StackDeploymentDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -473,19 +471,14 @@ class StackOutputReferenceDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_cfn_output']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.pipelines.StackOutputReference'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_cfn_output']
     ...
 
 
-    resource_config: typing.Optional[StackOutputReferenceDefConfig] = pydantic.Field(None)
-
-
-class StackOutputReferenceDefConfig(pydantic.BaseModel):
-    from_cfn_output: typing.Optional[list[StackOutputReferenceDefFromCfnOutputParams]] = pydantic.Field(None, description='Create a StackOutputReference that references the given CfnOutput.')
+    from_cfn_output: typing.Optional[StackOutputReferenceDefFromCfnOutputParams] = pydantic.Field(None, description='Create a StackOutputReference that references the given CfnOutput.')
 
 class StackOutputReferenceDefFromCfnOutputParams(pydantic.BaseModel):
     output: models.CfnOutputDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.pipelines.StackOutputReferenceDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -508,17 +501,17 @@ class StageDeploymentDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add_post', 'add_pre']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_stage']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.pipelines.StageDeployment'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_stage']
     ...
 
 
+    from_stage: typing.Optional[StageDeploymentDefFromStageParams] = pydantic.Field(None, description='Create a new ``StageDeployment`` from a ``Stage``.\nSynthesizes the target stage, and deployes the stacks found inside\nin dependency order.')
     resource_config: typing.Optional[StageDeploymentDefConfig] = pydantic.Field(None)
 
 
 class StageDeploymentDefConfig(pydantic.BaseModel):
     add_post: typing.Optional[list[StageDeploymentDefAddPostParams]] = pydantic.Field(None, description='Add an additional step to run after all of the stacks in this stage.')
     add_pre: typing.Optional[list[StageDeploymentDefAddPreParams]] = pydantic.Field(None, description='Add an additional step to run before any of the stacks in this stage.')
-    from_stage: typing.Optional[list[StageDeploymentDefFromStageParams]] = pydantic.Field(None, description='Create a new ``StageDeployment`` from a ``Stage``.\nSynthesizes the target stage, and deployes the stacks found inside\nin dependency order.')
 
 class StageDeploymentDefAddPostParams(pydantic.BaseModel):
     steps: list[models.pipelines.StepDef] = pydantic.Field(...)
@@ -534,7 +527,6 @@ class StageDeploymentDefFromStageParams(pydantic.BaseModel):
     pre: typing.Optional[typing.Sequence[models.pipelines.StepDef]] = pydantic.Field(None, description='Additional steps to run before any of the stacks in the stage. Default: - No additional steps\n')
     stack_steps: typing.Optional[typing.Sequence[typing.Union[models.pipelines.StackStepsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Instructions for additional steps that are run at the stack level. Default: - No additional instructions\n')
     stage_name: typing.Optional[str] = pydantic.Field(None, description="Stage name to use in the pipeline. Default: - Use Stage's construct ID")
-    return_config: typing.Optional[list[models.pipelines.StageDeploymentDefConfig]] = pydantic.Field(None)
     ...
 
 

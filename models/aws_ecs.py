@@ -58,17 +58,17 @@ class AssetEnvironmentFileDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.AssetEnvironmentFile'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket']
     ...
 
 
+    from_asset: typing.Optional[AssetEnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
+    from_bucket: typing.Optional[AssetEnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
     resource_config: typing.Optional[AssetEnvironmentFileDefConfig] = pydantic.Field(None)
 
 
 class AssetEnvironmentFileDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AssetEnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
-    from_asset: typing.Optional[list[AssetEnvironmentFileDefFromAssetParams]] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
-    from_bucket: typing.Optional[list[AssetEnvironmentFileDefFromBucketParams]] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
 
 class AssetEnvironmentFileDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -84,14 +84,12 @@ class AssetEnvironmentFileDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetEnvironmentFileDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetEnvironmentFileDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
-    return_config: typing.Optional[list[models.aws_ecs.S3EnvironmentFileDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -117,20 +115,20 @@ class AssetImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.AssetImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     ...
 
 
+    from_asset: typing.Optional[AssetImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[AssetImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[AssetImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[AssetImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[AssetImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
     resource_config: typing.Optional[AssetImageDefConfig] = pydantic.Field(None)
 
 
 class AssetImageDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AssetImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
-    from_asset: typing.Optional[list[AssetImageDefFromAssetParams]] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[list[AssetImageDefFromDockerImageAssetParams]] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[list[AssetImageDefFromEcrRepositoryParams]] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[list[AssetImageDefFromRegistryParams]] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[list[AssetImageDefFromTarballParams]] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
 
 class AssetImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -154,29 +152,24 @@ class AssetImageDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetImageDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageDefFromDockerImageAssetParams(pydantic.BaseModel):
     asset: models.aws_ecr_assets.DockerImageAssetDef = pydantic.Field(..., description='The ``DockerImageAsset`` to use for this container definition.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageDefFromEcrRepositoryParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='-\n')
     tag: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_ecs.EcrImageDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageDefFromRegistryParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n')
     credentials: typing.Optional[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(None, description='The secret to expose to the container that contains the credentials for the image repository. The supported value is the full ARN of an AWS Secrets Manager secret.')
-    return_config: typing.Optional[list[models.aws_ecs.RepositoryImageDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageDefFromTarballParams(pydantic.BaseModel):
     tarball_file: str = pydantic.Field(..., description='Absolute path to the tarball. You can use language-specific idioms (such as ``__dirname`` in Node.js) to create an absolute path based on the current script running directory.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -396,20 +389,20 @@ class ContainerImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.ContainerImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     ...
 
 
+    from_asset: typing.Optional[ContainerImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[ContainerImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[ContainerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[ContainerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[ContainerImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
     resource_config: typing.Optional[ContainerImageDefConfig] = pydantic.Field(None)
 
 
 class ContainerImageDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[ContainerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
-    from_asset: typing.Optional[list[ContainerImageDefFromAssetParams]] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[list[ContainerImageDefFromDockerImageAssetParams]] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[list[ContainerImageDefFromEcrRepositoryParams]] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[list[ContainerImageDefFromRegistryParams]] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[list[ContainerImageDefFromTarballParams]] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
 
 class ContainerImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -433,29 +426,24 @@ class ContainerImageDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetImageDefConfig]] = pydantic.Field(None)
     ...
 
 class ContainerImageDefFromDockerImageAssetParams(pydantic.BaseModel):
     asset: models.aws_ecr_assets.DockerImageAssetDef = pydantic.Field(..., description='The ``DockerImageAsset`` to use for this container definition.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class ContainerImageDefFromEcrRepositoryParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='-\n')
     tag: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_ecs.EcrImageDefConfig]] = pydantic.Field(None)
     ...
 
 class ContainerImageDefFromRegistryParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n')
     credentials: typing.Optional[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(None, description='The secret to expose to the container that contains the credentials for the image repository. The supported value is the full ARN of an AWS Secrets Manager secret.')
-    return_config: typing.Optional[list[models.aws_ecs.RepositoryImageDefConfig]] = pydantic.Field(None)
     ...
 
 class ContainerImageDefFromTarballParams(pydantic.BaseModel):
     tarball_file: str = pydantic.Field(..., description='Absolute path to the tarball. You can use language-specific idioms (such as ``__dirname`` in Node.js) to create an absolute path based on the current script running directory.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -489,20 +477,20 @@ class EcrImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.EcrImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     ...
 
 
+    from_asset: typing.Optional[EcrImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[EcrImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[EcrImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[EcrImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[EcrImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
     resource_config: typing.Optional[EcrImageDefConfig] = pydantic.Field(None)
 
 
 class EcrImageDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[EcrImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
-    from_asset: typing.Optional[list[EcrImageDefFromAssetParams]] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[list[EcrImageDefFromDockerImageAssetParams]] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[list[EcrImageDefFromEcrRepositoryParams]] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[list[EcrImageDefFromRegistryParams]] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[list[EcrImageDefFromTarballParams]] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
 
 class EcrImageDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -526,29 +514,24 @@ class EcrImageDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageDefFromDockerImageAssetParams(pydantic.BaseModel):
     asset: models.aws_ecr_assets.DockerImageAssetDef = pydantic.Field(..., description='The ``DockerImageAsset`` to use for this container definition.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageDefFromEcrRepositoryParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='-\n')
     tag: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_ecs.EcrImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageDefFromRegistryParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n')
     credentials: typing.Optional[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(None, description='The secret to expose to the container that contains the credentials for the image repository. The supported value is the full ARN of an AWS Secrets Manager secret.')
-    return_config: typing.Optional[list[models.aws_ecs.RepositoryImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageDefFromTarballParams(pydantic.BaseModel):
     tarball_file: str = pydantic.Field(..., description='Absolute path to the tarball. You can use language-specific idioms (such as ``__dirname`` in Node.js) to create an absolute path based on the current script running directory.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -599,17 +582,17 @@ class EnvironmentFileDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.EnvironmentFile'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket']
     ...
 
 
+    from_asset: typing.Optional[EnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
+    from_bucket: typing.Optional[EnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
     resource_config: typing.Optional[EnvironmentFileDefConfig] = pydantic.Field(None)
 
 
 class EnvironmentFileDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[EnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
-    from_asset: typing.Optional[list[EnvironmentFileDefFromAssetParams]] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
-    from_bucket: typing.Optional[list[EnvironmentFileDefFromBucketParams]] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
 
 class EnvironmentFileDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='The binding scope.')
@@ -625,14 +608,12 @@ class EnvironmentFileDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetEnvironmentFileDefConfig]] = pydantic.Field(None)
     ...
 
 class EnvironmentFileDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
-    return_config: typing.Optional[list[models.aws_ecs.S3EnvironmentFileDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1243,20 +1224,20 @@ class RepositoryImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.RepositoryImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     ...
 
 
+    from_asset: typing.Optional[RepositoryImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[RepositoryImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[RepositoryImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[RepositoryImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[RepositoryImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
     resource_config: typing.Optional[RepositoryImageDefConfig] = pydantic.Field(None)
 
 
 class RepositoryImageDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[RepositoryImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
-    from_asset: typing.Optional[list[RepositoryImageDefFromAssetParams]] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[list[RepositoryImageDefFromDockerImageAssetParams]] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[list[RepositoryImageDefFromEcrRepositoryParams]] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[list[RepositoryImageDefFromRegistryParams]] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[list[RepositoryImageDefFromTarballParams]] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
 
 class RepositoryImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1280,29 +1261,24 @@ class RepositoryImageDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetImageDefConfig]] = pydantic.Field(None)
     ...
 
 class RepositoryImageDefFromDockerImageAssetParams(pydantic.BaseModel):
     asset: models.aws_ecr_assets.DockerImageAssetDef = pydantic.Field(..., description='The ``DockerImageAsset`` to use for this container definition.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class RepositoryImageDefFromEcrRepositoryParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='-\n')
     tag: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_ecs.EcrImageDefConfig]] = pydantic.Field(None)
     ...
 
 class RepositoryImageDefFromRegistryParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n')
     credentials: typing.Optional[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(None, description='The secret to expose to the container that contains the credentials for the image repository. The supported value is the full ARN of an AWS Secrets Manager secret.')
-    return_config: typing.Optional[list[models.aws_ecs.RepositoryImageDefConfig]] = pydantic.Field(None)
     ...
 
 class RepositoryImageDefFromTarballParams(pydantic.BaseModel):
     tarball_file: str = pydantic.Field(..., description='Absolute path to the tarball. You can use language-specific idioms (such as ``__dirname`` in Node.js) to create an absolute path based on the current script running directory.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1315,17 +1291,17 @@ class S3EnvironmentFileDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.S3EnvironmentFile'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket']
     ...
 
 
+    from_asset: typing.Optional[S3EnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
+    from_bucket: typing.Optional[S3EnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
     resource_config: typing.Optional[S3EnvironmentFileDefConfig] = pydantic.Field(None)
 
 
 class S3EnvironmentFileDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[S3EnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
-    from_asset: typing.Optional[list[S3EnvironmentFileDefFromAssetParams]] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
-    from_bucket: typing.Optional[list[S3EnvironmentFileDefFromBucketParams]] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
 
 class S3EnvironmentFileDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -1341,14 +1317,12 @@ class S3EnvironmentFileDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetEnvironmentFileDefConfig]] = pydantic.Field(None)
     ...
 
 class S3EnvironmentFileDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
-    return_config: typing.Optional[list[models.aws_ecs.S3EnvironmentFileDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1358,35 +1332,32 @@ class SecretDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['grant_read']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_secrets_manager', 'from_secrets_manager_version', 'from_ssm_parameter']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.Secret'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_secrets_manager', 'from_secrets_manager_version', 'from_ssm_parameter']
     ...
 
 
+    from_secrets_manager: typing.Optional[SecretDefFromSecretsManagerParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
+    from_secrets_manager_version: typing.Optional[SecretDefFromSecretsManagerVersionParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
+    from_ssm_parameter: typing.Optional[SecretDefFromSsmParameterParams] = pydantic.Field(None, description='Creates an environment variable value from a parameter stored in AWS Systems Manager Parameter Store.')
     resource_config: typing.Optional[SecretDefConfig] = pydantic.Field(None)
 
 
 class SecretDefConfig(pydantic.BaseModel):
-    from_secrets_manager: typing.Optional[list[SecretDefFromSecretsManagerParams]] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
-    from_secrets_manager_version: typing.Optional[list[SecretDefFromSecretsManagerVersionParams]] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
-    from_ssm_parameter: typing.Optional[list[SecretDefFromSsmParameterParams]] = pydantic.Field(None, description='Creates an environment variable value from a parameter stored in AWS Systems Manager Parameter Store.')
     grant_read: typing.Optional[list[SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret to a principal.')
 
 class SecretDefFromSecretsManagerParams(pydantic.BaseModel):
     secret: typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef] = pydantic.Field(..., description='the secret stored in AWS Secrets Manager.\n')
     field: typing.Optional[str] = pydantic.Field(None, description='the name of the field with the value that you want to set as the environment variable value. Only values in JSON format are supported. If you do not specify a JSON field, then the full content of the secret is used.')
-    return_config: typing.Optional[list[models.aws_ecs.SecretDefConfig]] = pydantic.Field(None)
     ...
 
 class SecretDefFromSecretsManagerVersionParams(pydantic.BaseModel):
     secret: typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef] = pydantic.Field(..., description='the secret stored in AWS Secrets Manager.\n')
     version_info: typing.Union[models.aws_ecs.SecretVersionInfoDef, dict[str, typing.Any]] = pydantic.Field(..., description='the version information to reference the secret.\n')
     field: typing.Optional[str] = pydantic.Field(None, description='the name of the field with the value that you want to set as the environment variable value. Only values in JSON format are supported. If you do not specify a JSON field, then the full content of the secret is used.')
-    return_config: typing.Optional[list[models.aws_ecs.SecretDefConfig]] = pydantic.Field(None)
     ...
 
 class SecretDefFromSsmParameterParams(pydantic.BaseModel):
     parameter: typing.Union[models.aws_ssm.StringListParameterDef, models.aws_ssm.StringParameterDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_ecs.SecretDefConfig]] = pydantic.Field(None)
     ...
 
 class SecretDefGrantReadParams(pydantic.BaseModel):
@@ -1518,20 +1489,20 @@ class TagParameterContainerImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecs.TagParameterContainerImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_docker_image_asset', 'from_ecr_repository', 'from_registry', 'from_tarball']
     ...
 
 
+    from_asset: typing.Optional[TagParameterContainerImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[TagParameterContainerImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[TagParameterContainerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[TagParameterContainerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[TagParameterContainerImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
     resource_config: typing.Optional[TagParameterContainerImageDefConfig] = pydantic.Field(None)
 
 
 class TagParameterContainerImageDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[TagParameterContainerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
-    from_asset: typing.Optional[list[TagParameterContainerImageDefFromAssetParams]] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[list[TagParameterContainerImageDefFromDockerImageAssetParams]] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[list[TagParameterContainerImageDefFromEcrRepositoryParams]] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[list[TagParameterContainerImageDefFromRegistryParams]] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[list[TagParameterContainerImageDefFromTarballParams]] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
 
 class TagParameterContainerImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1555,29 +1526,24 @@ class TagParameterContainerImageDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ecs.AssetImageDefConfig]] = pydantic.Field(None)
     ...
 
 class TagParameterContainerImageDefFromDockerImageAssetParams(pydantic.BaseModel):
     asset: models.aws_ecr_assets.DockerImageAssetDef = pydantic.Field(..., description='The ``DockerImageAsset`` to use for this container definition.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class TagParameterContainerImageDefFromEcrRepositoryParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='-\n')
     tag: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_ecs.EcrImageDefConfig]] = pydantic.Field(None)
     ...
 
 class TagParameterContainerImageDefFromRegistryParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n')
     credentials: typing.Optional[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(None, description='The secret to expose to the container that contains the credentials for the image repository. The supported value is the full ARN of an AWS Secrets Manager secret.')
-    return_config: typing.Optional[list[models.aws_ecs.RepositoryImageDefConfig]] = pydantic.Field(None)
     ...
 
 class TagParameterContainerImageDefFromTarballParams(pydantic.BaseModel):
     tarball_file: str = pydantic.Field(..., description='Absolute path to the tarball. You can use language-specific idioms (such as ``__dirname`` in Node.js) to create an absolute path based on the current script running directory.')
-    return_config: typing.Optional[list[models.aws_ecs.ContainerImageDefConfig]] = pydantic.Field(None)
     ...
 
 

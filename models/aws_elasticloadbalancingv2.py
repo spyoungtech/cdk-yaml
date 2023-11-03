@@ -153,25 +153,19 @@ class ListenerCertificateDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_arn', 'from_certificate_manager']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_elasticloadbalancingv2.ListenerCertificate'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_arn', 'from_certificate_manager']
     ...
 
 
-    resource_config: typing.Optional[ListenerCertificateDefConfig] = pydantic.Field(None)
-
-
-class ListenerCertificateDefConfig(pydantic.BaseModel):
-    from_arn: typing.Optional[list[ListenerCertificateDefFromArnParams]] = pydantic.Field(None, description='Use any certificate, identified by its ARN, as a listener certificate.')
-    from_certificate_manager: typing.Optional[list[ListenerCertificateDefFromCertificateManagerParams]] = pydantic.Field(None, description='Use an ACM certificate as a listener certificate.')
+    from_arn: typing.Optional[ListenerCertificateDefFromArnParams] = pydantic.Field(None, description='Use any certificate, identified by its ARN, as a listener certificate.')
+    from_certificate_manager: typing.Optional[ListenerCertificateDefFromCertificateManagerParams] = pydantic.Field(None, description='Use an ACM certificate as a listener certificate.')
 
 class ListenerCertificateDefFromArnParams(pydantic.BaseModel):
     certificate_arn: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_elasticloadbalancingv2.ListenerCertificateDefConfig]] = pydantic.Field(None)
     ...
 
 class ListenerCertificateDefFromCertificateManagerParams(pydantic.BaseModel):
     acm_certificate: typing.Union[models.aws_certificatemanager.CertificateDef, models.aws_certificatemanager.DnsValidatedCertificateDef, models.aws_certificatemanager.PrivateCertificateDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_elasticloadbalancingv2.ListenerCertificateDefConfig]] = pydantic.Field(None)
     ...
 
 

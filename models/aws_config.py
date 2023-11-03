@@ -46,33 +46,26 @@ class RuleScopeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_resource', 'from_resources', 'from_tag']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_config.RuleScope'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_resource', 'from_resources', 'from_tag']
     ...
 
 
-    resource_config: typing.Optional[RuleScopeDefConfig] = pydantic.Field(None)
-
-
-class RuleScopeDefConfig(pydantic.BaseModel):
-    from_resource: typing.Optional[list[RuleScopeDefFromResourceParams]] = pydantic.Field(None, description='restricts scope of changes to a specific resource type or resource identifier.')
-    from_resources: typing.Optional[list[RuleScopeDefFromResourcesParams]] = pydantic.Field(None, description='restricts scope of changes to specific resource types.')
-    from_tag: typing.Optional[list[RuleScopeDefFromTagParams]] = pydantic.Field(None, description='restricts scope of changes to a specific tag.')
+    from_resource: typing.Optional[RuleScopeDefFromResourceParams] = pydantic.Field(None, description='restricts scope of changes to a specific resource type or resource identifier.')
+    from_resources: typing.Optional[RuleScopeDefFromResourcesParams] = pydantic.Field(None, description='restricts scope of changes to specific resource types.')
+    from_tag: typing.Optional[RuleScopeDefFromTagParams] = pydantic.Field(None, description='restricts scope of changes to a specific tag.')
 
 class RuleScopeDefFromResourceParams(pydantic.BaseModel):
     resource_type: models.aws_config.ResourceTypeDef = pydantic.Field(..., description='-\n')
     resource_id: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_config.RuleScopeDefConfig]] = pydantic.Field(None)
     ...
 
 class RuleScopeDefFromResourcesParams(pydantic.BaseModel):
     resource_types: typing.Sequence[models.aws_config.ResourceTypeDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_config.RuleScopeDefConfig]] = pydantic.Field(None)
     ...
 
 class RuleScopeDefFromTagParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='-\n')
     value: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_config.RuleScopeDefConfig]] = pydantic.Field(None)
     ...
 
 

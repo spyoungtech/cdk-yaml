@@ -54,15 +54,15 @@ class EventFieldDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['resolve']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_path']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_events.EventField'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_path']
     ...
 
 
+    from_path: typing.Optional[EventFieldDefFromPathParams] = pydantic.Field(None, description='Extract a custom JSON path from the event.')
     resource_config: typing.Optional[EventFieldDefConfig] = pydantic.Field(None)
 
 
 class EventFieldDefConfig(pydantic.BaseModel):
-    from_path: typing.Optional[list[EventFieldDefFromPathParams]] = pydantic.Field(None, description='Extract a custom JSON path from the event.')
     resolve: typing.Optional[list[EventFieldDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 class EventFieldDefFromPathParams(pydantic.BaseModel):
@@ -80,25 +80,19 @@ class HttpParameterDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_secret', 'from_string']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_events.HttpParameter'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_secret', 'from_string']
     ...
 
 
-    resource_config: typing.Optional[HttpParameterDefConfig] = pydantic.Field(None)
-
-
-class HttpParameterDefConfig(pydantic.BaseModel):
-    from_secret: typing.Optional[list[HttpParameterDefFromSecretParams]] = pydantic.Field(None, description='Make an OAuthParameter from a secret.')
-    from_string: typing.Optional[list[HttpParameterDefFromStringParams]] = pydantic.Field(None, description='Make an OAuthParameter from a string value.\nThe value is not treated as a secret.')
+    from_secret: typing.Optional[HttpParameterDefFromSecretParams] = pydantic.Field(None, description='Make an OAuthParameter from a secret.')
+    from_string: typing.Optional[HttpParameterDefFromStringParams] = pydantic.Field(None, description='Make an OAuthParameter from a string value.\nThe value is not treated as a secret.')
 
 class HttpParameterDefFromSecretParams(pydantic.BaseModel):
     value: models.SecretValueDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_events.HttpParameterDefConfig]] = pydantic.Field(None)
     ...
 
 class HttpParameterDefFromStringParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_events.HttpParameterDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -213,19 +207,19 @@ class RuleTargetInputDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_event_path', 'from_multiline_text', 'from_object', 'from_text']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_events.RuleTargetInput'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_event_path', 'from_multiline_text', 'from_object', 'from_text']
     ...
 
 
+    from_event_path: typing.Optional[RuleTargetInputDefFromEventPathParams] = pydantic.Field(None, description='Take the event target input from a path in the event JSON.')
+    from_multiline_text: typing.Optional[RuleTargetInputDefFromMultilineTextParams] = pydantic.Field(None, description='Pass text to the event target, splitting on newlines.\nThis is only useful when passing to a target that does not\ntake a single argument.\n\nMay contain strings returned by ``EventField.from()`` to substitute in parts\nof the matched event.')
+    from_object: typing.Optional[RuleTargetInputDefFromObjectParams] = pydantic.Field(None, description='Pass a JSON object to the event target.\nMay contain strings returned by ``EventField.from()`` to substitute in parts of the\nmatched event.')
+    from_text: typing.Optional[RuleTargetInputDefFromTextParams] = pydantic.Field(None, description='Pass text to the event target.\nMay contain strings returned by ``EventField.from()`` to substitute in parts of the\nmatched event.\n\nThe Rule Target input value will be a single string: the string you pass\nhere.  Do not use this method to pass a complex value like a JSON object to\na Rule Target.  Use ``RuleTargetInput.fromObject()`` instead.')
     resource_config: typing.Optional[RuleTargetInputDefConfig] = pydantic.Field(None)
 
 
 class RuleTargetInputDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[RuleTargetInputDefBindParams]] = pydantic.Field(None, description='Return the input properties for this input object.')
-    from_event_path: typing.Optional[list[RuleTargetInputDefFromEventPathParams]] = pydantic.Field(None, description='Take the event target input from a path in the event JSON.')
-    from_multiline_text: typing.Optional[list[RuleTargetInputDefFromMultilineTextParams]] = pydantic.Field(None, description='Pass text to the event target, splitting on newlines.\nThis is only useful when passing to a target that does not\ntake a single argument.\n\nMay contain strings returned by ``EventField.from()`` to substitute in parts\nof the matched event.')
-    from_object: typing.Optional[list[RuleTargetInputDefFromObjectParams]] = pydantic.Field(None, description='Pass a JSON object to the event target.\nMay contain strings returned by ``EventField.from()`` to substitute in parts of the\nmatched event.')
-    from_text: typing.Optional[list[RuleTargetInputDefFromTextParams]] = pydantic.Field(None, description='Pass text to the event target.\nMay contain strings returned by ``EventField.from()`` to substitute in parts of the\nmatched event.\n\nThe Rule Target input value will be a single string: the string you pass\nhere.  Do not use this method to pass a complex value like a JSON object to\na Rule Target.  Use ``RuleTargetInput.fromObject()`` instead.')
 
 class RuleTargetInputDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-')
@@ -233,22 +227,18 @@ class RuleTargetInputDefBindParams(pydantic.BaseModel):
 
 class RuleTargetInputDefFromEventPathParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_events.RuleTargetInputDefConfig]] = pydantic.Field(None)
     ...
 
 class RuleTargetInputDefFromMultilineTextParams(pydantic.BaseModel):
     text: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_events.RuleTargetInputDefConfig]] = pydantic.Field(None)
     ...
 
 class RuleTargetInputDefFromObjectParams(pydantic.BaseModel):
     obj: typing.Any = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_events.RuleTargetInputDefConfig]] = pydantic.Field(None)
     ...
 
 class RuleTargetInputDefFromTextParams(pydantic.BaseModel):
     text: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_events.RuleTargetInputDefConfig]] = pydantic.Field(None)
     ...
 
 

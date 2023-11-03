@@ -20,16 +20,16 @@ class AssetManifestArtifactDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['find_metadata_by_type']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_manifest']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.cx_api.AssetManifestArtifact'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_manifest']
     ...
 
 
+    from_manifest: typing.Optional[AssetManifestArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
     resource_config: typing.Optional[AssetManifestArtifactDefConfig] = pydantic.Field(None)
 
 
 class AssetManifestArtifactDefConfig(pydantic.BaseModel):
     find_metadata_by_type: typing.Optional[list[AssetManifestArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
-    from_manifest: typing.Optional[list[AssetManifestArtifactDefFromManifestParams]] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
 
 class AssetManifestArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -60,16 +60,16 @@ class CloudArtifactDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['find_metadata_by_type']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_manifest']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.cx_api.CloudArtifact'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_manifest']
     ...
 
 
+    from_manifest: typing.Optional[CloudArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
     resource_config: typing.Optional[CloudArtifactDefConfig] = pydantic.Field(None)
 
 
 class CloudArtifactDefConfig(pydantic.BaseModel):
     find_metadata_by_type: typing.Optional[list[CloudArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
-    from_manifest: typing.Optional[list[CloudArtifactDefFromManifestParams]] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
 
 class CloudArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -201,16 +201,16 @@ class CloudFormationStackArtifactDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['find_metadata_by_type']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_manifest']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.cx_api.CloudFormationStackArtifact'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_manifest']
     ...
 
 
+    from_manifest: typing.Optional[CloudFormationStackArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
     resource_config: typing.Optional[CloudFormationStackArtifactDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationStackArtifactDefConfig(pydantic.BaseModel):
     find_metadata_by_type: typing.Optional[list[CloudFormationStackArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
-    from_manifest: typing.Optional[list[CloudFormationStackArtifactDefFromManifestParams]] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
 
 class CloudFormationStackArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -305,16 +305,16 @@ class NestedCloudAssemblyArtifactDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['find_metadata_by_type']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_manifest']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.cx_api.NestedCloudAssemblyArtifact'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_manifest']
     ...
 
 
+    from_manifest: typing.Optional[NestedCloudAssemblyArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
     resource_config: typing.Optional[NestedCloudAssemblyArtifactDefConfig] = pydantic.Field(None)
 
 
 class NestedCloudAssemblyArtifactDefConfig(pydantic.BaseModel):
     find_metadata_by_type: typing.Optional[list[NestedCloudAssemblyArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
-    from_manifest: typing.Optional[list[NestedCloudAssemblyArtifactDefFromManifestParams]] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
     nested_assembly_config: typing.Optional[models.cx_api.CloudAssemblyDefConfig] = pydantic.Field(None)
 
 class NestedCloudAssemblyArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
@@ -347,16 +347,16 @@ class TreeCloudArtifactDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['find_metadata_by_type']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_manifest']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.cx_api.TreeCloudArtifact'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_manifest']
     ...
 
 
+    from_manifest: typing.Optional[TreeCloudArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
     resource_config: typing.Optional[TreeCloudArtifactDefConfig] = pydantic.Field(None)
 
 
 class TreeCloudArtifactDefConfig(pydantic.BaseModel):
     find_metadata_by_type: typing.Optional[list[TreeCloudArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
-    from_manifest: typing.Optional[list[TreeCloudArtifactDefFromManifestParams]] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
 
 class TreeCloudArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')

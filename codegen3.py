@@ -239,7 +239,7 @@ class APIResource:
         # XXX: this is really just a best guess
         ret = []
         for method in self.methods:
-            if method.is_classmethod() and (method.signature.return_annotation in reverse_resources or method.clean_return_type in _implementations):
+            if method.method_name.startswith('from_') or (method.is_classmethod() and (method.signature.return_annotation in reverse_resources or method.clean_return_type in _implementations)):
                 ret.append(method)
         return ret
 
@@ -579,7 +579,7 @@ import aws_cdk
 import constructs
 import pydantic
 import datetime
-from ._base import BaseConstruct, BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, ConnectableMixin, BaseMethodParams
+from ._base import BaseConstruct, BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, ConnectableMixin, BaseMethodParams, GenericApplyRemovalPolicyParams
 '''
 
 def render_module(mod: Module) -> str:
@@ -783,7 +783,10 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
                 mod = modules[method.module_name]
                 fullname = f'models.{mod.namespace}.{meth_param_model_name}'
                 _module_param_classes[resource.module_name].append(fullname)
-                s += f'\n    {method_name}: typing.Optional[list[{meth_param_model_name}]] = pydantic.Field(None, description={method.docstring!r}'
+                if method.method_name == 'apply_removal_policy':
+                    s += f'\n    {method_name}: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None'
+                else:
+                    s += f'\n    {method_name}: typing.Optional[list[{meth_param_model_name}]] = pydantic.Field(None, description={method.docstring!r}'
             else:
                 s += f'\n    {method_name}: typing.Optional[bool] = pydantic.Field(None, description={method.docstring!r}'
             if is_reserved:
@@ -871,82 +874,6 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
         s += '\n    ...'
     return s
 
-    # for method in resource.methods:
-    #     if method.method_name in _pydantic_reserved_words:
-    #         method_name = method.method_name + '_'
-    #         is_reserved = True
-    #     else:
-    #         method_name = method.method_name
-    #         is_reserved = False
-    #
-    #     if method.parameters(exclude=['self']):
-    #         meth_param_model_name = f'{class_name}{snake_to_camel(method.method_name)}Params'
-    #         mod = modules[method.module_name]
-    #         fullname = f'models.{mod.namespace}.{meth_param_model_name}'
-    #         _module_param_classes[resource.module_name].append(fullname)
-    #         if method in resource.alternate_constructors:
-    #             s += f'\n    {method_name}: typing.Optional[{meth_param_model_name}] = pydantic.Field(None, description={method.docstring!r}'
-    #         else:
-    #             s += f'\n    {method_name}: typing.Optional[list[{meth_param_model_name}]] = pydantic.Field(None, description={method.docstring!r}'
-    #     else:
-    #         s += f'\n    {method_name}: typing.Optional[bool] = pydantic.Field(None, description={method.docstring!r}'
-    #     if is_reserved:
-    #         s += f', alias={method.method_name!r}'
-    #     s += ')'
-    # for method in resource.methods:
-    #     if not method.parameters(exclude=['self']):
-    #         continue
-    #     s += '\n\n'
-    #     meth_param_model_name = f'{class_name}{snake_to_camel(method.method_name)}Params'
-    #     s += f'class {meth_param_model_name}(pydantic.BaseModel):'
-    #     if method.parameters(exclude=['self', 'id',' scope']):
-    #         for param_name, param in method.parameters(exclude=['self','id','scope']).items():
-    #             if param_name in ('id', 'self', 'scope'):
-    #                 continue
-    #             s += f'\n    {param_name}'
-    #             if param_name in _pydantic_reserved_words:
-    #                 s += '_'
-    #                 is_reserved = True
-    #             else:
-    #                 is_reserved = False
-    #             if param.annotation is inspect._empty:
-    #                 cleaned_annotation = 'typing.Any'
-    #             else:
-    #                 cleaned_annotation = param.clean_annotation()
-    #                 if isinstance(cleaned_annotation, APIResource):
-    #                     cleaned_annotation = cleaned_annotation.as_python_annotation()
-    #                 elif inspect.isclass(cleaned_annotation):
-    #                     if str(cleaned_annotation.__module__) == 'builtins':
-    #                         cleaned_annotation = f'{cleaned_annotation.__qualname__}'
-    #                         cleaned_annotation = cleaned_annotation
-    #                     else:
-    #                         cleaned_annotation = f'{cleaned_annotation.__module__}.{cleaned_annotation.__qualname__}'
-    #                 # print(f'resolved annotation ({param.annotation!r} for init param {param_name} to {cleaned_annotation!r}')
-    #             cleaned_annotation = str(cleaned_annotation).replace('NoneType', 'None')
-    #             if cleaned_annotation == 'Protocol':
-    #                 breakpoint()
-    #             if param.kind in (2, 4):
-    #                 if param.kind == 2:
-    #                     s += f': list[{cleaned_annotation}] = pydantic.Field('
-    #                 elif param.kind == 4:
-    #                     s += f': dict[str, {cleaned_annotation}] = pydantic.Field('
-    #                 else:
-    #                     raise ValueError()
-    #             else:
-    #                 s += f': {cleaned_annotation} = pydantic.Field('
-    #
-    #             if param.default is inspect._empty:
-    #                 s += '...'
-    #             else:
-    #                 s += repr(param.default)  # XXX: hope this works
-    #
-    #             if param.kind not in (2, 4):
-    #                 s += f', description={param.doc!r}'
-    #             if is_reserved:
-    #                 s += f', alias={param_name!r}'
-    #             s += ')'
-    #     s += '\n    ...'
-    # return s
 
 # _iface_method_config_class_names = {}
 

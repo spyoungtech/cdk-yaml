@@ -14,31 +14,24 @@ class RecordTargetDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_alias', 'from_ip_addresses', 'from_values']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_route53.RecordTarget'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_alias', 'from_ip_addresses', 'from_values']
     ...
 
 
-    resource_config: typing.Optional[RecordTargetDefConfig] = pydantic.Field(None)
-
-
-class RecordTargetDefConfig(pydantic.BaseModel):
-    from_alias: typing.Optional[list[RecordTargetDefFromAliasParams]] = pydantic.Field(None, description='Use an alias as target.')
-    from_ip_addresses: typing.Optional[list[RecordTargetDefFromIpAddressesParams]] = pydantic.Field(None, description='Use ip addresses as target.')
-    from_values: typing.Optional[list[RecordTargetDefFromValuesParams]] = pydantic.Field(None, description='Use string values as target.')
+    from_alias: typing.Optional[RecordTargetDefFromAliasParams] = pydantic.Field(None, description='Use an alias as target.')
+    from_ip_addresses: typing.Optional[RecordTargetDefFromIpAddressesParams] = pydantic.Field(None, description='Use ip addresses as target.')
+    from_values: typing.Optional[RecordTargetDefFromValuesParams] = pydantic.Field(None, description='Use string values as target.')
 
 class RecordTargetDefFromAliasParams(pydantic.BaseModel):
     alias_target: typing.Union[models.aws_route53_targets.ApiGatewayDef, models.aws_route53_targets.ApiGatewayDomainDef, models.aws_route53_targets.ApiGatewayv2DomainPropertiesDef, models.aws_route53_targets.BucketWebsiteTargetDef, models.aws_route53_targets.ClassicLoadBalancerTargetDef, models.aws_route53_targets.CloudFrontTargetDef, models.aws_route53_targets.ElasticBeanstalkEnvironmentEndpointTargetDef, models.aws_route53_targets.GlobalAcceleratorDomainTargetDef, models.aws_route53_targets.GlobalAcceleratorTargetDef, models.aws_route53_targets.InterfaceVpcEndpointTargetDef, models.aws_route53_targets.LoadBalancerTargetDef, models.aws_route53_targets.Route53RecordTargetDef, models.aws_route53_targets.UserPoolDomainTargetDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_route53.RecordTargetDefConfig]] = pydantic.Field(None)
     ...
 
 class RecordTargetDefFromIpAddressesParams(pydantic.BaseModel):
     ip_addresses: list[str] = pydantic.Field(...)
-    return_config: typing.Optional[list[models.aws_route53.RecordTargetDefConfig]] = pydantic.Field(None)
     ...
 
 class RecordTargetDefFromValuesParams(pydantic.BaseModel):
     values: list[str] = pydantic.Field(...)
-    return_config: typing.Optional[list[models.aws_route53.RecordTargetDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -621,7 +614,6 @@ class AaaaRecordPropsDef(BaseStruct):
 
 
 class AaaaRecordPropsDefConfig(pydantic.BaseModel):
-    target_config: typing.Optional[models.aws_route53.RecordTargetDefConfig] = pydantic.Field(None)
     zone_config: typing.Optional[models._interface_methods.AwsRoute53IHostedZoneDefConfig] = pydantic.Field(None)
 
 
@@ -659,7 +651,6 @@ class ARecordPropsDef(BaseStruct):
 
 
 class ARecordPropsDefConfig(pydantic.BaseModel):
-    target_config: typing.Optional[models.aws_route53.RecordTargetDefConfig] = pydantic.Field(None)
     zone_config: typing.Optional[models._interface_methods.AwsRoute53IHostedZoneDefConfig] = pydantic.Field(None)
 
 

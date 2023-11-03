@@ -12,10 +12,11 @@ class AnnotationsDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['find_error', 'find_info', 'find_warning', 'has_error', 'has_info', 'has_no_error', 'has_no_info', 'has_no_warning', 'has_warning']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_stack']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.assertions.Annotations'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_stack']
     ...
 
 
+    from_stack: typing.Optional[AnnotationsDefFromStackParams] = pydantic.Field(None, description='Base your assertions on the messages returned by a synthesized CDK ``Stack``.')
     resource_config: typing.Optional[AnnotationsDefConfig] = pydantic.Field(None)
 
 
@@ -23,7 +24,6 @@ class AnnotationsDefConfig(pydantic.BaseModel):
     find_error: typing.Optional[list[AnnotationsDefFindErrorParams]] = pydantic.Field(None, description='Get the set of matching errors of a given construct path and message.')
     find_info: typing.Optional[list[AnnotationsDefFindInfoParams]] = pydantic.Field(None, description='Get the set of matching infos of a given construct path and message.')
     find_warning: typing.Optional[list[AnnotationsDefFindWarningParams]] = pydantic.Field(None, description='Get the set of matching warning of a given construct path and message.')
-    from_stack: typing.Optional[list[AnnotationsDefFromStackParams]] = pydantic.Field(None, description='Base your assertions on the messages returned by a synthesized CDK ``Stack``.')
     has_error: typing.Optional[list[AnnotationsDefHasErrorParams]] = pydantic.Field(None, description='Assert that an error with the given message exists in the synthesized CDK ``Stack``.')
     has_info: typing.Optional[list[AnnotationsDefHasInfoParams]] = pydantic.Field(None, description='Assert that an info with the given message exists in the synthesized CDK ``Stack``.')
     has_no_error: typing.Optional[list[AnnotationsDefHasNoErrorParams]] = pydantic.Field(None, description='Assert that an error with the given message does not exist in the synthesized CDK ``Stack``.')
@@ -48,7 +48,6 @@ class AnnotationsDefFindWarningParams(pydantic.BaseModel):
 
 class AnnotationsDefFromStackParams(pydantic.BaseModel):
     stack: models.StackDef = pydantic.Field(..., description='the CDK Stack to run assertions on.')
-    return_config: typing.Optional[list[models.assertions.AnnotationsDefConfig]] = pydantic.Field(None)
     ...
 
 class AnnotationsDefHasErrorParams(pydantic.BaseModel):
@@ -262,10 +261,13 @@ class TemplateDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['all_resources', 'all_resources_properties', 'find_conditions', 'find_mappings', 'find_outputs', 'find_parameters', 'find_resources', 'has_condition', 'has_mapping', 'has_output', 'has_parameter', 'has_resource', 'has_resource_properties', 'resource_count_is', 'resource_properties_count_is', 'template_matches']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_json', 'from_stack', 'from_string']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.assertions.Template'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_json', 'from_stack', 'from_string']
     ...
 
 
+    from_json: typing.Optional[TemplateDefFromJsonParams] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as an in-memory JSON object.')
+    from_stack: typing.Optional[TemplateDefFromStackParams] = pydantic.Field(None, description='Base your assertions on the CloudFormation template synthesized by a CDK ``Stack``.')
+    from_string: typing.Optional[TemplateDefFromStringParams] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as a JSON string.')
     resource_config: typing.Optional[TemplateDefConfig] = pydantic.Field(None)
 
 
@@ -277,9 +279,6 @@ class TemplateDefConfig(pydantic.BaseModel):
     find_outputs: typing.Optional[list[TemplateDefFindOutputsParams]] = pydantic.Field(None, description='Get the set of matching Outputs that match the given properties in the CloudFormation template.')
     find_parameters: typing.Optional[list[TemplateDefFindParametersParams]] = pydantic.Field(None, description='Get the set of matching Parameters that match the given properties in the CloudFormation template.')
     find_resources: typing.Optional[list[TemplateDefFindResourcesParams]] = pydantic.Field(None, description='Get the set of matching resources of a given type and properties in the CloudFormation template.')
-    from_json: typing.Optional[list[TemplateDefFromJsonParams]] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as an in-memory JSON object.')
-    from_stack: typing.Optional[list[TemplateDefFromStackParams]] = pydantic.Field(None, description='Base your assertions on the CloudFormation template synthesized by a CDK ``Stack``.')
-    from_string: typing.Optional[list[TemplateDefFromStringParams]] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as a JSON string.')
     has_condition: typing.Optional[list[TemplateDefHasConditionParams]] = pydantic.Field(None, description='Assert that a Condition with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
     has_mapping: typing.Optional[list[TemplateDefHasMappingParams]] = pydantic.Field(None, description='Assert that a Mapping with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
     has_output: typing.Optional[list[TemplateDefHasOutputParams]] = pydantic.Field(None, description='Assert that an Output with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
@@ -328,19 +327,16 @@ class TemplateDefFindResourcesParams(pydantic.BaseModel):
 class TemplateDefFromJsonParams(pydantic.BaseModel):
     template: typing.Mapping[str, typing.Any] = pydantic.Field(..., description='the CloudFormation template formatted as a nested set of records.\n')
     skip_cyclical_dependencies_check: typing.Optional[bool] = pydantic.Field(None, description='If set to true, will skip checking for cyclical / circular dependencies. Should be set to false other than for templates that are valid despite containing cycles, such as unprocessed transform stacks. Default: false')
-    return_config: typing.Optional[list[models.assertions.TemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class TemplateDefFromStackParams(pydantic.BaseModel):
     stack: models.StackDef = pydantic.Field(..., description='the CDK Stack to run assertions on.\n')
     skip_cyclical_dependencies_check: typing.Optional[bool] = pydantic.Field(None, description='If set to true, will skip checking for cyclical / circular dependencies. Should be set to false other than for templates that are valid despite containing cycles, such as unprocessed transform stacks. Default: false')
-    return_config: typing.Optional[list[models.assertions.TemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class TemplateDefFromStringParams(pydantic.BaseModel):
     template: str = pydantic.Field(..., description='the CloudFormation template in.\n')
     skip_cyclical_dependencies_check: typing.Optional[bool] = pydantic.Field(None, description='If set to true, will skip checking for cyclical / circular dependencies. Should be set to false other than for templates that are valid despite containing cycles, such as unprocessed transform stacks. Default: false')
-    return_config: typing.Optional[list[models.assertions.TemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class TemplateDefHasConditionParams(pydantic.BaseModel):

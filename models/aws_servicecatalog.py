@@ -12,18 +12,18 @@ class CloudFormationTemplateDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_product_stack', 'from_url']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_servicecatalog.CloudFormationTemplate'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_product_stack', 'from_url']
     ...
 
 
+    from_asset: typing.Optional[CloudFormationTemplateDefFromAssetParams] = pydantic.Field(None, description='Loads the provisioning artifacts template from a local disk path.')
+    from_product_stack: typing.Optional[CloudFormationTemplateDefFromProductStackParams] = pydantic.Field(None, description='Creates a product with the resources defined in the given product stack.')
+    from_url: typing.Optional[CloudFormationTemplateDefFromUrlParams] = pydantic.Field(None, description='Template from URL.')
     resource_config: typing.Optional[CloudFormationTemplateDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationTemplateDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[CloudFormationTemplateDefBindParams]] = pydantic.Field(None, description='Called when the product is initialized to allow this object to bind to the stack, add resources and have fun.')
-    from_asset: typing.Optional[list[CloudFormationTemplateDefFromAssetParams]] = pydantic.Field(None, description='Loads the provisioning artifacts template from a local disk path.')
-    from_product_stack: typing.Optional[list[CloudFormationTemplateDefFromProductStackParams]] = pydantic.Field(None, description='Creates a product with the resources defined in the given product stack.')
-    from_url: typing.Optional[list[CloudFormationTemplateDefFromUrlParams]] = pydantic.Field(None, description='Template from URL.')
 
 class CloudFormationTemplateDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description="The binding scope. Don't be smart about trying to down-cast or assume it's initialized. You may just use it as a construct scope.")
@@ -39,17 +39,14 @@ class CloudFormationTemplateDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_servicecatalog.CloudFormationTemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class CloudFormationTemplateDefFromProductStackParams(pydantic.BaseModel):
     product_stack: models.aws_servicecatalog.ProductStackDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_servicecatalog.CloudFormationTemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class CloudFormationTemplateDefFromUrlParams(pydantic.BaseModel):
     url: str = pydantic.Field(..., description='The url that points to the provisioning artifacts template.')
-    return_config: typing.Optional[list[models.aws_servicecatalog.CloudFormationTemplateDefConfig]] = pydantic.Field(None)
     ...
 
 

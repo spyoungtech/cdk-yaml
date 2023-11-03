@@ -126,15 +126,15 @@ class CacheControlDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_string', 'max_age', 'must_revalidate', 'no_cache', 'no_transform', 'proxy_revalidate', 's_max_age', 'set_private', 'set_public']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline_actions.CacheControl'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_string']
     ...
 
 
+    from_string: typing.Optional[CacheControlDefFromStringParams] = pydantic.Field(None, description='Allows you to create an arbitrary cache control directive, in case our support is missing a method for a particular directive.')
     resource_config: typing.Optional[CacheControlDefConfig] = pydantic.Field(None)
 
 
 class CacheControlDefConfig(pydantic.BaseModel):
-    from_string: typing.Optional[list[CacheControlDefFromStringParams]] = pydantic.Field(None, description='Allows you to create an arbitrary cache control directive, in case our support is missing a method for a particular directive.')
     max_age: typing.Optional[list[CacheControlDefMaxAgeParams]] = pydantic.Field(None, description="The 'max-age' cache control directive.")
     must_revalidate: typing.Optional[list[CacheControlDefMustRevalidateParams]] = pydantic.Field(None, description="The 'must-revalidate' cache control directive.")
     no_cache: typing.Optional[list[CacheControlDefNoCacheParams]] = pydantic.Field(None, description="The 'no-cache' cache control directive.")
@@ -146,7 +146,6 @@ class CacheControlDefConfig(pydantic.BaseModel):
 
 class CacheControlDefFromStringParams(pydantic.BaseModel):
     s: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefMaxAgeParams(pydantic.BaseModel):
@@ -1258,22 +1257,21 @@ class StackInstancesDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_artifact_path', 'in_accounts', 'in_organizational_units']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline_actions.StackInstances'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_artifact_path']
     ...
 
 
+    from_artifact_path: typing.Optional[StackInstancesDefFromArtifactPathParams] = pydantic.Field(None, description='Create stack instances in a set of accounts or organizational units taken from the pipeline artifacts, and a set of regions  The file must be a JSON file containing a list of strings.\nFor example::\n\n   [\n     "111111111111",\n     "222222222222",\n     "333333333333"\n   ]\n\nStack Instances will be created in every combination of region and account, or region and\nOrganizational Units (OUs).\n\nIf this is set of Organizational Units, you must have selected ``StackSetDeploymentModel.organizations()``\nas deployment model.')
     resource_config: typing.Optional[StackInstancesDefConfig] = pydantic.Field(None)
 
 
 class StackInstancesDefConfig(pydantic.BaseModel):
-    from_artifact_path: typing.Optional[list[StackInstancesDefFromArtifactPathParams]] = pydantic.Field(None, description='Create stack instances in a set of accounts or organizational units taken from the pipeline artifacts, and a set of regions  The file must be a JSON file containing a list of strings.\nFor example::\n\n   [\n     "111111111111",\n     "222222222222",\n     "333333333333"\n   ]\n\nStack Instances will be created in every combination of region and account, or region and\nOrganizational Units (OUs).\n\nIf this is set of Organizational Units, you must have selected ``StackSetDeploymentModel.organizations()``\nas deployment model.')
     in_accounts: typing.Optional[list[StackInstancesDefInAccountsParams]] = pydantic.Field(None, description="Create stack instances in a set of accounts and regions passed as literal lists.\nStack Instances will be created in every combination of region and account.\n.. epigraph::\n\n   NOTE: ``StackInstances.inAccounts()`` and ``StackInstances.inOrganizationalUnits()``\n   have exactly the same behavior, and you can use them interchangeably if you want.\n   The only difference between them is that your code clearly indicates what entity\n   it's working with.")
     in_organizational_units: typing.Optional[list[StackInstancesDefInOrganizationalUnitsParams]] = pydantic.Field(None, description="Create stack instances in all accounts in a set of Organizational Units (OUs) and regions passed as literal lists.\nIf you want to deploy to Organization Units, you must choose have created the StackSet\nwith ``deploymentModel: DeploymentModel.organizations()``.\n\nStack Instances will be created in every combination of region and account.\n.. epigraph::\n\n   NOTE: ``StackInstances.inAccounts()`` and ``StackInstances.inOrganizationalUnits()``\n   have exactly the same behavior, and you can use them interchangeably if you want.\n   The only difference between them is that your code clearly indicates what entity\n   it's working with.")
 
 class StackInstancesDefFromArtifactPathParams(pydantic.BaseModel):
     artifact_path: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-\n')
     regions: typing.Sequence[str] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codepipeline_actions.StackInstancesDefConfig]] = pydantic.Field(None)
     ...
 
 class StackInstancesDefInAccountsParams(pydantic.BaseModel):
@@ -1324,26 +1322,20 @@ class StackSetParametersDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_artifact_path', 'from_literal']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline_actions.StackSetParameters'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_artifact_path', 'from_literal']
     ...
 
 
-    resource_config: typing.Optional[StackSetParametersDefConfig] = pydantic.Field(None)
-
-
-class StackSetParametersDefConfig(pydantic.BaseModel):
-    from_artifact_path: typing.Optional[list[StackSetParametersDefFromArtifactPathParams]] = pydantic.Field(None, description='Read the parameters from a JSON file from one of the pipeline\'s artifacts.\nThe file needs to contain a list of ``{ ParameterKey, ParameterValue, UsePreviousValue }`` objects, like\nthis::\n\n   [\n       {\n           "ParameterKey": "BucketName",\n           "ParameterValue": "my-bucket"\n       },\n       {\n           "ParameterKey": "Asset1",\n           "ParameterValue": "true"\n       },\n       {\n           "ParameterKey": "Asset2",\n           "UsePreviousValue": true\n       }\n   ]\n\nYou must specify all template parameters. Parameters you don\'t specify will revert\nto their ``Default`` values as specified in the template.\n\nFor of parameters you want to retain their existing values\nwithout specifying what those values are, set ``UsePreviousValue: true``.\nUse of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.')
-    from_literal: typing.Optional[list[StackSetParametersDefFromLiteralParams]] = pydantic.Field(None, description="A list of template parameters for your stack set.\nYou must specify all template parameters. Parameters you don't specify will revert\nto their ``Default`` values as specified in the template.\n\nSpecify the names of parameters you want to retain their existing values,\nwithout specifying what those values are, in an array in the second\nargument to this function. Use of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.")
+    from_artifact_path: typing.Optional[StackSetParametersDefFromArtifactPathParams] = pydantic.Field(None, description='Read the parameters from a JSON file from one of the pipeline\'s artifacts.\nThe file needs to contain a list of ``{ ParameterKey, ParameterValue, UsePreviousValue }`` objects, like\nthis::\n\n   [\n       {\n           "ParameterKey": "BucketName",\n           "ParameterValue": "my-bucket"\n       },\n       {\n           "ParameterKey": "Asset1",\n           "ParameterValue": "true"\n       },\n       {\n           "ParameterKey": "Asset2",\n           "UsePreviousValue": true\n       }\n   ]\n\nYou must specify all template parameters. Parameters you don\'t specify will revert\nto their ``Default`` values as specified in the template.\n\nFor of parameters you want to retain their existing values\nwithout specifying what those values are, set ``UsePreviousValue: true``.\nUse of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.')
+    from_literal: typing.Optional[StackSetParametersDefFromLiteralParams] = pydantic.Field(None, description="A list of template parameters for your stack set.\nYou must specify all template parameters. Parameters you don't specify will revert\nto their ``Default`` values as specified in the template.\n\nSpecify the names of parameters you want to retain their existing values,\nwithout specifying what those values are, in an array in the second\nargument to this function. Use of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.")
 
 class StackSetParametersDefFromArtifactPathParams(pydantic.BaseModel):
     artifact_path: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codepipeline_actions.StackSetParametersDefConfig]] = pydantic.Field(None)
     ...
 
 class StackSetParametersDefFromLiteralParams(pydantic.BaseModel):
     parameters: typing.Mapping[str, str] = pydantic.Field(..., description='-\n')
     use_previous_values: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='-\n\nExample::\n\n    parameters = codepipeline_actions.StackSetParameters.from_literal({\n        "BucketName": "my-bucket",\n        "Asset1": "true"\n    })\n')
-    return_config: typing.Optional[list[models.aws_codepipeline_actions.StackSetParametersDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1353,19 +1345,14 @@ class StackSetTemplateDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_artifact_path']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline_actions.StackSetTemplate'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_artifact_path']
     ...
 
 
-    resource_config: typing.Optional[StackSetTemplateDefConfig] = pydantic.Field(None)
-
-
-class StackSetTemplateDefConfig(pydantic.BaseModel):
-    from_artifact_path: typing.Optional[list[StackSetTemplateDefFromArtifactPathParams]] = pydantic.Field(None, description='Use a file in an artifact as Stack Template.')
+    from_artifact_path: typing.Optional[StackSetTemplateDefFromArtifactPathParams] = pydantic.Field(None, description='Use a file in an artifact as Stack Template.')
 
 class StackSetTemplateDefFromArtifactPathParams(pydantic.BaseModel):
     artifact_path: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codepipeline_actions.StackSetTemplateDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1644,11 +1631,6 @@ class CloudFormationDeployStackSetActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationDeployStackSetActionPropsDefConfig] = pydantic.Field(None)
-
-
-class CloudFormationDeployStackSetActionPropsDefConfig(pydantic.BaseModel):
-    template_config: typing.Optional[models.aws_codepipeline_actions.StackSetTemplateDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionProps

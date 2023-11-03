@@ -959,7 +959,6 @@ class AwsCodebuildIBindableBuildImageDefBindParams(pydantic.BaseModel):
 
 class AwsCodebuildIBindableBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
 
 class AwsCodebuildIBindableBuildImageDefValidateParams(pydantic.BaseModel):
     build_image: typing.Optional[typing.Union[models.aws_codebuild.LinuxArmBuildImageDef, models.aws_codebuild.LinuxBuildImageDef, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None, description='The image used for the builds. Default: LinuxBuildImage.STANDARD_1_0\n')
@@ -975,7 +974,6 @@ class AwsCodebuildIBuildImageDefConfig(pydantic.BaseModel):
 
 class AwsCodebuildIBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
 
 class AwsCodebuildIBuildImageDefValidateParams(pydantic.BaseModel):
     build_image: typing.Optional[typing.Union[models.aws_codebuild.LinuxArmBuildImageDef, models.aws_codebuild.LinuxBuildImageDef, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None, description='The image used for the builds. Default: LinuxBuildImage.STANDARD_1_0\n')

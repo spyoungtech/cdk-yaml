@@ -581,16 +581,16 @@ class PolicyDocumentDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add_statements', 'resolve', 'validate_for_any_policy', 'validate_for_identity_policy', 'validate_for_resource_policy']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_json']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_iam.PolicyDocument'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_json']
     ...
 
 
+    from_json: typing.Optional[PolicyDocumentDefFromJsonParams] = pydantic.Field(None, description='Creates a new PolicyDocument based on the object provided.\nThis will accept an object created from the ``.toJSON()`` call')
     resource_config: typing.Optional[PolicyDocumentDefConfig] = pydantic.Field(None)
 
 
 class PolicyDocumentDefConfig(pydantic.BaseModel):
     add_statements: typing.Optional[list[PolicyDocumentDefAddStatementsParams]] = pydantic.Field(None, description='Adds a statement to the policy document.')
-    from_json: typing.Optional[list[PolicyDocumentDefFromJsonParams]] = pydantic.Field(None, description='Creates a new PolicyDocument based on the object provided.\nThis will accept an object created from the ``.toJSON()`` call')
     resolve: typing.Optional[list[PolicyDocumentDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
     validate_for_any_policy: typing.Optional[bool] = pydantic.Field(None, description='Validate that all policy statements in the policy document satisfies the requirements for any policy.\n:return: An array of validation error messages, or an empty array if the document is valid.\n\n:see: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json')
     validate_for_identity_policy: typing.Optional[bool] = pydantic.Field(None, description='Validate that all policy statements in the policy document satisfies the requirements for an identity-based policy.\n:return: An array of validation error messages, or an empty array if the document is valid.\n\n:see: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#access_policies-json')
@@ -602,7 +602,6 @@ class PolicyDocumentDefAddStatementsParams(pydantic.BaseModel):
 
 class PolicyDocumentDefFromJsonParams(pydantic.BaseModel):
     obj: typing.Any = pydantic.Field(..., description='the PolicyDocument in object form.')
-    return_config: typing.Optional[list[models.aws_iam.PolicyDocumentDefConfig]] = pydantic.Field(None)
     ...
 
 class PolicyDocumentDefResolveParams(pydantic.BaseModel):
@@ -625,10 +624,11 @@ class PolicyStatementDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add_account_condition', 'add_account_root_principal', 'add_actions', 'add_all_resources', 'add_any_principal', 'add_arn_principal', 'add_aws_account_principal', 'add_canonical_user_principal', 'add_condition', 'add_conditions', 'add_federated_principal', 'add_not_actions', 'add_not_principals', 'add_not_resources', 'add_principals', 'add_resources', 'add_service_principal', 'add_source_account_condition', 'add_source_arn_condition', 'copy', 'freeze', 'validate_for_any_policy', 'validate_for_identity_policy', 'validate_for_resource_policy']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_json']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_iam.PolicyStatement'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_json']
     ...
 
 
+    from_json: typing.Optional[PolicyStatementDefFromJsonParams] = pydantic.Field(None, description='Creates a new PolicyStatement based on the object provided.\nThis will accept an object created from the ``.toJSON()`` call')
     resource_config: typing.Optional[PolicyStatementDefConfig] = pydantic.Field(None)
 
 
@@ -654,7 +654,6 @@ class PolicyStatementDefConfig(pydantic.BaseModel):
     add_source_arn_condition: typing.Optional[list[PolicyStatementDefAddSourceArnConditionParams]] = pydantic.Field(None, description='Add an ``ArnEquals`` condition that limits to a given resource arn from ``aws:SourceArn``.\nThis method can only be called once: subsequent calls will overwrite earlier calls.')
     copy_: typing.Optional[list[PolicyStatementDefCopyParams]] = pydantic.Field(None, description='Create a new ``PolicyStatement`` with the same exact properties as this one, except for the overrides.', alias='copy')
     freeze: typing.Optional[list[PolicyStatementDefFreezeParams]] = pydantic.Field(None, description='Make the PolicyStatement immutable.\nAfter calling this, any of the ``addXxx()`` methods will throw an exception.\n\nLibraries that lazily generate statement bodies can override this method to\nfill the actual PolicyStatement fields. Be aware that this method may be called\nmultiple times.')
-    from_json: typing.Optional[list[PolicyStatementDefFromJsonParams]] = pydantic.Field(None, description='Creates a new PolicyStatement based on the object provided.\nThis will accept an object created from the ``.toJSON()`` call')
     validate_for_any_policy: typing.Optional[bool] = pydantic.Field(None, description='Validate that the policy statement satisfies base requirements for a policy.\n:return: An array of validation error messages, or an empty array if the statement is valid.')
     validate_for_identity_policy: typing.Optional[bool] = pydantic.Field(None, description='Validate that the policy statement satisfies all requirements for an identity-based policy.\n:return: An array of validation error messages, or an empty array if the statement is valid.')
     validate_for_resource_policy: typing.Optional[bool] = pydantic.Field(None, description='Validate that the policy statement satisfies all requirements for a resource-based policy.\n:return: An array of validation error messages, or an empty array if the statement is valid.')
@@ -746,7 +745,6 @@ class PolicyStatementDefFreezeParams(pydantic.BaseModel):
 
 class PolicyStatementDefFromJsonParams(pydantic.BaseModel):
     obj: typing.Any = pydantic.Field(..., description='the PolicyStatement in object form.')
-    return_config: typing.Optional[list[models.aws_iam.PolicyStatementDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -917,25 +915,19 @@ class SamlMetadataDocumentDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_file', 'from_xml']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_iam.SamlMetadataDocument'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_file', 'from_xml']
     ...
 
 
-    resource_config: typing.Optional[SamlMetadataDocumentDefConfig] = pydantic.Field(None)
-
-
-class SamlMetadataDocumentDefConfig(pydantic.BaseModel):
-    from_file: typing.Optional[list[SamlMetadataDocumentDefFromFileParams]] = pydantic.Field(None, description='Create a SAML metadata document from a XML file.')
-    from_xml: typing.Optional[list[SamlMetadataDocumentDefFromXmlParams]] = pydantic.Field(None, description='Create a SAML metadata document from a XML string.')
+    from_file: typing.Optional[SamlMetadataDocumentDefFromFileParams] = pydantic.Field(None, description='Create a SAML metadata document from a XML file.')
+    from_xml: typing.Optional[SamlMetadataDocumentDefFromXmlParams] = pydantic.Field(None, description='Create a SAML metadata document from a XML string.')
 
 class SamlMetadataDocumentDefFromFileParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_iam.SamlMetadataDocumentDefConfig]] = pydantic.Field(None)
     ...
 
 class SamlMetadataDocumentDefFromXmlParams(pydantic.BaseModel):
     xml: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_iam.SamlMetadataDocumentDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -2104,11 +2096,6 @@ class SamlProviderPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SamlProviderPropsDefConfig] = pydantic.Field(None)
-
-
-class SamlProviderPropsDefConfig(pydantic.BaseModel):
-    metadata_document_config: typing.Optional[models.aws_iam.SamlMetadataDocumentDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_iam.ServicePrincipalOpts

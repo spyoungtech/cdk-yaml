@@ -21,17 +21,17 @@ class AssetCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appsync.AssetCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[AssetCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_inline: typing.Optional[AssetCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for AppSync function.')
     resource_config: typing.Optional[AssetCodeDefConfig] = pydantic.Field(None)
 
 
 class AssetCodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AssetCodeDefBindParams]] = pydantic.Field(None, description='Bind source code to an AppSync Function or resolver.')
-    from_asset: typing.Optional[list[AssetCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_inline: typing.Optional[list[AssetCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for AppSync function.')
 
 class AssetCodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -47,12 +47,10 @@ class AssetCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_appsync.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_appsync.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -229,17 +227,17 @@ class CodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appsync.Code'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_inline: typing.Optional[CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for AppSync function.')
     resource_config: typing.Optional[CodeDefConfig] = pydantic.Field(None)
 
 
 class CodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[CodeDefBindParams]] = pydantic.Field(None, description='Bind source code to an AppSync Function or resolver.')
-    from_asset: typing.Optional[list[CodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_inline: typing.Optional[list[CodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for AppSync function.')
 
 class CodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -255,12 +253,10 @@ class CodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_appsync.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_appsync.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -443,17 +439,17 @@ class InlineCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appsync.InlineCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[InlineCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_inline: typing.Optional[InlineCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for AppSync function.')
     resource_config: typing.Optional[InlineCodeDefConfig] = pydantic.Field(None)
 
 
 class InlineCodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[InlineCodeDefBindParams]] = pydantic.Field(None, description='Bind source code to an AppSync Function or resolver.')
-    from_asset: typing.Optional[list[InlineCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_inline: typing.Optional[list[InlineCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for AppSync function.')
 
 class InlineCodeDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -469,12 +465,10 @@ class InlineCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_appsync.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_appsync.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -557,10 +551,12 @@ class MappingTemplateDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['render_template']
     _classmethod_names: typing.ClassVar[list[str]] = ['dynamo_db_delete_item', 'dynamo_db_get_item', 'dynamo_db_put_item', 'dynamo_db_query', 'dynamo_db_result_item', 'dynamo_db_result_list', 'dynamo_db_scan_table', 'from_file', 'from_string', 'lambda_request', 'lambda_result']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appsync.MappingTemplate'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_file', 'from_string']
     ...
 
 
+    from_file: typing.Optional[MappingTemplateDefFromFileParams] = pydantic.Field(None, description='Create a mapping template from the given file.')
+    from_string: typing.Optional[MappingTemplateDefFromStringParams] = pydantic.Field(None, description='Create a mapping template from the given string.')
     resource_config: typing.Optional[MappingTemplateDefConfig] = pydantic.Field(None)
 
 
@@ -572,8 +568,6 @@ class MappingTemplateDefConfig(pydantic.BaseModel):
     dynamo_db_result_item: typing.Optional[list[MappingTemplateDefDynamoDbResultItemParams]] = pydantic.Field(None, description='Mapping template for a single result item from DynamoDB.')
     dynamo_db_result_list: typing.Optional[list[MappingTemplateDefDynamoDbResultListParams]] = pydantic.Field(None, description='Mapping template for a result list from DynamoDB.')
     dynamo_db_scan_table: typing.Optional[list[MappingTemplateDefDynamoDbScanTableParams]] = pydantic.Field(None, description='Mapping template to scan a DynamoDB table to fetch all entries.')
-    from_file: typing.Optional[list[MappingTemplateDefFromFileParams]] = pydantic.Field(None, description='Create a mapping template from the given file.')
-    from_string: typing.Optional[list[MappingTemplateDefFromStringParams]] = pydantic.Field(None, description='Create a mapping template from the given string.')
     lambda_request: typing.Optional[list[MappingTemplateDefLambdaRequestParams]] = pydantic.Field(None, description='Mapping template to invoke a Lambda function.')
     lambda_result: typing.Optional[list[MappingTemplateDefLambdaResultParams]] = pydantic.Field(None, description='Mapping template to return the Lambda result to the caller.')
     render_template: typing.Optional[bool] = pydantic.Field(None, description='this is called to render the mapping template to a VTL string.')
@@ -619,12 +613,10 @@ class MappingTemplateDefDynamoDbScanTableParams(pydantic.BaseModel):
 
 class MappingTemplateDefFromFileParams(pydantic.BaseModel):
     file_name: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_appsync.MappingTemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class MappingTemplateDefFromStringParams(pydantic.BaseModel):
     template: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_appsync.MappingTemplateDefConfig]] = pydantic.Field(None)
     ...
 
 class MappingTemplateDefLambdaRequestParams(pydantic.BaseModel):
@@ -720,16 +712,16 @@ class SchemaFileDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appsync.SchemaFile'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset']
     ...
 
 
+    from_asset: typing.Optional[SchemaFileDefFromAssetParams] = pydantic.Field(None, description='Generate a Schema from file.')
     resource_config: typing.Optional[SchemaFileDefConfig] = pydantic.Field(None)
 
 
 class SchemaFileDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[SchemaFileDefBindParams]] = pydantic.Field(None, description='Called when the GraphQL Api is initialized to allow this object to bind to the stack.')
-    from_asset: typing.Optional[list[SchemaFileDefFromAssetParams]] = pydantic.Field(None, description='Generate a Schema from file.')
 
 class SchemaFileDefBindParams(pydantic.BaseModel):
     api: typing.Union[models.aws_appsync.GraphqlApiBaseDef, models.aws_appsync.GraphqlApiDef] = pydantic.Field(..., description='The binding GraphQL Api.')
@@ -737,7 +729,6 @@ class SchemaFileDefBindParams(pydantic.BaseModel):
 
 class SchemaFileDefFromAssetParams(pydantic.BaseModel):
     file_path: str = pydantic.Field(..., description='the file path of the schema file.\n')
-    return_config: typing.Optional[list[models.aws_appsync.SchemaFileDefConfig]] = pydantic.Field(None)
     ...
 
 

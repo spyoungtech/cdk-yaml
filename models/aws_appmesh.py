@@ -12,16 +12,16 @@ class AccessLogDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_file_path']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appmesh.AccessLog'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_file_path']
     ...
 
 
+    from_file_path: typing.Optional[AccessLogDefFromFilePathParams] = pydantic.Field(None, description='Path to a file to write access logs to.')
     resource_config: typing.Optional[AccessLogDefConfig] = pydantic.Field(None)
 
 
 class AccessLogDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AccessLogDefBindParams]] = pydantic.Field(None, description='Called when the AccessLog type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
-    from_file_path: typing.Optional[list[AccessLogDefFromFilePathParams]] = pydantic.Field(None, description='Path to a file to write access logs to.')
 
 class AccessLogDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -30,7 +30,6 @@ class AccessLogDefBindParams(pydantic.BaseModel):
 class AccessLogDefFromFilePathParams(pydantic.BaseModel):
     file_path: str = pydantic.Field(..., description='-\n')
     logging_format: typing.Optional[models.aws_appmesh.LoggingFormatDef] = pydantic.Field(None, description='-\n\n:default: - no file based access logging\n')
-    return_config: typing.Optional[list[models.aws_appmesh.AccessLogDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -380,29 +379,27 @@ class LoggingFormatDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_json', 'from_text']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_appmesh.LoggingFormat'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_json', 'from_text']
     ...
 
 
+    from_json: typing.Optional[LoggingFormatDefFromJsonParams] = pydantic.Field(None, description='Generate logging format from json key pairs.')
+    from_text: typing.Optional[LoggingFormatDefFromTextParams] = pydantic.Field(None, description='Generate logging format from text pattern.')
     resource_config: typing.Optional[LoggingFormatDefConfig] = pydantic.Field(None)
 
 
 class LoggingFormatDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[LoggingFormatDefBindParams]] = pydantic.Field(None, description='Called when the Access Log Format is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
-    from_json: typing.Optional[list[LoggingFormatDefFromJsonParams]] = pydantic.Field(None, description='Generate logging format from json key pairs.')
-    from_text: typing.Optional[list[LoggingFormatDefFromTextParams]] = pydantic.Field(None, description='Generate logging format from text pattern.')
 
 class LoggingFormatDefBindParams(pydantic.BaseModel):
     ...
 
 class LoggingFormatDefFromJsonParams(pydantic.BaseModel):
     json_logging_format: typing.Mapping[str, str] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_appmesh.LoggingFormatDefConfig]] = pydantic.Field(None)
     ...
 
 class LoggingFormatDefFromTextParams(pydantic.BaseModel):
     text: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_appmesh.LoggingFormatDefConfig]] = pydantic.Field(None)
     ...
 
 

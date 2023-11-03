@@ -660,15 +660,11 @@ class DockerBuildSecretDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_src']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.DockerBuildSecret'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_src']
     ...
 
 
-    resource_config: typing.Optional[DockerBuildSecretDefConfig] = pydantic.Field(None)
-
-
-class DockerBuildSecretDefConfig(pydantic.BaseModel):
-    from_src: typing.Optional[list[DockerBuildSecretDefFromSrcParams]] = pydantic.Field(None, description='A Docker build secret from a file source.')
+    from_src: typing.Optional[DockerBuildSecretDefFromSrcParams] = pydantic.Field(None, description='A Docker build secret from a file source.')
 
 class DockerBuildSecretDefFromSrcParams(pydantic.BaseModel):
     src: str = pydantic.Field(..., description='The path to the source file, relative to the build directory.\n')
@@ -683,17 +679,17 @@ class DockerIgnoreStrategyDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add', 'ignores']
     _classmethod_names: typing.ClassVar[list[str]] = ['docker', 'from_copy_options', 'git', 'glob']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.DockerIgnoreStrategy'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_copy_options']
     ...
 
 
+    from_copy_options: typing.Optional[DockerIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     resource_config: typing.Optional[DockerIgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class DockerIgnoreStrategyDefConfig(pydantic.BaseModel):
     add: typing.Optional[list[DockerIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
     docker: typing.Optional[list[DockerIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    from_copy_options: typing.Optional[list[DockerIgnoreStrategyDefFromCopyOptionsParams]] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     git: typing.Optional[list[DockerIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
     glob: typing.Optional[list[DockerIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
     ignores: typing.Optional[list[DockerIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
@@ -711,7 +707,6 @@ class DockerIgnoreStrategyDefDockerParams(pydantic.BaseModel):
 class DockerIgnoreStrategyDefFromCopyOptionsParams(pydantic.BaseModel):
     options: typing.Union[models.CopyOptionsDef, dict[str, typing.Any]] = pydantic.Field(..., description='the ``CopyOptions`` to create the ``IgnoreStrategy`` from.\n')
     absolute_root_path: str = pydantic.Field(..., description='the absolute path to the root directory of the paths to be considered.\n')
-    return_config: typing.Optional[list[models.core.IgnoreStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerIgnoreStrategyDefGitParams(pydantic.BaseModel):
@@ -739,17 +734,17 @@ class DockerImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['cp', 'run']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_build', 'from_registry']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.DockerImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_build', 'from_registry']
     ...
 
 
+    from_build: typing.Optional[DockerImageDefFromBuildParams] = pydantic.Field(None, description='Builds a Docker image.')
+    from_registry: typing.Optional[DockerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
     resource_config: typing.Optional[DockerImageDefConfig] = pydantic.Field(None)
 
 
 class DockerImageDefConfig(pydantic.BaseModel):
     cp: typing.Optional[list[DockerImageDefCpParams]] = pydantic.Field(None, description='Copies a file or directory out of the Docker image to the local filesystem.\nIf ``outputPath`` is omitted the destination path is a temporary directory.')
-    from_build: typing.Optional[list[DockerImageDefFromBuildParams]] = pydantic.Field(None, description='Builds a Docker image.')
-    from_registry: typing.Optional[list[DockerImageDefFromRegistryParams]] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
     run: typing.Optional[list[DockerImageDefRunParams]] = pydantic.Field(None, description='Runs a Docker image.')
 
 class DockerImageDefCpParams(pydantic.BaseModel):
@@ -763,12 +758,10 @@ class DockerImageDefFromBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.core.DockerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerImageDefFromRegistryParams(pydantic.BaseModel):
     image: str = pydantic.Field(..., description='the image name.')
-    return_config: typing.Optional[list[models.core.DockerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerImageDefRunParams(pydantic.BaseModel):
@@ -856,10 +849,11 @@ class ExpirationDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['after', 'at_date', 'at_timestamp', 'from_string']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.Expiration'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_string']
     ...
 
 
+    from_string: typing.Optional[ExpirationDefFromStringParams] = pydantic.Field(None, description='Expire at specified date, represented as a string.')
     resource_config: typing.Optional[ExpirationDefConfig] = pydantic.Field(None)
 
 
@@ -867,7 +861,6 @@ class ExpirationDefConfig(pydantic.BaseModel):
     after: typing.Optional[list[ExpirationDefAfterParams]] = pydantic.Field(None, description='Expire once the specified duration has passed since deployment time.')
     at_date: typing.Optional[list[ExpirationDefAtDateParams]] = pydantic.Field(None, description='Expire at the specified date.')
     at_timestamp: typing.Optional[list[ExpirationDefAtTimestampParams]] = pydantic.Field(None, description='Expire at the specified timestamp.')
-    from_string: typing.Optional[list[ExpirationDefFromStringParams]] = pydantic.Field(None, description='Expire at specified date, represented as a string.')
 
 class ExpirationDefAfterParams(pydantic.BaseModel):
     t: models.DurationDef = pydantic.Field(..., description='the duration to wait before expiring.')
@@ -886,7 +879,6 @@ class ExpirationDefAtTimestampParams(pydantic.BaseModel):
 
 class ExpirationDefFromStringParams(pydantic.BaseModel):
     s: str = pydantic.Field(..., description='the string that represents date to expire at.')
-    return_config: typing.Optional[list[models.core.ExpirationDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1125,17 +1117,17 @@ class GitIgnoreStrategyDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add', 'ignores']
     _classmethod_names: typing.ClassVar[list[str]] = ['docker', 'from_copy_options', 'git', 'glob']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.GitIgnoreStrategy'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_copy_options']
     ...
 
 
+    from_copy_options: typing.Optional[GitIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     resource_config: typing.Optional[GitIgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class GitIgnoreStrategyDefConfig(pydantic.BaseModel):
     add: typing.Optional[list[GitIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
     docker: typing.Optional[list[GitIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    from_copy_options: typing.Optional[list[GitIgnoreStrategyDefFromCopyOptionsParams]] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     git: typing.Optional[list[GitIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
     glob: typing.Optional[list[GitIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
     ignores: typing.Optional[list[GitIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
@@ -1153,7 +1145,6 @@ class GitIgnoreStrategyDefDockerParams(pydantic.BaseModel):
 class GitIgnoreStrategyDefFromCopyOptionsParams(pydantic.BaseModel):
     options: typing.Union[models.CopyOptionsDef, dict[str, typing.Any]] = pydantic.Field(..., description='the ``CopyOptions`` to create the ``IgnoreStrategy`` from.\n')
     absolute_root_path: str = pydantic.Field(..., description='the absolute path to the root directory of the paths to be considered.\n')
-    return_config: typing.Optional[list[models.core.IgnoreStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class GitIgnoreStrategyDefGitParams(pydantic.BaseModel):
@@ -1181,17 +1172,17 @@ class GlobIgnoreStrategyDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add', 'ignores']
     _classmethod_names: typing.ClassVar[list[str]] = ['docker', 'from_copy_options', 'git', 'glob']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.GlobIgnoreStrategy'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_copy_options']
     ...
 
 
+    from_copy_options: typing.Optional[GlobIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     resource_config: typing.Optional[GlobIgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class GlobIgnoreStrategyDefConfig(pydantic.BaseModel):
     add: typing.Optional[list[GlobIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
     docker: typing.Optional[list[GlobIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    from_copy_options: typing.Optional[list[GlobIgnoreStrategyDefFromCopyOptionsParams]] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     git: typing.Optional[list[GlobIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
     glob: typing.Optional[list[GlobIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
     ignores: typing.Optional[list[GlobIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
@@ -1209,7 +1200,6 @@ class GlobIgnoreStrategyDefDockerParams(pydantic.BaseModel):
 class GlobIgnoreStrategyDefFromCopyOptionsParams(pydantic.BaseModel):
     options: typing.Union[models.CopyOptionsDef, dict[str, typing.Any]] = pydantic.Field(..., description='the ``CopyOptions`` to create the ``IgnoreStrategy`` from.\n')
     absolute_root_path: str = pydantic.Field(..., description='the absolute path to the root directory of the paths to be considered.\n')
-    return_config: typing.Optional[list[models.core.IgnoreStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class GlobIgnoreStrategyDefGitParams(pydantic.BaseModel):
@@ -1235,17 +1225,17 @@ class IgnoreStrategyDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add', 'ignores']
     _classmethod_names: typing.ClassVar[list[str]] = ['docker', 'from_copy_options', 'git', 'glob']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.IgnoreStrategy'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_copy_options']
     ...
 
 
+    from_copy_options: typing.Optional[IgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     resource_config: typing.Optional[IgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class IgnoreStrategyDefConfig(pydantic.BaseModel):
     add: typing.Optional[list[IgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
     docker: typing.Optional[list[IgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    from_copy_options: typing.Optional[list[IgnoreStrategyDefFromCopyOptionsParams]] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
     git: typing.Optional[list[IgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
     glob: typing.Optional[list[IgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
     ignores: typing.Optional[list[IgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
@@ -1263,7 +1253,6 @@ class IgnoreStrategyDefDockerParams(pydantic.BaseModel):
 class IgnoreStrategyDefFromCopyOptionsParams(pydantic.BaseModel):
     options: typing.Union[models.CopyOptionsDef, dict[str, typing.Any]] = pydantic.Field(..., description='the ``CopyOptions`` to create the ``IgnoreStrategy`` from.\n')
     absolute_root_path: str = pydantic.Field(..., description='the absolute path to the root directory of the paths to be considered.\n')
-    return_config: typing.Optional[list[models.core.IgnoreStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class IgnoreStrategyDefGitParams(pydantic.BaseModel):
@@ -1545,25 +1534,19 @@ class PermissionsBoundaryDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_arn', 'from_name']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.PermissionsBoundary'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_arn', 'from_name']
     ...
 
 
-    resource_config: typing.Optional[PermissionsBoundaryDefConfig] = pydantic.Field(None)
-
-
-class PermissionsBoundaryDefConfig(pydantic.BaseModel):
-    from_arn: typing.Optional[list[PermissionsBoundaryDefFromArnParams]] = pydantic.Field(None, description="Apply a permissions boundary with the given ARN to all IAM Roles and Users created within a scope.\nThe arn can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
-    from_name: typing.Optional[list[PermissionsBoundaryDefFromNameParams]] = pydantic.Field(None, description="Apply a permissions boundary with the given name to all IAM Roles and Users created within a scope.\nThe name can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
+    from_arn: typing.Optional[PermissionsBoundaryDefFromArnParams] = pydantic.Field(None, description="Apply a permissions boundary with the given ARN to all IAM Roles and Users created within a scope.\nThe arn can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
+    from_name: typing.Optional[PermissionsBoundaryDefFromNameParams] = pydantic.Field(None, description="Apply a permissions boundary with the given name to all IAM Roles and Users created within a scope.\nThe name can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
 
 class PermissionsBoundaryDefFromArnParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='the ARN of the permissions boundary policy.\n\nExample::\n\n    Stage(app, "ProdStage",\n        permissions_boundary=PermissionsBoundary.from_arn("arn:aws:iam::${AWS::AccountId}:policy/my-custom-permissions-boundary")\n    )\n')
-    return_config: typing.Optional[list[models.core.PermissionsBoundaryDefConfig]] = pydantic.Field(None)
     ...
 
 class PermissionsBoundaryDefFromNameParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='the name of the permissions boundary policy.\n\nExample::\n\n    Stage(app, "ProdStage",\n        permissions_boundary=PermissionsBoundary.from_name("my-custom-permissions-boundary")\n    )\n')
-    return_config: typing.Optional[list[models.core.PermissionsBoundaryDefConfig]] = pydantic.Field(None)
     ...
 
 

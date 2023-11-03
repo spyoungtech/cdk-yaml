@@ -98,19 +98,19 @@ class DockerImageDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_ecr_repository', 'from_json_expression', 'from_registry']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions_tasks.DockerImage'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_ecr_repository', 'from_json_expression', 'from_registry']
     ...
 
 
+    from_asset: typing.Optional[DockerImageDefFromAssetParams] = pydantic.Field(None, description='Reference a Docker image that is provided as an Asset in the current app.')
+    from_ecr_repository: typing.Optional[DockerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference a Docker image stored in an ECR repository.')
+    from_json_expression: typing.Optional[DockerImageDefFromJsonExpressionParams] = pydantic.Field(None, description="Reference a Docker image which URI is obtained from the task's input.")
+    from_registry: typing.Optional[DockerImageDefFromRegistryParams] = pydantic.Field(None, description="Reference a Docker image by it's URI.\nWhen referencing ECR images, prefer using ``inEcr``.")
     resource_config: typing.Optional[DockerImageDefConfig] = pydantic.Field(None)
 
 
 class DockerImageDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[DockerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a SageMaker task.')
-    from_asset: typing.Optional[list[DockerImageDefFromAssetParams]] = pydantic.Field(None, description='Reference a Docker image that is provided as an Asset in the current app.')
-    from_ecr_repository: typing.Optional[list[DockerImageDefFromEcrRepositoryParams]] = pydantic.Field(None, description='Reference a Docker image stored in an ECR repository.')
-    from_json_expression: typing.Optional[list[DockerImageDefFromJsonExpressionParams]] = pydantic.Field(None, description="Reference a Docker image which URI is obtained from the task's input.")
-    from_registry: typing.Optional[list[DockerImageDefFromRegistryParams]] = pydantic.Field(None, description="Reference a Docker image by it's URI.\nWhen referencing ECR images, prefer using ``inEcr``.")
 
 class DockerImageDefBindParams(pydantic.BaseModel):
     task: models.UnsupportedResource = pydantic.Field(..., description='-')
@@ -135,24 +135,20 @@ class DockerImageDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DockerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerImageDefFromEcrRepositoryParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='the ECR repository where the image is hosted.\n')
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description='an optional tag or digest (digests must start with ``sha256:``).')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DockerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerImageDefFromJsonExpressionParams(pydantic.BaseModel):
     expression: str = pydantic.Field(..., description='the JSON path expression with the task input.\n')
     allow_any_ecr_image_pull: typing.Optional[bool] = pydantic.Field(None, description='whether ECR access should be permitted (set to ``false`` if the image will never be in ECR).')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DockerImageDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerImageDefFromRegistryParams(pydantic.BaseModel):
     image_uri: str = pydantic.Field(..., description='the URI to the docker image.')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DockerImageDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -162,25 +158,25 @@ class DynamoAttributeValueDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['boolean_from_json_path', 'from_binary', 'from_binary_set', 'from_boolean', 'from_list', 'from_map', 'from_null', 'from_number', 'from_number_set', 'from_string', 'from_string_set', 'list_from_json_path', 'map_from_json_path', 'number_from_string', 'number_set_from_strings']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions_tasks.DynamoAttributeValue'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_binary', 'from_binary_set', 'from_boolean', 'from_list', 'from_map', 'from_null', 'from_number', 'from_number_set', 'from_string', 'from_string_set']
     ...
 
 
+    from_binary: typing.Optional[DynamoAttributeValueDefFromBinaryParams] = pydantic.Field(None, description='Sets an attribute of type Binary.\nFor example:  "B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"')
+    from_binary_set: typing.Optional[DynamoAttributeValueDefFromBinarySetParams] = pydantic.Field(None, description='Sets an attribute of type Binary Set.\nFor example:  "BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]')
+    from_boolean: typing.Optional[DynamoAttributeValueDefFromBooleanParams] = pydantic.Field(None, description='Sets an attribute of type Boolean.\nFor example:  "BOOL": true')
+    from_list: typing.Optional[DynamoAttributeValueDefFromListParams] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N", "3.14159"}]')
+    from_map: typing.Optional[DynamoAttributeValueDefFromMapParams] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
+    from_null: typing.Optional[DynamoAttributeValueDefFromNullParams] = pydantic.Field(None, description='Sets an attribute of type Null.\nFor example:  "NULL": true')
+    from_number: typing.Optional[DynamoAttributeValueDefFromNumberParams] = pydantic.Field(None, description='Sets a literal number.\nFor example: 1234\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
+    from_number_set: typing.Optional[DynamoAttributeValueDefFromNumberSetParams] = pydantic.Field(None, description='Sets an attribute of type Number Set.\nFor example:  "NS": ["42.2", "-19", "7.5", "3.14"]\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
+    from_string: typing.Optional[DynamoAttributeValueDefFromStringParams] = pydantic.Field(None, description='Sets an attribute of type String.\nFor example:  "S": "Hello"\nStrings may be literal values or as JsonPath. Example values:\n\n- ``DynamoAttributeValue.fromString(\'someValue\')``\n- ``DynamoAttributeValue.fromString(JsonPath.stringAt(\'$.bar\'))``')
+    from_string_set: typing.Optional[DynamoAttributeValueDefFromStringSetParams] = pydantic.Field(None, description='Sets an attribute of type String Set.\nFor example:  "SS": ["Giraffe", "Hippo" ,"Zebra"]')
     resource_config: typing.Optional[DynamoAttributeValueDefConfig] = pydantic.Field(None)
 
 
 class DynamoAttributeValueDefConfig(pydantic.BaseModel):
     boolean_from_json_path: typing.Optional[list[DynamoAttributeValueDefBooleanFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type Boolean from state input through Json path.\nFor example:  "BOOL": true')
-    from_binary: typing.Optional[list[DynamoAttributeValueDefFromBinaryParams]] = pydantic.Field(None, description='Sets an attribute of type Binary.\nFor example:  "B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"')
-    from_binary_set: typing.Optional[list[DynamoAttributeValueDefFromBinarySetParams]] = pydantic.Field(None, description='Sets an attribute of type Binary Set.\nFor example:  "BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]')
-    from_boolean: typing.Optional[list[DynamoAttributeValueDefFromBooleanParams]] = pydantic.Field(None, description='Sets an attribute of type Boolean.\nFor example:  "BOOL": true')
-    from_list: typing.Optional[list[DynamoAttributeValueDefFromListParams]] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N", "3.14159"}]')
-    from_map: typing.Optional[list[DynamoAttributeValueDefFromMapParams]] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
-    from_null: typing.Optional[list[DynamoAttributeValueDefFromNullParams]] = pydantic.Field(None, description='Sets an attribute of type Null.\nFor example:  "NULL": true')
-    from_number: typing.Optional[list[DynamoAttributeValueDefFromNumberParams]] = pydantic.Field(None, description='Sets a literal number.\nFor example: 1234\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
-    from_number_set: typing.Optional[list[DynamoAttributeValueDefFromNumberSetParams]] = pydantic.Field(None, description='Sets an attribute of type Number Set.\nFor example:  "NS": ["42.2", "-19", "7.5", "3.14"]\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
-    from_string: typing.Optional[list[DynamoAttributeValueDefFromStringParams]] = pydantic.Field(None, description='Sets an attribute of type String.\nFor example:  "S": "Hello"\nStrings may be literal values or as JsonPath. Example values:\n\n- ``DynamoAttributeValue.fromString(\'someValue\')``\n- ``DynamoAttributeValue.fromString(JsonPath.stringAt(\'$.bar\'))``')
-    from_string_set: typing.Optional[list[DynamoAttributeValueDefFromStringSetParams]] = pydantic.Field(None, description='Sets an attribute of type String Set.\nFor example:  "SS": ["Giraffe", "Hippo" ,"Zebra"]')
     list_from_json_path: typing.Optional[list[DynamoAttributeValueDefListFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"S", "Veggies"}]')
     map_from_json_path: typing.Optional[list[DynamoAttributeValueDefMapFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
     number_from_string: typing.Optional[list[DynamoAttributeValueDefNumberFromStringParams]] = pydantic.Field(None, description='Sets an attribute of type Number.\nFor example:  "N": "123.45"\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.\n\nNumbers may be expressed as literal strings or as JsonPath')
@@ -193,52 +189,42 @@ class DynamoAttributeValueDefBooleanFromJsonPathParams(pydantic.BaseModel):
 
 class DynamoAttributeValueDefFromBinaryParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='base-64 encoded string.')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromBinarySetParams(pydantic.BaseModel):
     value: typing.Sequence[str] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromBooleanParams(pydantic.BaseModel):
     value: bool = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromListParams(pydantic.BaseModel):
     value: typing.Sequence[models.aws_stepfunctions_tasks.DynamoAttributeValueDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromMapParams(pydantic.BaseModel):
     value: typing.Mapping[str, models.aws_stepfunctions_tasks.DynamoAttributeValueDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromNullParams(pydantic.BaseModel):
     value: bool = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromNumberParams(pydantic.BaseModel):
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromNumberSetParams(pydantic.BaseModel):
     value: typing.Sequence[typing.Union[int, float]] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromStringParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromStringSetParams(pydantic.BaseModel):
     value: typing.Sequence[str] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefListFromJsonPathParams(pydantic.BaseModel):
@@ -345,25 +331,19 @@ class EksClusterInputDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_cluster', 'from_task_input']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions_tasks.EksClusterInput'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_cluster', 'from_task_input']
     ...
 
 
-    resource_config: typing.Optional[EksClusterInputDefConfig] = pydantic.Field(None)
-
-
-class EksClusterInputDefConfig(pydantic.BaseModel):
-    from_cluster: typing.Optional[list[EksClusterInputDefFromClusterParams]] = pydantic.Field(None, description='Specify an existing EKS Cluster as the name for this Cluster.')
-    from_task_input: typing.Optional[list[EksClusterInputDefFromTaskInputParams]] = pydantic.Field(None, description='Specify a Task Input as the name for this Cluster.')
+    from_cluster: typing.Optional[EksClusterInputDefFromClusterParams] = pydantic.Field(None, description='Specify an existing EKS Cluster as the name for this Cluster.')
+    from_task_input: typing.Optional[EksClusterInputDefFromTaskInputParams] = pydantic.Field(None, description='Specify a Task Input as the name for this Cluster.')
 
 class EksClusterInputDefFromClusterParams(pydantic.BaseModel):
     cluster: typing.Union[models.aws_eks.ClusterDef, models.aws_eks.FargateClusterDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.EksClusterInputDefConfig]] = pydantic.Field(None)
     ...
 
 class EksClusterInputDefFromTaskInputParams(pydantic.BaseModel):
     task_input: models.aws_stepfunctions.TaskInputDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.EksClusterInputDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -386,17 +366,17 @@ class S3LocationDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_bucket', 'from_json_expression']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions_tasks.S3Location'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_bucket', 'from_json_expression']
     ...
 
 
+    from_bucket: typing.Optional[S3LocationDefFromBucketParams] = pydantic.Field(None, description='An ``IS3Location`` built with a determined bucket and key prefix.')
+    from_json_expression: typing.Optional[S3LocationDefFromJsonExpressionParams] = pydantic.Field(None, description='An ``IS3Location`` determined fully by a JSON Path from the task input.\nDue to the dynamic nature of those locations, the IAM grants that will be set by ``grantRead`` and ``grantWrite``\napply to the ``*`` resource.')
     resource_config: typing.Optional[S3LocationDefConfig] = pydantic.Field(None)
 
 
 class S3LocationDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[S3LocationDefBindParams]] = pydantic.Field(None, description='Called when the S3Location is bound to a StepFunctions task.')
-    from_bucket: typing.Optional[list[S3LocationDefFromBucketParams]] = pydantic.Field(None, description='An ``IS3Location`` built with a determined bucket and key prefix.')
-    from_json_expression: typing.Optional[list[S3LocationDefFromJsonExpressionParams]] = pydantic.Field(None, description='An ``IS3Location`` determined fully by a JSON Path from the task input.\nDue to the dynamic nature of those locations, the IAM grants that will be set by ``grantRead`` and ``grantWrite``\napply to the ``*`` resource.')
 
 class S3LocationDefBindParams(pydantic.BaseModel):
     task: models.UnsupportedResource = pydantic.Field(..., description='-\n')
@@ -407,12 +387,10 @@ class S3LocationDefBindParams(pydantic.BaseModel):
 class S3LocationDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='is the bucket where the objects are to be stored.\n')
     key_prefix: str = pydantic.Field(..., description='is the key prefix used by the location.')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.S3LocationDefConfig]] = pydantic.Field(None)
     ...
 
 class S3LocationDefFromJsonExpressionParams(pydantic.BaseModel):
     expression: str = pydantic.Field(..., description='the JSON expression resolving to an S3 location URI.')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.S3LocationDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -422,25 +400,19 @@ class VirtualClusterInputDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_task_input', 'from_virtual_cluster_id']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions_tasks.VirtualClusterInput'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_task_input', 'from_virtual_cluster_id']
     ...
 
 
-    resource_config: typing.Optional[VirtualClusterInputDefConfig] = pydantic.Field(None)
-
-
-class VirtualClusterInputDefConfig(pydantic.BaseModel):
-    from_task_input: typing.Optional[list[VirtualClusterInputDefFromTaskInputParams]] = pydantic.Field(None, description='Input for a virtualClusterId from a Task Input.')
-    from_virtual_cluster_id: typing.Optional[list[VirtualClusterInputDefFromVirtualClusterIdParams]] = pydantic.Field(None, description='Input for virtualClusterId from a literal string.')
+    from_task_input: typing.Optional[VirtualClusterInputDefFromTaskInputParams] = pydantic.Field(None, description='Input for a virtualClusterId from a Task Input.')
+    from_virtual_cluster_id: typing.Optional[VirtualClusterInputDefFromVirtualClusterIdParams] = pydantic.Field(None, description='Input for virtualClusterId from a literal string.')
 
 class VirtualClusterInputDefFromTaskInputParams(pydantic.BaseModel):
     task_input: models.aws_stepfunctions.TaskInputDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.VirtualClusterInputDefConfig]] = pydantic.Field(None)
     ...
 
 class VirtualClusterInputDefFromVirtualClusterIdParams(pydantic.BaseModel):
     virtual_cluster_id: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.VirtualClusterInputDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -10380,11 +10352,6 @@ class EmrContainersCreateVirtualClusterPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EmrContainersCreateVirtualClusterPropsDefConfig] = pydantic.Field(None)
-
-
-class EmrContainersCreateVirtualClusterPropsDefConfig(pydantic.BaseModel):
-    eks_cluster_config: typing.Optional[models.aws_stepfunctions_tasks.EksClusterInputDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterProps
@@ -10409,11 +10376,6 @@ class EmrContainersDeleteVirtualClusterPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EmrContainersDeleteVirtualClusterPropsDefConfig] = pydantic.Field(None)
-
-
-class EmrContainersDeleteVirtualClusterPropsDefConfig(pydantic.BaseModel):
-    virtual_cluster_id_config: typing.Optional[models.aws_stepfunctions.TaskInputDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.EmrContainersStartJobRunProps
@@ -11065,11 +11027,6 @@ class EventBridgePutEventsEntryDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EventBridgePutEventsEntryDefConfig] = pydantic.Field(None)
-
-
-class EventBridgePutEventsEntryDefConfig(pydantic.BaseModel):
-    detail_config: typing.Optional[models.aws_stepfunctions.TaskInputDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.EventBridgePutEventsProps
@@ -11644,7 +11601,6 @@ class SnsPublishPropsDef(BaseStruct):
 
 
 class SnsPublishPropsDefConfig(pydantic.BaseModel):
-    message_config: typing.Optional[models.aws_stepfunctions.TaskInputDefConfig] = pydantic.Field(None)
     topic_config: typing.Optional[models._interface_methods.AwsSnsITopicDefConfig] = pydantic.Field(None)
 
 
@@ -11661,11 +11617,6 @@ class SparkSubmitJobDriverDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SparkSubmitJobDriverDefConfig] = pydantic.Field(None)
-
-
-class SparkSubmitJobDriverDefConfig(pydantic.BaseModel):
-    entry_point_config: typing.Optional[models.aws_stepfunctions.TaskInputDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.SqsSendMessageProps
@@ -11698,7 +11649,6 @@ class SqsSendMessagePropsDef(BaseStruct):
 
 
 class SqsSendMessagePropsDefConfig(pydantic.BaseModel):
-    message_body_config: typing.Optional[models.aws_stepfunctions.TaskInputDefConfig] = pydantic.Field(None)
     queue_config: typing.Optional[models._interface_methods.AwsSqsIQueueDefConfig] = pydantic.Field(None)
 
 

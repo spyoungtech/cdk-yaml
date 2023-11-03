@@ -70,69 +70,56 @@ class BackupResourceDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_arn', 'from_construct', 'from_dynamo_db_table', 'from_ec2_instance', 'from_efs_file_system', 'from_rds_database_cluster', 'from_rds_database_instance', 'from_rds_serverless_cluster', 'from_tag']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_backup.BackupResource'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_arn', 'from_construct', 'from_dynamo_db_table', 'from_ec2_instance', 'from_efs_file_system', 'from_rds_database_cluster', 'from_rds_database_instance', 'from_rds_serverless_cluster', 'from_tag']
     ...
 
 
-    resource_config: typing.Optional[BackupResourceDefConfig] = pydantic.Field(None)
-
-
-class BackupResourceDefConfig(pydantic.BaseModel):
-    from_arn: typing.Optional[list[BackupResourceDefFromArnParams]] = pydantic.Field(None, description='A list of ARNs or match patterns such as ``arn:aws:ec2:us-east-1:123456789012:volume/*``.')
-    from_construct: typing.Optional[list[BackupResourceDefFromConstructParams]] = pydantic.Field(None, description='Adds all supported resources in a construct.')
-    from_dynamo_db_table: typing.Optional[list[BackupResourceDefFromDynamoDbTableParams]] = pydantic.Field(None, description='A DynamoDB table.')
-    from_ec2_instance: typing.Optional[list[BackupResourceDefFromEc2InstanceParams]] = pydantic.Field(None, description='An EC2 instance.')
-    from_efs_file_system: typing.Optional[list[BackupResourceDefFromEfsFileSystemParams]] = pydantic.Field(None, description='An EFS file system.')
-    from_rds_database_cluster: typing.Optional[list[BackupResourceDefFromRdsDatabaseClusterParams]] = pydantic.Field(None, description='A RDS database cluter.')
-    from_rds_database_instance: typing.Optional[list[BackupResourceDefFromRdsDatabaseInstanceParams]] = pydantic.Field(None, description='A RDS database instance.')
-    from_rds_serverless_cluster: typing.Optional[list[BackupResourceDefFromRdsServerlessClusterParams]] = pydantic.Field(None, description='An Aurora database instance.')
-    from_tag: typing.Optional[list[BackupResourceDefFromTagParams]] = pydantic.Field(None, description='A tag condition.')
+    from_arn: typing.Optional[BackupResourceDefFromArnParams] = pydantic.Field(None, description='A list of ARNs or match patterns such as ``arn:aws:ec2:us-east-1:123456789012:volume/*``.')
+    from_construct: typing.Optional[BackupResourceDefFromConstructParams] = pydantic.Field(None, description='Adds all supported resources in a construct.')
+    from_dynamo_db_table: typing.Optional[BackupResourceDefFromDynamoDbTableParams] = pydantic.Field(None, description='A DynamoDB table.')
+    from_ec2_instance: typing.Optional[BackupResourceDefFromEc2InstanceParams] = pydantic.Field(None, description='An EC2 instance.')
+    from_efs_file_system: typing.Optional[BackupResourceDefFromEfsFileSystemParams] = pydantic.Field(None, description='An EFS file system.')
+    from_rds_database_cluster: typing.Optional[BackupResourceDefFromRdsDatabaseClusterParams] = pydantic.Field(None, description='A RDS database cluter.')
+    from_rds_database_instance: typing.Optional[BackupResourceDefFromRdsDatabaseInstanceParams] = pydantic.Field(None, description='A RDS database instance.')
+    from_rds_serverless_cluster: typing.Optional[BackupResourceDefFromRdsServerlessClusterParams] = pydantic.Field(None, description='An Aurora database instance.')
+    from_tag: typing.Optional[BackupResourceDefFromTagParams] = pydantic.Field(None, description='A tag condition.')
 
 class BackupResourceDefFromArnParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromConstructParams(pydantic.BaseModel):
     construct_: models.constructs.ConstructDef = pydantic.Field(..., description='The construct containing resources to backup.', alias='construct')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromDynamoDbTableParams(pydantic.BaseModel):
     table: typing.Union[models.aws_dynamodb.TableDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromEc2InstanceParams(pydantic.BaseModel):
     instance: typing.Union[models.aws_ec2.BastionHostLinuxDef, models.aws_ec2.InstanceDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromEfsFileSystemParams(pydantic.BaseModel):
     file_system: typing.Union[models.aws_efs.FileSystemDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromRdsDatabaseClusterParams(pydantic.BaseModel):
     cluster: typing.Union[models.aws_rds.DatabaseClusterBaseDef, models.aws_rds.DatabaseClusterDef, models.aws_rds.DatabaseClusterFromSnapshotDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromRdsDatabaseInstanceParams(pydantic.BaseModel):
     instance: typing.Union[models.aws_rds.DatabaseInstanceBaseDef, models.aws_rds.DatabaseInstanceDef, models.aws_rds.DatabaseInstanceDef, models.aws_rds.DatabaseInstanceFromSnapshotDef, models.aws_rds.DatabaseInstanceFromSnapshotDef, models.aws_rds.DatabaseInstanceReadReplicaDef, models.aws_rds.DatabaseInstanceReadReplicaDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromRdsServerlessClusterParams(pydantic.BaseModel):
     cluster: typing.Union[models.aws_rds.ServerlessClusterDef, models.aws_rds.ServerlessClusterFromSnapshotDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 class BackupResourceDefFromTagParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-\n')
     operation: typing.Optional[aws_cdk.aws_backup.TagOperation] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_backup.BackupResourceDefConfig]] = pydantic.Field(None)
     ...
 
 

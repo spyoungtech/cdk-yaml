@@ -122,43 +122,34 @@ class AdotLayerVersionDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_generic_layer_version', 'from_java_auto_instrumentation_layer_version', 'from_java_script_sdk_layer_version', 'from_java_sdk_layer_version', 'from_python_sdk_layer_version']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.AdotLayerVersion'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_generic_layer_version', 'from_java_auto_instrumentation_layer_version', 'from_java_script_sdk_layer_version', 'from_java_sdk_layer_version', 'from_python_sdk_layer_version']
     ...
 
 
-    resource_config: typing.Optional[AdotLayerVersionDefConfig] = pydantic.Field(None)
-
-
-class AdotLayerVersionDefConfig(pydantic.BaseModel):
-    from_generic_layer_version: typing.Optional[list[AdotLayerVersionDefFromGenericLayerVersionParams]] = pydantic.Field(None, description='The ADOT Lambda layer for generic use cases.')
-    from_java_auto_instrumentation_layer_version: typing.Optional[list[AdotLayerVersionDefFromJavaAutoInstrumentationLayerVersionParams]] = pydantic.Field(None, description='The ADOT Lambda layer for Java auto instrumentation.')
-    from_java_script_sdk_layer_version: typing.Optional[list[AdotLayerVersionDefFromJavaScriptSdkLayerVersionParams]] = pydantic.Field(None, description='The ADOT Lambda layer for JavaScript SDK.')
-    from_java_sdk_layer_version: typing.Optional[list[AdotLayerVersionDefFromJavaSdkLayerVersionParams]] = pydantic.Field(None, description='The ADOT Lambda layer for Java SDK.')
-    from_python_sdk_layer_version: typing.Optional[list[AdotLayerVersionDefFromPythonSdkLayerVersionParams]] = pydantic.Field(None, description='The ADOT Lambda layer for Python SDK.')
+    from_generic_layer_version: typing.Optional[AdotLayerVersionDefFromGenericLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for generic use cases.')
+    from_java_auto_instrumentation_layer_version: typing.Optional[AdotLayerVersionDefFromJavaAutoInstrumentationLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Java auto instrumentation.')
+    from_java_script_sdk_layer_version: typing.Optional[AdotLayerVersionDefFromJavaScriptSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for JavaScript SDK.')
+    from_java_sdk_layer_version: typing.Optional[AdotLayerVersionDefFromJavaSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Java SDK.')
+    from_python_sdk_layer_version: typing.Optional[AdotLayerVersionDefFromPythonSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Python SDK.')
 
 class AdotLayerVersionDefFromGenericLayerVersionParams(pydantic.BaseModel):
     version: models.aws_lambda.AdotLambdaLayerGenericVersionDef = pydantic.Field(..., description='The version of the Lambda layer to use.')
-    return_config: typing.Optional[list[models.aws_lambda.AdotLayerVersionDefConfig]] = pydantic.Field(None)
     ...
 
 class AdotLayerVersionDefFromJavaAutoInstrumentationLayerVersionParams(pydantic.BaseModel):
     version: models.aws_lambda.AdotLambdaLayerJavaAutoInstrumentationVersionDef = pydantic.Field(..., description='The version of the Lambda layer to use.')
-    return_config: typing.Optional[list[models.aws_lambda.AdotLayerVersionDefConfig]] = pydantic.Field(None)
     ...
 
 class AdotLayerVersionDefFromJavaScriptSdkLayerVersionParams(pydantic.BaseModel):
     version: models.aws_lambda.AdotLambdaLayerJavaScriptSdkVersionDef = pydantic.Field(..., description='The version of the Lambda layer to use.')
-    return_config: typing.Optional[list[models.aws_lambda.AdotLayerVersionDefConfig]] = pydantic.Field(None)
     ...
 
 class AdotLayerVersionDefFromJavaSdkLayerVersionParams(pydantic.BaseModel):
     version: models.aws_lambda.AdotLambdaLayerJavaSdkVersionDef = pydantic.Field(..., description='The version of the Lambda layer to use.')
-    return_config: typing.Optional[list[models.aws_lambda.AdotLayerVersionDefConfig]] = pydantic.Field(None)
     ...
 
 class AdotLayerVersionDefFromPythonSdkLayerVersionParams(pydantic.BaseModel):
     version: models.aws_lambda.AdotLambdaLayerPythonSdkVersionDef = pydantic.Field(..., description='The version of the Lambda layer to use.')
-    return_config: typing.Optional[list[models.aws_lambda.AdotLayerVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -200,23 +191,23 @@ class AssetCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.AssetCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[AssetCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[AssetCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[AssetCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[AssetCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[AssetCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[AssetCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[AssetCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[AssetCodeDefConfig] = pydantic.Field(None)
 
 
 class AssetCodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AssetCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[AssetCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[AssetCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[AssetCodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[AssetCodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[AssetCodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[AssetCodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[AssetCodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[AssetCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class AssetCodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -237,7 +228,6 @@ class AssetCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -260,20 +250,17 @@ class AssetCodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -284,7 +271,6 @@ class AssetCodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -294,12 +280,10 @@ class AssetCodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -328,23 +312,23 @@ class AssetImageCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.AssetImageCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[AssetImageCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[AssetImageCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[AssetImageCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[AssetImageCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[AssetImageCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[AssetImageCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[AssetImageCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[AssetImageCodeDefConfig] = pydantic.Field(None)
 
 
 class AssetImageCodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AssetImageCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[AssetImageCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[AssetImageCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[AssetImageCodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[AssetImageCodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[AssetImageCodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[AssetImageCodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[AssetImageCodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[AssetImageCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class AssetImageCodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -365,7 +349,6 @@ class AssetImageCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageCodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -388,20 +371,17 @@ class AssetImageCodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageCodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageCodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageCodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -412,7 +392,6 @@ class AssetImageCodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageCodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -422,12 +401,10 @@ class AssetImageCodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetImageCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -439,10 +416,17 @@ class CfnParametersCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['assign', 'bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.CfnParametersCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[CfnParametersCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[CfnParametersCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[CfnParametersCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[CfnParametersCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[CfnParametersCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[CfnParametersCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[CfnParametersCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[CfnParametersCodeDefConfig] = pydantic.Field(None)
 
 
@@ -450,13 +434,6 @@ class CfnParametersCodeDefConfig(pydantic.BaseModel):
     assign: typing.Optional[list[CfnParametersCodeDefAssignParams]] = pydantic.Field(None, description="Create a parameters map from this instance's CloudFormation parameters.\nIt returns a map with 2 keys that correspond to the names of the parameters defined in this Lambda code,\nand as values it contains the appropriate expressions pointing at the provided S3 location\n(most likely, obtained from a CodePipeline Artifact by calling the ``artifact.s3Location`` method).\nThe result should be provided to the CloudFormation Action\nthat is deploying the Stack that the Lambda with this code is part of,\nin the ``parameterOverrides`` property.")
     bind: typing.Optional[list[CfnParametersCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[CfnParametersCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[CfnParametersCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[CfnParametersCodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[CfnParametersCodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[CfnParametersCodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[CfnParametersCodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[CfnParametersCodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[CfnParametersCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class CfnParametersCodeDefAssignParams(pydantic.BaseModel):
     bucket_name: str = pydantic.Field(..., description='The name of the S3 Bucket the object is in.\n')
@@ -483,7 +460,6 @@ class CfnParametersCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CfnParametersCodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -506,20 +482,17 @@ class CfnParametersCodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CfnParametersCodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CfnParametersCodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CfnParametersCodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -530,7 +503,6 @@ class CfnParametersCodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CfnParametersCodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -540,12 +512,10 @@ class CfnParametersCodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CfnParametersCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -555,23 +525,23 @@ class CodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.Code'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[CodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[CodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[CodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[CodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[CodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[CodeDefConfig] = pydantic.Field(None)
 
 
 class CodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[CodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[CodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[CodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[CodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[CodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[CodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[CodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[CodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[CodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class CodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description="The binding scope. Don't be smart about trying to down-cast or assume it's initialized. You may just use it as a construct scope.")
@@ -592,7 +562,6 @@ class CodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -615,20 +584,17 @@ class CodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -639,7 +605,6 @@ class CodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -649,12 +614,10 @@ class CodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -664,16 +627,12 @@ class DockerImageCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_ecr', 'from_image_asset']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.DockerImageCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_ecr', 'from_image_asset']
     ...
 
 
-    resource_config: typing.Optional[DockerImageCodeDefConfig] = pydantic.Field(None)
-
-
-class DockerImageCodeDefConfig(pydantic.BaseModel):
-    from_ecr: typing.Optional[list[DockerImageCodeDefFromEcrParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_image_asset: typing.Optional[list[DockerImageCodeDefFromImageAssetParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_ecr: typing.Optional[DockerImageCodeDefFromEcrParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_image_asset: typing.Optional[DockerImageCodeDefFromImageAssetParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
 
 class DockerImageCodeDefFromEcrParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='the ECR repository that the image is in.\n')
@@ -682,7 +641,6 @@ class DockerImageCodeDefFromEcrParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.DockerImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerImageCodeDefFromImageAssetParams(pydantic.BaseModel):
@@ -705,7 +663,6 @@ class DockerImageCodeDefFromImageAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.DockerImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -721,23 +678,23 @@ class EcrImageCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.EcrImageCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[EcrImageCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[EcrImageCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[EcrImageCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[EcrImageCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[EcrImageCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[EcrImageCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[EcrImageCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[EcrImageCodeDefConfig] = pydantic.Field(None)
 
 
 class EcrImageCodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[EcrImageCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[EcrImageCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[EcrImageCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[EcrImageCodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[EcrImageCodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[EcrImageCodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[EcrImageCodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[EcrImageCodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[EcrImageCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class EcrImageCodeDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -758,7 +715,6 @@ class EcrImageCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageCodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -781,20 +737,17 @@ class EcrImageCodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageCodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageCodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageCodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -805,7 +758,6 @@ class EcrImageCodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageCodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -815,12 +767,10 @@ class EcrImageCodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class EcrImageCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -835,20 +785,15 @@ class FileSystemDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_efs_access_point']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.FileSystem'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_efs_access_point']
     ...
 
 
-    resource_config: typing.Optional[FileSystemDefConfig] = pydantic.Field(None)
-
-
-class FileSystemDefConfig(pydantic.BaseModel):
-    from_efs_access_point: typing.Optional[list[FileSystemDefFromEfsAccessPointParams]] = pydantic.Field(None, description='mount the filesystem from Amazon EFS.')
+    from_efs_access_point: typing.Optional[FileSystemDefFromEfsAccessPointParams] = pydantic.Field(None, description='mount the filesystem from Amazon EFS.')
 
 class FileSystemDefFromEfsAccessPointParams(pydantic.BaseModel):
     ap: typing.Union[models.aws_efs.AccessPointDef] = pydantic.Field(..., description='the Amazon EFS access point.\n')
     mount_path: str = pydantic.Field(..., description='the target path in the lambda runtime environment.')
-    return_config: typing.Optional[list[models.aws_lambda.FileSystemDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1134,23 +1079,23 @@ class InlineCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.InlineCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[InlineCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[InlineCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[InlineCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[InlineCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[InlineCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[InlineCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[InlineCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[InlineCodeDefConfig] = pydantic.Field(None)
 
 
 class InlineCodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[InlineCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[InlineCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[InlineCodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[InlineCodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[InlineCodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[InlineCodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[InlineCodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[InlineCodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[InlineCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class InlineCodeDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -1171,7 +1116,6 @@ class InlineCodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -1194,20 +1138,17 @@ class InlineCodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -1218,7 +1159,6 @@ class InlineCodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -1228,12 +1168,10 @@ class InlineCodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1243,19 +1181,14 @@ class LambdaInsightsVersionDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_insight_version_arn']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.LambdaInsightsVersion'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_insight_version_arn']
     ...
 
 
-    resource_config: typing.Optional[LambdaInsightsVersionDefConfig] = pydantic.Field(None)
-
-
-class LambdaInsightsVersionDefConfig(pydantic.BaseModel):
-    from_insight_version_arn: typing.Optional[list[LambdaInsightsVersionDefFromInsightVersionArnParams]] = pydantic.Field(None, description='Use the insights extension associated with the provided ARN.\nMake sure the ARN is associated\nwith same region as your function')
+    from_insight_version_arn: typing.Optional[LambdaInsightsVersionDefFromInsightVersionArnParams] = pydantic.Field(None, description='Use the insights extension associated with the provided ARN.\nMake sure the ARN is associated\nwith same region as your function')
 
 class LambdaInsightsVersionDefFromInsightVersionArnParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='-\n\n:see: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html\n')
-    return_config: typing.Optional[list[models.aws_lambda.LambdaInsightsVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1498,23 +1431,23 @@ class S3CodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_to_resource']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_lambda.S3Code'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_asset_image', 'from_bucket', 'from_cfn_parameters', 'from_docker_build', 'from_ecr_image', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[S3CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[S3CodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[S3CodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[S3CodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[S3CodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[S3CodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[S3CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
     resource_config: typing.Optional[S3CodeDefConfig] = pydantic.Field(None)
 
 
 class S3CodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[S3CodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_to_resource: typing.Optional[list[S3CodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[S3CodeDefFromAssetParams]] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[list[S3CodeDefFromAssetImageParams]] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[list[S3CodeDefFromBucketParams]] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[list[S3CodeDefFromCfnParametersParams]] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[list[S3CodeDefFromDockerBuildParams]] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[list[S3CodeDefFromEcrImageParams]] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[list[S3CodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for Lambda handler.')
 
 class S3CodeDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -1535,7 +1468,6 @@ class S3CodeDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class S3CodeDefFromAssetImageParams(pydantic.BaseModel):
@@ -1558,20 +1490,17 @@ class S3CodeDefFromAssetImageParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_lambda.AssetImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class S3CodeDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
-    return_config: typing.Optional[list[models.aws_lambda.S3CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class S3CodeDefFromCfnParametersParams(pydantic.BaseModel):
     bucket_name_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the name of the S3 Bucket where the Lambda code will be located in. Must be of type 'String'. Default: a new parameter will be created\n")
     object_key_param: typing.Optional[models.CfnParameterDef] = pydantic.Field(None, description="The CloudFormation parameter that represents the path inside the S3 Bucket where the Lambda code will be located at. Must be of type 'String'. Default: a new parameter will be created\n")
-    return_config: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class S3CodeDefFromDockerBuildParams(pydantic.BaseModel):
@@ -1582,7 +1511,6 @@ class S3CodeDefFromDockerBuildParams(pydantic.BaseModel):
     file: typing.Optional[str] = pydantic.Field(None, description='Name of the Dockerfile, must relative to the docker build path. Default: ``Dockerfile``\n')
     platform: typing.Optional[str] = pydantic.Field(None, description='Set platform if server is multi-platform capable. *Requires Docker Engine API v1.38+*. Example value: ``linux/amd64`` Default: - no platform specified\n')
     target_stage: typing.Optional[str] = pydantic.Field(None, description='Set build target for multi-stage container builds. Any stage defined afterwards will be ignored. Example value: ``build-env`` Default: - Build all stages defined in the Dockerfile')
-    return_config: typing.Optional[list[models.aws_lambda.AssetCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class S3CodeDefFromEcrImageParams(pydantic.BaseModel):
@@ -1592,12 +1520,10 @@ class S3CodeDefFromEcrImageParams(pydantic.BaseModel):
     tag: typing.Optional[str] = pydantic.Field(None, description="(deprecated) The image tag to use when pulling the image from ECR. Default: 'latest'\n")
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description="The image tag or digest to use when pulling the image from ECR (digests must start with ``sha256:``). Default: 'latest'\n")
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Specify or override the WORKDIR on the specified Docker image or Dockerfile. A WORKDIR allows you to configure the working directory the container will use. Default: - use the WORKDIR in the docker image or Dockerfile.')
-    return_config: typing.Optional[list[models.aws_lambda.EcrImageCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class S3CodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual handler code (limited to 4KiB).\n')
-    return_config: typing.Optional[list[models.aws_lambda.InlineCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -3910,11 +3836,6 @@ class DockerImageFunctionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DockerImageFunctionPropsDefConfig] = pydantic.Field(None)
-
-
-class DockerImageFunctionPropsDefConfig(pydantic.BaseModel):
-    code_config: typing.Optional[models.aws_lambda.DockerImageCodeDefConfig] = pydantic.Field(None)
 
 
 #  autogenerated from aws_cdk.aws_lambda.EcrImageCodeProps

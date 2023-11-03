@@ -539,16 +539,16 @@ class BucketPolicyDef(BaseConstruct):
     _method_names: typing.ClassVar[list[str]] = ['apply_removal_policy']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_cfn_bucket_policy']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.BucketPolicy'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_cfn_bucket_policy']
     ...
 
 
+    from_cfn_bucket_policy: typing.Optional[BucketPolicyDefFromCfnBucketPolicyParams] = pydantic.Field(None, description='Create a mutable ``BucketPolicy`` from a ``CfnBucketPolicy``.')
     resource_config: typing.Optional[BucketPolicyDefConfig] = pydantic.Field(None)
 
 
 class BucketPolicyDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    from_cfn_bucket_policy: typing.Optional[list[BucketPolicyDefFromCfnBucketPolicyParams]] = pydantic.Field(None, description='Create a mutable ``BucketPolicy`` from a ``CfnBucketPolicy``.')
     document_config: typing.Optional[models.aws_iam.PolicyDocumentDefConfig] = pydantic.Field(None)
 
 class BucketPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -557,7 +557,6 @@ class BucketPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 class BucketPolicyDefFromCfnBucketPolicyParams(pydantic.BaseModel):
     cfn_bucket_policy: models.aws_s3.CfnBucketPolicyDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_s3.BucketPolicyDefConfig]] = pydantic.Field(None)
     ...
 
 

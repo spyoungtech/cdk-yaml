@@ -12,25 +12,19 @@ class AwsCustomResourcePolicyDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_sdk_calls', 'from_statements']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.custom_resources.AwsCustomResourcePolicy'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_sdk_calls', 'from_statements']
     ...
 
 
-    resource_config: typing.Optional[AwsCustomResourcePolicyDefConfig] = pydantic.Field(None)
-
-
-class AwsCustomResourcePolicyDefConfig(pydantic.BaseModel):
-    from_sdk_calls: typing.Optional[list[AwsCustomResourcePolicyDefFromSdkCallsParams]] = pydantic.Field(None, description="Generate IAM Policy Statements from the configured SDK calls.\nEach SDK call with be translated to an IAM Policy Statement in the form of: ``call.service:call.action`` (e.g ``s3:PutObject``).\n\nThis policy generator assumes the IAM policy name has the same name as the API\ncall. This is true in 99% of cases, but there are exceptions (for example,\nS3's ``PutBucketLifecycleConfiguration`` requires\n``s3:PutLifecycleConfiguration`` permissions, Lambda's ``Invoke`` requires\n``lambda:InvokeFunction`` permissions). Use ``fromStatements`` if you want to\ndo a call that requires different IAM action names.")
-    from_statements: typing.Optional[list[AwsCustomResourcePolicyDefFromStatementsParams]] = pydantic.Field(None, description='Explicit IAM Policy Statements.')
+    from_sdk_calls: typing.Optional[AwsCustomResourcePolicyDefFromSdkCallsParams] = pydantic.Field(None, description="Generate IAM Policy Statements from the configured SDK calls.\nEach SDK call with be translated to an IAM Policy Statement in the form of: ``call.service:call.action`` (e.g ``s3:PutObject``).\n\nThis policy generator assumes the IAM policy name has the same name as the API\ncall. This is true in 99% of cases, but there are exceptions (for example,\nS3's ``PutBucketLifecycleConfiguration`` requires\n``s3:PutLifecycleConfiguration`` permissions, Lambda's ``Invoke`` requires\n``lambda:InvokeFunction`` permissions). Use ``fromStatements`` if you want to\ndo a call that requires different IAM action names.")
+    from_statements: typing.Optional[AwsCustomResourcePolicyDefFromStatementsParams] = pydantic.Field(None, description='Explicit IAM Policy Statements.')
 
 class AwsCustomResourcePolicyDefFromSdkCallsParams(pydantic.BaseModel):
     resources: typing.Sequence[str] = pydantic.Field(..., description="The resources that the calls will have access to. It is best to use specific resource ARN's when possible. However, you can also use ``AwsCustomResourcePolicy.ANY_RESOURCE`` to allow access to all resources. For example, when ``onCreate`` is used to create a resource which you don't know the physical name of in advance. Note that will apply to ALL SDK calls.")
-    return_config: typing.Optional[list[models.custom_resources.AwsCustomResourcePolicyDefConfig]] = pydantic.Field(None)
     ...
 
 class AwsCustomResourcePolicyDefFromStatementsParams(pydantic.BaseModel):
     statements: typing.Sequence[models.aws_iam.PolicyStatementDef] = pydantic.Field(..., description='the statements to propagate to the SDK calls.')
-    return_config: typing.Optional[list[models.custom_resources.AwsCustomResourcePolicyDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -40,20 +34,19 @@ class PhysicalResourceIdDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_response', 'of']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.custom_resources.PhysicalResourceId'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_response']
     ...
 
 
+    from_response: typing.Optional[PhysicalResourceIdDefFromResponseParams] = pydantic.Field(None, description='Extract the physical resource id from the path (dot notation) to the data in the API call response.')
     resource_config: typing.Optional[PhysicalResourceIdDefConfig] = pydantic.Field(None)
 
 
 class PhysicalResourceIdDefConfig(pydantic.BaseModel):
-    from_response: typing.Optional[list[PhysicalResourceIdDefFromResponseParams]] = pydantic.Field(None, description='Extract the physical resource id from the path (dot notation) to the data in the API call response.')
     of: typing.Optional[list[PhysicalResourceIdDefOfParams]] = pydantic.Field(None, description='Explicit physical resource id.')
 
 class PhysicalResourceIdDefFromResponseParams(pydantic.BaseModel):
     response_path: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.custom_resources.PhysicalResourceIdDefConfig]] = pydantic.Field(None)
     ...
 
 class PhysicalResourceIdDefOfParams(pydantic.BaseModel):

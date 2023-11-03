@@ -499,43 +499,34 @@ class ResultDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_array', 'from_boolean', 'from_number', 'from_object', 'from_string']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions.Result'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_array', 'from_boolean', 'from_number', 'from_object', 'from_string']
     ...
 
 
-    resource_config: typing.Optional[ResultDefConfig] = pydantic.Field(None)
-
-
-class ResultDefConfig(pydantic.BaseModel):
-    from_array: typing.Optional[list[ResultDefFromArrayParams]] = pydantic.Field(None, description='The result of the operation is an array.')
-    from_boolean: typing.Optional[list[ResultDefFromBooleanParams]] = pydantic.Field(None, description='The result of the operation is a boolean.')
-    from_number: typing.Optional[list[ResultDefFromNumberParams]] = pydantic.Field(None, description='The result of the operation is a number.')
-    from_object: typing.Optional[list[ResultDefFromObjectParams]] = pydantic.Field(None, description='The result of the operation is an object.')
-    from_string: typing.Optional[list[ResultDefFromStringParams]] = pydantic.Field(None, description='The result of the operation is a string.')
+    from_array: typing.Optional[ResultDefFromArrayParams] = pydantic.Field(None, description='The result of the operation is an array.')
+    from_boolean: typing.Optional[ResultDefFromBooleanParams] = pydantic.Field(None, description='The result of the operation is a boolean.')
+    from_number: typing.Optional[ResultDefFromNumberParams] = pydantic.Field(None, description='The result of the operation is a number.')
+    from_object: typing.Optional[ResultDefFromObjectParams] = pydantic.Field(None, description='The result of the operation is an object.')
+    from_string: typing.Optional[ResultDefFromStringParams] = pydantic.Field(None, description='The result of the operation is a string.')
 
 class ResultDefFromArrayParams(pydantic.BaseModel):
     value: typing.Sequence[typing.Any] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.ResultDefConfig]] = pydantic.Field(None)
     ...
 
 class ResultDefFromBooleanParams(pydantic.BaseModel):
     value: bool = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.ResultDefConfig]] = pydantic.Field(None)
     ...
 
 class ResultDefFromNumberParams(pydantic.BaseModel):
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.ResultDefConfig]] = pydantic.Field(None)
     ...
 
 class ResultDefFromObjectParams(pydantic.BaseModel):
     value: typing.Mapping[str, typing.Any] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.ResultDefConfig]] = pydantic.Field(None)
     ...
 
 class ResultDefFromStringParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.ResultDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -736,31 +727,24 @@ class TaskInputDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_json_path_at', 'from_object', 'from_text']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions.TaskInput'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_json_path_at', 'from_object', 'from_text']
     ...
 
 
-    resource_config: typing.Optional[TaskInputDefConfig] = pydantic.Field(None)
-
-
-class TaskInputDefConfig(pydantic.BaseModel):
-    from_json_path_at: typing.Optional[list[TaskInputDefFromJsonPathAtParams]] = pydantic.Field(None, description='Use a part of the execution data or task context as task input.\nUse this when you want to use a subobject or string from\nthe current state machine execution or the current task context\nas complete payload to a task.')
-    from_object: typing.Optional[list[TaskInputDefFromObjectParams]] = pydantic.Field(None, description='Use an object as task input.\nThis object may contain JSON path fields as object values, if desired.')
-    from_text: typing.Optional[list[TaskInputDefFromTextParams]] = pydantic.Field(None, description='Use a literal string as task input.\nThis might be a JSON-encoded object, or just a text.')
+    from_json_path_at: typing.Optional[TaskInputDefFromJsonPathAtParams] = pydantic.Field(None, description='Use a part of the execution data or task context as task input.\nUse this when you want to use a subobject or string from\nthe current state machine execution or the current task context\nas complete payload to a task.')
+    from_object: typing.Optional[TaskInputDefFromObjectParams] = pydantic.Field(None, description='Use an object as task input.\nThis object may contain JSON path fields as object values, if desired.')
+    from_text: typing.Optional[TaskInputDefFromTextParams] = pydantic.Field(None, description='Use a literal string as task input.\nThis might be a JSON-encoded object, or just a text.')
 
 class TaskInputDefFromJsonPathAtParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.TaskInputDefConfig]] = pydantic.Field(None)
     ...
 
 class TaskInputDefFromObjectParams(pydantic.BaseModel):
     obj: typing.Mapping[str, typing.Any] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.TaskInputDefConfig]] = pydantic.Field(None)
     ...
 
 class TaskInputDefFromTextParams(pydantic.BaseModel):
     text: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_stepfunctions.TaskInputDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -770,25 +754,19 @@ class TaskRoleDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_role', 'from_role_arn_json_path']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_stepfunctions.TaskRole'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_role', 'from_role_arn_json_path']
     ...
 
 
-    resource_config: typing.Optional[TaskRoleDefConfig] = pydantic.Field(None)
-
-
-class TaskRoleDefConfig(pydantic.BaseModel):
-    from_role: typing.Optional[list[TaskRoleDefFromRoleParams]] = pydantic.Field(None, description='Construct a task role based on the provided IAM Role.')
-    from_role_arn_json_path: typing.Optional[list[TaskRoleDefFromRoleArnJsonPathParams]] = pydantic.Field(None, description='Construct a task role retrieved from task inputs using a json expression.')
+    from_role: typing.Optional[TaskRoleDefFromRoleParams] = pydantic.Field(None, description='Construct a task role based on the provided IAM Role.')
+    from_role_arn_json_path: typing.Optional[TaskRoleDefFromRoleArnJsonPathParams] = pydantic.Field(None, description='Construct a task role retrieved from task inputs using a json expression.')
 
 class TaskRoleDefFromRoleParams(pydantic.BaseModel):
     role: typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef] = pydantic.Field(..., description='IAM Role.')
-    return_config: typing.Optional[list[models.aws_stepfunctions.TaskRoleDefConfig]] = pydantic.Field(None)
     ...
 
 class TaskRoleDefFromRoleArnJsonPathParams(pydantic.BaseModel):
     expression: str = pydantic.Field(..., description='json expression to roleArn.\n\nExample::\n\n    sfn.TaskRole.from_role_arn_json_path("$.RoleArn")\n')
-    return_config: typing.Optional[list[models.aws_stepfunctions.TaskRoleDefConfig]] = pydantic.Field(None)
     ...
 
 

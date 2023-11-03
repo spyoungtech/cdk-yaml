@@ -223,26 +223,24 @@ class SecretStringValueBeta1Def(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['secret_value']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_token', 'from_unsafe_plaintext']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_secretsmanager.SecretStringValueBeta1'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_token', 'from_unsafe_plaintext']
     ...
 
 
+    from_token: typing.Optional[SecretStringValueBeta1DefFromTokenParams] = pydantic.Field(None, description='(deprecated) Creates a ``SecretValueValueBeta1`` from a string value coming from a Token.\nThe intent is to enable creating secrets from references (e.g., ``Ref``, ``Fn::GetAtt``) from other resources.\nThis might be the direct output of another Construct, or the output of a Custom Resource.\nThis method throws if it determines the input is an unsafe plaintext string.\n\nFor example::\n\n   # Creates a new IAM user, access and secret keys, and stores the secret access key in a Secret.\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret = secretsmanager.Secret(self, "Secret",\n       secret_string_value=access_key.secret_access_key\n   )\n\nThe secret may also be embedded in a string representation of a JSON structure::\n\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret_value = secretsmanager.SecretStringValueBeta1.from_token(JSON.stringify({\n       "username": user.user_name,\n       "database": "foo",\n       "password": access_key.secret_access_key.unsafe_unwrap()\n   }))\n\nNote that the value being a Token does *not* guarantee safety. For example, a Lazy-evaluated string\n(e.g., ``Lazy.string({ produce: () => \'myInsecurePassword\' }))``) is a Token, but as the output is\nultimately a plaintext string, and so insecure.')
+    from_unsafe_plaintext: typing.Optional[SecretStringValueBeta1DefFromUnsafePlaintextParams] = pydantic.Field(None, description='(deprecated) Creates a ``SecretStringValueBeta1`` from a plaintext value.\nThis approach is inherently unsafe, as the secret value may be visible in your source control repository\nand will also appear in plaintext in the resulting CloudFormation template, including in the AWS Console or APIs.\nUsage of this method is discouraged, especially for production workloads.')
     resource_config: typing.Optional[SecretStringValueBeta1DefConfig] = pydantic.Field(None)
 
 
 class SecretStringValueBeta1DefConfig(pydantic.BaseModel):
-    from_token: typing.Optional[list[SecretStringValueBeta1DefFromTokenParams]] = pydantic.Field(None, description='(deprecated) Creates a ``SecretValueValueBeta1`` from a string value coming from a Token.\nThe intent is to enable creating secrets from references (e.g., ``Ref``, ``Fn::GetAtt``) from other resources.\nThis might be the direct output of another Construct, or the output of a Custom Resource.\nThis method throws if it determines the input is an unsafe plaintext string.\n\nFor example::\n\n   # Creates a new IAM user, access and secret keys, and stores the secret access key in a Secret.\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret = secretsmanager.Secret(self, "Secret",\n       secret_string_value=access_key.secret_access_key\n   )\n\nThe secret may also be embedded in a string representation of a JSON structure::\n\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret_value = secretsmanager.SecretStringValueBeta1.from_token(JSON.stringify({\n       "username": user.user_name,\n       "database": "foo",\n       "password": access_key.secret_access_key.unsafe_unwrap()\n   }))\n\nNote that the value being a Token does *not* guarantee safety. For example, a Lazy-evaluated string\n(e.g., ``Lazy.string({ produce: () => \'myInsecurePassword\' }))``) is a Token, but as the output is\nultimately a plaintext string, and so insecure.')
-    from_unsafe_plaintext: typing.Optional[list[SecretStringValueBeta1DefFromUnsafePlaintextParams]] = pydantic.Field(None, description='(deprecated) Creates a ``SecretStringValueBeta1`` from a plaintext value.\nThis approach is inherently unsafe, as the secret value may be visible in your source control repository\nand will also appear in plaintext in the resulting CloudFormation template, including in the AWS Console or APIs.\nUsage of this method is discouraged, especially for production workloads.')
     secret_value: typing.Optional[bool] = pydantic.Field(None, description='(deprecated) Returns the secret value.\n:stability: deprecated')
 
 class SecretStringValueBeta1DefFromTokenParams(pydantic.BaseModel):
     secret_value_from_token: str = pydantic.Field(..., description='a secret value coming from a Construct attribute or Custom Resource output.\n\n:stability: deprecated\n')
-    return_config: typing.Optional[list[models.aws_secretsmanager.SecretStringValueBeta1DefConfig]] = pydantic.Field(None)
     ...
 
 class SecretStringValueBeta1DefFromUnsafePlaintextParams(pydantic.BaseModel):
     secret_value: str = pydantic.Field(..., description='-\n\n:stability: deprecated\n')
-    return_config: typing.Optional[list[models.aws_secretsmanager.SecretStringValueBeta1DefConfig]] = pydantic.Field(None)
     ...
 
 

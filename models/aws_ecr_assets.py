@@ -12,16 +12,16 @@ class NetworkModeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['custom', 'from_container']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ecr_assets.NetworkMode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_container']
     ...
 
 
+    from_container: typing.Optional[NetworkModeDefFromContainerParams] = pydantic.Field(None, description="Reuse another container's network stack.")
     resource_config: typing.Optional[NetworkModeDefConfig] = pydantic.Field(None)
 
 
 class NetworkModeDefConfig(pydantic.BaseModel):
     custom: typing.Optional[list[NetworkModeDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom networking mode Use this if the networking mode name is not yet supported by the CDK.')
-    from_container: typing.Optional[list[NetworkModeDefFromContainerParams]] = pydantic.Field(None, description="Reuse another container's network stack.")
 
 class NetworkModeDefCustomParams(pydantic.BaseModel):
     mode: str = pydantic.Field(..., description='The networking mode to use for docker build.')
@@ -30,7 +30,6 @@ class NetworkModeDefCustomParams(pydantic.BaseModel):
 
 class NetworkModeDefFromContainerParams(pydantic.BaseModel):
     container_id: str = pydantic.Field(..., description="The target container's id or name.")
-    return_config: typing.Optional[list[models.aws_ecr_assets.NetworkModeDefConfig]] = pydantic.Field(None)
     ...
 
 

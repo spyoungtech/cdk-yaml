@@ -166,19 +166,19 @@ class ApiDefinitionDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_after_create']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_apigateway.ApiDefinition'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[ApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[ApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[ApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
     resource_config: typing.Optional[ApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class ApiDefinitionDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[ApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_after_create: typing.Optional[list[ApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[ApiDefinitionDefFromAssetParams]] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[list[ApiDefinitionDefFromBucketParams]] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[list[ApiDefinitionDefFromInlineParams]] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
 
 class ApiDefinitionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description="The binding scope. Don't be smart about trying to down-cast or assume it's initialized. You may just use it as a construct scope.")
@@ -199,19 +199,16 @@ class ApiDefinitionDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_apigateway.AssetApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class ApiDefinitionDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-\n')
     key: str = pydantic.Field(..., description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_apigateway.S3ApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class ApiDefinitionDefFromInlineParams(pydantic.BaseModel):
     definition: typing.Any = pydantic.Field(..., description='-\n\nExample::\n\n    apigateway.ApiDefinition.from_inline({\n        "openapi": "3.0.2",\n        "paths": {\n            "/pets": {\n                "get": {\n                    "responses": {\n                        "200": {\n                            "content": {\n                                "application/json": {\n                                    "schema": {\n                                        "$ref": "#/components/schemas/Empty"\n                                    }\n                                }\n                            }\n                        }\n                    },\n                    "x-amazon-apigateway-integration": {\n                        "responses": {\n                            "default": {\n                                "status_code": "200"\n                            }\n                        },\n                        "request_templates": {\n                            "application/json": "{"statusCode": 200}"\n                        },\n                        "passthrough_behavior": "when_no_match",\n                        "type": "mock"\n                    }\n                }\n            }\n        },\n        "components": {\n            "schemas": {\n                "Empty": {\n                    "title": "Empty Schema",\n                    "type": "object"\n                }\n            }\n        }\n    })\n')
-    return_config: typing.Optional[list[models.aws_apigateway.InlineApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -230,19 +227,19 @@ class AssetApiDefinitionDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_after_create']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_apigateway.AssetApiDefinition'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[AssetApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[AssetApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[AssetApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
     resource_config: typing.Optional[AssetApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class AssetApiDefinitionDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[AssetApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_after_create: typing.Optional[list[AssetApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[AssetApiDefinitionDefFromAssetParams]] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[list[AssetApiDefinitionDefFromBucketParams]] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[list[AssetApiDefinitionDefFromInlineParams]] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
 
 class AssetApiDefinitionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -263,19 +260,16 @@ class AssetApiDefinitionDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_apigateway.AssetApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetApiDefinitionDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-\n')
     key: str = pydantic.Field(..., description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_apigateway.S3ApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class AssetApiDefinitionDefFromInlineParams(pydantic.BaseModel):
     definition: typing.Any = pydantic.Field(..., description='-\n\nExample::\n\n    apigateway.ApiDefinition.from_inline({\n        "openapi": "3.0.2",\n        "paths": {\n            "/pets": {\n                "get": {\n                    "responses": {\n                        "200": {\n                            "content": {\n                                "application/json": {\n                                    "schema": {\n                                        "$ref": "#/components/schemas/Empty"\n                                    }\n                                }\n                            }\n                        }\n                    },\n                    "x-amazon-apigateway-integration": {\n                        "responses": {\n                            "default": {\n                                "status_code": "200"\n                            }\n                        },\n                        "request_templates": {\n                            "application/json": "{"statusCode": 200}"\n                        },\n                        "passthrough_behavior": "when_no_match",\n                        "type": "mock"\n                    }\n                }\n            }\n        },\n        "components": {\n            "schemas": {\n                "Empty": {\n                    "title": "Empty Schema",\n                    "type": "object"\n                }\n            }\n        }\n    })\n')
-    return_config: typing.Optional[list[models.aws_apigateway.InlineApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -414,19 +408,19 @@ class InlineApiDefinitionDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_after_create']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_apigateway.InlineApiDefinition'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[InlineApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[InlineApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[InlineApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
     resource_config: typing.Optional[InlineApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class InlineApiDefinitionDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[InlineApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_after_create: typing.Optional[list[InlineApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[InlineApiDefinitionDefFromAssetParams]] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[list[InlineApiDefinitionDefFromBucketParams]] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[list[InlineApiDefinitionDefFromInlineParams]] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
 
 class InlineApiDefinitionDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -447,19 +441,16 @@ class InlineApiDefinitionDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_apigateway.AssetApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineApiDefinitionDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-\n')
     key: str = pydantic.Field(..., description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_apigateway.S3ApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class InlineApiDefinitionDefFromInlineParams(pydantic.BaseModel):
     definition: typing.Any = pydantic.Field(..., description='-\n\nExample::\n\n    apigateway.ApiDefinition.from_inline({\n        "openapi": "3.0.2",\n        "paths": {\n            "/pets": {\n                "get": {\n                    "responses": {\n                        "200": {\n                            "content": {\n                                "application/json": {\n                                    "schema": {\n                                        "$ref": "#/components/schemas/Empty"\n                                    }\n                                }\n                            }\n                        }\n                    },\n                    "x-amazon-apigateway-integration": {\n                        "responses": {\n                            "default": {\n                                "status_code": "200"\n                            }\n                        },\n                        "request_templates": {\n                            "application/json": "{"statusCode": 200}"\n                        },\n                        "passthrough_behavior": "when_no_match",\n                        "type": "mock"\n                    }\n                }\n            }\n        },\n        "components": {\n            "schemas": {\n                "Empty": {\n                    "title": "Empty Schema",\n                    "type": "object"\n                }\n            }\n        }\n    })\n')
-    return_config: typing.Optional[list[models.aws_apigateway.InlineApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -888,19 +879,19 @@ class S3ApiDefinitionDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind', 'bind_after_create']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_apigateway.S3ApiDefinition'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_bucket', 'from_inline']
     ...
 
 
+    from_asset: typing.Optional[S3ApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[S3ApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[S3ApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
     resource_config: typing.Optional[S3ApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class S3ApiDefinitionDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[S3ApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
     bind_after_create: typing.Optional[list[S3ApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
-    from_asset: typing.Optional[list[S3ApiDefinitionDefFromAssetParams]] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[list[S3ApiDefinitionDefFromBucketParams]] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[list[S3ApiDefinitionDefFromInlineParams]] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
 
 class S3ApiDefinitionDefBindParams(pydantic.BaseModel):
     _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -921,19 +912,16 @@ class S3ApiDefinitionDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_apigateway.AssetApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class S3ApiDefinitionDefFromBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-\n')
     key: str = pydantic.Field(..., description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_apigateway.S3ApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 class S3ApiDefinitionDefFromInlineParams(pydantic.BaseModel):
     definition: typing.Any = pydantic.Field(..., description='-\n\nExample::\n\n    apigateway.ApiDefinition.from_inline({\n        "openapi": "3.0.2",\n        "paths": {\n            "/pets": {\n                "get": {\n                    "responses": {\n                        "200": {\n                            "content": {\n                                "application/json": {\n                                    "schema": {\n                                        "$ref": "#/components/schemas/Empty"\n                                    }\n                                }\n                            }\n                        }\n                    },\n                    "x-amazon-apigateway-integration": {\n                        "responses": {\n                            "default": {\n                                "status_code": "200"\n                            }\n                        },\n                        "request_templates": {\n                            "application/json": "{"statusCode": 200}"\n                        },\n                        "passthrough_behavior": "when_no_match",\n                        "type": "mock"\n                    }\n                }\n            }\n        },\n        "components": {\n            "schemas": {\n                "Empty": {\n                    "title": "Empty Schema",\n                    "type": "object"\n                }\n            }\n        }\n    })\n')
-    return_config: typing.Optional[list[models.aws_apigateway.InlineApiDefinitionDefConfig]] = pydantic.Field(None)
     ...
 
 

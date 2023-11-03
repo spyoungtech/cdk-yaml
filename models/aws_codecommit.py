@@ -12,18 +12,18 @@ class CodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_directory', 'from_zip_file']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codecommit.Code'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_directory', 'from_zip_file']
     ...
 
 
+    from_asset: typing.Optional[CodeDefFromAssetParams] = pydantic.Field(None, description='Code from user-supplied asset.')
+    from_directory: typing.Optional[CodeDefFromDirectoryParams] = pydantic.Field(None, description='Code from directory.')
+    from_zip_file: typing.Optional[CodeDefFromZipFileParams] = pydantic.Field(None, description='Code from preexisting ZIP file.')
     resource_config: typing.Optional[CodeDefConfig] = pydantic.Field(None)
 
 
 class CodeDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[CodeDefBindParams]] = pydantic.Field(None, description="This method is called after a repository is passed this instance of Code in its 'code' property.")
-    from_asset: typing.Optional[list[CodeDefFromAssetParams]] = pydantic.Field(None, description='Code from user-supplied asset.')
-    from_directory: typing.Optional[list[CodeDefFromDirectoryParams]] = pydantic.Field(None, description='Code from directory.')
-    from_zip_file: typing.Optional[list[CodeDefFromZipFileParams]] = pydantic.Field(None, description='Code from preexisting ZIP file.')
 
 class CodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='the binding scope.')
@@ -32,19 +32,16 @@ class CodeDefBindParams(pydantic.BaseModel):
 class CodeDefFromAssetParams(pydantic.BaseModel):
     asset: models.aws_s3_assets.AssetDef = pydantic.Field(..., description='pre-existing asset.\n')
     branch: typing.Optional[str] = pydantic.Field(None, description='the name of the branch to create in the repository. Default is "main"')
-    return_config: typing.Optional[list[models.aws_codecommit.CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromDirectoryParams(pydantic.BaseModel):
     directory_path: str = pydantic.Field(..., description='the path to the local directory containing the contents to initialize the repository with.\n')
     branch: typing.Optional[str] = pydantic.Field(None, description='the name of the branch to create in the repository. Default is "main"')
-    return_config: typing.Optional[list[models.aws_codecommit.CodeDefConfig]] = pydantic.Field(None)
     ...
 
 class CodeDefFromZipFileParams(pydantic.BaseModel):
     file_path: str = pydantic.Field(..., description='the path to the local ZIP file containing the contents to initialize the repository with.\n')
     branch: typing.Optional[str] = pydantic.Field(None, description='the name of the branch to create in the repository. Default is "main"')
-    return_config: typing.Optional[list[models.aws_codecommit.CodeDefConfig]] = pydantic.Field(None)
     ...
 
 

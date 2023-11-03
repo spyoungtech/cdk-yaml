@@ -426,10 +426,13 @@ class CloudFormationInitDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['add_config', 'add_config_set', 'attach']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_config', 'from_config_sets', 'from_elements']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.CloudFormationInit'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_config', 'from_config_sets', 'from_elements']
     ...
 
 
+    from_config: typing.Optional[CloudFormationInitDefFromConfigParams] = pydantic.Field(None, description='Use an existing InitConfig object as the default and only config.')
+    from_config_sets: typing.Optional[CloudFormationInitDefFromConfigSetsParams] = pydantic.Field(None, description='Build a CloudFormationInit from config sets.')
+    from_elements: typing.Optional[CloudFormationInitDefFromElementsParams] = pydantic.Field(None, description='Build a new config from a set of Init Elements.')
     resource_config: typing.Optional[CloudFormationInitDefConfig] = pydantic.Field(None)
 
 
@@ -437,9 +440,6 @@ class CloudFormationInitDefConfig(pydantic.BaseModel):
     add_config: typing.Optional[list[CloudFormationInitDefAddConfigParams]] = pydantic.Field(None, description='Add a config with the given name to this CloudFormationInit object.')
     add_config_set: typing.Optional[list[CloudFormationInitDefAddConfigSetParams]] = pydantic.Field(None, description='Add a config set with the given name to this CloudFormationInit object.\nThe new configset will reference the given configs in the given order.')
     attach: typing.Optional[list[CloudFormationInitDefAttachParams]] = pydantic.Field(None, description="Attach the CloudFormation Init config to the given resource.\nAs an app builder, use ``instance.applyCloudFormationInit()`` or\n``autoScalingGroup.applyCloudFormationInit()`` to trigger this method.\n\nThis method does the following:\n\n- Renders the ``AWS::CloudFormation::Init`` object to the given resource's\n  metadata, potentially adding a ``AWS::CloudFormation::Authentication`` object\n  next to it if required.\n- Updates the instance role policy to be able to call the APIs required for\n  ``cfn-init`` and ``cfn-signal`` to work, and potentially add permissions to download\n  referenced asset and bucket resources.\n- Updates the given UserData with commands to execute the ``cfn-init`` script.")
-    from_config: typing.Optional[list[CloudFormationInitDefFromConfigParams]] = pydantic.Field(None, description='Use an existing InitConfig object as the default and only config.')
-    from_config_sets: typing.Optional[list[CloudFormationInitDefFromConfigSetsParams]] = pydantic.Field(None, description='Build a CloudFormationInit from config sets.')
-    from_elements: typing.Optional[list[CloudFormationInitDefFromElementsParams]] = pydantic.Field(None, description='Build a new config from a set of Init Elements.')
 
 class CloudFormationInitDefAddConfigParams(pydantic.BaseModel):
     config_name: str = pydantic.Field(..., description='-\n')
@@ -467,18 +467,15 @@ class CloudFormationInitDefAttachParams(pydantic.BaseModel):
 
 class CloudFormationInitDefFromConfigParams(pydantic.BaseModel):
     config: models.aws_ec2.InitConfigDef = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_ec2.CloudFormationInitDefConfig]] = pydantic.Field(None)
     ...
 
 class CloudFormationInitDefFromConfigSetsParams(pydantic.BaseModel):
     configs: typing.Mapping[str, models.aws_ec2.InitConfigDef] = pydantic.Field(..., description='The sets of configs to pick from.\n')
     config_sets: typing.Mapping[str, typing.Sequence[str]] = pydantic.Field(..., description='The definitions of each config set.')
-    return_config: typing.Optional[list[models.aws_ec2.CloudFormationInitDefConfig]] = pydantic.Field(None)
     ...
 
 class CloudFormationInitDefFromElementsParams(pydantic.BaseModel):
     elements: list[models.aws_ec2.InitElementDef] = pydantic.Field(...)
-    return_config: typing.Optional[list[models.aws_ec2.CloudFormationInitDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -594,31 +591,24 @@ class FlowLogResourceTypeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_network_interface_id', 'from_subnet', 'from_vpc']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.FlowLogResourceType'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_network_interface_id', 'from_subnet', 'from_vpc']
     ...
 
 
-    resource_config: typing.Optional[FlowLogResourceTypeDefConfig] = pydantic.Field(None)
-
-
-class FlowLogResourceTypeDefConfig(pydantic.BaseModel):
-    from_network_interface_id: typing.Optional[list[FlowLogResourceTypeDefFromNetworkInterfaceIdParams]] = pydantic.Field(None, description='The Network Interface to attach the Flow Log to.')
-    from_subnet: typing.Optional[list[FlowLogResourceTypeDefFromSubnetParams]] = pydantic.Field(None, description='The subnet to attach the Flow Log to.')
-    from_vpc: typing.Optional[list[FlowLogResourceTypeDefFromVpcParams]] = pydantic.Field(None, description='The VPC to attach the Flow Log to.')
+    from_network_interface_id: typing.Optional[FlowLogResourceTypeDefFromNetworkInterfaceIdParams] = pydantic.Field(None, description='The Network Interface to attach the Flow Log to.')
+    from_subnet: typing.Optional[FlowLogResourceTypeDefFromSubnetParams] = pydantic.Field(None, description='The subnet to attach the Flow Log to.')
+    from_vpc: typing.Optional[FlowLogResourceTypeDefFromVpcParams] = pydantic.Field(None, description='The VPC to attach the Flow Log to.')
 
 class FlowLogResourceTypeDefFromNetworkInterfaceIdParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_ec2.FlowLogResourceTypeDefConfig]] = pydantic.Field(None)
     ...
 
 class FlowLogResourceTypeDefFromSubnetParams(pydantic.BaseModel):
     subnet: typing.Union[models.aws_ec2.PrivateSubnetDef, models.aws_ec2.PublicSubnetDef, models.aws_ec2.SubnetDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_ec2.FlowLogResourceTypeDefConfig]] = pydantic.Field(None)
     ...
 
 class FlowLogResourceTypeDefFromVpcParams(pydantic.BaseModel):
     vpc: typing.Union[models.aws_ec2.VpcDef] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_ec2.FlowLogResourceTypeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -826,21 +816,21 @@ class InitFileDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_existing_asset', 'from_file_inline', 'from_object', 'from_s3_object', 'from_string', 'from_url', 'symlink']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.InitFile'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_existing_asset', 'from_file_inline', 'from_object', 'from_s3_object', 'from_string', 'from_url']
     ...
 
 
+    from_asset: typing.Optional[InitFileDefFromAssetParams] = pydantic.Field(None, description='Create an asset from the given file.\nThis is appropriate for files that are too large to embed into the template.')
+    from_existing_asset: typing.Optional[InitFileDefFromExistingAssetParams] = pydantic.Field(None, description='Use a file from an asset at instance startup time.')
+    from_file_inline: typing.Optional[InitFileDefFromFileInlineParams] = pydantic.Field(None, description="Read a file from disk and use its contents.\nThe file will be embedded in the template, so care should be taken to not\nexceed the template size.\n\nIf options.base64encoded is set to true, this will base64-encode the file's contents.")
+    from_object: typing.Optional[InitFileDefFromObjectParams] = pydantic.Field(None, description='Use a JSON-compatible object as the file content, write it to a JSON file.\nMay contain tokens.')
+    from_s3_object: typing.Optional[InitFileDefFromS3ObjectParams] = pydantic.Field(None, description='Download a file from an S3 bucket at instance startup time.')
+    from_string: typing.Optional[InitFileDefFromStringParams] = pydantic.Field(None, description='Use a literal string as the file content.')
+    from_url: typing.Optional[InitFileDefFromUrlParams] = pydantic.Field(None, description='Download from a URL at instance startup time.')
     resource_config: typing.Optional[InitFileDefConfig] = pydantic.Field(None)
 
 
 class InitFileDefConfig(pydantic.BaseModel):
-    from_asset: typing.Optional[list[InitFileDefFromAssetParams]] = pydantic.Field(None, description='Create an asset from the given file.\nThis is appropriate for files that are too large to embed into the template.')
-    from_existing_asset: typing.Optional[list[InitFileDefFromExistingAssetParams]] = pydantic.Field(None, description='Use a file from an asset at instance startup time.')
-    from_file_inline: typing.Optional[list[InitFileDefFromFileInlineParams]] = pydantic.Field(None, description="Read a file from disk and use its contents.\nThe file will be embedded in the template, so care should be taken to not\nexceed the template size.\n\nIf options.base64encoded is set to true, this will base64-encode the file's contents.")
-    from_object: typing.Optional[list[InitFileDefFromObjectParams]] = pydantic.Field(None, description='Use a JSON-compatible object as the file content, write it to a JSON file.\nMay contain tokens.')
-    from_s3_object: typing.Optional[list[InitFileDefFromS3ObjectParams]] = pydantic.Field(None, description='Download a file from an S3 bucket at instance startup time.')
-    from_string: typing.Optional[list[InitFileDefFromStringParams]] = pydantic.Field(None, description='Use a literal string as the file content.')
-    from_url: typing.Optional[list[InitFileDefFromUrlParams]] = pydantic.Field(None, description='Download from a URL at instance startup time.')
     symlink: typing.Optional[list[InitFileDefSymlinkParams]] = pydantic.Field(None, description='Write a symlink with the given symlink target.')
 
 class InitFileDefFromAssetParams(pydantic.BaseModel):
@@ -859,7 +849,6 @@ class InitFileDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefFromExistingAssetParams(pydantic.BaseModel):
@@ -870,7 +859,6 @@ class InitFileDefFromExistingAssetParams(pydantic.BaseModel):
     mode: typing.Optional[str] = pydantic.Field(None, description="A six-digit octal value representing the mode for this file. Use the first three digits for symlinks and the last three digits for setting permissions. To create a symlink, specify 120xxx, where xxx defines the permissions of the target file. To specify permissions for a file, use the last three digits, such as 000644. Not supported for Windows systems. Default: '000644'\n")
     owner: typing.Optional[str] = pydantic.Field(None, description="The name of the owning user for this file. Not supported for Windows systems. Default: 'root'\n")
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given service after this file has been written. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefFromFileInlineParams(pydantic.BaseModel):
@@ -881,7 +869,6 @@ class InitFileDefFromFileInlineParams(pydantic.BaseModel):
     mode: typing.Optional[str] = pydantic.Field(None, description="A six-digit octal value representing the mode for this file. Use the first three digits for symlinks and the last three digits for setting permissions. To create a symlink, specify 120xxx, where xxx defines the permissions of the target file. To specify permissions for a file, use the last three digits, such as 000644. Not supported for Windows systems. Default: '000644'\n")
     owner: typing.Optional[str] = pydantic.Field(None, description="The name of the owning user for this file. Not supported for Windows systems. Default: 'root'\n")
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given service after this file has been written. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefFromObjectParams(pydantic.BaseModel):
@@ -892,7 +879,6 @@ class InitFileDefFromObjectParams(pydantic.BaseModel):
     mode: typing.Optional[str] = pydantic.Field(None, description="A six-digit octal value representing the mode for this file. Use the first three digits for symlinks and the last three digits for setting permissions. To create a symlink, specify 120xxx, where xxx defines the permissions of the target file. To specify permissions for a file, use the last three digits, such as 000644. Not supported for Windows systems. Default: '000644'\n")
     owner: typing.Optional[str] = pydantic.Field(None, description="The name of the owning user for this file. Not supported for Windows systems. Default: 'root'\n")
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given service after this file has been written. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefFromS3ObjectParams(pydantic.BaseModel):
@@ -904,7 +890,6 @@ class InitFileDefFromS3ObjectParams(pydantic.BaseModel):
     mode: typing.Optional[str] = pydantic.Field(None, description="A six-digit octal value representing the mode for this file. Use the first three digits for symlinks and the last three digits for setting permissions. To create a symlink, specify 120xxx, where xxx defines the permissions of the target file. To specify permissions for a file, use the last three digits, such as 000644. Not supported for Windows systems. Default: '000644'\n")
     owner: typing.Optional[str] = pydantic.Field(None, description="The name of the owning user for this file. Not supported for Windows systems. Default: 'root'\n")
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given service after this file has been written. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefFromStringParams(pydantic.BaseModel):
@@ -915,7 +900,6 @@ class InitFileDefFromStringParams(pydantic.BaseModel):
     mode: typing.Optional[str] = pydantic.Field(None, description="A six-digit octal value representing the mode for this file. Use the first three digits for symlinks and the last three digits for setting permissions. To create a symlink, specify 120xxx, where xxx defines the permissions of the target file. To specify permissions for a file, use the last three digits, such as 000644. Not supported for Windows systems. Default: '000644'\n")
     owner: typing.Optional[str] = pydantic.Field(None, description="The name of the owning user for this file. Not supported for Windows systems. Default: 'root'\n")
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given service after this file has been written. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefFromUrlParams(pydantic.BaseModel):
@@ -926,7 +910,6 @@ class InitFileDefFromUrlParams(pydantic.BaseModel):
     mode: typing.Optional[str] = pydantic.Field(None, description="A six-digit octal value representing the mode for this file. Use the first three digits for symlinks and the last three digits for setting permissions. To create a symlink, specify 120xxx, where xxx defines the permissions of the target file. To specify permissions for a file, use the last three digits, such as 000644. Not supported for Windows systems. Default: '000644'\n")
     owner: typing.Optional[str] = pydantic.Field(None, description="The name of the owning user for this file. Not supported for Windows systems. Default: 'root'\n")
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given service after this file has been written. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitFileDefConfig]] = pydantic.Field(None)
     ...
 
 class InitFileDefSymlinkParams(pydantic.BaseModel):
@@ -949,20 +932,15 @@ class InitGroupDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_name']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.InitGroup'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_name']
     ...
 
 
-    resource_config: typing.Optional[InitGroupDefConfig] = pydantic.Field(None)
-
-
-class InitGroupDefConfig(pydantic.BaseModel):
-    from_name: typing.Optional[list[InitGroupDefFromNameParams]] = pydantic.Field(None, description='Create a group from its name, and optionally, group id.')
+    from_name: typing.Optional[InitGroupDefFromNameParams] = pydantic.Field(None, description='Create a group from its name, and optionally, group id.')
 
 class InitGroupDefFromNameParams(pydantic.BaseModel):
     group_name: str = pydantic.Field(..., description='-\n')
     group_id: typing.Union[int, float, None] = pydantic.Field(None, description='-')
-    return_config: typing.Optional[list[models.aws_ec2.InitGroupDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1098,19 +1076,15 @@ class InitSourceDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_existing_asset', 'from_git_hub', 'from_s3_object', 'from_url']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.InitSource'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_existing_asset', 'from_git_hub', 'from_s3_object', 'from_url']
     ...
 
 
-    resource_config: typing.Optional[InitSourceDefConfig] = pydantic.Field(None)
-
-
-class InitSourceDefConfig(pydantic.BaseModel):
-    from_asset: typing.Optional[list[InitSourceDefFromAssetParams]] = pydantic.Field(None, description='Create an InitSource from an asset created from the given path.')
-    from_existing_asset: typing.Optional[list[InitSourceDefFromExistingAssetParams]] = pydantic.Field(None, description='Extract a directory from an existing directory asset.')
-    from_git_hub: typing.Optional[list[InitSourceDefFromGitHubParams]] = pydantic.Field(None, description='Extract a GitHub branch into a given directory.')
-    from_s3_object: typing.Optional[list[InitSourceDefFromS3ObjectParams]] = pydantic.Field(None, description='Extract an archive stored in an S3 bucket into the given directory.')
-    from_url: typing.Optional[list[InitSourceDefFromUrlParams]] = pydantic.Field(None, description='Retrieve a URL and extract it into the given directory.')
+    from_asset: typing.Optional[InitSourceDefFromAssetParams] = pydantic.Field(None, description='Create an InitSource from an asset created from the given path.')
+    from_existing_asset: typing.Optional[InitSourceDefFromExistingAssetParams] = pydantic.Field(None, description='Extract a directory from an existing directory asset.')
+    from_git_hub: typing.Optional[InitSourceDefFromGitHubParams] = pydantic.Field(None, description='Extract a GitHub branch into a given directory.')
+    from_s3_object: typing.Optional[InitSourceDefFromS3ObjectParams] = pydantic.Field(None, description='Extract an archive stored in an S3 bucket into the given directory.')
+    from_url: typing.Optional[InitSourceDefFromUrlParams] = pydantic.Field(None, description='Retrieve a URL and extract it into the given directory.')
 
 class InitSourceDefFromAssetParams(pydantic.BaseModel):
     target_directory: str = pydantic.Field(..., description='-\n')
@@ -1124,14 +1098,12 @@ class InitSourceDefFromAssetParams(pydantic.BaseModel):
     exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='File paths matching the patterns will be excluded. See ``ignoreMode`` to set the matching behavior. Has no effect on Assets bundled using the ``bundling`` property. Default: - nothing is excluded\n')
     follow_symlinks: typing.Optional[aws_cdk.SymlinkFollowMode] = pydantic.Field(None, description='A strategy for how to handle symlinks. Default: SymlinkFollowMode.NEVER\n')
     ignore_mode: typing.Optional[aws_cdk.IgnoreMode] = pydantic.Field(None, description='The ignore behavior to use for ``exclude`` patterns. Default: IgnoreMode.GLOB')
-    return_config: typing.Optional[list[models.aws_ec2.InitSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class InitSourceDefFromExistingAssetParams(pydantic.BaseModel):
     target_directory: str = pydantic.Field(..., description='-\n')
     asset: models.aws_s3_assets.AssetDef = pydantic.Field(..., description='-\n')
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given services after this archive has been extracted. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class InitSourceDefFromGitHubParams(pydantic.BaseModel):
@@ -1140,7 +1112,6 @@ class InitSourceDefFromGitHubParams(pydantic.BaseModel):
     repo: str = pydantic.Field(..., description='-\n')
     ref_spec: typing.Optional[str] = pydantic.Field(None, description='-\n')
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given services after this archive has been extracted. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class InitSourceDefFromS3ObjectParams(pydantic.BaseModel):
@@ -1148,14 +1119,12 @@ class InitSourceDefFromS3ObjectParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-\n')
     key: str = pydantic.Field(..., description='-\n')
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given services after this archive has been extracted. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class InitSourceDefFromUrlParams(pydantic.BaseModel):
     target_directory: str = pydantic.Field(..., description='-\n')
     url: str = pydantic.Field(..., description='-\n')
     service_restart_handles: typing.Optional[typing.Sequence[models.aws_ec2.InitServiceRestartHandleDef]] = pydantic.Field(None, description='Restart the given services after this archive has been extracted. Default: - Do not restart any service')
-    return_config: typing.Optional[list[models.aws_ec2.InitSourceDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1169,22 +1138,17 @@ class InitUserDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_name']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.InitUser'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_name']
     ...
 
 
-    resource_config: typing.Optional[InitUserDefConfig] = pydantic.Field(None)
-
-
-class InitUserDefConfig(pydantic.BaseModel):
-    from_name: typing.Optional[list[InitUserDefFromNameParams]] = pydantic.Field(None, description='Create a user from user name.')
+    from_name: typing.Optional[InitUserDefFromNameParams] = pydantic.Field(None, description='Create a user from user name.')
 
 class InitUserDefFromNameParams(pydantic.BaseModel):
     user_name: str = pydantic.Field(..., description='-\n')
     groups: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='A list of group names. The user will be added to each group in the list. Default: the user is not associated with any groups.\n')
     home_dir: typing.Optional[str] = pydantic.Field(None, description="The user's home directory. Default: assigned by the OS\n")
     user_id: typing.Union[int, float, None] = pydantic.Field(None, description='A user ID. The creation process fails if the user name exists with a different user ID. If the user ID is already assigned to an existing user the operating system may reject the creation request. Default: assigned by the OS')
-    return_config: typing.Optional[list[models.aws_ec2.InitUserDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1476,29 +1440,27 @@ class MultipartBodyDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['render_body_part']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_raw_body', 'from_user_data']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_ec2.MultipartBody'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_raw_body', 'from_user_data']
     ...
 
 
+    from_raw_body: typing.Optional[MultipartBodyDefFromRawBodyParams] = pydantic.Field(None, description="Constructs the raw ``MultipartBody`` using specified body, content type and transfer encoding.\nWhen transfer encoding is specified (typically as Base64), it's caller responsibility to convert body to\nBase64 either by wrapping with ``Fn.base64`` or by converting it by other converters.")
+    from_user_data: typing.Optional[MultipartBodyDefFromUserDataParams] = pydantic.Field(None, description='Constructs the new ``MultipartBody`` wrapping existing ``UserData``. Modification to ``UserData`` are reflected in subsequent renders of the part.\nFor more information about content types see ``MultipartBodyOptions.contentType``.')
     resource_config: typing.Optional[MultipartBodyDefConfig] = pydantic.Field(None)
 
 
 class MultipartBodyDefConfig(pydantic.BaseModel):
-    from_raw_body: typing.Optional[list[MultipartBodyDefFromRawBodyParams]] = pydantic.Field(None, description="Constructs the raw ``MultipartBody`` using specified body, content type and transfer encoding.\nWhen transfer encoding is specified (typically as Base64), it's caller responsibility to convert body to\nBase64 either by wrapping with ``Fn.base64`` or by converting it by other converters.")
-    from_user_data: typing.Optional[list[MultipartBodyDefFromUserDataParams]] = pydantic.Field(None, description='Constructs the new ``MultipartBody`` wrapping existing ``UserData``. Modification to ``UserData`` are reflected in subsequent renders of the part.\nFor more information about content types see ``MultipartBodyOptions.contentType``.')
     render_body_part: typing.Optional[bool] = pydantic.Field(None, description='Render body part as the string.\nSubclasses should not add leading nor trailing new line characters (\\r \\n)')
 
 class MultipartBodyDefFromRawBodyParams(pydantic.BaseModel):
     content_type: str = pydantic.Field(..., description='``Content-Type`` header of this part. Some examples of content types: - ``text/x-shellscript; charset="utf-8"`` (shell script) - ``text/cloud-boothook; charset="utf-8"`` (shell script executed during boot phase) For Linux shell scripts use ``text/x-shellscript``.\n')
     body: typing.Optional[str] = pydantic.Field(None, description='The body of message. Default: undefined - body will not be added to part\n')
     transfer_encoding: typing.Optional[str] = pydantic.Field(None, description='``Content-Transfer-Encoding`` header specifying part encoding. Default: undefined - body is not encoded')
-    return_config: typing.Optional[list[models.aws_ec2.MultipartBodyDefConfig]] = pydantic.Field(None)
     ...
 
 class MultipartBodyDefFromUserDataParams(pydantic.BaseModel):
     user_data: models.aws_ec2.UserDataDef = pydantic.Field(..., description='user data to wrap into body part.\n')
     content_type: typing.Optional[str] = pydantic.Field(None, description='optional content type, if default one should not be used.')
-    return_config: typing.Optional[list[models.aws_ec2.MultipartBodyDefConfig]] = pydantic.Field(None)
     ...
 
 

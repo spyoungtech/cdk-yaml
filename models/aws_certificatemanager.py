@@ -12,31 +12,24 @@ class CertificateValidationDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_dns', 'from_dns_multi_zone', 'from_email']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_certificatemanager.CertificateValidation'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_dns', 'from_dns_multi_zone', 'from_email']
     ...
 
 
-    resource_config: typing.Optional[CertificateValidationDefConfig] = pydantic.Field(None)
-
-
-class CertificateValidationDefConfig(pydantic.BaseModel):
-    from_dns: typing.Optional[list[CertificateValidationDefFromDnsParams]] = pydantic.Field(None, description='Validate the certificate with DNS.\nIMPORTANT: If ``hostedZone`` is not specified, DNS records must be added\nmanually and the stack will not complete creating until the records are\nadded.')
-    from_dns_multi_zone: typing.Optional[list[CertificateValidationDefFromDnsMultiZoneParams]] = pydantic.Field(None, description='Validate the certificate with automatically created DNS records in multiple Amazon Route 53 hosted zones.')
-    from_email: typing.Optional[list[CertificateValidationDefFromEmailParams]] = pydantic.Field(None, description='Validate the certificate with Email.\nIMPORTANT: if you are creating a certificate as part of your stack, the stack\nwill not complete creating until you read and follow the instructions in the\nemail that you will receive.\n\nACM will send validation emails to the following addresses:\n\nadmin@domain.com\nadministrator@domain.com\nhostmaster@domain.com\npostmaster@domain.com\nwebmaster@domain.com\n\nFor every domain that you register.')
+    from_dns: typing.Optional[CertificateValidationDefFromDnsParams] = pydantic.Field(None, description='Validate the certificate with DNS.\nIMPORTANT: If ``hostedZone`` is not specified, DNS records must be added\nmanually and the stack will not complete creating until the records are\nadded.')
+    from_dns_multi_zone: typing.Optional[CertificateValidationDefFromDnsMultiZoneParams] = pydantic.Field(None, description='Validate the certificate with automatically created DNS records in multiple Amazon Route 53 hosted zones.')
+    from_email: typing.Optional[CertificateValidationDefFromEmailParams] = pydantic.Field(None, description='Validate the certificate with Email.\nIMPORTANT: if you are creating a certificate as part of your stack, the stack\nwill not complete creating until you read and follow the instructions in the\nemail that you will receive.\n\nACM will send validation emails to the following addresses:\n\nadmin@domain.com\nadministrator@domain.com\nhostmaster@domain.com\npostmaster@domain.com\nwebmaster@domain.com\n\nFor every domain that you register.')
 
 class CertificateValidationDefFromDnsParams(pydantic.BaseModel):
     hosted_zone: typing.Optional[typing.Union[models.aws_route53.HostedZoneDef, models.aws_route53.PrivateHostedZoneDef, models.aws_route53.PublicHostedZoneDef]] = pydantic.Field(None, description='the hosted zone where DNS records must be created.')
-    return_config: typing.Optional[list[models.aws_certificatemanager.CertificateValidationDefConfig]] = pydantic.Field(None)
     ...
 
 class CertificateValidationDefFromDnsMultiZoneParams(pydantic.BaseModel):
     hosted_zones: typing.Mapping[str, typing.Union[models.aws_route53.HostedZoneDef, models.aws_route53.PrivateHostedZoneDef, models.aws_route53.PublicHostedZoneDef]] = pydantic.Field(..., description='a map of hosted zones where DNS records must be created for the domains in the certificate.')
-    return_config: typing.Optional[list[models.aws_certificatemanager.CertificateValidationDefConfig]] = pydantic.Field(None)
     ...
 
 class CertificateValidationDefFromEmailParams(pydantic.BaseModel):
     validation_domains: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='a map of validation domains to use for domains in the certificate.')
-    return_config: typing.Optional[list[models.aws_certificatemanager.CertificateValidationDefConfig]] = pydantic.Field(None)
     ...
 
 

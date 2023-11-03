@@ -12,15 +12,15 @@ class CacheControlDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_string', 'immutable', 'max_age', 'must_revalidate', 'must_understand', 'no_cache', 'no_store', 'no_transform', 'proxy_revalidate', 's_max_age', 'set_private', 'set_public', 'stale_if_error', 'stale_while_revalidate']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3_deployment.CacheControl'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_string']
     ...
 
 
+    from_string: typing.Optional[CacheControlDefFromStringParams] = pydantic.Field(None, description='Constructs a custom cache control key from the literal value.')
     resource_config: typing.Optional[CacheControlDefConfig] = pydantic.Field(None)
 
 
 class CacheControlDefConfig(pydantic.BaseModel):
-    from_string: typing.Optional[list[CacheControlDefFromStringParams]] = pydantic.Field(None, description='Constructs a custom cache control key from the literal value.')
     immutable: typing.Optional[list[CacheControlDefImmutableParams]] = pydantic.Field(None, description="Sets 'immutable'.")
     max_age: typing.Optional[list[CacheControlDefMaxAgeParams]] = pydantic.Field(None, description="Sets 'max-age='.")
     must_revalidate: typing.Optional[list[CacheControlDefMustRevalidateParams]] = pydantic.Field(None, description="Sets 'must-revalidate'.")
@@ -37,7 +37,6 @@ class CacheControlDefConfig(pydantic.BaseModel):
 
 class CacheControlDefFromStringParams(pydantic.BaseModel):
     s: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefImmutableParams(pydantic.BaseModel):

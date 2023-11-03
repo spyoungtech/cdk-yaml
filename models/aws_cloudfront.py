@@ -139,26 +139,24 @@ class FunctionCodeDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = ['render']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_file', 'from_inline']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_cloudfront.FunctionCode'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_file', 'from_inline']
     ...
 
 
+    from_file: typing.Optional[FunctionCodeDefFromFileParams] = pydantic.Field(None, description='Code from external file for function.')
+    from_inline: typing.Optional[FunctionCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for function.')
     resource_config: typing.Optional[FunctionCodeDefConfig] = pydantic.Field(None)
 
 
 class FunctionCodeDefConfig(pydantic.BaseModel):
-    from_file: typing.Optional[list[FunctionCodeDefFromFileParams]] = pydantic.Field(None, description='Code from external file for function.')
-    from_inline: typing.Optional[list[FunctionCodeDefFromInlineParams]] = pydantic.Field(None, description='Inline code for function.')
     render: typing.Optional[bool] = pydantic.Field(None, description='renders the function code.')
 
 class FunctionCodeDefFromFileParams(pydantic.BaseModel):
     file_path: str = pydantic.Field(..., description='The path of the file to read the code from.\n')
-    return_config: typing.Optional[list[models.aws_cloudfront.FunctionCodeDefConfig]] = pydantic.Field(None)
     ...
 
 class FunctionCodeDefFromInlineParams(pydantic.BaseModel):
     code: str = pydantic.Field(..., description='The actual function code.\n')
-    return_config: typing.Optional[list[models.aws_cloudfront.FunctionCodeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -323,29 +321,23 @@ class ViewerCertificateDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_acm_certificate', 'from_cloud_front_default_certificate', 'from_iam_certificate']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_cloudfront.ViewerCertificate'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_acm_certificate', 'from_cloud_front_default_certificate', 'from_iam_certificate']
     ...
 
 
-    resource_config: typing.Optional[ViewerCertificateDefConfig] = pydantic.Field(None)
-
-
-class ViewerCertificateDefConfig(pydantic.BaseModel):
-    from_acm_certificate: typing.Optional[list[ViewerCertificateDefFromAcmCertificateParams]] = pydantic.Field(None, description='Generate an AWS Certificate Manager (ACM) viewer certificate configuration.')
-    from_cloud_front_default_certificate: typing.Optional[list[ViewerCertificateDefFromCloudFrontDefaultCertificateParams]] = pydantic.Field(None, description='Generate a viewer certifcate configuration using the CloudFront default certificate (e.g. d111111abcdef8.cloudfront.net) and a ``SecurityPolicyProtocol.TLS_V1`` security policy.')
-    from_iam_certificate: typing.Optional[list[ViewerCertificateDefFromIamCertificateParams]] = pydantic.Field(None, description='Generate an IAM viewer certificate configuration.')
+    from_acm_certificate: typing.Optional[ViewerCertificateDefFromAcmCertificateParams] = pydantic.Field(None, description='Generate an AWS Certificate Manager (ACM) viewer certificate configuration.')
+    from_cloud_front_default_certificate: typing.Optional[ViewerCertificateDefFromCloudFrontDefaultCertificateParams] = pydantic.Field(None, description='Generate a viewer certifcate configuration using the CloudFront default certificate (e.g. d111111abcdef8.cloudfront.net) and a ``SecurityPolicyProtocol.TLS_V1`` security policy.')
+    from_iam_certificate: typing.Optional[ViewerCertificateDefFromIamCertificateParams] = pydantic.Field(None, description='Generate an IAM viewer certificate configuration.')
 
 class ViewerCertificateDefFromAcmCertificateParams(pydantic.BaseModel):
     certificate: typing.Union[models.aws_certificatemanager.CertificateDef, models.aws_certificatemanager.DnsValidatedCertificateDef, models.aws_certificatemanager.PrivateCertificateDef] = pydantic.Field(..., description='AWS Certificate Manager (ACM) certificate. Your certificate must be located in the us-east-1 (US East (N. Virginia)) region to be accessed by CloudFront\n')
     aliases: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Domain names on the certificate (both main domain name and Subject Alternative names).\n')
     security_policy: typing.Optional[aws_cdk.aws_cloudfront.SecurityPolicyProtocol] = pydantic.Field(None, description='The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. CloudFront serves your objects only to browsers or devices that support at least the SSL version that you specify. Default: - SSLv3 if sslMethod VIP, TLSv1 if sslMethod SNI\n')
     ssl_method: typing.Optional[aws_cdk.aws_cloudfront.SSLMethod] = pydantic.Field(None, description='How CloudFront should serve HTTPS requests. See the notes on SSLMethod if you wish to use other SSL termination types. Default: SSLMethod.SNI')
-    return_config: typing.Optional[list[models.aws_cloudfront.ViewerCertificateDefConfig]] = pydantic.Field(None)
     ...
 
 class ViewerCertificateDefFromCloudFrontDefaultCertificateParams(pydantic.BaseModel):
     aliases: list[str] = pydantic.Field(...)
-    return_config: typing.Optional[list[models.aws_cloudfront.ViewerCertificateDefConfig]] = pydantic.Field(None)
     ...
 
 class ViewerCertificateDefFromIamCertificateParams(pydantic.BaseModel):
@@ -353,7 +345,6 @@ class ViewerCertificateDefFromIamCertificateParams(pydantic.BaseModel):
     aliases: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Domain names on the certificate (both main domain name and Subject Alternative names).\n')
     security_policy: typing.Optional[aws_cdk.aws_cloudfront.SecurityPolicyProtocol] = pydantic.Field(None, description='The minimum version of the SSL protocol that you want CloudFront to use for HTTPS connections. CloudFront serves your objects only to browsers or devices that support at least the SSL version that you specify. Default: - SSLv3 if sslMethod VIP, TLSv1 if sslMethod SNI\n')
     ssl_method: typing.Optional[aws_cdk.aws_cloudfront.SSLMethod] = pydantic.Field(None, description='How CloudFront should serve HTTPS requests. See the notes on SSLMethod if you wish to use other SSL termination types. Default: SSLMethod.SNI')
-    return_config: typing.Optional[list[models.aws_cloudfront.ViewerCertificateDefConfig]] = pydantic.Field(None)
     ...
 
 

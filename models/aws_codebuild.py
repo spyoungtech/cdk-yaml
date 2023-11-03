@@ -46,37 +46,29 @@ class BuildSpecDef(BaseClass):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = ['from_asset', 'from_object', 'from_object_to_yaml', 'from_source_filename']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codebuild.BuildSpec'
-    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_asset', 'from_object', 'from_object_to_yaml', 'from_source_filename']
     ...
 
 
-    resource_config: typing.Optional[BuildSpecDefConfig] = pydantic.Field(None)
-
-
-class BuildSpecDefConfig(pydantic.BaseModel):
-    from_asset: typing.Optional[list[BuildSpecDefFromAssetParams]] = pydantic.Field(None, description='Use the contents of a local file as the build spec string.\nUse this if you have a local .yml or .json file that you want to use as the buildspec')
-    from_object: typing.Optional[list[BuildSpecDefFromObjectParams]] = pydantic.Field(None, description='')
-    from_object_to_yaml: typing.Optional[list[BuildSpecDefFromObjectToYamlParams]] = pydantic.Field(None, description='Create a buildspec from an object that will be rendered as YAML in the resulting CloudFormation template.')
-    from_source_filename: typing.Optional[list[BuildSpecDefFromSourceFilenameParams]] = pydantic.Field(None, description="Use a file from the source as buildspec.\nUse this if you want to use a file different from 'buildspec.yml'`")
+    from_asset: typing.Optional[BuildSpecDefFromAssetParams] = pydantic.Field(None, description='Use the contents of a local file as the build spec string.\nUse this if you have a local .yml or .json file that you want to use as the buildspec')
+    from_object: typing.Optional[BuildSpecDefFromObjectParams] = pydantic.Field(None, description='')
+    from_object_to_yaml: typing.Optional[BuildSpecDefFromObjectToYamlParams] = pydantic.Field(None, description='Create a buildspec from an object that will be rendered as YAML in the resulting CloudFormation template.')
+    from_source_filename: typing.Optional[BuildSpecDefFromSourceFilenameParams] = pydantic.Field(None, description="Use a file from the source as buildspec.\nUse this if you want to use a file different from 'buildspec.yml'`")
 
 class BuildSpecDefFromAssetParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class BuildSpecDefFromObjectParams(pydantic.BaseModel):
     value: typing.Mapping[str, typing.Any] = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class BuildSpecDefFromObjectToYamlParams(pydantic.BaseModel):
     value: typing.Mapping[str, typing.Any] = pydantic.Field(..., description='the object containing the buildspec that will be rendered as YAML.')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class BuildSpecDefFromSourceFilenameParams(pydantic.BaseModel):
     filename: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -282,7 +274,6 @@ class LinuxArmBuildImageDefFromEcrRepositoryParams(pydantic.BaseModel):
 
 class LinuxArmBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class LinuxArmBuildImageDefValidateParams(pydantic.BaseModel):
@@ -352,7 +343,6 @@ class LinuxBuildImageDefFromEcrRepositoryParams(pydantic.BaseModel):
 
 class LinuxBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class LinuxBuildImageDefValidateParams(pydantic.BaseModel):
@@ -402,7 +392,6 @@ class LinuxGpuBuildImageDefFromEcrRepositoryParams(pydantic.BaseModel):
 
 class LinuxGpuBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class LinuxGpuBuildImageDefValidateParams(pydantic.BaseModel):
@@ -567,7 +556,6 @@ class WindowsBuildImageDefFromEcrRepositoryParams(pydantic.BaseModel):
 
 class WindowsBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
-    return_config: typing.Optional[list[models.aws_codebuild.BuildSpecDefConfig]] = pydantic.Field(None)
     ...
 
 class WindowsBuildImageDefValidateParams(pydantic.BaseModel):
