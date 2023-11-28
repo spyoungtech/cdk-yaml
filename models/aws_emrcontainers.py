@@ -59,29 +59,29 @@ class CfnVirtualClusterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVirtualClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_emrcontainers.CfnVirtualClusterDefConfig] = pydantic.Field(None)
 
 
 class CfnVirtualClusterDefConfig(pydantic.BaseModel):
-    ContainerInfoProperty: typing.Optional[list[CfnVirtualClusterDefContainerinfopropertyParams]] = pydantic.Field(None, description='')
-    ContainerProviderProperty: typing.Optional[list[CfnVirtualClusterDefContainerproviderpropertyParams]] = pydantic.Field(None, description='')
-    EksInfoProperty: typing.Optional[list[CfnVirtualClusterDefEksinfopropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnVirtualClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVirtualClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVirtualClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVirtualClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVirtualClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVirtualClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVirtualClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ContainerInfoProperty: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefContainerinfopropertyParams]] = pydantic.Field(None, description='')
+    ContainerProviderProperty: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefContainerproviderpropertyParams]] = pydantic.Field(None, description='')
+    EksInfoProperty: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefEksinfopropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVirtualClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVirtualClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVirtualClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVirtualClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVirtualClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVirtualClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_emrcontainers.CfnVirtualClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnVirtualClusterDefContainerinfopropertyParams(pydantic.BaseModel):
@@ -178,12 +178,12 @@ class CfnVirtualClusterPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnVirtualCluster_ContainerInfoProperty: typing.Optional[dict[str, CfnVirtualCluster_ContainerInfoPropertyDef]] = pydantic.Field(None)
-    CfnVirtualCluster_ContainerProviderProperty: typing.Optional[dict[str, CfnVirtualCluster_ContainerProviderPropertyDef]] = pydantic.Field(None)
-    CfnVirtualCluster_EksInfoProperty: typing.Optional[dict[str, CfnVirtualCluster_EksInfoPropertyDef]] = pydantic.Field(None)
-    CfnVirtualCluster: typing.Optional[dict[str, CfnVirtualClusterDef]] = pydantic.Field(None)
-    CfnVirtualClusterProps: typing.Optional[dict[str, CfnVirtualClusterPropsDef]] = pydantic.Field(None)
+    CfnVirtualCluster_ContainerInfoProperty: typing.Optional[dict[str, models.aws_emrcontainers.CfnVirtualCluster_ContainerInfoPropertyDef]] = pydantic.Field(None)
+    CfnVirtualCluster_ContainerProviderProperty: typing.Optional[dict[str, models.aws_emrcontainers.CfnVirtualCluster_ContainerProviderPropertyDef]] = pydantic.Field(None)
+    CfnVirtualCluster_EksInfoProperty: typing.Optional[dict[str, models.aws_emrcontainers.CfnVirtualCluster_EksInfoPropertyDef]] = pydantic.Field(None)
+    CfnVirtualCluster: typing.Optional[dict[str, models.aws_emrcontainers.CfnVirtualClusterDef]] = pydantic.Field(None)
+    CfnVirtualClusterProps: typing.Optional[dict[str, models.aws_emrcontainers.CfnVirtualClusterPropsDef]] = pydantic.Field(None)
     ...
+
+import models

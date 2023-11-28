@@ -16,7 +16,7 @@ class AccessLogFieldDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AccessLogFieldDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.AccessLogFieldDefConfig] = pydantic.Field(None)
 
 
 class AccessLogFieldDefConfig(pydantic.BaseModel):
@@ -28,8 +28,8 @@ class AccessLogFieldDefConfig(pydantic.BaseModel):
     context_authorize_error: typing.Optional[bool] = pydantic.Field(None, description='The authorization error message.')
     context_authorize_latency: typing.Optional[bool] = pydantic.Field(None, description='The authorization latency in ms.')
     context_authorize_status: typing.Optional[bool] = pydantic.Field(None, description='The status code returned from an authorization attempt.')
-    context_authorizer: typing.Optional[list[AccessLogFieldDefContextAuthorizerParams]] = pydantic.Field(None, description='The stringified value of the specified key-value pair of the ``context`` map returned from an API Gateway Lambda authorizer function.')
-    context_authorizer_claims: typing.Optional[list[AccessLogFieldDefContextAuthorizerClaimsParams]] = pydantic.Field(None, description='A property of the claims returned from the Amazon Cognito user pool after the method caller is successfully authenticated.')
+    context_authorizer: typing.Optional[list[models.aws_apigateway.AccessLogFieldDefContextAuthorizerParams]] = pydantic.Field(None, description='The stringified value of the specified key-value pair of the ``context`` map returned from an API Gateway Lambda authorizer function.')
+    context_authorizer_claims: typing.Optional[list[models.aws_apigateway.AccessLogFieldDefContextAuthorizerClaimsParams]] = pydantic.Field(None, description='A property of the claims returned from the Amazon Cognito user pool after the method caller is successfully authenticated.')
     context_authorizer_error: typing.Optional[bool] = pydantic.Field(None, description='The error message returned from an authorizer.')
     context_authorizer_integration_latency: typing.Optional[bool] = pydantic.Field(None, description='The authorizer latency in ms.')
     context_authorizer_integration_status: typing.Optional[bool] = pydantic.Field(None, description='The status code returned from a Lambda authorizer.')
@@ -74,16 +74,16 @@ class AccessLogFieldDefConfig(pydantic.BaseModel):
     context_path: typing.Optional[bool] = pydantic.Field(None, description='The request path.\nFor example, for a non-proxy request URL of https://{rest-api-id.execute-api.{region}.amazonaws.com/{stage}/root/child,\nthis value is /{stage}/root/child.')
     context_protocol: typing.Optional[bool] = pydantic.Field(None, description='The request protocol, for example, HTTP/1.1.')
     context_request_id: typing.Optional[bool] = pydantic.Field(None, description='The ID that API Gateway assigns to the API request.')
-    context_request_override_header: typing.Optional[list[AccessLogFieldDefContextRequestOverrideHeaderParams]] = pydantic.Field(None, description='The request header override.\nIf this parameter is defined, it contains the headers to be used instead of the HTTP Headers that are defined in the Integration Request pane.')
-    context_request_override_path: typing.Optional[list[AccessLogFieldDefContextRequestOverridePathParams]] = pydantic.Field(None, description='The request path override.\nIf this parameter is defined,\nit contains the request path to be used instead of the URL Path Parameters that are defined in the Integration Request pane.')
-    context_request_override_querystring: typing.Optional[list[AccessLogFieldDefContextRequestOverrideQuerystringParams]] = pydantic.Field(None, description='The request query string override.\nIf this parameter is defined, it contains the request query strings to be used instead\nof the URL Query String Parameters that are defined in the Integration Request pane.')
+    context_request_override_header: typing.Optional[list[models.aws_apigateway.AccessLogFieldDefContextRequestOverrideHeaderParams]] = pydantic.Field(None, description='The request header override.\nIf this parameter is defined, it contains the headers to be used instead of the HTTP Headers that are defined in the Integration Request pane.')
+    context_request_override_path: typing.Optional[list[models.aws_apigateway.AccessLogFieldDefContextRequestOverridePathParams]] = pydantic.Field(None, description='The request path override.\nIf this parameter is defined,\nit contains the request path to be used instead of the URL Path Parameters that are defined in the Integration Request pane.')
+    context_request_override_querystring: typing.Optional[list[models.aws_apigateway.AccessLogFieldDefContextRequestOverrideQuerystringParams]] = pydantic.Field(None, description='The request query string override.\nIf this parameter is defined, it contains the request query strings to be used instead\nof the URL Query String Parameters that are defined in the Integration Request pane.')
     context_request_time: typing.Optional[bool] = pydantic.Field(None, description='The CLF-formatted request time (dd/MMM/yyyy:HH:mm:ss +-hhmm).')
     context_request_time_epoch: typing.Optional[bool] = pydantic.Field(None, description='The Epoch-formatted request time.')
     context_resource_id: typing.Optional[bool] = pydantic.Field(None, description='The identifier that API Gateway assigns to your resource.')
     context_resource_path: typing.Optional[bool] = pydantic.Field(None, description='The path to your resource.\nFor example, for the non-proxy request URI of ``https://{rest-api-id.execute-api.{region}.amazonaws.com/{stage}/root/child``,\nThe $context.resourcePath value is ``/root/child``.\n\n:see: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-step-by-step.html')
     context_response_latency: typing.Optional[bool] = pydantic.Field(None, description='The response latency in ms.')
     context_response_length: typing.Optional[bool] = pydantic.Field(None, description='The response payload length.')
-    context_response_override_header: typing.Optional[list[AccessLogFieldDefContextResponseOverrideHeaderParams]] = pydantic.Field(None, description='The response header override.\nIf this parameter is defined, it contains the header to be returned instead of the Response header\nthat is defined as the Default mapping in the Integration Response pane.')
+    context_response_override_header: typing.Optional[list[models.aws_apigateway.AccessLogFieldDefContextResponseOverrideHeaderParams]] = pydantic.Field(None, description='The response header override.\nIf this parameter is defined, it contains the header to be returned instead of the Response header\nthat is defined as the Default mapping in the Integration Response pane.')
     context_response_override_status: typing.Optional[bool] = pydantic.Field(None, description='The response status code override.\nIf this parameter is defined, it contains the status code to be returned instead of the Method response status\nthat is defined as the Default mapping in the Integration Response pane.\n\n:see: https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-override-request-response-parameters.html')
     context_stage: typing.Optional[bool] = pydantic.Field(None, description='The deployment stage of the API request (for example, ``Beta`` or ``Prod``).')
     context_status: typing.Optional[bool] = pydantic.Field(None, description='The method response status.')
@@ -129,13 +129,13 @@ class AccessLogFormatDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AccessLogFormatDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.AccessLogFormatDefConfig] = pydantic.Field(None)
 
 
 class AccessLogFormatDefConfig(pydantic.BaseModel):
-    clf: typing.Optional[list[AccessLogFormatDefClfParams]] = pydantic.Field(None, description='Generate Common Log Format.')
-    custom: typing.Optional[list[AccessLogFormatDefCustomParams]] = pydantic.Field(None, description='Custom log format.\nYou can create any log format string. You can easily get the $ context variable by using the methods of AccessLogField.')
-    json_with_standard_fields: typing.Optional[list[AccessLogFormatDefJsonWithStandardFieldsParams]] = pydantic.Field(None, description='Access log will be produced in the JSON format with a set of fields most useful in the access log.\nAll fields are turned on by default with the\noption to turn off specific fields.')
+    clf: typing.Optional[list[models.aws_apigateway.AccessLogFormatDefClfParams]] = pydantic.Field(None, description='Generate Common Log Format.')
+    custom: typing.Optional[list[models.aws_apigateway.AccessLogFormatDefCustomParams]] = pydantic.Field(None, description='Custom log format.\nYou can create any log format string. You can easily get the $ context variable by using the methods of AccessLogField.')
+    json_with_standard_fields: typing.Optional[list[models.aws_apigateway.AccessLogFormatDefJsonWithStandardFieldsParams]] = pydantic.Field(None, description='Access log will be produced in the JSON format with a set of fields most useful in the access log.\nAll fields are turned on by default with the\noption to turn off specific fields.')
 
 class AccessLogFormatDefClfParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_apigateway.AccessLogFormatDefConfig]] = pydantic.Field(None)
@@ -170,23 +170,18 @@ class ApiDefinitionDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[ApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[ApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[ApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
-    resource_config: typing.Optional[ApiDefinitionDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_apigateway.ApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[models.aws_apigateway.ApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[models.aws_apigateway.ApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
+    resource_config: typing.Optional[models.aws_apigateway.ApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class ApiDefinitionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_after_create: typing.Optional[list[ApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_apigateway.ApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_after_create: typing.Optional[bool] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class ApiDefinitionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description="The binding scope. Don't be smart about trying to down-cast or assume it's initialized. You may just use it as a construct scope.")
-    ...
-
-class ApiDefinitionDefBindAfterCreateParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _rest_api: typing.Union[models.aws_apigateway.RestApiBaseDef, models.aws_apigateway.LambdaRestApiDef, models.aws_apigateway.RestApiDef, models.aws_apigateway.SpecRestApiDef, models.aws_apigateway.StepFunctionsRestApiDef] = pydantic.Field(..., description='-')
     ...
 
 class ApiDefinitionDefFromAssetParams(pydantic.BaseModel):
@@ -231,15 +226,15 @@ class AssetApiDefinitionDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[AssetApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[AssetApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[AssetApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
-    resource_config: typing.Optional[AssetApiDefinitionDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_apigateway.AssetApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[models.aws_apigateway.AssetApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[models.aws_apigateway.AssetApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
+    resource_config: typing.Optional[models.aws_apigateway.AssetApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class AssetApiDefinitionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AssetApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_after_create: typing.Optional[list[AssetApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_apigateway.AssetApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_after_create: typing.Optional[list[models.aws_apigateway.AssetApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class AssetApiDefinitionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -287,7 +282,7 @@ class AuthorizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AuthorizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.AuthorizerDefConfig] = pydantic.Field(None)
 
 
 class AuthorizerDefConfig(pydantic.BaseModel):
@@ -317,11 +312,11 @@ class AwsIntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AwsIntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.AwsIntegrationDefConfig] = pydantic.Field(None)
 
 
 class AwsIntegrationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
+    bind: typing.Optional[list[models.aws_apigateway.AwsIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
 
 class AwsIntegrationDefBindParams(pydantic.BaseModel):
     method: models.aws_apigateway.MethodDef = pydantic.Field(..., description='-')
@@ -354,14 +349,13 @@ class HttpIntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HttpIntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.HttpIntegrationDefConfig] = pydantic.Field(None)
 
 
 class HttpIntegrationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HttpIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
+    bind: typing.Optional[list[models.aws_apigateway.HttpIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
 
 class HttpIntegrationDefBindParams(pydantic.BaseModel):
-    _method: models.aws_apigateway.MethodDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -375,14 +369,14 @@ class IdentitySourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[IdentitySourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.IdentitySourceDefConfig] = pydantic.Field(None)
 
 
 class IdentitySourceDefConfig(pydantic.BaseModel):
-    context: typing.Optional[list[IdentitySourceDefContextParams]] = pydantic.Field(None, description='Provides a properly formatted request context identity source.')
-    header: typing.Optional[list[IdentitySourceDefHeaderParams]] = pydantic.Field(None, description='Provides a properly formatted header identity source.')
-    query_string: typing.Optional[list[IdentitySourceDefQueryStringParams]] = pydantic.Field(None, description='Provides a properly formatted query string identity source.')
-    stage_variable: typing.Optional[list[IdentitySourceDefStageVariableParams]] = pydantic.Field(None, description='Provides a properly formatted API Gateway stage variable identity source.')
+    context: typing.Optional[list[models.aws_apigateway.IdentitySourceDefContextParams]] = pydantic.Field(None, description='Provides a properly formatted request context identity source.')
+    header: typing.Optional[list[models.aws_apigateway.IdentitySourceDefHeaderParams]] = pydantic.Field(None, description='Provides a properly formatted header identity source.')
+    query_string: typing.Optional[list[models.aws_apigateway.IdentitySourceDefQueryStringParams]] = pydantic.Field(None, description='Provides a properly formatted query string identity source.')
+    stage_variable: typing.Optional[list[models.aws_apigateway.IdentitySourceDefStageVariableParams]] = pydantic.Field(None, description='Provides a properly formatted API Gateway stage variable identity source.')
 
 class IdentitySourceDefContextParams(pydantic.BaseModel):
     context: str = pydantic.Field(..., description='the name of the context variable the ``IdentitySource`` will represent.\n')
@@ -412,23 +406,17 @@ class InlineApiDefinitionDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[InlineApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[InlineApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[InlineApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
-    resource_config: typing.Optional[InlineApiDefinitionDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_apigateway.InlineApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[models.aws_apigateway.InlineApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[models.aws_apigateway.InlineApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
+    resource_config: typing.Optional[models.aws_apigateway.InlineApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class InlineApiDefinitionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[InlineApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_after_create: typing.Optional[list[InlineApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_apigateway.InlineApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_after_create: typing.Optional[bool] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class InlineApiDefinitionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
-    ...
-
-class InlineApiDefinitionDefBindAfterCreateParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _rest_api: typing.Union[models.aws_apigateway.RestApiBaseDef, models.aws_apigateway.LambdaRestApiDef, models.aws_apigateway.RestApiDef, models.aws_apigateway.SpecRestApiDef, models.aws_apigateway.StepFunctionsRestApiDef] = pydantic.Field(..., description='-')
     ...
 
 class InlineApiDefinitionDefFromAssetParams(pydantic.BaseModel):
@@ -468,14 +456,13 @@ class IntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[IntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.IntegrationDefConfig] = pydantic.Field(None)
 
 
 class IntegrationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[IntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
+    bind: typing.Optional[list[models.aws_apigateway.IntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
 
 class IntegrationDefBindParams(pydantic.BaseModel):
-    _method: models.aws_apigateway.MethodDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -504,11 +491,11 @@ class LambdaIntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaIntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.LambdaIntegrationDefConfig] = pydantic.Field(None)
 
 
 class LambdaIntegrationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
+    bind: typing.Optional[list[models.aws_apigateway.LambdaIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
 
 class LambdaIntegrationDefBindParams(pydantic.BaseModel):
     method: models.aws_apigateway.MethodDef = pydantic.Field(..., description='-')
@@ -526,14 +513,13 @@ class LogGroupLogDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LogGroupLogDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.LogGroupLogDestinationDefConfig] = pydantic.Field(None)
 
 
 class LogGroupLogDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LogGroupLogDestinationDefBindParams]] = pydantic.Field(None, description='Binds this destination to the CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_apigateway.LogGroupLogDestinationDefBindParams]] = pydantic.Field(None, description='Binds this destination to the CloudWatch Logs.')
 
 class LogGroupLogDestinationDefBindParams(pydantic.BaseModel):
-    _stage: typing.Union[models.aws_apigateway.StageBaseDef, models.aws_apigateway.StageDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -559,14 +545,13 @@ class MockIntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MockIntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.MockIntegrationDefConfig] = pydantic.Field(None)
 
 
 class MockIntegrationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[MockIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
+    bind: typing.Optional[list[models.aws_apigateway.MockIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
 
 class MockIntegrationDefBindParams(pydantic.BaseModel):
-    _method: models.aws_apigateway.MethodDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -580,17 +565,17 @@ class ResourceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ResourceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ResourceBaseDefConfig] = pydantic.Field(None)
 
 
 class ResourceBaseDefConfig(pydantic.BaseModel):
-    add_cors_preflight: typing.Optional[list[ResourceBaseDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
-    add_method: typing.Optional[list[ResourceBaseDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
-    add_proxy: typing.Optional[list[ResourceBaseDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
-    add_resource: typing.Optional[list[ResourceBaseDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
+    add_cors_preflight: typing.Optional[list[models.aws_apigateway.ResourceBaseDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
+    add_method: typing.Optional[list[models.aws_apigateway.ResourceBaseDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
+    add_proxy: typing.Optional[list[models.aws_apigateway.ResourceBaseDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
+    add_resource: typing.Optional[list[models.aws_apigateway.ResourceBaseDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_resource: typing.Optional[list[ResourceBaseDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
-    resource_for_path: typing.Optional[list[ResourceBaseDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
+    get_resource: typing.Optional[list[models.aws_apigateway.ResourceBaseDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
+    resource_for_path: typing.Optional[list[models.aws_apigateway.ResourceBaseDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
     api_config: typing.Optional[models._interface_methods.AwsApigatewayIRestApiDefConfig] = pydantic.Field(None)
 
 class ResourceBaseDefAddCorsPreflightParams(pydantic.BaseModel):
@@ -661,11 +646,11 @@ class ResponseTypeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ResponseTypeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ResponseTypeDefConfig] = pydantic.Field(None)
 
 
 class ResponseTypeDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[ResponseTypeDefOfParams]] = pydantic.Field(None, description='A custom response type to support future cases.')
+    of: typing.Optional[list[models.aws_apigateway.ResponseTypeDefOfParams]] = pydantic.Field(None, description='A custom response type to support future cases.')
 
 class ResponseTypeDefOfParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -697,25 +682,25 @@ class RestApiBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RestApiBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.RestApiBaseDefConfig] = pydantic.Field(None)
 
 
 class RestApiBaseDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[RestApiBaseDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
-    add_domain_name: typing.Optional[list[RestApiBaseDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
-    add_gateway_response: typing.Optional[list[RestApiBaseDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
-    add_usage_plan: typing.Optional[list[RestApiBaseDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.RestApiBaseDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
+    add_domain_name: typing.Optional[list[models.aws_apigateway.RestApiBaseDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
+    add_gateway_response: typing.Optional[list[models.aws_apigateway.RestApiBaseDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
+    add_usage_plan: typing.Optional[list[models.aws_apigateway.RestApiBaseDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    arn_for_execute_api: typing.Optional[list[RestApiBaseDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
-    metric: typing.Optional[list[RestApiBaseDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
-    metric_cache_hit_count: typing.Optional[list[RestApiBaseDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
-    metric_cache_miss_count: typing.Optional[list[RestApiBaseDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
-    metric_client_error: typing.Optional[list[RestApiBaseDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    metric_count: typing.Optional[list[RestApiBaseDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
-    metric_integration_latency: typing.Optional[list[RestApiBaseDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
-    metric_latency: typing.Optional[list[RestApiBaseDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
-    metric_server_error: typing.Optional[list[RestApiBaseDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    url_for_path: typing.Optional[list[RestApiBaseDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
+    arn_for_execute_api: typing.Optional[list[models.aws_apigateway.RestApiBaseDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
+    metric: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    metric_count: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.RestApiBaseDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    url_for_path: typing.Optional[list[models.aws_apigateway.RestApiBaseDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
     root_config: typing.Optional[models._interface_methods.AwsApigatewayIResourceDefConfig] = pydantic.Field(None)
 
 class RestApiBaseDefAddApiKeyParams(pydantic.BaseModel):
@@ -884,23 +869,17 @@ class S3ApiDefinitionDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[S3ApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
-    from_bucket: typing.Optional[S3ApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
-    from_inline: typing.Optional[S3ApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
-    resource_config: typing.Optional[S3ApiDefinitionDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_apigateway.S3ApiDefinitionDefFromAssetParams] = pydantic.Field(None, description='Loads the API specification from a local disk asset.')
+    from_bucket: typing.Optional[models.aws_apigateway.S3ApiDefinitionDefFromBucketParams] = pydantic.Field(None, description='Creates an API definition from a specification file in an S3 bucket.')
+    from_inline: typing.Optional[models.aws_apigateway.S3ApiDefinitionDefFromInlineParams] = pydantic.Field(None, description='Create an API definition from an inline object.\nThe inline object must follow the\nschema of OpenAPI 2.0 or OpenAPI 3.0')
+    resource_config: typing.Optional[models.aws_apigateway.S3ApiDefinitionDefConfig] = pydantic.Field(None)
 
 
 class S3ApiDefinitionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3ApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_after_create: typing.Optional[list[S3ApiDefinitionDefBindAfterCreateParams]] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_apigateway.S3ApiDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the specification is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_after_create: typing.Optional[bool] = pydantic.Field(None, description="Called after the CFN RestApi resource has been created to allow the Api Definition to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class S3ApiDefinitionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
-    ...
-
-class S3ApiDefinitionDefBindAfterCreateParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _rest_api: typing.Union[models.aws_apigateway.RestApiBaseDef, models.aws_apigateway.LambdaRestApiDef, models.aws_apigateway.RestApiDef, models.aws_apigateway.SpecRestApiDef, models.aws_apigateway.StepFunctionsRestApiDef] = pydantic.Field(..., description='-')
     ...
 
 class S3ApiDefinitionDefFromAssetParams(pydantic.BaseModel):
@@ -949,11 +928,11 @@ class SagemakerIntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SagemakerIntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.SagemakerIntegrationDefConfig] = pydantic.Field(None)
 
 
 class SagemakerIntegrationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SagemakerIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
+    bind: typing.Optional[list[models.aws_apigateway.SagemakerIntegrationDefBindParams]] = pydantic.Field(None, description='Can be overridden by subclasses to allow the integration to interact with the method being integrated, access the REST API object, method ARNs, etc.')
 
 class SagemakerIntegrationDefBindParams(pydantic.BaseModel):
     method: models.aws_apigateway.MethodDef = pydantic.Field(..., description='-')
@@ -974,21 +953,21 @@ class StageBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StageBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.StageBaseDefConfig] = pydantic.Field(None)
 
 
 class StageBaseDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[StageBaseDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to this stage.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.StageBaseDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to this stage.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric: typing.Optional[list[StageBaseDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this stage.')
-    metric_cache_hit_count: typing.Optional[list[StageBaseDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.')
-    metric_cache_miss_count: typing.Optional[list[StageBaseDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.')
-    metric_client_error: typing.Optional[list[StageBaseDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
-    metric_count: typing.Optional[list[StageBaseDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
-    metric_integration_latency: typing.Optional[list[StageBaseDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
-    metric_latency: typing.Optional[list[StageBaseDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
-    metric_server_error: typing.Optional[list[StageBaseDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
-    url_for_path: typing.Optional[list[StageBaseDefUrlForPathParams]] = pydantic.Field(None, description='Returns the invoke URL for a certain path.')
+    metric: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this stage.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
+    metric_count: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.StageBaseDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
+    url_for_path: typing.Optional[list[models.aws_apigateway.StageBaseDefUrlForPathParams]] = pydantic.Field(None, description='Returns the invoke URL for a certain path.')
     rest_api_config: typing.Optional[models._interface_methods.AwsApigatewayIRestApiDefConfig] = pydantic.Field(None)
 
 class StageBaseDefAddApiKeyParams(pydantic.BaseModel):
@@ -1118,11 +1097,11 @@ class StepFunctionsIntegrationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsIntegrationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.StepFunctionsIntegrationDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsIntegrationDefConfig(pydantic.BaseModel):
-    start_execution: typing.Optional[list[StepFunctionsIntegrationDefStartExecutionParams]] = pydantic.Field(None, description='Integrates a Synchronous Express State Machine from AWS Step Functions to an API Gateway method.')
+    start_execution: typing.Optional[list[models.aws_apigateway.StepFunctionsIntegrationDefStartExecutionParams]] = pydantic.Field(None, description='Integrates a Synchronous Express State Machine from AWS Step Functions to an API Gateway method.')
 
 class StepFunctionsIntegrationDefStartExecutionParams(pydantic.BaseModel):
     state_machine: typing.Union[models.aws_stepfunctions.StateMachineDef] = pydantic.Field(..., description='-\n')
@@ -1169,15 +1148,15 @@ class ApiKeyDef(BaseConstruct):
     ...
 
 
-    from_api_key_id: typing.Optional[ApiKeyDefFromApiKeyIdParams] = pydantic.Field(None, description='Import an ApiKey by its Id.')
-    resource_config: typing.Optional[ApiKeyDefConfig] = pydantic.Field(None)
+    from_api_key_id: typing.Optional[models.aws_apigateway.ApiKeyDefFromApiKeyIdParams] = pydantic.Field(None, description='Import an ApiKey by its Id.')
+    resource_config: typing.Optional[models.aws_apigateway.ApiKeyDefConfig] = pydantic.Field(None)
 
 
 class ApiKeyDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_read: typing.Optional[list[ApiKeyDefGrantReadParams]] = pydantic.Field(None, description='Permits the IAM principal all read operations through this key.')
-    grant_read_write: typing.Optional[list[ApiKeyDefGrantReadWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all read and write operations through this key.')
-    grant_write: typing.Optional[list[ApiKeyDefGrantWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all write operations through this key.')
+    grant_read: typing.Optional[list[models.aws_apigateway.ApiKeyDefGrantReadParams]] = pydantic.Field(None, description='Permits the IAM principal all read operations through this key.')
+    grant_read_write: typing.Optional[list[models.aws_apigateway.ApiKeyDefGrantReadWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all read and write operations through this key.')
+    grant_write: typing.Optional[list[models.aws_apigateway.ApiKeyDefGrantWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all write operations through this key.')
 
 class ApiKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -1220,7 +1199,7 @@ class BasePathMappingDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[BasePathMappingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.BasePathMappingDefConfig] = pydantic.Field(None)
 
 
 class BasePathMappingDefConfig(pydantic.BaseModel):
@@ -1245,7 +1224,7 @@ class CognitoUserPoolsAuthorizerDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CognitoUserPoolsAuthorizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CognitoUserPoolsAuthorizerDefConfig] = pydantic.Field(None)
 
 
 class CognitoUserPoolsAuthorizerDefConfig(pydantic.BaseModel):
@@ -1269,11 +1248,11 @@ class DeploymentDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DeploymentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.DeploymentDefConfig] = pydantic.Field(None)
 
 
 class DeploymentDefConfig(pydantic.BaseModel):
-    add_to_logical_id: typing.Optional[list[DeploymentDefAddToLogicalIdParams]] = pydantic.Field(None, description="Adds a component to the hash that determines this Deployment resource's logical ID.\nThis should be called by constructs of the API Gateway model that want to\ninvalidate the deployment when their settings change. The component will\nbe resolve()ed during synthesis so tokens are welcome.")
+    add_to_logical_id: typing.Optional[list[models.aws_apigateway.DeploymentDefAddToLogicalIdParams]] = pydantic.Field(None, description="Adds a component to the hash that determines this Deployment resource's logical ID.\nThis should be called by constructs of the API Gateway model that want to\ninvalidate the deployment when their settings change. The component will\nbe resolve()ed during synthesis so tokens are welcome.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class DeploymentDefAddToLogicalIdParams(pydantic.BaseModel):
@@ -1302,13 +1281,13 @@ class DomainNameDef(BaseConstruct):
     ...
 
 
-    from_domain_name_attributes: typing.Optional[DomainNameDefFromDomainNameAttributesParams] = pydantic.Field(None, description='Imports an existing domain name.')
-    resource_config: typing.Optional[DomainNameDefConfig] = pydantic.Field(None)
+    from_domain_name_attributes: typing.Optional[models.aws_apigateway.DomainNameDefFromDomainNameAttributesParams] = pydantic.Field(None, description='Imports an existing domain name.')
+    resource_config: typing.Optional[models.aws_apigateway.DomainNameDefConfig] = pydantic.Field(None)
 
 
 class DomainNameDefConfig(pydantic.BaseModel):
-    add_api_mapping: typing.Optional[list[DomainNameDefAddApiMappingParams]] = pydantic.Field(None, description='Maps this domain to an API endpoint.\nThis uses the ApiMapping from ApiGatewayV2 which supports multi-level paths, but\nalso only supports:\n\n- SecurityPolicy.TLS_1_2\n- EndpointType.REGIONAL')
-    add_base_path_mapping: typing.Optional[list[DomainNameDefAddBasePathMappingParams]] = pydantic.Field(None, description='Maps this domain to an API endpoint.\nThis uses the BasePathMapping from ApiGateway v1 which does not support multi-level paths.\n\nIf you need to create a mapping for a multi-level path use ``addApiMapping`` instead.')
+    add_api_mapping: typing.Optional[list[models.aws_apigateway.DomainNameDefAddApiMappingParams]] = pydantic.Field(None, description='Maps this domain to an API endpoint.\nThis uses the ApiMapping from ApiGatewayV2 which supports multi-level paths, but\nalso only supports:\n\n- SecurityPolicy.TLS_1_2\n- EndpointType.REGIONAL')
+    add_base_path_mapping: typing.Optional[list[models.aws_apigateway.DomainNameDefAddBasePathMappingParams]] = pydantic.Field(None, description='Maps this domain to an API endpoint.\nThis uses the BasePathMapping from ApiGateway v1 which does not support multi-level paths.\n\nIf you need to create a mapping for a multi-level path use ``addApiMapping`` instead.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class DomainNameDefAddApiMappingParams(pydantic.BaseModel):
@@ -1352,7 +1331,7 @@ class GatewayResponseDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[GatewayResponseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.GatewayResponseDefConfig] = pydantic.Field(None)
 
 
 class GatewayResponseDefConfig(pydantic.BaseModel):
@@ -1399,29 +1378,29 @@ class LambdaRestApiDef(BaseConstruct):
     ...
 
 
-    from_rest_api_attributes: typing.Optional[LambdaRestApiDefFromRestApiAttributesParams] = pydantic.Field(None, description='Import an existing RestApi that can be configured with additional Methods and Resources.')
-    from_rest_api_id: typing.Optional[LambdaRestApiDefFromRestApiIdParams] = pydantic.Field(None, description='Import an existing RestApi.')
-    resource_config: typing.Optional[LambdaRestApiDefConfig] = pydantic.Field(None)
+    from_rest_api_attributes: typing.Optional[models.aws_apigateway.LambdaRestApiDefFromRestApiAttributesParams] = pydantic.Field(None, description='Import an existing RestApi that can be configured with additional Methods and Resources.')
+    from_rest_api_id: typing.Optional[models.aws_apigateway.LambdaRestApiDefFromRestApiIdParams] = pydantic.Field(None, description='Import an existing RestApi.')
+    resource_config: typing.Optional[models.aws_apigateway.LambdaRestApiDefConfig] = pydantic.Field(None)
 
 
 class LambdaRestApiDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[LambdaRestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
-    add_domain_name: typing.Optional[list[LambdaRestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
-    add_gateway_response: typing.Optional[list[LambdaRestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
-    add_model: typing.Optional[list[LambdaRestApiDefAddModelParams]] = pydantic.Field(None, description='Adds a new model.')
-    add_request_validator: typing.Optional[list[LambdaRestApiDefAddRequestValidatorParams]] = pydantic.Field(None, description='Adds a new request validator.')
-    add_usage_plan: typing.Optional[list[LambdaRestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
+    add_domain_name: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
+    add_gateway_response: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
+    add_model: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefAddModelParams]] = pydantic.Field(None, description='Adds a new model.')
+    add_request_validator: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefAddRequestValidatorParams]] = pydantic.Field(None, description='Adds a new request validator.')
+    add_usage_plan: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    arn_for_execute_api: typing.Optional[list[LambdaRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
-    metric: typing.Optional[list[LambdaRestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
-    metric_cache_hit_count: typing.Optional[list[LambdaRestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
-    metric_cache_miss_count: typing.Optional[list[LambdaRestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
-    metric_client_error: typing.Optional[list[LambdaRestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    metric_count: typing.Optional[list[LambdaRestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
-    metric_integration_latency: typing.Optional[list[LambdaRestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
-    metric_latency: typing.Optional[list[LambdaRestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
-    metric_server_error: typing.Optional[list[LambdaRestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    url_for_path: typing.Optional[list[LambdaRestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
+    arn_for_execute_api: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
+    metric: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    metric_count: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    url_for_path: typing.Optional[list[models.aws_apigateway.LambdaRestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
     root_config: typing.Optional[models._interface_methods.AwsApigatewayIResourceDefConfig] = pydantic.Field(None)
 
 class LambdaRestApiDefAddApiKeyParams(pydantic.BaseModel):
@@ -1460,7 +1439,8 @@ class LambdaRestApiDefAddModelParams(pydantic.BaseModel):
     schema_: typing.Union[models.aws_apigateway.JsonSchemaDef, dict[str, typing.Any]] = pydantic.Field(..., description="The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.\n", alias='schema')
     content_type: typing.Optional[str] = pydantic.Field(None, description="The content type for the model. You can also force a content type in the request or response model mapping. Default: 'application/json'\n")
     description: typing.Optional[str] = pydantic.Field(None, description='A description that identifies this model. Default: None\n')
-    model_name: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.")
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.", alias='model_name')
     return_config: typing.Optional[list[models.aws_apigateway.ModelDefConfig]] = pydantic.Field(None)
     ...
 
@@ -1622,21 +1602,21 @@ class MethodDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[MethodDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.MethodDefConfig] = pydantic.Field(None)
 
 
 class MethodDefConfig(pydantic.BaseModel):
-    add_method_response: typing.Optional[list[MethodDefAddMethodResponseParams]] = pydantic.Field(None, description='Add a method response to this method.\nYou should only add one method reponse for every status code. The API allows it\nfor historical reasons, but will add a warning if this happens. If you do, your Method\nwill nondeterministically use one of the responses, and ignore the rest.')
+    add_method_response: typing.Optional[list[models.aws_apigateway.MethodDefAddMethodResponseParams]] = pydantic.Field(None, description='Add a method response to this method.\nYou should only add one method reponse for every status code. The API allows it\nfor historical reasons, but will add a warning if this happens. If you do, your Method\nwill nondeterministically use one of the responses, and ignore the rest.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_execute: typing.Optional[list[MethodDefGrantExecuteParams]] = pydantic.Field(None, description='Grants an IAM principal permission to invoke this method.')
-    metric: typing.Optional[list[MethodDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API method.')
-    metric_cache_hit_count: typing.Optional[list[MethodDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.')
-    metric_cache_miss_count: typing.Optional[list[MethodDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.')
-    metric_client_error: typing.Optional[list[MethodDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
-    metric_count: typing.Optional[list[MethodDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
-    metric_integration_latency: typing.Optional[list[MethodDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
-    metric_latency: typing.Optional[list[MethodDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
-    metric_server_error: typing.Optional[list[MethodDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
+    grant_execute: typing.Optional[list[models.aws_apigateway.MethodDefGrantExecuteParams]] = pydantic.Field(None, description='Grants an IAM principal permission to invoke this method.')
+    metric: typing.Optional[list[models.aws_apigateway.MethodDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API method.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.MethodDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.MethodDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.MethodDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
+    metric_count: typing.Optional[list[models.aws_apigateway.MethodDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.MethodDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.MethodDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.MethodDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
     api_config: typing.Optional[models._interface_methods.AwsApigatewayIRestApiDefConfig] = pydantic.Field(None)
     resource_config: typing.Optional[models._interface_methods.AwsApigatewayIResourceDefConfig] = pydantic.Field(None)
 
@@ -1767,7 +1747,8 @@ class ModelDef(BaseConstruct):
     schema_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_apigateway.JsonSchemaDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description="The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.\n", alias='schema')
     content_type: typing.Optional[str] = pydantic.Field(None, description="The content type for the model. You can also force a content type in the request or response model mapping. Default: 'application/json'\n")
     description: typing.Optional[str] = pydantic.Field(None, description='A description that identifies this model. Default: None\n')
-    model_name: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.")
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.", alias='model_name')
     _init_params: typing.ClassVar[list[str]] = ['rest_api', 'schema', 'content_type', 'description', 'model_name']
     _method_names: typing.ClassVar[list[str]] = ['apply_removal_policy']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_model_name']
@@ -1776,8 +1757,8 @@ class ModelDef(BaseConstruct):
     ...
 
 
-    from_model_name: typing.Optional[ModelDefFromModelNameParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[ModelDefConfig] = pydantic.Field(None)
+    from_model_name: typing.Optional[models.aws_apigateway.ModelDefFromModelNameParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_apigateway.ModelDefConfig] = pydantic.Field(None)
 
 
 class ModelDefConfig(pydantic.BaseModel):
@@ -1790,7 +1771,8 @@ class ModelDefApplyRemovalPolicyParams(pydantic.BaseModel):
 class ModelDefFromModelNameParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     id: str = pydantic.Field(..., description='-\n')
-    model_name: str = pydantic.Field(..., description='-')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: str = pydantic.Field(..., description='-', alias='model_name')
     ...
 
 
@@ -1809,18 +1791,18 @@ class ProxyResourceDef(BaseConstruct):
     ...
 
 
-    from_resource_attributes: typing.Optional[ProxyResourceDefFromResourceAttributesParams] = pydantic.Field(None, description='Import an existing resource.')
-    resource_config: typing.Optional[ProxyResourceDefConfig] = pydantic.Field(None)
+    from_resource_attributes: typing.Optional[models.aws_apigateway.ProxyResourceDefFromResourceAttributesParams] = pydantic.Field(None, description='Import an existing resource.')
+    resource_config: typing.Optional[models.aws_apigateway.ProxyResourceDefConfig] = pydantic.Field(None)
 
 
 class ProxyResourceDefConfig(pydantic.BaseModel):
-    add_cors_preflight: typing.Optional[list[ProxyResourceDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
-    add_method: typing.Optional[list[ProxyResourceDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
-    add_proxy: typing.Optional[list[ProxyResourceDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
-    add_resource: typing.Optional[list[ProxyResourceDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
+    add_cors_preflight: typing.Optional[list[models.aws_apigateway.ProxyResourceDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
+    add_method: typing.Optional[list[models.aws_apigateway.ProxyResourceDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
+    add_proxy: typing.Optional[list[models.aws_apigateway.ProxyResourceDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
+    add_resource: typing.Optional[list[models.aws_apigateway.ProxyResourceDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_resource: typing.Optional[list[ProxyResourceDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
-    resource_for_path: typing.Optional[list[ProxyResourceDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
+    get_resource: typing.Optional[list[models.aws_apigateway.ProxyResourceDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
+    resource_for_path: typing.Optional[list[models.aws_apigateway.ProxyResourceDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
     api_config: typing.Optional[models._interface_methods.AwsApigatewayIRestApiDefConfig] = pydantic.Field(None)
 
 class ProxyResourceDefAddCorsPreflightParams(pydantic.BaseModel):
@@ -1913,14 +1895,14 @@ class RateLimitedApiKeyDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[RateLimitedApiKeyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.RateLimitedApiKeyDefConfig] = pydantic.Field(None)
 
 
 class RateLimitedApiKeyDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_read: typing.Optional[list[RateLimitedApiKeyDefGrantReadParams]] = pydantic.Field(None, description='Permits the IAM principal all read operations through this key.')
-    grant_read_write: typing.Optional[list[RateLimitedApiKeyDefGrantReadWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all read and write operations through this key.')
-    grant_write: typing.Optional[list[RateLimitedApiKeyDefGrantWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all write operations through this key.')
+    grant_read: typing.Optional[list[models.aws_apigateway.RateLimitedApiKeyDefGrantReadParams]] = pydantic.Field(None, description='Permits the IAM principal all read operations through this key.')
+    grant_read_write: typing.Optional[list[models.aws_apigateway.RateLimitedApiKeyDefGrantReadWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all read and write operations through this key.')
+    grant_write: typing.Optional[list[models.aws_apigateway.RateLimitedApiKeyDefGrantWriteParams]] = pydantic.Field(None, description='Permits the IAM principal all write operations through this key.')
 
 class RateLimitedApiKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -1957,7 +1939,7 @@ class RequestAuthorizerDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[RequestAuthorizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.RequestAuthorizerDefConfig] = pydantic.Field(None)
 
 
 class RequestAuthorizerDefConfig(pydantic.BaseModel):
@@ -1982,8 +1964,8 @@ class RequestValidatorDef(BaseConstruct):
     ...
 
 
-    from_request_validator_id: typing.Optional[RequestValidatorDefFromRequestValidatorIdParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[RequestValidatorDefConfig] = pydantic.Field(None)
+    from_request_validator_id: typing.Optional[models.aws_apigateway.RequestValidatorDefFromRequestValidatorIdParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_apigateway.RequestValidatorDefConfig] = pydantic.Field(None)
 
 
 class RequestValidatorDefConfig(pydantic.BaseModel):
@@ -2015,18 +1997,18 @@ class ResourceDef(BaseConstruct):
     ...
 
 
-    from_resource_attributes: typing.Optional[ResourceDefFromResourceAttributesParams] = pydantic.Field(None, description='Import an existing resource.')
-    resource_config: typing.Optional[ResourceDefConfig] = pydantic.Field(None)
+    from_resource_attributes: typing.Optional[models.aws_apigateway.ResourceDefFromResourceAttributesParams] = pydantic.Field(None, description='Import an existing resource.')
+    resource_config: typing.Optional[models.aws_apigateway.ResourceDefConfig] = pydantic.Field(None)
 
 
 class ResourceDefConfig(pydantic.BaseModel):
-    add_cors_preflight: typing.Optional[list[ResourceDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
-    add_method: typing.Optional[list[ResourceDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
-    add_proxy: typing.Optional[list[ResourceDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
-    add_resource: typing.Optional[list[ResourceDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
+    add_cors_preflight: typing.Optional[list[models.aws_apigateway.ResourceDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
+    add_method: typing.Optional[list[models.aws_apigateway.ResourceDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
+    add_proxy: typing.Optional[list[models.aws_apigateway.ResourceDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
+    add_resource: typing.Optional[list[models.aws_apigateway.ResourceDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_resource: typing.Optional[list[ResourceDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
-    resource_for_path: typing.Optional[list[ResourceDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
+    get_resource: typing.Optional[list[models.aws_apigateway.ResourceDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
+    resource_for_path: typing.Optional[list[models.aws_apigateway.ResourceDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
     api_config: typing.Optional[models._interface_methods.AwsApigatewayIRestApiDefConfig] = pydantic.Field(None)
 
 class ResourceDefAddCorsPreflightParams(pydantic.BaseModel):
@@ -2128,29 +2110,29 @@ class RestApiDef(BaseConstruct):
     ...
 
 
-    from_rest_api_attributes: typing.Optional[RestApiDefFromRestApiAttributesParams] = pydantic.Field(None, description='Import an existing RestApi that can be configured with additional Methods and Resources.')
-    from_rest_api_id: typing.Optional[RestApiDefFromRestApiIdParams] = pydantic.Field(None, description='Import an existing RestApi.')
-    resource_config: typing.Optional[RestApiDefConfig] = pydantic.Field(None)
+    from_rest_api_attributes: typing.Optional[models.aws_apigateway.RestApiDefFromRestApiAttributesParams] = pydantic.Field(None, description='Import an existing RestApi that can be configured with additional Methods and Resources.')
+    from_rest_api_id: typing.Optional[models.aws_apigateway.RestApiDefFromRestApiIdParams] = pydantic.Field(None, description='Import an existing RestApi.')
+    resource_config: typing.Optional[models.aws_apigateway.RestApiDefConfig] = pydantic.Field(None)
 
 
 class RestApiDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[RestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
-    add_domain_name: typing.Optional[list[RestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
-    add_gateway_response: typing.Optional[list[RestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
-    add_model: typing.Optional[list[RestApiDefAddModelParams]] = pydantic.Field(None, description='Adds a new model.')
-    add_request_validator: typing.Optional[list[RestApiDefAddRequestValidatorParams]] = pydantic.Field(None, description='Adds a new request validator.')
-    add_usage_plan: typing.Optional[list[RestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.RestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
+    add_domain_name: typing.Optional[list[models.aws_apigateway.RestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
+    add_gateway_response: typing.Optional[list[models.aws_apigateway.RestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
+    add_model: typing.Optional[list[models.aws_apigateway.RestApiDefAddModelParams]] = pydantic.Field(None, description='Adds a new model.')
+    add_request_validator: typing.Optional[list[models.aws_apigateway.RestApiDefAddRequestValidatorParams]] = pydantic.Field(None, description='Adds a new request validator.')
+    add_usage_plan: typing.Optional[list[models.aws_apigateway.RestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    arn_for_execute_api: typing.Optional[list[RestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
-    metric: typing.Optional[list[RestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
-    metric_cache_hit_count: typing.Optional[list[RestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
-    metric_cache_miss_count: typing.Optional[list[RestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
-    metric_client_error: typing.Optional[list[RestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    metric_count: typing.Optional[list[RestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
-    metric_integration_latency: typing.Optional[list[RestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
-    metric_latency: typing.Optional[list[RestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
-    metric_server_error: typing.Optional[list[RestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    url_for_path: typing.Optional[list[RestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
+    arn_for_execute_api: typing.Optional[list[models.aws_apigateway.RestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
+    metric: typing.Optional[list[models.aws_apigateway.RestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.RestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.RestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.RestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    metric_count: typing.Optional[list[models.aws_apigateway.RestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.RestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.RestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.RestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    url_for_path: typing.Optional[list[models.aws_apigateway.RestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
     root_config: typing.Optional[models._interface_methods.AwsApigatewayIResourceDefConfig] = pydantic.Field(None)
 
 class RestApiDefAddApiKeyParams(pydantic.BaseModel):
@@ -2189,7 +2171,8 @@ class RestApiDefAddModelParams(pydantic.BaseModel):
     schema_: typing.Union[models.aws_apigateway.JsonSchemaDef, dict[str, typing.Any]] = pydantic.Field(..., description="The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.\n", alias='schema')
     content_type: typing.Optional[str] = pydantic.Field(None, description="The content type for the model. You can also force a content type in the request or response model mapping. Default: 'application/json'\n")
     description: typing.Optional[str] = pydantic.Field(None, description='A description that identifies this model. Default: None\n')
-    model_name: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.")
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.", alias='model_name')
     return_config: typing.Optional[list[models.aws_apigateway.ModelDefConfig]] = pydantic.Field(None)
     ...
 
@@ -2363,25 +2346,25 @@ class SpecRestApiDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SpecRestApiDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.SpecRestApiDefConfig] = pydantic.Field(None)
 
 
 class SpecRestApiDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[SpecRestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
-    add_domain_name: typing.Optional[list[SpecRestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
-    add_gateway_response: typing.Optional[list[SpecRestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
-    add_usage_plan: typing.Optional[list[SpecRestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.SpecRestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
+    add_domain_name: typing.Optional[list[models.aws_apigateway.SpecRestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
+    add_gateway_response: typing.Optional[list[models.aws_apigateway.SpecRestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
+    add_usage_plan: typing.Optional[list[models.aws_apigateway.SpecRestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    arn_for_execute_api: typing.Optional[list[SpecRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
-    metric: typing.Optional[list[SpecRestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
-    metric_cache_hit_count: typing.Optional[list[SpecRestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
-    metric_cache_miss_count: typing.Optional[list[SpecRestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
-    metric_client_error: typing.Optional[list[SpecRestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    metric_count: typing.Optional[list[SpecRestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
-    metric_integration_latency: typing.Optional[list[SpecRestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
-    metric_latency: typing.Optional[list[SpecRestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
-    metric_server_error: typing.Optional[list[SpecRestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    url_for_path: typing.Optional[list[SpecRestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
+    arn_for_execute_api: typing.Optional[list[models.aws_apigateway.SpecRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
+    metric: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    metric_count: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.SpecRestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    url_for_path: typing.Optional[list[models.aws_apigateway.SpecRestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
     root_config: typing.Optional[models._interface_methods.AwsApigatewayIResourceDefConfig] = pydantic.Field(None)
 
 class SpecRestApiDefAddApiKeyParams(pydantic.BaseModel):
@@ -2567,22 +2550,22 @@ class StageDef(BaseConstruct):
     ...
 
 
-    from_stage_attributes: typing.Optional[StageDefFromStageAttributesParams] = pydantic.Field(None, description='Import a Stage by its attributes.')
-    resource_config: typing.Optional[StageDefConfig] = pydantic.Field(None)
+    from_stage_attributes: typing.Optional[models.aws_apigateway.StageDefFromStageAttributesParams] = pydantic.Field(None, description='Import a Stage by its attributes.')
+    resource_config: typing.Optional[models.aws_apigateway.StageDefConfig] = pydantic.Field(None)
 
 
 class StageDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[StageDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to this stage.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.StageDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to this stage.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric: typing.Optional[list[StageDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this stage.')
-    metric_cache_hit_count: typing.Optional[list[StageDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.')
-    metric_cache_miss_count: typing.Optional[list[StageDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.')
-    metric_client_error: typing.Optional[list[StageDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
-    metric_count: typing.Optional[list[StageDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
-    metric_integration_latency: typing.Optional[list[StageDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
-    metric_latency: typing.Optional[list[StageDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
-    metric_server_error: typing.Optional[list[StageDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
-    url_for_path: typing.Optional[list[StageDefUrlForPathParams]] = pydantic.Field(None, description='Returns the invoke URL for a certain path.')
+    metric: typing.Optional[list[models.aws_apigateway.StageDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this stage.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.StageDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.StageDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.StageDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
+    metric_count: typing.Optional[list[models.aws_apigateway.StageDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.StageDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.StageDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.StageDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
+    url_for_path: typing.Optional[list[models.aws_apigateway.StageDefUrlForPathParams]] = pydantic.Field(None, description='Returns the invoke URL for a certain path.')
     rest_api_config: typing.Optional[models._interface_methods.AwsApigatewayIRestApiDefConfig] = pydantic.Field(None)
 
 class StageDefAddApiKeyParams(pydantic.BaseModel):
@@ -2750,29 +2733,29 @@ class StepFunctionsRestApiDef(BaseConstruct):
     ...
 
 
-    from_rest_api_attributes: typing.Optional[StepFunctionsRestApiDefFromRestApiAttributesParams] = pydantic.Field(None, description='Import an existing RestApi that can be configured with additional Methods and Resources.')
-    from_rest_api_id: typing.Optional[StepFunctionsRestApiDefFromRestApiIdParams] = pydantic.Field(None, description='Import an existing RestApi.')
-    resource_config: typing.Optional[StepFunctionsRestApiDefConfig] = pydantic.Field(None)
+    from_rest_api_attributes: typing.Optional[models.aws_apigateway.StepFunctionsRestApiDefFromRestApiAttributesParams] = pydantic.Field(None, description='Import an existing RestApi that can be configured with additional Methods and Resources.')
+    from_rest_api_id: typing.Optional[models.aws_apigateway.StepFunctionsRestApiDefFromRestApiIdParams] = pydantic.Field(None, description='Import an existing RestApi.')
+    resource_config: typing.Optional[models.aws_apigateway.StepFunctionsRestApiDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsRestApiDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[StepFunctionsRestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
-    add_domain_name: typing.Optional[list[StepFunctionsRestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
-    add_gateway_response: typing.Optional[list[StepFunctionsRestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
-    add_model: typing.Optional[list[StepFunctionsRestApiDefAddModelParams]] = pydantic.Field(None, description='Adds a new model.')
-    add_request_validator: typing.Optional[list[StepFunctionsRestApiDefAddRequestValidatorParams]] = pydantic.Field(None, description='Adds a new request validator.')
-    add_usage_plan: typing.Optional[list[StepFunctionsRestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to the deploymentStage.')
+    add_domain_name: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefAddDomainNameParams]] = pydantic.Field(None, description='Defines an API Gateway domain name and maps it to this API.')
+    add_gateway_response: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefAddGatewayResponseParams]] = pydantic.Field(None, description='Adds a new gateway response.')
+    add_model: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefAddModelParams]] = pydantic.Field(None, description='Adds a new model.')
+    add_request_validator: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefAddRequestValidatorParams]] = pydantic.Field(None, description='Adds a new request validator.')
+    add_usage_plan: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefAddUsagePlanParams]] = pydantic.Field(None, description='Adds a usage plan.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    arn_for_execute_api: typing.Optional[list[StepFunctionsRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
-    metric: typing.Optional[list[StepFunctionsRestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
-    metric_cache_hit_count: typing.Optional[list[StepFunctionsRestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
-    metric_cache_miss_count: typing.Optional[list[StepFunctionsRestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
-    metric_client_error: typing.Optional[list[StepFunctionsRestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    metric_count: typing.Optional[list[StepFunctionsRestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
-    metric_integration_latency: typing.Optional[list[StepFunctionsRestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
-    metric_latency: typing.Optional[list[StepFunctionsRestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
-    metric_server_error: typing.Optional[list[StepFunctionsRestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
-    url_for_path: typing.Optional[list[StepFunctionsRestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
+    arn_for_execute_api: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
+    metric: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricParams]] = pydantic.Field(None, description='Returns the given named metric for this API.')
+    metric_cache_hit_count: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricCacheHitCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the API cache in a given period.\nDefault: sum over 5 minutes')
+    metric_cache_miss_count: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricCacheMissCountParams]] = pydantic.Field(None, description='Metric for the number of requests served from the backend in a given period, when API caching is enabled.\nDefault: sum over 5 minutes')
+    metric_client_error: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    metric_count: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.\nDefault: sample count over 5 minutes')
+    metric_integration_latency: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.\nDefault: average over 5 minutes.')
+    metric_latency: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.\n\nDefault: average over 5 minutes.')
+    metric_server_error: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.\nDefault: sum over 5 minutes')
+    url_for_path: typing.Optional[list[models.aws_apigateway.StepFunctionsRestApiDefUrlForPathParams]] = pydantic.Field(None, description='Returns the URL for an HTTP path.\nFails if ``deploymentStage`` is not set either by ``deploy`` or explicitly.')
     root_config: typing.Optional[models._interface_methods.AwsApigatewayIResourceDefConfig] = pydantic.Field(None)
 
 class StepFunctionsRestApiDefAddApiKeyParams(pydantic.BaseModel):
@@ -2811,7 +2794,8 @@ class StepFunctionsRestApiDefAddModelParams(pydantic.BaseModel):
     schema_: typing.Union[models.aws_apigateway.JsonSchemaDef, dict[str, typing.Any]] = pydantic.Field(..., description="The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.\n", alias='schema')
     content_type: typing.Optional[str] = pydantic.Field(None, description="The content type for the model. You can also force a content type in the request or response model mapping. Default: 'application/json'\n")
     description: typing.Optional[str] = pydantic.Field(None, description='A description that identifies this model. Default: None\n')
-    model_name: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.")
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.", alias='model_name')
     return_config: typing.Optional[list[models.aws_apigateway.ModelDefConfig]] = pydantic.Field(None)
     ...
 
@@ -2975,7 +2959,7 @@ class TokenAuthorizerDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[TokenAuthorizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.TokenAuthorizerDefConfig] = pydantic.Field(None)
 
 
 class TokenAuthorizerDefConfig(pydantic.BaseModel):
@@ -3001,13 +2985,13 @@ class UsagePlanDef(BaseConstruct):
     ...
 
 
-    from_usage_plan_id: typing.Optional[UsagePlanDefFromUsagePlanIdParams] = pydantic.Field(None, description='Import an externally defined usage plan using its ARN.')
-    resource_config: typing.Optional[UsagePlanDefConfig] = pydantic.Field(None)
+    from_usage_plan_id: typing.Optional[models.aws_apigateway.UsagePlanDefFromUsagePlanIdParams] = pydantic.Field(None, description='Import an externally defined usage plan using its ARN.')
+    resource_config: typing.Optional[models.aws_apigateway.UsagePlanDefConfig] = pydantic.Field(None)
 
 
 class UsagePlanDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[UsagePlanDefAddApiKeyParams]] = pydantic.Field(None, description='Adds an ApiKey.')
-    add_api_stage: typing.Optional[list[UsagePlanDefAddApiStageParams]] = pydantic.Field(None, description='Adds an apiStage.')
+    add_api_key: typing.Optional[list[models.aws_apigateway.UsagePlanDefAddApiKeyParams]] = pydantic.Field(None, description='Adds an ApiKey.')
+    add_api_stage: typing.Optional[list[models.aws_apigateway.UsagePlanDefAddApiStageParams]] = pydantic.Field(None, description='Adds an apiStage.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class UsagePlanDefAddApiKeyParams(pydantic.BaseModel):
@@ -3045,12 +3029,12 @@ class VpcLinkDef(BaseConstruct):
     ...
 
 
-    from_vpc_link_id: typing.Optional[VpcLinkDefFromVpcLinkIdParams] = pydantic.Field(None, description='Import a VPC Link by its Id.')
-    resource_config: typing.Optional[VpcLinkDefConfig] = pydantic.Field(None)
+    from_vpc_link_id: typing.Optional[models.aws_apigateway.VpcLinkDefFromVpcLinkIdParams] = pydantic.Field(None, description='Import a VPC Link by its Id.')
+    resource_config: typing.Optional[models.aws_apigateway.VpcLinkDefConfig] = pydantic.Field(None)
 
 
 class VpcLinkDefConfig(pydantic.BaseModel):
-    add_targets: typing.Optional[list[VpcLinkDefAddTargetsParams]] = pydantic.Field(None, description='')
+    add_targets: typing.Optional[list[models.aws_apigateway.VpcLinkDefAddTargetsParams]] = pydantic.Field(None, description='')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class VpcLinkDefAddTargetsParams(pydantic.BaseModel):
@@ -3651,7 +3635,7 @@ class DomainNameOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DomainNameOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.DomainNameOptionsDefConfig] = pydantic.Field(None)
 
 
 class DomainNameOptionsDefConfig(pydantic.BaseModel):
@@ -3675,7 +3659,7 @@ class DomainNamePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DomainNamePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.DomainNamePropsDefConfig] = pydantic.Field(None)
 
 
 class DomainNamePropsDefConfig(pydantic.BaseModel):
@@ -3900,7 +3884,7 @@ class LambdaAuthorizerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaAuthorizerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.LambdaAuthorizerPropsDefConfig] = pydantic.Field(None)
 
 
 class LambdaAuthorizerPropsDefConfig(pydantic.BaseModel):
@@ -3969,7 +3953,7 @@ class LambdaRestApiPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaRestApiPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.LambdaRestApiPropsDefConfig] = pydantic.Field(None)
 
 
 class LambdaRestApiPropsDefConfig(pydantic.BaseModel):
@@ -4032,7 +4016,7 @@ class MethodPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MethodPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.MethodPropsDefConfig] = pydantic.Field(None)
 
 
 class MethodPropsDefConfig(pydantic.BaseModel):
@@ -4059,7 +4043,8 @@ class ModelOptionsDef(BaseStruct):
     schema_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_apigateway.JsonSchemaDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description="The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.", alias='schema')
     content_type: typing.Optional[str] = pydantic.Field(None, description="The content type for the model. You can also force a content type in the request or response model mapping. Default: 'application/json'\n")
     description: typing.Optional[str] = pydantic.Field(None, description='A description that identifies this model. Default: None\n')
-    model_name: typing.Optional[str] = pydantic.Field(None, description='A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don\'t specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.\n\n:exampleMetadata: infused\n\nExample::\n\n    # api: apigateway.RestApi\n\n\n    # We define the JSON Schema for the transformed valid response\n    response_model = api.add_model("ResponseModel",\n        content_type="application/json",\n        model_name="ResponseModel",\n        schema=apigateway.JsonSchema(\n            schema=apigateway.JsonSchemaVersion.DRAFT4,\n            title="pollResponse",\n            type=apigateway.JsonSchemaType.OBJECT,\n            properties={\n                "state": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING),\n                "greeting": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING)\n            }\n        )\n    )\n\n    # We define the JSON Schema for the transformed error response\n    error_response_model = api.add_model("ErrorResponseModel",\n        content_type="application/json",\n        model_name="ErrorResponseModel",\n        schema=apigateway.JsonSchema(\n            schema=apigateway.JsonSchemaVersion.DRAFT4,\n            title="errorResponse",\n            type=apigateway.JsonSchemaType.OBJECT,\n            properties={\n                "state": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING),\n                "message": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING)\n            }\n        )\n    )\n')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Optional[str] = pydantic.Field(None, description='A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don\'t specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.\n\n:exampleMetadata: infused\n\nExample::\n\n    # api: apigateway.RestApi\n\n\n    # We define the JSON Schema for the transformed valid response\n    response_model = api.add_model("ResponseModel",\n        content_type="application/json",\n        model_name="ResponseModel",\n        schema=apigateway.JsonSchema(\n            schema=apigateway.JsonSchemaVersion.DRAFT4,\n            title="pollResponse",\n            type=apigateway.JsonSchemaType.OBJECT,\n            properties={\n                "state": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING),\n                "greeting": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING)\n            }\n        )\n    )\n\n    # We define the JSON Schema for the transformed error response\n    error_response_model = api.add_model("ErrorResponseModel",\n        content_type="application/json",\n        model_name="ErrorResponseModel",\n        schema=apigateway.JsonSchema(\n            schema=apigateway.JsonSchemaVersion.DRAFT4,\n            title="errorResponse",\n            type=apigateway.JsonSchemaType.OBJECT,\n            properties={\n                "state": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING),\n                "message": apigateway.JsonSchema(type=apigateway.JsonSchemaType.STRING)\n            }\n        )\n    )\n', alias='model_name')
     _init_params: typing.ClassVar[list[str]] = ['schema', 'content_type', 'description', 'model_name']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -4075,8 +4060,9 @@ class ModelPropsDef(BaseStruct):
     schema_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_apigateway.JsonSchemaDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description="The schema to use to transform data to one or more output formats. Specify null ({}) if you don't want to specify a schema.", alias='schema')
     content_type: typing.Optional[str] = pydantic.Field(None, description="The content type for the model. You can also force a content type in the request or response model mapping. Default: 'application/json'\n")
     description: typing.Optional[str] = pydantic.Field(None, description='A description that identifies this model. Default: None\n')
-    model_name: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.\n")
-    rest_api: typing.Union[_REQUIRED_INIT_PARAM, models.aws_apigateway.RestApiBaseDef, models.aws_apigateway.LambdaRestApiDef, models.aws_apigateway.RestApiDef, models.aws_apigateway.SpecRestApiDef, models.aws_apigateway.StepFunctionsRestApiDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The rest API that this model is part of. The reason we need the RestApi object itself and not just the ID is because the model is being tracked by the top-level RestApi object for the purpose of calculating it\'s hash to determine the ID of the deployment. This allows us to automatically update the deployment when the model of the REST API changes.\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_apigateway as apigateway\n\n    # default_: Any\n    # enum_: Any\n    # json_schema_: apigateway.JsonSchema\n    # rest_api: apigateway.RestApi\n\n    model_props = apigateway.ModelProps(\n        rest_api=rest_api,\n        schema=apigateway.JsonSchema(\n            additional_items=[json_schema_],\n            additional_properties=False,\n            all_of=[json_schema_],\n            any_of=[json_schema_],\n            contains=json_schema_,\n            default=default_,\n            definitions={\n                "definitions_key": json_schema_\n            },\n            dependencies={\n                "dependencies_key": ["dependencies"]\n            },\n            description="description",\n            enum=[enum_],\n            exclusive_maximum=False,\n            exclusive_minimum=False,\n            format="format",\n            id="id",\n            items=json_schema_,\n            maximum=123,\n            max_items=123,\n            max_length=123,\n            max_properties=123,\n            minimum=123,\n            min_items=123,\n            min_length=123,\n            min_properties=123,\n            multiple_of=123,\n            not=json_schema_,\n            one_of=[json_schema_],\n            pattern="pattern",\n            pattern_properties={\n                "pattern_properties_key": json_schema_\n            },\n            properties={\n                "properties_key": json_schema_\n            },\n            property_names=json_schema_,\n            ref="ref",\n            required=["required"],\n            schema=apigateway.JsonSchemaVersion.DRAFT4,\n            title="title",\n            type=apigateway.JsonSchemaType.NULL,\n            unique_items=False\n        ),\n\n        # the properties below are optional\n        content_type="contentType",\n        description="description",\n        model_name="modelName"\n    )\n')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Optional[str] = pydantic.Field(None, description="A name for the model. Important If you specify a name, you cannot perform updates that require replacement of this resource. You can perform updates that require no or some interruption. If you must replace the resource, specify a new name. Default: If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.\n", alias='model_name')
+    rest_api_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_apigateway.RestApiBaseDef, models.aws_apigateway.LambdaRestApiDef, models.aws_apigateway.RestApiDef, models.aws_apigateway.SpecRestApiDef, models.aws_apigateway.StepFunctionsRestApiDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The rest API that this model is part of. The reason we need the RestApi object itself and not just the ID is because the model is being tracked by the top-level RestApi object for the purpose of calculating it\'s hash to determine the ID of the deployment. This allows us to automatically update the deployment when the model of the REST API changes.\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_apigateway as apigateway\n\n    # default_: Any\n    # enum_: Any\n    # json_schema_: apigateway.JsonSchema\n    # rest_api: apigateway.RestApi\n\n    model_props = apigateway.ModelProps(\n        rest_api=rest_api,\n        schema=apigateway.JsonSchema(\n            additional_items=[json_schema_],\n            additional_properties=False,\n            all_of=[json_schema_],\n            any_of=[json_schema_],\n            contains=json_schema_,\n            default=default_,\n            definitions={\n                "definitions_key": json_schema_\n            },\n            dependencies={\n                "dependencies_key": ["dependencies"]\n            },\n            description="description",\n            enum=[enum_],\n            exclusive_maximum=False,\n            exclusive_minimum=False,\n            format="format",\n            id="id",\n            items=json_schema_,\n            maximum=123,\n            max_items=123,\n            max_length=123,\n            max_properties=123,\n            minimum=123,\n            min_items=123,\n            min_length=123,\n            min_properties=123,\n            multiple_of=123,\n            not=json_schema_,\n            one_of=[json_schema_],\n            pattern="pattern",\n            pattern_properties={\n                "pattern_properties_key": json_schema_\n            },\n            properties={\n                "properties_key": json_schema_\n            },\n            property_names=json_schema_,\n            ref="ref",\n            required=["required"],\n            schema=apigateway.JsonSchemaVersion.DRAFT4,\n            title="title",\n            type=apigateway.JsonSchemaType.NULL,\n            unique_items=False\n        ),\n\n        # the properties below are optional\n        content_type="contentType",\n        description="description",\n        model_name="modelName"\n    )\n', alias='rest_api')
     _init_params: typing.ClassVar[list[str]] = ['schema', 'content_type', 'description', 'model_name', 'rest_api']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -4085,7 +4071,7 @@ class ModelPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ModelPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ModelPropsDefConfig] = pydantic.Field(None)
 
 
 class ModelPropsDefConfig(pydantic.BaseModel):
@@ -4105,7 +4091,7 @@ class MTLSConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MTLSConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.MTLSConfigDefConfig] = pydantic.Field(None)
 
 
 class MTLSConfigDefConfig(pydantic.BaseModel):
@@ -4143,7 +4129,7 @@ class ProxyResourcePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ProxyResourcePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ProxyResourcePropsDefConfig] = pydantic.Field(None)
 
 
 class ProxyResourcePropsDefConfig(pydantic.BaseModel):
@@ -4206,7 +4192,7 @@ class RequestAuthorizerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RequestAuthorizerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.RequestAuthorizerPropsDefConfig] = pydantic.Field(None)
 
 
 class RequestAuthorizerPropsDefConfig(pydantic.BaseModel):
@@ -4272,7 +4258,7 @@ class RequestValidatorPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RequestValidatorPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.RequestValidatorPropsDefConfig] = pydantic.Field(None)
 
 
 class RequestValidatorPropsDefConfig(pydantic.BaseModel):
@@ -4292,7 +4278,7 @@ class ResourceAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ResourceAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ResourceAttributesDefConfig] = pydantic.Field(None)
 
 
 class ResourceAttributesDefConfig(pydantic.BaseModel):
@@ -4329,7 +4315,7 @@ class ResourcePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ResourcePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ResourcePropsDefConfig] = pydantic.Field(None)
 
 
 class ResourcePropsDefConfig(pydantic.BaseModel):
@@ -4462,7 +4448,7 @@ class SpecRestApiPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SpecRestApiPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.SpecRestApiPropsDefConfig] = pydantic.Field(None)
 
 
 class SpecRestApiPropsDefConfig(pydantic.BaseModel):
@@ -4481,7 +4467,7 @@ class StageAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StageAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.StageAttributesDefConfig] = pydantic.Field(None)
 
 
 class StageAttributesDefConfig(pydantic.BaseModel):
@@ -4549,7 +4535,7 @@ class StagePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StagePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.StagePropsDefConfig] = pydantic.Field(None)
 
 
 class StagePropsDefConfig(pydantic.BaseModel):
@@ -4627,7 +4613,7 @@ class StepFunctionsRestApiPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsRestApiPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.StepFunctionsRestApiPropsDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsRestApiPropsDefConfig(pydantic.BaseModel):
@@ -4660,7 +4646,7 @@ class ThrottlingPerMethodDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ThrottlingPerMethodDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.ThrottlingPerMethodDefConfig] = pydantic.Field(None)
 
 
 class ThrottlingPerMethodDefConfig(pydantic.BaseModel):
@@ -4683,7 +4669,7 @@ class TokenAuthorizerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TokenAuthorizerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.TokenAuthorizerPropsDefConfig] = pydantic.Field(None)
 
 
 class TokenAuthorizerPropsDefConfig(pydantic.BaseModel):
@@ -4820,26 +4806,26 @@ class CfnAccountDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAccountDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnAccountDefConfig] = pydantic.Field(None)
 
 
 class CfnAccountDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnAccountDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAccountDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAccountDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAccountDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAccountDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAccountDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAccountDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnAccountDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAccountDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAccountDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAccountDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnAccountDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnAccountDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnAccountDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAccountDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAccountDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAccountDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnAccountDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnAccountDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnAccountDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAccountDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4924,27 +4910,27 @@ class CfnApiKeyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnApiKeyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnApiKeyDefConfig] = pydantic.Field(None)
 
 
 class CfnApiKeyDefConfig(pydantic.BaseModel):
-    StageKeyProperty: typing.Optional[list[CfnApiKeyDefStagekeypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnApiKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnApiKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnApiKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnApiKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnApiKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnApiKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnApiKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    StageKeyProperty: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefStagekeypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnApiKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnApiKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnApiKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnApiKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnApiKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnApiKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnApiKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnApiKeyDefStagekeypropertyParams(pydantic.BaseModel):
@@ -5037,26 +5023,26 @@ class CfnAuthorizerDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAuthorizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnAuthorizerDefConfig] = pydantic.Field(None)
 
 
 class CfnAuthorizerDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnAuthorizerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAuthorizerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAuthorizerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAuthorizerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAuthorizerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAuthorizerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAuthorizerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAuthorizerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAuthorizerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAuthorizerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAuthorizerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAuthorizerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAuthorizerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnAuthorizerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAuthorizerDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5138,26 +5124,26 @@ class CfnBasePathMappingDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnBasePathMappingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnBasePathMappingDefConfig] = pydantic.Field(None)
 
 
 class CfnBasePathMappingDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnBasePathMappingDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnBasePathMappingDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnBasePathMappingDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnBasePathMappingDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnBasePathMappingDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnBasePathMappingDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnBasePathMappingDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnBasePathMappingDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnBasePathMappingDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnBasePathMappingDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnBasePathMappingDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnBasePathMappingDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnBasePathMappingDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnBasePathMappingDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnBasePathMappingDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5236,26 +5222,26 @@ class CfnClientCertificateDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnClientCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnClientCertificateDefConfig] = pydantic.Field(None)
 
 
 class CfnClientCertificateDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnClientCertificateDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnClientCertificateDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnClientCertificateDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnClientCertificateDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnClientCertificateDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnClientCertificateDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnClientCertificateDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnClientCertificateDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnClientCertificateDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnClientCertificateDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnClientCertificateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnClientCertificateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnClientCertificateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnClientCertificateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnClientCertificateDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -5338,31 +5324,31 @@ class CfnDeploymentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDeploymentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnDeploymentDefConfig] = pydantic.Field(None)
 
 
 class CfnDeploymentDefConfig(pydantic.BaseModel):
-    AccessLogSettingProperty: typing.Optional[list[CfnDeploymentDefAccesslogsettingpropertyParams]] = pydantic.Field(None, description='')
-    CanarySettingProperty: typing.Optional[list[CfnDeploymentDefCanarysettingpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentCanarySettingsProperty: typing.Optional[list[CfnDeploymentDefDeploymentcanarysettingspropertyParams]] = pydantic.Field(None, description='')
-    MethodSettingProperty: typing.Optional[list[CfnDeploymentDefMethodsettingpropertyParams]] = pydantic.Field(None, description='')
-    StageDescriptionProperty: typing.Optional[list[CfnDeploymentDefStagedescriptionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDeploymentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDeploymentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDeploymentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDeploymentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDeploymentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDeploymentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDeploymentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccessLogSettingProperty: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAccesslogsettingpropertyParams]] = pydantic.Field(None, description='')
+    CanarySettingProperty: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefCanarysettingpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentCanarySettingsProperty: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefDeploymentcanarysettingspropertyParams]] = pydantic.Field(None, description='')
+    MethodSettingProperty: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefMethodsettingpropertyParams]] = pydantic.Field(None, description='')
+    StageDescriptionProperty: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefStagedescriptionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDeploymentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDeploymentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDeploymentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDeploymentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDeploymentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDeploymentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnDeploymentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDeploymentDefAccesslogsettingpropertyParams(pydantic.BaseModel):
     destination_arn: typing.Optional[str] = pydantic.Field(None, description='')
@@ -5494,27 +5480,27 @@ class CfnDocumentationPartDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDocumentationPartDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnDocumentationPartDefConfig] = pydantic.Field(None)
 
 
 class CfnDocumentationPartDefConfig(pydantic.BaseModel):
-    LocationProperty: typing.Optional[list[CfnDocumentationPartDefLocationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDocumentationPartDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDocumentationPartDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDocumentationPartDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDocumentationPartDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDocumentationPartDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDocumentationPartDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDocumentationPartDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LocationProperty: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefLocationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDocumentationPartDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDocumentationPartDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDocumentationPartDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDocumentationPartDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDocumentationPartDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDocumentationPartDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnDocumentationPartDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDocumentationPartDefLocationpropertyParams(pydantic.BaseModel):
     method: typing.Optional[str] = pydantic.Field(None, description='')
@@ -5602,26 +5588,26 @@ class CfnDocumentationVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDocumentationVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnDocumentationVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnDocumentationVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnDocumentationVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDocumentationVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDocumentationVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDocumentationVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDocumentationVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDocumentationVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDocumentationVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDocumentationVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDocumentationVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDocumentationVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDocumentationVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDocumentationVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDocumentationVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnDocumentationVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDocumentationVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5706,28 +5692,28 @@ class CfnDomainNameDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDomainNameDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnDomainNameDefConfig] = pydantic.Field(None)
 
 
 class CfnDomainNameDefConfig(pydantic.BaseModel):
-    EndpointConfigurationProperty: typing.Optional[list[CfnDomainNameDefEndpointconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    MutualTlsAuthenticationProperty: typing.Optional[list[CfnDomainNameDefMutualtlsauthenticationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDomainNameDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDomainNameDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDomainNameDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDomainNameDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDomainNameDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDomainNameDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDomainNameDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    EndpointConfigurationProperty: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefEndpointconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    MutualTlsAuthenticationProperty: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefMutualtlsauthenticationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDomainNameDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDomainNameDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDomainNameDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDomainNameDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDomainNameDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDomainNameDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnDomainNameDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDomainNameDefEndpointconfigurationpropertyParams(pydantic.BaseModel):
@@ -5819,26 +5805,26 @@ class CfnGatewayResponseDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnGatewayResponseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnGatewayResponseDefConfig] = pydantic.Field(None)
 
 
 class CfnGatewayResponseDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnGatewayResponseDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnGatewayResponseDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnGatewayResponseDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnGatewayResponseDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnGatewayResponseDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnGatewayResponseDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnGatewayResponseDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnGatewayResponseDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnGatewayResponseDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnGatewayResponseDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnGatewayResponseDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnGatewayResponseDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnGatewayResponseDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnGatewayResponseDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnGatewayResponseDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5928,29 +5914,29 @@ class CfnMethodDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMethodDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnMethodDefConfig] = pydantic.Field(None)
 
 
 class CfnMethodDefConfig(pydantic.BaseModel):
-    IntegrationProperty: typing.Optional[list[CfnMethodDefIntegrationpropertyParams]] = pydantic.Field(None, description='')
-    IntegrationResponseProperty: typing.Optional[list[CfnMethodDefIntegrationresponsepropertyParams]] = pydantic.Field(None, description='')
-    MethodResponseProperty: typing.Optional[list[CfnMethodDefMethodresponsepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnMethodDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMethodDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMethodDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMethodDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMethodDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMethodDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMethodDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    IntegrationProperty: typing.Optional[list[models.aws_apigateway.CfnMethodDefIntegrationpropertyParams]] = pydantic.Field(None, description='')
+    IntegrationResponseProperty: typing.Optional[list[models.aws_apigateway.CfnMethodDefIntegrationresponsepropertyParams]] = pydantic.Field(None, description='')
+    MethodResponseProperty: typing.Optional[list[models.aws_apigateway.CfnMethodDefMethodresponsepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnMethodDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMethodDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMethodDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMethodDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnMethodDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnMethodDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnMethodDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMethodDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMethodDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMethodDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnMethodDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnMethodDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnMethodDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnMethodDefIntegrationpropertyParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='')
@@ -6063,26 +6049,26 @@ class CfnModelDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnModelDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnModelDefConfig] = pydantic.Field(None)
 
 
 class CfnModelDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnModelDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnModelDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnModelDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnModelDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnModelDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnModelDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnModelDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnModelDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnModelDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnModelDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnModelDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnModelDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnModelDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnModelDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnModelDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnModelDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnModelDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnModelDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnModelDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnModelDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnModelDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnModelDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnModelDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnModelDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnModelDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnModelDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnModelDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6163,26 +6149,26 @@ class CfnRequestValidatorDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRequestValidatorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnRequestValidatorDefConfig] = pydantic.Field(None)
 
 
 class CfnRequestValidatorDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnRequestValidatorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRequestValidatorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRequestValidatorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRequestValidatorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRequestValidatorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRequestValidatorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRequestValidatorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRequestValidatorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRequestValidatorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRequestValidatorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRequestValidatorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRequestValidatorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRequestValidatorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnRequestValidatorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnRequestValidatorDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6262,26 +6248,26 @@ class CfnResourceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnResourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnResourceDefConfig] = pydantic.Field(None)
 
 
 class CfnResourceDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnResourceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnResourceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnResourceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnResourceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnResourceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnResourceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnResourceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnResourceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnResourceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnResourceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnResourceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnResourceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnResourceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnResourceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnResourceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnResourceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnResourceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnResourceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnResourceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnResourceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnResourceDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6373,28 +6359,28 @@ class CfnRestApiDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRestApiDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnRestApiDefConfig] = pydantic.Field(None)
 
 
 class CfnRestApiDefConfig(pydantic.BaseModel):
-    EndpointConfigurationProperty: typing.Optional[list[CfnRestApiDefEndpointconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    S3LocationProperty: typing.Optional[list[CfnRestApiDefS3LocationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnRestApiDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRestApiDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRestApiDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRestApiDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRestApiDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRestApiDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRestApiDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    EndpointConfigurationProperty: typing.Optional[list[models.aws_apigateway.CfnRestApiDefEndpointconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    S3LocationProperty: typing.Optional[list[models.aws_apigateway.CfnRestApiDefS3LocationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnRestApiDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRestApiDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRestApiDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRestApiDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnRestApiDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnRestApiDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnRestApiDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRestApiDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRestApiDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRestApiDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnRestApiDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnRestApiDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnRestApiDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnRestApiDefEndpointconfigurationpropertyParams(pydantic.BaseModel):
@@ -6498,29 +6484,29 @@ class CfnStageDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStageDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnStageDefConfig] = pydantic.Field(None)
 
 
 class CfnStageDefConfig(pydantic.BaseModel):
-    AccessLogSettingProperty: typing.Optional[list[CfnStageDefAccesslogsettingpropertyParams]] = pydantic.Field(None, description='')
-    CanarySettingProperty: typing.Optional[list[CfnStageDefCanarysettingpropertyParams]] = pydantic.Field(None, description='')
-    MethodSettingProperty: typing.Optional[list[CfnStageDefMethodsettingpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnStageDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStageDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStageDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStageDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStageDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStageDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStageDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccessLogSettingProperty: typing.Optional[list[models.aws_apigateway.CfnStageDefAccesslogsettingpropertyParams]] = pydantic.Field(None, description='')
+    CanarySettingProperty: typing.Optional[list[models.aws_apigateway.CfnStageDefCanarysettingpropertyParams]] = pydantic.Field(None, description='')
+    MethodSettingProperty: typing.Optional[list[models.aws_apigateway.CfnStageDefMethodsettingpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnStageDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnStageDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnStageDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnStageDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnStageDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnStageDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnStageDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStageDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStageDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStageDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnStageDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnStageDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnStageDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStageDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStageDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStageDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnStageDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnStageDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnStageDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnStageDefAccesslogsettingpropertyParams(pydantic.BaseModel):
@@ -6629,29 +6615,29 @@ class CfnUsagePlanDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUsagePlanDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnUsagePlanDefConfig] = pydantic.Field(None)
 
 
 class CfnUsagePlanDefConfig(pydantic.BaseModel):
-    ApiStageProperty: typing.Optional[list[CfnUsagePlanDefApistagepropertyParams]] = pydantic.Field(None, description='')
-    QuotaSettingsProperty: typing.Optional[list[CfnUsagePlanDefQuotasettingspropertyParams]] = pydantic.Field(None, description='')
-    ThrottleSettingsProperty: typing.Optional[list[CfnUsagePlanDefThrottlesettingspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUsagePlanDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUsagePlanDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUsagePlanDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUsagePlanDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUsagePlanDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUsagePlanDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUsagePlanDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ApiStageProperty: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefApistagepropertyParams]] = pydantic.Field(None, description='')
+    QuotaSettingsProperty: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefQuotasettingspropertyParams]] = pydantic.Field(None, description='')
+    ThrottleSettingsProperty: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefThrottlesettingspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUsagePlanDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUsagePlanDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUsagePlanDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUsagePlanDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUsagePlanDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUsagePlanDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnUsagePlanDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnUsagePlanDefApistagepropertyParams(pydantic.BaseModel):
@@ -6749,26 +6735,26 @@ class CfnUsagePlanKeyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUsagePlanKeyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnUsagePlanKeyDefConfig] = pydantic.Field(None)
 
 
 class CfnUsagePlanKeyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnUsagePlanKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUsagePlanKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUsagePlanKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUsagePlanKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUsagePlanKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUsagePlanKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUsagePlanKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUsagePlanKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUsagePlanKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUsagePlanKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUsagePlanKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUsagePlanKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUsagePlanKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnUsagePlanKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUsagePlanKeyDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6849,26 +6835,26 @@ class CfnVpcLinkDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVpcLinkDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_apigateway.CfnVpcLinkDefConfig] = pydantic.Field(None)
 
 
 class CfnVpcLinkDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnVpcLinkDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVpcLinkDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVpcLinkDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVpcLinkDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVpcLinkDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVpcLinkDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVpcLinkDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVpcLinkDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVpcLinkDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVpcLinkDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVpcLinkDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVpcLinkDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVpcLinkDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_apigateway.CfnVpcLinkDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnVpcLinkDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -7280,170 +7266,170 @@ class CfnVpcLinkPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AccessLogField: typing.Optional[dict[str, AccessLogFieldDef]] = pydantic.Field(None)
-    AccessLogFormat: typing.Optional[dict[str, AccessLogFormatDef]] = pydantic.Field(None)
-    ApiDefinition: typing.Optional[dict[str, ApiDefinitionDef]] = pydantic.Field(None)
-    AssetApiDefinition: typing.Optional[dict[str, AssetApiDefinitionDef]] = pydantic.Field(None)
-    Authorizer: typing.Optional[dict[str, AuthorizerDef]] = pydantic.Field(None)
-    AwsIntegration: typing.Optional[dict[str, AwsIntegrationDef]] = pydantic.Field(None)
-    Cors: typing.Optional[dict[str, CorsDef]] = pydantic.Field(None)
-    HttpIntegration: typing.Optional[dict[str, HttpIntegrationDef]] = pydantic.Field(None)
-    IdentitySource: typing.Optional[dict[str, IdentitySourceDef]] = pydantic.Field(None)
-    InlineApiDefinition: typing.Optional[dict[str, InlineApiDefinitionDef]] = pydantic.Field(None)
-    Integration: typing.Optional[dict[str, IntegrationDef]] = pydantic.Field(None)
-    LambdaIntegration: typing.Optional[dict[str, LambdaIntegrationDef]] = pydantic.Field(None)
-    LogGroupLogDestination: typing.Optional[dict[str, LogGroupLogDestinationDef]] = pydantic.Field(None)
-    MockIntegration: typing.Optional[dict[str, MockIntegrationDef]] = pydantic.Field(None)
-    ResourceBase: typing.Optional[dict[str, ResourceBaseDef]] = pydantic.Field(None)
-    ResponseType: typing.Optional[dict[str, ResponseTypeDef]] = pydantic.Field(None)
-    RestApiBase: typing.Optional[dict[str, RestApiBaseDef]] = pydantic.Field(None)
-    S3ApiDefinition: typing.Optional[dict[str, S3ApiDefinitionDef]] = pydantic.Field(None)
-    SagemakerIntegration: typing.Optional[dict[str, SagemakerIntegrationDef]] = pydantic.Field(None)
-    StageBase: typing.Optional[dict[str, StageBaseDef]] = pydantic.Field(None)
-    StepFunctionsIntegration: typing.Optional[dict[str, StepFunctionsIntegrationDef]] = pydantic.Field(None)
-    ApiKey: typing.Optional[dict[str, ApiKeyDef]] = pydantic.Field(None)
-    BasePathMapping: typing.Optional[dict[str, BasePathMappingDef]] = pydantic.Field(None)
-    CognitoUserPoolsAuthorizer: typing.Optional[dict[str, CognitoUserPoolsAuthorizerDef]] = pydantic.Field(None)
-    Deployment: typing.Optional[dict[str, DeploymentDef]] = pydantic.Field(None)
-    DomainName: typing.Optional[dict[str, DomainNameDef]] = pydantic.Field(None)
-    GatewayResponse: typing.Optional[dict[str, GatewayResponseDef]] = pydantic.Field(None)
-    LambdaRestApi: typing.Optional[dict[str, LambdaRestApiDef]] = pydantic.Field(None)
-    Method: typing.Optional[dict[str, MethodDef]] = pydantic.Field(None)
-    Model: typing.Optional[dict[str, ModelDef]] = pydantic.Field(None)
-    ProxyResource: typing.Optional[dict[str, ProxyResourceDef]] = pydantic.Field(None)
-    RateLimitedApiKey: typing.Optional[dict[str, RateLimitedApiKeyDef]] = pydantic.Field(None)
-    RequestAuthorizer: typing.Optional[dict[str, RequestAuthorizerDef]] = pydantic.Field(None)
-    RequestValidator: typing.Optional[dict[str, RequestValidatorDef]] = pydantic.Field(None)
-    Resource: typing.Optional[dict[str, ResourceDef]] = pydantic.Field(None)
-    RestApi: typing.Optional[dict[str, RestApiDef]] = pydantic.Field(None)
-    SpecRestApi: typing.Optional[dict[str, SpecRestApiDef]] = pydantic.Field(None)
-    Stage: typing.Optional[dict[str, StageDef]] = pydantic.Field(None)
-    StepFunctionsRestApi: typing.Optional[dict[str, StepFunctionsRestApiDef]] = pydantic.Field(None)
-    TokenAuthorizer: typing.Optional[dict[str, TokenAuthorizerDef]] = pydantic.Field(None)
-    UsagePlan: typing.Optional[dict[str, UsagePlanDef]] = pydantic.Field(None)
-    VpcLink: typing.Optional[dict[str, VpcLinkDef]] = pydantic.Field(None)
-    AccessLogDestinationConfig: typing.Optional[dict[str, AccessLogDestinationConfigDef]] = pydantic.Field(None)
-    AddApiKeyOptions: typing.Optional[dict[str, AddApiKeyOptionsDef]] = pydantic.Field(None)
-    ApiDefinitionConfig: typing.Optional[dict[str, ApiDefinitionConfigDef]] = pydantic.Field(None)
-    ApiDefinitionS3Location: typing.Optional[dict[str, ApiDefinitionS3LocationDef]] = pydantic.Field(None)
-    ApiKeyOptions: typing.Optional[dict[str, ApiKeyOptionsDef]] = pydantic.Field(None)
-    ApiKeyProps: typing.Optional[dict[str, ApiKeyPropsDef]] = pydantic.Field(None)
-    ApiMappingOptions: typing.Optional[dict[str, ApiMappingOptionsDef]] = pydantic.Field(None)
-    AwsIntegrationProps: typing.Optional[dict[str, AwsIntegrationPropsDef]] = pydantic.Field(None)
-    BasePathMappingOptions: typing.Optional[dict[str, BasePathMappingOptionsDef]] = pydantic.Field(None)
-    BasePathMappingProps: typing.Optional[dict[str, BasePathMappingPropsDef]] = pydantic.Field(None)
-    CfnApiKey_StageKeyProperty: typing.Optional[dict[str, CfnApiKey_StageKeyPropertyDef]] = pydantic.Field(None)
-    CfnDeployment_AccessLogSettingProperty: typing.Optional[dict[str, CfnDeployment_AccessLogSettingPropertyDef]] = pydantic.Field(None)
-    CfnDeployment_CanarySettingProperty: typing.Optional[dict[str, CfnDeployment_CanarySettingPropertyDef]] = pydantic.Field(None)
-    CfnDeployment_DeploymentCanarySettingsProperty: typing.Optional[dict[str, CfnDeployment_DeploymentCanarySettingsPropertyDef]] = pydantic.Field(None)
-    CfnDeployment_MethodSettingProperty: typing.Optional[dict[str, CfnDeployment_MethodSettingPropertyDef]] = pydantic.Field(None)
-    CfnDeployment_StageDescriptionProperty: typing.Optional[dict[str, CfnDeployment_StageDescriptionPropertyDef]] = pydantic.Field(None)
-    CfnDocumentationPart_LocationProperty: typing.Optional[dict[str, CfnDocumentationPart_LocationPropertyDef]] = pydantic.Field(None)
-    CfnDomainName_EndpointConfigurationProperty: typing.Optional[dict[str, CfnDomainName_EndpointConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnDomainName_MutualTlsAuthenticationProperty: typing.Optional[dict[str, CfnDomainName_MutualTlsAuthenticationPropertyDef]] = pydantic.Field(None)
-    CfnMethod_IntegrationProperty: typing.Optional[dict[str, CfnMethod_IntegrationPropertyDef]] = pydantic.Field(None)
-    CfnMethod_IntegrationResponseProperty: typing.Optional[dict[str, CfnMethod_IntegrationResponsePropertyDef]] = pydantic.Field(None)
-    CfnMethod_MethodResponseProperty: typing.Optional[dict[str, CfnMethod_MethodResponsePropertyDef]] = pydantic.Field(None)
-    CfnRestApi_EndpointConfigurationProperty: typing.Optional[dict[str, CfnRestApi_EndpointConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnRestApi_S3LocationProperty: typing.Optional[dict[str, CfnRestApi_S3LocationPropertyDef]] = pydantic.Field(None)
-    CfnStage_AccessLogSettingProperty: typing.Optional[dict[str, CfnStage_AccessLogSettingPropertyDef]] = pydantic.Field(None)
-    CfnStage_CanarySettingProperty: typing.Optional[dict[str, CfnStage_CanarySettingPropertyDef]] = pydantic.Field(None)
-    CfnStage_MethodSettingProperty: typing.Optional[dict[str, CfnStage_MethodSettingPropertyDef]] = pydantic.Field(None)
-    CfnUsagePlan_ApiStageProperty: typing.Optional[dict[str, CfnUsagePlan_ApiStagePropertyDef]] = pydantic.Field(None)
-    CfnUsagePlan_QuotaSettingsProperty: typing.Optional[dict[str, CfnUsagePlan_QuotaSettingsPropertyDef]] = pydantic.Field(None)
-    CfnUsagePlan_ThrottleSettingsProperty: typing.Optional[dict[str, CfnUsagePlan_ThrottleSettingsPropertyDef]] = pydantic.Field(None)
-    CognitoUserPoolsAuthorizerProps: typing.Optional[dict[str, CognitoUserPoolsAuthorizerPropsDef]] = pydantic.Field(None)
-    CorsOptions: typing.Optional[dict[str, CorsOptionsDef]] = pydantic.Field(None)
-    DeploymentProps: typing.Optional[dict[str, DeploymentPropsDef]] = pydantic.Field(None)
-    DomainNameAttributes: typing.Optional[dict[str, DomainNameAttributesDef]] = pydantic.Field(None)
-    DomainNameOptions: typing.Optional[dict[str, DomainNameOptionsDef]] = pydantic.Field(None)
-    DomainNameProps: typing.Optional[dict[str, DomainNamePropsDef]] = pydantic.Field(None)
-    EndpointConfiguration: typing.Optional[dict[str, EndpointConfigurationDef]] = pydantic.Field(None)
-    GatewayResponseOptions: typing.Optional[dict[str, GatewayResponseOptionsDef]] = pydantic.Field(None)
-    GatewayResponseProps: typing.Optional[dict[str, GatewayResponsePropsDef]] = pydantic.Field(None)
-    HttpIntegrationProps: typing.Optional[dict[str, HttpIntegrationPropsDef]] = pydantic.Field(None)
-    IntegrationConfig: typing.Optional[dict[str, IntegrationConfigDef]] = pydantic.Field(None)
-    IntegrationOptions: typing.Optional[dict[str, IntegrationOptionsDef]] = pydantic.Field(None)
-    IntegrationProps: typing.Optional[dict[str, IntegrationPropsDef]] = pydantic.Field(None)
-    IntegrationResponse: typing.Optional[dict[str, IntegrationResponseDef]] = pydantic.Field(None)
-    JsonSchema: typing.Optional[dict[str, JsonSchemaDef]] = pydantic.Field(None)
-    JsonWithStandardFieldProps: typing.Optional[dict[str, JsonWithStandardFieldPropsDef]] = pydantic.Field(None)
-    LambdaAuthorizerProps: typing.Optional[dict[str, LambdaAuthorizerPropsDef]] = pydantic.Field(None)
-    LambdaIntegrationOptions: typing.Optional[dict[str, LambdaIntegrationOptionsDef]] = pydantic.Field(None)
-    LambdaRestApiProps: typing.Optional[dict[str, LambdaRestApiPropsDef]] = pydantic.Field(None)
-    MethodDeploymentOptions: typing.Optional[dict[str, MethodDeploymentOptionsDef]] = pydantic.Field(None)
-    MethodOptions: typing.Optional[dict[str, MethodOptionsDef]] = pydantic.Field(None)
-    MethodProps: typing.Optional[dict[str, MethodPropsDef]] = pydantic.Field(None)
-    MethodResponse: typing.Optional[dict[str, MethodResponseDef]] = pydantic.Field(None)
-    ModelOptions: typing.Optional[dict[str, ModelOptionsDef]] = pydantic.Field(None)
-    ModelProps: typing.Optional[dict[str, ModelPropsDef]] = pydantic.Field(None)
-    MTLSConfig: typing.Optional[dict[str, MTLSConfigDef]] = pydantic.Field(None)
-    ProxyResourceOptions: typing.Optional[dict[str, ProxyResourceOptionsDef]] = pydantic.Field(None)
-    ProxyResourceProps: typing.Optional[dict[str, ProxyResourcePropsDef]] = pydantic.Field(None)
-    QuotaSettings: typing.Optional[dict[str, QuotaSettingsDef]] = pydantic.Field(None)
-    RateLimitedApiKeyProps: typing.Optional[dict[str, RateLimitedApiKeyPropsDef]] = pydantic.Field(None)
-    RequestAuthorizerProps: typing.Optional[dict[str, RequestAuthorizerPropsDef]] = pydantic.Field(None)
-    RequestContext: typing.Optional[dict[str, RequestContextDef]] = pydantic.Field(None)
-    RequestValidatorOptions: typing.Optional[dict[str, RequestValidatorOptionsDef]] = pydantic.Field(None)
-    RequestValidatorProps: typing.Optional[dict[str, RequestValidatorPropsDef]] = pydantic.Field(None)
-    ResourceAttributes: typing.Optional[dict[str, ResourceAttributesDef]] = pydantic.Field(None)
-    ResourceOptions: typing.Optional[dict[str, ResourceOptionsDef]] = pydantic.Field(None)
-    ResourceProps: typing.Optional[dict[str, ResourcePropsDef]] = pydantic.Field(None)
-    RestApiAttributes: typing.Optional[dict[str, RestApiAttributesDef]] = pydantic.Field(None)
-    RestApiBaseProps: typing.Optional[dict[str, RestApiBasePropsDef]] = pydantic.Field(None)
-    RestApiProps: typing.Optional[dict[str, RestApiPropsDef]] = pydantic.Field(None)
-    SagemakerIntegrationOptions: typing.Optional[dict[str, SagemakerIntegrationOptionsDef]] = pydantic.Field(None)
-    SpecRestApiProps: typing.Optional[dict[str, SpecRestApiPropsDef]] = pydantic.Field(None)
-    StageAttributes: typing.Optional[dict[str, StageAttributesDef]] = pydantic.Field(None)
-    StageOptions: typing.Optional[dict[str, StageOptionsDef]] = pydantic.Field(None)
-    StageProps: typing.Optional[dict[str, StagePropsDef]] = pydantic.Field(None)
-    StepFunctionsExecutionIntegrationOptions: typing.Optional[dict[str, StepFunctionsExecutionIntegrationOptionsDef]] = pydantic.Field(None)
-    StepFunctionsRestApiProps: typing.Optional[dict[str, StepFunctionsRestApiPropsDef]] = pydantic.Field(None)
-    ThrottleSettings: typing.Optional[dict[str, ThrottleSettingsDef]] = pydantic.Field(None)
-    ThrottlingPerMethod: typing.Optional[dict[str, ThrottlingPerMethodDef]] = pydantic.Field(None)
-    TokenAuthorizerProps: typing.Optional[dict[str, TokenAuthorizerPropsDef]] = pydantic.Field(None)
-    UsagePlanPerApiStage: typing.Optional[dict[str, UsagePlanPerApiStageDef]] = pydantic.Field(None)
-    UsagePlanProps: typing.Optional[dict[str, UsagePlanPropsDef]] = pydantic.Field(None)
-    VpcLinkProps: typing.Optional[dict[str, VpcLinkPropsDef]] = pydantic.Field(None)
-    CfnAccount: typing.Optional[dict[str, CfnAccountDef]] = pydantic.Field(None)
-    CfnApiKey: typing.Optional[dict[str, CfnApiKeyDef]] = pydantic.Field(None)
-    CfnAuthorizer: typing.Optional[dict[str, CfnAuthorizerDef]] = pydantic.Field(None)
-    CfnBasePathMapping: typing.Optional[dict[str, CfnBasePathMappingDef]] = pydantic.Field(None)
-    CfnClientCertificate: typing.Optional[dict[str, CfnClientCertificateDef]] = pydantic.Field(None)
-    CfnDeployment: typing.Optional[dict[str, CfnDeploymentDef]] = pydantic.Field(None)
-    CfnDocumentationPart: typing.Optional[dict[str, CfnDocumentationPartDef]] = pydantic.Field(None)
-    CfnDocumentationVersion: typing.Optional[dict[str, CfnDocumentationVersionDef]] = pydantic.Field(None)
-    CfnDomainName: typing.Optional[dict[str, CfnDomainNameDef]] = pydantic.Field(None)
-    CfnGatewayResponse: typing.Optional[dict[str, CfnGatewayResponseDef]] = pydantic.Field(None)
-    CfnMethod: typing.Optional[dict[str, CfnMethodDef]] = pydantic.Field(None)
-    CfnModel: typing.Optional[dict[str, CfnModelDef]] = pydantic.Field(None)
-    CfnRequestValidator: typing.Optional[dict[str, CfnRequestValidatorDef]] = pydantic.Field(None)
-    CfnResource: typing.Optional[dict[str, CfnResourceDef]] = pydantic.Field(None)
-    CfnRestApi: typing.Optional[dict[str, CfnRestApiDef]] = pydantic.Field(None)
-    CfnStage: typing.Optional[dict[str, CfnStageDef]] = pydantic.Field(None)
-    CfnUsagePlan: typing.Optional[dict[str, CfnUsagePlanDef]] = pydantic.Field(None)
-    CfnUsagePlanKey: typing.Optional[dict[str, CfnUsagePlanKeyDef]] = pydantic.Field(None)
-    CfnVpcLink: typing.Optional[dict[str, CfnVpcLinkDef]] = pydantic.Field(None)
-    CfnAccountProps: typing.Optional[dict[str, CfnAccountPropsDef]] = pydantic.Field(None)
-    CfnApiKeyProps: typing.Optional[dict[str, CfnApiKeyPropsDef]] = pydantic.Field(None)
-    CfnAuthorizerProps: typing.Optional[dict[str, CfnAuthorizerPropsDef]] = pydantic.Field(None)
-    CfnBasePathMappingProps: typing.Optional[dict[str, CfnBasePathMappingPropsDef]] = pydantic.Field(None)
-    CfnClientCertificateProps: typing.Optional[dict[str, CfnClientCertificatePropsDef]] = pydantic.Field(None)
-    CfnDeploymentProps: typing.Optional[dict[str, CfnDeploymentPropsDef]] = pydantic.Field(None)
-    CfnDocumentationPartProps: typing.Optional[dict[str, CfnDocumentationPartPropsDef]] = pydantic.Field(None)
-    CfnDocumentationVersionProps: typing.Optional[dict[str, CfnDocumentationVersionPropsDef]] = pydantic.Field(None)
-    CfnDomainNameProps: typing.Optional[dict[str, CfnDomainNamePropsDef]] = pydantic.Field(None)
-    CfnGatewayResponseProps: typing.Optional[dict[str, CfnGatewayResponsePropsDef]] = pydantic.Field(None)
-    CfnMethodProps: typing.Optional[dict[str, CfnMethodPropsDef]] = pydantic.Field(None)
-    CfnModelProps: typing.Optional[dict[str, CfnModelPropsDef]] = pydantic.Field(None)
-    CfnRequestValidatorProps: typing.Optional[dict[str, CfnRequestValidatorPropsDef]] = pydantic.Field(None)
-    CfnResourceProps: typing.Optional[dict[str, CfnResourcePropsDef]] = pydantic.Field(None)
-    CfnRestApiProps: typing.Optional[dict[str, CfnRestApiPropsDef]] = pydantic.Field(None)
-    CfnStageProps: typing.Optional[dict[str, CfnStagePropsDef]] = pydantic.Field(None)
-    CfnUsagePlanKeyProps: typing.Optional[dict[str, CfnUsagePlanKeyPropsDef]] = pydantic.Field(None)
-    CfnUsagePlanProps: typing.Optional[dict[str, CfnUsagePlanPropsDef]] = pydantic.Field(None)
-    CfnVpcLinkProps: typing.Optional[dict[str, CfnVpcLinkPropsDef]] = pydantic.Field(None)
+    AccessLogField: typing.Optional[dict[str, models.aws_apigateway.AccessLogFieldDef]] = pydantic.Field(None)
+    AccessLogFormat: typing.Optional[dict[str, models.aws_apigateway.AccessLogFormatDef]] = pydantic.Field(None)
+    ApiDefinition: typing.Optional[dict[str, models.aws_apigateway.ApiDefinitionDef]] = pydantic.Field(None)
+    AssetApiDefinition: typing.Optional[dict[str, models.aws_apigateway.AssetApiDefinitionDef]] = pydantic.Field(None)
+    Authorizer: typing.Optional[dict[str, models.aws_apigateway.AuthorizerDef]] = pydantic.Field(None)
+    AwsIntegration: typing.Optional[dict[str, models.aws_apigateway.AwsIntegrationDef]] = pydantic.Field(None)
+    Cors: typing.Optional[dict[str, models.aws_apigateway.CorsDef]] = pydantic.Field(None)
+    HttpIntegration: typing.Optional[dict[str, models.aws_apigateway.HttpIntegrationDef]] = pydantic.Field(None)
+    IdentitySource: typing.Optional[dict[str, models.aws_apigateway.IdentitySourceDef]] = pydantic.Field(None)
+    InlineApiDefinition: typing.Optional[dict[str, models.aws_apigateway.InlineApiDefinitionDef]] = pydantic.Field(None)
+    Integration: typing.Optional[dict[str, models.aws_apigateway.IntegrationDef]] = pydantic.Field(None)
+    LambdaIntegration: typing.Optional[dict[str, models.aws_apigateway.LambdaIntegrationDef]] = pydantic.Field(None)
+    LogGroupLogDestination: typing.Optional[dict[str, models.aws_apigateway.LogGroupLogDestinationDef]] = pydantic.Field(None)
+    MockIntegration: typing.Optional[dict[str, models.aws_apigateway.MockIntegrationDef]] = pydantic.Field(None)
+    ResourceBase: typing.Optional[dict[str, models.aws_apigateway.ResourceBaseDef]] = pydantic.Field(None)
+    ResponseType: typing.Optional[dict[str, models.aws_apigateway.ResponseTypeDef]] = pydantic.Field(None)
+    RestApiBase: typing.Optional[dict[str, models.aws_apigateway.RestApiBaseDef]] = pydantic.Field(None)
+    S3ApiDefinition: typing.Optional[dict[str, models.aws_apigateway.S3ApiDefinitionDef]] = pydantic.Field(None)
+    SagemakerIntegration: typing.Optional[dict[str, models.aws_apigateway.SagemakerIntegrationDef]] = pydantic.Field(None)
+    StageBase: typing.Optional[dict[str, models.aws_apigateway.StageBaseDef]] = pydantic.Field(None)
+    StepFunctionsIntegration: typing.Optional[dict[str, models.aws_apigateway.StepFunctionsIntegrationDef]] = pydantic.Field(None)
+    ApiKey: typing.Optional[dict[str, models.aws_apigateway.ApiKeyDef]] = pydantic.Field(None)
+    BasePathMapping: typing.Optional[dict[str, models.aws_apigateway.BasePathMappingDef]] = pydantic.Field(None)
+    CognitoUserPoolsAuthorizer: typing.Optional[dict[str, models.aws_apigateway.CognitoUserPoolsAuthorizerDef]] = pydantic.Field(None)
+    Deployment: typing.Optional[dict[str, models.aws_apigateway.DeploymentDef]] = pydantic.Field(None)
+    DomainName: typing.Optional[dict[str, models.aws_apigateway.DomainNameDef]] = pydantic.Field(None)
+    GatewayResponse: typing.Optional[dict[str, models.aws_apigateway.GatewayResponseDef]] = pydantic.Field(None)
+    LambdaRestApi: typing.Optional[dict[str, models.aws_apigateway.LambdaRestApiDef]] = pydantic.Field(None)
+    Method: typing.Optional[dict[str, models.aws_apigateway.MethodDef]] = pydantic.Field(None)
+    Model: typing.Optional[dict[str, models.aws_apigateway.ModelDef]] = pydantic.Field(None)
+    ProxyResource: typing.Optional[dict[str, models.aws_apigateway.ProxyResourceDef]] = pydantic.Field(None)
+    RateLimitedApiKey: typing.Optional[dict[str, models.aws_apigateway.RateLimitedApiKeyDef]] = pydantic.Field(None)
+    RequestAuthorizer: typing.Optional[dict[str, models.aws_apigateway.RequestAuthorizerDef]] = pydantic.Field(None)
+    RequestValidator: typing.Optional[dict[str, models.aws_apigateway.RequestValidatorDef]] = pydantic.Field(None)
+    Resource: typing.Optional[dict[str, models.aws_apigateway.ResourceDef]] = pydantic.Field(None)
+    RestApi: typing.Optional[dict[str, models.aws_apigateway.RestApiDef]] = pydantic.Field(None)
+    SpecRestApi: typing.Optional[dict[str, models.aws_apigateway.SpecRestApiDef]] = pydantic.Field(None)
+    Stage: typing.Optional[dict[str, models.aws_apigateway.StageDef]] = pydantic.Field(None)
+    StepFunctionsRestApi: typing.Optional[dict[str, models.aws_apigateway.StepFunctionsRestApiDef]] = pydantic.Field(None)
+    TokenAuthorizer: typing.Optional[dict[str, models.aws_apigateway.TokenAuthorizerDef]] = pydantic.Field(None)
+    UsagePlan: typing.Optional[dict[str, models.aws_apigateway.UsagePlanDef]] = pydantic.Field(None)
+    VpcLink: typing.Optional[dict[str, models.aws_apigateway.VpcLinkDef]] = pydantic.Field(None)
+    AccessLogDestinationConfig: typing.Optional[dict[str, models.aws_apigateway.AccessLogDestinationConfigDef]] = pydantic.Field(None)
+    AddApiKeyOptions: typing.Optional[dict[str, models.aws_apigateway.AddApiKeyOptionsDef]] = pydantic.Field(None)
+    ApiDefinitionConfig: typing.Optional[dict[str, models.aws_apigateway.ApiDefinitionConfigDef]] = pydantic.Field(None)
+    ApiDefinitionS3Location: typing.Optional[dict[str, models.aws_apigateway.ApiDefinitionS3LocationDef]] = pydantic.Field(None)
+    ApiKeyOptions: typing.Optional[dict[str, models.aws_apigateway.ApiKeyOptionsDef]] = pydantic.Field(None)
+    ApiKeyProps: typing.Optional[dict[str, models.aws_apigateway.ApiKeyPropsDef]] = pydantic.Field(None)
+    ApiMappingOptions: typing.Optional[dict[str, models.aws_apigateway.ApiMappingOptionsDef]] = pydantic.Field(None)
+    AwsIntegrationProps: typing.Optional[dict[str, models.aws_apigateway.AwsIntegrationPropsDef]] = pydantic.Field(None)
+    BasePathMappingOptions: typing.Optional[dict[str, models.aws_apigateway.BasePathMappingOptionsDef]] = pydantic.Field(None)
+    BasePathMappingProps: typing.Optional[dict[str, models.aws_apigateway.BasePathMappingPropsDef]] = pydantic.Field(None)
+    CfnApiKey_StageKeyProperty: typing.Optional[dict[str, models.aws_apigateway.CfnApiKey_StageKeyPropertyDef]] = pydantic.Field(None)
+    CfnDeployment_AccessLogSettingProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDeployment_AccessLogSettingPropertyDef]] = pydantic.Field(None)
+    CfnDeployment_CanarySettingProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDeployment_CanarySettingPropertyDef]] = pydantic.Field(None)
+    CfnDeployment_DeploymentCanarySettingsProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDeployment_DeploymentCanarySettingsPropertyDef]] = pydantic.Field(None)
+    CfnDeployment_MethodSettingProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDeployment_MethodSettingPropertyDef]] = pydantic.Field(None)
+    CfnDeployment_StageDescriptionProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDeployment_StageDescriptionPropertyDef]] = pydantic.Field(None)
+    CfnDocumentationPart_LocationProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDocumentationPart_LocationPropertyDef]] = pydantic.Field(None)
+    CfnDomainName_EndpointConfigurationProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDomainName_EndpointConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnDomainName_MutualTlsAuthenticationProperty: typing.Optional[dict[str, models.aws_apigateway.CfnDomainName_MutualTlsAuthenticationPropertyDef]] = pydantic.Field(None)
+    CfnMethod_IntegrationProperty: typing.Optional[dict[str, models.aws_apigateway.CfnMethod_IntegrationPropertyDef]] = pydantic.Field(None)
+    CfnMethod_IntegrationResponseProperty: typing.Optional[dict[str, models.aws_apigateway.CfnMethod_IntegrationResponsePropertyDef]] = pydantic.Field(None)
+    CfnMethod_MethodResponseProperty: typing.Optional[dict[str, models.aws_apigateway.CfnMethod_MethodResponsePropertyDef]] = pydantic.Field(None)
+    CfnRestApi_EndpointConfigurationProperty: typing.Optional[dict[str, models.aws_apigateway.CfnRestApi_EndpointConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnRestApi_S3LocationProperty: typing.Optional[dict[str, models.aws_apigateway.CfnRestApi_S3LocationPropertyDef]] = pydantic.Field(None)
+    CfnStage_AccessLogSettingProperty: typing.Optional[dict[str, models.aws_apigateway.CfnStage_AccessLogSettingPropertyDef]] = pydantic.Field(None)
+    CfnStage_CanarySettingProperty: typing.Optional[dict[str, models.aws_apigateway.CfnStage_CanarySettingPropertyDef]] = pydantic.Field(None)
+    CfnStage_MethodSettingProperty: typing.Optional[dict[str, models.aws_apigateway.CfnStage_MethodSettingPropertyDef]] = pydantic.Field(None)
+    CfnUsagePlan_ApiStageProperty: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlan_ApiStagePropertyDef]] = pydantic.Field(None)
+    CfnUsagePlan_QuotaSettingsProperty: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlan_QuotaSettingsPropertyDef]] = pydantic.Field(None)
+    CfnUsagePlan_ThrottleSettingsProperty: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlan_ThrottleSettingsPropertyDef]] = pydantic.Field(None)
+    CognitoUserPoolsAuthorizerProps: typing.Optional[dict[str, models.aws_apigateway.CognitoUserPoolsAuthorizerPropsDef]] = pydantic.Field(None)
+    CorsOptions: typing.Optional[dict[str, models.aws_apigateway.CorsOptionsDef]] = pydantic.Field(None)
+    DeploymentProps: typing.Optional[dict[str, models.aws_apigateway.DeploymentPropsDef]] = pydantic.Field(None)
+    DomainNameAttributes: typing.Optional[dict[str, models.aws_apigateway.DomainNameAttributesDef]] = pydantic.Field(None)
+    DomainNameOptions: typing.Optional[dict[str, models.aws_apigateway.DomainNameOptionsDef]] = pydantic.Field(None)
+    DomainNameProps: typing.Optional[dict[str, models.aws_apigateway.DomainNamePropsDef]] = pydantic.Field(None)
+    EndpointConfiguration: typing.Optional[dict[str, models.aws_apigateway.EndpointConfigurationDef]] = pydantic.Field(None)
+    GatewayResponseOptions: typing.Optional[dict[str, models.aws_apigateway.GatewayResponseOptionsDef]] = pydantic.Field(None)
+    GatewayResponseProps: typing.Optional[dict[str, models.aws_apigateway.GatewayResponsePropsDef]] = pydantic.Field(None)
+    HttpIntegrationProps: typing.Optional[dict[str, models.aws_apigateway.HttpIntegrationPropsDef]] = pydantic.Field(None)
+    IntegrationConfig: typing.Optional[dict[str, models.aws_apigateway.IntegrationConfigDef]] = pydantic.Field(None)
+    IntegrationOptions: typing.Optional[dict[str, models.aws_apigateway.IntegrationOptionsDef]] = pydantic.Field(None)
+    IntegrationProps: typing.Optional[dict[str, models.aws_apigateway.IntegrationPropsDef]] = pydantic.Field(None)
+    IntegrationResponse: typing.Optional[dict[str, models.aws_apigateway.IntegrationResponseDef]] = pydantic.Field(None)
+    JsonSchema: typing.Optional[dict[str, models.aws_apigateway.JsonSchemaDef]] = pydantic.Field(None)
+    JsonWithStandardFieldProps: typing.Optional[dict[str, models.aws_apigateway.JsonWithStandardFieldPropsDef]] = pydantic.Field(None)
+    LambdaAuthorizerProps: typing.Optional[dict[str, models.aws_apigateway.LambdaAuthorizerPropsDef]] = pydantic.Field(None)
+    LambdaIntegrationOptions: typing.Optional[dict[str, models.aws_apigateway.LambdaIntegrationOptionsDef]] = pydantic.Field(None)
+    LambdaRestApiProps: typing.Optional[dict[str, models.aws_apigateway.LambdaRestApiPropsDef]] = pydantic.Field(None)
+    MethodDeploymentOptions: typing.Optional[dict[str, models.aws_apigateway.MethodDeploymentOptionsDef]] = pydantic.Field(None)
+    MethodOptions: typing.Optional[dict[str, models.aws_apigateway.MethodOptionsDef]] = pydantic.Field(None)
+    MethodProps: typing.Optional[dict[str, models.aws_apigateway.MethodPropsDef]] = pydantic.Field(None)
+    MethodResponse: typing.Optional[dict[str, models.aws_apigateway.MethodResponseDef]] = pydantic.Field(None)
+    ModelOptions: typing.Optional[dict[str, models.aws_apigateway.ModelOptionsDef]] = pydantic.Field(None)
+    ModelProps: typing.Optional[dict[str, models.aws_apigateway.ModelPropsDef]] = pydantic.Field(None)
+    MTLSConfig: typing.Optional[dict[str, models.aws_apigateway.MTLSConfigDef]] = pydantic.Field(None)
+    ProxyResourceOptions: typing.Optional[dict[str, models.aws_apigateway.ProxyResourceOptionsDef]] = pydantic.Field(None)
+    ProxyResourceProps: typing.Optional[dict[str, models.aws_apigateway.ProxyResourcePropsDef]] = pydantic.Field(None)
+    QuotaSettings: typing.Optional[dict[str, models.aws_apigateway.QuotaSettingsDef]] = pydantic.Field(None)
+    RateLimitedApiKeyProps: typing.Optional[dict[str, models.aws_apigateway.RateLimitedApiKeyPropsDef]] = pydantic.Field(None)
+    RequestAuthorizerProps: typing.Optional[dict[str, models.aws_apigateway.RequestAuthorizerPropsDef]] = pydantic.Field(None)
+    RequestContext: typing.Optional[dict[str, models.aws_apigateway.RequestContextDef]] = pydantic.Field(None)
+    RequestValidatorOptions: typing.Optional[dict[str, models.aws_apigateway.RequestValidatorOptionsDef]] = pydantic.Field(None)
+    RequestValidatorProps: typing.Optional[dict[str, models.aws_apigateway.RequestValidatorPropsDef]] = pydantic.Field(None)
+    ResourceAttributes: typing.Optional[dict[str, models.aws_apigateway.ResourceAttributesDef]] = pydantic.Field(None)
+    ResourceOptions: typing.Optional[dict[str, models.aws_apigateway.ResourceOptionsDef]] = pydantic.Field(None)
+    ResourceProps: typing.Optional[dict[str, models.aws_apigateway.ResourcePropsDef]] = pydantic.Field(None)
+    RestApiAttributes: typing.Optional[dict[str, models.aws_apigateway.RestApiAttributesDef]] = pydantic.Field(None)
+    RestApiBaseProps: typing.Optional[dict[str, models.aws_apigateway.RestApiBasePropsDef]] = pydantic.Field(None)
+    RestApiProps: typing.Optional[dict[str, models.aws_apigateway.RestApiPropsDef]] = pydantic.Field(None)
+    SagemakerIntegrationOptions: typing.Optional[dict[str, models.aws_apigateway.SagemakerIntegrationOptionsDef]] = pydantic.Field(None)
+    SpecRestApiProps: typing.Optional[dict[str, models.aws_apigateway.SpecRestApiPropsDef]] = pydantic.Field(None)
+    StageAttributes: typing.Optional[dict[str, models.aws_apigateway.StageAttributesDef]] = pydantic.Field(None)
+    StageOptions: typing.Optional[dict[str, models.aws_apigateway.StageOptionsDef]] = pydantic.Field(None)
+    StageProps: typing.Optional[dict[str, models.aws_apigateway.StagePropsDef]] = pydantic.Field(None)
+    StepFunctionsExecutionIntegrationOptions: typing.Optional[dict[str, models.aws_apigateway.StepFunctionsExecutionIntegrationOptionsDef]] = pydantic.Field(None)
+    StepFunctionsRestApiProps: typing.Optional[dict[str, models.aws_apigateway.StepFunctionsRestApiPropsDef]] = pydantic.Field(None)
+    ThrottleSettings: typing.Optional[dict[str, models.aws_apigateway.ThrottleSettingsDef]] = pydantic.Field(None)
+    ThrottlingPerMethod: typing.Optional[dict[str, models.aws_apigateway.ThrottlingPerMethodDef]] = pydantic.Field(None)
+    TokenAuthorizerProps: typing.Optional[dict[str, models.aws_apigateway.TokenAuthorizerPropsDef]] = pydantic.Field(None)
+    UsagePlanPerApiStage: typing.Optional[dict[str, models.aws_apigateway.UsagePlanPerApiStageDef]] = pydantic.Field(None)
+    UsagePlanProps: typing.Optional[dict[str, models.aws_apigateway.UsagePlanPropsDef]] = pydantic.Field(None)
+    VpcLinkProps: typing.Optional[dict[str, models.aws_apigateway.VpcLinkPropsDef]] = pydantic.Field(None)
+    CfnAccount: typing.Optional[dict[str, models.aws_apigateway.CfnAccountDef]] = pydantic.Field(None)
+    CfnApiKey: typing.Optional[dict[str, models.aws_apigateway.CfnApiKeyDef]] = pydantic.Field(None)
+    CfnAuthorizer: typing.Optional[dict[str, models.aws_apigateway.CfnAuthorizerDef]] = pydantic.Field(None)
+    CfnBasePathMapping: typing.Optional[dict[str, models.aws_apigateway.CfnBasePathMappingDef]] = pydantic.Field(None)
+    CfnClientCertificate: typing.Optional[dict[str, models.aws_apigateway.CfnClientCertificateDef]] = pydantic.Field(None)
+    CfnDeployment: typing.Optional[dict[str, models.aws_apigateway.CfnDeploymentDef]] = pydantic.Field(None)
+    CfnDocumentationPart: typing.Optional[dict[str, models.aws_apigateway.CfnDocumentationPartDef]] = pydantic.Field(None)
+    CfnDocumentationVersion: typing.Optional[dict[str, models.aws_apigateway.CfnDocumentationVersionDef]] = pydantic.Field(None)
+    CfnDomainName: typing.Optional[dict[str, models.aws_apigateway.CfnDomainNameDef]] = pydantic.Field(None)
+    CfnGatewayResponse: typing.Optional[dict[str, models.aws_apigateway.CfnGatewayResponseDef]] = pydantic.Field(None)
+    CfnMethod: typing.Optional[dict[str, models.aws_apigateway.CfnMethodDef]] = pydantic.Field(None)
+    CfnModel: typing.Optional[dict[str, models.aws_apigateway.CfnModelDef]] = pydantic.Field(None)
+    CfnRequestValidator: typing.Optional[dict[str, models.aws_apigateway.CfnRequestValidatorDef]] = pydantic.Field(None)
+    CfnResource: typing.Optional[dict[str, models.aws_apigateway.CfnResourceDef]] = pydantic.Field(None)
+    CfnRestApi: typing.Optional[dict[str, models.aws_apigateway.CfnRestApiDef]] = pydantic.Field(None)
+    CfnStage: typing.Optional[dict[str, models.aws_apigateway.CfnStageDef]] = pydantic.Field(None)
+    CfnUsagePlan: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlanDef]] = pydantic.Field(None)
+    CfnUsagePlanKey: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlanKeyDef]] = pydantic.Field(None)
+    CfnVpcLink: typing.Optional[dict[str, models.aws_apigateway.CfnVpcLinkDef]] = pydantic.Field(None)
+    CfnAccountProps: typing.Optional[dict[str, models.aws_apigateway.CfnAccountPropsDef]] = pydantic.Field(None)
+    CfnApiKeyProps: typing.Optional[dict[str, models.aws_apigateway.CfnApiKeyPropsDef]] = pydantic.Field(None)
+    CfnAuthorizerProps: typing.Optional[dict[str, models.aws_apigateway.CfnAuthorizerPropsDef]] = pydantic.Field(None)
+    CfnBasePathMappingProps: typing.Optional[dict[str, models.aws_apigateway.CfnBasePathMappingPropsDef]] = pydantic.Field(None)
+    CfnClientCertificateProps: typing.Optional[dict[str, models.aws_apigateway.CfnClientCertificatePropsDef]] = pydantic.Field(None)
+    CfnDeploymentProps: typing.Optional[dict[str, models.aws_apigateway.CfnDeploymentPropsDef]] = pydantic.Field(None)
+    CfnDocumentationPartProps: typing.Optional[dict[str, models.aws_apigateway.CfnDocumentationPartPropsDef]] = pydantic.Field(None)
+    CfnDocumentationVersionProps: typing.Optional[dict[str, models.aws_apigateway.CfnDocumentationVersionPropsDef]] = pydantic.Field(None)
+    CfnDomainNameProps: typing.Optional[dict[str, models.aws_apigateway.CfnDomainNamePropsDef]] = pydantic.Field(None)
+    CfnGatewayResponseProps: typing.Optional[dict[str, models.aws_apigateway.CfnGatewayResponsePropsDef]] = pydantic.Field(None)
+    CfnMethodProps: typing.Optional[dict[str, models.aws_apigateway.CfnMethodPropsDef]] = pydantic.Field(None)
+    CfnModelProps: typing.Optional[dict[str, models.aws_apigateway.CfnModelPropsDef]] = pydantic.Field(None)
+    CfnRequestValidatorProps: typing.Optional[dict[str, models.aws_apigateway.CfnRequestValidatorPropsDef]] = pydantic.Field(None)
+    CfnResourceProps: typing.Optional[dict[str, models.aws_apigateway.CfnResourcePropsDef]] = pydantic.Field(None)
+    CfnRestApiProps: typing.Optional[dict[str, models.aws_apigateway.CfnRestApiPropsDef]] = pydantic.Field(None)
+    CfnStageProps: typing.Optional[dict[str, models.aws_apigateway.CfnStagePropsDef]] = pydantic.Field(None)
+    CfnUsagePlanKeyProps: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlanKeyPropsDef]] = pydantic.Field(None)
+    CfnUsagePlanProps: typing.Optional[dict[str, models.aws_apigateway.CfnUsagePlanPropsDef]] = pydantic.Field(None)
+    CfnVpcLinkProps: typing.Optional[dict[str, models.aws_apigateway.CfnVpcLinkPropsDef]] = pydantic.Field(None)
     ...
+
+import models

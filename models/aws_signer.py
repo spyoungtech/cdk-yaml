@@ -31,8 +31,8 @@ class SigningProfileDef(BaseConstruct):
     ...
 
 
-    from_signing_profile_attributes: typing.Optional[SigningProfileDefFromSigningProfileAttributesParams] = pydantic.Field(None, description='Creates a Signing Profile construct that represents an external Signing Profile.')
-    resource_config: typing.Optional[SigningProfileDefConfig] = pydantic.Field(None)
+    from_signing_profile_attributes: typing.Optional[models.aws_signer.SigningProfileDefFromSigningProfileAttributesParams] = pydantic.Field(None, description='Creates a Signing Profile construct that represents an external Signing Profile.')
+    resource_config: typing.Optional[models.aws_signer.SigningProfileDefConfig] = pydantic.Field(None)
 
 
 class SigningProfileDefConfig(pydantic.BaseModel):
@@ -111,26 +111,26 @@ class CfnProfilePermissionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnProfilePermissionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_signer.CfnProfilePermissionDefConfig] = pydantic.Field(None)
 
 
 class CfnProfilePermissionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnProfilePermissionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnProfilePermissionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnProfilePermissionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnProfilePermissionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnProfilePermissionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnProfilePermissionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnProfilePermissionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnProfilePermissionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnProfilePermissionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnProfilePermissionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnProfilePermissionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnProfilePermissionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnProfilePermissionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_signer.CfnProfilePermissionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnProfilePermissionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -210,27 +210,27 @@ class CfnSigningProfileDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSigningProfileDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_signer.CfnSigningProfileDefConfig] = pydantic.Field(None)
 
 
 class CfnSigningProfileDefConfig(pydantic.BaseModel):
-    SignatureValidityPeriodProperty: typing.Optional[list[CfnSigningProfileDefSignaturevalidityperiodpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnSigningProfileDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSigningProfileDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSigningProfileDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSigningProfileDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSigningProfileDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSigningProfileDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSigningProfileDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    SignatureValidityPeriodProperty: typing.Optional[list[models.aws_signer.CfnSigningProfileDefSignaturevalidityperiodpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_signer.CfnSigningProfileDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSigningProfileDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSigningProfileDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSigningProfileDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_signer.CfnSigningProfileDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_signer.CfnSigningProfileDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_signer.CfnSigningProfileDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSigningProfileDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSigningProfileDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSigningProfileDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_signer.CfnSigningProfileDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_signer.CfnSigningProfileDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_signer.CfnSigningProfileDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnSigningProfileDefSignaturevalidityperiodpropertyParams(pydantic.BaseModel):
@@ -335,16 +335,16 @@ class CfnSigningProfilePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Platform: typing.Optional[dict[str, PlatformDef]] = pydantic.Field(None)
-    SigningProfile: typing.Optional[dict[str, SigningProfileDef]] = pydantic.Field(None)
-    CfnSigningProfile_SignatureValidityPeriodProperty: typing.Optional[dict[str, CfnSigningProfile_SignatureValidityPeriodPropertyDef]] = pydantic.Field(None)
-    SigningProfileAttributes: typing.Optional[dict[str, SigningProfileAttributesDef]] = pydantic.Field(None)
-    SigningProfileProps: typing.Optional[dict[str, SigningProfilePropsDef]] = pydantic.Field(None)
-    CfnProfilePermission: typing.Optional[dict[str, CfnProfilePermissionDef]] = pydantic.Field(None)
-    CfnSigningProfile: typing.Optional[dict[str, CfnSigningProfileDef]] = pydantic.Field(None)
-    CfnProfilePermissionProps: typing.Optional[dict[str, CfnProfilePermissionPropsDef]] = pydantic.Field(None)
-    CfnSigningProfileProps: typing.Optional[dict[str, CfnSigningProfilePropsDef]] = pydantic.Field(None)
+    Platform: typing.Optional[dict[str, models.aws_signer.PlatformDef]] = pydantic.Field(None)
+    SigningProfile: typing.Optional[dict[str, models.aws_signer.SigningProfileDef]] = pydantic.Field(None)
+    CfnSigningProfile_SignatureValidityPeriodProperty: typing.Optional[dict[str, models.aws_signer.CfnSigningProfile_SignatureValidityPeriodPropertyDef]] = pydantic.Field(None)
+    SigningProfileAttributes: typing.Optional[dict[str, models.aws_signer.SigningProfileAttributesDef]] = pydantic.Field(None)
+    SigningProfileProps: typing.Optional[dict[str, models.aws_signer.SigningProfilePropsDef]] = pydantic.Field(None)
+    CfnProfilePermission: typing.Optional[dict[str, models.aws_signer.CfnProfilePermissionDef]] = pydantic.Field(None)
+    CfnSigningProfile: typing.Optional[dict[str, models.aws_signer.CfnSigningProfileDef]] = pydantic.Field(None)
+    CfnProfilePermissionProps: typing.Optional[dict[str, models.aws_signer.CfnProfilePermissionPropsDef]] = pydantic.Field(None)
+    CfnSigningProfileProps: typing.Optional[dict[str, models.aws_signer.CfnSigningProfilePropsDef]] = pydantic.Field(None)
     ...
+
+import models

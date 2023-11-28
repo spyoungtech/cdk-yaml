@@ -25,14 +25,14 @@ class AssetCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[AssetCodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_bucket: typing.Optional[AssetCodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_inline: typing.Optional[AssetCodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
-    resource_config: typing.Optional[AssetCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_synthetics.AssetCodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_bucket: typing.Optional[models.aws_synthetics.AssetCodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_inline: typing.Optional[models.aws_synthetics.AssetCodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
+    resource_config: typing.Optional[models.aws_synthetics.AssetCodeDefConfig] = pydantic.Field(None)
 
 
 class AssetCodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AssetCodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind: typing.Optional[list[models.aws_synthetics.AssetCodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
 
 class AssetCodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -53,7 +53,7 @@ class AssetCodeDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class AssetCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -73,14 +73,14 @@ class CodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[CodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_bucket: typing.Optional[CodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_inline: typing.Optional[CodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
-    resource_config: typing.Optional[CodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_synthetics.CodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_bucket: typing.Optional[models.aws_synthetics.CodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_inline: typing.Optional[models.aws_synthetics.CodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
+    resource_config: typing.Optional[models.aws_synthetics.CodeDefConfig] = pydantic.Field(None)
 
 
 class CodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind: typing.Optional[list[models.aws_synthetics.CodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
 
 class CodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description="The binding scope. Don't be smart about trying to down-cast or assume it's initialized. You may just use it as a construct scope.\n")
@@ -101,7 +101,7 @@ class CodeDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class CodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -122,19 +122,17 @@ class InlineCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[InlineCodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_bucket: typing.Optional[InlineCodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_inline: typing.Optional[InlineCodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
-    resource_config: typing.Optional[InlineCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_synthetics.InlineCodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_bucket: typing.Optional[models.aws_synthetics.InlineCodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_inline: typing.Optional[models.aws_synthetics.InlineCodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
+    resource_config: typing.Optional[models.aws_synthetics.InlineCodeDefConfig] = pydantic.Field(None)
 
 
 class InlineCodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[InlineCodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind: typing.Optional[list[models.aws_synthetics.InlineCodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
 
 class InlineCodeDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     handler: str = pydantic.Field(..., description='-\n')
-    _family: aws_cdk.aws_synthetics.RuntimeFamily = pydantic.Field(..., description='-')
     ...
 
 class InlineCodeDefFromAssetParams(pydantic.BaseModel):
@@ -150,7 +148,7 @@ class InlineCodeDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class InlineCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -176,7 +174,7 @@ class RuntimeDef(BaseClass):
 
 #  autogenerated from aws_cdk.aws_synthetics.S3Code
 class S3CodeDef(BaseClass):
-    bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='-')
+    bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='-')
     key: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
     _init_params: typing.ClassVar[list[str]] = ['bucket', 'key', 'object_version']
@@ -187,19 +185,16 @@ class S3CodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[S3CodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_bucket: typing.Optional[S3CodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
-    from_inline: typing.Optional[S3CodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
-    resource_config: typing.Optional[S3CodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_synthetics.S3CodeDefFromAssetParams] = pydantic.Field(None, description='Specify code from a local path.\nPath must include the folder structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_bucket: typing.Optional[models.aws_synthetics.S3CodeDefFromBucketParams] = pydantic.Field(None, description='Specify code from an s3 bucket.\nThe object in the s3 bucket must be a .zip file that contains\nthe structure ``nodejs/node_modules/myCanaryFilename.js``.')
+    from_inline: typing.Optional[models.aws_synthetics.S3CodeDefFromInlineParams] = pydantic.Field(None, description='Specify code inline.')
+    resource_config: typing.Optional[models.aws_synthetics.S3CodeDefConfig] = pydantic.Field(None)
 
 
 class S3CodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3CodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind: typing.Optional[list[models.aws_synthetics.S3CodeDefBindParams]] = pydantic.Field(None, description='Called when the canary is initialized to allow this object to bind to the stack, add resources and have fun.')
 
 class S3CodeDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _handler: str = pydantic.Field(..., description='-\n')
-    _family: aws_cdk.aws_synthetics.RuntimeFamily = pydantic.Field(..., description='-')
     ...
 
 class S3CodeDefFromAssetParams(pydantic.BaseModel):
@@ -215,7 +210,7 @@ class S3CodeDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class S3CodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -235,14 +230,14 @@ class ScheduleDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ScheduleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.ScheduleDefConfig] = pydantic.Field(None)
 
 
 class ScheduleDefConfig(pydantic.BaseModel):
-    cron: typing.Optional[list[ScheduleDefCronParams]] = pydantic.Field(None, description='Create a schedule from a set of cron fields.')
-    expression: typing.Optional[list[ScheduleDefExpressionParams]] = pydantic.Field(None, description="Construct a schedule from a literal schedule expression.\nThe expression must be in a ``rate(number units)`` format.\nFor example, ``Schedule.expression('rate(10 minutes)')``")
-    once: typing.Optional[list[ScheduleDefOnceParams]] = pydantic.Field(None, description='The canary will be executed once.')
-    rate: typing.Optional[list[ScheduleDefRateParams]] = pydantic.Field(None, description='Construct a schedule from an interval.\nAllowed values: 0 (for a single run) or between 1 and 60 minutes.\nTo specify a single run, you can use ``Schedule.once()``.')
+    cron: typing.Optional[list[models.aws_synthetics.ScheduleDefCronParams]] = pydantic.Field(None, description='Create a schedule from a set of cron fields.')
+    expression: typing.Optional[list[models.aws_synthetics.ScheduleDefExpressionParams]] = pydantic.Field(None, description="Construct a schedule from a literal schedule expression.\nThe expression must be in a ``rate(number units)`` format.\nFor example, ``Schedule.expression('rate(10 minutes)')``")
+    once: typing.Optional[list[models.aws_synthetics.ScheduleDefOnceParams]] = pydantic.Field(None, description='The canary will be executed once.')
+    rate: typing.Optional[list[models.aws_synthetics.ScheduleDefRateParams]] = pydantic.Field(None, description='Construct a schedule from an interval.\nAllowed values: 0 (for a single run) or between 1 and 60 minutes.\nTo specify a single run, you can use ``Schedule.once()``.')
 
 class ScheduleDefCronParams(pydantic.BaseModel):
     day: typing.Optional[str] = pydantic.Field(None, description='The day of the month to run this rule at. Default: - Every day of the month\n')
@@ -250,17 +245,21 @@ class ScheduleDefCronParams(pydantic.BaseModel):
     minute: typing.Optional[str] = pydantic.Field(None, description='The minute to run this rule at. Default: - Every minute\n')
     month: typing.Optional[str] = pydantic.Field(None, description='The month to run this rule at. Default: - Every month\n')
     week_day: typing.Optional[str] = pydantic.Field(None, description='The day of the week to run this rule at. Default: - Any day of the week')
+    return_config: typing.Optional[list[models.aws_synthetics.ScheduleDefConfig]] = pydantic.Field(None)
     ...
 
 class ScheduleDefExpressionParams(pydantic.BaseModel):
     expression: str = pydantic.Field(..., description='The expression to use.')
+    return_config: typing.Optional[list[models.aws_synthetics.ScheduleDefConfig]] = pydantic.Field(None)
     ...
 
 class ScheduleDefOnceParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_synthetics.ScheduleDefConfig]] = pydantic.Field(None)
     ...
 
 class ScheduleDefRateParams(pydantic.BaseModel):
     interval: models.DurationDef = pydantic.Field(..., description='The interval at which to run the canary.')
+    return_config: typing.Optional[list[models.aws_synthetics.ScheduleDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -274,16 +273,17 @@ class TestDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TestDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.TestDefConfig] = pydantic.Field(None)
 
 
 class TestDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[TestDefCustomParams]] = pydantic.Field(None, description='Specify a custom test with your own code.')
+    custom: typing.Optional[list[models.aws_synthetics.TestDefCustomParams]] = pydantic.Field(None, description='Specify a custom test with your own code.')
     code_config: typing.Optional[models.aws_synthetics.CodeDefConfig] = pydantic.Field(None)
 
 class TestDefCustomParams(pydantic.BaseModel):
     code: models.aws_synthetics.CodeDef = pydantic.Field(..., description='The code of the canary script.\n')
     handler: str = pydantic.Field(..., description='The handler for the code. Must end with ``.handler``.\n')
+    return_config: typing.Optional[list[models.aws_synthetics.TestDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -313,14 +313,14 @@ class CanaryDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[CanaryDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.CanaryDefConfig] = pydantic.Field(None)
 
 
 class CanaryDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric_duration: typing.Optional[list[CanaryDefMetricDurationParams]] = pydantic.Field(None, description='Measure the Duration of a single canary run, in seconds.')
-    metric_failed: typing.Optional[list[CanaryDefMetricFailedParams]] = pydantic.Field(None, description='Measure the number of failed canary runs over a given time period.\nDefault: sum over 5 minutes')
-    metric_success_percent: typing.Optional[list[CanaryDefMetricSuccessPercentParams]] = pydantic.Field(None, description='Measure the percentage of successful canary runs.')
+    metric_duration: typing.Optional[list[models.aws_synthetics.CanaryDefMetricDurationParams]] = pydantic.Field(None, description='Measure the Duration of a single canary run, in seconds.')
+    metric_failed: typing.Optional[list[models.aws_synthetics.CanaryDefMetricFailedParams]] = pydantic.Field(None, description='Measure the number of failed canary runs over a given time period.\nDefault: sum over 5 minutes')
+    metric_success_percent: typing.Optional[list[models.aws_synthetics.CanaryDefMetricSuccessPercentParams]] = pydantic.Field(None, description='Measure the percentage of successful canary runs.')
     artifacts_bucket_config: typing.Optional[models._interface_methods.AwsS3IBucketDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
@@ -368,7 +368,7 @@ class CanaryDefMetricSuccessPercentParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_synthetics.ArtifactsBucketLocation
 class ArtifactsBucketLocationDef(BaseStruct):
-    bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The s3 location that stores the data of each run.\n')
+    bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The s3 location that stores the data of each run.\n')
     prefix: typing.Optional[str] = pydantic.Field(None, description='The S3 bucket prefix. Specify this if you want a more specific path within the artifacts bucket. Default: - no prefix\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n    from aws_cdk import aws_synthetics as synthetics\n\n    # bucket: s3.Bucket\n\n    artifacts_bucket_location = synthetics.ArtifactsBucketLocation(\n        bucket=bucket,\n\n        # the properties below are optional\n        prefix="prefix"\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['bucket', 'prefix']
     _method_names: typing.ClassVar[list[str]] = []
@@ -378,7 +378,7 @@ class ArtifactsBucketLocationDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ArtifactsBucketLocationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.ArtifactsBucketLocationDefConfig] = pydantic.Field(None)
 
 
 class ArtifactsBucketLocationDefConfig(pydantic.BaseModel):
@@ -574,7 +574,7 @@ class CustomTestOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CustomTestOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.CustomTestOptionsDefConfig] = pydantic.Field(None)
 
 
 class CustomTestOptionsDefConfig(pydantic.BaseModel):
@@ -612,34 +612,34 @@ class CfnCanaryDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCanaryDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.CfnCanaryDefConfig] = pydantic.Field(None)
 
 
 class CfnCanaryDefConfig(pydantic.BaseModel):
-    ArtifactConfigProperty: typing.Optional[list[CfnCanaryDefArtifactconfigpropertyParams]] = pydantic.Field(None, description='')
-    BaseScreenshotProperty: typing.Optional[list[CfnCanaryDefBasescreenshotpropertyParams]] = pydantic.Field(None, description='')
-    CodeProperty: typing.Optional[list[CfnCanaryDefCodepropertyParams]] = pydantic.Field(None, description='')
-    RunConfigProperty: typing.Optional[list[CfnCanaryDefRunconfigpropertyParams]] = pydantic.Field(None, description='')
-    S3EncryptionProperty: typing.Optional[list[CfnCanaryDefS3EncryptionpropertyParams]] = pydantic.Field(None, description='')
-    ScheduleProperty: typing.Optional[list[CfnCanaryDefSchedulepropertyParams]] = pydantic.Field(None, description='')
-    VPCConfigProperty: typing.Optional[list[CfnCanaryDefVpcconfigpropertyParams]] = pydantic.Field(None, description='')
-    VisualReferenceProperty: typing.Optional[list[CfnCanaryDefVisualreferencepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCanaryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCanaryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCanaryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCanaryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCanaryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCanaryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCanaryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ArtifactConfigProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefArtifactconfigpropertyParams]] = pydantic.Field(None, description='')
+    BaseScreenshotProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefBasescreenshotpropertyParams]] = pydantic.Field(None, description='')
+    CodeProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefCodepropertyParams]] = pydantic.Field(None, description='')
+    RunConfigProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefRunconfigpropertyParams]] = pydantic.Field(None, description='')
+    S3EncryptionProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefS3EncryptionpropertyParams]] = pydantic.Field(None, description='')
+    ScheduleProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefSchedulepropertyParams]] = pydantic.Field(None, description='')
+    VPCConfigProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefVpcconfigpropertyParams]] = pydantic.Field(None, description='')
+    VisualReferenceProperty: typing.Optional[list[models.aws_synthetics.CfnCanaryDefVisualreferencepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_synthetics.CfnCanaryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCanaryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCanaryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCanaryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_synthetics.CfnCanaryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_synthetics.CfnCanaryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_synthetics.CfnCanaryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCanaryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCanaryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCanaryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_synthetics.CfnCanaryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_synthetics.CfnCanaryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_synthetics.CfnCanaryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCanaryDefArtifactconfigpropertyParams(pydantic.BaseModel):
@@ -766,26 +766,26 @@ class CfnGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_synthetics.CfnGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnGroupDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_synthetics.CfnGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_synthetics.CfnGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_synthetics.CfnGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_synthetics.CfnGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_synthetics.CfnGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_synthetics.CfnGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_synthetics.CfnGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnGroupDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -895,32 +895,32 @@ class CfnGroupPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AssetCode: typing.Optional[dict[str, AssetCodeDef]] = pydantic.Field(None)
-    Code: typing.Optional[dict[str, CodeDef]] = pydantic.Field(None)
-    InlineCode: typing.Optional[dict[str, InlineCodeDef]] = pydantic.Field(None)
-    Runtime: typing.Optional[dict[str, RuntimeDef]] = pydantic.Field(None)
-    S3Code: typing.Optional[dict[str, S3CodeDef]] = pydantic.Field(None)
-    Schedule: typing.Optional[dict[str, ScheduleDef]] = pydantic.Field(None)
-    Test: typing.Optional[dict[str, TestDef]] = pydantic.Field(None)
-    Canary: typing.Optional[dict[str, CanaryDef]] = pydantic.Field(None)
-    ArtifactsBucketLocation: typing.Optional[dict[str, ArtifactsBucketLocationDef]] = pydantic.Field(None)
-    CanaryProps: typing.Optional[dict[str, CanaryPropsDef]] = pydantic.Field(None)
-    CfnCanary_ArtifactConfigProperty: typing.Optional[dict[str, CfnCanary_ArtifactConfigPropertyDef]] = pydantic.Field(None)
-    CfnCanary_BaseScreenshotProperty: typing.Optional[dict[str, CfnCanary_BaseScreenshotPropertyDef]] = pydantic.Field(None)
-    CfnCanary_CodeProperty: typing.Optional[dict[str, CfnCanary_CodePropertyDef]] = pydantic.Field(None)
-    CfnCanary_RunConfigProperty: typing.Optional[dict[str, CfnCanary_RunConfigPropertyDef]] = pydantic.Field(None)
-    CfnCanary_S3EncryptionProperty: typing.Optional[dict[str, CfnCanary_S3EncryptionPropertyDef]] = pydantic.Field(None)
-    CfnCanary_ScheduleProperty: typing.Optional[dict[str, CfnCanary_SchedulePropertyDef]] = pydantic.Field(None)
-    CfnCanary_VisualReferenceProperty: typing.Optional[dict[str, CfnCanary_VisualReferencePropertyDef]] = pydantic.Field(None)
-    CfnCanary_VPCConfigProperty: typing.Optional[dict[str, CfnCanary_VPCConfigPropertyDef]] = pydantic.Field(None)
-    CodeConfig: typing.Optional[dict[str, CodeConfigDef]] = pydantic.Field(None)
-    CronOptions: typing.Optional[dict[str, CronOptionsDef]] = pydantic.Field(None)
-    CustomTestOptions: typing.Optional[dict[str, CustomTestOptionsDef]] = pydantic.Field(None)
-    CfnCanary: typing.Optional[dict[str, CfnCanaryDef]] = pydantic.Field(None)
-    CfnGroup: typing.Optional[dict[str, CfnGroupDef]] = pydantic.Field(None)
-    CfnCanaryProps: typing.Optional[dict[str, CfnCanaryPropsDef]] = pydantic.Field(None)
-    CfnGroupProps: typing.Optional[dict[str, CfnGroupPropsDef]] = pydantic.Field(None)
+    AssetCode: typing.Optional[dict[str, models.aws_synthetics.AssetCodeDef]] = pydantic.Field(None)
+    Code: typing.Optional[dict[str, models.aws_synthetics.CodeDef]] = pydantic.Field(None)
+    InlineCode: typing.Optional[dict[str, models.aws_synthetics.InlineCodeDef]] = pydantic.Field(None)
+    Runtime: typing.Optional[dict[str, models.aws_synthetics.RuntimeDef]] = pydantic.Field(None)
+    S3Code: typing.Optional[dict[str, models.aws_synthetics.S3CodeDef]] = pydantic.Field(None)
+    Schedule: typing.Optional[dict[str, models.aws_synthetics.ScheduleDef]] = pydantic.Field(None)
+    Test: typing.Optional[dict[str, models.aws_synthetics.TestDef]] = pydantic.Field(None)
+    Canary: typing.Optional[dict[str, models.aws_synthetics.CanaryDef]] = pydantic.Field(None)
+    ArtifactsBucketLocation: typing.Optional[dict[str, models.aws_synthetics.ArtifactsBucketLocationDef]] = pydantic.Field(None)
+    CanaryProps: typing.Optional[dict[str, models.aws_synthetics.CanaryPropsDef]] = pydantic.Field(None)
+    CfnCanary_ArtifactConfigProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_ArtifactConfigPropertyDef]] = pydantic.Field(None)
+    CfnCanary_BaseScreenshotProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_BaseScreenshotPropertyDef]] = pydantic.Field(None)
+    CfnCanary_CodeProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_CodePropertyDef]] = pydantic.Field(None)
+    CfnCanary_RunConfigProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_RunConfigPropertyDef]] = pydantic.Field(None)
+    CfnCanary_S3EncryptionProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_S3EncryptionPropertyDef]] = pydantic.Field(None)
+    CfnCanary_ScheduleProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_SchedulePropertyDef]] = pydantic.Field(None)
+    CfnCanary_VisualReferenceProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_VisualReferencePropertyDef]] = pydantic.Field(None)
+    CfnCanary_VPCConfigProperty: typing.Optional[dict[str, models.aws_synthetics.CfnCanary_VPCConfigPropertyDef]] = pydantic.Field(None)
+    CodeConfig: typing.Optional[dict[str, models.aws_synthetics.CodeConfigDef]] = pydantic.Field(None)
+    CronOptions: typing.Optional[dict[str, models.aws_synthetics.CronOptionsDef]] = pydantic.Field(None)
+    CustomTestOptions: typing.Optional[dict[str, models.aws_synthetics.CustomTestOptionsDef]] = pydantic.Field(None)
+    CfnCanary: typing.Optional[dict[str, models.aws_synthetics.CfnCanaryDef]] = pydantic.Field(None)
+    CfnGroup: typing.Optional[dict[str, models.aws_synthetics.CfnGroupDef]] = pydantic.Field(None)
+    CfnCanaryProps: typing.Optional[dict[str, models.aws_synthetics.CfnCanaryPropsDef]] = pydantic.Field(None)
+    CfnGroupProps: typing.Optional[dict[str, models.aws_synthetics.CfnGroupPropsDef]] = pydantic.Field(None)
     ...
+
+import models

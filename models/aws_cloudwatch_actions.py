@@ -17,15 +17,13 @@ class ApplicationScalingActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApplicationScalingActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch_actions.ApplicationScalingActionDefConfig] = pydantic.Field(None)
 
 
 class ApplicationScalingActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ApplicationScalingActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an ApplicationScaling StepScalingAction as an alarm action.')
+    bind: typing.Optional[list[models.aws_cloudwatch_actions.ApplicationScalingActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an ApplicationScaling StepScalingAction as an alarm action.')
 
 class ApplicationScalingActionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _alarm: typing.Union[models.aws_cloudwatch.AlarmBaseDef, models.aws_cloudwatch.AlarmDef, models.aws_cloudwatch.CompositeAlarmDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -40,15 +38,13 @@ class AutoScalingActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AutoScalingActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch_actions.AutoScalingActionDefConfig] = pydantic.Field(None)
 
 
 class AutoScalingActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AutoScalingActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an AutoScaling StepScalingAction as an alarm action.')
+    bind: typing.Optional[list[models.aws_cloudwatch_actions.AutoScalingActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an AutoScaling StepScalingAction as an alarm action.')
 
 class AutoScalingActionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _alarm: typing.Union[models.aws_cloudwatch.AlarmBaseDef, models.aws_cloudwatch.AlarmDef, models.aws_cloudwatch.CompositeAlarmDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -63,15 +59,13 @@ class Ec2ActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[Ec2ActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch_actions.Ec2ActionDefConfig] = pydantic.Field(None)
 
 
 class Ec2ActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[Ec2ActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an EC2 action as an alarm action.')
+    bind: typing.Optional[list[models.aws_cloudwatch_actions.Ec2ActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an EC2 action as an alarm action.')
 
 class Ec2ActionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _alarm: typing.Union[models.aws_cloudwatch.AlarmBaseDef, models.aws_cloudwatch.AlarmDef, models.aws_cloudwatch.CompositeAlarmDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -86,15 +80,13 @@ class SnsActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SnsActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch_actions.SnsActionDefConfig] = pydantic.Field(None)
 
 
 class SnsActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SnsActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an SNS topic as an alarm action.')
+    bind: typing.Optional[list[models.aws_cloudwatch_actions.SnsActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an SNS topic as an alarm action.')
 
 class SnsActionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _alarm: typing.Union[models.aws_cloudwatch.AlarmBaseDef, models.aws_cloudwatch.AlarmDef, models.aws_cloudwatch.CompositeAlarmDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -110,15 +102,13 @@ class SsmActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SsmActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch_actions.SsmActionDefConfig] = pydantic.Field(None)
 
 
 class SsmActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SsmActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an SSM OpsItem action as an alarm action.')
+    bind: typing.Optional[list[models.aws_cloudwatch_actions.SsmActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an SSM OpsItem action as an alarm action.')
 
 class SsmActionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _alarm: typing.Union[models.aws_cloudwatch.AlarmBaseDef, models.aws_cloudwatch.AlarmDef, models.aws_cloudwatch.CompositeAlarmDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -133,15 +123,13 @@ class SsmIncidentActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SsmIncidentActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch_actions.SsmIncidentActionDefConfig] = pydantic.Field(None)
 
 
 class SsmIncidentActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SsmIncidentActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an SSM Incident as an alarm action based on an Incident Manager Response Plan.')
+    bind: typing.Optional[list[models.aws_cloudwatch_actions.SsmIncidentActionDefBindParams]] = pydantic.Field(None, description='Returns an alarm action configuration to use an SSM Incident as an alarm action based on an Incident Manager Response Plan.')
 
 class SsmIncidentActionDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _alarm: typing.Union[models.aws_cloudwatch.AlarmBaseDef, models.aws_cloudwatch.AlarmDef, models.aws_cloudwatch.CompositeAlarmDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -154,13 +142,13 @@ class SsmIncidentActionDefBindParams(pydantic.BaseModel):
 #  autogenerated from aws_cdk.aws_cloudwatch_actions.OpsItemSeverity
 # skipping emum
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ApplicationScalingAction: typing.Optional[dict[str, ApplicationScalingActionDef]] = pydantic.Field(None)
-    AutoScalingAction: typing.Optional[dict[str, AutoScalingActionDef]] = pydantic.Field(None)
-    Ec2Action: typing.Optional[dict[str, Ec2ActionDef]] = pydantic.Field(None)
-    SnsAction: typing.Optional[dict[str, SnsActionDef]] = pydantic.Field(None)
-    SsmAction: typing.Optional[dict[str, SsmActionDef]] = pydantic.Field(None)
-    SsmIncidentAction: typing.Optional[dict[str, SsmIncidentActionDef]] = pydantic.Field(None)
+    ApplicationScalingAction: typing.Optional[dict[str, models.aws_cloudwatch_actions.ApplicationScalingActionDef]] = pydantic.Field(None)
+    AutoScalingAction: typing.Optional[dict[str, models.aws_cloudwatch_actions.AutoScalingActionDef]] = pydantic.Field(None)
+    Ec2Action: typing.Optional[dict[str, models.aws_cloudwatch_actions.Ec2ActionDef]] = pydantic.Field(None)
+    SnsAction: typing.Optional[dict[str, models.aws_cloudwatch_actions.SnsActionDef]] = pydantic.Field(None)
+    SsmAction: typing.Optional[dict[str, models.aws_cloudwatch_actions.SsmActionDef]] = pydantic.Field(None)
+    SsmIncidentAction: typing.Optional[dict[str, models.aws_cloudwatch_actions.SsmIncidentActionDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -16,11 +16,11 @@ class AdotLambdaLayerGenericVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AdotLambdaLayerGenericVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.AdotLambdaLayerGenericVersionDefConfig] = pydantic.Field(None)
 
 
 class AdotLambdaLayerGenericVersionDefConfig(pydantic.BaseModel):
-    layer_arn: typing.Optional[list[AdotLambdaLayerGenericVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
+    layer_arn: typing.Optional[list[models.aws_lambda.AdotLambdaLayerGenericVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
 
 class AdotLambdaLayerGenericVersionDefLayerArnParams(pydantic.BaseModel):
     scope: models.AnyResource = pydantic.Field(..., description='The binding scope. Usually this is the stack where the Lambda layer is bound to\n')
@@ -38,11 +38,11 @@ class AdotLambdaLayerJavaAutoInstrumentationVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AdotLambdaLayerJavaAutoInstrumentationVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.AdotLambdaLayerJavaAutoInstrumentationVersionDefConfig] = pydantic.Field(None)
 
 
 class AdotLambdaLayerJavaAutoInstrumentationVersionDefConfig(pydantic.BaseModel):
-    layer_arn: typing.Optional[list[AdotLambdaLayerJavaAutoInstrumentationVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
+    layer_arn: typing.Optional[list[models.aws_lambda.AdotLambdaLayerJavaAutoInstrumentationVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
 
 class AdotLambdaLayerJavaAutoInstrumentationVersionDefLayerArnParams(pydantic.BaseModel):
     scope: models.AnyResource = pydantic.Field(..., description='The binding scope. Usually this is the stack where the Lambda layer is bound to\n')
@@ -60,11 +60,11 @@ class AdotLambdaLayerJavaScriptSdkVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AdotLambdaLayerJavaScriptSdkVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.AdotLambdaLayerJavaScriptSdkVersionDefConfig] = pydantic.Field(None)
 
 
 class AdotLambdaLayerJavaScriptSdkVersionDefConfig(pydantic.BaseModel):
-    layer_arn: typing.Optional[list[AdotLambdaLayerJavaScriptSdkVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
+    layer_arn: typing.Optional[list[models.aws_lambda.AdotLambdaLayerJavaScriptSdkVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
 
 class AdotLambdaLayerJavaScriptSdkVersionDefLayerArnParams(pydantic.BaseModel):
     scope: models.AnyResource = pydantic.Field(..., description='The binding scope. Usually this is the stack where the Lambda layer is bound to\n')
@@ -82,11 +82,11 @@ class AdotLambdaLayerJavaSdkVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AdotLambdaLayerJavaSdkVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.AdotLambdaLayerJavaSdkVersionDefConfig] = pydantic.Field(None)
 
 
 class AdotLambdaLayerJavaSdkVersionDefConfig(pydantic.BaseModel):
-    layer_arn: typing.Optional[list[AdotLambdaLayerJavaSdkVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
+    layer_arn: typing.Optional[list[models.aws_lambda.AdotLambdaLayerJavaSdkVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
 
 class AdotLambdaLayerJavaSdkVersionDefLayerArnParams(pydantic.BaseModel):
     scope: models.AnyResource = pydantic.Field(..., description='The binding scope. Usually this is the stack where the Lambda layer is bound to\n')
@@ -104,11 +104,11 @@ class AdotLambdaLayerPythonSdkVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AdotLambdaLayerPythonSdkVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.AdotLambdaLayerPythonSdkVersionDefConfig] = pydantic.Field(None)
 
 
 class AdotLambdaLayerPythonSdkVersionDefConfig(pydantic.BaseModel):
-    layer_arn: typing.Optional[list[AdotLambdaLayerPythonSdkVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
+    layer_arn: typing.Optional[list[models.aws_lambda.AdotLambdaLayerPythonSdkVersionDefLayerArnParams]] = pydantic.Field(None, description='The ARN of the Lambda layer.')
 
 class AdotLambdaLayerPythonSdkVersionDefLayerArnParams(pydantic.BaseModel):
     scope: models.AnyResource = pydantic.Field(..., description='The binding scope. Usually this is the stack where the Lambda layer is bound to\n')
@@ -126,11 +126,11 @@ class AdotLayerVersionDef(BaseClass):
     ...
 
 
-    from_generic_layer_version: typing.Optional[AdotLayerVersionDefFromGenericLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for generic use cases.')
-    from_java_auto_instrumentation_layer_version: typing.Optional[AdotLayerVersionDefFromJavaAutoInstrumentationLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Java auto instrumentation.')
-    from_java_script_sdk_layer_version: typing.Optional[AdotLayerVersionDefFromJavaScriptSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for JavaScript SDK.')
-    from_java_sdk_layer_version: typing.Optional[AdotLayerVersionDefFromJavaSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Java SDK.')
-    from_python_sdk_layer_version: typing.Optional[AdotLayerVersionDefFromPythonSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Python SDK.')
+    from_generic_layer_version: typing.Optional[models.aws_lambda.AdotLayerVersionDefFromGenericLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for generic use cases.')
+    from_java_auto_instrumentation_layer_version: typing.Optional[models.aws_lambda.AdotLayerVersionDefFromJavaAutoInstrumentationLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Java auto instrumentation.')
+    from_java_script_sdk_layer_version: typing.Optional[models.aws_lambda.AdotLayerVersionDefFromJavaScriptSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for JavaScript SDK.')
+    from_java_sdk_layer_version: typing.Optional[models.aws_lambda.AdotLayerVersionDefFromJavaSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Java SDK.')
+    from_python_sdk_layer_version: typing.Optional[models.aws_lambda.AdotLayerVersionDefFromPythonSdkLayerVersionParams] = pydantic.Field(None, description='The ADOT Lambda layer for Python SDK.')
 
 class AdotLayerVersionDefFromGenericLayerVersionParams(pydantic.BaseModel):
     version: models.aws_lambda.AdotLambdaLayerGenericVersionDef = pydantic.Field(..., description='The version of the Lambda layer to use.')
@@ -163,15 +163,16 @@ class ArchitectureDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ArchitectureDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
 
 
 class ArchitectureDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[ArchitectureDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom architecture name.\nUse this if the architecture name is not yet supported by the CDK.')
+    custom: typing.Optional[list[models.aws_lambda.ArchitectureDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom architecture name.\nUse this if the architecture name is not yet supported by the CDK.')
 
 class ArchitectureDefCustomParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='the architecture name as recognized by AWS Lambda.\n')
     docker_platform: typing.Optional[str] = pydantic.Field(None, description='the platform to use for this architecture when building with Docker.')
+    return_config: typing.Optional[list[models.aws_lambda.ArchitectureDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -194,19 +195,19 @@ class AssetCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[AssetCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[AssetCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[AssetCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[AssetCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[AssetCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[AssetCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[AssetCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[AssetCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.AssetCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.AssetCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.AssetCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.AssetCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.AssetCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.AssetCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.AssetCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.AssetCodeDefConfig] = pydantic.Field(None)
 
 
 class AssetCodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AssetCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[AssetCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_lambda.AssetCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.AssetCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class AssetCodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -253,7 +254,7 @@ class AssetCodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class AssetCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -319,19 +320,19 @@ class AssetImageCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[AssetImageCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[AssetImageCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[AssetImageCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[AssetImageCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[AssetImageCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[AssetImageCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[AssetImageCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[AssetImageCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.AssetImageCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.AssetImageCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.AssetImageCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.AssetImageCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.AssetImageCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.AssetImageCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.AssetImageCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.AssetImageCodeDefConfig] = pydantic.Field(None)
 
 
 class AssetImageCodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AssetImageCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[AssetImageCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_lambda.AssetImageCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.AssetImageCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class AssetImageCodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -378,7 +379,7 @@ class AssetImageCodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class AssetImageCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -426,20 +427,20 @@ class CfnParametersCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[CfnParametersCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[CfnParametersCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[CfnParametersCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[CfnParametersCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[CfnParametersCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[CfnParametersCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[CfnParametersCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[CfnParametersCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.CfnParametersCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.CfnParametersCodeDefConfig] = pydantic.Field(None)
 
 
 class CfnParametersCodeDefConfig(pydantic.BaseModel):
-    assign: typing.Optional[list[CfnParametersCodeDefAssignParams]] = pydantic.Field(None, description="Create a parameters map from this instance's CloudFormation parameters.\nIt returns a map with 2 keys that correspond to the names of the parameters defined in this Lambda code,\nand as values it contains the appropriate expressions pointing at the provided S3 location\n(most likely, obtained from a CodePipeline Artifact by calling the ``artifact.s3Location`` method).\nThe result should be provided to the CloudFormation Action\nthat is deploying the Stack that the Lambda with this code is part of,\nin the ``parameterOverrides`` property.")
-    bind: typing.Optional[list[CfnParametersCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[CfnParametersCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    assign: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefAssignParams]] = pydantic.Field(None, description="Create a parameters map from this instance's CloudFormation parameters.\nIt returns a map with 2 keys that correspond to the names of the parameters defined in this Lambda code,\nand as values it contains the appropriate expressions pointing at the provided S3 location\n(most likely, obtained from a CodePipeline Artifact by calling the ``artifact.s3Location`` method).\nThe result should be provided to the CloudFormation Action\nthat is deploying the Stack that the Lambda with this code is part of,\nin the ``parameterOverrides`` property.")
+    bind: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.CfnParametersCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class CfnParametersCodeDefAssignParams(pydantic.BaseModel):
     bucket_name: str = pydantic.Field(..., description='The name of the S3 Bucket the object is in.\n')
@@ -452,7 +453,6 @@ class CfnParametersCodeDefBindParams(pydantic.BaseModel):
     ...
 
 class CfnParametersCodeDefBindToResourceParams(pydantic.BaseModel):
-    _resource: models.CfnResourceDef = pydantic.Field(..., description='-\n')
     resource_property: typing.Optional[str] = pydantic.Field(None, description='The name of the CloudFormation property to annotate with asset metadata. Default: Code')
     ...
 
@@ -492,7 +492,7 @@ class CfnParametersCodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class CfnParametersCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -538,26 +538,25 @@ class CodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[CodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[CodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[CodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[CodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[CodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[CodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.CodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.CodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.CodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.CodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.CodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.CodeDefConfig] = pydantic.Field(None)
 
 
 class CodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[CodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_lambda.CodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.CodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class CodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description="The binding scope. Don't be smart about trying to down-cast or assume it's initialized. You may just use it as a construct scope.")
     ...
 
 class CodeDefBindToResourceParams(pydantic.BaseModel):
-    _resource: models.CfnResourceDef = pydantic.Field(..., description='-\n')
     resource_property: typing.Optional[str] = pydantic.Field(None, description='The name of the CloudFormation property to annotate with asset metadata. Default: Code')
     ...
 
@@ -597,7 +596,7 @@ class CodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class CodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -643,8 +642,8 @@ class DockerImageCodeDef(BaseClass):
     ...
 
 
-    from_ecr: typing.Optional[DockerImageCodeDefFromEcrParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_image_asset: typing.Optional[DockerImageCodeDefFromImageAssetParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_ecr: typing.Optional[models.aws_lambda.DockerImageCodeDefFromEcrParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_image_asset: typing.Optional[models.aws_lambda.DockerImageCodeDefFromImageAssetParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
 
 class DockerImageCodeDefFromEcrParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='the ECR repository that the image is in.\n')
@@ -695,26 +694,24 @@ class EcrImageCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[EcrImageCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[EcrImageCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[EcrImageCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[EcrImageCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[EcrImageCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[EcrImageCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[EcrImageCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[EcrImageCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.EcrImageCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.EcrImageCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.EcrImageCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.EcrImageCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.EcrImageCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.EcrImageCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.EcrImageCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.EcrImageCodeDefConfig] = pydantic.Field(None)
 
 
 class EcrImageCodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcrImageCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[EcrImageCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_lambda.EcrImageCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.EcrImageCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class EcrImageCodeDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class EcrImageCodeDefBindToResourceParams(pydantic.BaseModel):
-    _resource: models.CfnResourceDef = pydantic.Field(..., description='-\n')
     resource_property: typing.Optional[str] = pydantic.Field(None, description='The name of the CloudFormation property to annotate with asset metadata. Default: Code')
     ...
 
@@ -754,7 +751,7 @@ class EcrImageCodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class EcrImageCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -805,7 +802,7 @@ class FileSystemDef(BaseClass):
     ...
 
 
-    from_efs_access_point: typing.Optional[FileSystemDefFromEfsAccessPointParams] = pydantic.Field(None, description='mount the filesystem from Amazon EFS.')
+    from_efs_access_point: typing.Optional[models.aws_lambda.FileSystemDefFromEfsAccessPointParams] = pydantic.Field(None, description='mount the filesystem from Amazon EFS.')
 
 class FileSystemDefFromEfsAccessPointParams(pydantic.BaseModel):
     ap: typing.Union[models.aws_efs.AccessPointDef] = pydantic.Field(..., description='the Amazon EFS access point.\n')
@@ -823,11 +820,11 @@ class FilterCriteriaDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FilterCriteriaDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.FilterCriteriaDefConfig] = pydantic.Field(None)
 
 
 class FilterCriteriaDefConfig(pydantic.BaseModel):
-    filter: typing.Optional[list[FilterCriteriaDefFilterParams]] = pydantic.Field(None, description='Filter for event source.')
+    filter: typing.Optional[list[models.aws_lambda.FilterCriteriaDefFilterParams]] = pydantic.Field(None, description='Filter for event source.')
 
 class FilterCriteriaDefFilterParams(pydantic.BaseModel):
     filter: typing.Mapping[str, typing.Any] = pydantic.Field(..., description='-')
@@ -844,18 +841,18 @@ class FilterRuleDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FilterRuleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.FilterRuleDefConfig] = pydantic.Field(None)
 
 
 class FilterRuleDefConfig(pydantic.BaseModel):
-    begins_with: typing.Optional[list[FilterRuleDefBeginsWithParams]] = pydantic.Field(None, description='Begins with comparison operator.')
-    between: typing.Optional[list[FilterRuleDefBetweenParams]] = pydantic.Field(None, description='Numeric range comparison operator.')
+    begins_with: typing.Optional[list[models.aws_lambda.FilterRuleDefBeginsWithParams]] = pydantic.Field(None, description='Begins with comparison operator.')
+    between: typing.Optional[list[models.aws_lambda.FilterRuleDefBetweenParams]] = pydantic.Field(None, description='Numeric range comparison operator.')
     empty: typing.Optional[bool] = pydantic.Field(None, description='Empty comparison operator.')
     exists: typing.Optional[bool] = pydantic.Field(None, description='Exists comparison operator.')
-    not_equals: typing.Optional[list[FilterRuleDefNotEqualsParams]] = pydantic.Field(None, description='Not equals comparison operator.')
+    not_equals: typing.Optional[list[models.aws_lambda.FilterRuleDefNotEqualsParams]] = pydantic.Field(None, description='Not equals comparison operator.')
     not_exists: typing.Optional[bool] = pydantic.Field(None, description='Not exists comparison operator.')
     null: typing.Optional[bool] = pydantic.Field(None, description='Null comparison operator.')
-    or_: typing.Optional[list[FilterRuleDefOrParams]] = pydantic.Field(None, description='Or comparison operator.')
+    or_: typing.Optional[list[models.aws_lambda.FilterRuleDefOrParams]] = pydantic.Field(None, description='Or comparison operator.')
 
 class FilterRuleDefBeginsWithParams(pydantic.BaseModel):
     elem: str = pydantic.Field(..., description='-')
@@ -889,26 +886,26 @@ class FunctionBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FunctionBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.FunctionBaseDefConfig] = pydantic.Field(None)
 
 
 class FunctionBaseDefConfig(pydantic.BaseModel):
-    add_event_source: typing.Optional[list[FunctionBaseDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[FunctionBaseDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[FunctionBaseDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[FunctionBaseDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[FunctionBaseDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_event_source: typing.Optional[list[models.aws_lambda.FunctionBaseDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.FunctionBaseDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.FunctionBaseDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.FunctionBaseDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.FunctionBaseDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    configure_async_invoke: typing.Optional[list[FunctionBaseDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[FunctionBaseDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[FunctionBaseDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[FunctionBaseDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[FunctionBaseDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[FunctionBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[FunctionBaseDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[FunctionBaseDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[FunctionBaseDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[FunctionBaseDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.FunctionBaseDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[list[models.aws_lambda.FunctionBaseDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.FunctionBaseDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.FunctionBaseDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.FunctionBaseDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models.aws_lambda.FunctionBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.FunctionBaseDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.FunctionBaseDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.FunctionBaseDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.FunctionBaseDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
@@ -1070,11 +1067,11 @@ class FunctionVersionUpgradeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FunctionVersionUpgradeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.FunctionVersionUpgradeDefConfig] = pydantic.Field(None)
 
 
 class FunctionVersionUpgradeDefConfig(pydantic.BaseModel):
-    visit: typing.Optional[list[FunctionVersionUpgradeDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
+    visit: typing.Optional[list[models.aws_lambda.FunctionVersionUpgradeDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
 
 class FunctionVersionUpgradeDefVisitParams(pydantic.BaseModel):
     node: models.AnyResource = pydantic.Field(..., description='-')
@@ -1104,26 +1101,24 @@ class InlineCodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[InlineCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[InlineCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[InlineCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[InlineCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[InlineCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[InlineCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[InlineCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[InlineCodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.InlineCodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.InlineCodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.InlineCodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.InlineCodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.InlineCodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.InlineCodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.InlineCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.InlineCodeDefConfig] = pydantic.Field(None)
 
 
 class InlineCodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[InlineCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[InlineCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_lambda.InlineCodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.InlineCodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class InlineCodeDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class InlineCodeDefBindToResourceParams(pydantic.BaseModel):
-    _resource: models.CfnResourceDef = pydantic.Field(..., description='-\n')
     resource_property: typing.Optional[str] = pydantic.Field(None, description='The name of the CloudFormation property to annotate with asset metadata. Default: Code')
     ...
 
@@ -1163,7 +1158,7 @@ class InlineCodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class InlineCodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -1209,7 +1204,7 @@ class LambdaInsightsVersionDef(BaseClass):
     ...
 
 
-    from_insight_version_arn: typing.Optional[LambdaInsightsVersionDefFromInsightVersionArnParams] = pydantic.Field(None, description='Use the insights extension associated with the provided ARN.\nMake sure the ARN is associated\nwith same region as your function')
+    from_insight_version_arn: typing.Optional[models.aws_lambda.LambdaInsightsVersionDefFromInsightVersionArnParams] = pydantic.Field(None, description='Use the insights extension associated with the provided ARN.\nMake sure the ARN is associated\nwith same region as your function')
 
 class LambdaInsightsVersionDefFromInsightVersionArnParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='-\n\n:see: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Lambda-Insights-extension-versions.html\n')
@@ -1226,8 +1221,8 @@ class ParamsAndSecretsLayerVersionDef(BaseClass):
     ...
 
 
-    from_version: typing.Optional[ParamsAndSecretsLayerVersionDefFromVersionParams] = pydantic.Field(None, description='Use a specific version of the Parameters and Secrets Extension to generate a layer version.')
-    from_version_arn: typing.Optional[ParamsAndSecretsLayerVersionDefFromVersionArnParams] = pydantic.Field(None, description='Use the Parameters and Secrets Extension associated with the provided ARN.\nMake sure the ARN is associated\nwith the same region and architecture as your function.')
+    from_version: typing.Optional[models.aws_lambda.ParamsAndSecretsLayerVersionDefFromVersionParams] = pydantic.Field(None, description='Use a specific version of the Parameters and Secrets Extension to generate a layer version.')
+    from_version_arn: typing.Optional[models.aws_lambda.ParamsAndSecretsLayerVersionDefFromVersionArnParams] = pydantic.Field(None, description='Use the Parameters and Secrets Extension associated with the provided ARN.\nMake sure the ARN is associated\nwith the same region and architecture as your function.')
 
 class ParamsAndSecretsLayerVersionDefFromVersionParams(pydantic.BaseModel):
     version: aws_cdk.aws_lambda.ParamsAndSecretsVersions = pydantic.Field(..., description='-\n')
@@ -1270,26 +1265,26 @@ class QualifiedFunctionBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[QualifiedFunctionBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.QualifiedFunctionBaseDefConfig] = pydantic.Field(None)
 
 
 class QualifiedFunctionBaseDefConfig(pydantic.BaseModel):
-    add_event_source: typing.Optional[list[QualifiedFunctionBaseDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[QualifiedFunctionBaseDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[QualifiedFunctionBaseDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[QualifiedFunctionBaseDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[QualifiedFunctionBaseDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_event_source: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    configure_async_invoke: typing.Optional[list[QualifiedFunctionBaseDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[QualifiedFunctionBaseDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[QualifiedFunctionBaseDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[QualifiedFunctionBaseDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[QualifiedFunctionBaseDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[QualifiedFunctionBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[QualifiedFunctionBaseDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[QualifiedFunctionBaseDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[QualifiedFunctionBaseDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[QualifiedFunctionBaseDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[bool] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.QualifiedFunctionBaseDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
@@ -1357,11 +1352,6 @@ class QualifiedFunctionBaseDefConfigureAsyncInvokeParams(pydantic.BaseModel):
     on_failure: typing.Optional[typing.Union[models.aws_lambda_destinations.EventBridgeDestinationDef, models.aws_lambda_destinations.LambdaDestinationDef, models.aws_lambda_destinations.SnsDestinationDef, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None, description='The destination for failed invocations. Default: - no destination\n')
     on_success: typing.Optional[typing.Union[models.aws_lambda_destinations.EventBridgeDestinationDef, models.aws_lambda_destinations.LambdaDestinationDef, models.aws_lambda_destinations.SnsDestinationDef, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None, description='The destination for successful invocations. Default: - no destination\n')
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Minimum: 0 Maximum: 2 Default: 2')
-    ...
-
-class QualifiedFunctionBaseDefConsiderWarningOnInvokeFunctionPermissionsParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _action: str = pydantic.Field(..., description='-')
     ...
 
 class QualifiedFunctionBaseDefGrantInvokeParams(pydantic.BaseModel):
@@ -1457,11 +1447,11 @@ class RuntimeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RuntimeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.RuntimeDefConfig] = pydantic.Field(None)
 
 
 class RuntimeDefConfig(pydantic.BaseModel):
-    runtime_equals: typing.Optional[list[RuntimeDefRuntimeEqualsParams]] = pydantic.Field(None, description='')
+    runtime_equals: typing.Optional[list[models.aws_lambda.RuntimeDefRuntimeEqualsParams]] = pydantic.Field(None, description='')
     bundling_image_config: typing.Optional[models.core.DockerImageDefConfig] = pydantic.Field(None)
 
 class RuntimeDefRuntimeEqualsParams(pydantic.BaseModel):
@@ -1481,20 +1471,21 @@ class RuntimeManagementModeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RuntimeManagementModeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.RuntimeManagementModeDefConfig] = pydantic.Field(None)
 
 
 class RuntimeManagementModeDefConfig(pydantic.BaseModel):
-    manual: typing.Optional[list[RuntimeManagementModeDefManualParams]] = pydantic.Field(None, description='You specify a runtime version in your function configuration.\nThe function uses this runtime version indefinitely.\nIn the rare case in which a new runtime version is incompatible with an existing function,\nyou can use this mode to roll back your function to an earlier runtime version.')
+    manual: typing.Optional[list[models.aws_lambda.RuntimeManagementModeDefManualParams]] = pydantic.Field(None, description='You specify a runtime version in your function configuration.\nThe function uses this runtime version indefinitely.\nIn the rare case in which a new runtime version is incompatible with an existing function,\nyou can use this mode to roll back your function to an earlier runtime version.')
 
 class RuntimeManagementModeDefManualParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_lambda.RuntimeManagementModeDefConfig]] = pydantic.Field(None)
     ...
 
 
 #  autogenerated from aws_cdk.aws_lambda.S3Code
 class S3CodeDef(BaseClass):
-    bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='-')
+    bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='-')
     key: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
     _init_params: typing.ClassVar[list[str]] = ['bucket', 'key', 'object_version']
@@ -1505,26 +1496,24 @@ class S3CodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[S3CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
-    from_asset_image: typing.Optional[S3CodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
-    from_bucket: typing.Optional[S3CodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
-    from_cfn_parameters: typing.Optional[S3CodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
-    from_docker_build: typing.Optional[S3CodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
-    from_ecr_image: typing.Optional[S3CodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
-    from_inline: typing.Optional[S3CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
-    resource_config: typing.Optional[S3CodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_lambda.S3CodeDefFromAssetParams] = pydantic.Field(None, description='Loads the function code from a local disk path.')
+    from_asset_image: typing.Optional[models.aws_lambda.S3CodeDefFromAssetImageParams] = pydantic.Field(None, description='Create an ECR image from the specified asset and bind it as the Lambda code.')
+    from_bucket: typing.Optional[models.aws_lambda.S3CodeDefFromBucketParams] = pydantic.Field(None, description='Lambda handler code as an S3 object.')
+    from_cfn_parameters: typing.Optional[models.aws_lambda.S3CodeDefFromCfnParametersParams] = pydantic.Field(None, description='Creates a new Lambda source defined using CloudFormation parameters.')
+    from_docker_build: typing.Optional[models.aws_lambda.S3CodeDefFromDockerBuildParams] = pydantic.Field(None, description='Loads the function code from an asset created by a Docker build.\nBy default, the asset is expected to be located at ``/asset`` in the\nimage.')
+    from_ecr_image: typing.Optional[models.aws_lambda.S3CodeDefFromEcrImageParams] = pydantic.Field(None, description='Use an existing ECR image as the Lambda code.')
+    from_inline: typing.Optional[models.aws_lambda.S3CodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for Lambda handler.')
+    resource_config: typing.Optional[models.aws_lambda.S3CodeDefConfig] = pydantic.Field(None)
 
 
 class S3CodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3CodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
-    bind_to_resource: typing.Optional[list[S3CodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
+    bind: typing.Optional[list[models.aws_lambda.S3CodeDefBindParams]] = pydantic.Field(None, description='Called when the lambda or layer is initialized to allow this object to bind to the stack, add resources and have fun.')
+    bind_to_resource: typing.Optional[list[models.aws_lambda.S3CodeDefBindToResourceParams]] = pydantic.Field(None, description="Called after the CFN function resource has been created to allow the code class to bind to it.\nSpecifically it's required to allow assets to add\nmetadata for tooling like SAM CLI to be able to find their origins.")
 
 class S3CodeDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class S3CodeDefBindToResourceParams(pydantic.BaseModel):
-    _resource: models.CfnResourceDef = pydantic.Field(..., description='-\n')
     resource_property: typing.Optional[str] = pydantic.Field(None, description='The name of the CloudFormation property to annotate with asset metadata. Default: Code')
     ...
 
@@ -1564,7 +1553,7 @@ class S3CodeDefFromAssetImageParams(pydantic.BaseModel):
     ...
 
 class S3CodeDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.')
     ...
@@ -1622,14 +1611,15 @@ class SourceAccessConfigurationTypeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SourceAccessConfigurationTypeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.SourceAccessConfigurationTypeDefConfig] = pydantic.Field(None)
 
 
 class SourceAccessConfigurationTypeDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[SourceAccessConfigurationTypeDefOfParams]] = pydantic.Field(None, description='A custom source access configuration property.')
+    of: typing.Optional[list[models.aws_lambda.SourceAccessConfigurationTypeDefOfParams]] = pydantic.Field(None, description='A custom source access configuration property.')
 
 class SourceAccessConfigurationTypeDefOfParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_lambda.SourceAccessConfigurationTypeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1652,28 +1642,28 @@ class AliasDef(BaseConstruct):
     ...
 
 
-    from_alias_attributes: typing.Optional[AliasDefFromAliasAttributesParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[AliasDefConfig] = pydantic.Field(None)
+    from_alias_attributes: typing.Optional[models.aws_lambda.AliasDefFromAliasAttributesParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_lambda.AliasDefConfig] = pydantic.Field(None)
 
 
 class AliasDefConfig(pydantic.BaseModel):
-    add_auto_scaling: typing.Optional[list[AliasDefAddAutoScalingParams]] = pydantic.Field(None, description='Configure provisioned concurrency autoscaling on a function alias.\nReturns a scalable attribute that can call\n``scaleOnUtilization()`` and ``scaleOnSchedule()``.')
-    add_event_source: typing.Optional[list[AliasDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[AliasDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[AliasDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[AliasDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[AliasDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_auto_scaling: typing.Optional[list[models.aws_lambda.AliasDefAddAutoScalingParams]] = pydantic.Field(None, description='Configure provisioned concurrency autoscaling on a function alias.\nReturns a scalable attribute that can call\n``scaleOnUtilization()`` and ``scaleOnSchedule()``.')
+    add_event_source: typing.Optional[list[models.aws_lambda.AliasDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.AliasDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.AliasDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.AliasDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.AliasDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    configure_async_invoke: typing.Optional[list[AliasDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[AliasDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[AliasDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[AliasDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[AliasDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[AliasDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[AliasDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[AliasDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[AliasDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[AliasDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.AliasDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[bool] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.AliasDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.AliasDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.AliasDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models.aws_lambda.AliasDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.AliasDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.AliasDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.AliasDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.AliasDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
@@ -1748,11 +1738,6 @@ class AliasDefConfigureAsyncInvokeParams(pydantic.BaseModel):
     on_failure: typing.Optional[typing.Union[models.aws_lambda_destinations.EventBridgeDestinationDef, models.aws_lambda_destinations.LambdaDestinationDef, models.aws_lambda_destinations.SnsDestinationDef, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None, description='The destination for failed invocations. Default: - no destination\n')
     on_success: typing.Optional[typing.Union[models.aws_lambda_destinations.EventBridgeDestinationDef, models.aws_lambda_destinations.LambdaDestinationDef, models.aws_lambda_destinations.SnsDestinationDef, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None, description='The destination for successful invocations. Default: - no destination\n')
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Minimum: 0 Maximum: 2 Default: 2')
-    ...
-
-class AliasDefConsiderWarningOnInvokeFunctionPermissionsParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _action: str = pydantic.Field(..., description='-')
     ...
 
 class AliasDefFromAliasAttributesParams(pydantic.BaseModel):
@@ -1851,8 +1836,8 @@ class CodeSigningConfigDef(BaseConstruct):
     ...
 
 
-    from_code_signing_config_arn: typing.Optional[CodeSigningConfigDefFromCodeSigningConfigArnParams] = pydantic.Field(None, description='Creates a Signing Profile construct that represents an external Signing Profile.')
-    resource_config: typing.Optional[CodeSigningConfigDefConfig] = pydantic.Field(None)
+    from_code_signing_config_arn: typing.Optional[models.aws_lambda.CodeSigningConfigDefFromCodeSigningConfigArnParams] = pydantic.Field(None, description='Creates a Signing Profile construct that represents an external Signing Profile.')
+    resource_config: typing.Optional[models.aws_lambda.CodeSigningConfigDefConfig] = pydantic.Field(None)
 
 
 class CodeSigningConfigDefConfig(pydantic.BaseModel):
@@ -1919,41 +1904,41 @@ class DockerImageFunctionDef(BaseConstruct):
     ...
 
 
-    from_function_arn: typing.Optional[DockerImageFunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
-    from_function_attributes: typing.Optional[DockerImageFunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
-    from_function_name: typing.Optional[DockerImageFunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
-    metric_all: typing.Optional[DockerImageFunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
-    metric_all_concurrent_executions: typing.Optional[DockerImageFunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
-    metric_all_duration: typing.Optional[DockerImageFunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
-    metric_all_errors: typing.Optional[DockerImageFunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
-    metric_all_invocations: typing.Optional[DockerImageFunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
-    metric_all_throttles: typing.Optional[DockerImageFunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
-    metric_all_unreserved_concurrent_executions: typing.Optional[DockerImageFunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
-    resource_config: typing.Optional[DockerImageFunctionDefConfig] = pydantic.Field(None)
+    from_function_arn: typing.Optional[models.aws_lambda.DockerImageFunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
+    from_function_attributes: typing.Optional[models.aws_lambda.DockerImageFunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
+    from_function_name: typing.Optional[models.aws_lambda.DockerImageFunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
+    metric_all: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
+    metric_all_concurrent_executions: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
+    metric_all_duration: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
+    metric_all_errors: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_all_invocations: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
+    metric_all_throttles: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
+    metric_all_unreserved_concurrent_executions: typing.Optional[models.aws_lambda.DockerImageFunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
+    resource_config: typing.Optional[models.aws_lambda.DockerImageFunctionDefConfig] = pydantic.Field(None)
 
 
 class DockerImageFunctionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[DockerImageFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
-    add_environment: typing.Optional[list[DockerImageFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
-    add_event_source: typing.Optional[list[DockerImageFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[DockerImageFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[DockerImageFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_layers: typing.Optional[list[DockerImageFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
-    add_permission: typing.Optional[list[DockerImageFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[DockerImageFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_alias: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
+    add_environment: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
+    add_event_source: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_layers: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    classify_version_property: typing.Optional[list[DockerImageFunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
-    configure_async_invoke: typing.Optional[list[DockerImageFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[DockerImageFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[DockerImageFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[DockerImageFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[DockerImageFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    invalidate_version_based_on: typing.Optional[list[DockerImageFunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
-    metric: typing.Optional[list[DockerImageFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[DockerImageFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[DockerImageFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[DockerImageFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[DockerImageFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    classify_version_property: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    invalidate_version_based_on: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
+    metric: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.DockerImageFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     current_version_config: typing.Optional[models.aws_lambda.VersionDefConfig] = pydantic.Field(None)
@@ -2255,7 +2240,7 @@ class EventInvokeConfigDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EventInvokeConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.EventInvokeConfigDefConfig] = pydantic.Field(None)
 
 
 class EventInvokeConfigDefConfig(pydantic.BaseModel):
@@ -2296,8 +2281,8 @@ class EventSourceMappingDef(BaseConstruct):
     ...
 
 
-    from_event_source_mapping_id: typing.Optional[EventSourceMappingDefFromEventSourceMappingIdParams] = pydantic.Field(None, description='Import an event source into this stack from its event source id.')
-    resource_config: typing.Optional[EventSourceMappingDefConfig] = pydantic.Field(None)
+    from_event_source_mapping_id: typing.Optional[models.aws_lambda.EventSourceMappingDefFromEventSourceMappingIdParams] = pydantic.Field(None, description='Import an event source into this stack from its event source id.')
+    resource_config: typing.Optional[models.aws_lambda.EventSourceMappingDefConfig] = pydantic.Field(None)
 
 
 class EventSourceMappingDefConfig(pydantic.BaseModel):
@@ -2366,41 +2351,41 @@ class FunctionDef(BaseConstruct):
     ...
 
 
-    from_function_arn: typing.Optional[FunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
-    from_function_attributes: typing.Optional[FunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
-    from_function_name: typing.Optional[FunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
-    metric_all: typing.Optional[FunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
-    metric_all_concurrent_executions: typing.Optional[FunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
-    metric_all_duration: typing.Optional[FunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
-    metric_all_errors: typing.Optional[FunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
-    metric_all_invocations: typing.Optional[FunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
-    metric_all_throttles: typing.Optional[FunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
-    metric_all_unreserved_concurrent_executions: typing.Optional[FunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
-    resource_config: typing.Optional[FunctionDefConfig] = pydantic.Field(None)
+    from_function_arn: typing.Optional[models.aws_lambda.FunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
+    from_function_attributes: typing.Optional[models.aws_lambda.FunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
+    from_function_name: typing.Optional[models.aws_lambda.FunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
+    metric_all: typing.Optional[models.aws_lambda.FunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
+    metric_all_concurrent_executions: typing.Optional[models.aws_lambda.FunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
+    metric_all_duration: typing.Optional[models.aws_lambda.FunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
+    metric_all_errors: typing.Optional[models.aws_lambda.FunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_all_invocations: typing.Optional[models.aws_lambda.FunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
+    metric_all_throttles: typing.Optional[models.aws_lambda.FunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
+    metric_all_unreserved_concurrent_executions: typing.Optional[models.aws_lambda.FunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
+    resource_config: typing.Optional[models.aws_lambda.FunctionDefConfig] = pydantic.Field(None)
 
 
 class FunctionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[FunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
-    add_environment: typing.Optional[list[FunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
-    add_event_source: typing.Optional[list[FunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[FunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[FunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_layers: typing.Optional[list[FunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
-    add_permission: typing.Optional[list[FunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[FunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_alias: typing.Optional[list[models.aws_lambda.FunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
+    add_environment: typing.Optional[list[models.aws_lambda.FunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
+    add_event_source: typing.Optional[list[models.aws_lambda.FunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.FunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.FunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_layers: typing.Optional[list[models.aws_lambda.FunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.FunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.FunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    classify_version_property: typing.Optional[list[FunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
-    configure_async_invoke: typing.Optional[list[FunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[FunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[FunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[FunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[FunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    invalidate_version_based_on: typing.Optional[list[FunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
-    metric: typing.Optional[list[FunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[FunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[FunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[FunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[FunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    classify_version_property: typing.Optional[list[models.aws_lambda.FunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.FunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[list[models.aws_lambda.FunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.FunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.FunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.FunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    invalidate_version_based_on: typing.Optional[list[models.aws_lambda.FunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
+    metric: typing.Optional[list[models.aws_lambda.FunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.FunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.FunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.FunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.FunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     current_version_config: typing.Optional[models.aws_lambda.VersionDefConfig] = pydantic.Field(None)
@@ -2426,6 +2411,7 @@ class FunctionDefAddEnvironmentParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='The environment variable key.\n')
     value: str = pydantic.Field(..., description="The environment variable's value.\n")
     remove_in_edge: typing.Optional[bool] = pydantic.Field(None, description='When used in Lambda@Edge via edgeArn() API, these environment variables will be removed. If not set, an error will be thrown. Default: false - using the function in Lambda@Edge will throw')
+    return_config: typing.Optional[list[models.aws_lambda.FunctionDefConfig]] = pydantic.Field(None)
     ...
 
 class FunctionDefAddEventSourceParams(pydantic.BaseModel):
@@ -2699,12 +2685,12 @@ class FunctionUrlDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[FunctionUrlDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.FunctionUrlDefConfig] = pydantic.Field(None)
 
 
 class FunctionUrlDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_invoke_url: typing.Optional[list[FunctionUrlDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.FunctionUrlDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
 
 class FunctionUrlDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -2733,13 +2719,13 @@ class LayerVersionDef(BaseConstruct):
     ...
 
 
-    from_layer_version_arn: typing.Optional[LayerVersionDefFromLayerVersionArnParams] = pydantic.Field(None, description='Imports a layer version by ARN.\nAssumes it is compatible with all Lambda runtimes.')
-    from_layer_version_attributes: typing.Optional[LayerVersionDefFromLayerVersionAttributesParams] = pydantic.Field(None, description='Imports a Layer that has been defined externally.')
-    resource_config: typing.Optional[LayerVersionDefConfig] = pydantic.Field(None)
+    from_layer_version_arn: typing.Optional[models.aws_lambda.LayerVersionDefFromLayerVersionArnParams] = pydantic.Field(None, description='Imports a layer version by ARN.\nAssumes it is compatible with all Lambda runtimes.')
+    from_layer_version_attributes: typing.Optional[models.aws_lambda.LayerVersionDefFromLayerVersionAttributesParams] = pydantic.Field(None, description='Imports a Layer that has been defined externally.')
+    resource_config: typing.Optional[models.aws_lambda.LayerVersionDefConfig] = pydantic.Field(None)
 
 
 class LayerVersionDefConfig(pydantic.BaseModel):
-    add_permission: typing.Optional[list[LayerVersionDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
+    add_permission: typing.Optional[list[models.aws_lambda.LayerVersionDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class LayerVersionDefAddPermissionParams(pydantic.BaseModel):
@@ -2820,30 +2806,30 @@ class SingletonFunctionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SingletonFunctionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.SingletonFunctionDefConfig] = pydantic.Field(None)
 
 
 class SingletonFunctionDefConfig(pydantic.BaseModel):
-    add_dependency: typing.Optional[list[SingletonFunctionDefAddDependencyParams]] = pydantic.Field(None, description='Using node.addDependency() does not work on this method as the underlying lambda function is modeled as a singleton across the stack. Use this method instead to declare dependencies.')
-    add_environment: typing.Optional[list[SingletonFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
-    add_event_source: typing.Optional[list[SingletonFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[SingletonFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[SingletonFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_layers: typing.Optional[list[SingletonFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
-    add_permission: typing.Optional[list[SingletonFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[SingletonFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_dependency: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddDependencyParams]] = pydantic.Field(None, description='Using node.addDependency() does not work on this method as the underlying lambda function is modeled as a singleton across the stack. Use this method instead to declare dependencies.')
+    add_environment: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
+    add_event_source: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_layers: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.SingletonFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    configure_async_invoke: typing.Optional[list[SingletonFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[SingletonFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    depend_on: typing.Optional[list[SingletonFunctionDefDependOnParams]] = pydantic.Field(None, description='The SingletonFunction construct cannot be added as a dependency of another construct using node.addDependency(). Use this method instead to declare this as a dependency of another construct.')
-    grant_invoke: typing.Optional[list[SingletonFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[SingletonFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[SingletonFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[SingletonFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[SingletonFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[SingletonFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[SingletonFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[SingletonFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.SingletonFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[list[models.aws_lambda.SingletonFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    depend_on: typing.Optional[list[models.aws_lambda.SingletonFunctionDefDependOnParams]] = pydantic.Field(None, description='The SingletonFunction construct cannot be added as a dependency of another construct using node.addDependency(). Use this method instead to declare this as a dependency of another construct.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.SingletonFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.SingletonFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.SingletonFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models.aws_lambda.SingletonFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.SingletonFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.SingletonFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.SingletonFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.SingletonFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
@@ -3033,29 +3019,29 @@ class VersionDef(BaseConstruct):
     ...
 
 
-    from_version_arn: typing.Optional[VersionDefFromVersionArnParams] = pydantic.Field(None, description='Construct a Version object from a Version ARN.')
-    from_version_attributes: typing.Optional[VersionDefFromVersionAttributesParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[VersionDefConfig] = pydantic.Field(None)
+    from_version_arn: typing.Optional[models.aws_lambda.VersionDefFromVersionArnParams] = pydantic.Field(None, description='Construct a Version object from a Version ARN.')
+    from_version_attributes: typing.Optional[models.aws_lambda.VersionDefFromVersionAttributesParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_lambda.VersionDefConfig] = pydantic.Field(None)
 
 
 class VersionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[VersionDefAddAliasParams]] = pydantic.Field(None, description='(deprecated) Defines an alias for this version.')
-    add_event_source: typing.Optional[list[VersionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[VersionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[VersionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[VersionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[VersionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_alias: typing.Optional[list[models.aws_lambda.VersionDefAddAliasParams]] = pydantic.Field(None, description='(deprecated) Defines an alias for this version.')
+    add_event_source: typing.Optional[list[models.aws_lambda.VersionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda.VersionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda.VersionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda.VersionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda.VersionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    configure_async_invoke: typing.Optional[list[VersionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[VersionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[VersionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[VersionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[VersionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[VersionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[VersionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[VersionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[VersionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[VersionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    configure_async_invoke: typing.Optional[list[models.aws_lambda.VersionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[bool] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda.VersionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda.VersionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda.VersionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models.aws_lambda.VersionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda.VersionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda.VersionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda.VersionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda.VersionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
@@ -3135,11 +3121,6 @@ class VersionDefConfigureAsyncInvokeParams(pydantic.BaseModel):
     on_failure: typing.Optional[typing.Union[models.aws_lambda_destinations.EventBridgeDestinationDef, models.aws_lambda_destinations.LambdaDestinationDef, models.aws_lambda_destinations.SnsDestinationDef, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None, description='The destination for failed invocations. Default: - no destination\n')
     on_success: typing.Optional[typing.Union[models.aws_lambda_destinations.EventBridgeDestinationDef, models.aws_lambda_destinations.LambdaDestinationDef, models.aws_lambda_destinations.SnsDestinationDef, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None, description='The destination for successful invocations. Default: - no destination\n')
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Minimum: 0 Maximum: 2 Default: 2')
-    ...
-
-class VersionDefConsiderWarningOnInvokeFunctionPermissionsParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _action: str = pydantic.Field(..., description='-')
     ...
 
 class VersionDefFromVersionArnParams(pydantic.BaseModel):
@@ -3297,7 +3278,7 @@ class AliasPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AliasPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.AliasPropsDefConfig] = pydantic.Field(None)
 
 
 class AliasPropsDefConfig(pydantic.BaseModel):
@@ -4237,7 +4218,7 @@ class FunctionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FunctionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.FunctionPropsDefConfig] = pydantic.Field(None)
 
 
 class FunctionPropsDefConfig(pydantic.BaseModel):
@@ -4371,7 +4352,7 @@ class LayerVersionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LayerVersionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.LayerVersionPropsDefConfig] = pydantic.Field(None)
 
 
 class LayerVersionPropsDefConfig(pydantic.BaseModel):
@@ -4430,7 +4411,7 @@ class PermissionDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[PermissionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.PermissionDefConfig] = pydantic.Field(None)
 
 
 class PermissionDefConfig(pydantic.BaseModel):
@@ -4504,7 +4485,7 @@ class SingletonFunctionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SingletonFunctionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.SingletonFunctionPropsDefConfig] = pydantic.Field(None)
 
 
 class SingletonFunctionPropsDefConfig(pydantic.BaseModel):
@@ -4555,7 +4536,7 @@ class VersionAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VersionAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.VersionAttributesDefConfig] = pydantic.Field(None)
 
 
 class VersionAttributesDefConfig(pydantic.BaseModel):
@@ -4601,7 +4582,7 @@ class VersionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VersionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.VersionPropsDefConfig] = pydantic.Field(None)
 
 
 class VersionPropsDefConfig(pydantic.BaseModel):
@@ -4620,7 +4601,7 @@ class VersionWeightDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VersionWeightDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.VersionWeightDefConfig] = pydantic.Field(None)
 
 
 class VersionWeightDefConfig(pydantic.BaseModel):
@@ -4709,29 +4690,29 @@ class CfnAliasDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAliasDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnAliasDefConfig] = pydantic.Field(None)
 
 
 class CfnAliasDefConfig(pydantic.BaseModel):
-    AliasRoutingConfigurationProperty: typing.Optional[list[CfnAliasDefAliasroutingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ProvisionedConcurrencyConfigurationProperty: typing.Optional[list[CfnAliasDefProvisionedconcurrencyconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    VersionWeightProperty: typing.Optional[list[CfnAliasDefVersionweightpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAliasDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAliasDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAliasDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAliasDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAliasDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAliasDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAliasDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AliasRoutingConfigurationProperty: typing.Optional[list[models.aws_lambda.CfnAliasDefAliasroutingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ProvisionedConcurrencyConfigurationProperty: typing.Optional[list[models.aws_lambda.CfnAliasDefProvisionedconcurrencyconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    VersionWeightProperty: typing.Optional[list[models.aws_lambda.CfnAliasDefVersionweightpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnAliasDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnAliasDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnAliasDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnAliasDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnAliasDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnAliasDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnAliasDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAliasDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAliasDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAliasDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnAliasDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnAliasDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnAliasDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAliasDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAliasDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAliasDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnAliasDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnAliasDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnAliasDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAliasDefAliasroutingconfigurationpropertyParams(pydantic.BaseModel):
     additional_version_weights: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_lambda.CfnAlias_VersionWeightPropertyDef, dict[str, typing.Any]]]] = pydantic.Field(..., description='')
@@ -4824,28 +4805,28 @@ class CfnCodeSigningConfigDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCodeSigningConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnCodeSigningConfigDefConfig] = pydantic.Field(None)
 
 
 class CfnCodeSigningConfigDefConfig(pydantic.BaseModel):
-    AllowedPublishersProperty: typing.Optional[list[CfnCodeSigningConfigDefAllowedpublisherspropertyParams]] = pydantic.Field(None, description='')
-    CodeSigningPoliciesProperty: typing.Optional[list[CfnCodeSigningConfigDefCodesigningpoliciespropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCodeSigningConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCodeSigningConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCodeSigningConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCodeSigningConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCodeSigningConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCodeSigningConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCodeSigningConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AllowedPublishersProperty: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAllowedpublisherspropertyParams]] = pydantic.Field(None, description='')
+    CodeSigningPoliciesProperty: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefCodesigningpoliciespropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCodeSigningConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCodeSigningConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCodeSigningConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCodeSigningConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCodeSigningConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCodeSigningConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnCodeSigningConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnCodeSigningConfigDefAllowedpublisherspropertyParams(pydantic.BaseModel):
     signing_profile_version_arns: typing.Sequence[str] = pydantic.Field(..., description='')
@@ -4935,29 +4916,29 @@ class CfnEventInvokeConfigDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnEventInvokeConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnEventInvokeConfigDefConfig] = pydantic.Field(None)
 
 
 class CfnEventInvokeConfigDefConfig(pydantic.BaseModel):
-    DestinationConfigProperty: typing.Optional[list[CfnEventInvokeConfigDefDestinationconfigpropertyParams]] = pydantic.Field(None, description='')
-    OnFailureProperty: typing.Optional[list[CfnEventInvokeConfigDefOnfailurepropertyParams]] = pydantic.Field(None, description='')
-    OnSuccessProperty: typing.Optional[list[CfnEventInvokeConfigDefOnsuccesspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnEventInvokeConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnEventInvokeConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnEventInvokeConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnEventInvokeConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnEventInvokeConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnEventInvokeConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnEventInvokeConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DestinationConfigProperty: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefDestinationconfigpropertyParams]] = pydantic.Field(None, description='')
+    OnFailureProperty: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefOnfailurepropertyParams]] = pydantic.Field(None, description='')
+    OnSuccessProperty: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefOnsuccesspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnEventInvokeConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnEventInvokeConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnEventInvokeConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnEventInvokeConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnEventInvokeConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnEventInvokeConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnEventInvokeConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnEventInvokeConfigDefDestinationconfigpropertyParams(pydantic.BaseModel):
     on_failure: typing.Union[models.UnsupportedResource, models.aws_lambda.CfnEventInvokeConfig_OnFailurePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
@@ -5070,37 +5051,37 @@ class CfnEventSourceMappingDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnEventSourceMappingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnEventSourceMappingDefConfig] = pydantic.Field(None)
 
 
 class CfnEventSourceMappingDefConfig(pydantic.BaseModel):
-    AmazonManagedKafkaEventSourceConfigProperty: typing.Optional[list[CfnEventSourceMappingDefAmazonmanagedkafkaeventsourceconfigpropertyParams]] = pydantic.Field(None, description='')
-    DestinationConfigProperty: typing.Optional[list[CfnEventSourceMappingDefDestinationconfigpropertyParams]] = pydantic.Field(None, description='')
-    DocumentDBEventSourceConfigProperty: typing.Optional[list[CfnEventSourceMappingDefDocumentdbeventsourceconfigpropertyParams]] = pydantic.Field(None, description='')
-    EndpointsProperty: typing.Optional[list[CfnEventSourceMappingDefEndpointspropertyParams]] = pydantic.Field(None, description='')
-    FilterCriteriaProperty: typing.Optional[list[CfnEventSourceMappingDefFiltercriteriapropertyParams]] = pydantic.Field(None, description='')
-    FilterProperty: typing.Optional[list[CfnEventSourceMappingDefFilterpropertyParams]] = pydantic.Field(None, description='')
-    OnFailureProperty: typing.Optional[list[CfnEventSourceMappingDefOnfailurepropertyParams]] = pydantic.Field(None, description='')
-    ScalingConfigProperty: typing.Optional[list[CfnEventSourceMappingDefScalingconfigpropertyParams]] = pydantic.Field(None, description='')
-    SelfManagedEventSourceProperty: typing.Optional[list[CfnEventSourceMappingDefSelfmanagedeventsourcepropertyParams]] = pydantic.Field(None, description='')
-    SelfManagedKafkaEventSourceConfigProperty: typing.Optional[list[CfnEventSourceMappingDefSelfmanagedkafkaeventsourceconfigpropertyParams]] = pydantic.Field(None, description='')
-    SourceAccessConfigurationProperty: typing.Optional[list[CfnEventSourceMappingDefSourceaccessconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnEventSourceMappingDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnEventSourceMappingDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnEventSourceMappingDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnEventSourceMappingDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnEventSourceMappingDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnEventSourceMappingDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnEventSourceMappingDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AmazonManagedKafkaEventSourceConfigProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAmazonmanagedkafkaeventsourceconfigpropertyParams]] = pydantic.Field(None, description='')
+    DestinationConfigProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefDestinationconfigpropertyParams]] = pydantic.Field(None, description='')
+    DocumentDBEventSourceConfigProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefDocumentdbeventsourceconfigpropertyParams]] = pydantic.Field(None, description='')
+    EndpointsProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefEndpointspropertyParams]] = pydantic.Field(None, description='')
+    FilterCriteriaProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefFiltercriteriapropertyParams]] = pydantic.Field(None, description='')
+    FilterProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefFilterpropertyParams]] = pydantic.Field(None, description='')
+    OnFailureProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefOnfailurepropertyParams]] = pydantic.Field(None, description='')
+    ScalingConfigProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefScalingconfigpropertyParams]] = pydantic.Field(None, description='')
+    SelfManagedEventSourceProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefSelfmanagedeventsourcepropertyParams]] = pydantic.Field(None, description='')
+    SelfManagedKafkaEventSourceConfigProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefSelfmanagedkafkaeventsourceconfigpropertyParams]] = pydantic.Field(None, description='')
+    SourceAccessConfigurationProperty: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefSourceaccessconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnEventSourceMappingDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnEventSourceMappingDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnEventSourceMappingDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnEventSourceMappingDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnEventSourceMappingDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnEventSourceMappingDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnEventSourceMappingDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnEventSourceMappingDefAmazonmanagedkafkaeventsourceconfigpropertyParams(pydantic.BaseModel):
     consumer_group_id: typing.Optional[str] = pydantic.Field(None, description='')
@@ -5249,37 +5230,37 @@ class CfnFunctionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnFunctionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnFunctionDefConfig] = pydantic.Field(None)
 
 
 class CfnFunctionDefConfig(pydantic.BaseModel):
-    CodeProperty: typing.Optional[list[CfnFunctionDefCodepropertyParams]] = pydantic.Field(None, description='')
-    DeadLetterConfigProperty: typing.Optional[list[CfnFunctionDefDeadletterconfigpropertyParams]] = pydantic.Field(None, description='')
-    EnvironmentProperty: typing.Optional[list[CfnFunctionDefEnvironmentpropertyParams]] = pydantic.Field(None, description='')
-    EphemeralStorageProperty: typing.Optional[list[CfnFunctionDefEphemeralstoragepropertyParams]] = pydantic.Field(None, description='')
-    FileSystemConfigProperty: typing.Optional[list[CfnFunctionDefFilesystemconfigpropertyParams]] = pydantic.Field(None, description='')
-    ImageConfigProperty: typing.Optional[list[CfnFunctionDefImageconfigpropertyParams]] = pydantic.Field(None, description='')
-    RuntimeManagementConfigProperty: typing.Optional[list[CfnFunctionDefRuntimemanagementconfigpropertyParams]] = pydantic.Field(None, description='')
-    SnapStartProperty: typing.Optional[list[CfnFunctionDefSnapstartpropertyParams]] = pydantic.Field(None, description='')
-    SnapStartResponseProperty: typing.Optional[list[CfnFunctionDefSnapstartresponsepropertyParams]] = pydantic.Field(None, description='')
-    TracingConfigProperty: typing.Optional[list[CfnFunctionDefTracingconfigpropertyParams]] = pydantic.Field(None, description='')
-    VpcConfigProperty: typing.Optional[list[CfnFunctionDefVpcconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnFunctionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnFunctionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnFunctionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnFunctionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnFunctionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnFunctionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnFunctionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CodeProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefCodepropertyParams]] = pydantic.Field(None, description='')
+    DeadLetterConfigProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefDeadletterconfigpropertyParams]] = pydantic.Field(None, description='')
+    EnvironmentProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefEnvironmentpropertyParams]] = pydantic.Field(None, description='')
+    EphemeralStorageProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefEphemeralstoragepropertyParams]] = pydantic.Field(None, description='')
+    FileSystemConfigProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefFilesystemconfigpropertyParams]] = pydantic.Field(None, description='')
+    ImageConfigProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefImageconfigpropertyParams]] = pydantic.Field(None, description='')
+    RuntimeManagementConfigProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefRuntimemanagementconfigpropertyParams]] = pydantic.Field(None, description='')
+    SnapStartProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefSnapstartpropertyParams]] = pydantic.Field(None, description='')
+    SnapStartResponseProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefSnapstartresponsepropertyParams]] = pydantic.Field(None, description='')
+    TracingConfigProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefTracingconfigpropertyParams]] = pydantic.Field(None, description='')
+    VpcConfigProperty: typing.Optional[list[models.aws_lambda.CfnFunctionDefVpcconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnFunctionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnFunctionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnFunctionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnFunctionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnFunctionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnFunctionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnFunctionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnFunctionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnFunctionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnFunctionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnFunctionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnFunctionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnFunctionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_snap_start_response_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
@@ -5419,27 +5400,27 @@ class CfnLayerVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLayerVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnLayerVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnLayerVersionDefConfig(pydantic.BaseModel):
-    ContentProperty: typing.Optional[list[CfnLayerVersionDefContentpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnLayerVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLayerVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLayerVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLayerVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLayerVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLayerVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLayerVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ContentProperty: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefContentpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLayerVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLayerVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLayerVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLayerVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLayerVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLayerVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnLayerVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnLayerVersionDefContentpropertyParams(pydantic.BaseModel):
     s3_bucket: str = pydantic.Field(..., description='')
@@ -5526,26 +5507,26 @@ class CfnLayerVersionPermissionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLayerVersionPermissionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnLayerVersionPermissionDefConfig] = pydantic.Field(None)
 
 
 class CfnLayerVersionPermissionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnLayerVersionPermissionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLayerVersionPermissionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLayerVersionPermissionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLayerVersionPermissionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLayerVersionPermissionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLayerVersionPermissionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLayerVersionPermissionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLayerVersionPermissionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLayerVersionPermissionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLayerVersionPermissionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLayerVersionPermissionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLayerVersionPermissionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLayerVersionPermissionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnLayerVersionPermissionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnLayerVersionPermissionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5630,26 +5611,26 @@ class CfnPermissionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPermissionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnPermissionDefConfig] = pydantic.Field(None)
 
 
 class CfnPermissionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnPermissionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPermissionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPermissionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPermissionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPermissionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPermissionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPermissionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnPermissionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPermissionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPermissionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPermissionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnPermissionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnPermissionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnPermissionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPermissionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPermissionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPermissionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnPermissionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnPermissionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnPermissionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPermissionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5731,27 +5712,27 @@ class CfnUrlDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUrlDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnUrlDefConfig] = pydantic.Field(None)
 
 
 class CfnUrlDefConfig(pydantic.BaseModel):
-    CorsProperty: typing.Optional[list[CfnUrlDefCorspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUrlDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUrlDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUrlDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUrlDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUrlDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUrlDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUrlDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CorsProperty: typing.Optional[list[models.aws_lambda.CfnUrlDefCorspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnUrlDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnUrlDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnUrlDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnUrlDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnUrlDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnUrlDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnUrlDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUrlDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUrlDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUrlDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnUrlDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnUrlDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnUrlDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUrlDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUrlDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUrlDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnUrlDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnUrlDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnUrlDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUrlDefCorspropertyParams(pydantic.BaseModel):
     allow_credentials: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='')
@@ -5842,28 +5823,28 @@ class CfnVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda.CfnVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnVersionDefConfig(pydantic.BaseModel):
-    ProvisionedConcurrencyConfigurationProperty: typing.Optional[list[CfnVersionDefProvisionedconcurrencyconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    RuntimePolicyProperty: typing.Optional[list[CfnVersionDefRuntimepolicypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ProvisionedConcurrencyConfigurationProperty: typing.Optional[list[models.aws_lambda.CfnVersionDefProvisionedconcurrencyconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    RuntimePolicyProperty: typing.Optional[list[models.aws_lambda.CfnVersionDefRuntimepolicypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_lambda.CfnVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_lambda.CfnVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_lambda.CfnVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_lambda.CfnVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_lambda.CfnVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_lambda.CfnVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_lambda.CfnVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_lambda.CfnVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_lambda.CfnVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_lambda.CfnVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_lambda.CfnVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_lambda.CfnVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_lambda.CfnVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnVersionDefProvisionedconcurrencyconfigurationpropertyParams(pydantic.BaseModel):
     provisioned_concurrent_executions: typing.Union[int, float] = pydantic.Field(..., description='')
@@ -6163,143 +6144,143 @@ class CfnVersionPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AdotLambdaLayerGenericVersion: typing.Optional[dict[str, AdotLambdaLayerGenericVersionDef]] = pydantic.Field(None)
-    AdotLambdaLayerJavaAutoInstrumentationVersion: typing.Optional[dict[str, AdotLambdaLayerJavaAutoInstrumentationVersionDef]] = pydantic.Field(None)
-    AdotLambdaLayerJavaScriptSdkVersion: typing.Optional[dict[str, AdotLambdaLayerJavaScriptSdkVersionDef]] = pydantic.Field(None)
-    AdotLambdaLayerJavaSdkVersion: typing.Optional[dict[str, AdotLambdaLayerJavaSdkVersionDef]] = pydantic.Field(None)
-    AdotLambdaLayerPythonSdkVersion: typing.Optional[dict[str, AdotLambdaLayerPythonSdkVersionDef]] = pydantic.Field(None)
-    AdotLayerVersion: typing.Optional[dict[str, AdotLayerVersionDef]] = pydantic.Field(None)
-    Architecture: typing.Optional[dict[str, ArchitectureDef]] = pydantic.Field(None)
-    AssetCode: typing.Optional[dict[str, AssetCodeDef]] = pydantic.Field(None)
-    AssetImageCode: typing.Optional[dict[str, AssetImageCodeDef]] = pydantic.Field(None)
-    CfnParametersCode: typing.Optional[dict[str, CfnParametersCodeDef]] = pydantic.Field(None)
-    Code: typing.Optional[dict[str, CodeDef]] = pydantic.Field(None)
-    DockerImageCode: typing.Optional[dict[str, DockerImageCodeDef]] = pydantic.Field(None)
-    EcrImageCode: typing.Optional[dict[str, EcrImageCodeDef]] = pydantic.Field(None)
-    FileSystem: typing.Optional[dict[str, FileSystemDef]] = pydantic.Field(None)
-    FilterCriteria: typing.Optional[dict[str, FilterCriteriaDef]] = pydantic.Field(None)
-    FilterRule: typing.Optional[dict[str, FilterRuleDef]] = pydantic.Field(None)
-    FunctionBase: typing.Optional[dict[str, FunctionBaseDef]] = pydantic.Field(None)
-    FunctionVersionUpgrade: typing.Optional[dict[str, FunctionVersionUpgradeDef]] = pydantic.Field(None)
-    Handler: typing.Optional[dict[str, HandlerDef]] = pydantic.Field(None)
-    InlineCode: typing.Optional[dict[str, InlineCodeDef]] = pydantic.Field(None)
-    LambdaInsightsVersion: typing.Optional[dict[str, LambdaInsightsVersionDef]] = pydantic.Field(None)
-    ParamsAndSecretsLayerVersion: typing.Optional[dict[str, ParamsAndSecretsLayerVersionDef]] = pydantic.Field(None)
-    QualifiedFunctionBase: typing.Optional[dict[str, QualifiedFunctionBaseDef]] = pydantic.Field(None)
-    Runtime: typing.Optional[dict[str, RuntimeDef]] = pydantic.Field(None)
-    RuntimeManagementMode: typing.Optional[dict[str, RuntimeManagementModeDef]] = pydantic.Field(None)
-    S3Code: typing.Optional[dict[str, S3CodeDef]] = pydantic.Field(None)
-    SnapStartConf: typing.Optional[dict[str, SnapStartConfDef]] = pydantic.Field(None)
-    SourceAccessConfigurationType: typing.Optional[dict[str, SourceAccessConfigurationTypeDef]] = pydantic.Field(None)
-    Alias: typing.Optional[dict[str, AliasDef]] = pydantic.Field(None)
-    CodeSigningConfig: typing.Optional[dict[str, CodeSigningConfigDef]] = pydantic.Field(None)
-    DockerImageFunction: typing.Optional[dict[str, DockerImageFunctionDef]] = pydantic.Field(None)
-    EventInvokeConfig: typing.Optional[dict[str, EventInvokeConfigDef]] = pydantic.Field(None)
-    EventSourceMapping: typing.Optional[dict[str, EventSourceMappingDef]] = pydantic.Field(None)
-    Function: typing.Optional[dict[str, FunctionDef]] = pydantic.Field(None)
-    FunctionUrl: typing.Optional[dict[str, FunctionUrlDef]] = pydantic.Field(None)
-    LayerVersion: typing.Optional[dict[str, LayerVersionDef]] = pydantic.Field(None)
-    SingletonFunction: typing.Optional[dict[str, SingletonFunctionDef]] = pydantic.Field(None)
-    Version: typing.Optional[dict[str, VersionDef]] = pydantic.Field(None)
-    AdotInstrumentationConfig: typing.Optional[dict[str, AdotInstrumentationConfigDef]] = pydantic.Field(None)
-    AliasAttributes: typing.Optional[dict[str, AliasAttributesDef]] = pydantic.Field(None)
-    AliasOptions: typing.Optional[dict[str, AliasOptionsDef]] = pydantic.Field(None)
-    AliasProps: typing.Optional[dict[str, AliasPropsDef]] = pydantic.Field(None)
-    AssetImageCodeProps: typing.Optional[dict[str, AssetImageCodePropsDef]] = pydantic.Field(None)
-    AutoScalingOptions: typing.Optional[dict[str, AutoScalingOptionsDef]] = pydantic.Field(None)
-    CfnAlias_AliasRoutingConfigurationProperty: typing.Optional[dict[str, CfnAlias_AliasRoutingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnAlias_ProvisionedConcurrencyConfigurationProperty: typing.Optional[dict[str, CfnAlias_ProvisionedConcurrencyConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnAlias_VersionWeightProperty: typing.Optional[dict[str, CfnAlias_VersionWeightPropertyDef]] = pydantic.Field(None)
-    CfnCodeSigningConfig_AllowedPublishersProperty: typing.Optional[dict[str, CfnCodeSigningConfig_AllowedPublishersPropertyDef]] = pydantic.Field(None)
-    CfnCodeSigningConfig_CodeSigningPoliciesProperty: typing.Optional[dict[str, CfnCodeSigningConfig_CodeSigningPoliciesPropertyDef]] = pydantic.Field(None)
-    CfnEventInvokeConfig_DestinationConfigProperty: typing.Optional[dict[str, CfnEventInvokeConfig_DestinationConfigPropertyDef]] = pydantic.Field(None)
-    CfnEventInvokeConfig_OnFailureProperty: typing.Optional[dict[str, CfnEventInvokeConfig_OnFailurePropertyDef]] = pydantic.Field(None)
-    CfnEventInvokeConfig_OnSuccessProperty: typing.Optional[dict[str, CfnEventInvokeConfig_OnSuccessPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_AmazonManagedKafkaEventSourceConfigProperty: typing.Optional[dict[str, CfnEventSourceMapping_AmazonManagedKafkaEventSourceConfigPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_DestinationConfigProperty: typing.Optional[dict[str, CfnEventSourceMapping_DestinationConfigPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_DocumentDBEventSourceConfigProperty: typing.Optional[dict[str, CfnEventSourceMapping_DocumentDBEventSourceConfigPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_EndpointsProperty: typing.Optional[dict[str, CfnEventSourceMapping_EndpointsPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_FilterCriteriaProperty: typing.Optional[dict[str, CfnEventSourceMapping_FilterCriteriaPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_FilterProperty: typing.Optional[dict[str, CfnEventSourceMapping_FilterPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_OnFailureProperty: typing.Optional[dict[str, CfnEventSourceMapping_OnFailurePropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_ScalingConfigProperty: typing.Optional[dict[str, CfnEventSourceMapping_ScalingConfigPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_SelfManagedEventSourceProperty: typing.Optional[dict[str, CfnEventSourceMapping_SelfManagedEventSourcePropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_SelfManagedKafkaEventSourceConfigProperty: typing.Optional[dict[str, CfnEventSourceMapping_SelfManagedKafkaEventSourceConfigPropertyDef]] = pydantic.Field(None)
-    CfnEventSourceMapping_SourceAccessConfigurationProperty: typing.Optional[dict[str, CfnEventSourceMapping_SourceAccessConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnFunction_CodeProperty: typing.Optional[dict[str, CfnFunction_CodePropertyDef]] = pydantic.Field(None)
-    CfnFunction_DeadLetterConfigProperty: typing.Optional[dict[str, CfnFunction_DeadLetterConfigPropertyDef]] = pydantic.Field(None)
-    CfnFunction_EnvironmentProperty: typing.Optional[dict[str, CfnFunction_EnvironmentPropertyDef]] = pydantic.Field(None)
-    CfnFunction_EphemeralStorageProperty: typing.Optional[dict[str, CfnFunction_EphemeralStoragePropertyDef]] = pydantic.Field(None)
-    CfnFunction_FileSystemConfigProperty: typing.Optional[dict[str, CfnFunction_FileSystemConfigPropertyDef]] = pydantic.Field(None)
-    CfnFunction_ImageConfigProperty: typing.Optional[dict[str, CfnFunction_ImageConfigPropertyDef]] = pydantic.Field(None)
-    CfnFunction_RuntimeManagementConfigProperty: typing.Optional[dict[str, CfnFunction_RuntimeManagementConfigPropertyDef]] = pydantic.Field(None)
-    CfnFunction_SnapStartProperty: typing.Optional[dict[str, CfnFunction_SnapStartPropertyDef]] = pydantic.Field(None)
-    CfnFunction_SnapStartResponseProperty: typing.Optional[dict[str, CfnFunction_SnapStartResponsePropertyDef]] = pydantic.Field(None)
-    CfnFunction_TracingConfigProperty: typing.Optional[dict[str, CfnFunction_TracingConfigPropertyDef]] = pydantic.Field(None)
-    CfnFunction_VpcConfigProperty: typing.Optional[dict[str, CfnFunction_VpcConfigPropertyDef]] = pydantic.Field(None)
-    CfnLayerVersion_ContentProperty: typing.Optional[dict[str, CfnLayerVersion_ContentPropertyDef]] = pydantic.Field(None)
-    CfnUrl_CorsProperty: typing.Optional[dict[str, CfnUrl_CorsPropertyDef]] = pydantic.Field(None)
-    CfnVersion_ProvisionedConcurrencyConfigurationProperty: typing.Optional[dict[str, CfnVersion_ProvisionedConcurrencyConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnVersion_RuntimePolicyProperty: typing.Optional[dict[str, CfnVersion_RuntimePolicyPropertyDef]] = pydantic.Field(None)
-    CodeConfig: typing.Optional[dict[str, CodeConfigDef]] = pydantic.Field(None)
-    CodeImageConfig: typing.Optional[dict[str, CodeImageConfigDef]] = pydantic.Field(None)
-    CodeSigningConfigProps: typing.Optional[dict[str, CodeSigningConfigPropsDef]] = pydantic.Field(None)
-    DestinationConfig: typing.Optional[dict[str, DestinationConfigDef]] = pydantic.Field(None)
-    DestinationOptions: typing.Optional[dict[str, DestinationOptionsDef]] = pydantic.Field(None)
-    DlqDestinationConfig: typing.Optional[dict[str, DlqDestinationConfigDef]] = pydantic.Field(None)
-    DockerBuildAssetOptions: typing.Optional[dict[str, DockerBuildAssetOptionsDef]] = pydantic.Field(None)
-    DockerImageFunctionProps: typing.Optional[dict[str, DockerImageFunctionPropsDef]] = pydantic.Field(None)
-    EcrImageCodeProps: typing.Optional[dict[str, EcrImageCodePropsDef]] = pydantic.Field(None)
-    EnvironmentOptions: typing.Optional[dict[str, EnvironmentOptionsDef]] = pydantic.Field(None)
-    EventInvokeConfigOptions: typing.Optional[dict[str, EventInvokeConfigOptionsDef]] = pydantic.Field(None)
-    EventInvokeConfigProps: typing.Optional[dict[str, EventInvokeConfigPropsDef]] = pydantic.Field(None)
-    EventSourceMappingOptions: typing.Optional[dict[str, EventSourceMappingOptionsDef]] = pydantic.Field(None)
-    EventSourceMappingProps: typing.Optional[dict[str, EventSourceMappingPropsDef]] = pydantic.Field(None)
-    FileSystemConfig: typing.Optional[dict[str, FileSystemConfigDef]] = pydantic.Field(None)
-    FunctionAttributes: typing.Optional[dict[str, FunctionAttributesDef]] = pydantic.Field(None)
-    FunctionOptions: typing.Optional[dict[str, FunctionOptionsDef]] = pydantic.Field(None)
-    FunctionProps: typing.Optional[dict[str, FunctionPropsDef]] = pydantic.Field(None)
-    FunctionUrlCorsOptions: typing.Optional[dict[str, FunctionUrlCorsOptionsDef]] = pydantic.Field(None)
-    FunctionUrlOptions: typing.Optional[dict[str, FunctionUrlOptionsDef]] = pydantic.Field(None)
-    FunctionUrlProps: typing.Optional[dict[str, FunctionUrlPropsDef]] = pydantic.Field(None)
-    LambdaRuntimeProps: typing.Optional[dict[str, LambdaRuntimePropsDef]] = pydantic.Field(None)
-    LayerVersionAttributes: typing.Optional[dict[str, LayerVersionAttributesDef]] = pydantic.Field(None)
-    LayerVersionOptions: typing.Optional[dict[str, LayerVersionOptionsDef]] = pydantic.Field(None)
-    LayerVersionPermission: typing.Optional[dict[str, LayerVersionPermissionDef]] = pydantic.Field(None)
-    LayerVersionProps: typing.Optional[dict[str, LayerVersionPropsDef]] = pydantic.Field(None)
-    LogRetentionRetryOptions: typing.Optional[dict[str, LogRetentionRetryOptionsDef]] = pydantic.Field(None)
-    ParamsAndSecretsOptions: typing.Optional[dict[str, ParamsAndSecretsOptionsDef]] = pydantic.Field(None)
-    Permission: typing.Optional[dict[str, PermissionDef]] = pydantic.Field(None)
-    ResourceBindOptions: typing.Optional[dict[str, ResourceBindOptionsDef]] = pydantic.Field(None)
-    SingletonFunctionProps: typing.Optional[dict[str, SingletonFunctionPropsDef]] = pydantic.Field(None)
-    SourceAccessConfiguration: typing.Optional[dict[str, SourceAccessConfigurationDef]] = pydantic.Field(None)
-    UtilizationScalingOptions: typing.Optional[dict[str, UtilizationScalingOptionsDef]] = pydantic.Field(None)
-    VersionAttributes: typing.Optional[dict[str, VersionAttributesDef]] = pydantic.Field(None)
-    VersionOptions: typing.Optional[dict[str, VersionOptionsDef]] = pydantic.Field(None)
-    VersionProps: typing.Optional[dict[str, VersionPropsDef]] = pydantic.Field(None)
-    VersionWeight: typing.Optional[dict[str, VersionWeightDef]] = pydantic.Field(None)
-    CfnAlias: typing.Optional[dict[str, CfnAliasDef]] = pydantic.Field(None)
-    CfnCodeSigningConfig: typing.Optional[dict[str, CfnCodeSigningConfigDef]] = pydantic.Field(None)
-    CfnEventInvokeConfig: typing.Optional[dict[str, CfnEventInvokeConfigDef]] = pydantic.Field(None)
-    CfnEventSourceMapping: typing.Optional[dict[str, CfnEventSourceMappingDef]] = pydantic.Field(None)
-    CfnFunction: typing.Optional[dict[str, CfnFunctionDef]] = pydantic.Field(None)
-    CfnLayerVersion: typing.Optional[dict[str, CfnLayerVersionDef]] = pydantic.Field(None)
-    CfnLayerVersionPermission: typing.Optional[dict[str, CfnLayerVersionPermissionDef]] = pydantic.Field(None)
-    CfnPermission: typing.Optional[dict[str, CfnPermissionDef]] = pydantic.Field(None)
-    CfnUrl: typing.Optional[dict[str, CfnUrlDef]] = pydantic.Field(None)
-    CfnVersion: typing.Optional[dict[str, CfnVersionDef]] = pydantic.Field(None)
-    CfnAliasProps: typing.Optional[dict[str, CfnAliasPropsDef]] = pydantic.Field(None)
-    CfnCodeSigningConfigProps: typing.Optional[dict[str, CfnCodeSigningConfigPropsDef]] = pydantic.Field(None)
-    CfnEventInvokeConfigProps: typing.Optional[dict[str, CfnEventInvokeConfigPropsDef]] = pydantic.Field(None)
-    CfnEventSourceMappingProps: typing.Optional[dict[str, CfnEventSourceMappingPropsDef]] = pydantic.Field(None)
-    CfnFunctionProps: typing.Optional[dict[str, CfnFunctionPropsDef]] = pydantic.Field(None)
-    CfnLayerVersionPermissionProps: typing.Optional[dict[str, CfnLayerVersionPermissionPropsDef]] = pydantic.Field(None)
-    CfnLayerVersionProps: typing.Optional[dict[str, CfnLayerVersionPropsDef]] = pydantic.Field(None)
-    CfnParametersCodeProps: typing.Optional[dict[str, CfnParametersCodePropsDef]] = pydantic.Field(None)
-    CfnPermissionProps: typing.Optional[dict[str, CfnPermissionPropsDef]] = pydantic.Field(None)
-    CfnUrlProps: typing.Optional[dict[str, CfnUrlPropsDef]] = pydantic.Field(None)
-    CfnVersionProps: typing.Optional[dict[str, CfnVersionPropsDef]] = pydantic.Field(None)
+    AdotLambdaLayerGenericVersion: typing.Optional[dict[str, models.aws_lambda.AdotLambdaLayerGenericVersionDef]] = pydantic.Field(None)
+    AdotLambdaLayerJavaAutoInstrumentationVersion: typing.Optional[dict[str, models.aws_lambda.AdotLambdaLayerJavaAutoInstrumentationVersionDef]] = pydantic.Field(None)
+    AdotLambdaLayerJavaScriptSdkVersion: typing.Optional[dict[str, models.aws_lambda.AdotLambdaLayerJavaScriptSdkVersionDef]] = pydantic.Field(None)
+    AdotLambdaLayerJavaSdkVersion: typing.Optional[dict[str, models.aws_lambda.AdotLambdaLayerJavaSdkVersionDef]] = pydantic.Field(None)
+    AdotLambdaLayerPythonSdkVersion: typing.Optional[dict[str, models.aws_lambda.AdotLambdaLayerPythonSdkVersionDef]] = pydantic.Field(None)
+    AdotLayerVersion: typing.Optional[dict[str, models.aws_lambda.AdotLayerVersionDef]] = pydantic.Field(None)
+    Architecture: typing.Optional[dict[str, models.aws_lambda.ArchitectureDef]] = pydantic.Field(None)
+    AssetCode: typing.Optional[dict[str, models.aws_lambda.AssetCodeDef]] = pydantic.Field(None)
+    AssetImageCode: typing.Optional[dict[str, models.aws_lambda.AssetImageCodeDef]] = pydantic.Field(None)
+    CfnParametersCode: typing.Optional[dict[str, models.aws_lambda.CfnParametersCodeDef]] = pydantic.Field(None)
+    Code: typing.Optional[dict[str, models.aws_lambda.CodeDef]] = pydantic.Field(None)
+    DockerImageCode: typing.Optional[dict[str, models.aws_lambda.DockerImageCodeDef]] = pydantic.Field(None)
+    EcrImageCode: typing.Optional[dict[str, models.aws_lambda.EcrImageCodeDef]] = pydantic.Field(None)
+    FileSystem: typing.Optional[dict[str, models.aws_lambda.FileSystemDef]] = pydantic.Field(None)
+    FilterCriteria: typing.Optional[dict[str, models.aws_lambda.FilterCriteriaDef]] = pydantic.Field(None)
+    FilterRule: typing.Optional[dict[str, models.aws_lambda.FilterRuleDef]] = pydantic.Field(None)
+    FunctionBase: typing.Optional[dict[str, models.aws_lambda.FunctionBaseDef]] = pydantic.Field(None)
+    FunctionVersionUpgrade: typing.Optional[dict[str, models.aws_lambda.FunctionVersionUpgradeDef]] = pydantic.Field(None)
+    Handler: typing.Optional[dict[str, models.aws_lambda.HandlerDef]] = pydantic.Field(None)
+    InlineCode: typing.Optional[dict[str, models.aws_lambda.InlineCodeDef]] = pydantic.Field(None)
+    LambdaInsightsVersion: typing.Optional[dict[str, models.aws_lambda.LambdaInsightsVersionDef]] = pydantic.Field(None)
+    ParamsAndSecretsLayerVersion: typing.Optional[dict[str, models.aws_lambda.ParamsAndSecretsLayerVersionDef]] = pydantic.Field(None)
+    QualifiedFunctionBase: typing.Optional[dict[str, models.aws_lambda.QualifiedFunctionBaseDef]] = pydantic.Field(None)
+    Runtime: typing.Optional[dict[str, models.aws_lambda.RuntimeDef]] = pydantic.Field(None)
+    RuntimeManagementMode: typing.Optional[dict[str, models.aws_lambda.RuntimeManagementModeDef]] = pydantic.Field(None)
+    S3Code: typing.Optional[dict[str, models.aws_lambda.S3CodeDef]] = pydantic.Field(None)
+    SnapStartConf: typing.Optional[dict[str, models.aws_lambda.SnapStartConfDef]] = pydantic.Field(None)
+    SourceAccessConfigurationType: typing.Optional[dict[str, models.aws_lambda.SourceAccessConfigurationTypeDef]] = pydantic.Field(None)
+    Alias: typing.Optional[dict[str, models.aws_lambda.AliasDef]] = pydantic.Field(None)
+    CodeSigningConfig: typing.Optional[dict[str, models.aws_lambda.CodeSigningConfigDef]] = pydantic.Field(None)
+    DockerImageFunction: typing.Optional[dict[str, models.aws_lambda.DockerImageFunctionDef]] = pydantic.Field(None)
+    EventInvokeConfig: typing.Optional[dict[str, models.aws_lambda.EventInvokeConfigDef]] = pydantic.Field(None)
+    EventSourceMapping: typing.Optional[dict[str, models.aws_lambda.EventSourceMappingDef]] = pydantic.Field(None)
+    Function: typing.Optional[dict[str, models.aws_lambda.FunctionDef]] = pydantic.Field(None)
+    FunctionUrl: typing.Optional[dict[str, models.aws_lambda.FunctionUrlDef]] = pydantic.Field(None)
+    LayerVersion: typing.Optional[dict[str, models.aws_lambda.LayerVersionDef]] = pydantic.Field(None)
+    SingletonFunction: typing.Optional[dict[str, models.aws_lambda.SingletonFunctionDef]] = pydantic.Field(None)
+    Version: typing.Optional[dict[str, models.aws_lambda.VersionDef]] = pydantic.Field(None)
+    AdotInstrumentationConfig: typing.Optional[dict[str, models.aws_lambda.AdotInstrumentationConfigDef]] = pydantic.Field(None)
+    AliasAttributes: typing.Optional[dict[str, models.aws_lambda.AliasAttributesDef]] = pydantic.Field(None)
+    AliasOptions: typing.Optional[dict[str, models.aws_lambda.AliasOptionsDef]] = pydantic.Field(None)
+    AliasProps: typing.Optional[dict[str, models.aws_lambda.AliasPropsDef]] = pydantic.Field(None)
+    AssetImageCodeProps: typing.Optional[dict[str, models.aws_lambda.AssetImageCodePropsDef]] = pydantic.Field(None)
+    AutoScalingOptions: typing.Optional[dict[str, models.aws_lambda.AutoScalingOptionsDef]] = pydantic.Field(None)
+    CfnAlias_AliasRoutingConfigurationProperty: typing.Optional[dict[str, models.aws_lambda.CfnAlias_AliasRoutingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnAlias_ProvisionedConcurrencyConfigurationProperty: typing.Optional[dict[str, models.aws_lambda.CfnAlias_ProvisionedConcurrencyConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnAlias_VersionWeightProperty: typing.Optional[dict[str, models.aws_lambda.CfnAlias_VersionWeightPropertyDef]] = pydantic.Field(None)
+    CfnCodeSigningConfig_AllowedPublishersProperty: typing.Optional[dict[str, models.aws_lambda.CfnCodeSigningConfig_AllowedPublishersPropertyDef]] = pydantic.Field(None)
+    CfnCodeSigningConfig_CodeSigningPoliciesProperty: typing.Optional[dict[str, models.aws_lambda.CfnCodeSigningConfig_CodeSigningPoliciesPropertyDef]] = pydantic.Field(None)
+    CfnEventInvokeConfig_DestinationConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventInvokeConfig_DestinationConfigPropertyDef]] = pydantic.Field(None)
+    CfnEventInvokeConfig_OnFailureProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventInvokeConfig_OnFailurePropertyDef]] = pydantic.Field(None)
+    CfnEventInvokeConfig_OnSuccessProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventInvokeConfig_OnSuccessPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_AmazonManagedKafkaEventSourceConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_AmazonManagedKafkaEventSourceConfigPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_DestinationConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_DestinationConfigPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_DocumentDBEventSourceConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_DocumentDBEventSourceConfigPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_EndpointsProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_EndpointsPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_FilterCriteriaProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_FilterCriteriaPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_FilterProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_FilterPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_OnFailureProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_OnFailurePropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_ScalingConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_ScalingConfigPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_SelfManagedEventSourceProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_SelfManagedEventSourcePropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_SelfManagedKafkaEventSourceConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_SelfManagedKafkaEventSourceConfigPropertyDef]] = pydantic.Field(None)
+    CfnEventSourceMapping_SourceAccessConfigurationProperty: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMapping_SourceAccessConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnFunction_CodeProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_CodePropertyDef]] = pydantic.Field(None)
+    CfnFunction_DeadLetterConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_DeadLetterConfigPropertyDef]] = pydantic.Field(None)
+    CfnFunction_EnvironmentProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_EnvironmentPropertyDef]] = pydantic.Field(None)
+    CfnFunction_EphemeralStorageProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_EphemeralStoragePropertyDef]] = pydantic.Field(None)
+    CfnFunction_FileSystemConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_FileSystemConfigPropertyDef]] = pydantic.Field(None)
+    CfnFunction_ImageConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_ImageConfigPropertyDef]] = pydantic.Field(None)
+    CfnFunction_RuntimeManagementConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_RuntimeManagementConfigPropertyDef]] = pydantic.Field(None)
+    CfnFunction_SnapStartProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_SnapStartPropertyDef]] = pydantic.Field(None)
+    CfnFunction_SnapStartResponseProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_SnapStartResponsePropertyDef]] = pydantic.Field(None)
+    CfnFunction_TracingConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_TracingConfigPropertyDef]] = pydantic.Field(None)
+    CfnFunction_VpcConfigProperty: typing.Optional[dict[str, models.aws_lambda.CfnFunction_VpcConfigPropertyDef]] = pydantic.Field(None)
+    CfnLayerVersion_ContentProperty: typing.Optional[dict[str, models.aws_lambda.CfnLayerVersion_ContentPropertyDef]] = pydantic.Field(None)
+    CfnUrl_CorsProperty: typing.Optional[dict[str, models.aws_lambda.CfnUrl_CorsPropertyDef]] = pydantic.Field(None)
+    CfnVersion_ProvisionedConcurrencyConfigurationProperty: typing.Optional[dict[str, models.aws_lambda.CfnVersion_ProvisionedConcurrencyConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnVersion_RuntimePolicyProperty: typing.Optional[dict[str, models.aws_lambda.CfnVersion_RuntimePolicyPropertyDef]] = pydantic.Field(None)
+    CodeConfig: typing.Optional[dict[str, models.aws_lambda.CodeConfigDef]] = pydantic.Field(None)
+    CodeImageConfig: typing.Optional[dict[str, models.aws_lambda.CodeImageConfigDef]] = pydantic.Field(None)
+    CodeSigningConfigProps: typing.Optional[dict[str, models.aws_lambda.CodeSigningConfigPropsDef]] = pydantic.Field(None)
+    DestinationConfig: typing.Optional[dict[str, models.aws_lambda.DestinationConfigDef]] = pydantic.Field(None)
+    DestinationOptions: typing.Optional[dict[str, models.aws_lambda.DestinationOptionsDef]] = pydantic.Field(None)
+    DlqDestinationConfig: typing.Optional[dict[str, models.aws_lambda.DlqDestinationConfigDef]] = pydantic.Field(None)
+    DockerBuildAssetOptions: typing.Optional[dict[str, models.aws_lambda.DockerBuildAssetOptionsDef]] = pydantic.Field(None)
+    DockerImageFunctionProps: typing.Optional[dict[str, models.aws_lambda.DockerImageFunctionPropsDef]] = pydantic.Field(None)
+    EcrImageCodeProps: typing.Optional[dict[str, models.aws_lambda.EcrImageCodePropsDef]] = pydantic.Field(None)
+    EnvironmentOptions: typing.Optional[dict[str, models.aws_lambda.EnvironmentOptionsDef]] = pydantic.Field(None)
+    EventInvokeConfigOptions: typing.Optional[dict[str, models.aws_lambda.EventInvokeConfigOptionsDef]] = pydantic.Field(None)
+    EventInvokeConfigProps: typing.Optional[dict[str, models.aws_lambda.EventInvokeConfigPropsDef]] = pydantic.Field(None)
+    EventSourceMappingOptions: typing.Optional[dict[str, models.aws_lambda.EventSourceMappingOptionsDef]] = pydantic.Field(None)
+    EventSourceMappingProps: typing.Optional[dict[str, models.aws_lambda.EventSourceMappingPropsDef]] = pydantic.Field(None)
+    FileSystemConfig: typing.Optional[dict[str, models.aws_lambda.FileSystemConfigDef]] = pydantic.Field(None)
+    FunctionAttributes: typing.Optional[dict[str, models.aws_lambda.FunctionAttributesDef]] = pydantic.Field(None)
+    FunctionOptions: typing.Optional[dict[str, models.aws_lambda.FunctionOptionsDef]] = pydantic.Field(None)
+    FunctionProps: typing.Optional[dict[str, models.aws_lambda.FunctionPropsDef]] = pydantic.Field(None)
+    FunctionUrlCorsOptions: typing.Optional[dict[str, models.aws_lambda.FunctionUrlCorsOptionsDef]] = pydantic.Field(None)
+    FunctionUrlOptions: typing.Optional[dict[str, models.aws_lambda.FunctionUrlOptionsDef]] = pydantic.Field(None)
+    FunctionUrlProps: typing.Optional[dict[str, models.aws_lambda.FunctionUrlPropsDef]] = pydantic.Field(None)
+    LambdaRuntimeProps: typing.Optional[dict[str, models.aws_lambda.LambdaRuntimePropsDef]] = pydantic.Field(None)
+    LayerVersionAttributes: typing.Optional[dict[str, models.aws_lambda.LayerVersionAttributesDef]] = pydantic.Field(None)
+    LayerVersionOptions: typing.Optional[dict[str, models.aws_lambda.LayerVersionOptionsDef]] = pydantic.Field(None)
+    LayerVersionPermission: typing.Optional[dict[str, models.aws_lambda.LayerVersionPermissionDef]] = pydantic.Field(None)
+    LayerVersionProps: typing.Optional[dict[str, models.aws_lambda.LayerVersionPropsDef]] = pydantic.Field(None)
+    LogRetentionRetryOptions: typing.Optional[dict[str, models.aws_lambda.LogRetentionRetryOptionsDef]] = pydantic.Field(None)
+    ParamsAndSecretsOptions: typing.Optional[dict[str, models.aws_lambda.ParamsAndSecretsOptionsDef]] = pydantic.Field(None)
+    Permission: typing.Optional[dict[str, models.aws_lambda.PermissionDef]] = pydantic.Field(None)
+    ResourceBindOptions: typing.Optional[dict[str, models.aws_lambda.ResourceBindOptionsDef]] = pydantic.Field(None)
+    SingletonFunctionProps: typing.Optional[dict[str, models.aws_lambda.SingletonFunctionPropsDef]] = pydantic.Field(None)
+    SourceAccessConfiguration: typing.Optional[dict[str, models.aws_lambda.SourceAccessConfigurationDef]] = pydantic.Field(None)
+    UtilizationScalingOptions: typing.Optional[dict[str, models.aws_lambda.UtilizationScalingOptionsDef]] = pydantic.Field(None)
+    VersionAttributes: typing.Optional[dict[str, models.aws_lambda.VersionAttributesDef]] = pydantic.Field(None)
+    VersionOptions: typing.Optional[dict[str, models.aws_lambda.VersionOptionsDef]] = pydantic.Field(None)
+    VersionProps: typing.Optional[dict[str, models.aws_lambda.VersionPropsDef]] = pydantic.Field(None)
+    VersionWeight: typing.Optional[dict[str, models.aws_lambda.VersionWeightDef]] = pydantic.Field(None)
+    CfnAlias: typing.Optional[dict[str, models.aws_lambda.CfnAliasDef]] = pydantic.Field(None)
+    CfnCodeSigningConfig: typing.Optional[dict[str, models.aws_lambda.CfnCodeSigningConfigDef]] = pydantic.Field(None)
+    CfnEventInvokeConfig: typing.Optional[dict[str, models.aws_lambda.CfnEventInvokeConfigDef]] = pydantic.Field(None)
+    CfnEventSourceMapping: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMappingDef]] = pydantic.Field(None)
+    CfnFunction: typing.Optional[dict[str, models.aws_lambda.CfnFunctionDef]] = pydantic.Field(None)
+    CfnLayerVersion: typing.Optional[dict[str, models.aws_lambda.CfnLayerVersionDef]] = pydantic.Field(None)
+    CfnLayerVersionPermission: typing.Optional[dict[str, models.aws_lambda.CfnLayerVersionPermissionDef]] = pydantic.Field(None)
+    CfnPermission: typing.Optional[dict[str, models.aws_lambda.CfnPermissionDef]] = pydantic.Field(None)
+    CfnUrl: typing.Optional[dict[str, models.aws_lambda.CfnUrlDef]] = pydantic.Field(None)
+    CfnVersion: typing.Optional[dict[str, models.aws_lambda.CfnVersionDef]] = pydantic.Field(None)
+    CfnAliasProps: typing.Optional[dict[str, models.aws_lambda.CfnAliasPropsDef]] = pydantic.Field(None)
+    CfnCodeSigningConfigProps: typing.Optional[dict[str, models.aws_lambda.CfnCodeSigningConfigPropsDef]] = pydantic.Field(None)
+    CfnEventInvokeConfigProps: typing.Optional[dict[str, models.aws_lambda.CfnEventInvokeConfigPropsDef]] = pydantic.Field(None)
+    CfnEventSourceMappingProps: typing.Optional[dict[str, models.aws_lambda.CfnEventSourceMappingPropsDef]] = pydantic.Field(None)
+    CfnFunctionProps: typing.Optional[dict[str, models.aws_lambda.CfnFunctionPropsDef]] = pydantic.Field(None)
+    CfnLayerVersionPermissionProps: typing.Optional[dict[str, models.aws_lambda.CfnLayerVersionPermissionPropsDef]] = pydantic.Field(None)
+    CfnLayerVersionProps: typing.Optional[dict[str, models.aws_lambda.CfnLayerVersionPropsDef]] = pydantic.Field(None)
+    CfnParametersCodeProps: typing.Optional[dict[str, models.aws_lambda.CfnParametersCodePropsDef]] = pydantic.Field(None)
+    CfnPermissionProps: typing.Optional[dict[str, models.aws_lambda.CfnPermissionPropsDef]] = pydantic.Field(None)
+    CfnUrlProps: typing.Optional[dict[str, models.aws_lambda.CfnUrlPropsDef]] = pydantic.Field(None)
+    CfnVersionProps: typing.Optional[dict[str, models.aws_lambda.CfnVersionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

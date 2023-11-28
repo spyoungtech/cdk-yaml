@@ -36,16 +36,16 @@ class HttpsRedirectPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[HttpsRedirectPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_route53_patterns.HttpsRedirectPropsDefConfig] = pydantic.Field(None)
 
 
 class HttpsRedirectPropsDefConfig(pydantic.BaseModel):
     zone_config: typing.Optional[models._interface_methods.AwsRoute53IHostedZoneDefConfig] = pydantic.Field(None)
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    HttpsRedirect: typing.Optional[dict[str, HttpsRedirectDef]] = pydantic.Field(None)
-    HttpsRedirectProps: typing.Optional[dict[str, HttpsRedirectPropsDef]] = pydantic.Field(None)
+    HttpsRedirect: typing.Optional[dict[str, models.aws_route53_patterns.HttpsRedirectDef]] = pydantic.Field(None)
+    HttpsRedirectProps: typing.Optional[dict[str, models.aws_route53_patterns.HttpsRedirectPropsDef]] = pydantic.Field(None)
     ...
+
+import models

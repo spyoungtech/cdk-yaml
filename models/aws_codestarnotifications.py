@@ -22,12 +22,12 @@ class NotificationRuleDef(BaseConstruct):
     ...
 
 
-    from_notification_rule_arn: typing.Optional[NotificationRuleDefFromNotificationRuleArnParams] = pydantic.Field(None, description='Import an existing notification rule provided an ARN.')
-    resource_config: typing.Optional[NotificationRuleDefConfig] = pydantic.Field(None)
+    from_notification_rule_arn: typing.Optional[models.aws_codestarnotifications.NotificationRuleDefFromNotificationRuleArnParams] = pydantic.Field(None, description='Import an existing notification rule provided an ARN.')
+    resource_config: typing.Optional[models.aws_codestarnotifications.NotificationRuleDefConfig] = pydantic.Field(None)
 
 
 class NotificationRuleDefConfig(pydantic.BaseModel):
-    add_target: typing.Optional[list[NotificationRuleDefAddTargetParams]] = pydantic.Field(None, description='Adds target to notification rule.')
+    add_target: typing.Optional[list[models.aws_codestarnotifications.NotificationRuleDefAddTargetParams]] = pydantic.Field(None, description='Adds target to notification rule.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class NotificationRuleDefAddTargetParams(pydantic.BaseModel):
@@ -90,7 +90,7 @@ class NotificationRulePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[NotificationRulePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codestarnotifications.NotificationRulePropsDefConfig] = pydantic.Field(None)
 
 
 class NotificationRulePropsDefConfig(pydantic.BaseModel):
@@ -156,27 +156,27 @@ class CfnNotificationRuleDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnNotificationRuleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codestarnotifications.CfnNotificationRuleDefConfig] = pydantic.Field(None)
 
 
 class CfnNotificationRuleDefConfig(pydantic.BaseModel):
-    TargetProperty: typing.Optional[list[CfnNotificationRuleDefTargetpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnNotificationRuleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnNotificationRuleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnNotificationRuleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnNotificationRuleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnNotificationRuleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnNotificationRuleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnNotificationRuleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    TargetProperty: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefTargetpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnNotificationRuleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnNotificationRuleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnNotificationRuleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnNotificationRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnNotificationRuleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnNotificationRuleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codestarnotifications.CfnNotificationRuleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnNotificationRuleDefTargetpropertyParams(pydantic.BaseModel):
@@ -271,15 +271,15 @@ class CfnNotificationRulePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    NotificationRule: typing.Optional[dict[str, NotificationRuleDef]] = pydantic.Field(None)
-    CfnNotificationRule_TargetProperty: typing.Optional[dict[str, CfnNotificationRule_TargetPropertyDef]] = pydantic.Field(None)
-    NotificationRuleOptions: typing.Optional[dict[str, NotificationRuleOptionsDef]] = pydantic.Field(None)
-    NotificationRuleProps: typing.Optional[dict[str, NotificationRulePropsDef]] = pydantic.Field(None)
-    NotificationRuleSourceConfig: typing.Optional[dict[str, NotificationRuleSourceConfigDef]] = pydantic.Field(None)
-    NotificationRuleTargetConfig: typing.Optional[dict[str, NotificationRuleTargetConfigDef]] = pydantic.Field(None)
-    CfnNotificationRule: typing.Optional[dict[str, CfnNotificationRuleDef]] = pydantic.Field(None)
-    CfnNotificationRuleProps: typing.Optional[dict[str, CfnNotificationRulePropsDef]] = pydantic.Field(None)
+    NotificationRule: typing.Optional[dict[str, models.aws_codestarnotifications.NotificationRuleDef]] = pydantic.Field(None)
+    CfnNotificationRule_TargetProperty: typing.Optional[dict[str, models.aws_codestarnotifications.CfnNotificationRule_TargetPropertyDef]] = pydantic.Field(None)
+    NotificationRuleOptions: typing.Optional[dict[str, models.aws_codestarnotifications.NotificationRuleOptionsDef]] = pydantic.Field(None)
+    NotificationRuleProps: typing.Optional[dict[str, models.aws_codestarnotifications.NotificationRulePropsDef]] = pydantic.Field(None)
+    NotificationRuleSourceConfig: typing.Optional[dict[str, models.aws_codestarnotifications.NotificationRuleSourceConfigDef]] = pydantic.Field(None)
+    NotificationRuleTargetConfig: typing.Optional[dict[str, models.aws_codestarnotifications.NotificationRuleTargetConfigDef]] = pydantic.Field(None)
+    CfnNotificationRule: typing.Optional[dict[str, models.aws_codestarnotifications.CfnNotificationRuleDef]] = pydantic.Field(None)
+    CfnNotificationRuleProps: typing.Optional[dict[str, models.aws_codestarnotifications.CfnNotificationRulePropsDef]] = pydantic.Field(None)
     ...
+
+import models

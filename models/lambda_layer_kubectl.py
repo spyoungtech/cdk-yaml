@@ -16,13 +16,13 @@ class KubectlLayerDef(BaseClass):
     ...
 
 
-    from_layer_version_arn: typing.Optional[KubectlLayerDefFromLayerVersionArnParams] = pydantic.Field(None, description='Imports a layer version by ARN.\nAssumes it is compatible with all Lambda runtimes.')
-    from_layer_version_attributes: typing.Optional[KubectlLayerDefFromLayerVersionAttributesParams] = pydantic.Field(None, description='Imports a Layer that has been defined externally.')
-    resource_config: typing.Optional[KubectlLayerDefConfig] = pydantic.Field(None)
+    from_layer_version_arn: typing.Optional[models.lambda_layer_kubectl.KubectlLayerDefFromLayerVersionArnParams] = pydantic.Field(None, description='Imports a layer version by ARN.\nAssumes it is compatible with all Lambda runtimes.')
+    from_layer_version_attributes: typing.Optional[models.lambda_layer_kubectl.KubectlLayerDefFromLayerVersionAttributesParams] = pydantic.Field(None, description='Imports a Layer that has been defined externally.')
+    resource_config: typing.Optional[models.lambda_layer_kubectl.KubectlLayerDefConfig] = pydantic.Field(None)
 
 
 class KubectlLayerDefConfig(pydantic.BaseModel):
-    add_permission: typing.Optional[list[KubectlLayerDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
+    add_permission: typing.Optional[list[models.lambda_layer_kubectl.KubectlLayerDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class KubectlLayerDefAddPermissionParams(pydantic.BaseModel):
@@ -49,8 +49,8 @@ class KubectlLayerDefFromLayerVersionAttributesParams(pydantic.BaseModel):
     ...
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    KubectlLayer: typing.Optional[dict[str, KubectlLayerDef]] = pydantic.Field(None)
+    KubectlLayer: typing.Optional[dict[str, models.lambda_layer_kubectl.KubectlLayerDef]] = pydantic.Field(None)
     ...
+
+import models

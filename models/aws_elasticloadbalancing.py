@@ -17,11 +17,11 @@ class InstanceTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[InstanceTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancing.InstanceTargetDefConfig] = pydantic.Field(None)
 
 
 class InstanceTargetDefConfig(pydantic.BaseModel):
-    attach_to_classic_lb: typing.Optional[list[InstanceTargetDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach load-balanced target to a classic ELB.')
+    attach_to_classic_lb: typing.Optional[list[models.aws_elasticloadbalancing.InstanceTargetDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach load-balanced target to a classic ELB.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     instance_config: typing.Optional[models.aws_ec2.InstanceDefConfig] = pydantic.Field(None)
 
@@ -42,7 +42,7 @@ class ListenerPortDef(BaseClass, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[ListenerPortDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancing.ListenerPortDefConfig] = pydantic.Field(None)
 
 
 class ListenerPortDefConfig(pydantic.BaseModel):
@@ -67,12 +67,12 @@ class LoadBalancerDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[LoadBalancerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancing.LoadBalancerDefConfig] = pydantic.Field(None)
 
 
 class LoadBalancerDefConfig(pydantic.BaseModel):
-    add_listener: typing.Optional[list[LoadBalancerDefAddListenerParams]] = pydantic.Field(None, description='Add a backend to the load balancer.')
-    add_target: typing.Optional[list[LoadBalancerDefAddTargetParams]] = pydantic.Field(None, description='')
+    add_listener: typing.Optional[list[models.aws_elasticloadbalancing.LoadBalancerDefAddListenerParams]] = pydantic.Field(None, description='Add a backend to the load balancer.')
+    add_target: typing.Optional[list[models.aws_elasticloadbalancing.LoadBalancerDefAddTargetParams]] = pydantic.Field(None, description='')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
@@ -275,7 +275,7 @@ class LoadBalancerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LoadBalancerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancing.LoadBalancerPropsDefConfig] = pydantic.Field(None)
 
 
 class LoadBalancerPropsDefConfig(pydantic.BaseModel):
@@ -314,34 +314,34 @@ class CfnLoadBalancerDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLoadBalancerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancing.CfnLoadBalancerDefConfig] = pydantic.Field(None)
 
 
 class CfnLoadBalancerDefConfig(pydantic.BaseModel):
-    AccessLoggingPolicyProperty: typing.Optional[list[CfnLoadBalancerDefAccessloggingpolicypropertyParams]] = pydantic.Field(None, description='')
-    AppCookieStickinessPolicyProperty: typing.Optional[list[CfnLoadBalancerDefAppcookiestickinesspolicypropertyParams]] = pydantic.Field(None, description='')
-    ConnectionDrainingPolicyProperty: typing.Optional[list[CfnLoadBalancerDefConnectiondrainingpolicypropertyParams]] = pydantic.Field(None, description='')
-    ConnectionSettingsProperty: typing.Optional[list[CfnLoadBalancerDefConnectionsettingspropertyParams]] = pydantic.Field(None, description='')
-    HealthCheckProperty: typing.Optional[list[CfnLoadBalancerDefHealthcheckpropertyParams]] = pydantic.Field(None, description='')
-    LBCookieStickinessPolicyProperty: typing.Optional[list[CfnLoadBalancerDefLbcookiestickinesspolicypropertyParams]] = pydantic.Field(None, description='')
-    ListenersProperty: typing.Optional[list[CfnLoadBalancerDefListenerspropertyParams]] = pydantic.Field(None, description='')
-    PoliciesProperty: typing.Optional[list[CfnLoadBalancerDefPoliciespropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnLoadBalancerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLoadBalancerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLoadBalancerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLoadBalancerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLoadBalancerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLoadBalancerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLoadBalancerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccessLoggingPolicyProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAccessloggingpolicypropertyParams]] = pydantic.Field(None, description='')
+    AppCookieStickinessPolicyProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAppcookiestickinesspolicypropertyParams]] = pydantic.Field(None, description='')
+    ConnectionDrainingPolicyProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefConnectiondrainingpolicypropertyParams]] = pydantic.Field(None, description='')
+    ConnectionSettingsProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefConnectionsettingspropertyParams]] = pydantic.Field(None, description='')
+    HealthCheckProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefHealthcheckpropertyParams]] = pydantic.Field(None, description='')
+    LBCookieStickinessPolicyProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefLbcookiestickinesspolicypropertyParams]] = pydantic.Field(None, description='')
+    ListenersProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefListenerspropertyParams]] = pydantic.Field(None, description='')
+    PoliciesProperty: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefPoliciespropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLoadBalancerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLoadBalancerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLoadBalancerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLoadBalancerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLoadBalancerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLoadBalancerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_elasticloadbalancing.CfnLoadBalancerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnLoadBalancerDefAccessloggingpolicypropertyParams(pydantic.BaseModel):
@@ -488,23 +488,23 @@ class CfnLoadBalancerPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    InstanceTarget: typing.Optional[dict[str, InstanceTargetDef]] = pydantic.Field(None)
-    ListenerPort: typing.Optional[dict[str, ListenerPortDef]] = pydantic.Field(None)
-    LoadBalancer: typing.Optional[dict[str, LoadBalancerDef]] = pydantic.Field(None)
-    CfnLoadBalancer_AccessLoggingPolicyProperty: typing.Optional[dict[str, CfnLoadBalancer_AccessLoggingPolicyPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_AppCookieStickinessPolicyProperty: typing.Optional[dict[str, CfnLoadBalancer_AppCookieStickinessPolicyPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_ConnectionDrainingPolicyProperty: typing.Optional[dict[str, CfnLoadBalancer_ConnectionDrainingPolicyPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_ConnectionSettingsProperty: typing.Optional[dict[str, CfnLoadBalancer_ConnectionSettingsPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_HealthCheckProperty: typing.Optional[dict[str, CfnLoadBalancer_HealthCheckPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_LBCookieStickinessPolicyProperty: typing.Optional[dict[str, CfnLoadBalancer_LBCookieStickinessPolicyPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_ListenersProperty: typing.Optional[dict[str, CfnLoadBalancer_ListenersPropertyDef]] = pydantic.Field(None)
-    CfnLoadBalancer_PoliciesProperty: typing.Optional[dict[str, CfnLoadBalancer_PoliciesPropertyDef]] = pydantic.Field(None)
-    HealthCheck: typing.Optional[dict[str, HealthCheckDef]] = pydantic.Field(None)
-    LoadBalancerListener: typing.Optional[dict[str, LoadBalancerListenerDef]] = pydantic.Field(None)
-    LoadBalancerProps: typing.Optional[dict[str, LoadBalancerPropsDef]] = pydantic.Field(None)
-    CfnLoadBalancer: typing.Optional[dict[str, CfnLoadBalancerDef]] = pydantic.Field(None)
-    CfnLoadBalancerProps: typing.Optional[dict[str, CfnLoadBalancerPropsDef]] = pydantic.Field(None)
+    InstanceTarget: typing.Optional[dict[str, models.aws_elasticloadbalancing.InstanceTargetDef]] = pydantic.Field(None)
+    ListenerPort: typing.Optional[dict[str, models.aws_elasticloadbalancing.ListenerPortDef]] = pydantic.Field(None)
+    LoadBalancer: typing.Optional[dict[str, models.aws_elasticloadbalancing.LoadBalancerDef]] = pydantic.Field(None)
+    CfnLoadBalancer_AccessLoggingPolicyProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_AccessLoggingPolicyPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_AppCookieStickinessPolicyProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_AppCookieStickinessPolicyPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_ConnectionDrainingPolicyProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_ConnectionDrainingPolicyPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_ConnectionSettingsProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_ConnectionSettingsPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_HealthCheckProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_HealthCheckPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_LBCookieStickinessPolicyProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_LBCookieStickinessPolicyPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_ListenersProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_ListenersPropertyDef]] = pydantic.Field(None)
+    CfnLoadBalancer_PoliciesProperty: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancer_PoliciesPropertyDef]] = pydantic.Field(None)
+    HealthCheck: typing.Optional[dict[str, models.aws_elasticloadbalancing.HealthCheckDef]] = pydantic.Field(None)
+    LoadBalancerListener: typing.Optional[dict[str, models.aws_elasticloadbalancing.LoadBalancerListenerDef]] = pydantic.Field(None)
+    LoadBalancerProps: typing.Optional[dict[str, models.aws_elasticloadbalancing.LoadBalancerPropsDef]] = pydantic.Field(None)
+    CfnLoadBalancer: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancerDef]] = pydantic.Field(None)
+    CfnLoadBalancerProps: typing.Optional[dict[str, models.aws_elasticloadbalancing.CfnLoadBalancerPropsDef]] = pydantic.Field(None)
     ...
+
+import models

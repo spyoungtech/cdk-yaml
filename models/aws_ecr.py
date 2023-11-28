@@ -16,11 +16,11 @@ class AuthorizationTokenDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AuthorizationTokenDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.AuthorizationTokenDefConfig] = pydantic.Field(None)
 
 
 class AuthorizationTokenDefConfig(pydantic.BaseModel):
-    grant_read: typing.Optional[list[AuthorizationTokenDefGrantReadParams]] = pydantic.Field(None, description='Grant access to retrieve an authorization token.')
+    grant_read: typing.Optional[list[models.aws_ecr.AuthorizationTokenDefGrantReadParams]] = pydantic.Field(None, description='Grant access to retrieve an authorization token.')
 
 class AuthorizationTokenDefGrantReadParams(pydantic.BaseModel):
     grantee: models.AnyResource = pydantic.Field(..., description='-')
@@ -37,11 +37,11 @@ class PublicGalleryAuthorizationTokenDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PublicGalleryAuthorizationTokenDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.PublicGalleryAuthorizationTokenDefConfig] = pydantic.Field(None)
 
 
 class PublicGalleryAuthorizationTokenDefConfig(pydantic.BaseModel):
-    grant_read: typing.Optional[list[PublicGalleryAuthorizationTokenDefGrantReadParams]] = pydantic.Field(None, description='Grant access to retrieve an authorization token.')
+    grant_read: typing.Optional[list[models.aws_ecr.PublicGalleryAuthorizationTokenDefGrantReadParams]] = pydantic.Field(None, description='Grant access to retrieve an authorization token.')
 
 class PublicGalleryAuthorizationTokenDefGrantReadParams(pydantic.BaseModel):
     grantee: models.AnyResource = pydantic.Field(..., description='-')
@@ -62,24 +62,24 @@ class RepositoryBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RepositoryBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.RepositoryBaseDefConfig] = pydantic.Field(None)
 
 
 class RepositoryBaseDefConfig(pydantic.BaseModel):
-    add_to_resource_policy: typing.Optional[list[RepositoryBaseDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a policy statement to the repository's resource policy.")
+    add_to_resource_policy: typing.Optional[list[models.aws_ecr.RepositoryBaseDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a policy statement to the repository's resource policy.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[RepositoryBaseDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
-    grant_pull: typing.Optional[list[RepositoryBaseDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
-    grant_pull_push: typing.Optional[list[RepositoryBaseDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
-    grant_push: typing.Optional[list[RepositoryBaseDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
-    grant_read: typing.Optional[list[RepositoryBaseDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read the images in this repository.')
-    on_cloud_trail_event: typing.Optional[list[RepositoryBaseDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_cloud_trail_image_pushed: typing.Optional[list[RepositoryBaseDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_event: typing.Optional[list[RepositoryBaseDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
-    on_image_scan_completed: typing.Optional[list[RepositoryBaseDefOnImageScanCompletedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image scan is completed.')
-    repository_uri_for_digest: typing.Optional[list[RepositoryBaseDefRepositoryUriForDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
-    repository_uri_for_tag: typing.Optional[list[RepositoryBaseDefRepositoryUriForTagParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]')
-    repository_uri_for_tag_or_digest: typing.Optional[list[RepositoryBaseDefRepositoryUriForTagOrDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
+    grant: typing.Optional[list[models.aws_ecr.RepositoryBaseDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
+    grant_pull: typing.Optional[list[models.aws_ecr.RepositoryBaseDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
+    grant_pull_push: typing.Optional[list[models.aws_ecr.RepositoryBaseDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
+    grant_push: typing.Optional[list[models.aws_ecr.RepositoryBaseDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
+    grant_read: typing.Optional[list[models.aws_ecr.RepositoryBaseDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read the images in this repository.')
+    on_cloud_trail_event: typing.Optional[list[models.aws_ecr.RepositoryBaseDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_cloud_trail_image_pushed: typing.Optional[list[models.aws_ecr.RepositoryBaseDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_event: typing.Optional[list[models.aws_ecr.RepositoryBaseDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    on_image_scan_completed: typing.Optional[list[models.aws_ecr.RepositoryBaseDefOnImageScanCompletedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image scan is completed.')
+    repository_uri_for_digest: typing.Optional[list[models.aws_ecr.RepositoryBaseDefRepositoryUriForDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
+    repository_uri_for_tag: typing.Optional[list[models.aws_ecr.RepositoryBaseDefRepositoryUriForTagParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]')
+    repository_uri_for_tag_or_digest: typing.Optional[list[models.aws_ecr.RepositoryBaseDefRepositoryUriForTagOrDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
 
 class RepositoryBaseDefAddToResourcePolicyParams(pydantic.BaseModel):
     statement: models.aws_iam.PolicyStatementDef = pydantic.Field(..., description='-')
@@ -202,29 +202,29 @@ class RepositoryDef(BaseConstruct):
     ...
 
 
-    from_repository_arn: typing.Optional[RepositoryDefFromRepositoryArnParams] = pydantic.Field(None, description='')
-    from_repository_attributes: typing.Optional[RepositoryDefFromRepositoryAttributesParams] = pydantic.Field(None, description='Import a repository.')
-    from_repository_name: typing.Optional[RepositoryDefFromRepositoryNameParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[RepositoryDefConfig] = pydantic.Field(None)
+    from_repository_arn: typing.Optional[models.aws_ecr.RepositoryDefFromRepositoryArnParams] = pydantic.Field(None, description='')
+    from_repository_attributes: typing.Optional[models.aws_ecr.RepositoryDefFromRepositoryAttributesParams] = pydantic.Field(None, description='Import a repository.')
+    from_repository_name: typing.Optional[models.aws_ecr.RepositoryDefFromRepositoryNameParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_ecr.RepositoryDefConfig] = pydantic.Field(None)
 
 
 class RepositoryDefConfig(pydantic.BaseModel):
-    add_lifecycle_rule: typing.Optional[list[RepositoryDefAddLifecycleRuleParams]] = pydantic.Field(None, description='Add a life cycle rule to the repository.\nLife cycle rules automatically expire images from the repository that match\ncertain conditions.')
-    add_to_resource_policy: typing.Optional[list[RepositoryDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a policy statement to the repository's resource policy.\nWhile other resources policies in AWS either require or accept a resource section,\nCfn for ECR does not allow us to specify a resource policy.\nIt will fail if a resource section is present at all.")
+    add_lifecycle_rule: typing.Optional[list[models.aws_ecr.RepositoryDefAddLifecycleRuleParams]] = pydantic.Field(None, description='Add a life cycle rule to the repository.\nLife cycle rules automatically expire images from the repository that match\ncertain conditions.')
+    add_to_resource_policy: typing.Optional[list[models.aws_ecr.RepositoryDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a policy statement to the repository's resource policy.\nWhile other resources policies in AWS either require or accept a resource section,\nCfn for ECR does not allow us to specify a resource policy.\nIt will fail if a resource section is present at all.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    arn_for_local_repository: typing.Optional[list[RepositoryDefArnForLocalRepositoryParams]] = pydantic.Field(None, description='Returns an ECR ARN for a repository that resides in the same account/region as the current stack.')
-    grant: typing.Optional[list[RepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
-    grant_pull: typing.Optional[list[RepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
-    grant_pull_push: typing.Optional[list[RepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
-    grant_push: typing.Optional[list[RepositoryDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
-    grant_read: typing.Optional[list[RepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read the images in this repository.')
-    on_cloud_trail_event: typing.Optional[list[RepositoryDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_cloud_trail_image_pushed: typing.Optional[list[RepositoryDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_event: typing.Optional[list[RepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
-    on_image_scan_completed: typing.Optional[list[RepositoryDefOnImageScanCompletedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image scan is completed.')
-    repository_uri_for_digest: typing.Optional[list[RepositoryDefRepositoryUriForDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
-    repository_uri_for_tag: typing.Optional[list[RepositoryDefRepositoryUriForTagParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]')
-    repository_uri_for_tag_or_digest: typing.Optional[list[RepositoryDefRepositoryUriForTagOrDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
+    arn_for_local_repository: typing.Optional[list[models.aws_ecr.RepositoryDefArnForLocalRepositoryParams]] = pydantic.Field(None, description='Returns an ECR ARN for a repository that resides in the same account/region as the current stack.')
+    grant: typing.Optional[list[models.aws_ecr.RepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
+    grant_pull: typing.Optional[list[models.aws_ecr.RepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
+    grant_pull_push: typing.Optional[list[models.aws_ecr.RepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
+    grant_push: typing.Optional[list[models.aws_ecr.RepositoryDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to use the images in this repository.')
+    grant_read: typing.Optional[list[models.aws_ecr.RepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read the images in this repository.')
+    on_cloud_trail_event: typing.Optional[list[models.aws_ecr.RepositoryDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_cloud_trail_image_pushed: typing.Optional[list[models.aws_ecr.RepositoryDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_event: typing.Optional[list[models.aws_ecr.RepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    on_image_scan_completed: typing.Optional[list[models.aws_ecr.RepositoryDefOnImageScanCompletedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image scan is completed.')
+    repository_uri_for_digest: typing.Optional[list[models.aws_ecr.RepositoryDefRepositoryUriForDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
+    repository_uri_for_tag: typing.Optional[list[models.aws_ecr.RepositoryDefRepositoryUriForTagParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]')
+    repository_uri_for_tag_or_digest: typing.Optional[list[models.aws_ecr.RepositoryDefRepositoryUriForTagOrDigestParams]] = pydantic.Field(None, description='Returns the URL of the repository. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
 
 class RepositoryDefAddLifecycleRuleParams(pydantic.BaseModel):
     description: typing.Optional[str] = pydantic.Field(None, description='Describes the purpose of the rule. Default: No description\n')
@@ -574,27 +574,27 @@ class CfnPublicRepositoryDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPublicRepositoryDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.CfnPublicRepositoryDefConfig] = pydantic.Field(None)
 
 
 class CfnPublicRepositoryDefConfig(pydantic.BaseModel):
-    RepositoryCatalogDataProperty: typing.Optional[list[CfnPublicRepositoryDefRepositorycatalogdatapropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnPublicRepositoryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPublicRepositoryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPublicRepositoryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPublicRepositoryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPublicRepositoryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPublicRepositoryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPublicRepositoryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    RepositoryCatalogDataProperty: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefRepositorycatalogdatapropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPublicRepositoryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPublicRepositoryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPublicRepositoryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPublicRepositoryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPublicRepositoryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPublicRepositoryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecr.CfnPublicRepositoryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnPublicRepositoryDefRepositorycatalogdatapropertyParams(pydantic.BaseModel):
@@ -682,26 +682,26 @@ class CfnPullThroughCacheRuleDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPullThroughCacheRuleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.CfnPullThroughCacheRuleDefConfig] = pydantic.Field(None)
 
 
 class CfnPullThroughCacheRuleDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnPullThroughCacheRuleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPullThroughCacheRuleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPullThroughCacheRuleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPullThroughCacheRuleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPullThroughCacheRuleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPullThroughCacheRuleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPullThroughCacheRuleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPullThroughCacheRuleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPullThroughCacheRuleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPullThroughCacheRuleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPullThroughCacheRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPullThroughCacheRuleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPullThroughCacheRuleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecr.CfnPullThroughCacheRuleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPullThroughCacheRuleDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -779,26 +779,26 @@ class CfnRegistryPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRegistryPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.CfnRegistryPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnRegistryPolicyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnRegistryPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRegistryPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRegistryPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRegistryPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRegistryPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRegistryPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRegistryPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRegistryPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRegistryPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRegistryPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRegistryPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRegistryPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRegistryPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecr.CfnRegistryPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnRegistryPolicyDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -876,30 +876,30 @@ class CfnReplicationConfigurationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnReplicationConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.CfnReplicationConfigurationDefConfig] = pydantic.Field(None)
 
 
 class CfnReplicationConfigurationDefConfig(pydantic.BaseModel):
-    ReplicationConfigurationProperty: typing.Optional[list[CfnReplicationConfigurationDefReplicationconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ReplicationDestinationProperty: typing.Optional[list[CfnReplicationConfigurationDefReplicationdestinationpropertyParams]] = pydantic.Field(None, description='')
-    ReplicationRuleProperty: typing.Optional[list[CfnReplicationConfigurationDefReplicationrulepropertyParams]] = pydantic.Field(None, description='')
-    RepositoryFilterProperty: typing.Optional[list[CfnReplicationConfigurationDefRepositoryfilterpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnReplicationConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnReplicationConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnReplicationConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnReplicationConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnReplicationConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnReplicationConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnReplicationConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ReplicationConfigurationProperty: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefReplicationconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ReplicationDestinationProperty: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefReplicationdestinationpropertyParams]] = pydantic.Field(None, description='')
+    ReplicationRuleProperty: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefReplicationrulepropertyParams]] = pydantic.Field(None, description='')
+    RepositoryFilterProperty: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefRepositoryfilterpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnReplicationConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnReplicationConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnReplicationConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnReplicationConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnReplicationConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnReplicationConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecr.CfnReplicationConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnReplicationConfigurationDefReplicationconfigurationpropertyParams(pydantic.BaseModel):
     rules: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_ecr.CfnReplicationConfiguration_ReplicationRulePropertyDef, dict[str, typing.Any]]]] = pydantic.Field(..., description='')
@@ -1003,29 +1003,29 @@ class CfnRepositoryDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRepositoryDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr.CfnRepositoryDefConfig] = pydantic.Field(None)
 
 
 class CfnRepositoryDefConfig(pydantic.BaseModel):
-    EncryptionConfigurationProperty: typing.Optional[list[CfnRepositoryDefEncryptionconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ImageScanningConfigurationProperty: typing.Optional[list[CfnRepositoryDefImagescanningconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    LifecyclePolicyProperty: typing.Optional[list[CfnRepositoryDefLifecyclepolicypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnRepositoryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRepositoryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRepositoryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRepositoryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRepositoryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRepositoryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRepositoryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    EncryptionConfigurationProperty: typing.Optional[list[models.aws_ecr.CfnRepositoryDefEncryptionconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ImageScanningConfigurationProperty: typing.Optional[list[models.aws_ecr.CfnRepositoryDefImagescanningconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    LifecyclePolicyProperty: typing.Optional[list[models.aws_ecr.CfnRepositoryDefLifecyclepolicypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecr.CfnRepositoryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRepositoryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRepositoryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRepositoryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecr.CfnRepositoryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecr.CfnRepositoryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecr.CfnRepositoryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRepositoryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRepositoryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRepositoryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecr.CfnRepositoryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecr.CfnRepositoryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecr.CfnRepositoryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnRepositoryDefEncryptionconfigurationpropertyParams(pydantic.BaseModel):
@@ -1183,35 +1183,35 @@ class CfnRepositoryPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AuthorizationToken: typing.Optional[dict[str, AuthorizationTokenDef]] = pydantic.Field(None)
-    PublicGalleryAuthorizationToken: typing.Optional[dict[str, PublicGalleryAuthorizationTokenDef]] = pydantic.Field(None)
-    RepositoryBase: typing.Optional[dict[str, RepositoryBaseDef]] = pydantic.Field(None)
-    RepositoryEncryption: typing.Optional[dict[str, RepositoryEncryptionDef]] = pydantic.Field(None)
-    Repository: typing.Optional[dict[str, RepositoryDef]] = pydantic.Field(None)
-    CfnPublicRepository_RepositoryCatalogDataProperty: typing.Optional[dict[str, CfnPublicRepository_RepositoryCatalogDataPropertyDef]] = pydantic.Field(None)
-    CfnReplicationConfiguration_ReplicationConfigurationProperty: typing.Optional[dict[str, CfnReplicationConfiguration_ReplicationConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnReplicationConfiguration_ReplicationDestinationProperty: typing.Optional[dict[str, CfnReplicationConfiguration_ReplicationDestinationPropertyDef]] = pydantic.Field(None)
-    CfnReplicationConfiguration_ReplicationRuleProperty: typing.Optional[dict[str, CfnReplicationConfiguration_ReplicationRulePropertyDef]] = pydantic.Field(None)
-    CfnReplicationConfiguration_RepositoryFilterProperty: typing.Optional[dict[str, CfnReplicationConfiguration_RepositoryFilterPropertyDef]] = pydantic.Field(None)
-    CfnRepository_EncryptionConfigurationProperty: typing.Optional[dict[str, CfnRepository_EncryptionConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnRepository_ImageScanningConfigurationProperty: typing.Optional[dict[str, CfnRepository_ImageScanningConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnRepository_LifecyclePolicyProperty: typing.Optional[dict[str, CfnRepository_LifecyclePolicyPropertyDef]] = pydantic.Field(None)
-    LifecycleRule: typing.Optional[dict[str, LifecycleRuleDef]] = pydantic.Field(None)
-    OnCloudTrailImagePushedOptions: typing.Optional[dict[str, OnCloudTrailImagePushedOptionsDef]] = pydantic.Field(None)
-    OnImageScanCompletedOptions: typing.Optional[dict[str, OnImageScanCompletedOptionsDef]] = pydantic.Field(None)
-    RepositoryAttributes: typing.Optional[dict[str, RepositoryAttributesDef]] = pydantic.Field(None)
-    RepositoryProps: typing.Optional[dict[str, RepositoryPropsDef]] = pydantic.Field(None)
-    CfnPublicRepository: typing.Optional[dict[str, CfnPublicRepositoryDef]] = pydantic.Field(None)
-    CfnPullThroughCacheRule: typing.Optional[dict[str, CfnPullThroughCacheRuleDef]] = pydantic.Field(None)
-    CfnRegistryPolicy: typing.Optional[dict[str, CfnRegistryPolicyDef]] = pydantic.Field(None)
-    CfnReplicationConfiguration: typing.Optional[dict[str, CfnReplicationConfigurationDef]] = pydantic.Field(None)
-    CfnRepository: typing.Optional[dict[str, CfnRepositoryDef]] = pydantic.Field(None)
-    CfnPublicRepositoryProps: typing.Optional[dict[str, CfnPublicRepositoryPropsDef]] = pydantic.Field(None)
-    CfnPullThroughCacheRuleProps: typing.Optional[dict[str, CfnPullThroughCacheRulePropsDef]] = pydantic.Field(None)
-    CfnRegistryPolicyProps: typing.Optional[dict[str, CfnRegistryPolicyPropsDef]] = pydantic.Field(None)
-    CfnReplicationConfigurationProps: typing.Optional[dict[str, CfnReplicationConfigurationPropsDef]] = pydantic.Field(None)
-    CfnRepositoryProps: typing.Optional[dict[str, CfnRepositoryPropsDef]] = pydantic.Field(None)
+    AuthorizationToken: typing.Optional[dict[str, models.aws_ecr.AuthorizationTokenDef]] = pydantic.Field(None)
+    PublicGalleryAuthorizationToken: typing.Optional[dict[str, models.aws_ecr.PublicGalleryAuthorizationTokenDef]] = pydantic.Field(None)
+    RepositoryBase: typing.Optional[dict[str, models.aws_ecr.RepositoryBaseDef]] = pydantic.Field(None)
+    RepositoryEncryption: typing.Optional[dict[str, models.aws_ecr.RepositoryEncryptionDef]] = pydantic.Field(None)
+    Repository: typing.Optional[dict[str, models.aws_ecr.RepositoryDef]] = pydantic.Field(None)
+    CfnPublicRepository_RepositoryCatalogDataProperty: typing.Optional[dict[str, models.aws_ecr.CfnPublicRepository_RepositoryCatalogDataPropertyDef]] = pydantic.Field(None)
+    CfnReplicationConfiguration_ReplicationConfigurationProperty: typing.Optional[dict[str, models.aws_ecr.CfnReplicationConfiguration_ReplicationConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnReplicationConfiguration_ReplicationDestinationProperty: typing.Optional[dict[str, models.aws_ecr.CfnReplicationConfiguration_ReplicationDestinationPropertyDef]] = pydantic.Field(None)
+    CfnReplicationConfiguration_ReplicationRuleProperty: typing.Optional[dict[str, models.aws_ecr.CfnReplicationConfiguration_ReplicationRulePropertyDef]] = pydantic.Field(None)
+    CfnReplicationConfiguration_RepositoryFilterProperty: typing.Optional[dict[str, models.aws_ecr.CfnReplicationConfiguration_RepositoryFilterPropertyDef]] = pydantic.Field(None)
+    CfnRepository_EncryptionConfigurationProperty: typing.Optional[dict[str, models.aws_ecr.CfnRepository_EncryptionConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnRepository_ImageScanningConfigurationProperty: typing.Optional[dict[str, models.aws_ecr.CfnRepository_ImageScanningConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnRepository_LifecyclePolicyProperty: typing.Optional[dict[str, models.aws_ecr.CfnRepository_LifecyclePolicyPropertyDef]] = pydantic.Field(None)
+    LifecycleRule: typing.Optional[dict[str, models.aws_ecr.LifecycleRuleDef]] = pydantic.Field(None)
+    OnCloudTrailImagePushedOptions: typing.Optional[dict[str, models.aws_ecr.OnCloudTrailImagePushedOptionsDef]] = pydantic.Field(None)
+    OnImageScanCompletedOptions: typing.Optional[dict[str, models.aws_ecr.OnImageScanCompletedOptionsDef]] = pydantic.Field(None)
+    RepositoryAttributes: typing.Optional[dict[str, models.aws_ecr.RepositoryAttributesDef]] = pydantic.Field(None)
+    RepositoryProps: typing.Optional[dict[str, models.aws_ecr.RepositoryPropsDef]] = pydantic.Field(None)
+    CfnPublicRepository: typing.Optional[dict[str, models.aws_ecr.CfnPublicRepositoryDef]] = pydantic.Field(None)
+    CfnPullThroughCacheRule: typing.Optional[dict[str, models.aws_ecr.CfnPullThroughCacheRuleDef]] = pydantic.Field(None)
+    CfnRegistryPolicy: typing.Optional[dict[str, models.aws_ecr.CfnRegistryPolicyDef]] = pydantic.Field(None)
+    CfnReplicationConfiguration: typing.Optional[dict[str, models.aws_ecr.CfnReplicationConfigurationDef]] = pydantic.Field(None)
+    CfnRepository: typing.Optional[dict[str, models.aws_ecr.CfnRepositoryDef]] = pydantic.Field(None)
+    CfnPublicRepositoryProps: typing.Optional[dict[str, models.aws_ecr.CfnPublicRepositoryPropsDef]] = pydantic.Field(None)
+    CfnPullThroughCacheRuleProps: typing.Optional[dict[str, models.aws_ecr.CfnPullThroughCacheRulePropsDef]] = pydantic.Field(None)
+    CfnRegistryPolicyProps: typing.Optional[dict[str, models.aws_ecr.CfnRegistryPolicyPropsDef]] = pydantic.Field(None)
+    CfnReplicationConfigurationProps: typing.Optional[dict[str, models.aws_ecr.CfnReplicationConfigurationPropsDef]] = pydantic.Field(None)
+    CfnRepositoryProps: typing.Optional[dict[str, models.aws_ecr.CfnRepositoryPropsDef]] = pydantic.Field(None)
     ...
+
+import models

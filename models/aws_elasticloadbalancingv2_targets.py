@@ -18,11 +18,11 @@ class AlbArnTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlbArnTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_targets.AlbArnTargetDefConfig] = pydantic.Field(None)
 
 
 class AlbArnTargetDefConfig(pydantic.BaseModel):
-    attach_to_network_target_group: typing.Optional[list[AlbArnTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this alb target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.AlbArnTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this alb target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
 
 class AlbArnTargetDefAttachToNetworkTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.NetworkTargetGroupDef] = pydantic.Field(..., description='-')
@@ -41,11 +41,11 @@ class AlbTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlbTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_targets.AlbTargetDefConfig] = pydantic.Field(None)
 
 
 class AlbTargetDefConfig(pydantic.BaseModel):
-    attach_to_network_target_group: typing.Optional[list[AlbTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this alb target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.AlbTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this alb target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
 
 class AlbTargetDefAttachToNetworkTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.NetworkTargetGroupDef] = pydantic.Field(..., description='-')
@@ -64,12 +64,12 @@ class InstanceIdTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[InstanceIdTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDefConfig] = pydantic.Field(None)
 
 
 class InstanceIdTargetDefConfig(pydantic.BaseModel):
-    attach_to_application_target_group: typing.Optional[list[InstanceIdTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
-    attach_to_network_target_group: typing.Optional[list[InstanceIdTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_application_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
 
 class InstanceIdTargetDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='-')
@@ -92,12 +92,12 @@ class InstanceTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[InstanceTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_targets.InstanceTargetDefConfig] = pydantic.Field(None)
 
 
 class InstanceTargetDefConfig(pydantic.BaseModel):
-    attach_to_application_target_group: typing.Optional[list[InstanceTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
-    attach_to_network_target_group: typing.Optional[list[InstanceTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_application_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.InstanceTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.InstanceTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
 
 class InstanceTargetDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='-')
@@ -121,12 +121,12 @@ class IpTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[IpTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_targets.IpTargetDefConfig] = pydantic.Field(None)
 
 
 class IpTargetDefConfig(pydantic.BaseModel):
-    attach_to_application_target_group: typing.Optional[list[IpTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
-    attach_to_network_target_group: typing.Optional[list[IpTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_application_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.IpTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.IpTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
 
 class IpTargetDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='-')
@@ -148,12 +148,12 @@ class LambdaTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_targets.LambdaTargetDefConfig] = pydantic.Field(None)
 
 
 class LambdaTargetDefConfig(pydantic.BaseModel):
-    attach_to_application_target_group: typing.Optional[list[LambdaTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
-    attach_to_network_target_group: typing.Optional[list[LambdaTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_application_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.LambdaTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_elasticloadbalancingv2_targets.LambdaTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="Register this instance target with a load balancer.\nDon't call this, it is called automatically when you add the target to a\nload balancer.")
 
 class LambdaTargetDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='-')
@@ -164,13 +164,13 @@ class LambdaTargetDefAttachToNetworkTargetGroupParams(pydantic.BaseModel):
     ...
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AlbArnTarget: typing.Optional[dict[str, AlbArnTargetDef]] = pydantic.Field(None)
-    AlbTarget: typing.Optional[dict[str, AlbTargetDef]] = pydantic.Field(None)
-    InstanceIdTarget: typing.Optional[dict[str, InstanceIdTargetDef]] = pydantic.Field(None)
-    InstanceTarget: typing.Optional[dict[str, InstanceTargetDef]] = pydantic.Field(None)
-    IpTarget: typing.Optional[dict[str, IpTargetDef]] = pydantic.Field(None)
-    LambdaTarget: typing.Optional[dict[str, LambdaTargetDef]] = pydantic.Field(None)
+    AlbArnTarget: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_targets.AlbArnTargetDef]] = pydantic.Field(None)
+    AlbTarget: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_targets.AlbTargetDef]] = pydantic.Field(None)
+    InstanceIdTarget: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDef]] = pydantic.Field(None)
+    InstanceTarget: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_targets.InstanceTargetDef]] = pydantic.Field(None)
+    IpTarget: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_targets.IpTargetDef]] = pydantic.Field(None)
+    LambdaTarget: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_targets.LambdaTargetDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -59,26 +59,26 @@ class EdgeFunctionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EdgeFunctionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.experimental.EdgeFunctionDefConfig] = pydantic.Field(None)
 
 
 class EdgeFunctionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[EdgeFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this version.')
-    add_event_source: typing.Optional[list[EdgeFunctionDefAddEventSourceParams]] = pydantic.Field(None, description='Adds an event source to this function.')
-    add_event_source_mapping: typing.Optional[list[EdgeFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[EdgeFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[EdgeFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[EdgeFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_alias: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this version.')
+    add_event_source: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefAddEventSourceParams]] = pydantic.Field(None, description='Adds an event source to this function.')
+    add_event_source_mapping: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    configure_async_invoke: typing.Optional[list[EdgeFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    grant_invoke: typing.Optional[list[EdgeFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[EdgeFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[EdgeFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[EdgeFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[EdgeFunctionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[EdgeFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[EdgeFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[EdgeFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
+    configure_async_invoke: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    grant_invoke: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_cloudfront.experimental.EdgeFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     current_version_config: typing.Optional[models._interface_methods.AwsLambdaIVersionDefConfig] = pydantic.Field(None)
@@ -290,7 +290,7 @@ class EdgeFunctionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EdgeFunctionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.experimental.EdgeFunctionPropsDefConfig] = pydantic.Field(None)
 
 
 class EdgeFunctionPropsDefConfig(pydantic.BaseModel):
@@ -298,9 +298,9 @@ class EdgeFunctionPropsDefConfig(pydantic.BaseModel):
     runtime_config: typing.Optional[models.aws_lambda.RuntimeDefConfig] = pydantic.Field(None)
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    EdgeFunction: typing.Optional[dict[str, EdgeFunctionDef]] = pydantic.Field(None)
-    EdgeFunctionProps: typing.Optional[dict[str, EdgeFunctionPropsDef]] = pydantic.Field(None)
+    EdgeFunction: typing.Optional[dict[str, models.aws_cloudfront.experimental.EdgeFunctionDef]] = pydantic.Field(None)
+    EdgeFunctionProps: typing.Optional[dict[str, models.aws_cloudfront.experimental.EdgeFunctionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

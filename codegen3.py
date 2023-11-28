@@ -13,7 +13,6 @@ from bs4 import BeautifulSoup
 import inspect
 from info import parse_docstring, DocstringInfo
 from dataclasses import dataclass
-
 ResourceTypeT: typing.TypeAlias = typing.Literal[
     'Construct',
     'Class',
@@ -141,7 +140,7 @@ class APIResource:
         init_docs = get_doc(self.obj.__init__)
         d: dict[str, ParamInfo] = {}
         for param_name, param in init_sig.parameters.items():
-            if param_name in ('self', 'args', 'kwargs'):
+            if param_name in ('self', 'args', 'kwargs') or param_name.startswith('_'):
                 continue
             for p in init_docs['params']:
                 if p['name'] == param_name:
@@ -189,8 +188,11 @@ class APIResource:
         if self.resource_type == 'Enum':
             return f'{self.obj.__module__}.{self.obj.__qualname__}'
         elif self.resource_type == 'Interface':
-            if self.obj in (constructs.IConstruct, aws_cdk.IResource):
+            # XXX: Interface finding is flaky, due to implementation details in AWS CDK for Python.
+            if self.obj in (constructs.IConstruct, aws_cdk.IResource, aws_cdk.aws_iam.IGrantable):  # TODO: figure out better way for IGrantable
                 return 'models.AnyResource'
+            if self.obj in (aws_cdk.IResolvable, constructs.IDependable):
+                return 'models.UnsupportedResource'
             ret = _implementations.get(self.obj)
             if not ret:
                 ... # TODO: find 'obtainable from' classes
@@ -303,6 +305,8 @@ class ParamInfo:
                         })
                     annotation = eval(annotation, glbs)
                 except Exception as e:
+                    _prev_anno_name = annotation
+                    resolved = True
                     if annotation == 'Stack':
                         annotation = aws_cdk.Stack
                     elif annotation == 'ListenerAction':
@@ -337,8 +341,14 @@ class ParamInfo:
                         annotation = aws_cdk.aws_elasticloadbalancingv2.LoadBalancerTargetProps
                     elif annotation == 'PrincipalBase':
                         annotation = aws_cdk.aws_iam.PrincipalBase
+                    elif annotation == 'InstanceType' and self.method.module_name == 'aws-cdk-lib.aws_batch':
+                        annotation = aws_cdk.aws_ec2.InstanceType
                     else:
+                        resolved = False
+                        print(self.method.method_name, self.method.module_name)
                         print(f'failed to resolve param string annotation {annotation!r}', e)
+                    if resolved and _prev_anno_name not in ('CfnResource', 'Reference', 'RemovalPolicy'):
+                        print(f'Resolved annotation {_prev_anno_name!r} to {annotation!r} (method {self.method.method_name!r} in module {self.method.module_name!r})')
 
         origin = typing.get_origin(annotation)
         args = typing.get_args(annotation)
@@ -369,7 +379,7 @@ class ParamInfo:
                     guess_globals=globals()
                     guess_globals.update(modules['aws-cdk-lib'].globals)
                 try:
-                    new = pydantic.typing.evaluate_forwardref(annotation, guess_globals, guess_namespace)
+                    new = typing.cast(typing.Any, annotation)._evaluate(guess_globals, guess_namespace, set())
                     return self.clean_annotation(new)
                 except Exception as e:
                     if annotation.__forward_evaluated__:
@@ -418,6 +428,8 @@ class MethodInfo:
             exclude = []
         doc = self.doc
         for param_name, param in self.signature.parameters.items():
+            if param_name.startswith('_'):
+                continue
             if param_name in exclude:
                 continue
             for p in doc['params']:
@@ -458,6 +470,8 @@ class MethodInfo:
                 try:
                     annotation = eval(annotation, self.module_info.globals)
                 except Exception as e:
+                    _prev_anno_name = annotation
+                    resolved = True
                     if annotation == 'Stack':
                         annotation = aws_cdk.Stack
                     elif annotation == 'ListenerAction':
@@ -492,8 +506,16 @@ class MethodInfo:
                         annotation = aws_cdk.aws_elasticloadbalancingv2.LoadBalancerTargetProps
                     elif annotation == 'PrincipalBase':
                         annotation = aws_cdk.aws_iam.PrincipalBase
+                    elif annotation == 'InstanceType' and self.module_name == 'aws-cdk-lib.aws_batch':
+                        annotation = aws_cdk.aws_ec2.InstanceType
                     else:
+                        resolved = False
+                        print(self.module_name)
                         print(f'failed to resolve param return string annotation {annotation!r}', e)
+                    if resolved and _prev_anno_name not in ('Reference', 'CfnResource', 'RemovalPolicy'):
+                        print(f'Resolved annotation {_prev_anno_name!r} to {annotation!r} (module {self.module_name!r})')
+
+
         origin = typing.get_origin(annotation)
         args = typing.get_args(annotation)
         if origin is collections.abc.Sequence:
@@ -523,7 +545,7 @@ class MethodInfo:
                     guess_globals = modules['aws-cdk-lib.aws_stepfunctions'].globals
                 else:
                     guess_globals=globals()
-                new = pydantic.typing.evaluate_forwardref(annotation, guess_globals, guess_namespace)
+                new = typing.cast(Any, annotation)._evaluate(guess_globals, guess_namespace, set())
                 return self.clean_return_annotation(new)
             elif inspect.isclass(annotation):
                 return annotation
@@ -579,7 +601,7 @@ import aws_cdk
 import constructs
 import pydantic
 import datetime
-from ._base import BaseConstruct, BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, ConnectableMixin, BaseMethodParams, GenericApplyRemovalPolicyParams
+from ._base import BaseConstruct, BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, ConnectableMixin, BaseMethodParams, GenericApplyRemovalPolicyParams, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM
 '''
 
 def render_module(mod: Module) -> str:
@@ -590,7 +612,6 @@ def render_module(mod: Module) -> str:
         s += f'\n#  autogenerated from {resource.python_qualname}\n'
         s += render_resource(resource)
         s += '\n'
-    s += '\nimport models\n'
 
 
     s += '\nclass ModuleModel(pydantic.BaseModel):'
@@ -600,13 +621,12 @@ def render_module(mod: Module) -> str:
             continue
         attrname = f'{resource.name.replace(".", "_")}'
         class_name = f'{attrname}Def'
-        s += f'\n    {attrname}: typing.Optional[dict[str, {class_name}]] = pydantic.Field(None)'
+        fullname = f'models.{mod.namespace}.{class_name}'
+        s += f'\n    {attrname}: typing.Optional[dict[str, {fullname}]] = pydantic.Field(None)'
     s += '\n    ...'
     s += '\n'
 
-
-
-    # TODO: make module model
+    s += '\nimport models\n'
 
     return s
 
@@ -654,7 +674,7 @@ def render_pydantic(resource: APIResource) -> str:
 
     return s
 
-_pydantic_reserved_words = {'schema', 'json', 'construct', 'validate', 'copy', 'register'}
+_pydantic_reserved_words = {'schema', 'json', 'construct', 'validate', 'copy', 'register', 'model_fields', 'model_construct', 'model_copy', 'model_dump', 'model_json_schema', 'model_dump_json', 'model_validate', 'list', 'dict', 'models'}
 
 def _render_class_head(resource: APIResource, class_name: str, base_classes: list[str]) -> str:
     # print('rendering class head', resource)
@@ -663,13 +683,21 @@ def _render_class_head(resource: APIResource, class_name: str, base_classes: lis
     s = f'class {class_name}({", ".join(c for c in base_classes)}):'
     init_param_names = []
     if resource.init_params:
+        has_protected_attrs = False
         for param_name, param in resource.init_params.items():
             if param_name in ('id', 'self', 'scope'):
                 continue
+            if param_name.startswith('_'):
+                continue
+
             init_param_names.append(param_name)
+            if param_name.startswith('model_'):
+                s += '\n    model_config = pydantic.ConfigDict(protected_namespaces=())'
+                has_protected_attrs = True
 
             s += f'\n    {param_name}'
-            if param_name in _pydantic_reserved_words:
+
+            if param_name in _pydantic_reserved_words or has_protected_attrs:
                 s += '_'
                 is_reserved = True
             else:
@@ -698,10 +726,17 @@ def _render_class_head(resource: APIResource, class_name: str, base_classes: lis
                 else:
                     raise ValueError()
             else:
-                s += f': {cleaned_annotation} = pydantic.Field('
+                if param.default is inspect._empty:
+                    if cleaned_annotation.startswith('typing.Union['):
+                        cleaned_annotation = cleaned_annotation.replace('typing.Union[', 'typing.Union[_REQUIRED_INIT_PARAM, ', 1)
+                        s += f': {cleaned_annotation} = pydantic.Field('
+                    else:
+                        s += f': typing.Union[{cleaned_annotation}, _REQUIRED_INIT_PARAM] = pydantic.Field('
+                else:
+                    s += f': {cleaned_annotation} = pydantic.Field('
 
             if param.default is inspect._empty:
-                s += '...'
+                s += 'REQUIRED_INIT_PARAM'  # TODO: make init params optional to allow alternate constructors and references
             else:
                 s += repr(param.default)  # XXX: hope this works
 
@@ -744,9 +779,16 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
     assert class_name == resource.model_class_name
 
     model_config_class_name = resource.config_class_name
+    model_config_class_full_name = resource.config_class_fullname
+    has_protected_attr = False
 
     for method in resource.alternate_constructors:
-        if method.method_name in _pydantic_reserved_words:
+        if not has_protected_attr and method.method_name.startswith('model_'):
+            has_protected_attr = True
+            s += '\n    model_config = pydantic.ConfigDict(protected_namespaces=())'
+
+
+        if method.method_name in _pydantic_reserved_words or method.method_name.startswith('model_'):
             method_name = method.method_name + '_'
             is_reserved = True
         else:
@@ -756,7 +798,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
         mod = modules[method.module_name]
         fullname = f'models.{mod.namespace}.{meth_param_model_name}'
         _module_param_classes[resource.module_name].append(fullname)
-        s += f'\n    {method_name}: typing.Optional[{meth_param_model_name}] = pydantic.Field(None, description={method.docstring!r}'
+        s += f'\n    {method_name}: typing.Optional[{fullname}] = pydantic.Field(None, description={method.docstring!r}'
         if is_reserved:
             s += f', alias={method.method_name!r}'
         s += ')'
@@ -764,14 +806,19 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
 
 
     if resource.nonconstructor_methods or resource.configurable_properties:
-        s += f'\n    resource_config: typing.Optional[{model_config_class_name}] = pydantic.Field(None)'
+        s += f'\n    resource_config: typing.Optional[{model_config_class_full_name}] = pydantic.Field(None)'
         _module_param_classes[resource.module_name].append(resource.model_class_fullname)
         s += '\n\n'
 
         # TODO: interface simplification?
         s += f'\nclass {model_config_class_name}(pydantic.BaseModel):'
         for method in resource.nonconstructor_methods:
-            if method.method_name in _pydantic_reserved_words:
+
+            if not has_protected_attr and method.method_name.startswith('model_'):
+                has_protected_attr = True
+                s += '\n    model_config = pydantic.ConfigDict(protected_namespaces=())'
+
+            if method.method_name in _pydantic_reserved_words or method.method_name.startswith('model_'):
                 method_name = method.method_name + '_'
                 is_reserved = True
             else:
@@ -786,7 +833,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
                 if method.method_name == 'apply_removal_policy':
                     s += f'\n    {method_name}: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None'
                 else:
-                    s += f'\n    {method_name}: typing.Optional[list[{meth_param_model_name}]] = pydantic.Field(None, description={method.docstring!r}'
+                    s += f'\n    {method_name}: typing.Optional[list[{fullname}]] = pydantic.Field(None, description={method.docstring!r}'
             else:
                 s += f'\n    {method_name}: typing.Optional[bool] = pydantic.Field(None, description={method.docstring!r}'
             if is_reserved:
@@ -804,14 +851,21 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
         if not method.parameters(exclude=['self']) and not method.clean_return_type in reverse_resources:
             continue
         s += '\n\n'
+        param_protected_attr = False
         meth_param_model_name = f'{class_name}{snake_to_camel(method.method_name)}Params'
         s += f'class {meth_param_model_name}(pydantic.BaseModel):'
         for param_name, param in method.parameters(exclude=['self']).items():
             if param_name in ('id', 'self', 'scope'):
                 # print(f'WARNING: sus param {param_name!r} in resource config for method {method.method_name!r} ({resource.model_class_fullname})')
                 ...
+
+
+            if not param_protected_attr and param_name.startswith('model_'):
+                param_protected_attr = True
+                s += '\n    model_config = pydantic.ConfigDict(protected_namespaces=())'
+
             s += f'\n    {param_name}'
-            if param_name in _pydantic_reserved_words:
+            if param_name in _pydantic_reserved_words or param_name.startswith('model_'):
                 s += '_'
                 is_reserved = True
             else:
@@ -868,6 +922,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
                 rtype_config_type_name = rtype_resource.config_class_fullname
 
             if rtype_config_type_name is not None:
+                # TODO: handle cyclical references in return type
                 return_config_name = 'return_config' # TODO: name this better?
                 s += f'\n    {return_config_name}: typing.Optional[list[{rtype_config_type_name}]] = pydantic.Field(None)'
 
@@ -903,7 +958,7 @@ def render_iface_methods(resource: APIResource) -> str:
             mod = modules[method.module_name]
             fullname = f'models._interface_methods.{meth_param_model_name}'
             _module_param_classes['_interface_methods'].append(fullname)
-            s += f'\n    {method_name}: typing.Optional[list[{meth_param_model_name}]] = pydantic.Field(None, description={method.docstring!r}'
+            s += f'\n    {method_name}: typing.Optional[list[{fullname}]] = pydantic.Field(None, description={method.docstring!r}'
         else:
             s += f'\n    {method_name}: typing.Optional[bool] = pydantic.Field(None, description={method.docstring!r}'
         if is_reserved:
@@ -1109,6 +1164,9 @@ for iface, _impls in _implementations.items():
     if not _impls:
         print(f'NO IMPL FOR {iface!r}')
 
+
+
+
 def write_modules(mods: list[Module], outdir: str) -> None:
     interace_method_module = os.path.join(outdir, '_interface_methods.py')
     s = ''
@@ -1146,10 +1204,46 @@ def write_modules(mods: list[Module], outdir: str) -> None:
             f.write(f'{c}, ')
         f.write('):')
         f.write('\n    try:')
-        f.write(f'\n        m.update_forward_refs(datetime=datetime)')
+        f.write(f'\n        m.update_forward_refs()')
         f.write('\n    except Exception as e:')
         f.write('\n        print("f", m, e)')
         f.write('\n')
+    initfile = os.path.join(outdir, '_init.py')
+    with open(initfile, 'w') as f:
+        f.write('import typing\nimport pydantic\nfrom ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM\nfrom .core import *\n')
+        for mod in mods:
+            if '.experimental' in mod.namespace:
+                continue
+            f.write(f'from . import {mod.namespace}\n')
+        f.write('from . import _interface_methods\nfrom . import _utils\nfrom . import core\n')
+        f.write('for mod in [\n')
+        for mod in mods:
+            if '.experimental' in mod.namespace:
+                continue
+            f.write(f'    {mod.namespace},\n')
+        f.write(']:\n')
+        f.write("    for name in dir(mod):\n")
+        f.write("        obj = getattr(mod, name)\n")
+        f.write("        if hasattr(obj, 'update_forward_refs'):\n")
+        f.write("            try:\n")
+        f.write("                obj.update_forward_refs()\n")
+        f.write("            except Exception as e:\n")
+        f.write("                print('f', mod, name, e)\n")
+
+        for mod in mods:
+            if mod.namespace == 'core':
+                continue
+            if '.experimental' in mod.namespace:
+                continue
+            f.write(f'{mod.namespace}.ModuleModel.update_forward_refs()\n')
+
+        f.write('class MegaModel(pydantic.BaseModel):\n')
+        for mod in mods:
+            if '.experimental' in mod.namespace:
+                continue
+            if mod.namespace == 'core':
+                continue
+            f.write(f"    {mod.namespace}_: typing.Optional[{mod.namespace}.ModuleModel] = pydantic.Field(None, alias={mod.namespace!r})\n")
 
 
 

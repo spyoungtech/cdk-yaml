@@ -30,12 +30,12 @@ class ActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.ActionDefConfig] = pydantic.Field(None)
 
 
 class ActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[ActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.ActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.ActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class ActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -78,12 +78,12 @@ class AlexaSkillDeployActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlexaSkillDeployActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.AlexaSkillDeployActionDefConfig] = pydantic.Field(None)
 
 
 class AlexaSkillDeployActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AlexaSkillDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[AlexaSkillDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.AlexaSkillDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.AlexaSkillDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class AlexaSkillDeployActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -130,19 +130,19 @@ class CacheControlDef(BaseClass):
     ...
 
 
-    from_string: typing.Optional[CacheControlDefFromStringParams] = pydantic.Field(None, description='Allows you to create an arbitrary cache control directive, in case our support is missing a method for a particular directive.')
-    resource_config: typing.Optional[CacheControlDefConfig] = pydantic.Field(None)
+    from_string: typing.Optional[models.aws_codepipeline_actions.CacheControlDefFromStringParams] = pydantic.Field(None, description='Allows you to create an arbitrary cache control directive, in case our support is missing a method for a particular directive.')
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CacheControlDefConfig] = pydantic.Field(None)
 
 
 class CacheControlDefConfig(pydantic.BaseModel):
-    max_age: typing.Optional[list[CacheControlDefMaxAgeParams]] = pydantic.Field(None, description="The 'max-age' cache control directive.")
-    must_revalidate: typing.Optional[list[CacheControlDefMustRevalidateParams]] = pydantic.Field(None, description="The 'must-revalidate' cache control directive.")
-    no_cache: typing.Optional[list[CacheControlDefNoCacheParams]] = pydantic.Field(None, description="The 'no-cache' cache control directive.")
-    no_transform: typing.Optional[list[CacheControlDefNoTransformParams]] = pydantic.Field(None, description="The 'no-transform' cache control directive.")
-    proxy_revalidate: typing.Optional[list[CacheControlDefProxyRevalidateParams]] = pydantic.Field(None, description="The 'proxy-revalidate' cache control directive.")
-    s_max_age: typing.Optional[list[CacheControlDefSMaxAgeParams]] = pydantic.Field(None, description="The 's-max-age' cache control directive.")
-    set_private: typing.Optional[list[CacheControlDefSetPrivateParams]] = pydantic.Field(None, description="The 'private' cache control directive.")
-    set_public: typing.Optional[list[CacheControlDefSetPublicParams]] = pydantic.Field(None, description="The 'public' cache control directive.")
+    max_age: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefMaxAgeParams]] = pydantic.Field(None, description="The 'max-age' cache control directive.")
+    must_revalidate: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefMustRevalidateParams]] = pydantic.Field(None, description="The 'must-revalidate' cache control directive.")
+    no_cache: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefNoCacheParams]] = pydantic.Field(None, description="The 'no-cache' cache control directive.")
+    no_transform: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefNoTransformParams]] = pydantic.Field(None, description="The 'no-transform' cache control directive.")
+    proxy_revalidate: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefProxyRevalidateParams]] = pydantic.Field(None, description="The 'proxy-revalidate' cache control directive.")
+    s_max_age: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefSMaxAgeParams]] = pydantic.Field(None, description="The 's-max-age' cache control directive.")
+    set_private: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefSetPrivateParams]] = pydantic.Field(None, description="The 'private' cache control directive.")
+    set_public: typing.Optional[list[models.aws_codepipeline_actions.CacheControlDefSetPublicParams]] = pydantic.Field(None, description="The 'public' cache control directive.")
 
 class CacheControlDefFromStringParams(pydantic.BaseModel):
     s: str = pydantic.Field(..., description='-')
@@ -210,13 +210,13 @@ class CloudFormationCreateReplaceChangeSetActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationCreateReplaceChangeSetActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationCreateReplaceChangeSetActionDefConfig(pydantic.BaseModel):
-    add_to_deployment_role_policy: typing.Optional[list[CloudFormationCreateReplaceChangeSetActionDefAddToDeploymentRolePolicyParams]] = pydantic.Field(None, description='Add statement to the service role assumed by CloudFormation while executing this action.')
-    bind: typing.Optional[list[CloudFormationCreateReplaceChangeSetActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CloudFormationCreateReplaceChangeSetActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    add_to_deployment_role_policy: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionDefAddToDeploymentRolePolicyParams]] = pydantic.Field(None, description='Add statement to the service role assumed by CloudFormation while executing this action.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
     deployment_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class CloudFormationCreateReplaceChangeSetActionDefAddToDeploymentRolePolicyParams(pydantic.BaseModel):
@@ -272,13 +272,13 @@ class CloudFormationCreateUpdateStackActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationCreateUpdateStackActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationCreateUpdateStackActionDefConfig(pydantic.BaseModel):
-    add_to_deployment_role_policy: typing.Optional[list[CloudFormationCreateUpdateStackActionDefAddToDeploymentRolePolicyParams]] = pydantic.Field(None, description='Add statement to the service role assumed by CloudFormation while executing this action.')
-    bind: typing.Optional[list[CloudFormationCreateUpdateStackActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CloudFormationCreateUpdateStackActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    add_to_deployment_role_policy: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionDefAddToDeploymentRolePolicyParams]] = pydantic.Field(None, description='Add statement to the service role assumed by CloudFormation while executing this action.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
     deployment_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class CloudFormationCreateUpdateStackActionDefAddToDeploymentRolePolicyParams(pydantic.BaseModel):
@@ -332,13 +332,13 @@ class CloudFormationDeleteStackActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationDeleteStackActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationDeleteStackActionDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationDeleteStackActionDefConfig(pydantic.BaseModel):
-    add_to_deployment_role_policy: typing.Optional[list[CloudFormationDeleteStackActionDefAddToDeploymentRolePolicyParams]] = pydantic.Field(None, description='Add statement to the service role assumed by CloudFormation while executing this action.')
-    bind: typing.Optional[list[CloudFormationDeleteStackActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CloudFormationDeleteStackActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    add_to_deployment_role_policy: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeleteStackActionDefAddToDeploymentRolePolicyParams]] = pydantic.Field(None, description='Add statement to the service role assumed by CloudFormation while executing this action.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeleteStackActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeleteStackActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
     deployment_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class CloudFormationDeleteStackActionDefAddToDeploymentRolePolicyParams(pydantic.BaseModel):
@@ -387,12 +387,12 @@ class CloudFormationDeployStackInstancesActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationDeployStackInstancesActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationDeployStackInstancesActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CloudFormationDeployStackInstancesActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CloudFormationDeployStackInstancesActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CloudFormationDeployStackInstancesActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -440,12 +440,12 @@ class CloudFormationDeployStackSetActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationDeployStackSetActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationDeployStackSetActionDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationDeployStackSetActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CloudFormationDeployStackSetActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CloudFormationDeployStackSetActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeployStackSetActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationDeployStackSetActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CloudFormationDeployStackSetActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -489,12 +489,12 @@ class CloudFormationExecuteChangeSetActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationExecuteChangeSetActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationExecuteChangeSetActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CloudFormationExecuteChangeSetActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CloudFormationExecuteChangeSetActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CloudFormationExecuteChangeSetActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -541,13 +541,13 @@ class CodeBuildActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeBuildActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeBuildActionDefConfig] = pydantic.Field(None)
 
 
 class CodeBuildActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeBuildActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CodeBuildActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
-    variable: typing.Optional[list[CodeBuildActionDefVariableParams]] = pydantic.Field(None, description="Reference a CodePipeline variable defined by the CodeBuild project this action points to.\nVariables in CodeBuild actions are defined using the 'exported-variables' subsection of the 'env'\nsection of the buildspec.")
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CodeBuildActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CodeBuildActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    variable: typing.Optional[list[models.aws_codepipeline_actions.CodeBuildActionDefVariableParams]] = pydantic.Field(None, description="Reference a CodePipeline variable defined by the CodeBuild project this action points to.\nVariables in CodeBuild actions are defined using the 'exported-variables' subsection of the 'env'\nsection of the buildspec.")
 
 class CodeBuildActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -595,12 +595,12 @@ class CodeCommitSourceActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeCommitSourceActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeCommitSourceActionDefConfig] = pydantic.Field(None)
 
 
 class CodeCommitSourceActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeCommitSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CodeCommitSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CodeCommitSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CodeCommitSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CodeCommitSourceActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -644,12 +644,12 @@ class CodeDeployEcsDeployActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeDeployEcsDeployActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeDeployEcsDeployActionDefConfig] = pydantic.Field(None)
 
 
 class CodeDeployEcsDeployActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeDeployEcsDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CodeDeployEcsDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CodeDeployEcsDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CodeDeployEcsDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CodeDeployEcsDeployActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -689,12 +689,12 @@ class CodeDeployServerDeployActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeDeployServerDeployActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeDeployServerDeployActionDefConfig] = pydantic.Field(None)
 
 
 class CodeDeployServerDeployActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeDeployServerDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CodeDeployServerDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CodeDeployServerDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CodeDeployServerDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CodeDeployServerDeployActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -739,12 +739,12 @@ class CodeStarConnectionsSourceActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeStarConnectionsSourceActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeStarConnectionsSourceActionDefConfig] = pydantic.Field(None)
 
 
 class CodeStarConnectionsSourceActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeStarConnectionsSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[CodeStarConnectionsSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.CodeStarConnectionsSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.CodeStarConnectionsSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class CodeStarConnectionsSourceActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -785,12 +785,12 @@ class EcrSourceActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcrSourceActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.EcrSourceActionDefConfig] = pydantic.Field(None)
 
 
 class EcrSourceActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcrSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[EcrSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.EcrSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.EcrSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class EcrSourceActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -832,12 +832,12 @@ class EcsDeployActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcsDeployActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.EcsDeployActionDefConfig] = pydantic.Field(None)
 
 
 class EcsDeployActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcsDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[EcsDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.EcsDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.EcsDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class EcsDeployActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -878,12 +878,12 @@ class ElasticBeanstalkDeployActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ElasticBeanstalkDeployActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.ElasticBeanstalkDeployActionDefConfig] = pydantic.Field(None)
 
 
 class ElasticBeanstalkDeployActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ElasticBeanstalkDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[ElasticBeanstalkDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.ElasticBeanstalkDeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.ElasticBeanstalkDeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class ElasticBeanstalkDeployActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -926,12 +926,12 @@ class GitHubSourceActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GitHubSourceActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.GitHubSourceActionDefConfig] = pydantic.Field(None)
 
 
 class GitHubSourceActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[GitHubSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[GitHubSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.GitHubSourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.GitHubSourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class GitHubSourceActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -973,12 +973,12 @@ class JenkinsActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[JenkinsActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.JenkinsActionDefConfig] = pydantic.Field(None)
 
 
 class JenkinsActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[JenkinsActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[JenkinsActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.JenkinsActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.JenkinsActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class JenkinsActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1021,13 +1021,13 @@ class LambdaInvokeActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaInvokeActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.LambdaInvokeActionDefConfig] = pydantic.Field(None)
 
 
 class LambdaInvokeActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaInvokeActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[LambdaInvokeActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
-    variable: typing.Optional[list[LambdaInvokeActionDefVariableParams]] = pydantic.Field(None, description="Reference a CodePipeline variable defined by the Lambda function this action points to.\nVariables in Lambda invoke actions are defined by calling the PutJobSuccessResult CodePipeline API call\nwith the 'outputVariables' property filled.")
+    bind: typing.Optional[list[models.aws_codepipeline_actions.LambdaInvokeActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.LambdaInvokeActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    variable: typing.Optional[list[models.aws_codepipeline_actions.LambdaInvokeActionDefVariableParams]] = pydantic.Field(None, description="Reference a CodePipeline variable defined by the Lambda function this action points to.\nVariables in Lambda invoke actions are defined by calling the PutJobSuccessResult CodePipeline API call\nwith the 'outputVariables' property filled.")
 
 class LambdaInvokeActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1073,13 +1073,13 @@ class ManualApprovalActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ManualApprovalActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.ManualApprovalActionDefConfig] = pydantic.Field(None)
 
 
 class ManualApprovalActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ManualApprovalActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    grant_manual_approval: typing.Optional[list[ManualApprovalActionDefGrantManualApprovalParams]] = pydantic.Field(None, description='grant the provided principal the permissions to approve or reject this manual approval action.\nFor more info see:\nhttps://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html')
-    on_state_change: typing.Optional[list[ManualApprovalActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.ManualApprovalActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    grant_manual_approval: typing.Optional[list[models.aws_codepipeline_actions.ManualApprovalActionDefGrantManualApprovalParams]] = pydantic.Field(None, description='grant the provided principal the permissions to approve or reject this manual approval action.\nFor more info see:\nhttps://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.ManualApprovalActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class ManualApprovalActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1128,12 +1128,12 @@ class S3DeployActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[S3DeployActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.S3DeployActionDefConfig] = pydantic.Field(None)
 
 
 class S3DeployActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3DeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[S3DeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.S3DeployActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.S3DeployActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class S3DeployActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1175,12 +1175,12 @@ class S3SourceActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[S3SourceActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.S3SourceActionDefConfig] = pydantic.Field(None)
 
 
 class S3SourceActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3SourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[S3SourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.S3SourceActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.S3SourceActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class S3SourceActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1222,12 +1222,12 @@ class ServiceCatalogDeployActionBeta1Def(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ServiceCatalogDeployActionBeta1DefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1DefConfig] = pydantic.Field(None)
 
 
 class ServiceCatalogDeployActionBeta1DefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ServiceCatalogDeployActionBeta1DefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[ServiceCatalogDeployActionBeta1DefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1DefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1DefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class ServiceCatalogDeployActionBeta1DefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1261,13 +1261,13 @@ class StackInstancesDef(BaseClass):
     ...
 
 
-    from_artifact_path: typing.Optional[StackInstancesDefFromArtifactPathParams] = pydantic.Field(None, description='Create stack instances in a set of accounts or organizational units taken from the pipeline artifacts, and a set of regions  The file must be a JSON file containing a list of strings.\nFor example::\n\n   [\n     "111111111111",\n     "222222222222",\n     "333333333333"\n   ]\n\nStack Instances will be created in every combination of region and account, or region and\nOrganizational Units (OUs).\n\nIf this is set of Organizational Units, you must have selected ``StackSetDeploymentModel.organizations()``\nas deployment model.')
-    resource_config: typing.Optional[StackInstancesDefConfig] = pydantic.Field(None)
+    from_artifact_path: typing.Optional[models.aws_codepipeline_actions.StackInstancesDefFromArtifactPathParams] = pydantic.Field(None, description='Create stack instances in a set of accounts or organizational units taken from the pipeline artifacts, and a set of regions  The file must be a JSON file containing a list of strings.\nFor example::\n\n   [\n     "111111111111",\n     "222222222222",\n     "333333333333"\n   ]\n\nStack Instances will be created in every combination of region and account, or region and\nOrganizational Units (OUs).\n\nIf this is set of Organizational Units, you must have selected ``StackSetDeploymentModel.organizations()``\nas deployment model.')
+    resource_config: typing.Optional[models.aws_codepipeline_actions.StackInstancesDefConfig] = pydantic.Field(None)
 
 
 class StackInstancesDefConfig(pydantic.BaseModel):
-    in_accounts: typing.Optional[list[StackInstancesDefInAccountsParams]] = pydantic.Field(None, description="Create stack instances in a set of accounts and regions passed as literal lists.\nStack Instances will be created in every combination of region and account.\n.. epigraph::\n\n   NOTE: ``StackInstances.inAccounts()`` and ``StackInstances.inOrganizationalUnits()``\n   have exactly the same behavior, and you can use them interchangeably if you want.\n   The only difference between them is that your code clearly indicates what entity\n   it's working with.")
-    in_organizational_units: typing.Optional[list[StackInstancesDefInOrganizationalUnitsParams]] = pydantic.Field(None, description="Create stack instances in all accounts in a set of Organizational Units (OUs) and regions passed as literal lists.\nIf you want to deploy to Organization Units, you must choose have created the StackSet\nwith ``deploymentModel: DeploymentModel.organizations()``.\n\nStack Instances will be created in every combination of region and account.\n.. epigraph::\n\n   NOTE: ``StackInstances.inAccounts()`` and ``StackInstances.inOrganizationalUnits()``\n   have exactly the same behavior, and you can use them interchangeably if you want.\n   The only difference between them is that your code clearly indicates what entity\n   it's working with.")
+    in_accounts: typing.Optional[list[models.aws_codepipeline_actions.StackInstancesDefInAccountsParams]] = pydantic.Field(None, description="Create stack instances in a set of accounts and regions passed as literal lists.\nStack Instances will be created in every combination of region and account.\n.. epigraph::\n\n   NOTE: ``StackInstances.inAccounts()`` and ``StackInstances.inOrganizationalUnits()``\n   have exactly the same behavior, and you can use them interchangeably if you want.\n   The only difference between them is that your code clearly indicates what entity\n   it's working with.")
+    in_organizational_units: typing.Optional[list[models.aws_codepipeline_actions.StackInstancesDefInOrganizationalUnitsParams]] = pydantic.Field(None, description="Create stack instances in all accounts in a set of Organizational Units (OUs) and regions passed as literal lists.\nIf you want to deploy to Organization Units, you must choose have created the StackSet\nwith ``deploymentModel: DeploymentModel.organizations()``.\n\nStack Instances will be created in every combination of region and account.\n.. epigraph::\n\n   NOTE: ``StackInstances.inAccounts()`` and ``StackInstances.inOrganizationalUnits()``\n   have exactly the same behavior, and you can use them interchangeably if you want.\n   The only difference between them is that your code clearly indicates what entity\n   it's working with.")
 
 class StackInstancesDefFromArtifactPathParams(pydantic.BaseModel):
     artifact_path: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-\n')
@@ -1297,12 +1297,12 @@ class StackSetDeploymentModelDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StackSetDeploymentModelDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.StackSetDeploymentModelDefConfig] = pydantic.Field(None)
 
 
 class StackSetDeploymentModelDefConfig(pydantic.BaseModel):
-    organizations: typing.Optional[list[StackSetDeploymentModelDefOrganizationsParams]] = pydantic.Field(None, description='Deploy to AWS Organizations accounts.\nAWS CloudFormation StackSets automatically creates the IAM roles required\nto deploy to accounts managed by AWS Organizations. This requires an\naccount to be a member of an Organization.\n\nUsing this deployment model, you can specify either AWS Account Ids or\nOrganization Unit Ids in the ``stackInstances`` parameter.')
-    self_managed: typing.Optional[list[StackSetDeploymentModelDefSelfManagedParams]] = pydantic.Field(None, description='Deploy to AWS Accounts not managed by AWS Organizations.\nYou are responsible for creating Execution Roles in every account you will\nbe deploying to in advance to create the actual stack instances. Unless you\nspecify overrides, StackSets expects the execution roles you create to have\nthe default name ``AWSCloudFormationStackSetExecutionRole``. See the `Grant\nself-managed\npermissions <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-self-managed.html>`_\nsection of the CloudFormation documentation.\n\nThe CDK will automatically create the central Administration Role in the\nPipeline account which will be used to assume the Execution Role in each of\nthe target accounts.\n\nIf you wish to use a pre-created Administration Role, use ``Role.fromRoleName()``\nor ``Role.fromRoleArn()`` to import it, and pass it to this function::\n\n   existing_admin_role = iam.Role.from_role_name(self, "AdminRole", "AWSCloudFormationStackSetAdministrationRole")\n\n   deployment_model = codepipeline_actions.StackSetDeploymentModel.self_managed(\n       # Use an existing Role. Leave this out to create a new Role.\n       administration_role=existing_admin_role\n   )\n\nUsing this deployment model, you can only specify AWS Account Ids in the\n``stackInstances`` parameter.')
+    organizations: typing.Optional[list[models.aws_codepipeline_actions.StackSetDeploymentModelDefOrganizationsParams]] = pydantic.Field(None, description='Deploy to AWS Organizations accounts.\nAWS CloudFormation StackSets automatically creates the IAM roles required\nto deploy to accounts managed by AWS Organizations. This requires an\naccount to be a member of an Organization.\n\nUsing this deployment model, you can specify either AWS Account Ids or\nOrganization Unit Ids in the ``stackInstances`` parameter.')
+    self_managed: typing.Optional[list[models.aws_codepipeline_actions.StackSetDeploymentModelDefSelfManagedParams]] = pydantic.Field(None, description='Deploy to AWS Accounts not managed by AWS Organizations.\nYou are responsible for creating Execution Roles in every account you will\nbe deploying to in advance to create the actual stack instances. Unless you\nspecify overrides, StackSets expects the execution roles you create to have\nthe default name ``AWSCloudFormationStackSetExecutionRole``. See the `Grant\nself-managed\npermissions <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-prereqs-self-managed.html>`_\nsection of the CloudFormation documentation.\n\nThe CDK will automatically create the central Administration Role in the\nPipeline account which will be used to assume the Execution Role in each of\nthe target accounts.\n\nIf you wish to use a pre-created Administration Role, use ``Role.fromRoleName()``\nor ``Role.fromRoleArn()`` to import it, and pass it to this function::\n\n   existing_admin_role = iam.Role.from_role_name(self, "AdminRole", "AWSCloudFormationStackSetAdministrationRole")\n\n   deployment_model = codepipeline_actions.StackSetDeploymentModel.self_managed(\n       # Use an existing Role. Leave this out to create a new Role.\n       administration_role=existing_admin_role\n   )\n\nUsing this deployment model, you can only specify AWS Account Ids in the\n``stackInstances`` parameter.')
 
 class StackSetDeploymentModelDefOrganizationsParams(pydantic.BaseModel):
     auto_deployment: typing.Optional[aws_cdk.aws_codepipeline_actions.StackSetOrganizationsAutoDeployment] = pydantic.Field(None, description='Automatically deploy to new accounts added to Organizational Units. Whether AWS CloudFormation StackSets automatically deploys to AWS Organizations accounts that are added to a target organization or organizational unit (OU). Default: Disabled')
@@ -1326,8 +1326,8 @@ class StackSetParametersDef(BaseClass):
     ...
 
 
-    from_artifact_path: typing.Optional[StackSetParametersDefFromArtifactPathParams] = pydantic.Field(None, description='Read the parameters from a JSON file from one of the pipeline\'s artifacts.\nThe file needs to contain a list of ``{ ParameterKey, ParameterValue, UsePreviousValue }`` objects, like\nthis::\n\n   [\n       {\n           "ParameterKey": "BucketName",\n           "ParameterValue": "my-bucket"\n       },\n       {\n           "ParameterKey": "Asset1",\n           "ParameterValue": "true"\n       },\n       {\n           "ParameterKey": "Asset2",\n           "UsePreviousValue": true\n       }\n   ]\n\nYou must specify all template parameters. Parameters you don\'t specify will revert\nto their ``Default`` values as specified in the template.\n\nFor of parameters you want to retain their existing values\nwithout specifying what those values are, set ``UsePreviousValue: true``.\nUse of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.')
-    from_literal: typing.Optional[StackSetParametersDefFromLiteralParams] = pydantic.Field(None, description="A list of template parameters for your stack set.\nYou must specify all template parameters. Parameters you don't specify will revert\nto their ``Default`` values as specified in the template.\n\nSpecify the names of parameters you want to retain their existing values,\nwithout specifying what those values are, in an array in the second\nargument to this function. Use of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.")
+    from_artifact_path: typing.Optional[models.aws_codepipeline_actions.StackSetParametersDefFromArtifactPathParams] = pydantic.Field(None, description='Read the parameters from a JSON file from one of the pipeline\'s artifacts.\nThe file needs to contain a list of ``{ ParameterKey, ParameterValue, UsePreviousValue }`` objects, like\nthis::\n\n   [\n       {\n           "ParameterKey": "BucketName",\n           "ParameterValue": "my-bucket"\n       },\n       {\n           "ParameterKey": "Asset1",\n           "ParameterValue": "true"\n       },\n       {\n           "ParameterKey": "Asset2",\n           "UsePreviousValue": true\n       }\n   ]\n\nYou must specify all template parameters. Parameters you don\'t specify will revert\nto their ``Default`` values as specified in the template.\n\nFor of parameters you want to retain their existing values\nwithout specifying what those values are, set ``UsePreviousValue: true``.\nUse of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.')
+    from_literal: typing.Optional[models.aws_codepipeline_actions.StackSetParametersDefFromLiteralParams] = pydantic.Field(None, description="A list of template parameters for your stack set.\nYou must specify all template parameters. Parameters you don't specify will revert\nto their ``Default`` values as specified in the template.\n\nSpecify the names of parameters you want to retain their existing values,\nwithout specifying what those values are, in an array in the second\nargument to this function. Use of this feature is discouraged. CDK is for\nspecifying desired-state infrastructure, and use of this feature makes the\nparameter values unmanaged.")
 
 class StackSetParametersDefFromArtifactPathParams(pydantic.BaseModel):
     artifact_path: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-')
@@ -1349,7 +1349,7 @@ class StackSetTemplateDef(BaseClass):
     ...
 
 
-    from_artifact_path: typing.Optional[StackSetTemplateDefFromArtifactPathParams] = pydantic.Field(None, description='Use a file in an artifact as Stack Template.')
+    from_artifact_path: typing.Optional[models.aws_codepipeline_actions.StackSetTemplateDefFromArtifactPathParams] = pydantic.Field(None, description='Use a file in an artifact as Stack Template.')
 
 class StackSetTemplateDefFromArtifactPathParams(pydantic.BaseModel):
     artifact_path: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-')
@@ -1366,12 +1366,12 @@ class StateMachineInputDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StateMachineInputDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.StateMachineInputDefConfig] = pydantic.Field(None)
 
 
 class StateMachineInputDefConfig(pydantic.BaseModel):
-    file_path: typing.Optional[list[StateMachineInputDefFilePathParams]] = pydantic.Field(None, description='When the input type is FilePath, input artifact and filepath must be specified.')
-    literal: typing.Optional[list[StateMachineInputDefLiteralParams]] = pydantic.Field(None, description='When the input type is Literal, input value is passed directly to the state machine input.')
+    file_path: typing.Optional[list[models.aws_codepipeline_actions.StateMachineInputDefFilePathParams]] = pydantic.Field(None, description='When the input type is FilePath, input artifact and filepath must be specified.')
+    literal: typing.Optional[list[models.aws_codepipeline_actions.StateMachineInputDefLiteralParams]] = pydantic.Field(None, description='When the input type is Literal, input value is passed directly to the state machine input.')
 
 class StateMachineInputDefFilePathParams(pydantic.BaseModel):
     input_file: models.aws_codepipeline.ArtifactPathDef = pydantic.Field(..., description='-')
@@ -1402,12 +1402,12 @@ class StepFunctionInvokeActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionInvokeActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.StepFunctionInvokeActionDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionInvokeActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[StepFunctionInvokeActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[StepFunctionInvokeActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline_actions.StepFunctionInvokeActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline_actions.StepFunctionInvokeActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class StepFunctionInvokeActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1446,7 +1446,7 @@ class JenkinsProviderDef(BaseConstruct):
     ...
 
 
-    from_jenkins_provider_attributes: typing.Optional[JenkinsProviderDefFromJenkinsProviderAttributesParams] = pydantic.Field(None, description='Import a Jenkins provider registered either outside the CDK, or in a different CDK Stack.')
+    from_jenkins_provider_attributes: typing.Optional[models.aws_codepipeline_actions.JenkinsProviderDefFromJenkinsProviderAttributesParams] = pydantic.Field(None, description='Import a Jenkins provider registered either outside the CDK, or in a different CDK Stack.')
 
 class JenkinsProviderDefFromJenkinsProviderAttributesParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='the parent Construct for the new provider.\n')
@@ -1476,7 +1476,7 @@ class AlexaSkillDeployActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AlexaSkillDeployActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.AlexaSkillDeployActionPropsDefConfig] = pydantic.Field(None)
 
 
 class AlexaSkillDeployActionPropsDefConfig(pydantic.BaseModel):
@@ -1512,7 +1512,7 @@ class CloudFormationCreateReplaceChangeSetActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationCreateReplaceChangeSetActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationCreateReplaceChangeSetActionPropsDefConfig(pydantic.BaseModel):
@@ -1546,7 +1546,7 @@ class CloudFormationCreateUpdateStackActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationCreateUpdateStackActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationCreateUpdateStackActionPropsDefConfig(pydantic.BaseModel):
@@ -1600,7 +1600,7 @@ class CloudFormationDeployStackInstancesActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CloudFormationDeployStackInstancesActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationDeployStackInstancesActionPropsDefConfig(pydantic.BaseModel):
@@ -1678,7 +1678,7 @@ class CodeBuildActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeBuildActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeBuildActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CodeBuildActionPropsDefConfig(pydantic.BaseModel):
@@ -1706,7 +1706,7 @@ class CodeCommitSourceActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeCommitSourceActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeCommitSourceActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CodeCommitSourceActionPropsDefConfig(pydantic.BaseModel):
@@ -1744,7 +1744,7 @@ class CodeDeployEcsContainerImageInputDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeDeployEcsContainerImageInputDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeDeployEcsContainerImageInputDefConfig] = pydantic.Field(None)
 
 
 class CodeDeployEcsContainerImageInputDefConfig(pydantic.BaseModel):
@@ -1771,7 +1771,7 @@ class CodeDeployEcsDeployActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeDeployEcsDeployActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeDeployEcsDeployActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CodeDeployEcsDeployActionPropsDefConfig(pydantic.BaseModel):
@@ -1794,7 +1794,7 @@ class CodeDeployServerDeployActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeDeployServerDeployActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeDeployServerDeployActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CodeDeployServerDeployActionPropsDefConfig(pydantic.BaseModel):
@@ -1823,7 +1823,7 @@ class CodeStarConnectionsSourceActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeStarConnectionsSourceActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.CodeStarConnectionsSourceActionPropsDefConfig] = pydantic.Field(None)
 
 
 class CodeStarConnectionsSourceActionPropsDefConfig(pydantic.BaseModel):
@@ -1880,7 +1880,7 @@ class EcrSourceActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcrSourceActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.EcrSourceActionPropsDefConfig] = pydantic.Field(None)
 
 
 class EcrSourceActionPropsDefConfig(pydantic.BaseModel):
@@ -1923,7 +1923,7 @@ class EcsDeployActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsDeployActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.EcsDeployActionPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsDeployActionPropsDefConfig(pydantic.BaseModel):
@@ -1947,7 +1947,7 @@ class ElasticBeanstalkDeployActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ElasticBeanstalkDeployActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.ElasticBeanstalkDeployActionPropsDefConfig] = pydantic.Field(None)
 
 
 class ElasticBeanstalkDeployActionPropsDefConfig(pydantic.BaseModel):
@@ -1973,7 +1973,7 @@ class GitHubSourceActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[GitHubSourceActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.GitHubSourceActionPropsDefConfig] = pydantic.Field(None)
 
 
 class GitHubSourceActionPropsDefConfig(pydantic.BaseModel):
@@ -2071,7 +2071,7 @@ class LambdaInvokeActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaInvokeActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.LambdaInvokeActionPropsDefConfig] = pydantic.Field(None)
 
 
 class LambdaInvokeActionPropsDefConfig(pydantic.BaseModel):
@@ -2132,7 +2132,7 @@ class S3DeployActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[S3DeployActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.S3DeployActionPropsDefConfig] = pydantic.Field(None)
 
 
 class S3DeployActionPropsDefConfig(pydantic.BaseModel):
@@ -2158,7 +2158,7 @@ class S3SourceActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[S3SourceActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.S3SourceActionPropsDefConfig] = pydantic.Field(None)
 
 
 class S3SourceActionPropsDefConfig(pydantic.BaseModel):
@@ -2212,7 +2212,7 @@ class ServiceCatalogDeployActionBeta1PropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ServiceCatalogDeployActionBeta1PropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1PropsDefConfig] = pydantic.Field(None)
 
 
 class ServiceCatalogDeployActionBeta1PropsDefConfig(pydantic.BaseModel):
@@ -2237,7 +2237,7 @@ class StepFunctionsInvokeActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsInvokeActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline_actions.StepFunctionsInvokeActionPropsDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsInvokeActionPropsDefConfig(pydantic.BaseModel):
@@ -2265,73 +2265,73 @@ class StepFunctionsInvokeActionPropsDefConfig(pydantic.BaseModel):
 #  autogenerated from aws_cdk.aws_codepipeline_actions.IJenkinsProvider
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Action: typing.Optional[dict[str, ActionDef]] = pydantic.Field(None)
-    AlexaSkillDeployAction: typing.Optional[dict[str, AlexaSkillDeployActionDef]] = pydantic.Field(None)
-    BaseJenkinsProvider: typing.Optional[dict[str, BaseJenkinsProviderDef]] = pydantic.Field(None)
-    CacheControl: typing.Optional[dict[str, CacheControlDef]] = pydantic.Field(None)
-    CloudFormationCreateReplaceChangeSetAction: typing.Optional[dict[str, CloudFormationCreateReplaceChangeSetActionDef]] = pydantic.Field(None)
-    CloudFormationCreateUpdateStackAction: typing.Optional[dict[str, CloudFormationCreateUpdateStackActionDef]] = pydantic.Field(None)
-    CloudFormationDeleteStackAction: typing.Optional[dict[str, CloudFormationDeleteStackActionDef]] = pydantic.Field(None)
-    CloudFormationDeployStackInstancesAction: typing.Optional[dict[str, CloudFormationDeployStackInstancesActionDef]] = pydantic.Field(None)
-    CloudFormationDeployStackSetAction: typing.Optional[dict[str, CloudFormationDeployStackSetActionDef]] = pydantic.Field(None)
-    CloudFormationExecuteChangeSetAction: typing.Optional[dict[str, CloudFormationExecuteChangeSetActionDef]] = pydantic.Field(None)
-    CodeBuildAction: typing.Optional[dict[str, CodeBuildActionDef]] = pydantic.Field(None)
-    CodeCommitSourceAction: typing.Optional[dict[str, CodeCommitSourceActionDef]] = pydantic.Field(None)
-    CodeDeployEcsDeployAction: typing.Optional[dict[str, CodeDeployEcsDeployActionDef]] = pydantic.Field(None)
-    CodeDeployServerDeployAction: typing.Optional[dict[str, CodeDeployServerDeployActionDef]] = pydantic.Field(None)
-    CodeStarConnectionsSourceAction: typing.Optional[dict[str, CodeStarConnectionsSourceActionDef]] = pydantic.Field(None)
-    EcrSourceAction: typing.Optional[dict[str, EcrSourceActionDef]] = pydantic.Field(None)
-    EcsDeployAction: typing.Optional[dict[str, EcsDeployActionDef]] = pydantic.Field(None)
-    ElasticBeanstalkDeployAction: typing.Optional[dict[str, ElasticBeanstalkDeployActionDef]] = pydantic.Field(None)
-    GitHubSourceAction: typing.Optional[dict[str, GitHubSourceActionDef]] = pydantic.Field(None)
-    JenkinsAction: typing.Optional[dict[str, JenkinsActionDef]] = pydantic.Field(None)
-    LambdaInvokeAction: typing.Optional[dict[str, LambdaInvokeActionDef]] = pydantic.Field(None)
-    ManualApprovalAction: typing.Optional[dict[str, ManualApprovalActionDef]] = pydantic.Field(None)
-    S3DeployAction: typing.Optional[dict[str, S3DeployActionDef]] = pydantic.Field(None)
-    S3SourceAction: typing.Optional[dict[str, S3SourceActionDef]] = pydantic.Field(None)
-    ServiceCatalogDeployActionBeta1: typing.Optional[dict[str, ServiceCatalogDeployActionBeta1Def]] = pydantic.Field(None)
-    StackInstances: typing.Optional[dict[str, StackInstancesDef]] = pydantic.Field(None)
-    StackSetDeploymentModel: typing.Optional[dict[str, StackSetDeploymentModelDef]] = pydantic.Field(None)
-    StackSetParameters: typing.Optional[dict[str, StackSetParametersDef]] = pydantic.Field(None)
-    StackSetTemplate: typing.Optional[dict[str, StackSetTemplateDef]] = pydantic.Field(None)
-    StateMachineInput: typing.Optional[dict[str, StateMachineInputDef]] = pydantic.Field(None)
-    StepFunctionInvokeAction: typing.Optional[dict[str, StepFunctionInvokeActionDef]] = pydantic.Field(None)
-    JenkinsProvider: typing.Optional[dict[str, JenkinsProviderDef]] = pydantic.Field(None)
-    AlexaSkillDeployActionProps: typing.Optional[dict[str, AlexaSkillDeployActionPropsDef]] = pydantic.Field(None)
-    CloudFormationCreateReplaceChangeSetActionProps: typing.Optional[dict[str, CloudFormationCreateReplaceChangeSetActionPropsDef]] = pydantic.Field(None)
-    CloudFormationCreateUpdateStackActionProps: typing.Optional[dict[str, CloudFormationCreateUpdateStackActionPropsDef]] = pydantic.Field(None)
-    CloudFormationDeleteStackActionProps: typing.Optional[dict[str, CloudFormationDeleteStackActionPropsDef]] = pydantic.Field(None)
-    CloudFormationDeployStackInstancesActionProps: typing.Optional[dict[str, CloudFormationDeployStackInstancesActionPropsDef]] = pydantic.Field(None)
-    CloudFormationDeployStackSetActionProps: typing.Optional[dict[str, CloudFormationDeployStackSetActionPropsDef]] = pydantic.Field(None)
-    CloudFormationExecuteChangeSetActionProps: typing.Optional[dict[str, CloudFormationExecuteChangeSetActionPropsDef]] = pydantic.Field(None)
-    CodeBuildActionProps: typing.Optional[dict[str, CodeBuildActionPropsDef]] = pydantic.Field(None)
-    CodeCommitSourceActionProps: typing.Optional[dict[str, CodeCommitSourceActionPropsDef]] = pydantic.Field(None)
-    CodeCommitSourceVariables: typing.Optional[dict[str, CodeCommitSourceVariablesDef]] = pydantic.Field(None)
-    CodeDeployEcsContainerImageInput: typing.Optional[dict[str, CodeDeployEcsContainerImageInputDef]] = pydantic.Field(None)
-    CodeDeployEcsDeployActionProps: typing.Optional[dict[str, CodeDeployEcsDeployActionPropsDef]] = pydantic.Field(None)
-    CodeDeployServerDeployActionProps: typing.Optional[dict[str, CodeDeployServerDeployActionPropsDef]] = pydantic.Field(None)
-    CodeStarConnectionsSourceActionProps: typing.Optional[dict[str, CodeStarConnectionsSourceActionPropsDef]] = pydantic.Field(None)
-    CodeStarSourceVariables: typing.Optional[dict[str, CodeStarSourceVariablesDef]] = pydantic.Field(None)
-    CommonCloudFormationStackSetOptions: typing.Optional[dict[str, CommonCloudFormationStackSetOptionsDef]] = pydantic.Field(None)
-    EcrSourceActionProps: typing.Optional[dict[str, EcrSourceActionPropsDef]] = pydantic.Field(None)
-    EcrSourceVariables: typing.Optional[dict[str, EcrSourceVariablesDef]] = pydantic.Field(None)
-    EcsDeployActionProps: typing.Optional[dict[str, EcsDeployActionPropsDef]] = pydantic.Field(None)
-    ElasticBeanstalkDeployActionProps: typing.Optional[dict[str, ElasticBeanstalkDeployActionPropsDef]] = pydantic.Field(None)
-    GitHubSourceActionProps: typing.Optional[dict[str, GitHubSourceActionPropsDef]] = pydantic.Field(None)
-    GitHubSourceVariables: typing.Optional[dict[str, GitHubSourceVariablesDef]] = pydantic.Field(None)
-    JenkinsActionProps: typing.Optional[dict[str, JenkinsActionPropsDef]] = pydantic.Field(None)
-    JenkinsProviderAttributes: typing.Optional[dict[str, JenkinsProviderAttributesDef]] = pydantic.Field(None)
-    JenkinsProviderProps: typing.Optional[dict[str, JenkinsProviderPropsDef]] = pydantic.Field(None)
-    LambdaInvokeActionProps: typing.Optional[dict[str, LambdaInvokeActionPropsDef]] = pydantic.Field(None)
-    ManualApprovalActionProps: typing.Optional[dict[str, ManualApprovalActionPropsDef]] = pydantic.Field(None)
-    OrganizationsDeploymentProps: typing.Optional[dict[str, OrganizationsDeploymentPropsDef]] = pydantic.Field(None)
-    S3DeployActionProps: typing.Optional[dict[str, S3DeployActionPropsDef]] = pydantic.Field(None)
-    S3SourceActionProps: typing.Optional[dict[str, S3SourceActionPropsDef]] = pydantic.Field(None)
-    S3SourceVariables: typing.Optional[dict[str, S3SourceVariablesDef]] = pydantic.Field(None)
-    SelfManagedDeploymentProps: typing.Optional[dict[str, SelfManagedDeploymentPropsDef]] = pydantic.Field(None)
-    ServiceCatalogDeployActionBeta1Props: typing.Optional[dict[str, ServiceCatalogDeployActionBeta1PropsDef]] = pydantic.Field(None)
-    StepFunctionsInvokeActionProps: typing.Optional[dict[str, StepFunctionsInvokeActionPropsDef]] = pydantic.Field(None)
+    Action: typing.Optional[dict[str, models.aws_codepipeline_actions.ActionDef]] = pydantic.Field(None)
+    AlexaSkillDeployAction: typing.Optional[dict[str, models.aws_codepipeline_actions.AlexaSkillDeployActionDef]] = pydantic.Field(None)
+    BaseJenkinsProvider: typing.Optional[dict[str, models.aws_codepipeline_actions.BaseJenkinsProviderDef]] = pydantic.Field(None)
+    CacheControl: typing.Optional[dict[str, models.aws_codepipeline_actions.CacheControlDef]] = pydantic.Field(None)
+    CloudFormationCreateReplaceChangeSetAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionDef]] = pydantic.Field(None)
+    CloudFormationCreateUpdateStackAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionDef]] = pydantic.Field(None)
+    CloudFormationDeleteStackAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationDeleteStackActionDef]] = pydantic.Field(None)
+    CloudFormationDeployStackInstancesAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionDef]] = pydantic.Field(None)
+    CloudFormationDeployStackSetAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationDeployStackSetActionDef]] = pydantic.Field(None)
+    CloudFormationExecuteChangeSetAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionDef]] = pydantic.Field(None)
+    CodeBuildAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeBuildActionDef]] = pydantic.Field(None)
+    CodeCommitSourceAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeCommitSourceActionDef]] = pydantic.Field(None)
+    CodeDeployEcsDeployAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeDeployEcsDeployActionDef]] = pydantic.Field(None)
+    CodeDeployServerDeployAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeDeployServerDeployActionDef]] = pydantic.Field(None)
+    CodeStarConnectionsSourceAction: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeStarConnectionsSourceActionDef]] = pydantic.Field(None)
+    EcrSourceAction: typing.Optional[dict[str, models.aws_codepipeline_actions.EcrSourceActionDef]] = pydantic.Field(None)
+    EcsDeployAction: typing.Optional[dict[str, models.aws_codepipeline_actions.EcsDeployActionDef]] = pydantic.Field(None)
+    ElasticBeanstalkDeployAction: typing.Optional[dict[str, models.aws_codepipeline_actions.ElasticBeanstalkDeployActionDef]] = pydantic.Field(None)
+    GitHubSourceAction: typing.Optional[dict[str, models.aws_codepipeline_actions.GitHubSourceActionDef]] = pydantic.Field(None)
+    JenkinsAction: typing.Optional[dict[str, models.aws_codepipeline_actions.JenkinsActionDef]] = pydantic.Field(None)
+    LambdaInvokeAction: typing.Optional[dict[str, models.aws_codepipeline_actions.LambdaInvokeActionDef]] = pydantic.Field(None)
+    ManualApprovalAction: typing.Optional[dict[str, models.aws_codepipeline_actions.ManualApprovalActionDef]] = pydantic.Field(None)
+    S3DeployAction: typing.Optional[dict[str, models.aws_codepipeline_actions.S3DeployActionDef]] = pydantic.Field(None)
+    S3SourceAction: typing.Optional[dict[str, models.aws_codepipeline_actions.S3SourceActionDef]] = pydantic.Field(None)
+    ServiceCatalogDeployActionBeta1: typing.Optional[dict[str, models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1Def]] = pydantic.Field(None)
+    StackInstances: typing.Optional[dict[str, models.aws_codepipeline_actions.StackInstancesDef]] = pydantic.Field(None)
+    StackSetDeploymentModel: typing.Optional[dict[str, models.aws_codepipeline_actions.StackSetDeploymentModelDef]] = pydantic.Field(None)
+    StackSetParameters: typing.Optional[dict[str, models.aws_codepipeline_actions.StackSetParametersDef]] = pydantic.Field(None)
+    StackSetTemplate: typing.Optional[dict[str, models.aws_codepipeline_actions.StackSetTemplateDef]] = pydantic.Field(None)
+    StateMachineInput: typing.Optional[dict[str, models.aws_codepipeline_actions.StateMachineInputDef]] = pydantic.Field(None)
+    StepFunctionInvokeAction: typing.Optional[dict[str, models.aws_codepipeline_actions.StepFunctionInvokeActionDef]] = pydantic.Field(None)
+    JenkinsProvider: typing.Optional[dict[str, models.aws_codepipeline_actions.JenkinsProviderDef]] = pydantic.Field(None)
+    AlexaSkillDeployActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.AlexaSkillDeployActionPropsDef]] = pydantic.Field(None)
+    CloudFormationCreateReplaceChangeSetActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionPropsDef]] = pydantic.Field(None)
+    CloudFormationCreateUpdateStackActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionPropsDef]] = pydantic.Field(None)
+    CloudFormationDeleteStackActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationDeleteStackActionPropsDef]] = pydantic.Field(None)
+    CloudFormationDeployStackInstancesActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionPropsDef]] = pydantic.Field(None)
+    CloudFormationDeployStackSetActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationDeployStackSetActionPropsDef]] = pydantic.Field(None)
+    CloudFormationExecuteChangeSetActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionPropsDef]] = pydantic.Field(None)
+    CodeBuildActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeBuildActionPropsDef]] = pydantic.Field(None)
+    CodeCommitSourceActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeCommitSourceActionPropsDef]] = pydantic.Field(None)
+    CodeCommitSourceVariables: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeCommitSourceVariablesDef]] = pydantic.Field(None)
+    CodeDeployEcsContainerImageInput: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeDeployEcsContainerImageInputDef]] = pydantic.Field(None)
+    CodeDeployEcsDeployActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeDeployEcsDeployActionPropsDef]] = pydantic.Field(None)
+    CodeDeployServerDeployActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeDeployServerDeployActionPropsDef]] = pydantic.Field(None)
+    CodeStarConnectionsSourceActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeStarConnectionsSourceActionPropsDef]] = pydantic.Field(None)
+    CodeStarSourceVariables: typing.Optional[dict[str, models.aws_codepipeline_actions.CodeStarSourceVariablesDef]] = pydantic.Field(None)
+    CommonCloudFormationStackSetOptions: typing.Optional[dict[str, models.aws_codepipeline_actions.CommonCloudFormationStackSetOptionsDef]] = pydantic.Field(None)
+    EcrSourceActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.EcrSourceActionPropsDef]] = pydantic.Field(None)
+    EcrSourceVariables: typing.Optional[dict[str, models.aws_codepipeline_actions.EcrSourceVariablesDef]] = pydantic.Field(None)
+    EcsDeployActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.EcsDeployActionPropsDef]] = pydantic.Field(None)
+    ElasticBeanstalkDeployActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.ElasticBeanstalkDeployActionPropsDef]] = pydantic.Field(None)
+    GitHubSourceActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.GitHubSourceActionPropsDef]] = pydantic.Field(None)
+    GitHubSourceVariables: typing.Optional[dict[str, models.aws_codepipeline_actions.GitHubSourceVariablesDef]] = pydantic.Field(None)
+    JenkinsActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.JenkinsActionPropsDef]] = pydantic.Field(None)
+    JenkinsProviderAttributes: typing.Optional[dict[str, models.aws_codepipeline_actions.JenkinsProviderAttributesDef]] = pydantic.Field(None)
+    JenkinsProviderProps: typing.Optional[dict[str, models.aws_codepipeline_actions.JenkinsProviderPropsDef]] = pydantic.Field(None)
+    LambdaInvokeActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.LambdaInvokeActionPropsDef]] = pydantic.Field(None)
+    ManualApprovalActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.ManualApprovalActionPropsDef]] = pydantic.Field(None)
+    OrganizationsDeploymentProps: typing.Optional[dict[str, models.aws_codepipeline_actions.OrganizationsDeploymentPropsDef]] = pydantic.Field(None)
+    S3DeployActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.S3DeployActionPropsDef]] = pydantic.Field(None)
+    S3SourceActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.S3SourceActionPropsDef]] = pydantic.Field(None)
+    S3SourceVariables: typing.Optional[dict[str, models.aws_codepipeline_actions.S3SourceVariablesDef]] = pydantic.Field(None)
+    SelfManagedDeploymentProps: typing.Optional[dict[str, models.aws_codepipeline_actions.SelfManagedDeploymentPropsDef]] = pydantic.Field(None)
+    ServiceCatalogDeployActionBeta1Props: typing.Optional[dict[str, models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1PropsDef]] = pydantic.Field(None)
+    StepFunctionsInvokeActionProps: typing.Optional[dict[str, models.aws_codepipeline_actions.StepFunctionsInvokeActionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -28,11 +28,11 @@ class ApiEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApiEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.ApiEventSourceDefConfig] = pydantic.Field(None)
 
 
 class ApiEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ApiEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.ApiEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
 
 class ApiEventSourceDefBindParams(pydantic.BaseModel):
     target: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
@@ -62,11 +62,11 @@ class DynamoEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DynamoEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.DynamoEventSourceDefConfig] = pydantic.Field(None)
 
 
 class DynamoEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[DynamoEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.DynamoEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
 
 class DynamoEventSourceDefBindParams(pydantic.BaseModel):
     target: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
@@ -97,11 +97,11 @@ class KinesisEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[KinesisEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.KinesisEventSourceDefConfig] = pydantic.Field(None)
 
 
 class KinesisEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[KinesisEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.KinesisEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
     stream_config: typing.Optional[models._interface_methods.AwsKinesisIStreamDefConfig] = pydantic.Field(None)
 
 class KinesisEventSourceDefBindParams(pydantic.BaseModel):
@@ -128,11 +128,11 @@ class ManagedKafkaEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ManagedKafkaEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.ManagedKafkaEventSourceDefConfig] = pydantic.Field(None)
 
 
 class ManagedKafkaEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ManagedKafkaEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.ManagedKafkaEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
 
 class ManagedKafkaEventSourceDefBindParams(pydantic.BaseModel):
     target: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
@@ -152,11 +152,11 @@ class S3EventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[S3EventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.S3EventSourceDefConfig] = pydantic.Field(None)
 
 
 class S3EventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3EventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.S3EventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
     bucket_config: typing.Optional[models.aws_s3.BucketDefConfig] = pydantic.Field(None)
 
 class S3EventSourceDefBindParams(pydantic.BaseModel):
@@ -188,11 +188,11 @@ class SelfManagedKafkaEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SelfManagedKafkaEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDefConfig] = pydantic.Field(None)
 
 
 class SelfManagedKafkaEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SelfManagedKafkaEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
 
 class SelfManagedKafkaEventSourceDefBindParams(pydantic.BaseModel):
     target: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
@@ -210,14 +210,13 @@ class SnsDlqDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SnsDlqDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.SnsDlqDefConfig] = pydantic.Field(None)
 
 
 class SnsDlqDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SnsDlqDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration for the DLQ.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.SnsDlqDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration for the DLQ.')
 
 class SnsDlqDefBindParams(pydantic.BaseModel):
-    _target: typing.Union[models.aws_lambda.EventSourceMappingDef] = pydantic.Field(..., description='-\n')
     target_handler: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
     ...
 
@@ -236,11 +235,11 @@ class SnsEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SnsEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.SnsEventSourceDefConfig] = pydantic.Field(None)
 
 
 class SnsEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SnsEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.SnsEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
     topic_config: typing.Optional[models._interface_methods.AwsSnsITopicDefConfig] = pydantic.Field(None)
 
 class SnsEventSourceDefBindParams(pydantic.BaseModel):
@@ -259,14 +258,13 @@ class SqsDlqDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqsDlqDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.SqsDlqDefConfig] = pydantic.Field(None)
 
 
 class SqsDlqDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SqsDlqDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration for the DLQ.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.SqsDlqDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration for the DLQ.')
 
 class SqsDlqDefBindParams(pydantic.BaseModel):
-    _target: typing.Union[models.aws_lambda.EventSourceMappingDef] = pydantic.Field(..., description='-\n')
     target_handler: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
     ...
 
@@ -288,11 +286,11 @@ class SqsEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqsEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.SqsEventSourceDefConfig] = pydantic.Field(None)
 
 
 class SqsEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SqsEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models.aws_lambda_event_sources.SqsEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
     queue_config: typing.Optional[models._interface_methods.AwsSqsIQueueDefConfig] = pydantic.Field(None)
 
 class SqsEventSourceDefBindParams(pydantic.BaseModel):
@@ -322,15 +320,11 @@ class StreamEventSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StreamEventSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_event_sources.StreamEventSourceDefConfig] = pydantic.Field(None)
 
 
 class StreamEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[StreamEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
-
-class StreamEventSourceDefBindParams(pydantic.BaseModel):
-    _target: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
-    ...
+    bind: typing.Optional[bool] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
 
 
 #  autogenerated from aws_cdk.aws_lambda_event_sources.BaseStreamEventSourceProps
@@ -539,28 +533,28 @@ class StreamEventSourcePropsDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_lambda_event_sources.AuthenticationMethod
 # skipping emum
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ApiEventSource: typing.Optional[dict[str, ApiEventSourceDef]] = pydantic.Field(None)
-    DynamoEventSource: typing.Optional[dict[str, DynamoEventSourceDef]] = pydantic.Field(None)
-    KinesisEventSource: typing.Optional[dict[str, KinesisEventSourceDef]] = pydantic.Field(None)
-    ManagedKafkaEventSource: typing.Optional[dict[str, ManagedKafkaEventSourceDef]] = pydantic.Field(None)
-    S3EventSource: typing.Optional[dict[str, S3EventSourceDef]] = pydantic.Field(None)
-    SelfManagedKafkaEventSource: typing.Optional[dict[str, SelfManagedKafkaEventSourceDef]] = pydantic.Field(None)
-    SnsDlq: typing.Optional[dict[str, SnsDlqDef]] = pydantic.Field(None)
-    SnsEventSource: typing.Optional[dict[str, SnsEventSourceDef]] = pydantic.Field(None)
-    SqsDlq: typing.Optional[dict[str, SqsDlqDef]] = pydantic.Field(None)
-    SqsEventSource: typing.Optional[dict[str, SqsEventSourceDef]] = pydantic.Field(None)
-    StreamEventSource: typing.Optional[dict[str, StreamEventSourceDef]] = pydantic.Field(None)
-    BaseStreamEventSourceProps: typing.Optional[dict[str, BaseStreamEventSourcePropsDef]] = pydantic.Field(None)
-    DynamoEventSourceProps: typing.Optional[dict[str, DynamoEventSourcePropsDef]] = pydantic.Field(None)
-    KafkaEventSourceProps: typing.Optional[dict[str, KafkaEventSourcePropsDef]] = pydantic.Field(None)
-    KinesisEventSourceProps: typing.Optional[dict[str, KinesisEventSourcePropsDef]] = pydantic.Field(None)
-    ManagedKafkaEventSourceProps: typing.Optional[dict[str, ManagedKafkaEventSourcePropsDef]] = pydantic.Field(None)
-    S3EventSourceProps: typing.Optional[dict[str, S3EventSourcePropsDef]] = pydantic.Field(None)
-    SelfManagedKafkaEventSourceProps: typing.Optional[dict[str, SelfManagedKafkaEventSourcePropsDef]] = pydantic.Field(None)
-    SnsEventSourceProps: typing.Optional[dict[str, SnsEventSourcePropsDef]] = pydantic.Field(None)
-    SqsEventSourceProps: typing.Optional[dict[str, SqsEventSourcePropsDef]] = pydantic.Field(None)
-    StreamEventSourceProps: typing.Optional[dict[str, StreamEventSourcePropsDef]] = pydantic.Field(None)
+    ApiEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.ApiEventSourceDef]] = pydantic.Field(None)
+    DynamoEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.DynamoEventSourceDef]] = pydantic.Field(None)
+    KinesisEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.KinesisEventSourceDef]] = pydantic.Field(None)
+    ManagedKafkaEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef]] = pydantic.Field(None)
+    S3EventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.S3EventSourceDef]] = pydantic.Field(None)
+    SelfManagedKafkaEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef]] = pydantic.Field(None)
+    SnsDlq: typing.Optional[dict[str, models.aws_lambda_event_sources.SnsDlqDef]] = pydantic.Field(None)
+    SnsEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.SnsEventSourceDef]] = pydantic.Field(None)
+    SqsDlq: typing.Optional[dict[str, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None)
+    SqsEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.SqsEventSourceDef]] = pydantic.Field(None)
+    StreamEventSource: typing.Optional[dict[str, models.aws_lambda_event_sources.StreamEventSourceDef]] = pydantic.Field(None)
+    BaseStreamEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.BaseStreamEventSourcePropsDef]] = pydantic.Field(None)
+    DynamoEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.DynamoEventSourcePropsDef]] = pydantic.Field(None)
+    KafkaEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.KafkaEventSourcePropsDef]] = pydantic.Field(None)
+    KinesisEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.KinesisEventSourcePropsDef]] = pydantic.Field(None)
+    ManagedKafkaEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.ManagedKafkaEventSourcePropsDef]] = pydantic.Field(None)
+    S3EventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.S3EventSourcePropsDef]] = pydantic.Field(None)
+    SelfManagedKafkaEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.SelfManagedKafkaEventSourcePropsDef]] = pydantic.Field(None)
+    SnsEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.SnsEventSourcePropsDef]] = pydantic.Field(None)
+    SqsEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.SqsEventSourcePropsDef]] = pydantic.Field(None)
+    StreamEventSourceProps: typing.Optional[dict[str, models.aws_lambda_event_sources.StreamEventSourcePropsDef]] = pydantic.Field(None)
     ...
+
+import models

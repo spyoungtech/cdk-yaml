@@ -22,12 +22,12 @@ class TriggerDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[TriggerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.triggers.TriggerDefConfig] = pydantic.Field(None)
 
 
 class TriggerDefConfig(pydantic.BaseModel):
-    execute_after: typing.Optional[list[TriggerDefExecuteAfterParams]] = pydantic.Field(None, description='Adds trigger dependencies.\nExecute this trigger only after these construct\nscopes have been provisioned.')
-    execute_before: typing.Optional[list[TriggerDefExecuteBeforeParams]] = pydantic.Field(None, description='Adds this trigger as a dependency on other constructs.\nThis means that this\ntrigger will get executed *before* the given construct(s).')
+    execute_after: typing.Optional[list[models.triggers.TriggerDefExecuteAfterParams]] = pydantic.Field(None, description='Adds trigger dependencies.\nExecute this trigger only after these construct\nscopes have been provisioned.')
+    execute_before: typing.Optional[list[models.triggers.TriggerDefExecuteBeforeParams]] = pydantic.Field(None, description='Adds this trigger as a dependency on other constructs.\nThis means that this\ntrigger will get executed *before* the given construct(s).')
 
 class TriggerDefExecuteAfterParams(pydantic.BaseModel):
     scopes: list[models.constructs.ConstructDef] = pydantic.Field(...)
@@ -93,43 +93,43 @@ class TriggerFunctionDef(BaseConstruct):
     ...
 
 
-    from_function_arn: typing.Optional[TriggerFunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
-    from_function_attributes: typing.Optional[TriggerFunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
-    from_function_name: typing.Optional[TriggerFunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
-    metric_all: typing.Optional[TriggerFunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
-    metric_all_concurrent_executions: typing.Optional[TriggerFunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
-    metric_all_duration: typing.Optional[TriggerFunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
-    metric_all_errors: typing.Optional[TriggerFunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
-    metric_all_invocations: typing.Optional[TriggerFunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
-    metric_all_throttles: typing.Optional[TriggerFunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
-    metric_all_unreserved_concurrent_executions: typing.Optional[TriggerFunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
-    resource_config: typing.Optional[TriggerFunctionDefConfig] = pydantic.Field(None)
+    from_function_arn: typing.Optional[models.triggers.TriggerFunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
+    from_function_attributes: typing.Optional[models.triggers.TriggerFunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
+    from_function_name: typing.Optional[models.triggers.TriggerFunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
+    metric_all: typing.Optional[models.triggers.TriggerFunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
+    metric_all_concurrent_executions: typing.Optional[models.triggers.TriggerFunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
+    metric_all_duration: typing.Optional[models.triggers.TriggerFunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
+    metric_all_errors: typing.Optional[models.triggers.TriggerFunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_all_invocations: typing.Optional[models.triggers.TriggerFunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
+    metric_all_throttles: typing.Optional[models.triggers.TriggerFunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
+    metric_all_unreserved_concurrent_executions: typing.Optional[models.triggers.TriggerFunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
+    resource_config: typing.Optional[models.triggers.TriggerFunctionDefConfig] = pydantic.Field(None)
 
 
 class TriggerFunctionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[TriggerFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
-    add_environment: typing.Optional[list[TriggerFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
-    add_event_source: typing.Optional[list[TriggerFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[TriggerFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[TriggerFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_layers: typing.Optional[list[TriggerFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
-    add_permission: typing.Optional[list[TriggerFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[TriggerFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_alias: typing.Optional[list[models.triggers.TriggerFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
+    add_environment: typing.Optional[list[models.triggers.TriggerFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
+    add_event_source: typing.Optional[list[models.triggers.TriggerFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.triggers.TriggerFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.triggers.TriggerFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_layers: typing.Optional[list[models.triggers.TriggerFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
+    add_permission: typing.Optional[list[models.triggers.TriggerFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.triggers.TriggerFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    classify_version_property: typing.Optional[list[TriggerFunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
-    configure_async_invoke: typing.Optional[list[TriggerFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[TriggerFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    execute_after: typing.Optional[list[TriggerFunctionDefExecuteAfterParams]] = pydantic.Field(None, description='Adds trigger dependencies.\nExecute this trigger only after these construct\nscopes have been provisioned.')
-    execute_before: typing.Optional[list[TriggerFunctionDefExecuteBeforeParams]] = pydantic.Field(None, description='Adds this trigger as a dependency on other constructs.\nThis means that this\ntrigger will get executed *before* the given construct(s).')
-    grant_invoke: typing.Optional[list[TriggerFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[TriggerFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[TriggerFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    invalidate_version_based_on: typing.Optional[list[TriggerFunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
-    metric: typing.Optional[list[TriggerFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[TriggerFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[TriggerFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[TriggerFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[TriggerFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    classify_version_property: typing.Optional[list[models.triggers.TriggerFunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
+    configure_async_invoke: typing.Optional[list[models.triggers.TriggerFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[list[models.triggers.TriggerFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    execute_after: typing.Optional[list[models.triggers.TriggerFunctionDefExecuteAfterParams]] = pydantic.Field(None, description='Adds trigger dependencies.\nExecute this trigger only after these construct\nscopes have been provisioned.')
+    execute_before: typing.Optional[list[models.triggers.TriggerFunctionDefExecuteBeforeParams]] = pydantic.Field(None, description='Adds this trigger as a dependency on other constructs.\nThis means that this\ntrigger will get executed *before* the given construct(s).')
+    grant_invoke: typing.Optional[list[models.triggers.TriggerFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.triggers.TriggerFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.triggers.TriggerFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    invalidate_version_based_on: typing.Optional[list[models.triggers.TriggerFunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
+    metric: typing.Optional[list[models.triggers.TriggerFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.triggers.TriggerFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.triggers.TriggerFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.triggers.TriggerFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.triggers.TriggerFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     current_version_config: typing.Optional[models.aws_lambda.VersionDefConfig] = pydantic.Field(None)
@@ -479,7 +479,7 @@ class TriggerFunctionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TriggerFunctionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.triggers.TriggerFunctionPropsDefConfig] = pydantic.Field(None)
 
 
 class TriggerFunctionPropsDefConfig(pydantic.BaseModel):
@@ -518,7 +518,7 @@ class TriggerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TriggerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.triggers.TriggerPropsDefConfig] = pydantic.Field(None)
 
 
 class TriggerPropsDefConfig(pydantic.BaseModel):
@@ -534,12 +534,12 @@ class TriggerPropsDefConfig(pydantic.BaseModel):
 #  autogenerated from aws_cdk.triggers.ITrigger
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Trigger: typing.Optional[dict[str, TriggerDef]] = pydantic.Field(None)
-    TriggerFunction: typing.Optional[dict[str, TriggerFunctionDef]] = pydantic.Field(None)
-    TriggerFunctionProps: typing.Optional[dict[str, TriggerFunctionPropsDef]] = pydantic.Field(None)
-    TriggerOptions: typing.Optional[dict[str, TriggerOptionsDef]] = pydantic.Field(None)
-    TriggerProps: typing.Optional[dict[str, TriggerPropsDef]] = pydantic.Field(None)
+    Trigger: typing.Optional[dict[str, models.triggers.TriggerDef]] = pydantic.Field(None)
+    TriggerFunction: typing.Optional[dict[str, models.triggers.TriggerFunctionDef]] = pydantic.Field(None)
+    TriggerFunctionProps: typing.Optional[dict[str, models.triggers.TriggerFunctionPropsDef]] = pydantic.Field(None)
+    TriggerOptions: typing.Optional[dict[str, models.triggers.TriggerOptionsDef]] = pydantic.Field(None)
+    TriggerProps: typing.Optional[dict[str, models.triggers.TriggerPropsDef]] = pydantic.Field(None)
     ...
+
+import models

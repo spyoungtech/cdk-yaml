@@ -16,21 +16,20 @@ class AllAtOnceTrafficRoutingDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AllAtOnceTrafficRoutingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.AllAtOnceTrafficRoutingDefConfig] = pydantic.Field(None)
 
 
 class AllAtOnceTrafficRoutingDefConfig(pydantic.BaseModel):
-    all_at_once: typing.Optional[list[AllAtOnceTrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
-    bind: typing.Optional[list[AllAtOnceTrafficRoutingDefBindParams]] = pydantic.Field(None, description='Return a TrafficRoutingConfig of type ``AllAtOnce``.')
-    time_based_canary: typing.Optional[list[AllAtOnceTrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
-    time_based_linear: typing.Optional[list[AllAtOnceTrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
+    all_at_once: typing.Optional[list[models.aws_codedeploy.AllAtOnceTrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
+    bind: typing.Optional[list[models.aws_codedeploy.AllAtOnceTrafficRoutingDefBindParams]] = pydantic.Field(None, description='Return a TrafficRoutingConfig of type ``AllAtOnce``.')
+    time_based_canary: typing.Optional[list[models.aws_codedeploy.AllAtOnceTrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
+    time_based_linear: typing.Optional[list[models.aws_codedeploy.AllAtOnceTrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
 
 class AllAtOnceTrafficRoutingDefAllAtOnceParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_codedeploy.TrafficRoutingDefConfig]] = pydantic.Field(None)
     ...
 
 class AllAtOnceTrafficRoutingDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class AllAtOnceTrafficRoutingDefTimeBasedCanaryParams(pydantic.BaseModel):
@@ -60,8 +59,8 @@ class BaseDeploymentConfigDef(BaseClass):
     ...
 
 
-    from_deployment_config_name: typing.Optional[BaseDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
-    resource_config: typing.Optional[BaseDeploymentConfigDefConfig] = pydantic.Field(None)
+    from_deployment_config_name: typing.Optional[models.aws_codedeploy.BaseDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
+    resource_config: typing.Optional[models.aws_codedeploy.BaseDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class BaseDeploymentConfigDefConfig(pydantic.BaseModel):
@@ -101,13 +100,13 @@ class LoadBalancerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LoadBalancerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.LoadBalancerDefConfig] = pydantic.Field(None)
 
 
 class LoadBalancerDefConfig(pydantic.BaseModel):
-    application: typing.Optional[list[LoadBalancerDefApplicationParams]] = pydantic.Field(None, description='Creates a new CodeDeploy load balancer from an Application Load Balancer Target Group.')
-    classic: typing.Optional[list[LoadBalancerDefClassicParams]] = pydantic.Field(None, description='Creates a new CodeDeploy load balancer from a Classic ELB Load Balancer.')
-    network: typing.Optional[list[LoadBalancerDefNetworkParams]] = pydantic.Field(None, description='Creates a new CodeDeploy load balancer from a Network Load Balancer Target Group.')
+    application: typing.Optional[list[models.aws_codedeploy.LoadBalancerDefApplicationParams]] = pydantic.Field(None, description='Creates a new CodeDeploy load balancer from an Application Load Balancer Target Group.')
+    classic: typing.Optional[list[models.aws_codedeploy.LoadBalancerDefClassicParams]] = pydantic.Field(None, description='Creates a new CodeDeploy load balancer from a Classic ELB Load Balancer.')
+    network: typing.Optional[list[models.aws_codedeploy.LoadBalancerDefNetworkParams]] = pydantic.Field(None, description='Creates a new CodeDeploy load balancer from a Network Load Balancer Target Group.')
 
 class LoadBalancerDefApplicationParams(pydantic.BaseModel):
     alb_target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='an ALB Target Group.')
@@ -135,12 +134,12 @@ class MinimumHealthyHostsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MinimumHealthyHostsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.MinimumHealthyHostsDefConfig] = pydantic.Field(None)
 
 
 class MinimumHealthyHostsDefConfig(pydantic.BaseModel):
-    count: typing.Optional[list[MinimumHealthyHostsDefCountParams]] = pydantic.Field(None, description='The minimum healhty hosts threshold expressed as an absolute number.')
-    percentage: typing.Optional[list[MinimumHealthyHostsDefPercentageParams]] = pydantic.Field(None, description='The minmum healhty hosts threshold expressed as a percentage of the fleet.')
+    count: typing.Optional[list[models.aws_codedeploy.MinimumHealthyHostsDefCountParams]] = pydantic.Field(None, description='The minimum healhty hosts threshold expressed as an absolute number.')
+    percentage: typing.Optional[list[models.aws_codedeploy.MinimumHealthyHostsDefPercentageParams]] = pydantic.Field(None, description='The minmum healhty hosts threshold expressed as a percentage of the fleet.')
 
 class MinimumHealthyHostsDefCountParams(pydantic.BaseModel):
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
@@ -165,14 +164,14 @@ class TimeBasedCanaryTrafficRoutingDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TimeBasedCanaryTrafficRoutingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.TimeBasedCanaryTrafficRoutingDefConfig] = pydantic.Field(None)
 
 
 class TimeBasedCanaryTrafficRoutingDefConfig(pydantic.BaseModel):
-    all_at_once: typing.Optional[list[TimeBasedCanaryTrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
-    bind: typing.Optional[list[TimeBasedCanaryTrafficRoutingDefBindParams]] = pydantic.Field(None, description='Return a TrafficRoutingConfig of type ``TimeBasedCanary``.')
-    time_based_canary: typing.Optional[list[TimeBasedCanaryTrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
-    time_based_linear: typing.Optional[list[TimeBasedCanaryTrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
+    all_at_once: typing.Optional[list[models.aws_codedeploy.TimeBasedCanaryTrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
+    bind: typing.Optional[list[models.aws_codedeploy.TimeBasedCanaryTrafficRoutingDefBindParams]] = pydantic.Field(None, description='Return a TrafficRoutingConfig of type ``TimeBasedCanary``.')
+    time_based_canary: typing.Optional[list[models.aws_codedeploy.TimeBasedCanaryTrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
+    time_based_linear: typing.Optional[list[models.aws_codedeploy.TimeBasedCanaryTrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
     interval_config: typing.Optional[models.core.DurationDefConfig] = pydantic.Field(None)
 
 class TimeBasedCanaryTrafficRoutingDefAllAtOnceParams(pydantic.BaseModel):
@@ -180,7 +179,6 @@ class TimeBasedCanaryTrafficRoutingDefAllAtOnceParams(pydantic.BaseModel):
     ...
 
 class TimeBasedCanaryTrafficRoutingDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class TimeBasedCanaryTrafficRoutingDefTimeBasedCanaryParams(pydantic.BaseModel):
@@ -208,14 +206,14 @@ class TimeBasedLinearTrafficRoutingDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TimeBasedLinearTrafficRoutingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.TimeBasedLinearTrafficRoutingDefConfig] = pydantic.Field(None)
 
 
 class TimeBasedLinearTrafficRoutingDefConfig(pydantic.BaseModel):
-    all_at_once: typing.Optional[list[TimeBasedLinearTrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
-    bind: typing.Optional[list[TimeBasedLinearTrafficRoutingDefBindParams]] = pydantic.Field(None, description='Return a TrafficRoutingConfig of type ``TimeBasedLinear``.')
-    time_based_canary: typing.Optional[list[TimeBasedLinearTrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
-    time_based_linear: typing.Optional[list[TimeBasedLinearTrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
+    all_at_once: typing.Optional[list[models.aws_codedeploy.TimeBasedLinearTrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
+    bind: typing.Optional[list[models.aws_codedeploy.TimeBasedLinearTrafficRoutingDefBindParams]] = pydantic.Field(None, description='Return a TrafficRoutingConfig of type ``TimeBasedLinear``.')
+    time_based_canary: typing.Optional[list[models.aws_codedeploy.TimeBasedLinearTrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
+    time_based_linear: typing.Optional[list[models.aws_codedeploy.TimeBasedLinearTrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
     interval_config: typing.Optional[models.core.DurationDefConfig] = pydantic.Field(None)
 
 class TimeBasedLinearTrafficRoutingDefAllAtOnceParams(pydantic.BaseModel):
@@ -223,7 +221,6 @@ class TimeBasedLinearTrafficRoutingDefAllAtOnceParams(pydantic.BaseModel):
     ...
 
 class TimeBasedLinearTrafficRoutingDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class TimeBasedLinearTrafficRoutingDefTimeBasedCanaryParams(pydantic.BaseModel):
@@ -249,14 +246,14 @@ class TrafficRoutingDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TrafficRoutingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.TrafficRoutingDefConfig] = pydantic.Field(None)
 
 
 class TrafficRoutingDefConfig(pydantic.BaseModel):
-    all_at_once: typing.Optional[list[TrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
-    bind: typing.Optional[list[TrafficRoutingDefBindParams]] = pydantic.Field(None, description='Returns the traffic routing configuration.')
-    time_based_canary: typing.Optional[list[TrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
-    time_based_linear: typing.Optional[list[TrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
+    all_at_once: typing.Optional[list[models.aws_codedeploy.TrafficRoutingDefAllAtOnceParams]] = pydantic.Field(None, description='Shifts 100% of traffic in a single shift.')
+    bind: typing.Optional[list[models.aws_codedeploy.TrafficRoutingDefBindParams]] = pydantic.Field(None, description='Returns the traffic routing configuration.')
+    time_based_canary: typing.Optional[list[models.aws_codedeploy.TrafficRoutingDefTimeBasedCanaryParams]] = pydantic.Field(None, description='Shifts a specified percentage of traffic, waits for a specified amount of time, then shifts the rest of traffic.')
+    time_based_linear: typing.Optional[list[models.aws_codedeploy.TrafficRoutingDefTimeBasedLinearParams]] = pydantic.Field(None, description='Keeps shifting a specified percentage of traffic until reaching 100%, waiting for a specified amount of time in between each traffic shift.')
 
 class TrafficRoutingDefAllAtOnceParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_codedeploy.TrafficRoutingDefConfig]] = pydantic.Field(None)
@@ -293,7 +290,7 @@ class CustomLambdaDeploymentConfigDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CustomLambdaDeploymentConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.CustomLambdaDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class CustomLambdaDeploymentConfigDefConfig(pydantic.BaseModel):
@@ -315,9 +312,9 @@ class EcsApplicationDef(BaseConstruct):
     ...
 
 
-    from_ecs_application_arn: typing.Optional[EcsApplicationDefFromEcsApplicationArnParams] = pydantic.Field(None, description='Import an Application defined either outside the CDK, or in a different CDK Stack, by ARN.')
-    from_ecs_application_name: typing.Optional[EcsApplicationDefFromEcsApplicationNameParams] = pydantic.Field(None, description="Import an Application defined either outside the CDK, or in a different CDK Stack.\nThe Application's account and region are assumed to be the same as the stack it is being imported\ninto. If not, use ``fromEcsApplicationArn``.")
-    resource_config: typing.Optional[EcsApplicationDefConfig] = pydantic.Field(None)
+    from_ecs_application_arn: typing.Optional[models.aws_codedeploy.EcsApplicationDefFromEcsApplicationArnParams] = pydantic.Field(None, description='Import an Application defined either outside the CDK, or in a different CDK Stack, by ARN.')
+    from_ecs_application_name: typing.Optional[models.aws_codedeploy.EcsApplicationDefFromEcsApplicationNameParams] = pydantic.Field(None, description="Import an Application defined either outside the CDK, or in a different CDK Stack.\nThe Application's account and region are assumed to be the same as the stack it is being imported\ninto. If not, use ``fromEcsApplicationArn``.")
+    resource_config: typing.Optional[models.aws_codedeploy.EcsApplicationDefConfig] = pydantic.Field(None)
 
 
 class EcsApplicationDefConfig(pydantic.BaseModel):
@@ -352,9 +349,9 @@ class EcsDeploymentConfigDef(BaseConstruct):
     ...
 
 
-    from_deployment_config_name: typing.Optional[EcsDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
-    from_ecs_deployment_config_name: typing.Optional[EcsDeploymentConfigDefFromEcsDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for an ECS Deployment Group defined outside the CDK.')
-    resource_config: typing.Optional[EcsDeploymentConfigDefConfig] = pydantic.Field(None)
+    from_deployment_config_name: typing.Optional[models.aws_codedeploy.EcsDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
+    from_ecs_deployment_config_name: typing.Optional[models.aws_codedeploy.EcsDeploymentConfigDefFromEcsDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for an ECS Deployment Group defined outside the CDK.')
+    resource_config: typing.Optional[models.aws_codedeploy.EcsDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class EcsDeploymentConfigDefConfig(pydantic.BaseModel):
@@ -396,12 +393,12 @@ class EcsDeploymentGroupDef(BaseConstruct):
     ...
 
 
-    from_ecs_deployment_group_attributes: typing.Optional[EcsDeploymentGroupDefFromEcsDeploymentGroupAttributesParams] = pydantic.Field(None, description='Reference an ECS Deployment Group defined outside the CDK app.\nAccount and region for the DeploymentGroup are taken from the application.')
-    resource_config: typing.Optional[EcsDeploymentGroupDefConfig] = pydantic.Field(None)
+    from_ecs_deployment_group_attributes: typing.Optional[models.aws_codedeploy.EcsDeploymentGroupDefFromEcsDeploymentGroupAttributesParams] = pydantic.Field(None, description='Reference an ECS Deployment Group defined outside the CDK app.\nAccount and region for the DeploymentGroup are taken from the application.')
+    resource_config: typing.Optional[models.aws_codedeploy.EcsDeploymentGroupDefConfig] = pydantic.Field(None)
 
 
 class EcsDeploymentGroupDefConfig(pydantic.BaseModel):
-    add_alarm: typing.Optional[list[EcsDeploymentGroupDefAddAlarmParams]] = pydantic.Field(None, description='Associates an additional alarm with this Deployment Group.')
+    add_alarm: typing.Optional[list[models.aws_codedeploy.EcsDeploymentGroupDefAddAlarmParams]] = pydantic.Field(None, description='Associates an additional alarm with this Deployment Group.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     application_config: typing.Optional[models._interface_methods.AwsCodedeployIEcsApplicationDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
@@ -434,9 +431,9 @@ class LambdaApplicationDef(BaseConstruct):
     ...
 
 
-    from_lambda_application_arn: typing.Optional[LambdaApplicationDefFromLambdaApplicationArnParams] = pydantic.Field(None, description='Import an Application defined either outside the CDK, or in a different CDK Stack, by ARN.')
-    from_lambda_application_name: typing.Optional[LambdaApplicationDefFromLambdaApplicationNameParams] = pydantic.Field(None, description="Import an Application defined either outside the CDK, or in a different CDK Stack.\nThe Application's account and region are assumed to be the same as the stack it is being imported\ninto. If not, use ``fromLambdaApplicationArn``.")
-    resource_config: typing.Optional[LambdaApplicationDefConfig] = pydantic.Field(None)
+    from_lambda_application_arn: typing.Optional[models.aws_codedeploy.LambdaApplicationDefFromLambdaApplicationArnParams] = pydantic.Field(None, description='Import an Application defined either outside the CDK, or in a different CDK Stack, by ARN.')
+    from_lambda_application_name: typing.Optional[models.aws_codedeploy.LambdaApplicationDefFromLambdaApplicationNameParams] = pydantic.Field(None, description="Import an Application defined either outside the CDK, or in a different CDK Stack.\nThe Application's account and region are assumed to be the same as the stack it is being imported\ninto. If not, use ``fromLambdaApplicationArn``.")
+    resource_config: typing.Optional[models.aws_codedeploy.LambdaApplicationDefConfig] = pydantic.Field(None)
 
 
 class LambdaApplicationDefConfig(pydantic.BaseModel):
@@ -471,10 +468,10 @@ class LambdaDeploymentConfigDef(BaseConstruct):
     ...
 
 
-    from_deployment_config_name: typing.Optional[LambdaDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
-    from_lambda_deployment_config_name: typing.Optional[LambdaDeploymentConfigDefFromLambdaDeploymentConfigNameParams] = pydantic.Field(None, description='Import a Deployment Configuration for a Lambda Deployment Group defined outside the CDK.')
-    import_: typing.Optional[LambdaDeploymentConfigDefImportParams] = pydantic.Field(None, description='(deprecated) Import a Deployment Configuration for a Lambda Deployment Group defined outside the CDK.')
-    resource_config: typing.Optional[LambdaDeploymentConfigDefConfig] = pydantic.Field(None)
+    from_deployment_config_name: typing.Optional[models.aws_codedeploy.LambdaDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
+    from_lambda_deployment_config_name: typing.Optional[models.aws_codedeploy.LambdaDeploymentConfigDefFromLambdaDeploymentConfigNameParams] = pydantic.Field(None, description='Import a Deployment Configuration for a Lambda Deployment Group defined outside the CDK.')
+    import_: typing.Optional[models.aws_codedeploy.LambdaDeploymentConfigDefImportParams] = pydantic.Field(None, description='(deprecated) Import a Deployment Configuration for a Lambda Deployment Group defined outside the CDK.')
+    resource_config: typing.Optional[models.aws_codedeploy.LambdaDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class LambdaDeploymentConfigDefConfig(pydantic.BaseModel):
@@ -497,8 +494,6 @@ class LambdaDeploymentConfigDefFromLambdaDeploymentConfigNameParams(pydantic.Bas
     ...
 
 class LambdaDeploymentConfigDefImportParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='the parent Construct for this new Construct.\n')
-    _id: str = pydantic.Field(..., description='the logical ID of this new Construct.\n')
     deployment_config_name: str = pydantic.Field(..., description='The physical, human-readable name of the custom CodeDeploy Lambda Deployment Configuration that we are referencing.\n')
     ...
 
@@ -523,16 +518,16 @@ class LambdaDeploymentGroupDef(BaseConstruct):
     ...
 
 
-    from_lambda_deployment_group_attributes: typing.Optional[LambdaDeploymentGroupDefFromLambdaDeploymentGroupAttributesParams] = pydantic.Field(None, description='Import an Lambda Deployment Group defined either outside the CDK app, or in a different AWS region.\nAccount and region for the DeploymentGroup are taken from the application.')
-    resource_config: typing.Optional[LambdaDeploymentGroupDefConfig] = pydantic.Field(None)
+    from_lambda_deployment_group_attributes: typing.Optional[models.aws_codedeploy.LambdaDeploymentGroupDefFromLambdaDeploymentGroupAttributesParams] = pydantic.Field(None, description='Import an Lambda Deployment Group defined either outside the CDK app, or in a different AWS region.\nAccount and region for the DeploymentGroup are taken from the application.')
+    resource_config: typing.Optional[models.aws_codedeploy.LambdaDeploymentGroupDefConfig] = pydantic.Field(None)
 
 
 class LambdaDeploymentGroupDefConfig(pydantic.BaseModel):
-    add_alarm: typing.Optional[list[LambdaDeploymentGroupDefAddAlarmParams]] = pydantic.Field(None, description='Associates an additional alarm with this Deployment Group.')
-    add_post_hook: typing.Optional[list[LambdaDeploymentGroupDefAddPostHookParams]] = pydantic.Field(None, description='Associate a function to run after deployment completes.')
-    add_pre_hook: typing.Optional[list[LambdaDeploymentGroupDefAddPreHookParams]] = pydantic.Field(None, description='Associate a function to run before deployment begins.')
+    add_alarm: typing.Optional[list[models.aws_codedeploy.LambdaDeploymentGroupDefAddAlarmParams]] = pydantic.Field(None, description='Associates an additional alarm with this Deployment Group.')
+    add_post_hook: typing.Optional[list[models.aws_codedeploy.LambdaDeploymentGroupDefAddPostHookParams]] = pydantic.Field(None, description='Associate a function to run after deployment completes.')
+    add_pre_hook: typing.Optional[list[models.aws_codedeploy.LambdaDeploymentGroupDefAddPreHookParams]] = pydantic.Field(None, description='Associate a function to run before deployment begins.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_put_lifecycle_event_hook_execution_status: typing.Optional[list[LambdaDeploymentGroupDefGrantPutLifecycleEventHookExecutionStatusParams]] = pydantic.Field(None, description='Grant a principal permission to codedeploy:PutLifecycleEventHookExecutionStatus on this deployment group resource.')
+    grant_put_lifecycle_event_hook_execution_status: typing.Optional[list[models.aws_codedeploy.LambdaDeploymentGroupDefGrantPutLifecycleEventHookExecutionStatusParams]] = pydantic.Field(None, description='Grant a principal permission to codedeploy:PutLifecycleEventHookExecutionStatus on this deployment group resource.')
     application_config: typing.Optional[models._interface_methods.AwsCodedeployILambdaApplicationDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
@@ -577,9 +572,9 @@ class ServerApplicationDef(BaseConstruct):
     ...
 
 
-    from_server_application_arn: typing.Optional[ServerApplicationDefFromServerApplicationArnParams] = pydantic.Field(None, description='Import an Application defined either outside the CDK, or in a different CDK Stack, by ARN.')
-    from_server_application_name: typing.Optional[ServerApplicationDefFromServerApplicationNameParams] = pydantic.Field(None, description="Import an Application defined either outside the CDK app, or in a different region.\nThe Application's account and region are assumed to be the same as the stack it is being imported\ninto. If not, use ``fromServerApplicationArn``.")
-    resource_config: typing.Optional[ServerApplicationDefConfig] = pydantic.Field(None)
+    from_server_application_arn: typing.Optional[models.aws_codedeploy.ServerApplicationDefFromServerApplicationArnParams] = pydantic.Field(None, description='Import an Application defined either outside the CDK, or in a different CDK Stack, by ARN.')
+    from_server_application_name: typing.Optional[models.aws_codedeploy.ServerApplicationDefFromServerApplicationNameParams] = pydantic.Field(None, description="Import an Application defined either outside the CDK app, or in a different region.\nThe Application's account and region are assumed to be the same as the stack it is being imported\ninto. If not, use ``fromServerApplicationArn``.")
+    resource_config: typing.Optional[models.aws_codedeploy.ServerApplicationDefConfig] = pydantic.Field(None)
 
 
 class ServerApplicationDefConfig(pydantic.BaseModel):
@@ -614,9 +609,9 @@ class ServerDeploymentConfigDef(BaseConstruct):
     ...
 
 
-    from_deployment_config_name: typing.Optional[ServerDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
-    from_server_deployment_config_name: typing.Optional[ServerDeploymentConfigDefFromServerDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for an EC2/on-premise Deployment Group defined either outside the CDK app, or in a different region.')
-    resource_config: typing.Optional[ServerDeploymentConfigDefConfig] = pydantic.Field(None)
+    from_deployment_config_name: typing.Optional[models.aws_codedeploy.ServerDeploymentConfigDefFromDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for a Deployment Group defined outside the CDK.')
+    from_server_deployment_config_name: typing.Optional[models.aws_codedeploy.ServerDeploymentConfigDefFromServerDeploymentConfigNameParams] = pydantic.Field(None, description='Import a custom Deployment Configuration for an EC2/on-premise Deployment Group defined either outside the CDK app, or in a different region.')
+    resource_config: typing.Optional[models.aws_codedeploy.ServerDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class ServerDeploymentConfigDefConfig(pydantic.BaseModel):
@@ -662,13 +657,13 @@ class ServerDeploymentGroupDef(BaseConstruct):
     ...
 
 
-    from_server_deployment_group_attributes: typing.Optional[ServerDeploymentGroupDefFromServerDeploymentGroupAttributesParams] = pydantic.Field(None, description='Import an EC2/on-premise Deployment Group defined either outside the CDK app, or in a different region.')
-    resource_config: typing.Optional[ServerDeploymentGroupDefConfig] = pydantic.Field(None)
+    from_server_deployment_group_attributes: typing.Optional[models.aws_codedeploy.ServerDeploymentGroupDefFromServerDeploymentGroupAttributesParams] = pydantic.Field(None, description='Import an EC2/on-premise Deployment Group defined either outside the CDK app, or in a different region.')
+    resource_config: typing.Optional[models.aws_codedeploy.ServerDeploymentGroupDefConfig] = pydantic.Field(None)
 
 
 class ServerDeploymentGroupDefConfig(pydantic.BaseModel):
-    add_alarm: typing.Optional[list[ServerDeploymentGroupDefAddAlarmParams]] = pydantic.Field(None, description='Associates an additional alarm with this Deployment Group.')
-    add_auto_scaling_group: typing.Optional[list[ServerDeploymentGroupDefAddAutoScalingGroupParams]] = pydantic.Field(None, description='Adds an additional auto-scaling group to this Deployment Group.')
+    add_alarm: typing.Optional[list[models.aws_codedeploy.ServerDeploymentGroupDefAddAlarmParams]] = pydantic.Field(None, description='Associates an additional alarm with this Deployment Group.')
+    add_auto_scaling_group: typing.Optional[list[models.aws_codedeploy.ServerDeploymentGroupDefAddAutoScalingGroupParams]] = pydantic.Field(None, description='Adds an additional auto-scaling group to this Deployment Group.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     application_config: typing.Optional[models._interface_methods.AwsCodedeployIServerApplicationDefConfig] = pydantic.Field(None)
 
@@ -749,7 +744,7 @@ class BaseTrafficShiftingConfigPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BaseTrafficShiftingConfigPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.BaseTrafficShiftingConfigPropsDefConfig] = pydantic.Field(None)
 
 
 class BaseTrafficShiftingConfigPropsDefConfig(pydantic.BaseModel):
@@ -1194,7 +1189,7 @@ class CustomLambdaDeploymentConfigPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CustomLambdaDeploymentConfigPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.CustomLambdaDeploymentConfigPropsDefConfig] = pydantic.Field(None)
 
 
 class CustomLambdaDeploymentConfigPropsDefConfig(pydantic.BaseModel):
@@ -1230,7 +1225,7 @@ class EcsBlueGreenDeploymentConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsBlueGreenDeploymentConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.EcsBlueGreenDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class EcsBlueGreenDeploymentConfigDefConfig(pydantic.BaseModel):
@@ -1285,7 +1280,7 @@ class EcsDeploymentGroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsDeploymentGroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.EcsDeploymentGroupPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsDeploymentGroupPropsDefConfig(pydantic.BaseModel):
@@ -1345,7 +1340,7 @@ class LambdaDeploymentGroupAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaDeploymentGroupAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.LambdaDeploymentGroupAttributesDefConfig] = pydantic.Field(None)
 
 
 class LambdaDeploymentGroupAttributesDefConfig(pydantic.BaseModel):
@@ -1372,7 +1367,7 @@ class LambdaDeploymentGroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaDeploymentGroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.LambdaDeploymentGroupPropsDefConfig] = pydantic.Field(None)
 
 
 class LambdaDeploymentGroupPropsDefConfig(pydantic.BaseModel):
@@ -1418,7 +1413,7 @@ class ServerDeploymentConfigPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ServerDeploymentConfigPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.ServerDeploymentConfigPropsDefConfig] = pydantic.Field(None)
 
 
 class ServerDeploymentConfigPropsDefConfig(pydantic.BaseModel):
@@ -1438,7 +1433,7 @@ class ServerDeploymentGroupAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ServerDeploymentGroupAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.ServerDeploymentGroupAttributesDefConfig] = pydantic.Field(None)
 
 
 class ServerDeploymentGroupAttributesDefConfig(pydantic.BaseModel):
@@ -1482,7 +1477,7 @@ class TimeBasedCanaryTrafficRoutingPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TimeBasedCanaryTrafficRoutingPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.TimeBasedCanaryTrafficRoutingPropsDefConfig] = pydantic.Field(None)
 
 
 class TimeBasedCanaryTrafficRoutingPropsDefConfig(pydantic.BaseModel):
@@ -1501,7 +1496,7 @@ class TimeBasedLinearTrafficRoutingPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TimeBasedLinearTrafficRoutingPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.TimeBasedLinearTrafficRoutingPropsDefConfig] = pydantic.Field(None)
 
 
 class TimeBasedLinearTrafficRoutingPropsDefConfig(pydantic.BaseModel):
@@ -1575,26 +1570,26 @@ class CfnApplicationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnApplicationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.CfnApplicationDefConfig] = pydantic.Field(None)
 
 
 class CfnApplicationDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnApplicationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnApplicationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnApplicationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnApplicationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnApplicationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnApplicationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnApplicationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnApplicationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnApplicationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnApplicationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnApplicationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnApplicationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnApplicationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codedeploy.CfnApplicationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnApplicationDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -1676,30 +1671,30 @@ class CfnDeploymentConfigDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDeploymentConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.CfnDeploymentConfigDefConfig] = pydantic.Field(None)
 
 
 class CfnDeploymentConfigDefConfig(pydantic.BaseModel):
-    MinimumHealthyHostsProperty: typing.Optional[list[CfnDeploymentConfigDefMinimumhealthyhostspropertyParams]] = pydantic.Field(None, description='')
-    TimeBasedCanaryProperty: typing.Optional[list[CfnDeploymentConfigDefTimebasedcanarypropertyParams]] = pydantic.Field(None, description='')
-    TimeBasedLinearProperty: typing.Optional[list[CfnDeploymentConfigDefTimebasedlinearpropertyParams]] = pydantic.Field(None, description='')
-    TrafficRoutingConfigProperty: typing.Optional[list[CfnDeploymentConfigDefTrafficroutingconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDeploymentConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDeploymentConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDeploymentConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDeploymentConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDeploymentConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDeploymentConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDeploymentConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    MinimumHealthyHostsProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefMinimumhealthyhostspropertyParams]] = pydantic.Field(None, description='')
+    TimeBasedCanaryProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefTimebasedcanarypropertyParams]] = pydantic.Field(None, description='')
+    TimeBasedLinearProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefTimebasedlinearpropertyParams]] = pydantic.Field(None, description='')
+    TrafficRoutingConfigProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefTrafficroutingconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDeploymentConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDeploymentConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDeploymentConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDeploymentConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDeploymentConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDeploymentConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codedeploy.CfnDeploymentConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDeploymentConfigDefMinimumhealthyhostspropertyParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='')
@@ -1816,51 +1811,51 @@ class CfnDeploymentGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDeploymentGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codedeploy.CfnDeploymentGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnDeploymentGroupDefConfig(pydantic.BaseModel):
-    AlarmConfigurationProperty: typing.Optional[list[CfnDeploymentGroupDefAlarmconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    AlarmProperty: typing.Optional[list[CfnDeploymentGroupDefAlarmpropertyParams]] = pydantic.Field(None, description='')
-    AutoRollbackConfigurationProperty: typing.Optional[list[CfnDeploymentGroupDefAutorollbackconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    BlueGreenDeploymentConfigurationProperty: typing.Optional[list[CfnDeploymentGroupDefBluegreendeploymentconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    BlueInstanceTerminationOptionProperty: typing.Optional[list[CfnDeploymentGroupDefBlueinstanceterminationoptionpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentProperty: typing.Optional[list[CfnDeploymentGroupDefDeploymentpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentReadyOptionProperty: typing.Optional[list[CfnDeploymentGroupDefDeploymentreadyoptionpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentStyleProperty: typing.Optional[list[CfnDeploymentGroupDefDeploymentstylepropertyParams]] = pydantic.Field(None, description='')
-    EC2TagFilterProperty: typing.Optional[list[CfnDeploymentGroupDefEc2TagfilterpropertyParams]] = pydantic.Field(None, description='')
-    EC2TagSetListObjectProperty: typing.Optional[list[CfnDeploymentGroupDefEc2TagsetlistobjectpropertyParams]] = pydantic.Field(None, description='')
-    EC2TagSetProperty: typing.Optional[list[CfnDeploymentGroupDefEc2TagsetpropertyParams]] = pydantic.Field(None, description='')
-    ECSServiceProperty: typing.Optional[list[CfnDeploymentGroupDefEcsservicepropertyParams]] = pydantic.Field(None, description='')
-    ELBInfoProperty: typing.Optional[list[CfnDeploymentGroupDefElbinfopropertyParams]] = pydantic.Field(None, description='')
-    GitHubLocationProperty: typing.Optional[list[CfnDeploymentGroupDefGithublocationpropertyParams]] = pydantic.Field(None, description='')
-    GreenFleetProvisioningOptionProperty: typing.Optional[list[CfnDeploymentGroupDefGreenfleetprovisioningoptionpropertyParams]] = pydantic.Field(None, description='')
-    LoadBalancerInfoProperty: typing.Optional[list[CfnDeploymentGroupDefLoadbalancerinfopropertyParams]] = pydantic.Field(None, description='')
-    OnPremisesTagSetListObjectProperty: typing.Optional[list[CfnDeploymentGroupDefOnpremisestagsetlistobjectpropertyParams]] = pydantic.Field(None, description='')
-    OnPremisesTagSetProperty: typing.Optional[list[CfnDeploymentGroupDefOnpremisestagsetpropertyParams]] = pydantic.Field(None, description='')
-    RevisionLocationProperty: typing.Optional[list[CfnDeploymentGroupDefRevisionlocationpropertyParams]] = pydantic.Field(None, description='')
-    S3LocationProperty: typing.Optional[list[CfnDeploymentGroupDefS3LocationpropertyParams]] = pydantic.Field(None, description='')
-    TagFilterProperty: typing.Optional[list[CfnDeploymentGroupDefTagfilterpropertyParams]] = pydantic.Field(None, description='')
-    TargetGroupInfoProperty: typing.Optional[list[CfnDeploymentGroupDefTargetgroupinfopropertyParams]] = pydantic.Field(None, description='')
-    TargetGroupPairInfoProperty: typing.Optional[list[CfnDeploymentGroupDefTargetgrouppairinfopropertyParams]] = pydantic.Field(None, description='')
-    TrafficRouteProperty: typing.Optional[list[CfnDeploymentGroupDefTrafficroutepropertyParams]] = pydantic.Field(None, description='')
-    TriggerConfigProperty: typing.Optional[list[CfnDeploymentGroupDefTriggerconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDeploymentGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDeploymentGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDeploymentGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDeploymentGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDeploymentGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDeploymentGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDeploymentGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AlarmConfigurationProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAlarmconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    AlarmProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAlarmpropertyParams]] = pydantic.Field(None, description='')
+    AutoRollbackConfigurationProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAutorollbackconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    BlueGreenDeploymentConfigurationProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefBluegreendeploymentconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    BlueInstanceTerminationOptionProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefBlueinstanceterminationoptionpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefDeploymentpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentReadyOptionProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefDeploymentreadyoptionpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentStyleProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefDeploymentstylepropertyParams]] = pydantic.Field(None, description='')
+    EC2TagFilterProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefEc2TagfilterpropertyParams]] = pydantic.Field(None, description='')
+    EC2TagSetListObjectProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefEc2TagsetlistobjectpropertyParams]] = pydantic.Field(None, description='')
+    EC2TagSetProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefEc2TagsetpropertyParams]] = pydantic.Field(None, description='')
+    ECSServiceProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefEcsservicepropertyParams]] = pydantic.Field(None, description='')
+    ELBInfoProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefElbinfopropertyParams]] = pydantic.Field(None, description='')
+    GitHubLocationProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefGithublocationpropertyParams]] = pydantic.Field(None, description='')
+    GreenFleetProvisioningOptionProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefGreenfleetprovisioningoptionpropertyParams]] = pydantic.Field(None, description='')
+    LoadBalancerInfoProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefLoadbalancerinfopropertyParams]] = pydantic.Field(None, description='')
+    OnPremisesTagSetListObjectProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefOnpremisestagsetlistobjectpropertyParams]] = pydantic.Field(None, description='')
+    OnPremisesTagSetProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefOnpremisestagsetpropertyParams]] = pydantic.Field(None, description='')
+    RevisionLocationProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefRevisionlocationpropertyParams]] = pydantic.Field(None, description='')
+    S3LocationProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefS3LocationpropertyParams]] = pydantic.Field(None, description='')
+    TagFilterProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefTagfilterpropertyParams]] = pydantic.Field(None, description='')
+    TargetGroupInfoProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefTargetgroupinfopropertyParams]] = pydantic.Field(None, description='')
+    TargetGroupPairInfoProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefTargetgrouppairinfopropertyParams]] = pydantic.Field(None, description='')
+    TrafficRouteProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefTrafficroutepropertyParams]] = pydantic.Field(None, description='')
+    TriggerConfigProperty: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefTriggerconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDeploymentGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDeploymentGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDeploymentGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDeploymentGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDeploymentGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDeploymentGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codedeploy.CfnDeploymentGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDeploymentGroupDefAlarmconfigurationpropertyParams(pydantic.BaseModel):
@@ -2118,84 +2113,84 @@ class CfnDeploymentGroupPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AllAtOnceTrafficRouting: typing.Optional[dict[str, AllAtOnceTrafficRoutingDef]] = pydantic.Field(None)
-    BaseDeploymentConfig: typing.Optional[dict[str, BaseDeploymentConfigDef]] = pydantic.Field(None)
-    InstanceTagSet: typing.Optional[dict[str, InstanceTagSetDef]] = pydantic.Field(None)
-    LoadBalancer: typing.Optional[dict[str, LoadBalancerDef]] = pydantic.Field(None)
-    MinimumHealthyHosts: typing.Optional[dict[str, MinimumHealthyHostsDef]] = pydantic.Field(None)
-    TimeBasedCanaryTrafficRouting: typing.Optional[dict[str, TimeBasedCanaryTrafficRoutingDef]] = pydantic.Field(None)
-    TimeBasedLinearTrafficRouting: typing.Optional[dict[str, TimeBasedLinearTrafficRoutingDef]] = pydantic.Field(None)
-    TrafficRouting: typing.Optional[dict[str, TrafficRoutingDef]] = pydantic.Field(None)
-    CustomLambdaDeploymentConfig: typing.Optional[dict[str, CustomLambdaDeploymentConfigDef]] = pydantic.Field(None)
-    EcsApplication: typing.Optional[dict[str, EcsApplicationDef]] = pydantic.Field(None)
-    EcsDeploymentConfig: typing.Optional[dict[str, EcsDeploymentConfigDef]] = pydantic.Field(None)
-    EcsDeploymentGroup: typing.Optional[dict[str, EcsDeploymentGroupDef]] = pydantic.Field(None)
-    LambdaApplication: typing.Optional[dict[str, LambdaApplicationDef]] = pydantic.Field(None)
-    LambdaDeploymentConfig: typing.Optional[dict[str, LambdaDeploymentConfigDef]] = pydantic.Field(None)
-    LambdaDeploymentGroup: typing.Optional[dict[str, LambdaDeploymentGroupDef]] = pydantic.Field(None)
-    ServerApplication: typing.Optional[dict[str, ServerApplicationDef]] = pydantic.Field(None)
-    ServerDeploymentConfig: typing.Optional[dict[str, ServerDeploymentConfigDef]] = pydantic.Field(None)
-    ServerDeploymentGroup: typing.Optional[dict[str, ServerDeploymentGroupDef]] = pydantic.Field(None)
-    AutoRollbackConfig: typing.Optional[dict[str, AutoRollbackConfigDef]] = pydantic.Field(None)
-    BaseDeploymentConfigOptions: typing.Optional[dict[str, BaseDeploymentConfigOptionsDef]] = pydantic.Field(None)
-    BaseDeploymentConfigProps: typing.Optional[dict[str, BaseDeploymentConfigPropsDef]] = pydantic.Field(None)
-    BaseTrafficShiftingConfigProps: typing.Optional[dict[str, BaseTrafficShiftingConfigPropsDef]] = pydantic.Field(None)
-    CanaryTrafficRoutingConfig: typing.Optional[dict[str, CanaryTrafficRoutingConfigDef]] = pydantic.Field(None)
-    CfnDeploymentConfig_MinimumHealthyHostsProperty: typing.Optional[dict[str, CfnDeploymentConfig_MinimumHealthyHostsPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentConfig_TimeBasedCanaryProperty: typing.Optional[dict[str, CfnDeploymentConfig_TimeBasedCanaryPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentConfig_TimeBasedLinearProperty: typing.Optional[dict[str, CfnDeploymentConfig_TimeBasedLinearPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentConfig_TrafficRoutingConfigProperty: typing.Optional[dict[str, CfnDeploymentConfig_TrafficRoutingConfigPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_AlarmConfigurationProperty: typing.Optional[dict[str, CfnDeploymentGroup_AlarmConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_AlarmProperty: typing.Optional[dict[str, CfnDeploymentGroup_AlarmPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_AutoRollbackConfigurationProperty: typing.Optional[dict[str, CfnDeploymentGroup_AutoRollbackConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_BlueGreenDeploymentConfigurationProperty: typing.Optional[dict[str, CfnDeploymentGroup_BlueGreenDeploymentConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_BlueInstanceTerminationOptionProperty: typing.Optional[dict[str, CfnDeploymentGroup_BlueInstanceTerminationOptionPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_DeploymentProperty: typing.Optional[dict[str, CfnDeploymentGroup_DeploymentPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_DeploymentReadyOptionProperty: typing.Optional[dict[str, CfnDeploymentGroup_DeploymentReadyOptionPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_DeploymentStyleProperty: typing.Optional[dict[str, CfnDeploymentGroup_DeploymentStylePropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_EC2TagFilterProperty: typing.Optional[dict[str, CfnDeploymentGroup_EC2TagFilterPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_EC2TagSetListObjectProperty: typing.Optional[dict[str, CfnDeploymentGroup_EC2TagSetListObjectPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_EC2TagSetProperty: typing.Optional[dict[str, CfnDeploymentGroup_EC2TagSetPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_ECSServiceProperty: typing.Optional[dict[str, CfnDeploymentGroup_ECSServicePropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_ELBInfoProperty: typing.Optional[dict[str, CfnDeploymentGroup_ELBInfoPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_GitHubLocationProperty: typing.Optional[dict[str, CfnDeploymentGroup_GitHubLocationPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_GreenFleetProvisioningOptionProperty: typing.Optional[dict[str, CfnDeploymentGroup_GreenFleetProvisioningOptionPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_LoadBalancerInfoProperty: typing.Optional[dict[str, CfnDeploymentGroup_LoadBalancerInfoPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_OnPremisesTagSetListObjectProperty: typing.Optional[dict[str, CfnDeploymentGroup_OnPremisesTagSetListObjectPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_OnPremisesTagSetProperty: typing.Optional[dict[str, CfnDeploymentGroup_OnPremisesTagSetPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_RevisionLocationProperty: typing.Optional[dict[str, CfnDeploymentGroup_RevisionLocationPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_S3LocationProperty: typing.Optional[dict[str, CfnDeploymentGroup_S3LocationPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_TagFilterProperty: typing.Optional[dict[str, CfnDeploymentGroup_TagFilterPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_TargetGroupInfoProperty: typing.Optional[dict[str, CfnDeploymentGroup_TargetGroupInfoPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_TargetGroupPairInfoProperty: typing.Optional[dict[str, CfnDeploymentGroup_TargetGroupPairInfoPropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_TrafficRouteProperty: typing.Optional[dict[str, CfnDeploymentGroup_TrafficRoutePropertyDef]] = pydantic.Field(None)
-    CfnDeploymentGroup_TriggerConfigProperty: typing.Optional[dict[str, CfnDeploymentGroup_TriggerConfigPropertyDef]] = pydantic.Field(None)
-    CustomLambdaDeploymentConfigProps: typing.Optional[dict[str, CustomLambdaDeploymentConfigPropsDef]] = pydantic.Field(None)
-    EcsApplicationProps: typing.Optional[dict[str, EcsApplicationPropsDef]] = pydantic.Field(None)
-    EcsBlueGreenDeploymentConfig: typing.Optional[dict[str, EcsBlueGreenDeploymentConfigDef]] = pydantic.Field(None)
-    EcsDeploymentConfigProps: typing.Optional[dict[str, EcsDeploymentConfigPropsDef]] = pydantic.Field(None)
-    EcsDeploymentGroupAttributes: typing.Optional[dict[str, EcsDeploymentGroupAttributesDef]] = pydantic.Field(None)
-    EcsDeploymentGroupProps: typing.Optional[dict[str, EcsDeploymentGroupPropsDef]] = pydantic.Field(None)
-    LambdaApplicationProps: typing.Optional[dict[str, LambdaApplicationPropsDef]] = pydantic.Field(None)
-    LambdaDeploymentConfigImportProps: typing.Optional[dict[str, LambdaDeploymentConfigImportPropsDef]] = pydantic.Field(None)
-    LambdaDeploymentConfigProps: typing.Optional[dict[str, LambdaDeploymentConfigPropsDef]] = pydantic.Field(None)
-    LambdaDeploymentGroupAttributes: typing.Optional[dict[str, LambdaDeploymentGroupAttributesDef]] = pydantic.Field(None)
-    LambdaDeploymentGroupProps: typing.Optional[dict[str, LambdaDeploymentGroupPropsDef]] = pydantic.Field(None)
-    LinearTrafficRoutingConfig: typing.Optional[dict[str, LinearTrafficRoutingConfigDef]] = pydantic.Field(None)
-    ServerApplicationProps: typing.Optional[dict[str, ServerApplicationPropsDef]] = pydantic.Field(None)
-    ServerDeploymentConfigProps: typing.Optional[dict[str, ServerDeploymentConfigPropsDef]] = pydantic.Field(None)
-    ServerDeploymentGroupAttributes: typing.Optional[dict[str, ServerDeploymentGroupAttributesDef]] = pydantic.Field(None)
-    ServerDeploymentGroupProps: typing.Optional[dict[str, ServerDeploymentGroupPropsDef]] = pydantic.Field(None)
-    TimeBasedCanaryTrafficRoutingProps: typing.Optional[dict[str, TimeBasedCanaryTrafficRoutingPropsDef]] = pydantic.Field(None)
-    TimeBasedLinearTrafficRoutingProps: typing.Optional[dict[str, TimeBasedLinearTrafficRoutingPropsDef]] = pydantic.Field(None)
-    TrafficRoutingConfig: typing.Optional[dict[str, TrafficRoutingConfigDef]] = pydantic.Field(None)
-    CfnApplication: typing.Optional[dict[str, CfnApplicationDef]] = pydantic.Field(None)
-    CfnDeploymentConfig: typing.Optional[dict[str, CfnDeploymentConfigDef]] = pydantic.Field(None)
-    CfnDeploymentGroup: typing.Optional[dict[str, CfnDeploymentGroupDef]] = pydantic.Field(None)
-    CfnApplicationProps: typing.Optional[dict[str, CfnApplicationPropsDef]] = pydantic.Field(None)
-    CfnDeploymentConfigProps: typing.Optional[dict[str, CfnDeploymentConfigPropsDef]] = pydantic.Field(None)
-    CfnDeploymentGroupProps: typing.Optional[dict[str, CfnDeploymentGroupPropsDef]] = pydantic.Field(None)
+    AllAtOnceTrafficRouting: typing.Optional[dict[str, models.aws_codedeploy.AllAtOnceTrafficRoutingDef]] = pydantic.Field(None)
+    BaseDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.BaseDeploymentConfigDef]] = pydantic.Field(None)
+    InstanceTagSet: typing.Optional[dict[str, models.aws_codedeploy.InstanceTagSetDef]] = pydantic.Field(None)
+    LoadBalancer: typing.Optional[dict[str, models.aws_codedeploy.LoadBalancerDef]] = pydantic.Field(None)
+    MinimumHealthyHosts: typing.Optional[dict[str, models.aws_codedeploy.MinimumHealthyHostsDef]] = pydantic.Field(None)
+    TimeBasedCanaryTrafficRouting: typing.Optional[dict[str, models.aws_codedeploy.TimeBasedCanaryTrafficRoutingDef]] = pydantic.Field(None)
+    TimeBasedLinearTrafficRouting: typing.Optional[dict[str, models.aws_codedeploy.TimeBasedLinearTrafficRoutingDef]] = pydantic.Field(None)
+    TrafficRouting: typing.Optional[dict[str, models.aws_codedeploy.TrafficRoutingDef]] = pydantic.Field(None)
+    CustomLambdaDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.CustomLambdaDeploymentConfigDef]] = pydantic.Field(None)
+    EcsApplication: typing.Optional[dict[str, models.aws_codedeploy.EcsApplicationDef]] = pydantic.Field(None)
+    EcsDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.EcsDeploymentConfigDef]] = pydantic.Field(None)
+    EcsDeploymentGroup: typing.Optional[dict[str, models.aws_codedeploy.EcsDeploymentGroupDef]] = pydantic.Field(None)
+    LambdaApplication: typing.Optional[dict[str, models.aws_codedeploy.LambdaApplicationDef]] = pydantic.Field(None)
+    LambdaDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.LambdaDeploymentConfigDef]] = pydantic.Field(None)
+    LambdaDeploymentGroup: typing.Optional[dict[str, models.aws_codedeploy.LambdaDeploymentGroupDef]] = pydantic.Field(None)
+    ServerApplication: typing.Optional[dict[str, models.aws_codedeploy.ServerApplicationDef]] = pydantic.Field(None)
+    ServerDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.ServerDeploymentConfigDef]] = pydantic.Field(None)
+    ServerDeploymentGroup: typing.Optional[dict[str, models.aws_codedeploy.ServerDeploymentGroupDef]] = pydantic.Field(None)
+    AutoRollbackConfig: typing.Optional[dict[str, models.aws_codedeploy.AutoRollbackConfigDef]] = pydantic.Field(None)
+    BaseDeploymentConfigOptions: typing.Optional[dict[str, models.aws_codedeploy.BaseDeploymentConfigOptionsDef]] = pydantic.Field(None)
+    BaseDeploymentConfigProps: typing.Optional[dict[str, models.aws_codedeploy.BaseDeploymentConfigPropsDef]] = pydantic.Field(None)
+    BaseTrafficShiftingConfigProps: typing.Optional[dict[str, models.aws_codedeploy.BaseTrafficShiftingConfigPropsDef]] = pydantic.Field(None)
+    CanaryTrafficRoutingConfig: typing.Optional[dict[str, models.aws_codedeploy.CanaryTrafficRoutingConfigDef]] = pydantic.Field(None)
+    CfnDeploymentConfig_MinimumHealthyHostsProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentConfig_MinimumHealthyHostsPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentConfig_TimeBasedCanaryProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentConfig_TimeBasedCanaryPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentConfig_TimeBasedLinearProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentConfig_TimeBasedLinearPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentConfig_TrafficRoutingConfigProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentConfig_TrafficRoutingConfigPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_AlarmConfigurationProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_AlarmConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_AlarmProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_AlarmPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_AutoRollbackConfigurationProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_AutoRollbackConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_BlueGreenDeploymentConfigurationProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_BlueGreenDeploymentConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_BlueInstanceTerminationOptionProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_BlueInstanceTerminationOptionPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_DeploymentProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_DeploymentPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_DeploymentReadyOptionProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_DeploymentReadyOptionPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_DeploymentStyleProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_DeploymentStylePropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_EC2TagFilterProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_EC2TagFilterPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_EC2TagSetListObjectProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_EC2TagSetListObjectPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_EC2TagSetProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_EC2TagSetPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_ECSServiceProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_ECSServicePropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_ELBInfoProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_ELBInfoPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_GitHubLocationProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_GitHubLocationPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_GreenFleetProvisioningOptionProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_GreenFleetProvisioningOptionPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_LoadBalancerInfoProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_LoadBalancerInfoPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_OnPremisesTagSetListObjectProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_OnPremisesTagSetListObjectPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_OnPremisesTagSetProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_OnPremisesTagSetPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_RevisionLocationProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_RevisionLocationPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_S3LocationProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_S3LocationPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_TagFilterProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_TagFilterPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_TargetGroupInfoProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_TargetGroupInfoPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_TargetGroupPairInfoProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_TargetGroupPairInfoPropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_TrafficRouteProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_TrafficRoutePropertyDef]] = pydantic.Field(None)
+    CfnDeploymentGroup_TriggerConfigProperty: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroup_TriggerConfigPropertyDef]] = pydantic.Field(None)
+    CustomLambdaDeploymentConfigProps: typing.Optional[dict[str, models.aws_codedeploy.CustomLambdaDeploymentConfigPropsDef]] = pydantic.Field(None)
+    EcsApplicationProps: typing.Optional[dict[str, models.aws_codedeploy.EcsApplicationPropsDef]] = pydantic.Field(None)
+    EcsBlueGreenDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.EcsBlueGreenDeploymentConfigDef]] = pydantic.Field(None)
+    EcsDeploymentConfigProps: typing.Optional[dict[str, models.aws_codedeploy.EcsDeploymentConfigPropsDef]] = pydantic.Field(None)
+    EcsDeploymentGroupAttributes: typing.Optional[dict[str, models.aws_codedeploy.EcsDeploymentGroupAttributesDef]] = pydantic.Field(None)
+    EcsDeploymentGroupProps: typing.Optional[dict[str, models.aws_codedeploy.EcsDeploymentGroupPropsDef]] = pydantic.Field(None)
+    LambdaApplicationProps: typing.Optional[dict[str, models.aws_codedeploy.LambdaApplicationPropsDef]] = pydantic.Field(None)
+    LambdaDeploymentConfigImportProps: typing.Optional[dict[str, models.aws_codedeploy.LambdaDeploymentConfigImportPropsDef]] = pydantic.Field(None)
+    LambdaDeploymentConfigProps: typing.Optional[dict[str, models.aws_codedeploy.LambdaDeploymentConfigPropsDef]] = pydantic.Field(None)
+    LambdaDeploymentGroupAttributes: typing.Optional[dict[str, models.aws_codedeploy.LambdaDeploymentGroupAttributesDef]] = pydantic.Field(None)
+    LambdaDeploymentGroupProps: typing.Optional[dict[str, models.aws_codedeploy.LambdaDeploymentGroupPropsDef]] = pydantic.Field(None)
+    LinearTrafficRoutingConfig: typing.Optional[dict[str, models.aws_codedeploy.LinearTrafficRoutingConfigDef]] = pydantic.Field(None)
+    ServerApplicationProps: typing.Optional[dict[str, models.aws_codedeploy.ServerApplicationPropsDef]] = pydantic.Field(None)
+    ServerDeploymentConfigProps: typing.Optional[dict[str, models.aws_codedeploy.ServerDeploymentConfigPropsDef]] = pydantic.Field(None)
+    ServerDeploymentGroupAttributes: typing.Optional[dict[str, models.aws_codedeploy.ServerDeploymentGroupAttributesDef]] = pydantic.Field(None)
+    ServerDeploymentGroupProps: typing.Optional[dict[str, models.aws_codedeploy.ServerDeploymentGroupPropsDef]] = pydantic.Field(None)
+    TimeBasedCanaryTrafficRoutingProps: typing.Optional[dict[str, models.aws_codedeploy.TimeBasedCanaryTrafficRoutingPropsDef]] = pydantic.Field(None)
+    TimeBasedLinearTrafficRoutingProps: typing.Optional[dict[str, models.aws_codedeploy.TimeBasedLinearTrafficRoutingPropsDef]] = pydantic.Field(None)
+    TrafficRoutingConfig: typing.Optional[dict[str, models.aws_codedeploy.TrafficRoutingConfigDef]] = pydantic.Field(None)
+    CfnApplication: typing.Optional[dict[str, models.aws_codedeploy.CfnApplicationDef]] = pydantic.Field(None)
+    CfnDeploymentConfig: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentConfigDef]] = pydantic.Field(None)
+    CfnDeploymentGroup: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroupDef]] = pydantic.Field(None)
+    CfnApplicationProps: typing.Optional[dict[str, models.aws_codedeploy.CfnApplicationPropsDef]] = pydantic.Field(None)
+    CfnDeploymentConfigProps: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentConfigPropsDef]] = pydantic.Field(None)
+    CfnDeploymentGroupProps: typing.Optional[dict[str, models.aws_codedeploy.CfnDeploymentGroupPropsDef]] = pydantic.Field(None)
     ...
+
+import models

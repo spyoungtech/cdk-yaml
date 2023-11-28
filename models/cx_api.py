@@ -24,12 +24,12 @@ class AssetManifestArtifactDef(BaseClass):
     ...
 
 
-    from_manifest: typing.Optional[AssetManifestArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
-    resource_config: typing.Optional[AssetManifestArtifactDefConfig] = pydantic.Field(None)
+    from_manifest: typing.Optional[models.cx_api.AssetManifestArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
+    resource_config: typing.Optional[models.cx_api.AssetManifestArtifactDefConfig] = pydantic.Field(None)
 
 
 class AssetManifestArtifactDefConfig(pydantic.BaseModel):
-    find_metadata_by_type: typing.Optional[list[AssetManifestArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
+    find_metadata_by_type: typing.Optional[list[models.cx_api.AssetManifestArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
 
 class AssetManifestArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -64,12 +64,12 @@ class CloudArtifactDef(BaseClass):
     ...
 
 
-    from_manifest: typing.Optional[CloudArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
-    resource_config: typing.Optional[CloudArtifactDefConfig] = pydantic.Field(None)
+    from_manifest: typing.Optional[models.cx_api.CloudArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
+    resource_config: typing.Optional[models.cx_api.CloudArtifactDefConfig] = pydantic.Field(None)
 
 
 class CloudArtifactDefConfig(pydantic.BaseModel):
-    find_metadata_by_type: typing.Optional[list[CloudArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
+    find_metadata_by_type: typing.Optional[list[models.cx_api.CloudArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
 
 class CloudArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -101,19 +101,20 @@ class CloudAssemblyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudAssemblyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.cx_api.CloudAssemblyDefConfig] = pydantic.Field(None)
 
 
 class CloudAssemblyDefConfig(pydantic.BaseModel):
-    get_nested_assembly: typing.Optional[list[CloudAssemblyDefGetNestedAssemblyParams]] = pydantic.Field(None, description='Returns a nested assembly.')
-    get_nested_assembly_artifact: typing.Optional[list[CloudAssemblyDefGetNestedAssemblyArtifactParams]] = pydantic.Field(None, description='Returns a nested assembly artifact.')
-    get_stack_artifact: typing.Optional[list[CloudAssemblyDefGetStackArtifactParams]] = pydantic.Field(None, description='Returns a CloudFormation stack artifact from this assembly.')
-    get_stack_by_name: typing.Optional[list[CloudAssemblyDefGetStackByNameParams]] = pydantic.Field(None, description='Returns a CloudFormation stack artifact from this assembly.\nWill only search the current assembly.')
+    get_nested_assembly: typing.Optional[list[models.cx_api.CloudAssemblyDefGetNestedAssemblyParams]] = pydantic.Field(None, description='Returns a nested assembly.')
+    get_nested_assembly_artifact: typing.Optional[list[models.cx_api.CloudAssemblyDefGetNestedAssemblyArtifactParams]] = pydantic.Field(None, description='Returns a nested assembly artifact.')
+    get_stack_artifact: typing.Optional[list[models.cx_api.CloudAssemblyDefGetStackArtifactParams]] = pydantic.Field(None, description='Returns a CloudFormation stack artifact from this assembly.')
+    get_stack_by_name: typing.Optional[list[models.cx_api.CloudAssemblyDefGetStackByNameParams]] = pydantic.Field(None, description='Returns a CloudFormation stack artifact from this assembly.\nWill only search the current assembly.')
     tree: typing.Optional[bool] = pydantic.Field(None, description='Returns the tree metadata artifact from this assembly.\n:return: a ``TreeCloudArtifact`` object if there is one defined in the manifest, ``undefined`` otherwise.\n\n:throws: if there is no metadata artifact by that name')
-    try_get_artifact: typing.Optional[list[CloudAssemblyDefTryGetArtifactParams]] = pydantic.Field(None, description='Attempts to find an artifact with a specific identity.')
+    try_get_artifact: typing.Optional[list[models.cx_api.CloudAssemblyDefTryGetArtifactParams]] = pydantic.Field(None, description='Attempts to find an artifact with a specific identity.')
 
 class CloudAssemblyDefGetNestedAssemblyParams(pydantic.BaseModel):
     artifact_id: str = pydantic.Field(..., description='The artifact ID of the nested assembly.')
+    return_config: typing.Optional[list[models.cx_api.CloudAssemblyDefConfig]] = pydantic.Field(None)
     ...
 
 class CloudAssemblyDefGetNestedAssemblyArtifactParams(pydantic.BaseModel):
@@ -149,14 +150,14 @@ class CloudAssemblyBuilderDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudAssemblyBuilderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.cx_api.CloudAssemblyBuilderDefConfig] = pydantic.Field(None)
 
 
 class CloudAssemblyBuilderDefConfig(pydantic.BaseModel):
-    add_artifact: typing.Optional[list[CloudAssemblyBuilderDefAddArtifactParams]] = pydantic.Field(None, description='Adds an artifact into the cloud assembly.')
-    add_missing: typing.Optional[list[CloudAssemblyBuilderDefAddMissingParams]] = pydantic.Field(None, description='Reports that some context is missing in order for this cloud assembly to be fully synthesized.')
-    build_assembly: typing.Optional[list[CloudAssemblyBuilderDefBuildAssemblyParams]] = pydantic.Field(None, description='Finalizes the cloud assembly into the output directory returns a ``CloudAssembly`` object that can be used to inspect the assembly.')
-    create_nested_assembly: typing.Optional[list[CloudAssemblyBuilderDefCreateNestedAssemblyParams]] = pydantic.Field(None, description='Creates a nested cloud assembly.')
+    add_artifact: typing.Optional[list[models.cx_api.CloudAssemblyBuilderDefAddArtifactParams]] = pydantic.Field(None, description='Adds an artifact into the cloud assembly.')
+    add_missing: typing.Optional[list[models.cx_api.CloudAssemblyBuilderDefAddMissingParams]] = pydantic.Field(None, description='Reports that some context is missing in order for this cloud assembly to be fully synthesized.')
+    build_assembly: typing.Optional[list[models.cx_api.CloudAssemblyBuilderDefBuildAssemblyParams]] = pydantic.Field(None, description='Finalizes the cloud assembly into the output directory returns a ``CloudAssembly`` object that can be used to inspect the assembly.')
+    create_nested_assembly: typing.Optional[list[models.cx_api.CloudAssemblyBuilderDefCreateNestedAssemblyParams]] = pydantic.Field(None, description='Creates a nested cloud assembly.')
     delete: typing.Optional[bool] = pydantic.Field(None, description='Delete the cloud assembly directory.')
 
 class CloudAssemblyBuilderDefAddArtifactParams(pydantic.BaseModel):
@@ -182,6 +183,7 @@ class CloudAssemblyBuilderDefBuildAssemblyParams(pydantic.BaseModel):
 class CloudAssemblyBuilderDefCreateNestedAssemblyParams(pydantic.BaseModel):
     artifact_id: str = pydantic.Field(..., description='-\n')
     display_name: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.cx_api.CloudAssemblyBuilderDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -203,12 +205,12 @@ class CloudFormationStackArtifactDef(BaseClass):
     ...
 
 
-    from_manifest: typing.Optional[CloudFormationStackArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
-    resource_config: typing.Optional[CloudFormationStackArtifactDefConfig] = pydantic.Field(None)
+    from_manifest: typing.Optional[models.cx_api.CloudFormationStackArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
+    resource_config: typing.Optional[models.cx_api.CloudFormationStackArtifactDefConfig] = pydantic.Field(None)
 
 
 class CloudFormationStackArtifactDefConfig(pydantic.BaseModel):
-    find_metadata_by_type: typing.Optional[list[CloudFormationStackArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
+    find_metadata_by_type: typing.Optional[list[models.cx_api.CloudFormationStackArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
 
 class CloudFormationStackArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -236,12 +238,12 @@ class EnvironmentPlaceholdersDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EnvironmentPlaceholdersDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.cx_api.EnvironmentPlaceholdersDefConfig] = pydantic.Field(None)
 
 
 class EnvironmentPlaceholdersDefConfig(pydantic.BaseModel):
-    replace: typing.Optional[list[EnvironmentPlaceholdersDefReplaceParams]] = pydantic.Field(None, description="Replace the environment placeholders in all strings found in a complex object.\nDuplicated between cdk-assets and aws-cdk CLI because we don't have a good single place to put it\n(they're nominally independent tools).")
-    replace_async: typing.Optional[list[EnvironmentPlaceholdersDefReplaceAsyncParams]] = pydantic.Field(None, description="Like 'replace', but asynchronous.")
+    replace: typing.Optional[list[models.cx_api.EnvironmentPlaceholdersDefReplaceParams]] = pydantic.Field(None, description="Replace the environment placeholders in all strings found in a complex object.\nDuplicated between cdk-assets and aws-cdk CLI because we don't have a good single place to put it\n(they're nominally independent tools).")
+    replace_async: typing.Optional[list[models.cx_api.EnvironmentPlaceholdersDefReplaceAsyncParams]] = pydantic.Field(None, description="Like 'replace', but asynchronous.")
 
 class EnvironmentPlaceholdersDefReplaceParams(pydantic.BaseModel):
     object: typing.Any = pydantic.Field(..., description='-\n')
@@ -266,13 +268,13 @@ class EnvironmentUtilsDef(BaseClass):
     ...
 
 
-    make: typing.Optional[EnvironmentUtilsDefMakeParams] = pydantic.Field(None, description='Build an environment object from an account and region.')
-    parse: typing.Optional[EnvironmentUtilsDefParseParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[EnvironmentUtilsDefConfig] = pydantic.Field(None)
+    make: typing.Optional[models.cx_api.EnvironmentUtilsDefMakeParams] = pydantic.Field(None, description='Build an environment object from an account and region.')
+    parse: typing.Optional[models.cx_api.EnvironmentUtilsDefParseParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.cx_api.EnvironmentUtilsDefConfig] = pydantic.Field(None)
 
 
 class EnvironmentUtilsDefConfig(pydantic.BaseModel):
-    format: typing.Optional[list[EnvironmentUtilsDefFormatParams]] = pydantic.Field(None, description='Format an environment string from an account and region.')
+    format: typing.Optional[list[models.cx_api.EnvironmentUtilsDefFormatParams]] = pydantic.Field(None, description='Format an environment string from an account and region.')
 
 class EnvironmentUtilsDefFormatParams(pydantic.BaseModel):
     account: str = pydantic.Field(..., description='-\n')
@@ -307,12 +309,12 @@ class NestedCloudAssemblyArtifactDef(BaseClass):
     ...
 
 
-    from_manifest: typing.Optional[NestedCloudAssemblyArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
-    resource_config: typing.Optional[NestedCloudAssemblyArtifactDefConfig] = pydantic.Field(None)
+    from_manifest: typing.Optional[models.cx_api.NestedCloudAssemblyArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
+    resource_config: typing.Optional[models.cx_api.NestedCloudAssemblyArtifactDefConfig] = pydantic.Field(None)
 
 
 class NestedCloudAssemblyArtifactDefConfig(pydantic.BaseModel):
-    find_metadata_by_type: typing.Optional[list[NestedCloudAssemblyArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
+    find_metadata_by_type: typing.Optional[list[models.cx_api.NestedCloudAssemblyArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
     nested_assembly_config: typing.Optional[models.cx_api.CloudAssemblyDefConfig] = pydantic.Field(None)
 
 class NestedCloudAssemblyArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
@@ -349,12 +351,12 @@ class TreeCloudArtifactDef(BaseClass):
     ...
 
 
-    from_manifest: typing.Optional[TreeCloudArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
-    resource_config: typing.Optional[TreeCloudArtifactDefConfig] = pydantic.Field(None)
+    from_manifest: typing.Optional[models.cx_api.TreeCloudArtifactDefFromManifestParams] = pydantic.Field(None, description='Returns a subclass of ``CloudArtifact`` based on the artifact type defined in the artifact manifest.')
+    resource_config: typing.Optional[models.cx_api.TreeCloudArtifactDefConfig] = pydantic.Field(None)
 
 
 class TreeCloudArtifactDefConfig(pydantic.BaseModel):
-    find_metadata_by_type: typing.Optional[list[TreeCloudArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
+    find_metadata_by_type: typing.Optional[list[models.cx_api.TreeCloudArtifactDefFindMetadataByTypeParams]] = pydantic.Field(None, description=':return: all the metadata entries of a specific type in this artifact.')
 
 class TreeCloudArtifactDefFindMetadataByTypeParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='-')
@@ -620,31 +622,31 @@ class VpcSubnetGroupDef(BaseStruct):
 #  autogenerated from aws_cdk.cx_api.IEnvironmentPlaceholderProvider
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AssetManifestArtifact: typing.Optional[dict[str, AssetManifestArtifactDef]] = pydantic.Field(None)
-    CloudArtifact: typing.Optional[dict[str, CloudArtifactDef]] = pydantic.Field(None)
-    CloudAssembly: typing.Optional[dict[str, CloudAssemblyDef]] = pydantic.Field(None)
-    CloudAssemblyBuilder: typing.Optional[dict[str, CloudAssemblyBuilderDef]] = pydantic.Field(None)
-    CloudFormationStackArtifact: typing.Optional[dict[str, CloudFormationStackArtifactDef]] = pydantic.Field(None)
-    EnvironmentPlaceholders: typing.Optional[dict[str, EnvironmentPlaceholdersDef]] = pydantic.Field(None)
-    EnvironmentUtils: typing.Optional[dict[str, EnvironmentUtilsDef]] = pydantic.Field(None)
-    NestedCloudAssemblyArtifact: typing.Optional[dict[str, NestedCloudAssemblyArtifactDef]] = pydantic.Field(None)
-    TreeCloudArtifact: typing.Optional[dict[str, TreeCloudArtifactDef]] = pydantic.Field(None)
-    AssemblyBuildOptions: typing.Optional[dict[str, AssemblyBuildOptionsDef]] = pydantic.Field(None)
-    AwsCloudFormationStackProperties: typing.Optional[dict[str, AwsCloudFormationStackPropertiesDef]] = pydantic.Field(None)
-    CloudAssemblyBuilderProps: typing.Optional[dict[str, CloudAssemblyBuilderPropsDef]] = pydantic.Field(None)
-    EndpointServiceAvailabilityZonesContextQuery: typing.Optional[dict[str, EndpointServiceAvailabilityZonesContextQueryDef]] = pydantic.Field(None)
-    Environment: typing.Optional[dict[str, EnvironmentDef]] = pydantic.Field(None)
-    EnvironmentPlaceholderValues: typing.Optional[dict[str, EnvironmentPlaceholderValuesDef]] = pydantic.Field(None)
-    KeyContextResponse: typing.Optional[dict[str, KeyContextResponseDef]] = pydantic.Field(None)
-    LoadBalancerContextResponse: typing.Optional[dict[str, LoadBalancerContextResponseDef]] = pydantic.Field(None)
-    LoadBalancerListenerContextResponse: typing.Optional[dict[str, LoadBalancerListenerContextResponseDef]] = pydantic.Field(None)
-    MetadataEntryResult: typing.Optional[dict[str, MetadataEntryResultDef]] = pydantic.Field(None)
-    SecurityGroupContextResponse: typing.Optional[dict[str, SecurityGroupContextResponseDef]] = pydantic.Field(None)
-    SynthesisMessage: typing.Optional[dict[str, SynthesisMessageDef]] = pydantic.Field(None)
-    VpcContextResponse: typing.Optional[dict[str, VpcContextResponseDef]] = pydantic.Field(None)
-    VpcSubnet: typing.Optional[dict[str, VpcSubnetDef]] = pydantic.Field(None)
-    VpcSubnetGroup: typing.Optional[dict[str, VpcSubnetGroupDef]] = pydantic.Field(None)
+    AssetManifestArtifact: typing.Optional[dict[str, models.cx_api.AssetManifestArtifactDef]] = pydantic.Field(None)
+    CloudArtifact: typing.Optional[dict[str, models.cx_api.CloudArtifactDef]] = pydantic.Field(None)
+    CloudAssembly: typing.Optional[dict[str, models.cx_api.CloudAssemblyDef]] = pydantic.Field(None)
+    CloudAssemblyBuilder: typing.Optional[dict[str, models.cx_api.CloudAssemblyBuilderDef]] = pydantic.Field(None)
+    CloudFormationStackArtifact: typing.Optional[dict[str, models.cx_api.CloudFormationStackArtifactDef]] = pydantic.Field(None)
+    EnvironmentPlaceholders: typing.Optional[dict[str, models.cx_api.EnvironmentPlaceholdersDef]] = pydantic.Field(None)
+    EnvironmentUtils: typing.Optional[dict[str, models.cx_api.EnvironmentUtilsDef]] = pydantic.Field(None)
+    NestedCloudAssemblyArtifact: typing.Optional[dict[str, models.cx_api.NestedCloudAssemblyArtifactDef]] = pydantic.Field(None)
+    TreeCloudArtifact: typing.Optional[dict[str, models.cx_api.TreeCloudArtifactDef]] = pydantic.Field(None)
+    AssemblyBuildOptions: typing.Optional[dict[str, models.cx_api.AssemblyBuildOptionsDef]] = pydantic.Field(None)
+    AwsCloudFormationStackProperties: typing.Optional[dict[str, models.cx_api.AwsCloudFormationStackPropertiesDef]] = pydantic.Field(None)
+    CloudAssemblyBuilderProps: typing.Optional[dict[str, models.cx_api.CloudAssemblyBuilderPropsDef]] = pydantic.Field(None)
+    EndpointServiceAvailabilityZonesContextQuery: typing.Optional[dict[str, models.cx_api.EndpointServiceAvailabilityZonesContextQueryDef]] = pydantic.Field(None)
+    Environment: typing.Optional[dict[str, models.cx_api.EnvironmentDef]] = pydantic.Field(None)
+    EnvironmentPlaceholderValues: typing.Optional[dict[str, models.cx_api.EnvironmentPlaceholderValuesDef]] = pydantic.Field(None)
+    KeyContextResponse: typing.Optional[dict[str, models.cx_api.KeyContextResponseDef]] = pydantic.Field(None)
+    LoadBalancerContextResponse: typing.Optional[dict[str, models.cx_api.LoadBalancerContextResponseDef]] = pydantic.Field(None)
+    LoadBalancerListenerContextResponse: typing.Optional[dict[str, models.cx_api.LoadBalancerListenerContextResponseDef]] = pydantic.Field(None)
+    MetadataEntryResult: typing.Optional[dict[str, models.cx_api.MetadataEntryResultDef]] = pydantic.Field(None)
+    SecurityGroupContextResponse: typing.Optional[dict[str, models.cx_api.SecurityGroupContextResponseDef]] = pydantic.Field(None)
+    SynthesisMessage: typing.Optional[dict[str, models.cx_api.SynthesisMessageDef]] = pydantic.Field(None)
+    VpcContextResponse: typing.Optional[dict[str, models.cx_api.VpcContextResponseDef]] = pydantic.Field(None)
+    VpcSubnet: typing.Optional[dict[str, models.cx_api.VpcSubnetDef]] = pydantic.Field(None)
+    VpcSubnetGroup: typing.Optional[dict[str, models.cx_api.VpcSubnetGroupDef]] = pydantic.Field(None)
     ...
+
+import models

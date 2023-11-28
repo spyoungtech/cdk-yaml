@@ -20,13 +20,13 @@ class AlarmBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlarmBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.AlarmBaseDefConfig] = pydantic.Field(None)
 
 
 class AlarmBaseDefConfig(pydantic.BaseModel):
-    add_alarm_action: typing.Optional[list[AlarmBaseDefAddAlarmActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm fires.\nTypically SnsAction or AutoScalingAction.')
-    add_insufficient_data_action: typing.Optional[list[AlarmBaseDefAddInsufficientDataActionParams]] = pydantic.Field(None, description='Trigger this action if there is insufficient data to evaluate the alarm.\nTypically SnsAction or AutoScalingAction.')
-    add_ok_action: typing.Optional[list[AlarmBaseDefAddOkActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm returns from breaching state into ok state.\nTypically SnsAction or AutoScalingAction.')
+    add_alarm_action: typing.Optional[list[models.aws_cloudwatch.AlarmBaseDefAddAlarmActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm fires.\nTypically SnsAction or AutoScalingAction.')
+    add_insufficient_data_action: typing.Optional[list[models.aws_cloudwatch.AlarmBaseDefAddInsufficientDataActionParams]] = pydantic.Field(None, description='Trigger this action if there is insufficient data to evaluate the alarm.\nTypically SnsAction or AutoScalingAction.')
+    add_ok_action: typing.Optional[list[models.aws_cloudwatch.AlarmBaseDefAddOkActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm returns from breaching state into ok state.\nTypically SnsAction or AutoScalingAction.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     render_alarm_rule: typing.Optional[bool] = pydantic.Field(None, description='AlarmRule indicating ALARM state for Alarm.')
 
@@ -57,12 +57,12 @@ class AlarmRuleDef(BaseClass):
     ...
 
 
-    all_of: typing.Optional[AlarmRuleDefAllOfParams] = pydantic.Field(None, description='function to join all provided AlarmRules with AND operator.')
-    any_of: typing.Optional[AlarmRuleDefAnyOfParams] = pydantic.Field(None, description='function to join all provided AlarmRules with OR operator.')
-    from_alarm: typing.Optional[AlarmRuleDefFromAlarmParams] = pydantic.Field(None, description='function to build Rule Expression for given IAlarm and AlarmState.')
-    from_boolean: typing.Optional[AlarmRuleDefFromBooleanParams] = pydantic.Field(None, description='function to build TRUE/FALSE intent for Rule Expression.')
-    from_string: typing.Optional[AlarmRuleDefFromStringParams] = pydantic.Field(None, description='function to build Rule Expression for given Alarm Rule string.')
-    not_: typing.Optional[AlarmRuleDefNotParams] = pydantic.Field(None, description='function to wrap provided AlarmRule in NOT operator.')
+    all_of: typing.Optional[models.aws_cloudwatch.AlarmRuleDefAllOfParams] = pydantic.Field(None, description='function to join all provided AlarmRules with AND operator.')
+    any_of: typing.Optional[models.aws_cloudwatch.AlarmRuleDefAnyOfParams] = pydantic.Field(None, description='function to join all provided AlarmRules with OR operator.')
+    from_alarm: typing.Optional[models.aws_cloudwatch.AlarmRuleDefFromAlarmParams] = pydantic.Field(None, description='function to build Rule Expression for given IAlarm and AlarmState.')
+    from_boolean: typing.Optional[models.aws_cloudwatch.AlarmRuleDefFromBooleanParams] = pydantic.Field(None, description='function to build TRUE/FALSE intent for Rule Expression.')
+    from_string: typing.Optional[models.aws_cloudwatch.AlarmRuleDefFromStringParams] = pydantic.Field(None, description='function to build Rule Expression for given Alarm Rule string.')
+    not_: typing.Optional[models.aws_cloudwatch.AlarmRuleDefNotParams] = pydantic.Field(None, description='function to wrap provided AlarmRule in NOT operator.')
 
 class AlarmRuleDefAllOfParams(pydantic.BaseModel):
     operands: list[models.UnsupportedResource] = pydantic.Field(...)
@@ -106,11 +106,11 @@ class AlarmStatusWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlarmStatusWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.AlarmStatusWidgetDefConfig] = pydantic.Field(None)
 
 
 class AlarmStatusWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[AlarmStatusWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.AlarmStatusWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class AlarmStatusWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -134,11 +134,11 @@ class AlarmWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlarmWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.AlarmWidgetDefConfig] = pydantic.Field(None)
 
 
 class AlarmWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[AlarmWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.AlarmWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class AlarmWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -169,12 +169,12 @@ class ColumnDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ColumnDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.ColumnDefConfig] = pydantic.Field(None)
 
 
 class ColumnDefConfig(pydantic.BaseModel):
-    add_widget: typing.Optional[list[ColumnDefAddWidgetParams]] = pydantic.Field(None, description='Add the widget to this container.')
-    position: typing.Optional[list[ColumnDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    add_widget: typing.Optional[list[models.aws_cloudwatch.ColumnDefAddWidgetParams]] = pydantic.Field(None, description='Add the widget to this container.')
+    position: typing.Optional[list[models.aws_cloudwatch.ColumnDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class ColumnDefAddWidgetParams(pydantic.BaseModel):
     w: typing.Union[models.aws_cloudwatch.AlarmStatusWidgetDef, models.aws_cloudwatch.AlarmWidgetDef, models.aws_cloudwatch.ColumnDef, models.aws_cloudwatch.ConcreteWidgetDef, models.aws_cloudwatch.CustomWidgetDef, models.aws_cloudwatch.GaugeWidgetDef, models.aws_cloudwatch.GraphWidgetDef, models.aws_cloudwatch.LogQueryWidgetDef, models.aws_cloudwatch.RowDef, models.aws_cloudwatch.SingleValueWidgetDef, models.aws_cloudwatch.SpacerDef, models.aws_cloudwatch.TextWidgetDef] = pydantic.Field(..., description='-')
@@ -198,11 +198,11 @@ class ConcreteWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ConcreteWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.ConcreteWidgetDefConfig] = pydantic.Field(None)
 
 
 class ConcreteWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[ConcreteWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.ConcreteWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class ConcreteWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -228,11 +228,11 @@ class CustomWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CustomWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CustomWidgetDefConfig] = pydantic.Field(None)
 
 
 class CustomWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[CustomWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.CustomWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class CustomWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -269,11 +269,11 @@ class DefaultValueDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DefaultValueDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.DefaultValueDefConfig] = pydantic.Field(None)
 
 
 class DefaultValueDefConfig(pydantic.BaseModel):
-    value: typing.Optional[list[DefaultValueDefValueParams]] = pydantic.Field(None, description='Create a default value.')
+    value: typing.Optional[list[models.aws_cloudwatch.DefaultValueDefValueParams]] = pydantic.Field(None, description='Create a default value.')
 
 class DefaultValueDefValueParams(pydantic.BaseModel):
     value: typing.Any = pydantic.Field(..., description='the value to be used as default.')
@@ -305,12 +305,12 @@ class GaugeWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GaugeWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.GaugeWidgetDefConfig] = pydantic.Field(None)
 
 
 class GaugeWidgetDefConfig(pydantic.BaseModel):
-    add_metric: typing.Optional[list[GaugeWidgetDefAddMetricParams]] = pydantic.Field(None, description='Add another metric to the left Y axis of the GaugeWidget.')
-    position: typing.Optional[list[GaugeWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    add_metric: typing.Optional[list[models.aws_cloudwatch.GaugeWidgetDefAddMetricParams]] = pydantic.Field(None, description='Add another metric to the left Y axis of the GaugeWidget.')
+    position: typing.Optional[list[models.aws_cloudwatch.GaugeWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class GaugeWidgetDefAddMetricParams(pydantic.BaseModel):
     metric: typing.Union[models.aws_cloudwatch.MathExpressionDef, models.aws_cloudwatch.MetricDef] = pydantic.Field(..., description='the metric to add.')
@@ -352,13 +352,13 @@ class GraphWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GraphWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.GraphWidgetDefConfig] = pydantic.Field(None)
 
 
 class GraphWidgetDefConfig(pydantic.BaseModel):
-    add_left_metric: typing.Optional[list[GraphWidgetDefAddLeftMetricParams]] = pydantic.Field(None, description='Add another metric to the left Y axis of the GraphWidget.')
-    add_right_metric: typing.Optional[list[GraphWidgetDefAddRightMetricParams]] = pydantic.Field(None, description='Add another metric to the right Y axis of the GraphWidget.')
-    position: typing.Optional[list[GraphWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    add_left_metric: typing.Optional[list[models.aws_cloudwatch.GraphWidgetDefAddLeftMetricParams]] = pydantic.Field(None, description='Add another metric to the left Y axis of the GraphWidget.')
+    add_right_metric: typing.Optional[list[models.aws_cloudwatch.GraphWidgetDefAddRightMetricParams]] = pydantic.Field(None, description='Add another metric to the right Y axis of the GraphWidget.')
+    position: typing.Optional[list[models.aws_cloudwatch.GraphWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class GraphWidgetDefAddLeftMetricParams(pydantic.BaseModel):
     metric: typing.Union[models.aws_cloudwatch.MathExpressionDef, models.aws_cloudwatch.MetricDef] = pydantic.Field(..., description='the metric to add.')
@@ -392,11 +392,11 @@ class LogQueryWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LogQueryWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.LogQueryWidgetDefConfig] = pydantic.Field(None)
 
 
 class LogQueryWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[LogQueryWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.LogQueryWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class LogQueryWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -421,12 +421,12 @@ class MathExpressionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MathExpressionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.MathExpressionDefConfig] = pydantic.Field(None)
 
 
 class MathExpressionDefConfig(pydantic.BaseModel):
-    create_alarm: typing.Optional[list[MathExpressionDefCreateAlarmParams]] = pydantic.Field(None, description='Make a new Alarm for this metric.\nCombines both properties that may adjust the metric (aggregation) as well\nas alarm properties.')
-    with_: typing.Optional[list[MathExpressionDefWithParams]] = pydantic.Field(None, description='Return a copy of Metric with properties changed.\nAll properties except namespace and metricName can be changed.')
+    create_alarm: typing.Optional[list[models.aws_cloudwatch.MathExpressionDefCreateAlarmParams]] = pydantic.Field(None, description='Make a new Alarm for this metric.\nCombines both properties that may adjust the metric (aggregation) as well\nas alarm properties.')
+    with_: typing.Optional[list[models.aws_cloudwatch.MathExpressionDefWithParams]] = pydantic.Field(None, description='Return a copy of Metric with properties changed.\nAll properties except namespace and metricName can be changed.')
     period_config: typing.Optional[models.core.DurationDefConfig] = pydantic.Field(None)
 
 class MathExpressionDefCreateAlarmParams(pydantic.BaseModel):
@@ -474,14 +474,14 @@ class MetricDef(BaseClass):
     ...
 
 
-    grant_put_metric_data: typing.Optional[MetricDefGrantPutMetricDataParams] = pydantic.Field(None, description='Grant permissions to the given identity to write metrics.')
-    resource_config: typing.Optional[MetricDefConfig] = pydantic.Field(None)
+    grant_put_metric_data: typing.Optional[models.aws_cloudwatch.MetricDefGrantPutMetricDataParams] = pydantic.Field(None, description='Grant permissions to the given identity to write metrics.')
+    resource_config: typing.Optional[models.aws_cloudwatch.MetricDefConfig] = pydantic.Field(None)
 
 
 class MetricDefConfig(pydantic.BaseModel):
-    attach_to: typing.Optional[list[MetricDefAttachToParams]] = pydantic.Field(None, description="Attach the metric object to the given construct scope.\nReturns a Metric object that uses the account and region from the Stack\nthe given construct is defined in. If the metric is subsequently used\nin a Dashboard or Alarm in a different Stack defined in a different\naccount or region, the appropriate 'region' and 'account' fields\nwill be added to it.\n\nIf the scope we attach to is in an environment-agnostic stack,\nnothing is done and the same Metric object is returned.")
-    create_alarm: typing.Optional[list[MetricDefCreateAlarmParams]] = pydantic.Field(None, description='Make a new Alarm for this metric.\nCombines both properties that may adjust the metric (aggregation) as well\nas alarm properties.')
-    with_: typing.Optional[list[MetricDefWithParams]] = pydantic.Field(None, description='Return a copy of Metric ``with`` properties changed.\nAll properties except namespace and metricName can be changed.')
+    attach_to: typing.Optional[list[models.aws_cloudwatch.MetricDefAttachToParams]] = pydantic.Field(None, description="Attach the metric object to the given construct scope.\nReturns a Metric object that uses the account and region from the Stack\nthe given construct is defined in. If the metric is subsequently used\nin a Dashboard or Alarm in a different Stack defined in a different\naccount or region, the appropriate 'region' and 'account' fields\nwill be added to it.\n\nIf the scope we attach to is in an environment-agnostic stack,\nnothing is done and the same Metric object is returned.")
+    create_alarm: typing.Optional[list[models.aws_cloudwatch.MetricDefCreateAlarmParams]] = pydantic.Field(None, description='Make a new Alarm for this metric.\nCombines both properties that may adjust the metric (aggregation) as well\nas alarm properties.')
+    with_: typing.Optional[list[models.aws_cloudwatch.MetricDefWithParams]] = pydantic.Field(None, description='Return a copy of Metric ``with`` properties changed.\nAll properties except namespace and metricName can be changed.')
     period_config: typing.Optional[models.core.DurationDefConfig] = pydantic.Field(None)
 
 class MetricDefAttachToParams(pydantic.BaseModel):
@@ -532,12 +532,12 @@ class RowDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RowDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.RowDefConfig] = pydantic.Field(None)
 
 
 class RowDefConfig(pydantic.BaseModel):
-    add_widget: typing.Optional[list[RowDefAddWidgetParams]] = pydantic.Field(None, description='Add the widget to this container.')
-    position: typing.Optional[list[RowDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    add_widget: typing.Optional[list[models.aws_cloudwatch.RowDefAddWidgetParams]] = pydantic.Field(None, description='Add the widget to this container.')
+    position: typing.Optional[list[models.aws_cloudwatch.RowDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class RowDefAddWidgetParams(pydantic.BaseModel):
     w: typing.Union[models.aws_cloudwatch.AlarmStatusWidgetDef, models.aws_cloudwatch.AlarmWidgetDef, models.aws_cloudwatch.ColumnDef, models.aws_cloudwatch.ConcreteWidgetDef, models.aws_cloudwatch.CustomWidgetDef, models.aws_cloudwatch.GaugeWidgetDef, models.aws_cloudwatch.GraphWidgetDef, models.aws_cloudwatch.LogQueryWidgetDef, models.aws_cloudwatch.RowDef, models.aws_cloudwatch.SingleValueWidgetDef, models.aws_cloudwatch.SpacerDef, models.aws_cloudwatch.TextWidgetDef] = pydantic.Field(..., description='-')
@@ -570,11 +570,11 @@ class SingleValueWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SingleValueWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.SingleValueWidgetDefConfig] = pydantic.Field(None)
 
 
 class SingleValueWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[SingleValueWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.SingleValueWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class SingleValueWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -594,16 +594,11 @@ class SpacerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SpacerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.SpacerDefConfig] = pydantic.Field(None)
 
 
 class SpacerDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[SpacerDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
-
-class SpacerDefPositionParams(pydantic.BaseModel):
-    _x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
-    _y: typing.Union[int, float] = pydantic.Field(..., description='-')
-    ...
+    position: typing.Optional[bool] = pydantic.Field(None, description='Place the widget at a given position.')
 
 
 #  autogenerated from aws_cdk.aws_cloudwatch.Stats
@@ -616,22 +611,22 @@ class StatsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StatsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.StatsDefConfig] = pydantic.Field(None)
 
 
 class StatsDefConfig(pydantic.BaseModel):
-    p: typing.Optional[list[StatsDefPParams]] = pydantic.Field(None, description='A shorter alias for ``percentile()``.')
-    percentile: typing.Optional[list[StatsDefPercentileParams]] = pydantic.Field(None, description='Percentile indicates the relative standing of a value in a dataset.\nPercentiles help you get a better understanding of the distribution of your metric data.\n\nFor example, ``p(90)`` is the 90th percentile and means that 90% of the data\nwithin the period is lower than this value and 10% of the data is higher\nthan this value.')
-    percentile_rank: typing.Optional[list[StatsDefPercentileRankParams]] = pydantic.Field(None, description='Percentile rank (PR) is the percentage of values that meet a fixed threshold.\n- If two numbers are given, they define the lower and upper bounds in absolute values,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``percentileRank(300)`` returns the percentage of data points that have a value of 300 or less.\n``percentileRank(100, 2000)`` returns the percentage of data points that have a value between 100 and 2000.')
-    pr: typing.Optional[list[StatsDefPrParams]] = pydantic.Field(None, description='Shorter alias for ``percentileRank()``.')
-    tc: typing.Optional[list[StatsDefTcParams]] = pydantic.Field(None, description='Shorter alias for ``trimmedCount()``.')
-    tm: typing.Optional[list[StatsDefTmParams]] = pydantic.Field(None, description='A shorter alias for ``trimmedMean()``.')
-    trimmed_count: typing.Optional[list[StatsDefTrimmedCountParams]] = pydantic.Field(None, description='Trimmed count (TC) is the number of data points in the chosen range for a trimmed mean statistic.\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``tc(90)`` returns the number of data points not including any\ndata points that fall in the highest 10% of the values. ``tc(10, 90)``\nreturns the number of data points not including any data points that fall\nin the lowest 10% of the values and the highest 90% of the values.')
-    trimmed_mean: typing.Optional[list[StatsDefTrimmedMeanParams]] = pydantic.Field(None, description='Trimmed mean (TM) is the mean of all values that are between two specified boundaries.\nValues outside of the boundaries are ignored when the mean is calculated.\nYou define the boundaries as one or two numbers between 0 and 100, up to 10\ndecimal places. The numbers are percentages.\n\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``tm(90)`` calculates the average after removing the 10% of data\npoints with the highest values; ``tm(10, 90)`` calculates the average after removing the\n10% with the lowest and 10% with the highest values.')
-    trimmed_sum: typing.Optional[list[StatsDefTrimmedSumParams]] = pydantic.Field(None, description='Trimmed sum (TS) is the sum of the values of data points in a chosen range for a trimmed mean statistic.\nIt is equivalent to ``(Trimmed Mean) * (Trimmed count)``.\n\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``ts(90)`` returns the sum of the data points not including any\ndata points that fall in the highest 10% of the values.  ``ts(10, 90)``\nreturns the sum of the data points not including any data points that fall\nin the lowest 10% of the values and the highest 90% of the values.')
-    ts: typing.Optional[list[StatsDefTsParams]] = pydantic.Field(None, description='Shorter alias for ``trimmedSum()``.')
-    winsorized_mean: typing.Optional[list[StatsDefWinsorizedMeanParams]] = pydantic.Field(None, description='Winsorized mean (WM) is similar to trimmed mean.\nHowever, with winsorized mean, the values that are outside the boundary are\nnot ignored, but instead are considered to be equal to the value at the\nedge of the appropriate boundary.  After this normalization, the average is\ncalculated. You define the boundaries as one or two numbers between 0 and\n100, up to 10 decimal places.\n\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``tm(90)`` calculates the average after removing the 10% of data\npoints with the highest values; ``tm(10, 90)`` calculates the average after removing the\n10% with the lowest and 10% with the highest values.\n\nFor example, ``wm(90)`` calculates the average while treating the 10% of the\nhighest values to be equal to the value at the 90th percentile.\n``wm(10, 90)`` calculates the average while treaing the bottom 10% and the\ntop 10% of values to be equal to the boundary values.')
-    wm: typing.Optional[list[StatsDefWmParams]] = pydantic.Field(None, description='A shorter alias for ``winsorizedMean()``.')
+    p: typing.Optional[list[models.aws_cloudwatch.StatsDefPParams]] = pydantic.Field(None, description='A shorter alias for ``percentile()``.')
+    percentile: typing.Optional[list[models.aws_cloudwatch.StatsDefPercentileParams]] = pydantic.Field(None, description='Percentile indicates the relative standing of a value in a dataset.\nPercentiles help you get a better understanding of the distribution of your metric data.\n\nFor example, ``p(90)`` is the 90th percentile and means that 90% of the data\nwithin the period is lower than this value and 10% of the data is higher\nthan this value.')
+    percentile_rank: typing.Optional[list[models.aws_cloudwatch.StatsDefPercentileRankParams]] = pydantic.Field(None, description='Percentile rank (PR) is the percentage of values that meet a fixed threshold.\n- If two numbers are given, they define the lower and upper bounds in absolute values,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``percentileRank(300)`` returns the percentage of data points that have a value of 300 or less.\n``percentileRank(100, 2000)`` returns the percentage of data points that have a value between 100 and 2000.')
+    pr: typing.Optional[list[models.aws_cloudwatch.StatsDefPrParams]] = pydantic.Field(None, description='Shorter alias for ``percentileRank()``.')
+    tc: typing.Optional[list[models.aws_cloudwatch.StatsDefTcParams]] = pydantic.Field(None, description='Shorter alias for ``trimmedCount()``.')
+    tm: typing.Optional[list[models.aws_cloudwatch.StatsDefTmParams]] = pydantic.Field(None, description='A shorter alias for ``trimmedMean()``.')
+    trimmed_count: typing.Optional[list[models.aws_cloudwatch.StatsDefTrimmedCountParams]] = pydantic.Field(None, description='Trimmed count (TC) is the number of data points in the chosen range for a trimmed mean statistic.\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``tc(90)`` returns the number of data points not including any\ndata points that fall in the highest 10% of the values. ``tc(10, 90)``\nreturns the number of data points not including any data points that fall\nin the lowest 10% of the values and the highest 90% of the values.')
+    trimmed_mean: typing.Optional[list[models.aws_cloudwatch.StatsDefTrimmedMeanParams]] = pydantic.Field(None, description='Trimmed mean (TM) is the mean of all values that are between two specified boundaries.\nValues outside of the boundaries are ignored when the mean is calculated.\nYou define the boundaries as one or two numbers between 0 and 100, up to 10\ndecimal places. The numbers are percentages.\n\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``tm(90)`` calculates the average after removing the 10% of data\npoints with the highest values; ``tm(10, 90)`` calculates the average after removing the\n10% with the lowest and 10% with the highest values.')
+    trimmed_sum: typing.Optional[list[models.aws_cloudwatch.StatsDefTrimmedSumParams]] = pydantic.Field(None, description='Trimmed sum (TS) is the sum of the values of data points in a chosen range for a trimmed mean statistic.\nIt is equivalent to ``(Trimmed Mean) * (Trimmed count)``.\n\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``ts(90)`` returns the sum of the data points not including any\ndata points that fall in the highest 10% of the values.  ``ts(10, 90)``\nreturns the sum of the data points not including any data points that fall\nin the lowest 10% of the values and the highest 90% of the values.')
+    ts: typing.Optional[list[models.aws_cloudwatch.StatsDefTsParams]] = pydantic.Field(None, description='Shorter alias for ``trimmedSum()``.')
+    winsorized_mean: typing.Optional[list[models.aws_cloudwatch.StatsDefWinsorizedMeanParams]] = pydantic.Field(None, description='Winsorized mean (WM) is similar to trimmed mean.\nHowever, with winsorized mean, the values that are outside the boundary are\nnot ignored, but instead are considered to be equal to the value at the\nedge of the appropriate boundary.  After this normalization, the average is\ncalculated. You define the boundaries as one or two numbers between 0 and\n100, up to 10 decimal places.\n\n- If two numbers are given, they define the lower and upper bounds in percentages,\n  respectively.\n- If one number is given, it defines the upper bound (the lower bound is assumed to\n  be 0).\n\nFor example, ``tm(90)`` calculates the average after removing the 10% of data\npoints with the highest values; ``tm(10, 90)`` calculates the average after removing the\n10% with the lowest and 10% with the highest values.\n\nFor example, ``wm(90)`` calculates the average while treating the 10% of the\nhighest values to be equal to the value at the 90th percentile.\n``wm(10, 90)`` calculates the average while treaing the bottom 10% and the\ntop 10% of values to be equal to the boundary values.')
+    wm: typing.Optional[list[models.aws_cloudwatch.StatsDefWmParams]] = pydantic.Field(None, description='A shorter alias for ``winsorizedMean()``.')
 
 class StatsDefPParams(pydantic.BaseModel):
     percentile: typing.Union[int, float] = pydantic.Field(..., description='-')
@@ -706,11 +701,11 @@ class TextWidgetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TextWidgetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.TextWidgetDefConfig] = pydantic.Field(None)
 
 
 class TextWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[TextWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models.aws_cloudwatch.TextWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 class TextWidgetDefPositionParams(pydantic.BaseModel):
     x: typing.Union[int, float] = pydantic.Field(..., description='-\n')
@@ -728,9 +723,9 @@ class ValuesDef(BaseClass):
     ...
 
 
-    from_search: typing.Optional[ValuesDefFromSearchParams] = pydantic.Field(None, description='Create values from a search expression.')
-    from_search_components: typing.Optional[ValuesDefFromSearchComponentsParams] = pydantic.Field(None, description='Create values from the components of search expression.')
-    from_values: typing.Optional[ValuesDefFromValuesParams] = pydantic.Field(None, description='Create values from an array of possible variable values.')
+    from_search: typing.Optional[models.aws_cloudwatch.ValuesDefFromSearchParams] = pydantic.Field(None, description='Create values from a search expression.')
+    from_search_components: typing.Optional[models.aws_cloudwatch.ValuesDefFromSearchComponentsParams] = pydantic.Field(None, description='Create values from the components of search expression.')
+    from_values: typing.Optional[models.aws_cloudwatch.ValuesDefFromValuesParams] = pydantic.Field(None, description='Create values from an array of possible variable values.')
 
 class ValuesDefFromSearchParams(pydantic.BaseModel):
     expression: str = pydantic.Field(..., description='search expression that specifies a namespace, dimension name(s) and a metric name. For example ``{AWS/EC2,InstanceId} MetricName=\\"CPUUtilization\\"``\n')
@@ -769,15 +764,15 @@ class AlarmDef(BaseConstruct):
     ...
 
 
-    from_alarm_arn: typing.Optional[AlarmDefFromAlarmArnParams] = pydantic.Field(None, description='Import an existing CloudWatch alarm provided an ARN.')
-    from_alarm_name: typing.Optional[AlarmDefFromAlarmNameParams] = pydantic.Field(None, description='Import an existing CloudWatch alarm provided an Name.')
-    resource_config: typing.Optional[AlarmDefConfig] = pydantic.Field(None)
+    from_alarm_arn: typing.Optional[models.aws_cloudwatch.AlarmDefFromAlarmArnParams] = pydantic.Field(None, description='Import an existing CloudWatch alarm provided an ARN.')
+    from_alarm_name: typing.Optional[models.aws_cloudwatch.AlarmDefFromAlarmNameParams] = pydantic.Field(None, description='Import an existing CloudWatch alarm provided an Name.')
+    resource_config: typing.Optional[models.aws_cloudwatch.AlarmDefConfig] = pydantic.Field(None)
 
 
 class AlarmDefConfig(pydantic.BaseModel):
-    add_alarm_action: typing.Optional[list[AlarmDefAddAlarmActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm fires.\nTypically SnsAcion or AutoScalingAction.')
-    add_insufficient_data_action: typing.Optional[list[AlarmDefAddInsufficientDataActionParams]] = pydantic.Field(None, description='Trigger this action if there is insufficient data to evaluate the alarm.\nTypically SnsAction or AutoScalingAction.')
-    add_ok_action: typing.Optional[list[AlarmDefAddOkActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm returns from breaching state into ok state.\nTypically SnsAction or AutoScalingAction.')
+    add_alarm_action: typing.Optional[list[models.aws_cloudwatch.AlarmDefAddAlarmActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm fires.\nTypically SnsAcion or AutoScalingAction.')
+    add_insufficient_data_action: typing.Optional[list[models.aws_cloudwatch.AlarmDefAddInsufficientDataActionParams]] = pydantic.Field(None, description='Trigger this action if there is insufficient data to evaluate the alarm.\nTypically SnsAction or AutoScalingAction.')
+    add_ok_action: typing.Optional[list[models.aws_cloudwatch.AlarmDefAddOkActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm returns from breaching state into ok state.\nTypically SnsAction or AutoScalingAction.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     render_alarm_rule: typing.Optional[bool] = pydantic.Field(None, description='AlarmRule indicating ALARM state for Alarm.')
 
@@ -827,15 +822,15 @@ class CompositeAlarmDef(BaseConstruct):
     ...
 
 
-    from_composite_alarm_arn: typing.Optional[CompositeAlarmDefFromCompositeAlarmArnParams] = pydantic.Field(None, description='Import an existing CloudWatch composite alarm provided an ARN.')
-    from_composite_alarm_name: typing.Optional[CompositeAlarmDefFromCompositeAlarmNameParams] = pydantic.Field(None, description='Import an existing CloudWatch composite alarm provided an Name.')
-    resource_config: typing.Optional[CompositeAlarmDefConfig] = pydantic.Field(None)
+    from_composite_alarm_arn: typing.Optional[models.aws_cloudwatch.CompositeAlarmDefFromCompositeAlarmArnParams] = pydantic.Field(None, description='Import an existing CloudWatch composite alarm provided an ARN.')
+    from_composite_alarm_name: typing.Optional[models.aws_cloudwatch.CompositeAlarmDefFromCompositeAlarmNameParams] = pydantic.Field(None, description='Import an existing CloudWatch composite alarm provided an Name.')
+    resource_config: typing.Optional[models.aws_cloudwatch.CompositeAlarmDefConfig] = pydantic.Field(None)
 
 
 class CompositeAlarmDefConfig(pydantic.BaseModel):
-    add_alarm_action: typing.Optional[list[CompositeAlarmDefAddAlarmActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm fires.\nTypically SnsAction or AutoScalingAction.')
-    add_insufficient_data_action: typing.Optional[list[CompositeAlarmDefAddInsufficientDataActionParams]] = pydantic.Field(None, description='Trigger this action if there is insufficient data to evaluate the alarm.\nTypically SnsAction or AutoScalingAction.')
-    add_ok_action: typing.Optional[list[CompositeAlarmDefAddOkActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm returns from breaching state into ok state.\nTypically SnsAction or AutoScalingAction.')
+    add_alarm_action: typing.Optional[list[models.aws_cloudwatch.CompositeAlarmDefAddAlarmActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm fires.\nTypically SnsAction or AutoScalingAction.')
+    add_insufficient_data_action: typing.Optional[list[models.aws_cloudwatch.CompositeAlarmDefAddInsufficientDataActionParams]] = pydantic.Field(None, description='Trigger this action if there is insufficient data to evaluate the alarm.\nTypically SnsAction or AutoScalingAction.')
+    add_ok_action: typing.Optional[list[models.aws_cloudwatch.CompositeAlarmDefAddOkActionParams]] = pydantic.Field(None, description='Trigger this action if the alarm returns from breaching state into ok state.\nTypically SnsAction or AutoScalingAction.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     render_alarm_rule: typing.Optional[bool] = pydantic.Field(None, description='AlarmRule indicating ALARM state for Alarm.')
 
@@ -885,12 +880,12 @@ class DashboardDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DashboardDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.DashboardDefConfig] = pydantic.Field(None)
 
 
 class DashboardDefConfig(pydantic.BaseModel):
-    add_variable: typing.Optional[list[DashboardDefAddVariableParams]] = pydantic.Field(None, description='Add a variable to the dashboard.')
-    add_widgets: typing.Optional[list[DashboardDefAddWidgetsParams]] = pydantic.Field(None, description='Add a widget to the dashboard.\nWidgets given in multiple calls to add() will be laid out stacked on\ntop of each other.\n\nMultiple widgets added in the same call to add() will be laid out next\nto each other.')
+    add_variable: typing.Optional[list[models.aws_cloudwatch.DashboardDefAddVariableParams]] = pydantic.Field(None, description='Add a variable to the dashboard.')
+    add_widgets: typing.Optional[list[models.aws_cloudwatch.DashboardDefAddWidgetsParams]] = pydantic.Field(None, description='Add a widget to the dashboard.\nWidgets given in multiple calls to add() will be laid out stacked on\ntop of each other.\n\nMultiple widgets added in the same call to add() will be laid out next\nto each other.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class DashboardDefAddVariableParams(pydantic.BaseModel):
@@ -1557,7 +1552,7 @@ class MetricStatConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MetricStatConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.MetricStatConfigDefConfig] = pydantic.Field(None)
 
 
 class MetricStatConfigDefConfig(pydantic.BaseModel):
@@ -1790,30 +1785,30 @@ class CfnAlarmDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAlarmDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CfnAlarmDefConfig] = pydantic.Field(None)
 
 
 class CfnAlarmDefConfig(pydantic.BaseModel):
-    DimensionProperty: typing.Optional[list[CfnAlarmDefDimensionpropertyParams]] = pydantic.Field(None, description='')
-    MetricDataQueryProperty: typing.Optional[list[CfnAlarmDefMetricdataquerypropertyParams]] = pydantic.Field(None, description='')
-    MetricProperty: typing.Optional[list[CfnAlarmDefMetricpropertyParams]] = pydantic.Field(None, description='')
-    MetricStatProperty: typing.Optional[list[CfnAlarmDefMetricstatpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAlarmDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAlarmDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAlarmDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAlarmDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAlarmDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAlarmDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAlarmDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DimensionProperty: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefDimensionpropertyParams]] = pydantic.Field(None, description='')
+    MetricDataQueryProperty: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefMetricdataquerypropertyParams]] = pydantic.Field(None, description='')
+    MetricProperty: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefMetricpropertyParams]] = pydantic.Field(None, description='')
+    MetricStatProperty: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefMetricstatpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAlarmDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAlarmDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAlarmDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAlarmDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAlarmDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAlarmDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudwatch.CfnAlarmDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAlarmDefDimensionpropertyParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='')
@@ -1925,34 +1920,34 @@ class CfnAnomalyDetectorDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAnomalyDetectorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CfnAnomalyDetectorDefConfig] = pydantic.Field(None)
 
 
 class CfnAnomalyDetectorDefConfig(pydantic.BaseModel):
-    ConfigurationProperty: typing.Optional[list[CfnAnomalyDetectorDefConfigurationpropertyParams]] = pydantic.Field(None, description='')
-    DimensionProperty: typing.Optional[list[CfnAnomalyDetectorDefDimensionpropertyParams]] = pydantic.Field(None, description='')
-    MetricDataQueryProperty: typing.Optional[list[CfnAnomalyDetectorDefMetricdataquerypropertyParams]] = pydantic.Field(None, description='')
-    MetricMathAnomalyDetectorProperty: typing.Optional[list[CfnAnomalyDetectorDefMetricmathanomalydetectorpropertyParams]] = pydantic.Field(None, description='')
-    MetricProperty: typing.Optional[list[CfnAnomalyDetectorDefMetricpropertyParams]] = pydantic.Field(None, description='')
-    MetricStatProperty: typing.Optional[list[CfnAnomalyDetectorDefMetricstatpropertyParams]] = pydantic.Field(None, description='')
-    RangeProperty: typing.Optional[list[CfnAnomalyDetectorDefRangepropertyParams]] = pydantic.Field(None, description='')
-    SingleMetricAnomalyDetectorProperty: typing.Optional[list[CfnAnomalyDetectorDefSinglemetricanomalydetectorpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAnomalyDetectorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAnomalyDetectorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAnomalyDetectorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAnomalyDetectorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAnomalyDetectorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAnomalyDetectorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAnomalyDetectorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ConfigurationProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefConfigurationpropertyParams]] = pydantic.Field(None, description='')
+    DimensionProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefDimensionpropertyParams]] = pydantic.Field(None, description='')
+    MetricDataQueryProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefMetricdataquerypropertyParams]] = pydantic.Field(None, description='')
+    MetricMathAnomalyDetectorProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefMetricmathanomalydetectorpropertyParams]] = pydantic.Field(None, description='')
+    MetricProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefMetricpropertyParams]] = pydantic.Field(None, description='')
+    MetricStatProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefMetricstatpropertyParams]] = pydantic.Field(None, description='')
+    RangeProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefRangepropertyParams]] = pydantic.Field(None, description='')
+    SingleMetricAnomalyDetectorProperty: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefSinglemetricanomalydetectorpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAnomalyDetectorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAnomalyDetectorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAnomalyDetectorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAnomalyDetectorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAnomalyDetectorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAnomalyDetectorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudwatch.CfnAnomalyDetectorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAnomalyDetectorDefConfigurationpropertyParams(pydantic.BaseModel):
     excluded_time_ranges: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_cloudwatch.CfnAnomalyDetector_RangePropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
@@ -2088,26 +2083,26 @@ class CfnCompositeAlarmDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCompositeAlarmDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CfnCompositeAlarmDefConfig] = pydantic.Field(None)
 
 
 class CfnCompositeAlarmDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnCompositeAlarmDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCompositeAlarmDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCompositeAlarmDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCompositeAlarmDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCompositeAlarmDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCompositeAlarmDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCompositeAlarmDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCompositeAlarmDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCompositeAlarmDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCompositeAlarmDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCompositeAlarmDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCompositeAlarmDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCompositeAlarmDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudwatch.CfnCompositeAlarmDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnCompositeAlarmDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -2186,26 +2181,26 @@ class CfnDashboardDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDashboardDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CfnDashboardDefConfig] = pydantic.Field(None)
 
 
 class CfnDashboardDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnDashboardDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDashboardDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDashboardDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDashboardDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDashboardDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDashboardDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDashboardDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDashboardDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDashboardDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDashboardDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDashboardDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDashboardDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDashboardDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudwatch.CfnDashboardDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDashboardDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -2286,26 +2281,26 @@ class CfnInsightRuleDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnInsightRuleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CfnInsightRuleDefConfig] = pydantic.Field(None)
 
 
 class CfnInsightRuleDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnInsightRuleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnInsightRuleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnInsightRuleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnInsightRuleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnInsightRuleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnInsightRuleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnInsightRuleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnInsightRuleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnInsightRuleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnInsightRuleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnInsightRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnInsightRuleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnInsightRuleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudwatch.CfnInsightRuleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnInsightRuleDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -2392,29 +2387,29 @@ class CfnMetricStreamDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMetricStreamDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudwatch.CfnMetricStreamDefConfig] = pydantic.Field(None)
 
 
 class CfnMetricStreamDefConfig(pydantic.BaseModel):
-    MetricStreamFilterProperty: typing.Optional[list[CfnMetricStreamDefMetricstreamfilterpropertyParams]] = pydantic.Field(None, description='')
-    MetricStreamStatisticsConfigurationProperty: typing.Optional[list[CfnMetricStreamDefMetricstreamstatisticsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    MetricStreamStatisticsMetricProperty: typing.Optional[list[CfnMetricStreamDefMetricstreamstatisticsmetricpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnMetricStreamDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMetricStreamDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMetricStreamDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMetricStreamDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMetricStreamDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMetricStreamDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMetricStreamDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    MetricStreamFilterProperty: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefMetricstreamfilterpropertyParams]] = pydantic.Field(None, description='')
+    MetricStreamStatisticsConfigurationProperty: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefMetricstreamstatisticsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    MetricStreamStatisticsMetricProperty: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefMetricstreamstatisticsmetricpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMetricStreamDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMetricStreamDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMetricStreamDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMetricStreamDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMetricStreamDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMetricStreamDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudwatch.CfnMetricStreamDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnMetricStreamDefMetricstreamfilterpropertyParams(pydantic.BaseModel):
@@ -2622,88 +2617,88 @@ class CfnMetricStreamPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AlarmBase: typing.Optional[dict[str, AlarmBaseDef]] = pydantic.Field(None)
-    AlarmRule: typing.Optional[dict[str, AlarmRuleDef]] = pydantic.Field(None)
-    AlarmStatusWidget: typing.Optional[dict[str, AlarmStatusWidgetDef]] = pydantic.Field(None)
-    AlarmWidget: typing.Optional[dict[str, AlarmWidgetDef]] = pydantic.Field(None)
-    Color: typing.Optional[dict[str, ColorDef]] = pydantic.Field(None)
-    Column: typing.Optional[dict[str, ColumnDef]] = pydantic.Field(None)
-    ConcreteWidget: typing.Optional[dict[str, ConcreteWidgetDef]] = pydantic.Field(None)
-    CustomWidget: typing.Optional[dict[str, CustomWidgetDef]] = pydantic.Field(None)
-    DashboardVariable: typing.Optional[dict[str, DashboardVariableDef]] = pydantic.Field(None)
-    DefaultValue: typing.Optional[dict[str, DefaultValueDef]] = pydantic.Field(None)
-    GaugeWidget: typing.Optional[dict[str, GaugeWidgetDef]] = pydantic.Field(None)
-    GraphWidget: typing.Optional[dict[str, GraphWidgetDef]] = pydantic.Field(None)
-    LogQueryWidget: typing.Optional[dict[str, LogQueryWidgetDef]] = pydantic.Field(None)
-    MathExpression: typing.Optional[dict[str, MathExpressionDef]] = pydantic.Field(None)
-    Metric: typing.Optional[dict[str, MetricDef]] = pydantic.Field(None)
-    Row: typing.Optional[dict[str, RowDef]] = pydantic.Field(None)
-    SingleValueWidget: typing.Optional[dict[str, SingleValueWidgetDef]] = pydantic.Field(None)
-    Spacer: typing.Optional[dict[str, SpacerDef]] = pydantic.Field(None)
-    Stats: typing.Optional[dict[str, StatsDef]] = pydantic.Field(None)
-    TextWidget: typing.Optional[dict[str, TextWidgetDef]] = pydantic.Field(None)
-    Values: typing.Optional[dict[str, ValuesDef]] = pydantic.Field(None)
-    Alarm: typing.Optional[dict[str, AlarmDef]] = pydantic.Field(None)
-    CompositeAlarm: typing.Optional[dict[str, CompositeAlarmDef]] = pydantic.Field(None)
-    Dashboard: typing.Optional[dict[str, DashboardDef]] = pydantic.Field(None)
-    AlarmActionConfig: typing.Optional[dict[str, AlarmActionConfigDef]] = pydantic.Field(None)
-    AlarmProps: typing.Optional[dict[str, AlarmPropsDef]] = pydantic.Field(None)
-    AlarmStatusWidgetProps: typing.Optional[dict[str, AlarmStatusWidgetPropsDef]] = pydantic.Field(None)
-    AlarmWidgetProps: typing.Optional[dict[str, AlarmWidgetPropsDef]] = pydantic.Field(None)
-    CfnAlarm_DimensionProperty: typing.Optional[dict[str, CfnAlarm_DimensionPropertyDef]] = pydantic.Field(None)
-    CfnAlarm_MetricDataQueryProperty: typing.Optional[dict[str, CfnAlarm_MetricDataQueryPropertyDef]] = pydantic.Field(None)
-    CfnAlarm_MetricProperty: typing.Optional[dict[str, CfnAlarm_MetricPropertyDef]] = pydantic.Field(None)
-    CfnAlarm_MetricStatProperty: typing.Optional[dict[str, CfnAlarm_MetricStatPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_ConfigurationProperty: typing.Optional[dict[str, CfnAnomalyDetector_ConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_DimensionProperty: typing.Optional[dict[str, CfnAnomalyDetector_DimensionPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_MetricDataQueryProperty: typing.Optional[dict[str, CfnAnomalyDetector_MetricDataQueryPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_MetricMathAnomalyDetectorProperty: typing.Optional[dict[str, CfnAnomalyDetector_MetricMathAnomalyDetectorPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_MetricProperty: typing.Optional[dict[str, CfnAnomalyDetector_MetricPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_MetricStatProperty: typing.Optional[dict[str, CfnAnomalyDetector_MetricStatPropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_RangeProperty: typing.Optional[dict[str, CfnAnomalyDetector_RangePropertyDef]] = pydantic.Field(None)
-    CfnAnomalyDetector_SingleMetricAnomalyDetectorProperty: typing.Optional[dict[str, CfnAnomalyDetector_SingleMetricAnomalyDetectorPropertyDef]] = pydantic.Field(None)
-    CfnMetricStream_MetricStreamFilterProperty: typing.Optional[dict[str, CfnMetricStream_MetricStreamFilterPropertyDef]] = pydantic.Field(None)
-    CfnMetricStream_MetricStreamStatisticsConfigurationProperty: typing.Optional[dict[str, CfnMetricStream_MetricStreamStatisticsConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnMetricStream_MetricStreamStatisticsMetricProperty: typing.Optional[dict[str, CfnMetricStream_MetricStreamStatisticsMetricPropertyDef]] = pydantic.Field(None)
-    CommonMetricOptions: typing.Optional[dict[str, CommonMetricOptionsDef]] = pydantic.Field(None)
-    CompositeAlarmProps: typing.Optional[dict[str, CompositeAlarmPropsDef]] = pydantic.Field(None)
-    CreateAlarmOptions: typing.Optional[dict[str, CreateAlarmOptionsDef]] = pydantic.Field(None)
-    CustomWidgetProps: typing.Optional[dict[str, CustomWidgetPropsDef]] = pydantic.Field(None)
-    DashboardProps: typing.Optional[dict[str, DashboardPropsDef]] = pydantic.Field(None)
-    DashboardVariableOptions: typing.Optional[dict[str, DashboardVariableOptionsDef]] = pydantic.Field(None)
-    Dimension: typing.Optional[dict[str, DimensionDef]] = pydantic.Field(None)
-    GaugeWidgetProps: typing.Optional[dict[str, GaugeWidgetPropsDef]] = pydantic.Field(None)
-    GraphWidgetProps: typing.Optional[dict[str, GraphWidgetPropsDef]] = pydantic.Field(None)
-    HorizontalAnnotation: typing.Optional[dict[str, HorizontalAnnotationDef]] = pydantic.Field(None)
-    LogQueryWidgetProps: typing.Optional[dict[str, LogQueryWidgetPropsDef]] = pydantic.Field(None)
-    MathExpressionOptions: typing.Optional[dict[str, MathExpressionOptionsDef]] = pydantic.Field(None)
-    MathExpressionProps: typing.Optional[dict[str, MathExpressionPropsDef]] = pydantic.Field(None)
-    MetricConfig: typing.Optional[dict[str, MetricConfigDef]] = pydantic.Field(None)
-    MetricExpressionConfig: typing.Optional[dict[str, MetricExpressionConfigDef]] = pydantic.Field(None)
-    MetricOptions: typing.Optional[dict[str, MetricOptionsDef]] = pydantic.Field(None)
-    MetricProps: typing.Optional[dict[str, MetricPropsDef]] = pydantic.Field(None)
-    MetricStatConfig: typing.Optional[dict[str, MetricStatConfigDef]] = pydantic.Field(None)
-    MetricWidgetProps: typing.Optional[dict[str, MetricWidgetPropsDef]] = pydantic.Field(None)
-    SearchComponents: typing.Optional[dict[str, SearchComponentsDef]] = pydantic.Field(None)
-    SingleValueWidgetProps: typing.Optional[dict[str, SingleValueWidgetPropsDef]] = pydantic.Field(None)
-    SpacerProps: typing.Optional[dict[str, SpacerPropsDef]] = pydantic.Field(None)
-    TextWidgetProps: typing.Optional[dict[str, TextWidgetPropsDef]] = pydantic.Field(None)
-    VariableValue: typing.Optional[dict[str, VariableValueDef]] = pydantic.Field(None)
-    VerticalAnnotation: typing.Optional[dict[str, VerticalAnnotationDef]] = pydantic.Field(None)
-    YAxisProps: typing.Optional[dict[str, YAxisPropsDef]] = pydantic.Field(None)
-    CfnAlarm: typing.Optional[dict[str, CfnAlarmDef]] = pydantic.Field(None)
-    CfnAnomalyDetector: typing.Optional[dict[str, CfnAnomalyDetectorDef]] = pydantic.Field(None)
-    CfnCompositeAlarm: typing.Optional[dict[str, CfnCompositeAlarmDef]] = pydantic.Field(None)
-    CfnDashboard: typing.Optional[dict[str, CfnDashboardDef]] = pydantic.Field(None)
-    CfnInsightRule: typing.Optional[dict[str, CfnInsightRuleDef]] = pydantic.Field(None)
-    CfnMetricStream: typing.Optional[dict[str, CfnMetricStreamDef]] = pydantic.Field(None)
-    CfnAlarmProps: typing.Optional[dict[str, CfnAlarmPropsDef]] = pydantic.Field(None)
-    CfnAnomalyDetectorProps: typing.Optional[dict[str, CfnAnomalyDetectorPropsDef]] = pydantic.Field(None)
-    CfnCompositeAlarmProps: typing.Optional[dict[str, CfnCompositeAlarmPropsDef]] = pydantic.Field(None)
-    CfnDashboardProps: typing.Optional[dict[str, CfnDashboardPropsDef]] = pydantic.Field(None)
-    CfnInsightRuleProps: typing.Optional[dict[str, CfnInsightRulePropsDef]] = pydantic.Field(None)
-    CfnMetricStreamProps: typing.Optional[dict[str, CfnMetricStreamPropsDef]] = pydantic.Field(None)
+    AlarmBase: typing.Optional[dict[str, models.aws_cloudwatch.AlarmBaseDef]] = pydantic.Field(None)
+    AlarmRule: typing.Optional[dict[str, models.aws_cloudwatch.AlarmRuleDef]] = pydantic.Field(None)
+    AlarmStatusWidget: typing.Optional[dict[str, models.aws_cloudwatch.AlarmStatusWidgetDef]] = pydantic.Field(None)
+    AlarmWidget: typing.Optional[dict[str, models.aws_cloudwatch.AlarmWidgetDef]] = pydantic.Field(None)
+    Color: typing.Optional[dict[str, models.aws_cloudwatch.ColorDef]] = pydantic.Field(None)
+    Column: typing.Optional[dict[str, models.aws_cloudwatch.ColumnDef]] = pydantic.Field(None)
+    ConcreteWidget: typing.Optional[dict[str, models.aws_cloudwatch.ConcreteWidgetDef]] = pydantic.Field(None)
+    CustomWidget: typing.Optional[dict[str, models.aws_cloudwatch.CustomWidgetDef]] = pydantic.Field(None)
+    DashboardVariable: typing.Optional[dict[str, models.aws_cloudwatch.DashboardVariableDef]] = pydantic.Field(None)
+    DefaultValue: typing.Optional[dict[str, models.aws_cloudwatch.DefaultValueDef]] = pydantic.Field(None)
+    GaugeWidget: typing.Optional[dict[str, models.aws_cloudwatch.GaugeWidgetDef]] = pydantic.Field(None)
+    GraphWidget: typing.Optional[dict[str, models.aws_cloudwatch.GraphWidgetDef]] = pydantic.Field(None)
+    LogQueryWidget: typing.Optional[dict[str, models.aws_cloudwatch.LogQueryWidgetDef]] = pydantic.Field(None)
+    MathExpression: typing.Optional[dict[str, models.aws_cloudwatch.MathExpressionDef]] = pydantic.Field(None)
+    Metric: typing.Optional[dict[str, models.aws_cloudwatch.MetricDef]] = pydantic.Field(None)
+    Row: typing.Optional[dict[str, models.aws_cloudwatch.RowDef]] = pydantic.Field(None)
+    SingleValueWidget: typing.Optional[dict[str, models.aws_cloudwatch.SingleValueWidgetDef]] = pydantic.Field(None)
+    Spacer: typing.Optional[dict[str, models.aws_cloudwatch.SpacerDef]] = pydantic.Field(None)
+    Stats: typing.Optional[dict[str, models.aws_cloudwatch.StatsDef]] = pydantic.Field(None)
+    TextWidget: typing.Optional[dict[str, models.aws_cloudwatch.TextWidgetDef]] = pydantic.Field(None)
+    Values: typing.Optional[dict[str, models.aws_cloudwatch.ValuesDef]] = pydantic.Field(None)
+    Alarm: typing.Optional[dict[str, models.aws_cloudwatch.AlarmDef]] = pydantic.Field(None)
+    CompositeAlarm: typing.Optional[dict[str, models.aws_cloudwatch.CompositeAlarmDef]] = pydantic.Field(None)
+    Dashboard: typing.Optional[dict[str, models.aws_cloudwatch.DashboardDef]] = pydantic.Field(None)
+    AlarmActionConfig: typing.Optional[dict[str, models.aws_cloudwatch.AlarmActionConfigDef]] = pydantic.Field(None)
+    AlarmProps: typing.Optional[dict[str, models.aws_cloudwatch.AlarmPropsDef]] = pydantic.Field(None)
+    AlarmStatusWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.AlarmStatusWidgetPropsDef]] = pydantic.Field(None)
+    AlarmWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.AlarmWidgetPropsDef]] = pydantic.Field(None)
+    CfnAlarm_DimensionProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAlarm_DimensionPropertyDef]] = pydantic.Field(None)
+    CfnAlarm_MetricDataQueryProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAlarm_MetricDataQueryPropertyDef]] = pydantic.Field(None)
+    CfnAlarm_MetricProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAlarm_MetricPropertyDef]] = pydantic.Field(None)
+    CfnAlarm_MetricStatProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAlarm_MetricStatPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_ConfigurationProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_ConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_DimensionProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_DimensionPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_MetricDataQueryProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_MetricDataQueryPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_MetricMathAnomalyDetectorProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_MetricMathAnomalyDetectorPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_MetricProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_MetricPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_MetricStatProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_MetricStatPropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_RangeProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_RangePropertyDef]] = pydantic.Field(None)
+    CfnAnomalyDetector_SingleMetricAnomalyDetectorProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetector_SingleMetricAnomalyDetectorPropertyDef]] = pydantic.Field(None)
+    CfnMetricStream_MetricStreamFilterProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnMetricStream_MetricStreamFilterPropertyDef]] = pydantic.Field(None)
+    CfnMetricStream_MetricStreamStatisticsConfigurationProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnMetricStream_MetricStreamStatisticsConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnMetricStream_MetricStreamStatisticsMetricProperty: typing.Optional[dict[str, models.aws_cloudwatch.CfnMetricStream_MetricStreamStatisticsMetricPropertyDef]] = pydantic.Field(None)
+    CommonMetricOptions: typing.Optional[dict[str, models.aws_cloudwatch.CommonMetricOptionsDef]] = pydantic.Field(None)
+    CompositeAlarmProps: typing.Optional[dict[str, models.aws_cloudwatch.CompositeAlarmPropsDef]] = pydantic.Field(None)
+    CreateAlarmOptions: typing.Optional[dict[str, models.aws_cloudwatch.CreateAlarmOptionsDef]] = pydantic.Field(None)
+    CustomWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.CustomWidgetPropsDef]] = pydantic.Field(None)
+    DashboardProps: typing.Optional[dict[str, models.aws_cloudwatch.DashboardPropsDef]] = pydantic.Field(None)
+    DashboardVariableOptions: typing.Optional[dict[str, models.aws_cloudwatch.DashboardVariableOptionsDef]] = pydantic.Field(None)
+    Dimension: typing.Optional[dict[str, models.aws_cloudwatch.DimensionDef]] = pydantic.Field(None)
+    GaugeWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.GaugeWidgetPropsDef]] = pydantic.Field(None)
+    GraphWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.GraphWidgetPropsDef]] = pydantic.Field(None)
+    HorizontalAnnotation: typing.Optional[dict[str, models.aws_cloudwatch.HorizontalAnnotationDef]] = pydantic.Field(None)
+    LogQueryWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.LogQueryWidgetPropsDef]] = pydantic.Field(None)
+    MathExpressionOptions: typing.Optional[dict[str, models.aws_cloudwatch.MathExpressionOptionsDef]] = pydantic.Field(None)
+    MathExpressionProps: typing.Optional[dict[str, models.aws_cloudwatch.MathExpressionPropsDef]] = pydantic.Field(None)
+    MetricConfig: typing.Optional[dict[str, models.aws_cloudwatch.MetricConfigDef]] = pydantic.Field(None)
+    MetricExpressionConfig: typing.Optional[dict[str, models.aws_cloudwatch.MetricExpressionConfigDef]] = pydantic.Field(None)
+    MetricOptions: typing.Optional[dict[str, models.aws_cloudwatch.MetricOptionsDef]] = pydantic.Field(None)
+    MetricProps: typing.Optional[dict[str, models.aws_cloudwatch.MetricPropsDef]] = pydantic.Field(None)
+    MetricStatConfig: typing.Optional[dict[str, models.aws_cloudwatch.MetricStatConfigDef]] = pydantic.Field(None)
+    MetricWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.MetricWidgetPropsDef]] = pydantic.Field(None)
+    SearchComponents: typing.Optional[dict[str, models.aws_cloudwatch.SearchComponentsDef]] = pydantic.Field(None)
+    SingleValueWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.SingleValueWidgetPropsDef]] = pydantic.Field(None)
+    SpacerProps: typing.Optional[dict[str, models.aws_cloudwatch.SpacerPropsDef]] = pydantic.Field(None)
+    TextWidgetProps: typing.Optional[dict[str, models.aws_cloudwatch.TextWidgetPropsDef]] = pydantic.Field(None)
+    VariableValue: typing.Optional[dict[str, models.aws_cloudwatch.VariableValueDef]] = pydantic.Field(None)
+    VerticalAnnotation: typing.Optional[dict[str, models.aws_cloudwatch.VerticalAnnotationDef]] = pydantic.Field(None)
+    YAxisProps: typing.Optional[dict[str, models.aws_cloudwatch.YAxisPropsDef]] = pydantic.Field(None)
+    CfnAlarm: typing.Optional[dict[str, models.aws_cloudwatch.CfnAlarmDef]] = pydantic.Field(None)
+    CfnAnomalyDetector: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetectorDef]] = pydantic.Field(None)
+    CfnCompositeAlarm: typing.Optional[dict[str, models.aws_cloudwatch.CfnCompositeAlarmDef]] = pydantic.Field(None)
+    CfnDashboard: typing.Optional[dict[str, models.aws_cloudwatch.CfnDashboardDef]] = pydantic.Field(None)
+    CfnInsightRule: typing.Optional[dict[str, models.aws_cloudwatch.CfnInsightRuleDef]] = pydantic.Field(None)
+    CfnMetricStream: typing.Optional[dict[str, models.aws_cloudwatch.CfnMetricStreamDef]] = pydantic.Field(None)
+    CfnAlarmProps: typing.Optional[dict[str, models.aws_cloudwatch.CfnAlarmPropsDef]] = pydantic.Field(None)
+    CfnAnomalyDetectorProps: typing.Optional[dict[str, models.aws_cloudwatch.CfnAnomalyDetectorPropsDef]] = pydantic.Field(None)
+    CfnCompositeAlarmProps: typing.Optional[dict[str, models.aws_cloudwatch.CfnCompositeAlarmPropsDef]] = pydantic.Field(None)
+    CfnDashboardProps: typing.Optional[dict[str, models.aws_cloudwatch.CfnDashboardPropsDef]] = pydantic.Field(None)
+    CfnInsightRuleProps: typing.Optional[dict[str, models.aws_cloudwatch.CfnInsightRulePropsDef]] = pydantic.Field(None)
+    CfnMetricStreamProps: typing.Optional[dict[str, models.aws_cloudwatch.CfnMetricStreamPropsDef]] = pydantic.Field(None)
     ...
+
+import models

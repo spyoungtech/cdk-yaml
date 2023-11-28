@@ -18,15 +18,13 @@ class AppMeshProxyConfigurationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AppMeshProxyConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.AppMeshProxyConfigurationDefConfig] = pydantic.Field(None)
 
 
 class AppMeshProxyConfigurationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AppMeshProxyConfigurationDefBindParams]] = pydantic.Field(None, description='Called when the proxy configuration is configured on a task definition.')
+    bind: typing.Optional[list[models.aws_ecs.AppMeshProxyConfigurationDefBindParams]] = pydantic.Field(None, description='Called when the proxy configuration is configured on a task definition.')
 
 class AppMeshProxyConfigurationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _task_definition: models.aws_ecs.TaskDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -62,13 +60,13 @@ class AssetEnvironmentFileDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[AssetEnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
-    from_bucket: typing.Optional[AssetEnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
-    resource_config: typing.Optional[AssetEnvironmentFileDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.AssetEnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
+    from_bucket: typing.Optional[models.aws_ecs.AssetEnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
+    resource_config: typing.Optional[models.aws_ecs.AssetEnvironmentFileDefConfig] = pydantic.Field(None)
 
 
 class AssetEnvironmentFileDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AssetEnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
+    bind: typing.Optional[list[models.aws_ecs.AssetEnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
 
 class AssetEnvironmentFileDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -87,7 +85,7 @@ class AssetEnvironmentFileDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class AssetEnvironmentFileDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -120,16 +118,16 @@ class AssetImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[AssetImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[AssetImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[AssetImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[AssetImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[AssetImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
-    resource_config: typing.Optional[AssetImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.AssetImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[models.aws_ecs.AssetImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[models.aws_ecs.AssetImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[models.aws_ecs.AssetImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[models.aws_ecs.AssetImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
+    resource_config: typing.Optional[models.aws_ecs.AssetImageDefConfig] = pydantic.Field(None)
 
 
 class AssetImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AssetImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
+    bind: typing.Optional[list[models.aws_ecs.AssetImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
 
 class AssetImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -192,12 +190,12 @@ class AwsLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AwsLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.AwsLogDriverDefConfig] = pydantic.Field(None)
 
 
 class AwsLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[AwsLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[AwsLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.AwsLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.AwsLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class AwsLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -229,25 +227,25 @@ class BaseServiceDef(BaseClass):
     ...
 
 
-    from_service_arn_with_cluster: typing.Optional[BaseServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
-    resource_config: typing.Optional[BaseServiceDefConfig] = pydantic.Field(None)
+    from_service_arn_with_cluster: typing.Optional[models.aws_ecs.BaseServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
+    resource_config: typing.Optional[models.aws_ecs.BaseServiceDefConfig] = pydantic.Field(None)
 
 
 class BaseServiceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    associate_cloud_map_service: typing.Optional[list[BaseServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Associates this service with a CloudMap service.')
-    attach_to_application_target_group: typing.Optional[list[BaseServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to an Application Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    attach_to_classic_lb: typing.Optional[list[BaseServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
-    attach_to_network_target_group: typing.Optional[list[BaseServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    auto_scale_task_count: typing.Optional[list[BaseServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='An attribute representing the minimum and maximum task count for an AutoScalingGroup.')
-    enable_cloud_map: typing.Optional[list[BaseServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Enable CloudMap service discovery for the service.')
-    enable_deployment_alarms: typing.Optional[list[BaseServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
-    enable_service_connect: typing.Optional[list[BaseServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
-    load_balancer_target: typing.Optional[list[BaseServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Return a load balancing target for a specific container and port.\nUse this function to create a load balancer target if you want to load balance to\nanother container than the first essential container or the first mapped port on\nthe container.\n\nUse the return value of this function where you would normally use a load balancer\ntarget, instead of the ``Service`` object itself.')
-    metric: typing.Optional[list[BaseServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
-    metric_cpu_utilization: typing.Optional[list[BaseServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
-    metric_memory_utilization: typing.Optional[list[BaseServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
-    register_load_balancer_targets: typing.Optional[list[BaseServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Use this function to create all load balancer targets to be registered in this service, add them to target groups, and attach target groups to listeners accordingly.\nAlternatively, you can use ``listener.addTargets()`` to create targets and add them to target groups.')
+    associate_cloud_map_service: typing.Optional[list[models.aws_ecs.BaseServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Associates this service with a CloudMap service.')
+    attach_to_application_target_group: typing.Optional[list[models.aws_ecs.BaseServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to an Application Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    attach_to_classic_lb: typing.Optional[list[models.aws_ecs.BaseServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_ecs.BaseServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    auto_scale_task_count: typing.Optional[list[models.aws_ecs.BaseServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='An attribute representing the minimum and maximum task count for an AutoScalingGroup.')
+    enable_cloud_map: typing.Optional[list[models.aws_ecs.BaseServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Enable CloudMap service discovery for the service.')
+    enable_deployment_alarms: typing.Optional[list[models.aws_ecs.BaseServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
+    enable_service_connect: typing.Optional[list[models.aws_ecs.BaseServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
+    load_balancer_target: typing.Optional[list[models.aws_ecs.BaseServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Return a load balancing target for a specific container and port.\nUse this function to create a load balancer target if you want to load balance to\nanother container than the first essential container or the first mapped port on\nthe container.\n\nUse the return value of this function where you would normally use a load balancer\ntarget, instead of the ``Service`` object itself.')
+    metric: typing.Optional[list[models.aws_ecs.BaseServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_ecs.BaseServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
+    metric_memory_utilization: typing.Optional[list[models.aws_ecs.BaseServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
+    register_load_balancer_targets: typing.Optional[list[models.aws_ecs.BaseServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Use this function to create all load balancer targets to be registered in this service, add them to target groups, and attach target groups to listeners accordingly.\nAlternatively, you can use ``listener.addTargets()`` to create targets and add them to target groups.')
     cluster_config: typing.Optional[models._interface_methods.AwsEcsIClusterDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     task_definition_config: typing.Optional[models.aws_ecs.TaskDefinitionDefConfig] = pydantic.Field(None)
@@ -370,11 +368,11 @@ class BottleRocketImageDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[BottleRocketImageDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.BottleRocketImageDefConfig] = pydantic.Field(None)
 
 
 class BottleRocketImageDefConfig(pydantic.BaseModel):
-    get_image: typing.Optional[list[BottleRocketImageDefGetImageParams]] = pydantic.Field(None, description='Return the correct image.')
+    get_image: typing.Optional[list[models.aws_ecs.BottleRocketImageDefGetImageParams]] = pydantic.Field(None, description='Return the correct image.')
 
 class BottleRocketImageDefGetImageParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -403,16 +401,16 @@ class ContainerImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[ContainerImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[ContainerImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[ContainerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[ContainerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[ContainerImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
-    resource_config: typing.Optional[ContainerImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.ContainerImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[models.aws_ecs.ContainerImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[models.aws_ecs.ContainerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[models.aws_ecs.ContainerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[models.aws_ecs.ContainerImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
+    resource_config: typing.Optional[models.aws_ecs.ContainerImageDefConfig] = pydantic.Field(None)
 
 
 class ContainerImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ContainerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
+    bind: typing.Optional[list[models.aws_ecs.ContainerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
 
 class ContainerImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -468,14 +466,15 @@ class CpuArchitectureDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CpuArchitectureDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CpuArchitectureDefConfig] = pydantic.Field(None)
 
 
 class CpuArchitectureDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[CpuArchitectureDefOfParams]] = pydantic.Field(None, description='Other cpu architecture.')
+    of: typing.Optional[list[models.aws_ecs.CpuArchitectureDefOfParams]] = pydantic.Field(None, description='Other cpu architecture.')
 
 class CpuArchitectureDefOfParams(pydantic.BaseModel):
     cpu_architecture: str = pydantic.Field(..., description='cpu architecture.\n\n:see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html#cfn-ecs-taskdefinition-runtimeplatform-cpuarchitecture for all available cpu architecture.\n')
+    return_config: typing.Optional[list[models.aws_ecs.CpuArchitectureDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -491,19 +490,18 @@ class EcrImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[EcrImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[EcrImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[EcrImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[EcrImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[EcrImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
-    resource_config: typing.Optional[EcrImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.EcrImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[models.aws_ecs.EcrImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[models.aws_ecs.EcrImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[models.aws_ecs.EcrImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[models.aws_ecs.EcrImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
+    resource_config: typing.Optional[models.aws_ecs.EcrImageDefConfig] = pydantic.Field(None)
 
 
 class EcrImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcrImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
+    bind: typing.Optional[list[models.aws_ecs.EcrImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
 
 class EcrImageDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
@@ -556,28 +554,31 @@ class EcsOptimizedImageDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcsOptimizedImageDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.EcsOptimizedImageDefConfig] = pydantic.Field(None)
 
 
 class EcsOptimizedImageDefConfig(pydantic.BaseModel):
-    amazon_linux: typing.Optional[list[EcsOptimizedImageDefAmazonLinuxParams]] = pydantic.Field(None, description='Construct an Amazon Linux AMI image from the latest ECS Optimized AMI published in SSM.')
-    amazon_linux2: typing.Optional[list[EcsOptimizedImageDefAmazonLinux2Params]] = pydantic.Field(None, description='Construct an Amazon Linux 2 image from the latest ECS Optimized AMI published in SSM.')
-    amazon_linux2023: typing.Optional[list[EcsOptimizedImageDefAmazonLinux2023Params]] = pydantic.Field(None, description='Construct an Amazon Linux 2023 image from the latest ECS Optimized AMI published in SSM.')
-    get_image: typing.Optional[list[EcsOptimizedImageDefGetImageParams]] = pydantic.Field(None, description='Return the correct image.')
-    windows: typing.Optional[list[EcsOptimizedImageDefWindowsParams]] = pydantic.Field(None, description='Construct a Windows image from the latest ECS Optimized AMI published in SSM.')
+    amazon_linux: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefAmazonLinuxParams]] = pydantic.Field(None, description='Construct an Amazon Linux AMI image from the latest ECS Optimized AMI published in SSM.')
+    amazon_linux2: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefAmazonLinux2Params]] = pydantic.Field(None, description='Construct an Amazon Linux 2 image from the latest ECS Optimized AMI published in SSM.')
+    amazon_linux2023: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefAmazonLinux2023Params]] = pydantic.Field(None, description='Construct an Amazon Linux 2023 image from the latest ECS Optimized AMI published in SSM.')
+    get_image: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefGetImageParams]] = pydantic.Field(None, description='Return the correct image.')
+    windows: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefWindowsParams]] = pydantic.Field(None, description='Construct a Windows image from the latest ECS Optimized AMI published in SSM.')
 
 class EcsOptimizedImageDefAmazonLinuxParams(pydantic.BaseModel):
     cached_in_context: typing.Optional[bool] = pydantic.Field(None, description="Whether the AMI ID is cached to be stable between deployments. By default, the newest image is used on each deployment. This will cause instances to be replaced whenever a new version is released, and may cause downtime if there aren't enough running instances in the AutoScalingGroup to reschedule the tasks on. If set to true, the AMI ID will be cached in ``cdk.context.json`` and the same value will be used on future runs. Your instances will not be replaced but your AMI version will grow old over time. To refresh the AMI lookup, you will have to evict the value from the cache using the ``cdk context`` command. See https://docs.aws.amazon.com/cdk/latest/guide/context.html for more information. Can not be set to ``true`` in environment-agnostic stacks. Default: false")
+    return_config: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcsOptimizedImageDefAmazonLinux2Params(pydantic.BaseModel):
     hardware_type: typing.Optional[aws_cdk.aws_ecs.AmiHardwareType] = pydantic.Field(None, description='ECS-optimized AMI variant to use.\n')
     cached_in_context: typing.Optional[bool] = pydantic.Field(None, description="Whether the AMI ID is cached to be stable between deployments. By default, the newest image is used on each deployment. This will cause instances to be replaced whenever a new version is released, and may cause downtime if there aren't enough running instances in the AutoScalingGroup to reschedule the tasks on. If set to true, the AMI ID will be cached in ``cdk.context.json`` and the same value will be used on future runs. Your instances will not be replaced but your AMI version will grow old over time. To refresh the AMI lookup, you will have to evict the value from the cache using the ``cdk context`` command. See https://docs.aws.amazon.com/cdk/latest/guide/context.html for more information. Can not be set to ``true`` in environment-agnostic stacks. Default: false")
+    return_config: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcsOptimizedImageDefAmazonLinux2023Params(pydantic.BaseModel):
     hardware_type: typing.Optional[aws_cdk.aws_ecs.AmiHardwareType] = pydantic.Field(None, description='ECS-optimized AMI variant to use.\n')
     cached_in_context: typing.Optional[bool] = pydantic.Field(None, description="Whether the AMI ID is cached to be stable between deployments. By default, the newest image is used on each deployment. This will cause instances to be replaced whenever a new version is released, and may cause downtime if there aren't enough running instances in the AutoScalingGroup to reschedule the tasks on. If set to true, the AMI ID will be cached in ``cdk.context.json`` and the same value will be used on future runs. Your instances will not be replaced but your AMI version will grow old over time. To refresh the AMI lookup, you will have to evict the value from the cache using the ``cdk context`` command. See https://docs.aws.amazon.com/cdk/latest/guide/context.html for more information. Can not be set to ``true`` in environment-agnostic stacks. Default: false")
+    return_config: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefConfig]] = pydantic.Field(None)
     ...
 
 class EcsOptimizedImageDefGetImageParams(pydantic.BaseModel):
@@ -587,6 +588,7 @@ class EcsOptimizedImageDefGetImageParams(pydantic.BaseModel):
 class EcsOptimizedImageDefWindowsParams(pydantic.BaseModel):
     windows_version: aws_cdk.aws_ecs.WindowsOptimizedVersion = pydantic.Field(..., description='Windows Version to use.\n')
     cached_in_context: typing.Optional[bool] = pydantic.Field(None, description="Whether the AMI ID is cached to be stable between deployments. By default, the newest image is used on each deployment. This will cause instances to be replaced whenever a new version is released, and may cause downtime if there aren't enough running instances in the AutoScalingGroup to reschedule the tasks on. If set to true, the AMI ID will be cached in ``cdk.context.json`` and the same value will be used on future runs. Your instances will not be replaced but your AMI version will grow old over time. To refresh the AMI lookup, you will have to evict the value from the cache using the ``cdk context`` command. See https://docs.aws.amazon.com/cdk/latest/guide/context.html for more information. Can not be set to ``true`` in environment-agnostic stacks. Default: false")
+    return_config: typing.Optional[list[models.aws_ecs.EcsOptimizedImageDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -600,13 +602,13 @@ class EnvironmentFileDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[EnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
-    from_bucket: typing.Optional[EnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
-    resource_config: typing.Optional[EnvironmentFileDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.EnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
+    from_bucket: typing.Optional[models.aws_ecs.EnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
+    resource_config: typing.Optional[models.aws_ecs.EnvironmentFileDefConfig] = pydantic.Field(None)
 
 
 class EnvironmentFileDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
+    bind: typing.Optional[list[models.aws_ecs.EnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
 
 class EnvironmentFileDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='The binding scope.')
@@ -625,7 +627,7 @@ class EnvironmentFileDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class EnvironmentFileDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -647,12 +649,12 @@ class FireLensLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FireLensLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.FireLensLogDriverDefConfig] = pydantic.Field(None)
 
 
 class FireLensLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[FireLensLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[FireLensLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.FireLensLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.FireLensLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class FireLensLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -666,8 +668,6 @@ class FireLensLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class FireLensLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -691,12 +691,12 @@ class FluentdLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FluentdLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.FluentdLogDriverDefConfig] = pydantic.Field(None)
 
 
 class FluentdLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[FluentdLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[FluentdLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.FluentdLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.FluentdLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class FluentdLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -710,8 +710,6 @@ class FluentdLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class FluentdLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -734,12 +732,12 @@ class GelfLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GelfLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.GelfLogDriverDefConfig] = pydantic.Field(None)
 
 
 class GelfLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[GelfLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[GelfLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.GelfLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.GelfLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class GelfLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -753,8 +751,6 @@ class GelfLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class GelfLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -771,12 +767,12 @@ class GenericLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GenericLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.GenericLogDriverDefConfig] = pydantic.Field(None)
 
 
 class GenericLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[GenericLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[GenericLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.GenericLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.GenericLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class GenericLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -790,8 +786,6 @@ class GenericLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class GenericLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -809,12 +803,12 @@ class JournaldLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[JournaldLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.JournaldLogDriverDefConfig] = pydantic.Field(None)
 
 
 class JournaldLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[JournaldLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[JournaldLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.JournaldLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.JournaldLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class JournaldLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -828,8 +822,6 @@ class JournaldLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class JournaldLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -850,12 +842,12 @@ class JsonFileLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[JsonFileLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.JsonFileLogDriverDefConfig] = pydantic.Field(None)
 
 
 class JsonFileLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[JsonFileLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[JsonFileLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.JsonFileLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.JsonFileLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class JsonFileLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -869,8 +861,6 @@ class JsonFileLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class JsonFileLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -884,13 +874,13 @@ class ListenerConfigDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ListenerConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ListenerConfigDefConfig] = pydantic.Field(None)
 
 
 class ListenerConfigDefConfig(pydantic.BaseModel):
-    add_targets: typing.Optional[list[ListenerConfigDefAddTargetsParams]] = pydantic.Field(None, description='Create and attach a target group to listener.')
-    application_listener: typing.Optional[list[ListenerConfigDefApplicationListenerParams]] = pydantic.Field(None, description='Create a config for adding target group to ALB listener.')
-    network_listener: typing.Optional[list[ListenerConfigDefNetworkListenerParams]] = pydantic.Field(None, description='Create a config for adding target group to NLB listener.')
+    add_targets: typing.Optional[list[models.aws_ecs.ListenerConfigDefAddTargetsParams]] = pydantic.Field(None, description='Create and attach a target group to listener.')
+    application_listener: typing.Optional[list[models.aws_ecs.ListenerConfigDefApplicationListenerParams]] = pydantic.Field(None, description='Create a config for adding target group to ALB listener.')
+    network_listener: typing.Optional[list[models.aws_ecs.ListenerConfigDefNetworkListenerParams]] = pydantic.Field(None, description='Create a config for adding target group to NLB listener.')
 
 class ListenerConfigDefAddTargetsParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
@@ -913,6 +903,7 @@ class ListenerConfigDefApplicationListenerParams(pydantic.BaseModel):
     targets: typing.Optional[typing.Sequence[typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ecs.BaseServiceDef, models.aws_ecs.Ec2ServiceDef, models.aws_ecs.ExternalServiceDef, models.aws_ecs.FargateServiceDef, models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDef, models.aws_elasticloadbalancingv2_targets.InstanceTargetDef, models.aws_elasticloadbalancingv2_targets.IpTargetDef, models.aws_elasticloadbalancingv2_targets.LambdaTargetDef]]] = pydantic.Field(None, description='The targets to add to this target group. Can be ``Instance``, ``IPAddress``, or any self-registering load balancing target. All target must be of the same type.\n')
     conditions: typing.Optional[typing.Sequence[models.aws_elasticloadbalancingv2.ListenerConditionDef]] = pydantic.Field(None, description='Rule applies if matches the conditions. Default: - No conditions.\n')
     priority: typing.Union[int, float, None] = pydantic.Field(None, description='Priority of this target group. The rule with the lowest priority will be used for every request. If priority is not given, these target groups will be added as defaults, and must not have conditions. Priorities must be unique. Default: Target groups are used as defaults')
+    return_config: typing.Optional[list[models.aws_ecs.ListenerConfigDefConfig]] = pydantic.Field(None)
     ...
 
 class ListenerConfigDefNetworkListenerParams(pydantic.BaseModel):
@@ -925,6 +916,7 @@ class ListenerConfigDefNetworkListenerParams(pydantic.BaseModel):
     proxy_protocol_v2: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether Proxy Protocol version 2 is enabled. Default: false\n')
     target_group_name: typing.Optional[str] = pydantic.Field(None, description='The name of the target group. This name must be unique per region per account, can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen. Default: Automatically generated\n')
     targets: typing.Optional[typing.Sequence[typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ecs.BaseServiceDef, models.aws_ecs.Ec2ServiceDef, models.aws_ecs.ExternalServiceDef, models.aws_ecs.FargateServiceDef, models.aws_elasticloadbalancingv2_targets.AlbArnTargetDef, models.aws_elasticloadbalancingv2_targets.AlbTargetDef, models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDef, models.aws_elasticloadbalancingv2_targets.InstanceTargetDef, models.aws_elasticloadbalancingv2_targets.IpTargetDef]]] = pydantic.Field(None, description='The targets to add to this target group. Can be ``Instance``, ``IPAddress``, or any self-registering load balancing target. If you use either ``Instance`` or ``IPAddress`` as targets, all target must be of the same type.')
+    return_config: typing.Optional[list[models.aws_ecs.ListenerConfigDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -938,12 +930,12 @@ class LogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.LogDriverDefConfig] = pydantic.Field(None)
 
 
 class LogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[LogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[LogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.LogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.LogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class LogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -953,6 +945,7 @@ class LogDriverDefAwsLogsParams(pydantic.BaseModel):
     max_buffer_size: typing.Optional[models.SizeDef] = pydantic.Field(None, description='When AwsLogDriverMode.NON_BLOCKING is configured, this parameter controls the size of the non-blocking buffer used to temporarily store messages. This parameter is not valid with AwsLogDriverMode.BLOCKING. Default: - 1 megabyte if driver mode is non-blocking, otherwise this property is not set\n')
     mode: typing.Optional[aws_cdk.aws_ecs.AwsLogDriverMode] = pydantic.Field(None, description='The delivery mode of log messages from the container to awslogs. Default: - AwsLogDriverMode.BLOCKING\n')
     multiline_pattern: typing.Optional[str] = pydantic.Field(None, description='This option defines a multiline start pattern using a regular expression. A log message consists of a line that matches the pattern and any following lines that don’t match the pattern. Thus the matched line is the delimiter between log messages. This option is ignored if datetimeFormat is also configured. Default: - No multiline matching.')
+    return_config: typing.Optional[list[models.aws_ecs.LogDriverDefConfig]] = pydantic.Field(None)
     ...
 
 class LogDriverDefBindParams(pydantic.BaseModel):
@@ -971,14 +964,14 @@ class LogDriversDef(BaseClass):
     ...
 
 
-    aws_logs: typing.Optional[LogDriversDefAwsLogsParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    firelens: typing.Optional[LogDriversDefFirelensParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to firelens log router.\nFor detail configurations, please refer to Amazon ECS FireLens Examples:\nhttps://github.com/aws-samples/amazon-ecs-firelens-examples')
-    fluentd: typing.Optional[LogDriversDefFluentdParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to fluentd Logs.')
-    gelf: typing.Optional[LogDriversDefGelfParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to gelf Logs.')
-    journald: typing.Optional[LogDriversDefJournaldParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to journald Logs.')
-    json_file: typing.Optional[LogDriversDefJsonFileParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to json-file Logs.')
-    splunk: typing.Optional[LogDriversDefSplunkParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to splunk Logs.')
-    syslog: typing.Optional[LogDriversDefSyslogParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to syslog Logs.')
+    aws_logs: typing.Optional[models.aws_ecs.LogDriversDefAwsLogsParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    firelens: typing.Optional[models.aws_ecs.LogDriversDefFirelensParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to firelens log router.\nFor detail configurations, please refer to Amazon ECS FireLens Examples:\nhttps://github.com/aws-samples/amazon-ecs-firelens-examples')
+    fluentd: typing.Optional[models.aws_ecs.LogDriversDefFluentdParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to fluentd Logs.')
+    gelf: typing.Optional[models.aws_ecs.LogDriversDefGelfParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to gelf Logs.')
+    journald: typing.Optional[models.aws_ecs.LogDriversDefJournaldParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to journald Logs.')
+    json_file: typing.Optional[models.aws_ecs.LogDriversDefJsonFileParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to json-file Logs.')
+    splunk: typing.Optional[models.aws_ecs.LogDriversDefSplunkParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to splunk Logs.')
+    syslog: typing.Optional[models.aws_ecs.LogDriversDefSyslogParams] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to syslog Logs.')
 
 class LogDriversDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -1085,14 +1078,15 @@ class OperatingSystemFamilyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OperatingSystemFamilyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.OperatingSystemFamilyDefConfig] = pydantic.Field(None)
 
 
 class OperatingSystemFamilyDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[OperatingSystemFamilyDefOfParams]] = pydantic.Field(None, description='Other operating system family.')
+    of: typing.Optional[list[models.aws_ecs.OperatingSystemFamilyDefOfParams]] = pydantic.Field(None, description='Other operating system family.')
 
 class OperatingSystemFamilyDefOfParams(pydantic.BaseModel):
     family: str = pydantic.Field(..., description='operating system family.\n\n:see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ecs-taskdefinition-runtimeplatform.html#cfn-ecs-taskdefinition-runtimeplatform-operatingsystemfamily for all available operating system family.\n')
+    return_config: typing.Optional[list[models.aws_ecs.OperatingSystemFamilyDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1106,18 +1100,20 @@ class PlacementConstraintDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PlacementConstraintDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.PlacementConstraintDefConfig] = pydantic.Field(None)
 
 
 class PlacementConstraintDefConfig(pydantic.BaseModel):
-    distinct_instances: typing.Optional[list[PlacementConstraintDefDistinctInstancesParams]] = pydantic.Field(None, description='Use distinctInstance to ensure that each task in a particular group is running on a different container instance.')
-    member_of: typing.Optional[list[PlacementConstraintDefMemberOfParams]] = pydantic.Field(None, description='Use memberOf to restrict the selection to a group of valid candidates specified by a query expression.\nMultiple expressions can be specified. For more information, see\n`Cluster Query Language <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html>`_.\n\nYou can specify multiple expressions in one call. The tasks will only be placed on instances matching all expressions.')
+    distinct_instances: typing.Optional[list[models.aws_ecs.PlacementConstraintDefDistinctInstancesParams]] = pydantic.Field(None, description='Use distinctInstance to ensure that each task in a particular group is running on a different container instance.')
+    member_of: typing.Optional[list[models.aws_ecs.PlacementConstraintDefMemberOfParams]] = pydantic.Field(None, description='Use memberOf to restrict the selection to a group of valid candidates specified by a query expression.\nMultiple expressions can be specified. For more information, see\n`Cluster Query Language <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html>`_.\n\nYou can specify multiple expressions in one call. The tasks will only be placed on instances matching all expressions.')
 
 class PlacementConstraintDefDistinctInstancesParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_ecs.PlacementConstraintDefConfig]] = pydantic.Field(None)
     ...
 
 class PlacementConstraintDefMemberOfParams(pydantic.BaseModel):
     expressions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_ecs.PlacementConstraintDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1131,35 +1127,41 @@ class PlacementStrategyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PlacementStrategyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.PlacementStrategyDefConfig] = pydantic.Field(None)
 
 
 class PlacementStrategyDefConfig(pydantic.BaseModel):
-    packed_by: typing.Optional[list[PlacementStrategyDefPackedByParams]] = pydantic.Field(None, description='Places tasks on the container instances with the least available capacity of the specified resource.')
-    packed_by_cpu: typing.Optional[list[PlacementStrategyDefPackedByCpuParams]] = pydantic.Field(None, description='Places tasks on container instances with the least available amount of CPU capacity.\nThis minimizes the number of instances in use.')
-    packed_by_memory: typing.Optional[list[PlacementStrategyDefPackedByMemoryParams]] = pydantic.Field(None, description='Places tasks on container instances with the least available amount of memory capacity.\nThis minimizes the number of instances in use.')
-    randomly: typing.Optional[list[PlacementStrategyDefRandomlyParams]] = pydantic.Field(None, description='Places tasks randomly.')
-    spread_across: typing.Optional[list[PlacementStrategyDefSpreadAcrossParams]] = pydantic.Field(None, description='Places tasks evenly based on the specified value.\nYou can use one of the built-in attributes found on ``BuiltInAttributes``\nor supply your own custom instance attributes. If more than one attribute\nis supplied, spreading is done in order.')
-    spread_across_instances: typing.Optional[list[PlacementStrategyDefSpreadAcrossInstancesParams]] = pydantic.Field(None, description='Places tasks evenly across all container instances in the cluster.')
+    packed_by: typing.Optional[list[models.aws_ecs.PlacementStrategyDefPackedByParams]] = pydantic.Field(None, description='Places tasks on the container instances with the least available capacity of the specified resource.')
+    packed_by_cpu: typing.Optional[list[models.aws_ecs.PlacementStrategyDefPackedByCpuParams]] = pydantic.Field(None, description='Places tasks on container instances with the least available amount of CPU capacity.\nThis minimizes the number of instances in use.')
+    packed_by_memory: typing.Optional[list[models.aws_ecs.PlacementStrategyDefPackedByMemoryParams]] = pydantic.Field(None, description='Places tasks on container instances with the least available amount of memory capacity.\nThis minimizes the number of instances in use.')
+    randomly: typing.Optional[list[models.aws_ecs.PlacementStrategyDefRandomlyParams]] = pydantic.Field(None, description='Places tasks randomly.')
+    spread_across: typing.Optional[list[models.aws_ecs.PlacementStrategyDefSpreadAcrossParams]] = pydantic.Field(None, description='Places tasks evenly based on the specified value.\nYou can use one of the built-in attributes found on ``BuiltInAttributes``\nor supply your own custom instance attributes. If more than one attribute\nis supplied, spreading is done in order.')
+    spread_across_instances: typing.Optional[list[models.aws_ecs.PlacementStrategyDefSpreadAcrossInstancesParams]] = pydantic.Field(None, description='Places tasks evenly across all container instances in the cluster.')
 
 class PlacementStrategyDefPackedByParams(pydantic.BaseModel):
     resource: aws_cdk.aws_ecs.BinPackResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_ecs.PlacementStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class PlacementStrategyDefPackedByCpuParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_ecs.PlacementStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class PlacementStrategyDefPackedByMemoryParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_ecs.PlacementStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class PlacementStrategyDefRandomlyParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_ecs.PlacementStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class PlacementStrategyDefSpreadAcrossParams(pydantic.BaseModel):
     fields: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_ecs.PlacementStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 class PlacementStrategyDefSpreadAcrossInstancesParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_ecs.PlacementStrategyDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1180,7 +1182,7 @@ class PortMapDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PortMapDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.PortMapDefConfig] = pydantic.Field(None)
 
 
 class PortMapDefConfig(pydantic.BaseModel):
@@ -1197,15 +1199,13 @@ class ProxyConfigurationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ProxyConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ProxyConfigurationDefConfig] = pydantic.Field(None)
 
 
 class ProxyConfigurationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ProxyConfigurationDefBindParams]] = pydantic.Field(None, description='Called when the proxy configuration is configured on a task definition.')
+    bind: typing.Optional[list[models.aws_ecs.ProxyConfigurationDefBindParams]] = pydantic.Field(None, description='Called when the proxy configuration is configured on a task definition.')
 
 class ProxyConfigurationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _task_definition: models.aws_ecs.TaskDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -1219,7 +1219,7 @@ class ProxyConfigurationsDef(BaseClass):
     ...
 
 
-    app_mesh_proxy_configuration: typing.Optional[ProxyConfigurationsDefAppMeshProxyConfigurationParams] = pydantic.Field(None, description='Constructs a new instance of the ProxyConfiguration class.')
+    app_mesh_proxy_configuration: typing.Optional[models.aws_ecs.ProxyConfigurationsDefAppMeshProxyConfigurationParams] = pydantic.Field(None, description='Constructs a new instance of the ProxyConfiguration class.')
 
 class ProxyConfigurationsDefAppMeshProxyConfigurationParams(pydantic.BaseModel):
     container_name: str = pydantic.Field(..., description='The name of the container that will serve as the App Mesh proxy.\n')
@@ -1239,16 +1239,16 @@ class RepositoryImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[RepositoryImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[RepositoryImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[RepositoryImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[RepositoryImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[RepositoryImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
-    resource_config: typing.Optional[RepositoryImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.RepositoryImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[models.aws_ecs.RepositoryImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[models.aws_ecs.RepositoryImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[models.aws_ecs.RepositoryImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[models.aws_ecs.RepositoryImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
+    resource_config: typing.Optional[models.aws_ecs.RepositoryImageDefConfig] = pydantic.Field(None)
 
 
 class RepositoryImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[RepositoryImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
+    bind: typing.Optional[list[models.aws_ecs.RepositoryImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
 
 class RepositoryImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1296,7 +1296,7 @@ class RepositoryImageDefFromTarballParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_ecs.S3EnvironmentFile
 class S3EnvironmentFileDef(BaseClass):
-    bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='-')
+    bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='-')
     key: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='-\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='-')
     _init_params: typing.ClassVar[list[str]] = ['bucket', 'key', 'object_version']
@@ -1307,16 +1307,15 @@ class S3EnvironmentFileDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[S3EnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
-    from_bucket: typing.Optional[S3EnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
-    resource_config: typing.Optional[S3EnvironmentFileDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.S3EnvironmentFileDefFromAssetParams] = pydantic.Field(None, description='Loads the environment file from a local disk path.')
+    from_bucket: typing.Optional[models.aws_ecs.S3EnvironmentFileDefFromBucketParams] = pydantic.Field(None, description='Loads the environment file from an S3 bucket.')
+    resource_config: typing.Optional[models.aws_ecs.S3EnvironmentFileDefConfig] = pydantic.Field(None)
 
 
 class S3EnvironmentFileDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3EnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
+    bind: typing.Optional[list[models.aws_ecs.S3EnvironmentFileDefBindParams]] = pydantic.Field(None, description='Called when the container is initialized to allow this object to bind to the stack.')
 
 class S3EnvironmentFileDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class S3EnvironmentFileDefFromAssetParams(pydantic.BaseModel):
@@ -1332,7 +1331,7 @@ class S3EnvironmentFileDefFromAssetParams(pydantic.BaseModel):
     ...
 
 class S3EnvironmentFileDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 bucket.\n')
     key: str = pydantic.Field(..., description='The object key.\n')
     object_version: typing.Optional[str] = pydantic.Field(None, description='Optional S3 object version.\n')
     ...
@@ -1348,14 +1347,14 @@ class SecretDef(BaseClass):
     ...
 
 
-    from_secrets_manager: typing.Optional[SecretDefFromSecretsManagerParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
-    from_secrets_manager_version: typing.Optional[SecretDefFromSecretsManagerVersionParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
-    from_ssm_parameter: typing.Optional[SecretDefFromSsmParameterParams] = pydantic.Field(None, description='Creates an environment variable value from a parameter stored in AWS Systems Manager Parameter Store.')
-    resource_config: typing.Optional[SecretDefConfig] = pydantic.Field(None)
+    from_secrets_manager: typing.Optional[models.aws_ecs.SecretDefFromSecretsManagerParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
+    from_secrets_manager_version: typing.Optional[models.aws_ecs.SecretDefFromSecretsManagerVersionParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
+    from_ssm_parameter: typing.Optional[models.aws_ecs.SecretDefFromSsmParameterParams] = pydantic.Field(None, description='Creates an environment variable value from a parameter stored in AWS Systems Manager Parameter Store.')
+    resource_config: typing.Optional[models.aws_ecs.SecretDefConfig] = pydantic.Field(None)
 
 
 class SecretDefConfig(pydantic.BaseModel):
-    grant_read: typing.Optional[list[SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret to a principal.')
+    grant_read: typing.Optional[list[models.aws_ecs.SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret to a principal.')
 
 class SecretDefFromSecretsManagerParams(pydantic.BaseModel):
     secret: typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef] = pydantic.Field(..., description='the secret stored in AWS Secrets Manager.\n')
@@ -1395,7 +1394,7 @@ class ServiceConnectDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ServiceConnectDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ServiceConnectDefConfig] = pydantic.Field(None)
 
 
 class ServiceConnectDefConfig(pydantic.BaseModel):
@@ -1428,12 +1427,12 @@ class SplunkLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SplunkLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.SplunkLogDriverDefConfig] = pydantic.Field(None)
 
 
 class SplunkLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[SplunkLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[SplunkLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.SplunkLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.SplunkLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class SplunkLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -1447,8 +1446,6 @@ class SplunkLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class SplunkLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -1473,12 +1470,12 @@ class SyslogLogDriverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SyslogLogDriverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.SyslogLogDriverDefConfig] = pydantic.Field(None)
 
 
 class SyslogLogDriverDefConfig(pydantic.BaseModel):
-    aws_logs: typing.Optional[list[SyslogLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
-    bind: typing.Optional[list[SyslogLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
+    aws_logs: typing.Optional[list[models.aws_ecs.SyslogLogDriverDefAwsLogsParams]] = pydantic.Field(None, description='Creates a log driver configuration that sends log information to CloudWatch Logs.')
+    bind: typing.Optional[list[models.aws_ecs.SyslogLogDriverDefBindParams]] = pydantic.Field(None, description='Called when the log driver is configured on a container.')
 
 class SyslogLogDriverDefAwsLogsParams(pydantic.BaseModel):
     stream_prefix: str = pydantic.Field(..., description='Prefix for the log streams. The awslogs-stream-prefix option allows you to associate a log stream with the specified prefix, the container name, and the ID of the Amazon ECS task to which the container belongs. If you specify a prefix with this option, then the log stream takes the following format:: prefix-name/container-name/ecs-task-id\n')
@@ -1492,8 +1489,6 @@ class SyslogLogDriverDefAwsLogsParams(pydantic.BaseModel):
     ...
 
 class SyslogLogDriverDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _container_definition: models.aws_ecs.ContainerDefinitionDef = pydantic.Field(..., description='-')
     ...
 
 
@@ -1508,16 +1503,16 @@ class TagParameterContainerImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[TagParameterContainerImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
-    from_docker_image_asset: typing.Optional[TagParameterContainerImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
-    from_ecr_repository: typing.Optional[TagParameterContainerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
-    from_registry: typing.Optional[TagParameterContainerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    from_tarball: typing.Optional[TagParameterContainerImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
-    resource_config: typing.Optional[TagParameterContainerImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_ecs.TagParameterContainerImageDefFromAssetParams] = pydantic.Field(None, description="Reference an image that's constructed directly from sources on disk.\nIf you already have a ``DockerImageAsset`` instance, you can use the\n``ContainerImage.fromDockerImageAsset`` method instead.")
+    from_docker_image_asset: typing.Optional[models.aws_ecs.TagParameterContainerImageDefFromDockerImageAssetParams] = pydantic.Field(None, description='Use an existing ``DockerImageAsset`` for this container image.')
+    from_ecr_repository: typing.Optional[models.aws_ecs.TagParameterContainerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference an image in an ECR repository.')
+    from_registry: typing.Optional[models.aws_ecs.TagParameterContainerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    from_tarball: typing.Optional[models.aws_ecs.TagParameterContainerImageDefFromTarballParams] = pydantic.Field(None, description='Use an existing tarball for this container image.\nUse this method if the container image has already been created by another process (e.g. jib)\nand you want to add it as a container image asset.')
+    resource_config: typing.Optional[models.aws_ecs.TagParameterContainerImageDefConfig] = pydantic.Field(None)
 
 
 class TagParameterContainerImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[TagParameterContainerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
+    bind: typing.Optional[list[models.aws_ecs.TagParameterContainerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a ContainerDefinition.')
 
 class TagParameterContainerImageDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -1584,7 +1579,7 @@ class AsgCapacityProviderDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AsgCapacityProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.AsgCapacityProviderDefConfig] = pydantic.Field(None)
 
 
 class AsgCapacityProviderDefConfig(pydantic.BaseModel):
@@ -1608,23 +1603,23 @@ class ClusterDef(BaseConstruct):
     ...
 
 
-    from_cluster_arn: typing.Optional[ClusterDefFromClusterArnParams] = pydantic.Field(None, description='Import an existing cluster to the stack from the cluster ARN.\nThis does not provide access to the vpc, hasEc2Capacity, or connections -\nuse the ``fromClusterAttributes`` method to access those properties.')
-    from_cluster_attributes: typing.Optional[ClusterDefFromClusterAttributesParams] = pydantic.Field(None, description='Import an existing cluster to the stack from its attributes.')
-    resource_config: typing.Optional[ClusterDefConfig] = pydantic.Field(None)
+    from_cluster_arn: typing.Optional[models.aws_ecs.ClusterDefFromClusterArnParams] = pydantic.Field(None, description='Import an existing cluster to the stack from the cluster ARN.\nThis does not provide access to the vpc, hasEc2Capacity, or connections -\nuse the ``fromClusterAttributes`` method to access those properties.')
+    from_cluster_attributes: typing.Optional[models.aws_ecs.ClusterDefFromClusterAttributesParams] = pydantic.Field(None, description='Import an existing cluster to the stack from its attributes.')
+    resource_config: typing.Optional[models.aws_ecs.ClusterDefConfig] = pydantic.Field(None)
 
 
 class ClusterDefConfig(pydantic.BaseModel):
-    add_asg_capacity_provider: typing.Optional[list[ClusterDefAddAsgCapacityProviderParams]] = pydantic.Field(None, description='This method adds an Auto Scaling Group Capacity Provider to a cluster.')
-    add_capacity: typing.Optional[list[ClusterDefAddCapacityParams]] = pydantic.Field(None, description='It is highly recommended to use ``Cluster.addAsgCapacityProvider`` instead of this method.\nThis method adds compute capacity to a cluster by creating an AutoScalingGroup with the specified options.\n\nReturns the AutoScalingGroup so you can add autoscaling settings to it.')
-    add_default_capacity_provider_strategy: typing.Optional[list[ClusterDefAddDefaultCapacityProviderStrategyParams]] = pydantic.Field(None, description='Add default capacity provider strategy for this cluster.')
-    add_default_cloud_map_namespace: typing.Optional[list[ClusterDefAddDefaultCloudMapNamespaceParams]] = pydantic.Field(None, description='Add an AWS Cloud Map DNS namespace for this cluster.\nNOTE: HttpNamespaces are supported only for use cases involving Service Connect. For use cases involving both Service-\nDiscovery and Service Connect, customers should manage the HttpNamespace outside of the Cluster.addDefaultCloudMapNamespace method.')
+    add_asg_capacity_provider: typing.Optional[list[models.aws_ecs.ClusterDefAddAsgCapacityProviderParams]] = pydantic.Field(None, description='This method adds an Auto Scaling Group Capacity Provider to a cluster.')
+    add_capacity: typing.Optional[list[models.aws_ecs.ClusterDefAddCapacityParams]] = pydantic.Field(None, description='It is highly recommended to use ``Cluster.addAsgCapacityProvider`` instead of this method.\nThis method adds compute capacity to a cluster by creating an AutoScalingGroup with the specified options.\n\nReturns the AutoScalingGroup so you can add autoscaling settings to it.')
+    add_default_capacity_provider_strategy: typing.Optional[list[models.aws_ecs.ClusterDefAddDefaultCapacityProviderStrategyParams]] = pydantic.Field(None, description='Add default capacity provider strategy for this cluster.')
+    add_default_cloud_map_namespace: typing.Optional[list[models.aws_ecs.ClusterDefAddDefaultCloudMapNamespaceParams]] = pydantic.Field(None, description='Add an AWS Cloud Map DNS namespace for this cluster.\nNOTE: HttpNamespaces are supported only for use cases involving Service Connect. For use cases involving both Service-\nDiscovery and Service Connect, customers should manage the HttpNamespace outside of the Cluster.addDefaultCloudMapNamespace method.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     enable_fargate_capacity_providers: typing.Optional[bool] = pydantic.Field(None, description='Enable the Fargate capacity providers for this cluster.')
-    metric: typing.Optional[list[ClusterDefMetricParams]] = pydantic.Field(None, description='This method returns the specifed CloudWatch metric for this cluster.')
-    metric_cpu_reservation: typing.Optional[list[ClusterDefMetricCpuReservationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters CPU reservation.')
-    metric_cpu_utilization: typing.Optional[list[ClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters CPU utilization.')
-    metric_memory_reservation: typing.Optional[list[ClusterDefMetricMemoryReservationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters memory reservation.')
-    metric_memory_utilization: typing.Optional[list[ClusterDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters memory utilization.')
+    metric: typing.Optional[list[models.aws_ecs.ClusterDefMetricParams]] = pydantic.Field(None, description='This method returns the specifed CloudWatch metric for this cluster.')
+    metric_cpu_reservation: typing.Optional[list[models.aws_ecs.ClusterDefMetricCpuReservationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters CPU reservation.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_ecs.ClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters CPU utilization.')
+    metric_memory_reservation: typing.Optional[list[models.aws_ecs.ClusterDefMetricMemoryReservationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters memory reservation.')
+    metric_memory_utilization: typing.Optional[list[models.aws_ecs.ClusterDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description='This method returns the CloudWatch metric for this clusters memory utilization.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     vpc_config: typing.Optional[models._interface_methods.AwsEc2IVpcDefConfig] = pydantic.Field(None)
 
@@ -1812,24 +1807,24 @@ class ContainerDefinitionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ContainerDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ContainerDefinitionDefConfig] = pydantic.Field(None)
 
 
 class ContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_container_dependencies: typing.Optional[list[ContainerDefinitionDefAddContainerDependenciesParams]] = pydantic.Field(None, description='This method adds one or more container dependencies to the container.')
-    add_environment: typing.Optional[list[ContainerDefinitionDefAddEnvironmentParams]] = pydantic.Field(None, description='This method adds an environment variable to the container.')
-    add_inference_accelerator_resource: typing.Optional[list[ContainerDefinitionDefAddInferenceAcceleratorResourceParams]] = pydantic.Field(None, description='This method adds one or more resources to the container.')
-    add_link: typing.Optional[list[ContainerDefinitionDefAddLinkParams]] = pydantic.Field(None, description='This method adds a link which allows containers to communicate with each other without the need for port mappings.\nThis parameter is only supported if the task definition is using the bridge network mode.\nWarning: The --link flag is a legacy feature of Docker. It may eventually be removed.')
-    add_mount_points: typing.Optional[list[ContainerDefinitionDefAddMountPointsParams]] = pydantic.Field(None, description='This method adds one or more mount points for data volumes to the container.')
-    add_port_mappings: typing.Optional[list[ContainerDefinitionDefAddPortMappingsParams]] = pydantic.Field(None, description='This method adds one or more port mappings to the container.')
-    add_scratch: typing.Optional[list[ContainerDefinitionDefAddScratchParams]] = pydantic.Field(None, description='This method mounts temporary disk space to the container.\nThis adds the correct container mountPoint and task definition volume.')
-    add_secret: typing.Optional[list[ContainerDefinitionDefAddSecretParams]] = pydantic.Field(None, description='This method adds a secret as environment variable to the container.')
-    add_to_execution_policy: typing.Optional[list[ContainerDefinitionDefAddToExecutionPolicyParams]] = pydantic.Field(None, description='This method adds the specified statement to the IAM task execution policy in the task definition.')
-    add_ulimits: typing.Optional[list[ContainerDefinitionDefAddUlimitsParams]] = pydantic.Field(None, description='This method adds one or more ulimits to the container.')
-    add_volumes_from: typing.Optional[list[ContainerDefinitionDefAddVolumesFromParams]] = pydantic.Field(None, description='This method adds one or more volumes to the container.')
-    find_port_mapping: typing.Optional[list[ContainerDefinitionDefFindPortMappingParams]] = pydantic.Field(None, description='Returns the host port for the requested container port if it exists.')
-    find_port_mapping_by_name: typing.Optional[list[ContainerDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Returns the port mapping with the given name, if it exists.')
-    render_container_definition: typing.Optional[list[ContainerDefinitionDefRenderContainerDefinitionParams]] = pydantic.Field(None, description='Render this container definition to a CloudFormation object.')
+    add_container_dependencies: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddContainerDependenciesParams]] = pydantic.Field(None, description='This method adds one or more container dependencies to the container.')
+    add_environment: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddEnvironmentParams]] = pydantic.Field(None, description='This method adds an environment variable to the container.')
+    add_inference_accelerator_resource: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddInferenceAcceleratorResourceParams]] = pydantic.Field(None, description='This method adds one or more resources to the container.')
+    add_link: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddLinkParams]] = pydantic.Field(None, description='This method adds a link which allows containers to communicate with each other without the need for port mappings.\nThis parameter is only supported if the task definition is using the bridge network mode.\nWarning: The --link flag is a legacy feature of Docker. It may eventually be removed.')
+    add_mount_points: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddMountPointsParams]] = pydantic.Field(None, description='This method adds one or more mount points for data volumes to the container.')
+    add_port_mappings: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddPortMappingsParams]] = pydantic.Field(None, description='This method adds one or more port mappings to the container.')
+    add_scratch: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddScratchParams]] = pydantic.Field(None, description='This method mounts temporary disk space to the container.\nThis adds the correct container mountPoint and task definition volume.')
+    add_secret: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddSecretParams]] = pydantic.Field(None, description='This method adds a secret as environment variable to the container.')
+    add_to_execution_policy: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddToExecutionPolicyParams]] = pydantic.Field(None, description='This method adds the specified statement to the IAM task execution policy in the task definition.')
+    add_ulimits: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddUlimitsParams]] = pydantic.Field(None, description='This method adds one or more ulimits to the container.')
+    add_volumes_from: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefAddVolumesFromParams]] = pydantic.Field(None, description='This method adds one or more volumes to the container.')
+    find_port_mapping: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefFindPortMappingParams]] = pydantic.Field(None, description='Returns the host port for the requested container port if it exists.')
+    find_port_mapping_by_name: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Returns the port mapping with the given name, if it exists.')
+    render_container_definition: typing.Optional[list[models.aws_ecs.ContainerDefinitionDefRenderContainerDefinitionParams]] = pydantic.Field(None, description='Render this container definition to a CloudFormation object.')
 
 class ContainerDefinitionDefAddContainerDependenciesParams(pydantic.BaseModel):
     container_dependencies: list[models.aws_ecs.ContainerDependencyDef] = pydantic.Field(...)
@@ -1891,7 +1886,6 @@ class ContainerDefinitionDefFindPortMappingByNameParams(pydantic.BaseModel):
     ...
 
 class ContainerDefinitionDefRenderContainerDefinitionParams(pydantic.BaseModel):
-    _task_definition: typing.Optional[models.aws_ecs.TaskDefinitionDef] = pydantic.Field(None, description='[disable-awslint:ref-via-interface] (unused but kept to avoid breaking change).')
     ...
 
 
@@ -1927,29 +1921,29 @@ class Ec2ServiceDef(BaseConstruct):
     ...
 
 
-    from_ec2_service_arn: typing.Optional[Ec2ServiceDefFromEc2ServiceArnParams] = pydantic.Field(None, description='Imports from the specified service ARN.')
-    from_ec2_service_attributes: typing.Optional[Ec2ServiceDefFromEc2ServiceAttributesParams] = pydantic.Field(None, description='Imports from the specified service attributes.')
-    from_service_arn_with_cluster: typing.Optional[Ec2ServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
-    resource_config: typing.Optional[Ec2ServiceDefConfig] = pydantic.Field(None)
+    from_ec2_service_arn: typing.Optional[models.aws_ecs.Ec2ServiceDefFromEc2ServiceArnParams] = pydantic.Field(None, description='Imports from the specified service ARN.')
+    from_ec2_service_attributes: typing.Optional[models.aws_ecs.Ec2ServiceDefFromEc2ServiceAttributesParams] = pydantic.Field(None, description='Imports from the specified service attributes.')
+    from_service_arn_with_cluster: typing.Optional[models.aws_ecs.Ec2ServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
+    resource_config: typing.Optional[models.aws_ecs.Ec2ServiceDefConfig] = pydantic.Field(None)
 
 
 class Ec2ServiceDefConfig(pydantic.BaseModel):
-    add_placement_constraints: typing.Optional[list[Ec2ServiceDefAddPlacementConstraintsParams]] = pydantic.Field(None, description='Adds one or more placement constraints to use for tasks in the service.\nFor more information, see\n`Amazon ECS Task Placement Constraints <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html>`_.')
-    add_placement_strategies: typing.Optional[list[Ec2ServiceDefAddPlacementStrategiesParams]] = pydantic.Field(None, description='Adds one or more placement strategies to use for tasks in the service.\nFor more information, see\n`Amazon ECS Task Placement Strategies <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html>`_.')
+    add_placement_constraints: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAddPlacementConstraintsParams]] = pydantic.Field(None, description='Adds one or more placement constraints to use for tasks in the service.\nFor more information, see\n`Amazon ECS Task Placement Constraints <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-constraints.html>`_.')
+    add_placement_strategies: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAddPlacementStrategiesParams]] = pydantic.Field(None, description='Adds one or more placement strategies to use for tasks in the service.\nFor more information, see\n`Amazon ECS Task Placement Strategies <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-placement-strategies.html>`_.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    associate_cloud_map_service: typing.Optional[list[Ec2ServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Associates this service with a CloudMap service.')
-    attach_to_application_target_group: typing.Optional[list[Ec2ServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to an Application Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    attach_to_classic_lb: typing.Optional[list[Ec2ServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
-    attach_to_network_target_group: typing.Optional[list[Ec2ServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    auto_scale_task_count: typing.Optional[list[Ec2ServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='An attribute representing the minimum and maximum task count for an AutoScalingGroup.')
-    enable_cloud_map: typing.Optional[list[Ec2ServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Enable CloudMap service discovery for the service.')
-    enable_deployment_alarms: typing.Optional[list[Ec2ServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
-    enable_service_connect: typing.Optional[list[Ec2ServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
-    load_balancer_target: typing.Optional[list[Ec2ServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Return a load balancing target for a specific container and port.\nUse this function to create a load balancer target if you want to load balance to\nanother container than the first essential container or the first mapped port on\nthe container.\n\nUse the return value of this function where you would normally use a load balancer\ntarget, instead of the ``Service`` object itself.')
-    metric: typing.Optional[list[Ec2ServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
-    metric_cpu_utilization: typing.Optional[list[Ec2ServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
-    metric_memory_utilization: typing.Optional[list[Ec2ServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
-    register_load_balancer_targets: typing.Optional[list[Ec2ServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Use this function to create all load balancer targets to be registered in this service, add them to target groups, and attach target groups to listeners accordingly.\nAlternatively, you can use ``listener.addTargets()`` to create targets and add them to target groups.')
+    associate_cloud_map_service: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Associates this service with a CloudMap service.')
+    attach_to_application_target_group: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to an Application Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    attach_to_classic_lb: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    auto_scale_task_count: typing.Optional[list[models.aws_ecs.Ec2ServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='An attribute representing the minimum and maximum task count for an AutoScalingGroup.')
+    enable_cloud_map: typing.Optional[list[models.aws_ecs.Ec2ServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Enable CloudMap service discovery for the service.')
+    enable_deployment_alarms: typing.Optional[list[models.aws_ecs.Ec2ServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
+    enable_service_connect: typing.Optional[list[models.aws_ecs.Ec2ServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
+    load_balancer_target: typing.Optional[list[models.aws_ecs.Ec2ServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Return a load balancing target for a specific container and port.\nUse this function to create a load balancer target if you want to load balance to\nanother container than the first essential container or the first mapped port on\nthe container.\n\nUse the return value of this function where you would normally use a load balancer\ntarget, instead of the ``Service`` object itself.')
+    metric: typing.Optional[list[models.aws_ecs.Ec2ServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_ecs.Ec2ServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
+    metric_memory_utilization: typing.Optional[list[models.aws_ecs.Ec2ServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
+    register_load_balancer_targets: typing.Optional[list[models.aws_ecs.Ec2ServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Use this function to create all load balancer targets to be registered in this service, add them to target groups, and attach target groups to listeners accordingly.\nAlternatively, you can use ``listener.addTargets()`` to create targets and add them to target groups.')
     cluster_config: typing.Optional[models._interface_methods.AwsEcsIClusterDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     task_definition_config: typing.Optional[models.aws_ecs.TaskDefinitionDefConfig] = pydantic.Field(None)
@@ -2101,27 +2095,27 @@ class Ec2TaskDefinitionDef(BaseConstruct):
     ...
 
 
-    from_ec2_task_definition_arn: typing.Optional[Ec2TaskDefinitionDefFromEc2TaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.')
-    from_ec2_task_definition_attributes: typing.Optional[Ec2TaskDefinitionDefFromEc2TaskDefinitionAttributesParams] = pydantic.Field(None, description='Imports an existing Ec2 task definition from its attributes.')
-    from_task_definition_arn: typing.Optional[Ec2TaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
-    from_task_definition_attributes: typing.Optional[Ec2TaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
-    resource_config: typing.Optional[Ec2TaskDefinitionDefConfig] = pydantic.Field(None)
+    from_ec2_task_definition_arn: typing.Optional[models.aws_ecs.Ec2TaskDefinitionDefFromEc2TaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.')
+    from_ec2_task_definition_attributes: typing.Optional[models.aws_ecs.Ec2TaskDefinitionDefFromEc2TaskDefinitionAttributesParams] = pydantic.Field(None, description='Imports an existing Ec2 task definition from its attributes.')
+    from_task_definition_arn: typing.Optional[models.aws_ecs.Ec2TaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
+    from_task_definition_attributes: typing.Optional[models.aws_ecs.Ec2TaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
+    resource_config: typing.Optional[models.aws_ecs.Ec2TaskDefinitionDefConfig] = pydantic.Field(None)
 
 
 class Ec2TaskDefinitionDefConfig(pydantic.BaseModel):
-    add_container: typing.Optional[list[Ec2TaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
-    add_extension: typing.Optional[list[Ec2TaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
-    add_firelens_log_router: typing.Optional[list[Ec2TaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
-    add_inference_accelerator: typing.Optional[list[Ec2TaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Adds an inference accelerator to the task definition.')
-    add_placement_constraint: typing.Optional[list[Ec2TaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
-    add_to_execution_role_policy: typing.Optional[list[Ec2TaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
-    add_to_task_role_policy: typing.Optional[list[Ec2TaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
-    add_volume: typing.Optional[list[Ec2TaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
+    add_container: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
+    add_extension: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
+    add_firelens_log_router: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
+    add_inference_accelerator: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Adds an inference accelerator to the task definition.')
+    add_placement_constraint: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
+    add_to_execution_role_policy: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
+    add_to_task_role_policy: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
+    add_volume: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    find_container: typing.Optional[list[Ec2TaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
-    find_port_mapping_by_name: typing.Optional[list[Ec2TaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
-    grant_run: typing.Optional[list[Ec2TaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
-    obtain_execution_role: typing.Optional[list[Ec2TaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
+    find_container: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
+    find_port_mapping_by_name: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
+    grant_run: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
+    obtain_execution_role: typing.Optional[list[models.aws_ecs.Ec2TaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
     task_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class Ec2TaskDefinitionDefAddContainerParams(pydantic.BaseModel):
@@ -2309,27 +2303,27 @@ class ExternalServiceDef(BaseConstruct):
     ...
 
 
-    from_external_service_arn: typing.Optional[ExternalServiceDefFromExternalServiceArnParams] = pydantic.Field(None, description='Imports from the specified service ARN.')
-    from_external_service_attributes: typing.Optional[ExternalServiceDefFromExternalServiceAttributesParams] = pydantic.Field(None, description='Imports from the specified service attributes.')
-    from_service_arn_with_cluster: typing.Optional[ExternalServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
-    resource_config: typing.Optional[ExternalServiceDefConfig] = pydantic.Field(None)
+    from_external_service_arn: typing.Optional[models.aws_ecs.ExternalServiceDefFromExternalServiceArnParams] = pydantic.Field(None, description='Imports from the specified service ARN.')
+    from_external_service_attributes: typing.Optional[models.aws_ecs.ExternalServiceDefFromExternalServiceAttributesParams] = pydantic.Field(None, description='Imports from the specified service attributes.')
+    from_service_arn_with_cluster: typing.Optional[models.aws_ecs.ExternalServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
+    resource_config: typing.Optional[models.aws_ecs.ExternalServiceDefConfig] = pydantic.Field(None)
 
 
 class ExternalServiceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    associate_cloud_map_service: typing.Optional[list[ExternalServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Overriden method to throw error as ``associateCloudMapService`` is not supported for external service.')
-    attach_to_application_target_group: typing.Optional[list[ExternalServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Overriden method to throw error as ``attachToApplicationTargetGroup`` is not supported for external service.')
-    attach_to_classic_lb: typing.Optional[list[ExternalServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
-    attach_to_network_target_group: typing.Optional[list[ExternalServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    auto_scale_task_count: typing.Optional[list[ExternalServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='Overriden method to throw error as ``autoScaleTaskCount`` is not supported for external service.')
-    enable_cloud_map: typing.Optional[list[ExternalServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Overriden method to throw error as ``enableCloudMap`` is not supported for external service.')
-    enable_deployment_alarms: typing.Optional[list[ExternalServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
-    enable_service_connect: typing.Optional[list[ExternalServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
-    load_balancer_target: typing.Optional[list[ExternalServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Overriden method to throw error as ``loadBalancerTarget`` is not supported for external service.')
-    metric: typing.Optional[list[ExternalServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
-    metric_cpu_utilization: typing.Optional[list[ExternalServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
-    metric_memory_utilization: typing.Optional[list[ExternalServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
-    register_load_balancer_targets: typing.Optional[list[ExternalServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Overriden method to throw error as ``registerLoadBalancerTargets`` is not supported for external service.')
+    associate_cloud_map_service: typing.Optional[list[models.aws_ecs.ExternalServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Overriden method to throw error as ``associateCloudMapService`` is not supported for external service.')
+    attach_to_application_target_group: typing.Optional[list[models.aws_ecs.ExternalServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Overriden method to throw error as ``attachToApplicationTargetGroup`` is not supported for external service.')
+    attach_to_classic_lb: typing.Optional[list[models.aws_ecs.ExternalServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_ecs.ExternalServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    auto_scale_task_count: typing.Optional[list[models.aws_ecs.ExternalServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='Overriden method to throw error as ``autoScaleTaskCount`` is not supported for external service.')
+    enable_cloud_map: typing.Optional[list[models.aws_ecs.ExternalServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Overriden method to throw error as ``enableCloudMap`` is not supported for external service.')
+    enable_deployment_alarms: typing.Optional[list[models.aws_ecs.ExternalServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
+    enable_service_connect: typing.Optional[list[models.aws_ecs.ExternalServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
+    load_balancer_target: typing.Optional[list[models.aws_ecs.ExternalServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Overriden method to throw error as ``loadBalancerTarget`` is not supported for external service.')
+    metric: typing.Optional[list[models.aws_ecs.ExternalServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_ecs.ExternalServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
+    metric_memory_utilization: typing.Optional[list[models.aws_ecs.ExternalServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
+    register_load_balancer_targets: typing.Optional[bool] = pydantic.Field(None, description='Overriden method to throw error as ``registerLoadBalancerTargets`` is not supported for external service.')
     cluster_config: typing.Optional[models._interface_methods.AwsEcsIClusterDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     task_definition_config: typing.Optional[models.aws_ecs.TaskDefinitionDefConfig] = pydantic.Field(None)
@@ -2345,7 +2339,6 @@ class ExternalServiceDefAssociateCloudMapServiceParams(pydantic.BaseModel):
     ...
 
 class ExternalServiceDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
-    _target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='-')
     ...
 
 class ExternalServiceDefAttachToClassicLbParams(pydantic.BaseModel):
@@ -2448,10 +2441,6 @@ class ExternalServiceDefMetricMemoryUtilizationParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
     ...
 
-class ExternalServiceDefRegisterLoadBalancerTargetsParams(pydantic.BaseModel):
-    _targets: list[models.aws_ecs.EcsTargetDef] = pydantic.Field(...)
-    ...
-
 
 #  autogenerated from aws_cdk.aws_ecs.ExternalTaskDefinition
 class ExternalTaskDefinitionDef(BaseConstruct):
@@ -2469,27 +2458,27 @@ class ExternalTaskDefinitionDef(BaseConstruct):
     ...
 
 
-    from_ec2_task_definition_arn: typing.Optional[ExternalTaskDefinitionDefFromEc2TaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.')
-    from_external_task_definition_attributes: typing.Optional[ExternalTaskDefinitionDefFromExternalTaskDefinitionAttributesParams] = pydantic.Field(None, description='Imports an existing External task definition from its attributes.')
-    from_task_definition_arn: typing.Optional[ExternalTaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
-    from_task_definition_attributes: typing.Optional[ExternalTaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
-    resource_config: typing.Optional[ExternalTaskDefinitionDefConfig] = pydantic.Field(None)
+    from_ec2_task_definition_arn: typing.Optional[models.aws_ecs.ExternalTaskDefinitionDefFromEc2TaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.')
+    from_external_task_definition_attributes: typing.Optional[models.aws_ecs.ExternalTaskDefinitionDefFromExternalTaskDefinitionAttributesParams] = pydantic.Field(None, description='Imports an existing External task definition from its attributes.')
+    from_task_definition_arn: typing.Optional[models.aws_ecs.ExternalTaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
+    from_task_definition_attributes: typing.Optional[models.aws_ecs.ExternalTaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
+    resource_config: typing.Optional[models.aws_ecs.ExternalTaskDefinitionDefConfig] = pydantic.Field(None)
 
 
 class ExternalTaskDefinitionDefConfig(pydantic.BaseModel):
-    add_container: typing.Optional[list[ExternalTaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
-    add_extension: typing.Optional[list[ExternalTaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
-    add_firelens_log_router: typing.Optional[list[ExternalTaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
-    add_inference_accelerator: typing.Optional[list[ExternalTaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Overriden method to throw error as interface accelerators are not supported for external tasks.')
-    add_placement_constraint: typing.Optional[list[ExternalTaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
-    add_to_execution_role_policy: typing.Optional[list[ExternalTaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
-    add_to_task_role_policy: typing.Optional[list[ExternalTaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
-    add_volume: typing.Optional[list[ExternalTaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
+    add_container: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
+    add_extension: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
+    add_firelens_log_router: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
+    add_inference_accelerator: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Overriden method to throw error as interface accelerators are not supported for external tasks.')
+    add_placement_constraint: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
+    add_to_execution_role_policy: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
+    add_to_task_role_policy: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
+    add_volume: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    find_container: typing.Optional[list[ExternalTaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
-    find_port_mapping_by_name: typing.Optional[list[ExternalTaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
-    grant_run: typing.Optional[list[ExternalTaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
-    obtain_execution_role: typing.Optional[list[ExternalTaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
+    find_container: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
+    find_port_mapping_by_name: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
+    grant_run: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
+    obtain_execution_role: typing.Optional[list[models.aws_ecs.ExternalTaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
     task_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class ExternalTaskDefinitionDefAddContainerParams(pydantic.BaseModel):
@@ -2680,27 +2669,27 @@ class FargateServiceDef(BaseConstruct):
     ...
 
 
-    from_fargate_service_arn: typing.Optional[FargateServiceDefFromFargateServiceArnParams] = pydantic.Field(None, description='Imports from the specified service ARN.')
-    from_fargate_service_attributes: typing.Optional[FargateServiceDefFromFargateServiceAttributesParams] = pydantic.Field(None, description='Imports from the specified service attributes.')
-    from_service_arn_with_cluster: typing.Optional[FargateServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
-    resource_config: typing.Optional[FargateServiceDefConfig] = pydantic.Field(None)
+    from_fargate_service_arn: typing.Optional[models.aws_ecs.FargateServiceDefFromFargateServiceArnParams] = pydantic.Field(None, description='Imports from the specified service ARN.')
+    from_fargate_service_attributes: typing.Optional[models.aws_ecs.FargateServiceDefFromFargateServiceAttributesParams] = pydantic.Field(None, description='Imports from the specified service attributes.')
+    from_service_arn_with_cluster: typing.Optional[models.aws_ecs.FargateServiceDefFromServiceArnWithClusterParams] = pydantic.Field(None, description='Import an existing ECS/Fargate Service using the service cluster format.\nThe format is the "new" format "arn:aws:ecs:region:aws_account_id:service/cluster-name/service-name".')
+    resource_config: typing.Optional[models.aws_ecs.FargateServiceDefConfig] = pydantic.Field(None)
 
 
 class FargateServiceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    associate_cloud_map_service: typing.Optional[list[FargateServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Associates this service with a CloudMap service.')
-    attach_to_application_target_group: typing.Optional[list[FargateServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to an Application Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    attach_to_classic_lb: typing.Optional[list[FargateServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
-    attach_to_network_target_group: typing.Optional[list[FargateServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
-    auto_scale_task_count: typing.Optional[list[FargateServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='An attribute representing the minimum and maximum task count for an AutoScalingGroup.')
-    enable_cloud_map: typing.Optional[list[FargateServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Enable CloudMap service discovery for the service.')
-    enable_deployment_alarms: typing.Optional[list[FargateServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
-    enable_service_connect: typing.Optional[list[FargateServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
-    load_balancer_target: typing.Optional[list[FargateServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Return a load balancing target for a specific container and port.\nUse this function to create a load balancer target if you want to load balance to\nanother container than the first essential container or the first mapped port on\nthe container.\n\nUse the return value of this function where you would normally use a load balancer\ntarget, instead of the ``Service`` object itself.')
-    metric: typing.Optional[list[FargateServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
-    metric_cpu_utilization: typing.Optional[list[FargateServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
-    metric_memory_utilization: typing.Optional[list[FargateServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
-    register_load_balancer_targets: typing.Optional[list[FargateServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Use this function to create all load balancer targets to be registered in this service, add them to target groups, and attach target groups to listeners accordingly.\nAlternatively, you can use ``listener.addTargets()`` to create targets and add them to target groups.')
+    associate_cloud_map_service: typing.Optional[list[models.aws_ecs.FargateServiceDefAssociateCloudMapServiceParams]] = pydantic.Field(None, description='Associates this service with a CloudMap service.')
+    attach_to_application_target_group: typing.Optional[list[models.aws_ecs.FargateServiceDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to an Application Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    attach_to_classic_lb: typing.Optional[list[models.aws_ecs.FargateServiceDefAttachToClassicLbParams]] = pydantic.Field(None, description="Registers the service as a target of a Classic Load Balancer (CLB).\nDon't call this. Call ``loadBalancer.addTarget()`` instead.")
+    attach_to_network_target_group: typing.Optional[list[models.aws_ecs.FargateServiceDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description="This method is called to attach this service to a Network Load Balancer.\nDon't call this function directly. Instead, call ``listener.addTargets()``\nto add this service to a load balancer.")
+    auto_scale_task_count: typing.Optional[list[models.aws_ecs.FargateServiceDefAutoScaleTaskCountParams]] = pydantic.Field(None, description='An attribute representing the minimum and maximum task count for an AutoScalingGroup.')
+    enable_cloud_map: typing.Optional[list[models.aws_ecs.FargateServiceDefEnableCloudMapParams]] = pydantic.Field(None, description='Enable CloudMap service discovery for the service.')
+    enable_deployment_alarms: typing.Optional[list[models.aws_ecs.FargateServiceDefEnableDeploymentAlarmsParams]] = pydantic.Field(None, description="Enable Deployment Alarms which take advantage of arbitrary alarms and configure them after service initialization.\nIf you have already enabled deployment alarms, this function can be used to tell ECS about additional alarms that\nshould interrupt a deployment.\n\nNew alarms specified in subsequent calls of this function will be appended to the existing list of alarms.\n\nThe same Alarm Behavior must be used on all deployment alarms. If you specify different AlarmBehavior values in\nmultiple calls to this function, or the Alarm Behavior used here doesn't match the one used in the service\nconstructor, an error will be thrown.\n\nIf the alarm's metric references the service, you cannot pass ``Alarm.alarmName`` here. That will cause a circular\ndependency between the service and its deployment alarm. See this package's README for options to alarm on service\nmetrics, and avoid this circular dependency.")
+    enable_service_connect: typing.Optional[list[models.aws_ecs.FargateServiceDefEnableServiceConnectParams]] = pydantic.Field(None, description='Enable Service Connect on this service.')
+    load_balancer_target: typing.Optional[list[models.aws_ecs.FargateServiceDefLoadBalancerTargetParams]] = pydantic.Field(None, description='Return a load balancing target for a specific container and port.\nUse this function to create a load balancer target if you want to load balance to\nanother container than the first essential container or the first mapped port on\nthe container.\n\nUse the return value of this function where you would normally use a load balancer\ntarget, instead of the ``Service`` object itself.')
+    metric: typing.Optional[list[models.aws_ecs.FargateServiceDefMetricParams]] = pydantic.Field(None, description='This method returns the specified CloudWatch metric name for this service.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_ecs.FargateServiceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's CPU utilization.")
+    metric_memory_utilization: typing.Optional[list[models.aws_ecs.FargateServiceDefMetricMemoryUtilizationParams]] = pydantic.Field(None, description="This method returns the CloudWatch metric for this service's memory utilization.")
+    register_load_balancer_targets: typing.Optional[list[models.aws_ecs.FargateServiceDefRegisterLoadBalancerTargetsParams]] = pydantic.Field(None, description='Use this function to create all load balancer targets to be registered in this service, add them to target groups, and attach target groups to listeners accordingly.\nAlternatively, you can use ``listener.addTargets()`` to create targets and add them to target groups.')
     cluster_config: typing.Optional[models._interface_methods.AwsEcsIClusterDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     task_definition_config: typing.Optional[models.aws_ecs.TaskDefinitionDefConfig] = pydantic.Field(None)
@@ -2843,27 +2832,27 @@ class FargateTaskDefinitionDef(BaseConstruct):
     ...
 
 
-    from_fargate_task_definition_arn: typing.Optional[FargateTaskDefinitionDefFromFargateTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.')
-    from_fargate_task_definition_attributes: typing.Optional[FargateTaskDefinitionDefFromFargateTaskDefinitionAttributesParams] = pydantic.Field(None, description='Import an existing Fargate task definition from its attributes.')
-    from_task_definition_arn: typing.Optional[FargateTaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
-    from_task_definition_attributes: typing.Optional[FargateTaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
-    resource_config: typing.Optional[FargateTaskDefinitionDefConfig] = pydantic.Field(None)
+    from_fargate_task_definition_arn: typing.Optional[models.aws_ecs.FargateTaskDefinitionDefFromFargateTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.')
+    from_fargate_task_definition_attributes: typing.Optional[models.aws_ecs.FargateTaskDefinitionDefFromFargateTaskDefinitionAttributesParams] = pydantic.Field(None, description='Import an existing Fargate task definition from its attributes.')
+    from_task_definition_arn: typing.Optional[models.aws_ecs.FargateTaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
+    from_task_definition_attributes: typing.Optional[models.aws_ecs.FargateTaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
+    resource_config: typing.Optional[models.aws_ecs.FargateTaskDefinitionDefConfig] = pydantic.Field(None)
 
 
 class FargateTaskDefinitionDefConfig(pydantic.BaseModel):
-    add_container: typing.Optional[list[FargateTaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
-    add_extension: typing.Optional[list[FargateTaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
-    add_firelens_log_router: typing.Optional[list[FargateTaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
-    add_inference_accelerator: typing.Optional[list[FargateTaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Adds an inference accelerator to the task definition.')
-    add_placement_constraint: typing.Optional[list[FargateTaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
-    add_to_execution_role_policy: typing.Optional[list[FargateTaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
-    add_to_task_role_policy: typing.Optional[list[FargateTaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
-    add_volume: typing.Optional[list[FargateTaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
+    add_container: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
+    add_extension: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
+    add_firelens_log_router: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
+    add_inference_accelerator: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Adds an inference accelerator to the task definition.')
+    add_placement_constraint: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
+    add_to_execution_role_policy: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
+    add_to_task_role_policy: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
+    add_volume: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    find_container: typing.Optional[list[FargateTaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
-    find_port_mapping_by_name: typing.Optional[list[FargateTaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
-    grant_run: typing.Optional[list[FargateTaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
-    obtain_execution_role: typing.Optional[list[FargateTaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
+    find_container: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
+    find_port_mapping_by_name: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
+    grant_run: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
+    obtain_execution_role: typing.Optional[list[models.aws_ecs.FargateTaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
     task_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class FargateTaskDefinitionDefAddContainerParams(pydantic.BaseModel):
@@ -3069,24 +3058,24 @@ class FirelensLogRouterDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[FirelensLogRouterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.FirelensLogRouterDefConfig] = pydantic.Field(None)
 
 
 class FirelensLogRouterDefConfig(pydantic.BaseModel):
-    add_container_dependencies: typing.Optional[list[FirelensLogRouterDefAddContainerDependenciesParams]] = pydantic.Field(None, description='This method adds one or more container dependencies to the container.')
-    add_environment: typing.Optional[list[FirelensLogRouterDefAddEnvironmentParams]] = pydantic.Field(None, description='This method adds an environment variable to the container.')
-    add_inference_accelerator_resource: typing.Optional[list[FirelensLogRouterDefAddInferenceAcceleratorResourceParams]] = pydantic.Field(None, description='This method adds one or more resources to the container.')
-    add_link: typing.Optional[list[FirelensLogRouterDefAddLinkParams]] = pydantic.Field(None, description='This method adds a link which allows containers to communicate with each other without the need for port mappings.\nThis parameter is only supported if the task definition is using the bridge network mode.\nWarning: The --link flag is a legacy feature of Docker. It may eventually be removed.')
-    add_mount_points: typing.Optional[list[FirelensLogRouterDefAddMountPointsParams]] = pydantic.Field(None, description='This method adds one or more mount points for data volumes to the container.')
-    add_port_mappings: typing.Optional[list[FirelensLogRouterDefAddPortMappingsParams]] = pydantic.Field(None, description='This method adds one or more port mappings to the container.')
-    add_scratch: typing.Optional[list[FirelensLogRouterDefAddScratchParams]] = pydantic.Field(None, description='This method mounts temporary disk space to the container.\nThis adds the correct container mountPoint and task definition volume.')
-    add_secret: typing.Optional[list[FirelensLogRouterDefAddSecretParams]] = pydantic.Field(None, description='This method adds a secret as environment variable to the container.')
-    add_to_execution_policy: typing.Optional[list[FirelensLogRouterDefAddToExecutionPolicyParams]] = pydantic.Field(None, description='This method adds the specified statement to the IAM task execution policy in the task definition.')
-    add_ulimits: typing.Optional[list[FirelensLogRouterDefAddUlimitsParams]] = pydantic.Field(None, description='This method adds one or more ulimits to the container.')
-    add_volumes_from: typing.Optional[list[FirelensLogRouterDefAddVolumesFromParams]] = pydantic.Field(None, description='This method adds one or more volumes to the container.')
-    find_port_mapping: typing.Optional[list[FirelensLogRouterDefFindPortMappingParams]] = pydantic.Field(None, description='Returns the host port for the requested container port if it exists.')
-    find_port_mapping_by_name: typing.Optional[list[FirelensLogRouterDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Returns the port mapping with the given name, if it exists.')
-    render_container_definition: typing.Optional[list[FirelensLogRouterDefRenderContainerDefinitionParams]] = pydantic.Field(None, description='Render this container definition to a CloudFormation object.')
+    add_container_dependencies: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddContainerDependenciesParams]] = pydantic.Field(None, description='This method adds one or more container dependencies to the container.')
+    add_environment: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddEnvironmentParams]] = pydantic.Field(None, description='This method adds an environment variable to the container.')
+    add_inference_accelerator_resource: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddInferenceAcceleratorResourceParams]] = pydantic.Field(None, description='This method adds one or more resources to the container.')
+    add_link: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddLinkParams]] = pydantic.Field(None, description='This method adds a link which allows containers to communicate with each other without the need for port mappings.\nThis parameter is only supported if the task definition is using the bridge network mode.\nWarning: The --link flag is a legacy feature of Docker. It may eventually be removed.')
+    add_mount_points: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddMountPointsParams]] = pydantic.Field(None, description='This method adds one or more mount points for data volumes to the container.')
+    add_port_mappings: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddPortMappingsParams]] = pydantic.Field(None, description='This method adds one or more port mappings to the container.')
+    add_scratch: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddScratchParams]] = pydantic.Field(None, description='This method mounts temporary disk space to the container.\nThis adds the correct container mountPoint and task definition volume.')
+    add_secret: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddSecretParams]] = pydantic.Field(None, description='This method adds a secret as environment variable to the container.')
+    add_to_execution_policy: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddToExecutionPolicyParams]] = pydantic.Field(None, description='This method adds the specified statement to the IAM task execution policy in the task definition.')
+    add_ulimits: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddUlimitsParams]] = pydantic.Field(None, description='This method adds one or more ulimits to the container.')
+    add_volumes_from: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefAddVolumesFromParams]] = pydantic.Field(None, description='This method adds one or more volumes to the container.')
+    find_port_mapping: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefFindPortMappingParams]] = pydantic.Field(None, description='Returns the host port for the requested container port if it exists.')
+    find_port_mapping_by_name: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Returns the port mapping with the given name, if it exists.')
+    render_container_definition: typing.Optional[list[models.aws_ecs.FirelensLogRouterDefRenderContainerDefinitionParams]] = pydantic.Field(None, description='Render this container definition to a CloudFormation object.')
 
 class FirelensLogRouterDefAddContainerDependenciesParams(pydantic.BaseModel):
     container_dependencies: list[models.aws_ecs.ContainerDependencyDef] = pydantic.Field(...)
@@ -3148,7 +3137,6 @@ class FirelensLogRouterDefFindPortMappingByNameParams(pydantic.BaseModel):
     ...
 
 class FirelensLogRouterDefRenderContainerDefinitionParams(pydantic.BaseModel):
-    _task_definition: typing.Optional[models.aws_ecs.TaskDefinitionDef] = pydantic.Field(None, description='-')
     ...
 
 
@@ -3166,15 +3154,15 @@ class LinuxParametersDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[LinuxParametersDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.LinuxParametersDefConfig] = pydantic.Field(None)
 
 
 class LinuxParametersDefConfig(pydantic.BaseModel):
-    add_capabilities: typing.Optional[list[LinuxParametersDefAddCapabilitiesParams]] = pydantic.Field(None, description="Adds one or more Linux capabilities to the Docker configuration of a container.\nTasks launched on Fargate only support adding the 'SYS_PTRACE' kernel capability.")
-    add_devices: typing.Optional[list[LinuxParametersDefAddDevicesParams]] = pydantic.Field(None, description='Adds one or more host devices to a container.')
-    add_tmpfs: typing.Optional[list[LinuxParametersDefAddTmpfsParams]] = pydantic.Field(None, description='Specifies the container path, mount options, and size (in MiB) of the tmpfs mount for a container.\nOnly works with EC2 launch type.')
-    drop_capabilities: typing.Optional[list[LinuxParametersDefDropCapabilitiesParams]] = pydantic.Field(None, description='Removes one or more Linux capabilities to the Docker configuration of a container.')
-    render_linux_parameters: typing.Optional[list[LinuxParametersDefRenderLinuxParametersParams]] = pydantic.Field(None, description='Renders the Linux parameters to a CloudFormation object.')
+    add_capabilities: typing.Optional[list[models.aws_ecs.LinuxParametersDefAddCapabilitiesParams]] = pydantic.Field(None, description="Adds one or more Linux capabilities to the Docker configuration of a container.\nTasks launched on Fargate only support adding the 'SYS_PTRACE' kernel capability.")
+    add_devices: typing.Optional[list[models.aws_ecs.LinuxParametersDefAddDevicesParams]] = pydantic.Field(None, description='Adds one or more host devices to a container.')
+    add_tmpfs: typing.Optional[list[models.aws_ecs.LinuxParametersDefAddTmpfsParams]] = pydantic.Field(None, description='Specifies the container path, mount options, and size (in MiB) of the tmpfs mount for a container.\nOnly works with EC2 launch type.')
+    drop_capabilities: typing.Optional[list[models.aws_ecs.LinuxParametersDefDropCapabilitiesParams]] = pydantic.Field(None, description='Removes one or more Linux capabilities to the Docker configuration of a container.')
+    render_linux_parameters: typing.Optional[list[models.aws_ecs.LinuxParametersDefRenderLinuxParametersParams]] = pydantic.Field(None, description='Renders the Linux parameters to a CloudFormation object.')
 
 class LinuxParametersDefAddCapabilitiesParams(pydantic.BaseModel):
     cap: list[aws_cdk.aws_ecs.Capability] = pydantic.Field(...)
@@ -3212,16 +3200,16 @@ class ScalableTaskCountDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ScalableTaskCountDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ScalableTaskCountDefConfig] = pydantic.Field(None)
 
 
 class ScalableTaskCountDefConfig(pydantic.BaseModel):
-    scale_on_cpu_utilization: typing.Optional[list[ScalableTaskCountDefScaleOnCpuUtilizationParams]] = pydantic.Field(None, description='Scales in or out to achieve a target CPU utilization.')
-    scale_on_memory_utilization: typing.Optional[list[ScalableTaskCountDefScaleOnMemoryUtilizationParams]] = pydantic.Field(None, description='Scales in or out to achieve a target memory utilization.')
-    scale_on_metric: typing.Optional[list[ScalableTaskCountDefScaleOnMetricParams]] = pydantic.Field(None, description='Scales in or out based on a specified metric value.')
-    scale_on_request_count: typing.Optional[list[ScalableTaskCountDefScaleOnRequestCountParams]] = pydantic.Field(None, description='Scales in or out to achieve a target Application Load Balancer request count per target.')
-    scale_on_schedule: typing.Optional[list[ScalableTaskCountDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scales in or out based on a specified scheduled time.')
-    scale_to_track_custom_metric: typing.Optional[list[ScalableTaskCountDefScaleToTrackCustomMetricParams]] = pydantic.Field(None, description='Scales in or out to achieve a target on a custom metric.')
+    scale_on_cpu_utilization: typing.Optional[list[models.aws_ecs.ScalableTaskCountDefScaleOnCpuUtilizationParams]] = pydantic.Field(None, description='Scales in or out to achieve a target CPU utilization.')
+    scale_on_memory_utilization: typing.Optional[list[models.aws_ecs.ScalableTaskCountDefScaleOnMemoryUtilizationParams]] = pydantic.Field(None, description='Scales in or out to achieve a target memory utilization.')
+    scale_on_metric: typing.Optional[list[models.aws_ecs.ScalableTaskCountDefScaleOnMetricParams]] = pydantic.Field(None, description='Scales in or out based on a specified metric value.')
+    scale_on_request_count: typing.Optional[list[models.aws_ecs.ScalableTaskCountDefScaleOnRequestCountParams]] = pydantic.Field(None, description='Scales in or out to achieve a target Application Load Balancer request count per target.')
+    scale_on_schedule: typing.Optional[list[models.aws_ecs.ScalableTaskCountDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scales in or out based on a specified scheduled time.')
+    scale_to_track_custom_metric: typing.Optional[list[models.aws_ecs.ScalableTaskCountDefScaleToTrackCustomMetricParams]] = pydantic.Field(None, description='Scales in or out to achieve a target on a custom metric.')
 
 class ScalableTaskCountDefScaleOnCpuUtilizationParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
@@ -3308,25 +3296,25 @@ class TaskDefinitionDef(BaseConstruct):
     ...
 
 
-    from_task_definition_arn: typing.Optional[TaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
-    from_task_definition_attributes: typing.Optional[TaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
-    resource_config: typing.Optional[TaskDefinitionDefConfig] = pydantic.Field(None)
+    from_task_definition_arn: typing.Optional[models.aws_ecs.TaskDefinitionDefFromTaskDefinitionArnParams] = pydantic.Field(None, description='Imports a task definition from the specified task definition ARN.\nThe task will have a compatibility of EC2+Fargate.')
+    from_task_definition_attributes: typing.Optional[models.aws_ecs.TaskDefinitionDefFromTaskDefinitionAttributesParams] = pydantic.Field(None, description='Create a task definition from a task definition reference.')
+    resource_config: typing.Optional[models.aws_ecs.TaskDefinitionDefConfig] = pydantic.Field(None)
 
 
 class TaskDefinitionDefConfig(pydantic.BaseModel):
-    add_container: typing.Optional[list[TaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
-    add_extension: typing.Optional[list[TaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
-    add_firelens_log_router: typing.Optional[list[TaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
-    add_inference_accelerator: typing.Optional[list[TaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Adds an inference accelerator to the task definition.')
-    add_placement_constraint: typing.Optional[list[TaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
-    add_to_execution_role_policy: typing.Optional[list[TaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
-    add_to_task_role_policy: typing.Optional[list[TaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
-    add_volume: typing.Optional[list[TaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
+    add_container: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Adds a new container to the task definition.')
+    add_extension: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddExtensionParams]] = pydantic.Field(None, description='Adds the specified extension to the task definition.\nExtension can be used to apply a packaged modification to\na task definition.')
+    add_firelens_log_router: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddFirelensLogRouterParams]] = pydantic.Field(None, description='Adds a firelens log router to the task definition.')
+    add_inference_accelerator: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddInferenceAcceleratorParams]] = pydantic.Field(None, description='Adds an inference accelerator to the task definition.')
+    add_placement_constraint: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddPlacementConstraintParams]] = pydantic.Field(None, description='Adds the specified placement constraint to the task definition.')
+    add_to_execution_role_policy: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddToExecutionRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task execution IAM role.')
+    add_to_task_role_policy: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddToTaskRolePolicyParams]] = pydantic.Field(None, description='Adds a policy statement to the task IAM role.')
+    add_volume: typing.Optional[list[models.aws_ecs.TaskDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Adds a volume to the task definition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    find_container: typing.Optional[list[TaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
-    find_port_mapping_by_name: typing.Optional[list[TaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
-    grant_run: typing.Optional[list[TaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
-    obtain_execution_role: typing.Optional[list[TaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
+    find_container: typing.Optional[list[models.aws_ecs.TaskDefinitionDefFindContainerParams]] = pydantic.Field(None, description='Returns the container that match the provided containerName.')
+    find_port_mapping_by_name: typing.Optional[list[models.aws_ecs.TaskDefinitionDefFindPortMappingByNameParams]] = pydantic.Field(None, description='Determine the existing port mapping for the provided name.')
+    grant_run: typing.Optional[list[models.aws_ecs.TaskDefinitionDefGrantRunParams]] = pydantic.Field(None, description='Grants permissions to run this task definition.\nThis will grant the following permissions:\n\n- ecs:RunTask\n- iam:PassRole')
+    obtain_execution_role: typing.Optional[list[models.aws_ecs.TaskDefinitionDefObtainExecutionRoleParams]] = pydantic.Field(None, description="Creates the task execution IAM role if it doesn't already exist.")
     task_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class TaskDefinitionDefAddContainerParams(pydantic.BaseModel):
@@ -3528,7 +3516,7 @@ class AddCapacityOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AddCapacityOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.AddCapacityOptionsDefConfig] = pydantic.Field(None)
 
 
 class AddCapacityOptionsDefConfig(pydantic.BaseModel):
@@ -3589,7 +3577,7 @@ class AsgCapacityProviderPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AsgCapacityProviderPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.AsgCapacityProviderPropsDefConfig] = pydantic.Field(None)
 
 
 class AsgCapacityProviderPropsDefConfig(pydantic.BaseModel):
@@ -3637,7 +3625,7 @@ class AssociateCloudMapServiceOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AssociateCloudMapServiceOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.AssociateCloudMapServiceOptionsDefConfig] = pydantic.Field(None)
 
 
 class AssociateCloudMapServiceOptionsDefConfig(pydantic.BaseModel):
@@ -4753,7 +4741,7 @@ class ClusterAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ClusterAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ClusterAttributesDefConfig] = pydantic.Field(None)
 
 
 class ClusterAttributesDefConfig(pydantic.BaseModel):
@@ -4915,7 +4903,7 @@ class ContainerDependencyDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ContainerDependencyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ContainerDependencyDefConfig] = pydantic.Field(None)
 
 
 class ContainerDependencyDefConfig(pydantic.BaseModel):
@@ -5204,7 +5192,7 @@ class ExecuteCommandConfigurationDef(BaseStruct):
 class ExecuteCommandLogConfigurationDef(BaseStruct):
     cloud_watch_encryption_enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether or not to enable encryption on the CloudWatch logs. Default: - encryption will be disabled.\n')
     cloud_watch_log_group: typing.Optional[typing.Union[models.aws_logs.LogGroupDef]] = pydantic.Field(None, description='The name of the CloudWatch log group to send logs to. The CloudWatch log group must already be created. Default: - none\n')
-    s3_bucket: typing.Optional[models.aws_s3.BucketDef] = pydantic.Field(None, description='The name of the S3 bucket to send logs to. The S3 bucket must already be created. Default: - none\n')
+    s3_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description='The name of the S3 bucket to send logs to. The S3 bucket must already be created. Default: - none\n')
     s3_encryption_enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether or not to enable encryption on the S3 bucket. Default: - encryption will be disabled.\n')
     s3_key_prefix: typing.Optional[str] = pydantic.Field(None, description='An optional folder in the S3 bucket to place logs in. Default: - none\n\n:exampleMetadata: infused\n\nExample::\n\n    # vpc: ec2.Vpc\n\n    kms_key = kms.Key(self, "KmsKey")\n\n    # Pass the KMS key in the `encryptionKey` field to associate the key to the log group\n    log_group = logs.LogGroup(self, "LogGroup",\n        encryption_key=kms_key\n    )\n\n    # Pass the KMS key in the `encryptionKey` field to associate the key to the S3 bucket\n    exec_bucket = s3.Bucket(self, "EcsExecBucket",\n        encryption_key=kms_key\n    )\n\n    cluster = ecs.Cluster(self, "Cluster",\n        vpc=vpc,\n        execute_command_configuration=ecs.ExecuteCommandConfiguration(\n            kms_key=kms_key,\n            log_configuration=ecs.ExecuteCommandLogConfiguration(\n                cloud_watch_log_group=log_group,\n                cloud_watch_encryption_enabled=True,\n                s3_bucket=exec_bucket,\n                s3_encryption_enabled=True,\n                s3_key_prefix="exec-command-output"\n            ),\n            logging=ecs.ExecuteCommandLogging.OVERRIDE\n        )\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['cloud_watch_encryption_enabled', 'cloud_watch_log_group', 's3_bucket', 's3_encryption_enabled', 's3_key_prefix']
@@ -5455,7 +5443,7 @@ class FirelensLogRouterDefinitionOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FirelensLogRouterDefinitionOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.FirelensLogRouterDefinitionOptionsDefConfig] = pydantic.Field(None)
 
 
 class FirelensLogRouterDefinitionOptionsDefConfig(pydantic.BaseModel):
@@ -5507,7 +5495,7 @@ class FirelensLogRouterPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FirelensLogRouterPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.FirelensLogRouterPropsDefConfig] = pydantic.Field(None)
 
 
 class FirelensLogRouterPropsDefConfig(pydantic.BaseModel):
@@ -5791,7 +5779,7 @@ class RequestCountScalingPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RequestCountScalingPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.RequestCountScalingPropsDefConfig] = pydantic.Field(None)
 
 
 class RequestCountScalingPropsDefConfig(pydantic.BaseModel):
@@ -5828,7 +5816,7 @@ class ScalableTaskCountPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScalableTaskCountPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.ScalableTaskCountPropsDefConfig] = pydantic.Field(None)
 
 
 class ScalableTaskCountPropsDefConfig(pydantic.BaseModel):
@@ -5923,7 +5911,7 @@ class SplunkLogDriverPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SplunkLogDriverPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.SplunkLogDriverPropsDefConfig] = pydantic.Field(None)
 
 
 class SplunkLogDriverPropsDefConfig(pydantic.BaseModel):
@@ -6222,28 +6210,28 @@ class CfnCapacityProviderDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCapacityProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnCapacityProviderDefConfig] = pydantic.Field(None)
 
 
 class CfnCapacityProviderDefConfig(pydantic.BaseModel):
-    AutoScalingGroupProviderProperty: typing.Optional[list[CfnCapacityProviderDefAutoscalinggroupproviderpropertyParams]] = pydantic.Field(None, description='')
-    ManagedScalingProperty: typing.Optional[list[CfnCapacityProviderDefManagedscalingpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCapacityProviderDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCapacityProviderDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCapacityProviderDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCapacityProviderDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCapacityProviderDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCapacityProviderDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCapacityProviderDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AutoScalingGroupProviderProperty: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAutoscalinggroupproviderpropertyParams]] = pydantic.Field(None, description='')
+    ManagedScalingProperty: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefManagedscalingpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCapacityProviderDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCapacityProviderDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCapacityProviderDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCapacityProviderDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCapacityProviderDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCapacityProviderDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnCapacityProviderDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCapacityProviderDefAutoscalinggroupproviderpropertyParams(pydantic.BaseModel):
@@ -6342,32 +6330,32 @@ class CfnClusterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnClusterDefConfig] = pydantic.Field(None)
 
 
 class CfnClusterDefConfig(pydantic.BaseModel):
-    CapacityProviderStrategyItemProperty: typing.Optional[list[CfnClusterDefCapacityproviderstrategyitempropertyParams]] = pydantic.Field(None, description='')
-    ClusterConfigurationProperty: typing.Optional[list[CfnClusterDefClusterconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ClusterSettingsProperty: typing.Optional[list[CfnClusterDefClustersettingspropertyParams]] = pydantic.Field(None, description='')
-    ExecuteCommandConfigurationProperty: typing.Optional[list[CfnClusterDefExecutecommandconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ExecuteCommandLogConfigurationProperty: typing.Optional[list[CfnClusterDefExecutecommandlogconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ServiceConnectDefaultsProperty: typing.Optional[list[CfnClusterDefServiceconnectdefaultspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CapacityProviderStrategyItemProperty: typing.Optional[list[models.aws_ecs.CfnClusterDefCapacityproviderstrategyitempropertyParams]] = pydantic.Field(None, description='')
+    ClusterConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnClusterDefClusterconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ClusterSettingsProperty: typing.Optional[list[models.aws_ecs.CfnClusterDefClustersettingspropertyParams]] = pydantic.Field(None, description='')
+    ExecuteCommandConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnClusterDefExecutecommandconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ExecuteCommandLogConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnClusterDefExecutecommandlogconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ServiceConnectDefaultsProperty: typing.Optional[list[models.aws_ecs.CfnClusterDefServiceconnectdefaultspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnClusterDefCapacityproviderstrategyitempropertyParams(pydantic.BaseModel):
@@ -6481,27 +6469,27 @@ class CfnClusterCapacityProviderAssociationsDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnClusterCapacityProviderAssociationsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefConfig] = pydantic.Field(None)
 
 
 class CfnClusterCapacityProviderAssociationsDefConfig(pydantic.BaseModel):
-    CapacityProviderStrategyProperty: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefCapacityproviderstrategypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CapacityProviderStrategyProperty: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefCapacityproviderstrategypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnClusterCapacityProviderAssociationsDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnClusterCapacityProviderAssociationsDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnClusterCapacityProviderAssociationsDefCapacityproviderstrategypropertyParams(pydantic.BaseModel):
     capacity_provider: str = pydantic.Field(..., description='')
@@ -6587,26 +6575,26 @@ class CfnPrimaryTaskSetDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPrimaryTaskSetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnPrimaryTaskSetDefConfig] = pydantic.Field(None)
 
 
 class CfnPrimaryTaskSetDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnPrimaryTaskSetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPrimaryTaskSetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPrimaryTaskSetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPrimaryTaskSetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPrimaryTaskSetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPrimaryTaskSetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPrimaryTaskSetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPrimaryTaskSetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPrimaryTaskSetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPrimaryTaskSetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPrimaryTaskSetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPrimaryTaskSetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPrimaryTaskSetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnPrimaryTaskSetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPrimaryTaskSetDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6705,42 +6693,42 @@ class CfnServiceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnServiceDefConfig] = pydantic.Field(None)
 
 
 class CfnServiceDefConfig(pydantic.BaseModel):
-    AwsVpcConfigurationProperty: typing.Optional[list[CfnServiceDefAwsvpcconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    CapacityProviderStrategyItemProperty: typing.Optional[list[CfnServiceDefCapacityproviderstrategyitempropertyParams]] = pydantic.Field(None, description='')
-    DeploymentAlarmsProperty: typing.Optional[list[CfnServiceDefDeploymentalarmspropertyParams]] = pydantic.Field(None, description='')
-    DeploymentCircuitBreakerProperty: typing.Optional[list[CfnServiceDefDeploymentcircuitbreakerpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentConfigurationProperty: typing.Optional[list[CfnServiceDefDeploymentconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentControllerProperty: typing.Optional[list[CfnServiceDefDeploymentcontrollerpropertyParams]] = pydantic.Field(None, description='')
-    LoadBalancerProperty: typing.Optional[list[CfnServiceDefLoadbalancerpropertyParams]] = pydantic.Field(None, description='')
-    LogConfigurationProperty: typing.Optional[list[CfnServiceDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    NetworkConfigurationProperty: typing.Optional[list[CfnServiceDefNetworkconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    PlacementConstraintProperty: typing.Optional[list[CfnServiceDefPlacementconstraintpropertyParams]] = pydantic.Field(None, description='')
-    PlacementStrategyProperty: typing.Optional[list[CfnServiceDefPlacementstrategypropertyParams]] = pydantic.Field(None, description='')
-    SecretProperty: typing.Optional[list[CfnServiceDefSecretpropertyParams]] = pydantic.Field(None, description='')
-    ServiceConnectClientAliasProperty: typing.Optional[list[CfnServiceDefServiceconnectclientaliaspropertyParams]] = pydantic.Field(None, description='')
-    ServiceConnectConfigurationProperty: typing.Optional[list[CfnServiceDefServiceconnectconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ServiceConnectServiceProperty: typing.Optional[list[CfnServiceDefServiceconnectservicepropertyParams]] = pydantic.Field(None, description='')
-    ServiceRegistryProperty: typing.Optional[list[CfnServiceDefServiceregistrypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnServiceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnServiceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnServiceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnServiceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnServiceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnServiceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnServiceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AwsVpcConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefAwsvpcconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    CapacityProviderStrategyItemProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefCapacityproviderstrategyitempropertyParams]] = pydantic.Field(None, description='')
+    DeploymentAlarmsProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefDeploymentalarmspropertyParams]] = pydantic.Field(None, description='')
+    DeploymentCircuitBreakerProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefDeploymentcircuitbreakerpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefDeploymentconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentControllerProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefDeploymentcontrollerpropertyParams]] = pydantic.Field(None, description='')
+    LoadBalancerProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefLoadbalancerpropertyParams]] = pydantic.Field(None, description='')
+    LogConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    NetworkConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefNetworkconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    PlacementConstraintProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefPlacementconstraintpropertyParams]] = pydantic.Field(None, description='')
+    PlacementStrategyProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefPlacementstrategypropertyParams]] = pydantic.Field(None, description='')
+    SecretProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefSecretpropertyParams]] = pydantic.Field(None, description='')
+    ServiceConnectClientAliasProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefServiceconnectclientaliaspropertyParams]] = pydantic.Field(None, description='')
+    ServiceConnectConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefServiceconnectconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ServiceConnectServiceProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefServiceconnectservicepropertyParams]] = pydantic.Field(None, description='')
+    ServiceRegistryProperty: typing.Optional[list[models.aws_ecs.CfnServiceDefServiceregistrypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnServiceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnServiceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnServiceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnServiceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnServiceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnServiceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnServiceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnServiceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnServiceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnServiceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnServiceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnServiceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnServiceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnServiceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnServiceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnServiceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnServiceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnServiceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnServiceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnServiceDefAwsvpcconfigurationpropertyParams(pydantic.BaseModel):
@@ -6927,56 +6915,56 @@ class CfnTaskDefinitionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnTaskDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnTaskDefinitionDefConfig] = pydantic.Field(None)
 
 
 class CfnTaskDefinitionDefConfig(pydantic.BaseModel):
-    AuthorizationConfigProperty: typing.Optional[list[CfnTaskDefinitionDefAuthorizationconfigpropertyParams]] = pydantic.Field(None, description='')
-    ContainerDefinitionProperty: typing.Optional[list[CfnTaskDefinitionDefContainerdefinitionpropertyParams]] = pydantic.Field(None, description='')
-    ContainerDependencyProperty: typing.Optional[list[CfnTaskDefinitionDefContainerdependencypropertyParams]] = pydantic.Field(None, description='')
-    DeviceProperty: typing.Optional[list[CfnTaskDefinitionDefDevicepropertyParams]] = pydantic.Field(None, description='')
-    DockerVolumeConfigurationProperty: typing.Optional[list[CfnTaskDefinitionDefDockervolumeconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EFSVolumeConfigurationProperty: typing.Optional[list[CfnTaskDefinitionDefEfsvolumeconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EnvironmentFileProperty: typing.Optional[list[CfnTaskDefinitionDefEnvironmentfilepropertyParams]] = pydantic.Field(None, description='')
-    EphemeralStorageProperty: typing.Optional[list[CfnTaskDefinitionDefEphemeralstoragepropertyParams]] = pydantic.Field(None, description='')
-    FirelensConfigurationProperty: typing.Optional[list[CfnTaskDefinitionDefFirelensconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    HealthCheckProperty: typing.Optional[list[CfnTaskDefinitionDefHealthcheckpropertyParams]] = pydantic.Field(None, description='')
-    HostEntryProperty: typing.Optional[list[CfnTaskDefinitionDefHostentrypropertyParams]] = pydantic.Field(None, description='')
-    HostVolumePropertiesProperty: typing.Optional[list[CfnTaskDefinitionDefHostvolumepropertiespropertyParams]] = pydantic.Field(None, description='')
-    InferenceAcceleratorProperty: typing.Optional[list[CfnTaskDefinitionDefInferenceacceleratorpropertyParams]] = pydantic.Field(None, description='')
-    KernelCapabilitiesProperty: typing.Optional[list[CfnTaskDefinitionDefKernelcapabilitiespropertyParams]] = pydantic.Field(None, description='')
-    KeyValuePairProperty: typing.Optional[list[CfnTaskDefinitionDefKeyvaluepairpropertyParams]] = pydantic.Field(None, description='')
-    LinuxParametersProperty: typing.Optional[list[CfnTaskDefinitionDefLinuxparameterspropertyParams]] = pydantic.Field(None, description='')
-    LogConfigurationProperty: typing.Optional[list[CfnTaskDefinitionDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    MountPointProperty: typing.Optional[list[CfnTaskDefinitionDefMountpointpropertyParams]] = pydantic.Field(None, description='')
-    PortMappingProperty: typing.Optional[list[CfnTaskDefinitionDefPortmappingpropertyParams]] = pydantic.Field(None, description='')
-    ProxyConfigurationProperty: typing.Optional[list[CfnTaskDefinitionDefProxyconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    RepositoryCredentialsProperty: typing.Optional[list[CfnTaskDefinitionDefRepositorycredentialspropertyParams]] = pydantic.Field(None, description='')
-    ResourceRequirementProperty: typing.Optional[list[CfnTaskDefinitionDefResourcerequirementpropertyParams]] = pydantic.Field(None, description='')
-    RuntimePlatformProperty: typing.Optional[list[CfnTaskDefinitionDefRuntimeplatformpropertyParams]] = pydantic.Field(None, description='')
-    SecretProperty: typing.Optional[list[CfnTaskDefinitionDefSecretpropertyParams]] = pydantic.Field(None, description='')
-    SystemControlProperty: typing.Optional[list[CfnTaskDefinitionDefSystemcontrolpropertyParams]] = pydantic.Field(None, description='')
-    TaskDefinitionPlacementConstraintProperty: typing.Optional[list[CfnTaskDefinitionDefTaskdefinitionplacementconstraintpropertyParams]] = pydantic.Field(None, description='')
-    TmpfsProperty: typing.Optional[list[CfnTaskDefinitionDefTmpfspropertyParams]] = pydantic.Field(None, description='')
-    UlimitProperty: typing.Optional[list[CfnTaskDefinitionDefUlimitpropertyParams]] = pydantic.Field(None, description='')
-    VolumeFromProperty: typing.Optional[list[CfnTaskDefinitionDefVolumefrompropertyParams]] = pydantic.Field(None, description='')
-    VolumeProperty: typing.Optional[list[CfnTaskDefinitionDefVolumepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnTaskDefinitionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnTaskDefinitionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnTaskDefinitionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnTaskDefinitionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnTaskDefinitionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnTaskDefinitionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnTaskDefinitionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AuthorizationConfigProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAuthorizationconfigpropertyParams]] = pydantic.Field(None, description='')
+    ContainerDefinitionProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefContainerdefinitionpropertyParams]] = pydantic.Field(None, description='')
+    ContainerDependencyProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefContainerdependencypropertyParams]] = pydantic.Field(None, description='')
+    DeviceProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefDevicepropertyParams]] = pydantic.Field(None, description='')
+    DockerVolumeConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefDockervolumeconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EFSVolumeConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefEfsvolumeconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EnvironmentFileProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefEnvironmentfilepropertyParams]] = pydantic.Field(None, description='')
+    EphemeralStorageProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefEphemeralstoragepropertyParams]] = pydantic.Field(None, description='')
+    FirelensConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefFirelensconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    HealthCheckProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefHealthcheckpropertyParams]] = pydantic.Field(None, description='')
+    HostEntryProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefHostentrypropertyParams]] = pydantic.Field(None, description='')
+    HostVolumePropertiesProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefHostvolumepropertiespropertyParams]] = pydantic.Field(None, description='')
+    InferenceAcceleratorProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefInferenceacceleratorpropertyParams]] = pydantic.Field(None, description='')
+    KernelCapabilitiesProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefKernelcapabilitiespropertyParams]] = pydantic.Field(None, description='')
+    KeyValuePairProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefKeyvaluepairpropertyParams]] = pydantic.Field(None, description='')
+    LinuxParametersProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefLinuxparameterspropertyParams]] = pydantic.Field(None, description='')
+    LogConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    MountPointProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefMountpointpropertyParams]] = pydantic.Field(None, description='')
+    PortMappingProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefPortmappingpropertyParams]] = pydantic.Field(None, description='')
+    ProxyConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefProxyconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    RepositoryCredentialsProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefRepositorycredentialspropertyParams]] = pydantic.Field(None, description='')
+    ResourceRequirementProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefResourcerequirementpropertyParams]] = pydantic.Field(None, description='')
+    RuntimePlatformProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefRuntimeplatformpropertyParams]] = pydantic.Field(None, description='')
+    SecretProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefSecretpropertyParams]] = pydantic.Field(None, description='')
+    SystemControlProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefSystemcontrolpropertyParams]] = pydantic.Field(None, description='')
+    TaskDefinitionPlacementConstraintProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefTaskdefinitionplacementconstraintpropertyParams]] = pydantic.Field(None, description='')
+    TmpfsProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefTmpfspropertyParams]] = pydantic.Field(None, description='')
+    UlimitProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefUlimitpropertyParams]] = pydantic.Field(None, description='')
+    VolumeFromProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefVolumefrompropertyParams]] = pydantic.Field(None, description='')
+    VolumeProperty: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefVolumepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnTaskDefinitionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnTaskDefinitionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnTaskDefinitionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnTaskDefinitionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnTaskDefinitionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnTaskDefinitionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnTaskDefinitionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnTaskDefinitionDefAuthorizationconfigpropertyParams(pydantic.BaseModel):
@@ -7274,31 +7262,31 @@ class CfnTaskSetDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnTaskSetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs.CfnTaskSetDefConfig] = pydantic.Field(None)
 
 
 class CfnTaskSetDefConfig(pydantic.BaseModel):
-    AwsVpcConfigurationProperty: typing.Optional[list[CfnTaskSetDefAwsvpcconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    LoadBalancerProperty: typing.Optional[list[CfnTaskSetDefLoadbalancerpropertyParams]] = pydantic.Field(None, description='')
-    NetworkConfigurationProperty: typing.Optional[list[CfnTaskSetDefNetworkconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ScaleProperty: typing.Optional[list[CfnTaskSetDefScalepropertyParams]] = pydantic.Field(None, description='')
-    ServiceRegistryProperty: typing.Optional[list[CfnTaskSetDefServiceregistrypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnTaskSetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnTaskSetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnTaskSetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnTaskSetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnTaskSetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnTaskSetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnTaskSetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AwsVpcConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAwsvpcconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    LoadBalancerProperty: typing.Optional[list[models.aws_ecs.CfnTaskSetDefLoadbalancerpropertyParams]] = pydantic.Field(None, description='')
+    NetworkConfigurationProperty: typing.Optional[list[models.aws_ecs.CfnTaskSetDefNetworkconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ScaleProperty: typing.Optional[list[models.aws_ecs.CfnTaskSetDefScalepropertyParams]] = pydantic.Field(None, description='')
+    ServiceRegistryProperty: typing.Optional[list[models.aws_ecs.CfnTaskSetDefServiceregistrypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_ecs.CfnTaskSetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnTaskSetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnTaskSetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnTaskSetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_ecs.CfnTaskSetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_ecs.CfnTaskSetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_ecs.CfnTaskSetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnTaskSetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnTaskSetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnTaskSetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_ecs.CfnTaskSetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_ecs.CfnTaskSetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_ecs.CfnTaskSetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnTaskSetDefAwsvpcconfigurationpropertyParams(pydantic.BaseModel):
     subnets: typing.Sequence[str] = pydantic.Field(..., description='')
@@ -7542,215 +7530,215 @@ class CfnTaskSetPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AppMeshProxyConfiguration: typing.Optional[dict[str, AppMeshProxyConfigurationDef]] = pydantic.Field(None)
-    AppProtocol: typing.Optional[dict[str, AppProtocolDef]] = pydantic.Field(None)
-    AssetEnvironmentFile: typing.Optional[dict[str, AssetEnvironmentFileDef]] = pydantic.Field(None)
-    AssetImage: typing.Optional[dict[str, AssetImageDef]] = pydantic.Field(None)
-    AwsLogDriver: typing.Optional[dict[str, AwsLogDriverDef]] = pydantic.Field(None)
-    BaseService: typing.Optional[dict[str, BaseServiceDef]] = pydantic.Field(None)
-    BottleRocketImage: typing.Optional[dict[str, BottleRocketImageDef]] = pydantic.Field(None)
-    BuiltInAttributes: typing.Optional[dict[str, BuiltInAttributesDef]] = pydantic.Field(None)
-    ContainerImage: typing.Optional[dict[str, ContainerImageDef]] = pydantic.Field(None)
-    CpuArchitecture: typing.Optional[dict[str, CpuArchitectureDef]] = pydantic.Field(None)
-    EcrImage: typing.Optional[dict[str, EcrImageDef]] = pydantic.Field(None)
-    EcsOptimizedImage: typing.Optional[dict[str, EcsOptimizedImageDef]] = pydantic.Field(None)
-    EnvironmentFile: typing.Optional[dict[str, EnvironmentFileDef]] = pydantic.Field(None)
-    FireLensLogDriver: typing.Optional[dict[str, FireLensLogDriverDef]] = pydantic.Field(None)
-    FluentdLogDriver: typing.Optional[dict[str, FluentdLogDriverDef]] = pydantic.Field(None)
-    GelfLogDriver: typing.Optional[dict[str, GelfLogDriverDef]] = pydantic.Field(None)
-    GenericLogDriver: typing.Optional[dict[str, GenericLogDriverDef]] = pydantic.Field(None)
-    JournaldLogDriver: typing.Optional[dict[str, JournaldLogDriverDef]] = pydantic.Field(None)
-    JsonFileLogDriver: typing.Optional[dict[str, JsonFileLogDriverDef]] = pydantic.Field(None)
-    ListenerConfig: typing.Optional[dict[str, ListenerConfigDef]] = pydantic.Field(None)
-    LogDriver: typing.Optional[dict[str, LogDriverDef]] = pydantic.Field(None)
-    LogDrivers: typing.Optional[dict[str, LogDriversDef]] = pydantic.Field(None)
-    OperatingSystemFamily: typing.Optional[dict[str, OperatingSystemFamilyDef]] = pydantic.Field(None)
-    PlacementConstraint: typing.Optional[dict[str, PlacementConstraintDef]] = pydantic.Field(None)
-    PlacementStrategy: typing.Optional[dict[str, PlacementStrategyDef]] = pydantic.Field(None)
-    PortMap: typing.Optional[dict[str, PortMapDef]] = pydantic.Field(None)
-    ProxyConfiguration: typing.Optional[dict[str, ProxyConfigurationDef]] = pydantic.Field(None)
-    ProxyConfigurations: typing.Optional[dict[str, ProxyConfigurationsDef]] = pydantic.Field(None)
-    RepositoryImage: typing.Optional[dict[str, RepositoryImageDef]] = pydantic.Field(None)
-    S3EnvironmentFile: typing.Optional[dict[str, S3EnvironmentFileDef]] = pydantic.Field(None)
-    Secret: typing.Optional[dict[str, SecretDef]] = pydantic.Field(None)
-    ServiceConnect: typing.Optional[dict[str, ServiceConnectDef]] = pydantic.Field(None)
-    SplunkLogDriver: typing.Optional[dict[str, SplunkLogDriverDef]] = pydantic.Field(None)
-    SyslogLogDriver: typing.Optional[dict[str, SyslogLogDriverDef]] = pydantic.Field(None)
-    TagParameterContainerImage: typing.Optional[dict[str, TagParameterContainerImageDef]] = pydantic.Field(None)
-    AsgCapacityProvider: typing.Optional[dict[str, AsgCapacityProviderDef]] = pydantic.Field(None)
-    Cluster: typing.Optional[dict[str, ClusterDef]] = pydantic.Field(None)
-    ContainerDefinition: typing.Optional[dict[str, ContainerDefinitionDef]] = pydantic.Field(None)
-    Ec2Service: typing.Optional[dict[str, Ec2ServiceDef]] = pydantic.Field(None)
-    Ec2TaskDefinition: typing.Optional[dict[str, Ec2TaskDefinitionDef]] = pydantic.Field(None)
-    ExternalService: typing.Optional[dict[str, ExternalServiceDef]] = pydantic.Field(None)
-    ExternalTaskDefinition: typing.Optional[dict[str, ExternalTaskDefinitionDef]] = pydantic.Field(None)
-    FargateService: typing.Optional[dict[str, FargateServiceDef]] = pydantic.Field(None)
-    FargateTaskDefinition: typing.Optional[dict[str, FargateTaskDefinitionDef]] = pydantic.Field(None)
-    FirelensLogRouter: typing.Optional[dict[str, FirelensLogRouterDef]] = pydantic.Field(None)
-    LinuxParameters: typing.Optional[dict[str, LinuxParametersDef]] = pydantic.Field(None)
-    ScalableTaskCount: typing.Optional[dict[str, ScalableTaskCountDef]] = pydantic.Field(None)
-    TaskDefinition: typing.Optional[dict[str, TaskDefinitionDef]] = pydantic.Field(None)
-    AddAutoScalingGroupCapacityOptions: typing.Optional[dict[str, AddAutoScalingGroupCapacityOptionsDef]] = pydantic.Field(None)
-    AddCapacityOptions: typing.Optional[dict[str, AddCapacityOptionsDef]] = pydantic.Field(None)
-    AppMeshProxyConfigurationConfigProps: typing.Optional[dict[str, AppMeshProxyConfigurationConfigPropsDef]] = pydantic.Field(None)
-    AppMeshProxyConfigurationProps: typing.Optional[dict[str, AppMeshProxyConfigurationPropsDef]] = pydantic.Field(None)
-    AsgCapacityProviderProps: typing.Optional[dict[str, AsgCapacityProviderPropsDef]] = pydantic.Field(None)
-    AssetImageProps: typing.Optional[dict[str, AssetImagePropsDef]] = pydantic.Field(None)
-    AssociateCloudMapServiceOptions: typing.Optional[dict[str, AssociateCloudMapServiceOptionsDef]] = pydantic.Field(None)
-    AuthorizationConfig: typing.Optional[dict[str, AuthorizationConfigDef]] = pydantic.Field(None)
-    AwsLogDriverProps: typing.Optional[dict[str, AwsLogDriverPropsDef]] = pydantic.Field(None)
-    BaseLogDriverProps: typing.Optional[dict[str, BaseLogDriverPropsDef]] = pydantic.Field(None)
-    BaseServiceOptions: typing.Optional[dict[str, BaseServiceOptionsDef]] = pydantic.Field(None)
-    BaseServiceProps: typing.Optional[dict[str, BaseServicePropsDef]] = pydantic.Field(None)
-    BottleRocketImageProps: typing.Optional[dict[str, BottleRocketImagePropsDef]] = pydantic.Field(None)
-    CapacityProviderStrategy: typing.Optional[dict[str, CapacityProviderStrategyDef]] = pydantic.Field(None)
-    CfnCapacityProvider_AutoScalingGroupProviderProperty: typing.Optional[dict[str, CfnCapacityProvider_AutoScalingGroupProviderPropertyDef]] = pydantic.Field(None)
-    CfnCapacityProvider_ManagedScalingProperty: typing.Optional[dict[str, CfnCapacityProvider_ManagedScalingPropertyDef]] = pydantic.Field(None)
-    CfnCluster_CapacityProviderStrategyItemProperty: typing.Optional[dict[str, CfnCluster_CapacityProviderStrategyItemPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ClusterConfigurationProperty: typing.Optional[dict[str, CfnCluster_ClusterConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ClusterSettingsProperty: typing.Optional[dict[str, CfnCluster_ClusterSettingsPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ExecuteCommandConfigurationProperty: typing.Optional[dict[str, CfnCluster_ExecuteCommandConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ExecuteCommandLogConfigurationProperty: typing.Optional[dict[str, CfnCluster_ExecuteCommandLogConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ServiceConnectDefaultsProperty: typing.Optional[dict[str, CfnCluster_ServiceConnectDefaultsPropertyDef]] = pydantic.Field(None)
-    CfnClusterCapacityProviderAssociations_CapacityProviderStrategyProperty: typing.Optional[dict[str, CfnClusterCapacityProviderAssociations_CapacityProviderStrategyPropertyDef]] = pydantic.Field(None)
-    CfnService_AwsVpcConfigurationProperty: typing.Optional[dict[str, CfnService_AwsVpcConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnService_CapacityProviderStrategyItemProperty: typing.Optional[dict[str, CfnService_CapacityProviderStrategyItemPropertyDef]] = pydantic.Field(None)
-    CfnService_DeploymentAlarmsProperty: typing.Optional[dict[str, CfnService_DeploymentAlarmsPropertyDef]] = pydantic.Field(None)
-    CfnService_DeploymentCircuitBreakerProperty: typing.Optional[dict[str, CfnService_DeploymentCircuitBreakerPropertyDef]] = pydantic.Field(None)
-    CfnService_DeploymentConfigurationProperty: typing.Optional[dict[str, CfnService_DeploymentConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnService_DeploymentControllerProperty: typing.Optional[dict[str, CfnService_DeploymentControllerPropertyDef]] = pydantic.Field(None)
-    CfnService_LoadBalancerProperty: typing.Optional[dict[str, CfnService_LoadBalancerPropertyDef]] = pydantic.Field(None)
-    CfnService_LogConfigurationProperty: typing.Optional[dict[str, CfnService_LogConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnService_NetworkConfigurationProperty: typing.Optional[dict[str, CfnService_NetworkConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnService_PlacementConstraintProperty: typing.Optional[dict[str, CfnService_PlacementConstraintPropertyDef]] = pydantic.Field(None)
-    CfnService_PlacementStrategyProperty: typing.Optional[dict[str, CfnService_PlacementStrategyPropertyDef]] = pydantic.Field(None)
-    CfnService_SecretProperty: typing.Optional[dict[str, CfnService_SecretPropertyDef]] = pydantic.Field(None)
-    CfnService_ServiceConnectClientAliasProperty: typing.Optional[dict[str, CfnService_ServiceConnectClientAliasPropertyDef]] = pydantic.Field(None)
-    CfnService_ServiceConnectConfigurationProperty: typing.Optional[dict[str, CfnService_ServiceConnectConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnService_ServiceConnectServiceProperty: typing.Optional[dict[str, CfnService_ServiceConnectServicePropertyDef]] = pydantic.Field(None)
-    CfnService_ServiceRegistryProperty: typing.Optional[dict[str, CfnService_ServiceRegistryPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_AuthorizationConfigProperty: typing.Optional[dict[str, CfnTaskDefinition_AuthorizationConfigPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_ContainerDefinitionProperty: typing.Optional[dict[str, CfnTaskDefinition_ContainerDefinitionPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_ContainerDependencyProperty: typing.Optional[dict[str, CfnTaskDefinition_ContainerDependencyPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_DeviceProperty: typing.Optional[dict[str, CfnTaskDefinition_DevicePropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_DockerVolumeConfigurationProperty: typing.Optional[dict[str, CfnTaskDefinition_DockerVolumeConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_EFSVolumeConfigurationProperty: typing.Optional[dict[str, CfnTaskDefinition_EFSVolumeConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_EnvironmentFileProperty: typing.Optional[dict[str, CfnTaskDefinition_EnvironmentFilePropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_EphemeralStorageProperty: typing.Optional[dict[str, CfnTaskDefinition_EphemeralStoragePropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_FirelensConfigurationProperty: typing.Optional[dict[str, CfnTaskDefinition_FirelensConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_HealthCheckProperty: typing.Optional[dict[str, CfnTaskDefinition_HealthCheckPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_HostEntryProperty: typing.Optional[dict[str, CfnTaskDefinition_HostEntryPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_HostVolumePropertiesProperty: typing.Optional[dict[str, CfnTaskDefinition_HostVolumePropertiesPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_InferenceAcceleratorProperty: typing.Optional[dict[str, CfnTaskDefinition_InferenceAcceleratorPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_KernelCapabilitiesProperty: typing.Optional[dict[str, CfnTaskDefinition_KernelCapabilitiesPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_KeyValuePairProperty: typing.Optional[dict[str, CfnTaskDefinition_KeyValuePairPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_LinuxParametersProperty: typing.Optional[dict[str, CfnTaskDefinition_LinuxParametersPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_LogConfigurationProperty: typing.Optional[dict[str, CfnTaskDefinition_LogConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_MountPointProperty: typing.Optional[dict[str, CfnTaskDefinition_MountPointPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_PortMappingProperty: typing.Optional[dict[str, CfnTaskDefinition_PortMappingPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_ProxyConfigurationProperty: typing.Optional[dict[str, CfnTaskDefinition_ProxyConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_RepositoryCredentialsProperty: typing.Optional[dict[str, CfnTaskDefinition_RepositoryCredentialsPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_ResourceRequirementProperty: typing.Optional[dict[str, CfnTaskDefinition_ResourceRequirementPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_RuntimePlatformProperty: typing.Optional[dict[str, CfnTaskDefinition_RuntimePlatformPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_SecretProperty: typing.Optional[dict[str, CfnTaskDefinition_SecretPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_SystemControlProperty: typing.Optional[dict[str, CfnTaskDefinition_SystemControlPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_TaskDefinitionPlacementConstraintProperty: typing.Optional[dict[str, CfnTaskDefinition_TaskDefinitionPlacementConstraintPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_TmpfsProperty: typing.Optional[dict[str, CfnTaskDefinition_TmpfsPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_UlimitProperty: typing.Optional[dict[str, CfnTaskDefinition_UlimitPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_VolumeFromProperty: typing.Optional[dict[str, CfnTaskDefinition_VolumeFromPropertyDef]] = pydantic.Field(None)
-    CfnTaskDefinition_VolumeProperty: typing.Optional[dict[str, CfnTaskDefinition_VolumePropertyDef]] = pydantic.Field(None)
-    CfnTaskSet_AwsVpcConfigurationProperty: typing.Optional[dict[str, CfnTaskSet_AwsVpcConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskSet_LoadBalancerProperty: typing.Optional[dict[str, CfnTaskSet_LoadBalancerPropertyDef]] = pydantic.Field(None)
-    CfnTaskSet_NetworkConfigurationProperty: typing.Optional[dict[str, CfnTaskSet_NetworkConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnTaskSet_ScaleProperty: typing.Optional[dict[str, CfnTaskSet_ScalePropertyDef]] = pydantic.Field(None)
-    CfnTaskSet_ServiceRegistryProperty: typing.Optional[dict[str, CfnTaskSet_ServiceRegistryPropertyDef]] = pydantic.Field(None)
-    CloudMapNamespaceOptions: typing.Optional[dict[str, CloudMapNamespaceOptionsDef]] = pydantic.Field(None)
-    CloudMapOptions: typing.Optional[dict[str, CloudMapOptionsDef]] = pydantic.Field(None)
-    ClusterAttributes: typing.Optional[dict[str, ClusterAttributesDef]] = pydantic.Field(None)
-    ClusterProps: typing.Optional[dict[str, ClusterPropsDef]] = pydantic.Field(None)
-    CommonTaskDefinitionAttributes: typing.Optional[dict[str, CommonTaskDefinitionAttributesDef]] = pydantic.Field(None)
-    CommonTaskDefinitionProps: typing.Optional[dict[str, CommonTaskDefinitionPropsDef]] = pydantic.Field(None)
-    ContainerDefinitionOptions: typing.Optional[dict[str, ContainerDefinitionOptionsDef]] = pydantic.Field(None)
-    ContainerDefinitionProps: typing.Optional[dict[str, ContainerDefinitionPropsDef]] = pydantic.Field(None)
-    ContainerDependency: typing.Optional[dict[str, ContainerDependencyDef]] = pydantic.Field(None)
-    ContainerImageConfig: typing.Optional[dict[str, ContainerImageConfigDef]] = pydantic.Field(None)
-    CpuUtilizationScalingProps: typing.Optional[dict[str, CpuUtilizationScalingPropsDef]] = pydantic.Field(None)
-    DeploymentAlarmConfig: typing.Optional[dict[str, DeploymentAlarmConfigDef]] = pydantic.Field(None)
-    DeploymentAlarmOptions: typing.Optional[dict[str, DeploymentAlarmOptionsDef]] = pydantic.Field(None)
-    DeploymentCircuitBreaker: typing.Optional[dict[str, DeploymentCircuitBreakerDef]] = pydantic.Field(None)
-    DeploymentController: typing.Optional[dict[str, DeploymentControllerDef]] = pydantic.Field(None)
-    Device: typing.Optional[dict[str, DeviceDef]] = pydantic.Field(None)
-    DockerVolumeConfiguration: typing.Optional[dict[str, DockerVolumeConfigurationDef]] = pydantic.Field(None)
-    Ec2ServiceAttributes: typing.Optional[dict[str, Ec2ServiceAttributesDef]] = pydantic.Field(None)
-    Ec2ServiceProps: typing.Optional[dict[str, Ec2ServicePropsDef]] = pydantic.Field(None)
-    Ec2TaskDefinitionAttributes: typing.Optional[dict[str, Ec2TaskDefinitionAttributesDef]] = pydantic.Field(None)
-    Ec2TaskDefinitionProps: typing.Optional[dict[str, Ec2TaskDefinitionPropsDef]] = pydantic.Field(None)
-    EcsOptimizedImageOptions: typing.Optional[dict[str, EcsOptimizedImageOptionsDef]] = pydantic.Field(None)
-    EcsTarget: typing.Optional[dict[str, EcsTargetDef]] = pydantic.Field(None)
-    EfsVolumeConfiguration: typing.Optional[dict[str, EfsVolumeConfigurationDef]] = pydantic.Field(None)
-    EnvironmentFileConfig: typing.Optional[dict[str, EnvironmentFileConfigDef]] = pydantic.Field(None)
-    ExecuteCommandConfiguration: typing.Optional[dict[str, ExecuteCommandConfigurationDef]] = pydantic.Field(None)
-    ExecuteCommandLogConfiguration: typing.Optional[dict[str, ExecuteCommandLogConfigurationDef]] = pydantic.Field(None)
-    ExternalServiceAttributes: typing.Optional[dict[str, ExternalServiceAttributesDef]] = pydantic.Field(None)
-    ExternalServiceProps: typing.Optional[dict[str, ExternalServicePropsDef]] = pydantic.Field(None)
-    ExternalTaskDefinitionAttributes: typing.Optional[dict[str, ExternalTaskDefinitionAttributesDef]] = pydantic.Field(None)
-    ExternalTaskDefinitionProps: typing.Optional[dict[str, ExternalTaskDefinitionPropsDef]] = pydantic.Field(None)
-    FargateServiceAttributes: typing.Optional[dict[str, FargateServiceAttributesDef]] = pydantic.Field(None)
-    FargateServiceProps: typing.Optional[dict[str, FargateServicePropsDef]] = pydantic.Field(None)
-    FargateTaskDefinitionAttributes: typing.Optional[dict[str, FargateTaskDefinitionAttributesDef]] = pydantic.Field(None)
-    FargateTaskDefinitionProps: typing.Optional[dict[str, FargateTaskDefinitionPropsDef]] = pydantic.Field(None)
-    FirelensConfig: typing.Optional[dict[str, FirelensConfigDef]] = pydantic.Field(None)
-    FireLensLogDriverProps: typing.Optional[dict[str, FireLensLogDriverPropsDef]] = pydantic.Field(None)
-    FirelensLogRouterDefinitionOptions: typing.Optional[dict[str, FirelensLogRouterDefinitionOptionsDef]] = pydantic.Field(None)
-    FirelensLogRouterProps: typing.Optional[dict[str, FirelensLogRouterPropsDef]] = pydantic.Field(None)
-    FirelensOptions: typing.Optional[dict[str, FirelensOptionsDef]] = pydantic.Field(None)
-    FluentdLogDriverProps: typing.Optional[dict[str, FluentdLogDriverPropsDef]] = pydantic.Field(None)
-    GelfLogDriverProps: typing.Optional[dict[str, GelfLogDriverPropsDef]] = pydantic.Field(None)
-    GenericLogDriverProps: typing.Optional[dict[str, GenericLogDriverPropsDef]] = pydantic.Field(None)
-    HealthCheck: typing.Optional[dict[str, HealthCheckDef]] = pydantic.Field(None)
-    Host: typing.Optional[dict[str, HostDef]] = pydantic.Field(None)
-    InferenceAccelerator: typing.Optional[dict[str, InferenceAcceleratorDef]] = pydantic.Field(None)
-    JournaldLogDriverProps: typing.Optional[dict[str, JournaldLogDriverPropsDef]] = pydantic.Field(None)
-    JsonFileLogDriverProps: typing.Optional[dict[str, JsonFileLogDriverPropsDef]] = pydantic.Field(None)
-    LinuxParametersProps: typing.Optional[dict[str, LinuxParametersPropsDef]] = pydantic.Field(None)
-    LoadBalancerTargetOptions: typing.Optional[dict[str, LoadBalancerTargetOptionsDef]] = pydantic.Field(None)
-    LogDriverConfig: typing.Optional[dict[str, LogDriverConfigDef]] = pydantic.Field(None)
-    MemoryUtilizationScalingProps: typing.Optional[dict[str, MemoryUtilizationScalingPropsDef]] = pydantic.Field(None)
-    MountPoint: typing.Optional[dict[str, MountPointDef]] = pydantic.Field(None)
-    PortMapping: typing.Optional[dict[str, PortMappingDef]] = pydantic.Field(None)
-    RepositoryImageProps: typing.Optional[dict[str, RepositoryImagePropsDef]] = pydantic.Field(None)
-    RequestCountScalingProps: typing.Optional[dict[str, RequestCountScalingPropsDef]] = pydantic.Field(None)
-    RuntimePlatform: typing.Optional[dict[str, RuntimePlatformDef]] = pydantic.Field(None)
-    ScalableTaskCountProps: typing.Optional[dict[str, ScalableTaskCountPropsDef]] = pydantic.Field(None)
-    ScratchSpace: typing.Optional[dict[str, ScratchSpaceDef]] = pydantic.Field(None)
-    SecretVersionInfo: typing.Optional[dict[str, SecretVersionInfoDef]] = pydantic.Field(None)
-    ServiceConnectProps: typing.Optional[dict[str, ServiceConnectPropsDef]] = pydantic.Field(None)
-    ServiceConnectService: typing.Optional[dict[str, ServiceConnectServiceDef]] = pydantic.Field(None)
-    SplunkLogDriverProps: typing.Optional[dict[str, SplunkLogDriverPropsDef]] = pydantic.Field(None)
-    SyslogLogDriverProps: typing.Optional[dict[str, SyslogLogDriverPropsDef]] = pydantic.Field(None)
-    SystemControl: typing.Optional[dict[str, SystemControlDef]] = pydantic.Field(None)
-    TaskDefinitionAttributes: typing.Optional[dict[str, TaskDefinitionAttributesDef]] = pydantic.Field(None)
-    TaskDefinitionProps: typing.Optional[dict[str, TaskDefinitionPropsDef]] = pydantic.Field(None)
-    Tmpfs: typing.Optional[dict[str, TmpfsDef]] = pydantic.Field(None)
-    TrackCustomMetricProps: typing.Optional[dict[str, TrackCustomMetricPropsDef]] = pydantic.Field(None)
-    Ulimit: typing.Optional[dict[str, UlimitDef]] = pydantic.Field(None)
-    Volume: typing.Optional[dict[str, VolumeDef]] = pydantic.Field(None)
-    VolumeFrom: typing.Optional[dict[str, VolumeFromDef]] = pydantic.Field(None)
-    CfnCapacityProvider: typing.Optional[dict[str, CfnCapacityProviderDef]] = pydantic.Field(None)
-    CfnCluster: typing.Optional[dict[str, CfnClusterDef]] = pydantic.Field(None)
-    CfnClusterCapacityProviderAssociations: typing.Optional[dict[str, CfnClusterCapacityProviderAssociationsDef]] = pydantic.Field(None)
-    CfnPrimaryTaskSet: typing.Optional[dict[str, CfnPrimaryTaskSetDef]] = pydantic.Field(None)
-    CfnService: typing.Optional[dict[str, CfnServiceDef]] = pydantic.Field(None)
-    CfnTaskDefinition: typing.Optional[dict[str, CfnTaskDefinitionDef]] = pydantic.Field(None)
-    CfnTaskSet: typing.Optional[dict[str, CfnTaskSetDef]] = pydantic.Field(None)
-    CfnCapacityProviderProps: typing.Optional[dict[str, CfnCapacityProviderPropsDef]] = pydantic.Field(None)
-    CfnClusterCapacityProviderAssociationsProps: typing.Optional[dict[str, CfnClusterCapacityProviderAssociationsPropsDef]] = pydantic.Field(None)
-    CfnClusterProps: typing.Optional[dict[str, CfnClusterPropsDef]] = pydantic.Field(None)
-    CfnPrimaryTaskSetProps: typing.Optional[dict[str, CfnPrimaryTaskSetPropsDef]] = pydantic.Field(None)
-    CfnServiceProps: typing.Optional[dict[str, CfnServicePropsDef]] = pydantic.Field(None)
-    CfnTaskDefinitionProps: typing.Optional[dict[str, CfnTaskDefinitionPropsDef]] = pydantic.Field(None)
-    CfnTaskSetProps: typing.Optional[dict[str, CfnTaskSetPropsDef]] = pydantic.Field(None)
+    AppMeshProxyConfiguration: typing.Optional[dict[str, models.aws_ecs.AppMeshProxyConfigurationDef]] = pydantic.Field(None)
+    AppProtocol: typing.Optional[dict[str, models.aws_ecs.AppProtocolDef]] = pydantic.Field(None)
+    AssetEnvironmentFile: typing.Optional[dict[str, models.aws_ecs.AssetEnvironmentFileDef]] = pydantic.Field(None)
+    AssetImage: typing.Optional[dict[str, models.aws_ecs.AssetImageDef]] = pydantic.Field(None)
+    AwsLogDriver: typing.Optional[dict[str, models.aws_ecs.AwsLogDriverDef]] = pydantic.Field(None)
+    BaseService: typing.Optional[dict[str, models.aws_ecs.BaseServiceDef]] = pydantic.Field(None)
+    BottleRocketImage: typing.Optional[dict[str, models.aws_ecs.BottleRocketImageDef]] = pydantic.Field(None)
+    BuiltInAttributes: typing.Optional[dict[str, models.aws_ecs.BuiltInAttributesDef]] = pydantic.Field(None)
+    ContainerImage: typing.Optional[dict[str, models.aws_ecs.ContainerImageDef]] = pydantic.Field(None)
+    CpuArchitecture: typing.Optional[dict[str, models.aws_ecs.CpuArchitectureDef]] = pydantic.Field(None)
+    EcrImage: typing.Optional[dict[str, models.aws_ecs.EcrImageDef]] = pydantic.Field(None)
+    EcsOptimizedImage: typing.Optional[dict[str, models.aws_ecs.EcsOptimizedImageDef]] = pydantic.Field(None)
+    EnvironmentFile: typing.Optional[dict[str, models.aws_ecs.EnvironmentFileDef]] = pydantic.Field(None)
+    FireLensLogDriver: typing.Optional[dict[str, models.aws_ecs.FireLensLogDriverDef]] = pydantic.Field(None)
+    FluentdLogDriver: typing.Optional[dict[str, models.aws_ecs.FluentdLogDriverDef]] = pydantic.Field(None)
+    GelfLogDriver: typing.Optional[dict[str, models.aws_ecs.GelfLogDriverDef]] = pydantic.Field(None)
+    GenericLogDriver: typing.Optional[dict[str, models.aws_ecs.GenericLogDriverDef]] = pydantic.Field(None)
+    JournaldLogDriver: typing.Optional[dict[str, models.aws_ecs.JournaldLogDriverDef]] = pydantic.Field(None)
+    JsonFileLogDriver: typing.Optional[dict[str, models.aws_ecs.JsonFileLogDriverDef]] = pydantic.Field(None)
+    ListenerConfig: typing.Optional[dict[str, models.aws_ecs.ListenerConfigDef]] = pydantic.Field(None)
+    LogDriver: typing.Optional[dict[str, models.aws_ecs.LogDriverDef]] = pydantic.Field(None)
+    LogDrivers: typing.Optional[dict[str, models.aws_ecs.LogDriversDef]] = pydantic.Field(None)
+    OperatingSystemFamily: typing.Optional[dict[str, models.aws_ecs.OperatingSystemFamilyDef]] = pydantic.Field(None)
+    PlacementConstraint: typing.Optional[dict[str, models.aws_ecs.PlacementConstraintDef]] = pydantic.Field(None)
+    PlacementStrategy: typing.Optional[dict[str, models.aws_ecs.PlacementStrategyDef]] = pydantic.Field(None)
+    PortMap: typing.Optional[dict[str, models.aws_ecs.PortMapDef]] = pydantic.Field(None)
+    ProxyConfiguration: typing.Optional[dict[str, models.aws_ecs.ProxyConfigurationDef]] = pydantic.Field(None)
+    ProxyConfigurations: typing.Optional[dict[str, models.aws_ecs.ProxyConfigurationsDef]] = pydantic.Field(None)
+    RepositoryImage: typing.Optional[dict[str, models.aws_ecs.RepositoryImageDef]] = pydantic.Field(None)
+    S3EnvironmentFile: typing.Optional[dict[str, models.aws_ecs.S3EnvironmentFileDef]] = pydantic.Field(None)
+    Secret: typing.Optional[dict[str, models.aws_ecs.SecretDef]] = pydantic.Field(None)
+    ServiceConnect: typing.Optional[dict[str, models.aws_ecs.ServiceConnectDef]] = pydantic.Field(None)
+    SplunkLogDriver: typing.Optional[dict[str, models.aws_ecs.SplunkLogDriverDef]] = pydantic.Field(None)
+    SyslogLogDriver: typing.Optional[dict[str, models.aws_ecs.SyslogLogDriverDef]] = pydantic.Field(None)
+    TagParameterContainerImage: typing.Optional[dict[str, models.aws_ecs.TagParameterContainerImageDef]] = pydantic.Field(None)
+    AsgCapacityProvider: typing.Optional[dict[str, models.aws_ecs.AsgCapacityProviderDef]] = pydantic.Field(None)
+    Cluster: typing.Optional[dict[str, models.aws_ecs.ClusterDef]] = pydantic.Field(None)
+    ContainerDefinition: typing.Optional[dict[str, models.aws_ecs.ContainerDefinitionDef]] = pydantic.Field(None)
+    Ec2Service: typing.Optional[dict[str, models.aws_ecs.Ec2ServiceDef]] = pydantic.Field(None)
+    Ec2TaskDefinition: typing.Optional[dict[str, models.aws_ecs.Ec2TaskDefinitionDef]] = pydantic.Field(None)
+    ExternalService: typing.Optional[dict[str, models.aws_ecs.ExternalServiceDef]] = pydantic.Field(None)
+    ExternalTaskDefinition: typing.Optional[dict[str, models.aws_ecs.ExternalTaskDefinitionDef]] = pydantic.Field(None)
+    FargateService: typing.Optional[dict[str, models.aws_ecs.FargateServiceDef]] = pydantic.Field(None)
+    FargateTaskDefinition: typing.Optional[dict[str, models.aws_ecs.FargateTaskDefinitionDef]] = pydantic.Field(None)
+    FirelensLogRouter: typing.Optional[dict[str, models.aws_ecs.FirelensLogRouterDef]] = pydantic.Field(None)
+    LinuxParameters: typing.Optional[dict[str, models.aws_ecs.LinuxParametersDef]] = pydantic.Field(None)
+    ScalableTaskCount: typing.Optional[dict[str, models.aws_ecs.ScalableTaskCountDef]] = pydantic.Field(None)
+    TaskDefinition: typing.Optional[dict[str, models.aws_ecs.TaskDefinitionDef]] = pydantic.Field(None)
+    AddAutoScalingGroupCapacityOptions: typing.Optional[dict[str, models.aws_ecs.AddAutoScalingGroupCapacityOptionsDef]] = pydantic.Field(None)
+    AddCapacityOptions: typing.Optional[dict[str, models.aws_ecs.AddCapacityOptionsDef]] = pydantic.Field(None)
+    AppMeshProxyConfigurationConfigProps: typing.Optional[dict[str, models.aws_ecs.AppMeshProxyConfigurationConfigPropsDef]] = pydantic.Field(None)
+    AppMeshProxyConfigurationProps: typing.Optional[dict[str, models.aws_ecs.AppMeshProxyConfigurationPropsDef]] = pydantic.Field(None)
+    AsgCapacityProviderProps: typing.Optional[dict[str, models.aws_ecs.AsgCapacityProviderPropsDef]] = pydantic.Field(None)
+    AssetImageProps: typing.Optional[dict[str, models.aws_ecs.AssetImagePropsDef]] = pydantic.Field(None)
+    AssociateCloudMapServiceOptions: typing.Optional[dict[str, models.aws_ecs.AssociateCloudMapServiceOptionsDef]] = pydantic.Field(None)
+    AuthorizationConfig: typing.Optional[dict[str, models.aws_ecs.AuthorizationConfigDef]] = pydantic.Field(None)
+    AwsLogDriverProps: typing.Optional[dict[str, models.aws_ecs.AwsLogDriverPropsDef]] = pydantic.Field(None)
+    BaseLogDriverProps: typing.Optional[dict[str, models.aws_ecs.BaseLogDriverPropsDef]] = pydantic.Field(None)
+    BaseServiceOptions: typing.Optional[dict[str, models.aws_ecs.BaseServiceOptionsDef]] = pydantic.Field(None)
+    BaseServiceProps: typing.Optional[dict[str, models.aws_ecs.BaseServicePropsDef]] = pydantic.Field(None)
+    BottleRocketImageProps: typing.Optional[dict[str, models.aws_ecs.BottleRocketImagePropsDef]] = pydantic.Field(None)
+    CapacityProviderStrategy: typing.Optional[dict[str, models.aws_ecs.CapacityProviderStrategyDef]] = pydantic.Field(None)
+    CfnCapacityProvider_AutoScalingGroupProviderProperty: typing.Optional[dict[str, models.aws_ecs.CfnCapacityProvider_AutoScalingGroupProviderPropertyDef]] = pydantic.Field(None)
+    CfnCapacityProvider_ManagedScalingProperty: typing.Optional[dict[str, models.aws_ecs.CfnCapacityProvider_ManagedScalingPropertyDef]] = pydantic.Field(None)
+    CfnCluster_CapacityProviderStrategyItemProperty: typing.Optional[dict[str, models.aws_ecs.CfnCluster_CapacityProviderStrategyItemPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ClusterConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnCluster_ClusterConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ClusterSettingsProperty: typing.Optional[dict[str, models.aws_ecs.CfnCluster_ClusterSettingsPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ExecuteCommandConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnCluster_ExecuteCommandConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ExecuteCommandLogConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnCluster_ExecuteCommandLogConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ServiceConnectDefaultsProperty: typing.Optional[dict[str, models.aws_ecs.CfnCluster_ServiceConnectDefaultsPropertyDef]] = pydantic.Field(None)
+    CfnClusterCapacityProviderAssociations_CapacityProviderStrategyProperty: typing.Optional[dict[str, models.aws_ecs.CfnClusterCapacityProviderAssociations_CapacityProviderStrategyPropertyDef]] = pydantic.Field(None)
+    CfnService_AwsVpcConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_AwsVpcConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnService_CapacityProviderStrategyItemProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_CapacityProviderStrategyItemPropertyDef]] = pydantic.Field(None)
+    CfnService_DeploymentAlarmsProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_DeploymentAlarmsPropertyDef]] = pydantic.Field(None)
+    CfnService_DeploymentCircuitBreakerProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_DeploymentCircuitBreakerPropertyDef]] = pydantic.Field(None)
+    CfnService_DeploymentConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_DeploymentConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnService_DeploymentControllerProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_DeploymentControllerPropertyDef]] = pydantic.Field(None)
+    CfnService_LoadBalancerProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_LoadBalancerPropertyDef]] = pydantic.Field(None)
+    CfnService_LogConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_LogConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnService_NetworkConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_NetworkConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnService_PlacementConstraintProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_PlacementConstraintPropertyDef]] = pydantic.Field(None)
+    CfnService_PlacementStrategyProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_PlacementStrategyPropertyDef]] = pydantic.Field(None)
+    CfnService_SecretProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_SecretPropertyDef]] = pydantic.Field(None)
+    CfnService_ServiceConnectClientAliasProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_ServiceConnectClientAliasPropertyDef]] = pydantic.Field(None)
+    CfnService_ServiceConnectConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_ServiceConnectConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnService_ServiceConnectServiceProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_ServiceConnectServicePropertyDef]] = pydantic.Field(None)
+    CfnService_ServiceRegistryProperty: typing.Optional[dict[str, models.aws_ecs.CfnService_ServiceRegistryPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_AuthorizationConfigProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_AuthorizationConfigPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_ContainerDefinitionProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_ContainerDefinitionPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_ContainerDependencyProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_ContainerDependencyPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_DeviceProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_DevicePropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_DockerVolumeConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_DockerVolumeConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_EFSVolumeConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_EFSVolumeConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_EnvironmentFileProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_EnvironmentFilePropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_EphemeralStorageProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_EphemeralStoragePropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_FirelensConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_FirelensConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_HealthCheckProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_HealthCheckPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_HostEntryProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_HostEntryPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_HostVolumePropertiesProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_HostVolumePropertiesPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_InferenceAcceleratorProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_InferenceAcceleratorPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_KernelCapabilitiesProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_KernelCapabilitiesPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_KeyValuePairProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_KeyValuePairPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_LinuxParametersProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_LinuxParametersPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_LogConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_LogConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_MountPointProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_MountPointPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_PortMappingProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_PortMappingPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_ProxyConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_ProxyConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_RepositoryCredentialsProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_RepositoryCredentialsPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_ResourceRequirementProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_ResourceRequirementPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_RuntimePlatformProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_RuntimePlatformPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_SecretProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_SecretPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_SystemControlProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_SystemControlPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_TaskDefinitionPlacementConstraintProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_TaskDefinitionPlacementConstraintPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_TmpfsProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_TmpfsPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_UlimitProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_UlimitPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_VolumeFromProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_VolumeFromPropertyDef]] = pydantic.Field(None)
+    CfnTaskDefinition_VolumeProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinition_VolumePropertyDef]] = pydantic.Field(None)
+    CfnTaskSet_AwsVpcConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskSet_AwsVpcConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskSet_LoadBalancerProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskSet_LoadBalancerPropertyDef]] = pydantic.Field(None)
+    CfnTaskSet_NetworkConfigurationProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskSet_NetworkConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnTaskSet_ScaleProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskSet_ScalePropertyDef]] = pydantic.Field(None)
+    CfnTaskSet_ServiceRegistryProperty: typing.Optional[dict[str, models.aws_ecs.CfnTaskSet_ServiceRegistryPropertyDef]] = pydantic.Field(None)
+    CloudMapNamespaceOptions: typing.Optional[dict[str, models.aws_ecs.CloudMapNamespaceOptionsDef]] = pydantic.Field(None)
+    CloudMapOptions: typing.Optional[dict[str, models.aws_ecs.CloudMapOptionsDef]] = pydantic.Field(None)
+    ClusterAttributes: typing.Optional[dict[str, models.aws_ecs.ClusterAttributesDef]] = pydantic.Field(None)
+    ClusterProps: typing.Optional[dict[str, models.aws_ecs.ClusterPropsDef]] = pydantic.Field(None)
+    CommonTaskDefinitionAttributes: typing.Optional[dict[str, models.aws_ecs.CommonTaskDefinitionAttributesDef]] = pydantic.Field(None)
+    CommonTaskDefinitionProps: typing.Optional[dict[str, models.aws_ecs.CommonTaskDefinitionPropsDef]] = pydantic.Field(None)
+    ContainerDefinitionOptions: typing.Optional[dict[str, models.aws_ecs.ContainerDefinitionOptionsDef]] = pydantic.Field(None)
+    ContainerDefinitionProps: typing.Optional[dict[str, models.aws_ecs.ContainerDefinitionPropsDef]] = pydantic.Field(None)
+    ContainerDependency: typing.Optional[dict[str, models.aws_ecs.ContainerDependencyDef]] = pydantic.Field(None)
+    ContainerImageConfig: typing.Optional[dict[str, models.aws_ecs.ContainerImageConfigDef]] = pydantic.Field(None)
+    CpuUtilizationScalingProps: typing.Optional[dict[str, models.aws_ecs.CpuUtilizationScalingPropsDef]] = pydantic.Field(None)
+    DeploymentAlarmConfig: typing.Optional[dict[str, models.aws_ecs.DeploymentAlarmConfigDef]] = pydantic.Field(None)
+    DeploymentAlarmOptions: typing.Optional[dict[str, models.aws_ecs.DeploymentAlarmOptionsDef]] = pydantic.Field(None)
+    DeploymentCircuitBreaker: typing.Optional[dict[str, models.aws_ecs.DeploymentCircuitBreakerDef]] = pydantic.Field(None)
+    DeploymentController: typing.Optional[dict[str, models.aws_ecs.DeploymentControllerDef]] = pydantic.Field(None)
+    Device: typing.Optional[dict[str, models.aws_ecs.DeviceDef]] = pydantic.Field(None)
+    DockerVolumeConfiguration: typing.Optional[dict[str, models.aws_ecs.DockerVolumeConfigurationDef]] = pydantic.Field(None)
+    Ec2ServiceAttributes: typing.Optional[dict[str, models.aws_ecs.Ec2ServiceAttributesDef]] = pydantic.Field(None)
+    Ec2ServiceProps: typing.Optional[dict[str, models.aws_ecs.Ec2ServicePropsDef]] = pydantic.Field(None)
+    Ec2TaskDefinitionAttributes: typing.Optional[dict[str, models.aws_ecs.Ec2TaskDefinitionAttributesDef]] = pydantic.Field(None)
+    Ec2TaskDefinitionProps: typing.Optional[dict[str, models.aws_ecs.Ec2TaskDefinitionPropsDef]] = pydantic.Field(None)
+    EcsOptimizedImageOptions: typing.Optional[dict[str, models.aws_ecs.EcsOptimizedImageOptionsDef]] = pydantic.Field(None)
+    EcsTarget: typing.Optional[dict[str, models.aws_ecs.EcsTargetDef]] = pydantic.Field(None)
+    EfsVolumeConfiguration: typing.Optional[dict[str, models.aws_ecs.EfsVolumeConfigurationDef]] = pydantic.Field(None)
+    EnvironmentFileConfig: typing.Optional[dict[str, models.aws_ecs.EnvironmentFileConfigDef]] = pydantic.Field(None)
+    ExecuteCommandConfiguration: typing.Optional[dict[str, models.aws_ecs.ExecuteCommandConfigurationDef]] = pydantic.Field(None)
+    ExecuteCommandLogConfiguration: typing.Optional[dict[str, models.aws_ecs.ExecuteCommandLogConfigurationDef]] = pydantic.Field(None)
+    ExternalServiceAttributes: typing.Optional[dict[str, models.aws_ecs.ExternalServiceAttributesDef]] = pydantic.Field(None)
+    ExternalServiceProps: typing.Optional[dict[str, models.aws_ecs.ExternalServicePropsDef]] = pydantic.Field(None)
+    ExternalTaskDefinitionAttributes: typing.Optional[dict[str, models.aws_ecs.ExternalTaskDefinitionAttributesDef]] = pydantic.Field(None)
+    ExternalTaskDefinitionProps: typing.Optional[dict[str, models.aws_ecs.ExternalTaskDefinitionPropsDef]] = pydantic.Field(None)
+    FargateServiceAttributes: typing.Optional[dict[str, models.aws_ecs.FargateServiceAttributesDef]] = pydantic.Field(None)
+    FargateServiceProps: typing.Optional[dict[str, models.aws_ecs.FargateServicePropsDef]] = pydantic.Field(None)
+    FargateTaskDefinitionAttributes: typing.Optional[dict[str, models.aws_ecs.FargateTaskDefinitionAttributesDef]] = pydantic.Field(None)
+    FargateTaskDefinitionProps: typing.Optional[dict[str, models.aws_ecs.FargateTaskDefinitionPropsDef]] = pydantic.Field(None)
+    FirelensConfig: typing.Optional[dict[str, models.aws_ecs.FirelensConfigDef]] = pydantic.Field(None)
+    FireLensLogDriverProps: typing.Optional[dict[str, models.aws_ecs.FireLensLogDriverPropsDef]] = pydantic.Field(None)
+    FirelensLogRouterDefinitionOptions: typing.Optional[dict[str, models.aws_ecs.FirelensLogRouterDefinitionOptionsDef]] = pydantic.Field(None)
+    FirelensLogRouterProps: typing.Optional[dict[str, models.aws_ecs.FirelensLogRouterPropsDef]] = pydantic.Field(None)
+    FirelensOptions: typing.Optional[dict[str, models.aws_ecs.FirelensOptionsDef]] = pydantic.Field(None)
+    FluentdLogDriverProps: typing.Optional[dict[str, models.aws_ecs.FluentdLogDriverPropsDef]] = pydantic.Field(None)
+    GelfLogDriverProps: typing.Optional[dict[str, models.aws_ecs.GelfLogDriverPropsDef]] = pydantic.Field(None)
+    GenericLogDriverProps: typing.Optional[dict[str, models.aws_ecs.GenericLogDriverPropsDef]] = pydantic.Field(None)
+    HealthCheck: typing.Optional[dict[str, models.aws_ecs.HealthCheckDef]] = pydantic.Field(None)
+    Host: typing.Optional[dict[str, models.aws_ecs.HostDef]] = pydantic.Field(None)
+    InferenceAccelerator: typing.Optional[dict[str, models.aws_ecs.InferenceAcceleratorDef]] = pydantic.Field(None)
+    JournaldLogDriverProps: typing.Optional[dict[str, models.aws_ecs.JournaldLogDriverPropsDef]] = pydantic.Field(None)
+    JsonFileLogDriverProps: typing.Optional[dict[str, models.aws_ecs.JsonFileLogDriverPropsDef]] = pydantic.Field(None)
+    LinuxParametersProps: typing.Optional[dict[str, models.aws_ecs.LinuxParametersPropsDef]] = pydantic.Field(None)
+    LoadBalancerTargetOptions: typing.Optional[dict[str, models.aws_ecs.LoadBalancerTargetOptionsDef]] = pydantic.Field(None)
+    LogDriverConfig: typing.Optional[dict[str, models.aws_ecs.LogDriverConfigDef]] = pydantic.Field(None)
+    MemoryUtilizationScalingProps: typing.Optional[dict[str, models.aws_ecs.MemoryUtilizationScalingPropsDef]] = pydantic.Field(None)
+    MountPoint: typing.Optional[dict[str, models.aws_ecs.MountPointDef]] = pydantic.Field(None)
+    PortMapping: typing.Optional[dict[str, models.aws_ecs.PortMappingDef]] = pydantic.Field(None)
+    RepositoryImageProps: typing.Optional[dict[str, models.aws_ecs.RepositoryImagePropsDef]] = pydantic.Field(None)
+    RequestCountScalingProps: typing.Optional[dict[str, models.aws_ecs.RequestCountScalingPropsDef]] = pydantic.Field(None)
+    RuntimePlatform: typing.Optional[dict[str, models.aws_ecs.RuntimePlatformDef]] = pydantic.Field(None)
+    ScalableTaskCountProps: typing.Optional[dict[str, models.aws_ecs.ScalableTaskCountPropsDef]] = pydantic.Field(None)
+    ScratchSpace: typing.Optional[dict[str, models.aws_ecs.ScratchSpaceDef]] = pydantic.Field(None)
+    SecretVersionInfo: typing.Optional[dict[str, models.aws_ecs.SecretVersionInfoDef]] = pydantic.Field(None)
+    ServiceConnectProps: typing.Optional[dict[str, models.aws_ecs.ServiceConnectPropsDef]] = pydantic.Field(None)
+    ServiceConnectService: typing.Optional[dict[str, models.aws_ecs.ServiceConnectServiceDef]] = pydantic.Field(None)
+    SplunkLogDriverProps: typing.Optional[dict[str, models.aws_ecs.SplunkLogDriverPropsDef]] = pydantic.Field(None)
+    SyslogLogDriverProps: typing.Optional[dict[str, models.aws_ecs.SyslogLogDriverPropsDef]] = pydantic.Field(None)
+    SystemControl: typing.Optional[dict[str, models.aws_ecs.SystemControlDef]] = pydantic.Field(None)
+    TaskDefinitionAttributes: typing.Optional[dict[str, models.aws_ecs.TaskDefinitionAttributesDef]] = pydantic.Field(None)
+    TaskDefinitionProps: typing.Optional[dict[str, models.aws_ecs.TaskDefinitionPropsDef]] = pydantic.Field(None)
+    Tmpfs: typing.Optional[dict[str, models.aws_ecs.TmpfsDef]] = pydantic.Field(None)
+    TrackCustomMetricProps: typing.Optional[dict[str, models.aws_ecs.TrackCustomMetricPropsDef]] = pydantic.Field(None)
+    Ulimit: typing.Optional[dict[str, models.aws_ecs.UlimitDef]] = pydantic.Field(None)
+    Volume: typing.Optional[dict[str, models.aws_ecs.VolumeDef]] = pydantic.Field(None)
+    VolumeFrom: typing.Optional[dict[str, models.aws_ecs.VolumeFromDef]] = pydantic.Field(None)
+    CfnCapacityProvider: typing.Optional[dict[str, models.aws_ecs.CfnCapacityProviderDef]] = pydantic.Field(None)
+    CfnCluster: typing.Optional[dict[str, models.aws_ecs.CfnClusterDef]] = pydantic.Field(None)
+    CfnClusterCapacityProviderAssociations: typing.Optional[dict[str, models.aws_ecs.CfnClusterCapacityProviderAssociationsDef]] = pydantic.Field(None)
+    CfnPrimaryTaskSet: typing.Optional[dict[str, models.aws_ecs.CfnPrimaryTaskSetDef]] = pydantic.Field(None)
+    CfnService: typing.Optional[dict[str, models.aws_ecs.CfnServiceDef]] = pydantic.Field(None)
+    CfnTaskDefinition: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinitionDef]] = pydantic.Field(None)
+    CfnTaskSet: typing.Optional[dict[str, models.aws_ecs.CfnTaskSetDef]] = pydantic.Field(None)
+    CfnCapacityProviderProps: typing.Optional[dict[str, models.aws_ecs.CfnCapacityProviderPropsDef]] = pydantic.Field(None)
+    CfnClusterCapacityProviderAssociationsProps: typing.Optional[dict[str, models.aws_ecs.CfnClusterCapacityProviderAssociationsPropsDef]] = pydantic.Field(None)
+    CfnClusterProps: typing.Optional[dict[str, models.aws_ecs.CfnClusterPropsDef]] = pydantic.Field(None)
+    CfnPrimaryTaskSetProps: typing.Optional[dict[str, models.aws_ecs.CfnPrimaryTaskSetPropsDef]] = pydantic.Field(None)
+    CfnServiceProps: typing.Optional[dict[str, models.aws_ecs.CfnServicePropsDef]] = pydantic.Field(None)
+    CfnTaskDefinitionProps: typing.Optional[dict[str, models.aws_ecs.CfnTaskDefinitionPropsDef]] = pydantic.Field(None)
+    CfnTaskSetProps: typing.Optional[dict[str, models.aws_ecs.CfnTaskSetPropsDef]] = pydantic.Field(None)
     ...
+
+import models

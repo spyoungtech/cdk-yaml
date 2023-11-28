@@ -16,15 +16,16 @@ class AuroraEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AuroraEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.AuroraEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class AuroraEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AuroraEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new AuroraEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.AuroraEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new AuroraEngineVersion with an arbitrary version.')
 
 class AuroraEngineVersionDefOfParams(pydantic.BaseModel):
     aurora_full_version: str = pydantic.Field(..., description='the full version string, for example "5.6.mysql_aurora.1.78.3.6".\n')
     aurora_major_version: typing.Optional[str] = pydantic.Field(None, description='the major version of the engine, defaults to "5.6".')
+    return_config: typing.Optional[list[models.aws_rds.AuroraEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -38,15 +39,16 @@ class AuroraMysqlEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AuroraMysqlEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.AuroraMysqlEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class AuroraMysqlEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AuroraMysqlEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new AuroraMysqlEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.AuroraMysqlEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new AuroraMysqlEngineVersion with an arbitrary version.')
 
 class AuroraMysqlEngineVersionDefOfParams(pydantic.BaseModel):
     aurora_mysql_full_version: str = pydantic.Field(..., description='the full version string, for example "5.7.mysql_aurora.2.78.3.6".\n')
     aurora_mysql_major_version: typing.Optional[str] = pydantic.Field(None, description='the major version of the engine, defaults to "5.7".')
+    return_config: typing.Optional[list[models.aws_rds.AuroraMysqlEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -60,17 +62,18 @@ class AuroraPostgresEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AuroraPostgresEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.AuroraPostgresEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class AuroraPostgresEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AuroraPostgresEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new AuroraPostgresEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.AuroraPostgresEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new AuroraPostgresEngineVersion with an arbitrary version.')
 
 class AuroraPostgresEngineVersionDefOfParams(pydantic.BaseModel):
     aurora_postgres_full_version: str = pydantic.Field(..., description='the full version string, for example "9.6.25.1".\n')
     aurora_postgres_major_version: str = pydantic.Field(..., description='the major version of the engine, for example "9.6".\n')
     s3_export: typing.Optional[bool] = pydantic.Field(None, description='Whether this version of the Aurora Postgres cluster engine supports the S3 data export feature. Default: false\n')
     s3_import: typing.Optional[bool] = pydantic.Field(None, description='Whether this version of the Aurora Postgres cluster engine supports the S3 data import feature. Default: false')
+    return_config: typing.Optional[list[models.aws_rds.AuroraPostgresEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -84,14 +87,15 @@ class CaCertificateDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CaCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CaCertificateDefConfig] = pydantic.Field(None)
 
 
 class CaCertificateDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[CaCertificateDefOfParams]] = pydantic.Field(None, description='Custom CA certificate.')
+    of: typing.Optional[list[models.aws_rds.CaCertificateDefOfParams]] = pydantic.Field(None, description='Custom CA certificate.')
 
 class CaCertificateDefOfParams(pydantic.BaseModel):
     identifier: str = pydantic.Field(..., description='- CA certificate identifier.')
+    return_config: typing.Optional[list[models.aws_rds.CaCertificateDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -105,13 +109,13 @@ class ClusterInstanceDef(BaseClass):
     ...
 
 
-    provisioned: typing.Optional[ClusterInstanceDefProvisionedParams] = pydantic.Field(None, description='Add a provisioned instance to the cluster.')
-    serverless_v2: typing.Optional[ClusterInstanceDefServerlessV2Params] = pydantic.Field(None, description='Add a serverless v2 instance to the cluster.')
-    resource_config: typing.Optional[ClusterInstanceDefConfig] = pydantic.Field(None)
+    provisioned: typing.Optional[models.aws_rds.ClusterInstanceDefProvisionedParams] = pydantic.Field(None, description='Add a provisioned instance to the cluster.')
+    serverless_v2: typing.Optional[models.aws_rds.ClusterInstanceDefServerlessV2Params] = pydantic.Field(None, description='Add a serverless v2 instance to the cluster.')
+    resource_config: typing.Optional[models.aws_rds.ClusterInstanceDefConfig] = pydantic.Field(None)
 
 
 class ClusterInstanceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ClusterInstanceDefBindParams]] = pydantic.Field(None, description='Add the ClusterInstance to the cluster.')
+    bind: typing.Optional[list[models.aws_rds.ClusterInstanceDefBindParams]] = pydantic.Field(None, description='Add the ClusterInstance to the cluster.')
 
 class ClusterInstanceDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -170,18 +174,20 @@ class ClusterInstanceTypeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ClusterInstanceTypeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.ClusterInstanceTypeDefConfig] = pydantic.Field(None)
 
 
 class ClusterInstanceTypeDefConfig(pydantic.BaseModel):
-    provisioned: typing.Optional[list[ClusterInstanceTypeDefProvisionedParams]] = pydantic.Field(None, description='Aurora Provisioned instance type.')
-    serverless_v2: typing.Optional[list[ClusterInstanceTypeDefServerlessV2Params]] = pydantic.Field(None, description='Aurora Serverless V2 instance type.\n:see: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html')
+    provisioned: typing.Optional[list[models.aws_rds.ClusterInstanceTypeDefProvisionedParams]] = pydantic.Field(None, description='Aurora Provisioned instance type.')
+    serverless_v2: typing.Optional[list[models.aws_rds.ClusterInstanceTypeDefServerlessV2Params]] = pydantic.Field(None, description='Aurora Serverless V2 instance type.\n:see: https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html')
 
 class ClusterInstanceTypeDefProvisionedParams(pydantic.BaseModel):
     instance_type: typing.Optional[models.aws_ec2.InstanceTypeDef] = pydantic.Field(None, description='-')
+    return_config: typing.Optional[list[models.aws_rds.ClusterInstanceTypeDefConfig]] = pydantic.Field(None)
     ...
 
 class ClusterInstanceTypeDefServerlessV2Params(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_rds.ClusterInstanceTypeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -195,10 +201,10 @@ class CredentialsDef(BaseClass):
     ...
 
 
-    from_generated_secret: typing.Optional[CredentialsDefFromGeneratedSecretParams] = pydantic.Field(None, description='Creates Credentials with a password generated and stored in Secrets Manager.')
-    from_password: typing.Optional[CredentialsDefFromPasswordParams] = pydantic.Field(None, description='Creates Credentials from a password.\nDo not put passwords in your CDK code directly.')
-    from_secret: typing.Optional[CredentialsDefFromSecretParams] = pydantic.Field(None, description='Creates Credentials from an existing Secrets Manager ``Secret`` (or ``DatabaseSecret``).\nThe Secret must be a JSON string with a ``username`` and ``password`` field::\n\n   {\n     ...\n     "username": <required: username>,\n     "password": <required: password>,\n   }')
-    from_username: typing.Optional[CredentialsDefFromUsernameParams] = pydantic.Field(None, description='Creates Credentials for the given username, and optional password and key.\nIf no password is provided, one will be generated and stored in Secrets Manager.')
+    from_generated_secret: typing.Optional[models.aws_rds.CredentialsDefFromGeneratedSecretParams] = pydantic.Field(None, description='Creates Credentials with a password generated and stored in Secrets Manager.')
+    from_password: typing.Optional[models.aws_rds.CredentialsDefFromPasswordParams] = pydantic.Field(None, description='Creates Credentials from a password.\nDo not put passwords in your CDK code directly.')
+    from_secret: typing.Optional[models.aws_rds.CredentialsDefFromSecretParams] = pydantic.Field(None, description='Creates Credentials from an existing Secrets Manager ``Secret`` (or ``DatabaseSecret``).\nThe Secret must be a JSON string with a ``username`` and ``password`` field::\n\n   {\n     ...\n     "username": <required: username>,\n     "password": <required: password>,\n   }')
+    from_username: typing.Optional[models.aws_rds.CredentialsDefFromUsernameParams] = pydantic.Field(None, description='Creates Credentials for the given username, and optional password and key.\nIf no password is provided, one will be generated and stored in Secrets Manager.')
 
 class CredentialsDefFromGeneratedSecretParams(pydantic.BaseModel):
     username: str = pydantic.Field(..., description='-\n')
@@ -242,27 +248,27 @@ class DatabaseClusterBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DatabaseClusterBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseClusterBaseDefConfig] = pydantic.Field(None)
 
 
 class DatabaseClusterBaseDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseClusterBaseDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric: typing.Optional[list[DatabaseClusterBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
-    metric_cpu_utilization: typing.Optional[list[DatabaseClusterBaseDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseClusterBaseDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_deadlocks: typing.Optional[list[DatabaseClusterBaseDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
-    metric_engine_uptime: typing.Optional[list[DatabaseClusterBaseDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
-    metric_free_local_storage: typing.Optional[list[DatabaseClusterBaseDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseClusterBaseDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
-    metric_network_receive_throughput: typing.Optional[list[DatabaseClusterBaseDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_throughput: typing.Optional[list[DatabaseClusterBaseDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_transmit_throughput: typing.Optional[list[DatabaseClusterBaseDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_snapshot_storage_used: typing.Optional[list[DatabaseClusterBaseDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
-    metric_total_backup_storage_billed: typing.Optional[list[DatabaseClusterBaseDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
-    metric_volume_bytes_used: typing.Optional[list[DatabaseClusterBaseDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
-    metric_volume_read_io_ps: typing.Optional[list[DatabaseClusterBaseDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
-    metric_volume_write_io_ps: typing.Optional[list[DatabaseClusterBaseDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_deadlocks: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
+    metric_engine_uptime: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
+    metric_free_local_storage: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
+    metric_network_receive_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_transmit_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_snapshot_storage_used: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
+    metric_total_backup_storage_billed: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
+    metric_volume_bytes_used: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
+    metric_volume_read_io_ps: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric_volume_write_io_ps: typing.Optional[list[models.aws_rds.DatabaseClusterBaseDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class DatabaseClusterBaseDefAddProxyParams(pydantic.BaseModel):
@@ -481,9 +487,9 @@ class DatabaseClusterEngineDef(BaseClass):
     ...
 
 
-    aurora: typing.Optional[DatabaseClusterEngineDefAuroraParams] = pydantic.Field(None, description='Creates a new plain Aurora database cluster engine.')
-    aurora_mysql: typing.Optional[DatabaseClusterEngineDefAuroraMysqlParams] = pydantic.Field(None, description='Creates a new Aurora MySQL database cluster engine.')
-    aurora_postgres: typing.Optional[DatabaseClusterEngineDefAuroraPostgresParams] = pydantic.Field(None, description='Creates a new Aurora PostgreSQL database cluster engine.')
+    aurora: typing.Optional[models.aws_rds.DatabaseClusterEngineDefAuroraParams] = pydantic.Field(None, description='Creates a new plain Aurora database cluster engine.')
+    aurora_mysql: typing.Optional[models.aws_rds.DatabaseClusterEngineDefAuroraMysqlParams] = pydantic.Field(None, description='Creates a new Aurora MySQL database cluster engine.')
+    aurora_postgres: typing.Optional[models.aws_rds.DatabaseClusterEngineDefAuroraPostgresParams] = pydantic.Field(None, description='Creates a new Aurora PostgreSQL database cluster engine.')
 
 class DatabaseClusterEngineDefAuroraParams(pydantic.BaseModel):
     version: models.aws_rds.AuroraEngineVersionDef = pydantic.Field(..., description='The version of the Aurora cluster engine.')
@@ -512,22 +518,22 @@ class DatabaseInstanceBaseDef(BaseClass):
     ...
 
 
-    from_database_instance_attributes: typing.Optional[DatabaseInstanceBaseDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
-    resource_config: typing.Optional[DatabaseInstanceBaseDefConfig] = pydantic.Field(None)
+    from_database_instance_attributes: typing.Optional[models.aws_rds.DatabaseInstanceBaseDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceBaseDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceBaseDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseInstanceBaseDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_connect: typing.Optional[list[DatabaseInstanceBaseDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
-    metric: typing.Optional[list[DatabaseInstanceBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
-    metric_cpu_utilization: typing.Optional[list[DatabaseInstanceBaseDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseInstanceBaseDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_free_storage_space: typing.Optional[list[DatabaseInstanceBaseDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseInstanceBaseDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
-    metric_read_iops: typing.Optional[list[DatabaseInstanceBaseDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
-    metric_write_iops: typing.Optional[list[DatabaseInstanceBaseDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
-    on_event: typing.Optional[list[DatabaseInstanceBaseDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    grant_connect: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
+    metric: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_free_storage_space: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
+    metric_read_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
+    metric_write_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
+    on_event: typing.Optional[list[models.aws_rds.DatabaseInstanceBaseDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class DatabaseInstanceBaseDefAddProxyParams(pydantic.BaseModel):
@@ -677,17 +683,17 @@ class DatabaseInstanceEngineDef(BaseClass):
     ...
 
 
-    maria_db: typing.Optional[DatabaseInstanceEngineDefMariaDbParams] = pydantic.Field(None, description='Creates a new MariaDB instance engine.')
-    mysql: typing.Optional[DatabaseInstanceEngineDefMysqlParams] = pydantic.Field(None, description='Creates a new MySQL instance engine.')
-    oracle_ee: typing.Optional[DatabaseInstanceEngineDefOracleEeParams] = pydantic.Field(None, description='Creates a new Oracle Enterprise Edition instance engine.')
-    oracle_ee_cdb: typing.Optional[DatabaseInstanceEngineDefOracleEeCdbParams] = pydantic.Field(None, description='Creates a new Oracle Enterprise Edition (CDB) instance engine.')
-    oracle_se2: typing.Optional[DatabaseInstanceEngineDefOracleSe2Params] = pydantic.Field(None, description='Creates a new Oracle Standard Edition 2 instance engine.')
-    oracle_se2_cdb: typing.Optional[DatabaseInstanceEngineDefOracleSe2CdbParams] = pydantic.Field(None, description='Creates a new Oracle Standard Edition 2 (CDB) instance engine.')
-    postgres: typing.Optional[DatabaseInstanceEngineDefPostgresParams] = pydantic.Field(None, description='Creates a new PostgreSQL instance engine.')
-    sql_server_ee: typing.Optional[DatabaseInstanceEngineDefSqlServerEeParams] = pydantic.Field(None, description='Creates a new SQL Server Enterprise Edition instance engine.')
-    sql_server_ex: typing.Optional[DatabaseInstanceEngineDefSqlServerExParams] = pydantic.Field(None, description='Creates a new SQL Server Express Edition instance engine.')
-    sql_server_se: typing.Optional[DatabaseInstanceEngineDefSqlServerSeParams] = pydantic.Field(None, description='Creates a new SQL Server Standard Edition instance engine.')
-    sql_server_web: typing.Optional[DatabaseInstanceEngineDefSqlServerWebParams] = pydantic.Field(None, description='Creates a new SQL Server Web Edition instance engine.')
+    maria_db: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefMariaDbParams] = pydantic.Field(None, description='Creates a new MariaDB instance engine.')
+    mysql: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefMysqlParams] = pydantic.Field(None, description='Creates a new MySQL instance engine.')
+    oracle_ee: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefOracleEeParams] = pydantic.Field(None, description='Creates a new Oracle Enterprise Edition instance engine.')
+    oracle_ee_cdb: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefOracleEeCdbParams] = pydantic.Field(None, description='Creates a new Oracle Enterprise Edition (CDB) instance engine.')
+    oracle_se2: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefOracleSe2Params] = pydantic.Field(None, description='Creates a new Oracle Standard Edition 2 instance engine.')
+    oracle_se2_cdb: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefOracleSe2CdbParams] = pydantic.Field(None, description='Creates a new Oracle Standard Edition 2 (CDB) instance engine.')
+    postgres: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefPostgresParams] = pydantic.Field(None, description='Creates a new PostgreSQL instance engine.')
+    sql_server_ee: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefSqlServerEeParams] = pydantic.Field(None, description='Creates a new SQL Server Enterprise Edition instance engine.')
+    sql_server_ex: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefSqlServerExParams] = pydantic.Field(None, description='Creates a new SQL Server Express Edition instance engine.')
+    sql_server_se: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefSqlServerSeParams] = pydantic.Field(None, description='Creates a new SQL Server Standard Edition instance engine.')
+    sql_server_web: typing.Optional[models.aws_rds.DatabaseInstanceEngineDefSqlServerWebParams] = pydantic.Field(None, description='Creates a new SQL Server Web Edition instance engine.')
 
 class DatabaseInstanceEngineDefMariaDbParams(pydantic.BaseModel):
     version: models.aws_rds.MariaDbEngineVersionDef = pydantic.Field(..., description='The exact version of the engine to use.')
@@ -758,15 +764,16 @@ class MariaDbEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MariaDbEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.MariaDbEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class MariaDbEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[MariaDbEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new MariaDbEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.MariaDbEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new MariaDbEngineVersion with an arbitrary version.')
 
 class MariaDbEngineVersionDefOfParams(pydantic.BaseModel):
     maria_db_full_version: str = pydantic.Field(..., description='the full version string, for example "10.5.28".\n')
     maria_db_major_version: str = pydantic.Field(..., description='the major version of the engine, for example "10.5".')
+    return_config: typing.Optional[list[models.aws_rds.MariaDbEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -780,15 +787,16 @@ class MysqlEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MysqlEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.MysqlEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class MysqlEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[MysqlEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new MysqlEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.MysqlEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new MysqlEngineVersion with an arbitrary version.')
 
 class MysqlEngineVersionDefOfParams(pydantic.BaseModel):
     mysql_full_version: str = pydantic.Field(..., description='the full version string, for example "8.1.43".\n')
     mysql_major_version: str = pydantic.Field(..., description='the major version of the engine, for example "8.1".')
+    return_config: typing.Optional[list[models.aws_rds.MysqlEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -802,15 +810,16 @@ class OracleEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OracleEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.OracleEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class OracleEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[OracleEngineVersionDefOfParams]] = pydantic.Field(None, description='Creates a new OracleEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.OracleEngineVersionDefOfParams]] = pydantic.Field(None, description='Creates a new OracleEngineVersion with an arbitrary version.')
 
 class OracleEngineVersionDefOfParams(pydantic.BaseModel):
     oracle_full_version: str = pydantic.Field(..., description='the full version string, for example "19.0.0.0.ru-2019-10.rur-2019-10.r1".\n')
     oracle_major_version: str = pydantic.Field(..., description='the major version of the engine, for example "19".')
+    return_config: typing.Optional[list[models.aws_rds.OracleEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -824,17 +833,18 @@ class PostgresEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PostgresEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.PostgresEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class PostgresEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[PostgresEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new PostgresEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.PostgresEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new PostgresEngineVersion with an arbitrary version.')
 
 class PostgresEngineVersionDefOfParams(pydantic.BaseModel):
     postgres_full_version: str = pydantic.Field(..., description='the full version string, for example "13.11".\n')
     postgres_major_version: str = pydantic.Field(..., description='the major version of the engine, for example "13".\n')
     s3_export: typing.Optional[bool] = pydantic.Field(None, description='Whether this version of the Postgres engine supports the S3 data export feature. Default: false\n')
     s3_import: typing.Optional[bool] = pydantic.Field(None, description='Whether this version of the Postgres engine supports the S3 data import feature. Default: false')
+    return_config: typing.Optional[list[models.aws_rds.PostgresEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -848,13 +858,13 @@ class ProxyTargetDef(BaseClass):
     ...
 
 
-    from_cluster: typing.Optional[ProxyTargetDefFromClusterParams] = pydantic.Field(None, description='From cluster.')
-    from_instance: typing.Optional[ProxyTargetDefFromInstanceParams] = pydantic.Field(None, description='From instance.')
-    resource_config: typing.Optional[ProxyTargetDefConfig] = pydantic.Field(None)
+    from_cluster: typing.Optional[models.aws_rds.ProxyTargetDefFromClusterParams] = pydantic.Field(None, description='From cluster.')
+    from_instance: typing.Optional[models.aws_rds.ProxyTargetDefFromInstanceParams] = pydantic.Field(None, description='From instance.')
+    resource_config: typing.Optional[models.aws_rds.ProxyTargetDefConfig] = pydantic.Field(None)
 
 
 class ProxyTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ProxyTargetDefBindParams]] = pydantic.Field(None, description='Bind this target to the specified database proxy.')
+    bind: typing.Optional[list[models.aws_rds.ProxyTargetDefBindParams]] = pydantic.Field(None, description='Bind this target to the specified database proxy.')
 
 class ProxyTargetDefBindParams(pydantic.BaseModel):
     proxy: models.aws_rds.DatabaseProxyDef = pydantic.Field(..., description='-')
@@ -879,14 +889,15 @@ class SessionPinningFilterDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SessionPinningFilterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.SessionPinningFilterDefConfig] = pydantic.Field(None)
 
 
 class SessionPinningFilterDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[SessionPinningFilterDefOfParams]] = pydantic.Field(None, description='custom filter.')
+    of: typing.Optional[list[models.aws_rds.SessionPinningFilterDefOfParams]] = pydantic.Field(None, description='custom filter.')
 
 class SessionPinningFilterDefOfParams(pydantic.BaseModel):
     filter_name: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_rds.SessionPinningFilterDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -900,10 +911,10 @@ class SnapshotCredentialsDef(BaseClass):
     ...
 
 
-    from_generated_password: typing.Optional[SnapshotCredentialsDefFromGeneratedPasswordParams] = pydantic.Field(None, description='Generate a new password for the snapshot, using the existing username and an optional encryption key.\nNote - The username must match the existing master username of the snapshot.\n\nNOTE: use ``fromGeneratedSecret()`` for new Clusters and Instances. Switching from\n``fromGeneratedPassword()`` to ``fromGeneratedSecret()`` for already deployed Clusters\nor Instances will update their master password.')
-    from_generated_secret: typing.Optional[SnapshotCredentialsDefFromGeneratedSecretParams] = pydantic.Field(None, description='Generate a new password for the snapshot, using the existing username and an optional encryption key.\nThe new credentials are stored in Secrets Manager.\n\nNote - The username must match the existing master username of the snapshot.')
-    from_password: typing.Optional[SnapshotCredentialsDefFromPasswordParams] = pydantic.Field(None, description='Update the snapshot login with an existing password.')
-    from_secret: typing.Optional[SnapshotCredentialsDefFromSecretParams] = pydantic.Field(None, description='Update the snapshot login with an existing password from a Secret.\nThe Secret must be a JSON string with a ``password`` field::\n\n   {\n     ...\n     "password": <required: password>,\n   }')
+    from_generated_password: typing.Optional[models.aws_rds.SnapshotCredentialsDefFromGeneratedPasswordParams] = pydantic.Field(None, description='Generate a new password for the snapshot, using the existing username and an optional encryption key.\nNote - The username must match the existing master username of the snapshot.\n\nNOTE: use ``fromGeneratedSecret()`` for new Clusters and Instances. Switching from\n``fromGeneratedPassword()`` to ``fromGeneratedSecret()`` for already deployed Clusters\nor Instances will update their master password.')
+    from_generated_secret: typing.Optional[models.aws_rds.SnapshotCredentialsDefFromGeneratedSecretParams] = pydantic.Field(None, description='Generate a new password for the snapshot, using the existing username and an optional encryption key.\nThe new credentials are stored in Secrets Manager.\n\nNote - The username must match the existing master username of the snapshot.')
+    from_password: typing.Optional[models.aws_rds.SnapshotCredentialsDefFromPasswordParams] = pydantic.Field(None, description='Update the snapshot login with an existing password.')
+    from_secret: typing.Optional[models.aws_rds.SnapshotCredentialsDefFromSecretParams] = pydantic.Field(None, description='Update the snapshot login with an existing password from a Secret.\nThe Secret must be a JSON string with a ``password`` field::\n\n   {\n     ...\n     "password": <required: password>,\n   }')
 
 class SnapshotCredentialsDefFromGeneratedPasswordParams(pydantic.BaseModel):
     username: str = pydantic.Field(..., description='-\n')
@@ -938,15 +949,16 @@ class SqlServerEngineVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqlServerEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.SqlServerEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class SqlServerEngineVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[SqlServerEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new SqlServerEngineVersion with an arbitrary version.')
+    of: typing.Optional[list[models.aws_rds.SqlServerEngineVersionDefOfParams]] = pydantic.Field(None, description='Create a new SqlServerEngineVersion with an arbitrary version.')
 
 class SqlServerEngineVersionDefOfParams(pydantic.BaseModel):
     sql_server_full_version: str = pydantic.Field(..., description='the full version string, for example "15.00.3049.1.v1".\n')
     sql_server_major_version: str = pydantic.Field(..., description='the major version of the engine, for example "15.00".')
+    return_config: typing.Optional[list[models.aws_rds.SqlServerEngineVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -977,9 +989,9 @@ class DatabaseClusterDef(BaseConstruct):
     preferred_maintenance_window: typing.Optional[str] = pydantic.Field(None, description="A preferred maintenance window day/time range. Should be specified as a range ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). Example: 'Sun:23:45-Mon:00:15' Default: - 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.\n")
     readers: typing.Optional[typing.Sequence[typing.Union[models.aws_rds.ClusterInstanceDef]]] = pydantic.Field(None, description='A list of instances to create as cluster reader instances. Default: - no readers are created. The cluster will have a single writer/reader\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The removal policy to apply when the cluster and its instances are removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the cluster and instances, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 export. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 import. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='Security group. Default: a new security group is created.\n')
     serverless_v2_max_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128 (256GB). The maximum capacity must be higher than 0.5 ACUs. Default: 2\n')
@@ -999,32 +1011,32 @@ class DatabaseClusterDef(BaseConstruct):
     ...
 
 
-    from_database_cluster_attributes: typing.Optional[DatabaseClusterDefFromDatabaseClusterAttributesParams] = pydantic.Field(None, description='Import an existing DatabaseCluster from properties.')
-    resource_config: typing.Optional[DatabaseClusterDefConfig] = pydantic.Field(None)
+    from_database_cluster_attributes: typing.Optional[models.aws_rds.DatabaseClusterDefFromDatabaseClusterAttributesParams] = pydantic.Field(None, description='Import an existing DatabaseCluster from properties.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseClusterDefConfig] = pydantic.Field(None)
 
 
 class DatabaseClusterDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseClusterDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
-    add_rotation_multi_user: typing.Optional[list[DatabaseClusterDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this cluster.\nSee `Alternating users rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-two-users>`_')
-    add_rotation_single_user: typing.Optional[list[DatabaseClusterDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this cluster.\nSee `Single user rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-one-user-one-password>`_')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseClusterDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
+    add_rotation_multi_user: typing.Optional[list[models.aws_rds.DatabaseClusterDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this cluster.\nSee `Alternating users rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-two-users>`_')
+    add_rotation_single_user: typing.Optional[list[models.aws_rds.DatabaseClusterDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this cluster.\nSee `Single user rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-one-user-one-password>`_')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric: typing.Optional[list[DatabaseClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
-    metric_acu_utilization: typing.Optional[list[DatabaseClusterDefMetricAcuUtilizationParams]] = pydantic.Field(None, description="This value is represented as a percentage.\nIt's calculated as the value of the\nServerlessDatabaseCapacity metric divided by the maximum ACU value of the DB cluster.\n\nIf this metric approaches a value of 100.0, the DB instance has scaled up as high as it can.\nConsider increasing the maximum ACU setting for the cluster.")
-    metric_cpu_utilization: typing.Optional[list[DatabaseClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseClusterDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_deadlocks: typing.Optional[list[DatabaseClusterDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
-    metric_engine_uptime: typing.Optional[list[DatabaseClusterDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
-    metric_free_local_storage: typing.Optional[list[DatabaseClusterDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseClusterDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
-    metric_network_receive_throughput: typing.Optional[list[DatabaseClusterDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_throughput: typing.Optional[list[DatabaseClusterDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_transmit_throughput: typing.Optional[list[DatabaseClusterDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_serverless_database_capacity: typing.Optional[list[DatabaseClusterDefMetricServerlessDatabaseCapacityParams]] = pydantic.Field(None, description='As a cluster-level metric, it represents the average of the ServerlessDatabaseCapacity values of all the Aurora Serverless v2 DB instances in the cluster.')
-    metric_snapshot_storage_used: typing.Optional[list[DatabaseClusterDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
-    metric_total_backup_storage_billed: typing.Optional[list[DatabaseClusterDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
-    metric_volume_bytes_used: typing.Optional[list[DatabaseClusterDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
-    metric_volume_read_io_ps: typing.Optional[list[DatabaseClusterDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
-    metric_volume_write_io_ps: typing.Optional[list[DatabaseClusterDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
+    metric_acu_utilization: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricAcuUtilizationParams]] = pydantic.Field(None, description="This value is represented as a percentage.\nIt's calculated as the value of the\nServerlessDatabaseCapacity metric divided by the maximum ACU value of the DB cluster.\n\nIf this metric approaches a value of 100.0, the DB instance has scaled up as high as it can.\nConsider increasing the maximum ACU setting for the cluster.")
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_deadlocks: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
+    metric_engine_uptime: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
+    metric_free_local_storage: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
+    metric_network_receive_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_transmit_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_serverless_database_capacity: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricServerlessDatabaseCapacityParams]] = pydantic.Field(None, description='As a cluster-level metric, it represents the average of the ServerlessDatabaseCapacity values of all the Aurora Serverless v2 DB instances in the cluster.')
+    metric_snapshot_storage_used: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
+    metric_total_backup_storage_billed: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
+    metric_volume_bytes_used: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
+    metric_volume_read_io_ps: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric_volume_write_io_ps: typing.Optional[list[models.aws_rds.DatabaseClusterDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     multi_user_rotation_application_config: typing.Optional[models.aws_secretsmanager.SecretRotationApplicationDefConfig] = pydantic.Field(None)
     single_user_rotation_application_config: typing.Optional[models.aws_secretsmanager.SecretRotationApplicationDefConfig] = pydantic.Field(None)
@@ -1322,9 +1334,9 @@ class DatabaseClusterFromSnapshotDef(BaseConstruct):
     preferred_maintenance_window: typing.Optional[str] = pydantic.Field(None, description="A preferred maintenance window day/time range. Should be specified as a range ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). Example: 'Sun:23:45-Mon:00:15' Default: - 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.\n")
     readers: typing.Optional[typing.Sequence[typing.Union[models.aws_rds.ClusterInstanceDef]]] = pydantic.Field(None, description='A list of instances to create as cluster reader instances. Default: - no readers are created. The cluster will have a single writer/reader\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The removal policy to apply when the cluster and its instances are removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the cluster and instances, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 export. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 import. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='Security group. Default: a new security group is created.\n')
     serverless_v2_max_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128 (256GB). The maximum capacity must be higher than 0.5 ACUs. Default: 2\n')
@@ -1345,31 +1357,31 @@ class DatabaseClusterFromSnapshotDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseClusterFromSnapshotDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseClusterFromSnapshotDefConfig] = pydantic.Field(None)
 
 
 class DatabaseClusterFromSnapshotDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseClusterFromSnapshotDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
-    add_rotation_multi_user: typing.Optional[list[DatabaseClusterFromSnapshotDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this cluster.\nSee `Alternating users rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-two-users>`_')
-    add_rotation_single_user: typing.Optional[list[DatabaseClusterFromSnapshotDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this cluster.\nSee `Single user rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-one-user-one-password>`_')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
+    add_rotation_multi_user: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this cluster.\nSee `Alternating users rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-two-users>`_')
+    add_rotation_single_user: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this cluster.\nSee `Single user rotation strategy <https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html#rotating-secrets-one-user-one-password>`_')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
-    metric_acu_utilization: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricAcuUtilizationParams]] = pydantic.Field(None, description="This value is represented as a percentage.\nIt's calculated as the value of the\nServerlessDatabaseCapacity metric divided by the maximum ACU value of the DB cluster.\n\nIf this metric approaches a value of 100.0, the DB instance has scaled up as high as it can.\nConsider increasing the maximum ACU setting for the cluster.")
-    metric_cpu_utilization: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_deadlocks: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
-    metric_engine_uptime: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
-    metric_free_local_storage: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
-    metric_network_receive_throughput: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_throughput: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_transmit_throughput: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_serverless_database_capacity: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricServerlessDatabaseCapacityParams]] = pydantic.Field(None, description='As a cluster-level metric, it represents the average of the ServerlessDatabaseCapacity values of all the Aurora Serverless v2 DB instances in the cluster.')
-    metric_snapshot_storage_used: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
-    metric_total_backup_storage_billed: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
-    metric_volume_bytes_used: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
-    metric_volume_read_io_ps: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
-    metric_volume_write_io_ps: typing.Optional[list[DatabaseClusterFromSnapshotDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
+    metric_acu_utilization: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricAcuUtilizationParams]] = pydantic.Field(None, description="This value is represented as a percentage.\nIt's calculated as the value of the\nServerlessDatabaseCapacity metric divided by the maximum ACU value of the DB cluster.\n\nIf this metric approaches a value of 100.0, the DB instance has scaled up as high as it can.\nConsider increasing the maximum ACU setting for the cluster.")
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_deadlocks: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
+    metric_engine_uptime: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
+    metric_free_local_storage: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
+    metric_network_receive_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_transmit_throughput: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_serverless_database_capacity: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricServerlessDatabaseCapacityParams]] = pydantic.Field(None, description='As a cluster-level metric, it represents the average of the ServerlessDatabaseCapacity values of all the Aurora Serverless v2 DB instances in the cluster.')
+    metric_snapshot_storage_used: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
+    metric_total_backup_storage_billed: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
+    metric_volume_bytes_used: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
+    metric_volume_read_io_ps: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric_volume_write_io_ps: typing.Optional[list[models.aws_rds.DatabaseClusterFromSnapshotDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     multi_user_rotation_application_config: typing.Optional[models.aws_secretsmanager.SecretRotationApplicationDefConfig] = pydantic.Field(None)
     single_user_rotation_application_config: typing.Optional[models.aws_secretsmanager.SecretRotationApplicationDefConfig] = pydantic.Field(None)
@@ -1671,9 +1683,9 @@ class DatabaseInstanceDef(BaseConstruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -1688,24 +1700,24 @@ class DatabaseInstanceDef(BaseConstruct):
     ...
 
 
-    from_database_instance_attributes: typing.Optional[DatabaseInstanceDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
-    resource_config: typing.Optional[DatabaseInstanceDefConfig] = pydantic.Field(None)
+    from_database_instance_attributes: typing.Optional[models.aws_rds.DatabaseInstanceDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseInstanceDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
-    add_rotation_multi_user: typing.Optional[list[DatabaseInstanceDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this instance.')
-    add_rotation_single_user: typing.Optional[list[DatabaseInstanceDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this instance.')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseInstanceDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
+    add_rotation_multi_user: typing.Optional[list[models.aws_rds.DatabaseInstanceDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this instance.')
+    add_rotation_single_user: typing.Optional[list[models.aws_rds.DatabaseInstanceDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_connect: typing.Optional[list[DatabaseInstanceDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
-    metric: typing.Optional[list[DatabaseInstanceDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
-    metric_cpu_utilization: typing.Optional[list[DatabaseInstanceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseInstanceDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_free_storage_space: typing.Optional[list[DatabaseInstanceDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseInstanceDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
-    metric_read_iops: typing.Optional[list[DatabaseInstanceDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
-    metric_write_iops: typing.Optional[list[DatabaseInstanceDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
-    on_event: typing.Optional[list[DatabaseInstanceDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    grant_connect: typing.Optional[list[models.aws_rds.DatabaseInstanceDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
+    metric: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_free_storage_space: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
+    metric_read_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
+    metric_write_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
+    on_event: typing.Optional[list[models.aws_rds.DatabaseInstanceDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     vpc_config: typing.Optional[models._interface_methods.AwsEc2IVpcDefConfig] = pydantic.Field(None)
 
@@ -1910,9 +1922,9 @@ class DatabaseInstanceFromSnapshotDef(BaseConstruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -1927,24 +1939,24 @@ class DatabaseInstanceFromSnapshotDef(BaseConstruct):
     ...
 
 
-    from_database_instance_attributes: typing.Optional[DatabaseInstanceFromSnapshotDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
-    resource_config: typing.Optional[DatabaseInstanceFromSnapshotDefConfig] = pydantic.Field(None)
+    from_database_instance_attributes: typing.Optional[models.aws_rds.DatabaseInstanceFromSnapshotDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceFromSnapshotDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceFromSnapshotDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseInstanceFromSnapshotDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
-    add_rotation_multi_user: typing.Optional[list[DatabaseInstanceFromSnapshotDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this instance.')
-    add_rotation_single_user: typing.Optional[list[DatabaseInstanceFromSnapshotDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this instance.')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
+    add_rotation_multi_user: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this instance.')
+    add_rotation_single_user: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_connect: typing.Optional[list[DatabaseInstanceFromSnapshotDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
-    metric: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
-    metric_cpu_utilization: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_free_storage_space: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
-    metric_read_iops: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
-    metric_write_iops: typing.Optional[list[DatabaseInstanceFromSnapshotDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
-    on_event: typing.Optional[list[DatabaseInstanceFromSnapshotDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    grant_connect: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
+    metric: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_free_storage_space: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
+    metric_read_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
+    metric_write_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
+    on_event: typing.Optional[list[models.aws_rds.DatabaseInstanceFromSnapshotDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     vpc_config: typing.Optional[models._interface_methods.AwsEc2IVpcDefConfig] = pydantic.Field(None)
 
@@ -2143,9 +2155,9 @@ class DatabaseInstanceReadReplicaDef(BaseConstruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -2160,22 +2172,22 @@ class DatabaseInstanceReadReplicaDef(BaseConstruct):
     ...
 
 
-    from_database_instance_attributes: typing.Optional[DatabaseInstanceReadReplicaDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
-    resource_config: typing.Optional[DatabaseInstanceReadReplicaDefConfig] = pydantic.Field(None)
+    from_database_instance_attributes: typing.Optional[models.aws_rds.DatabaseInstanceReadReplicaDefFromDatabaseInstanceAttributesParams] = pydantic.Field(None, description='Import an existing database instance.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceReadReplicaDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceReadReplicaDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[DatabaseInstanceReadReplicaDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
+    add_proxy: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_connect: typing.Optional[list[DatabaseInstanceReadReplicaDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
-    metric: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
-    metric_cpu_utilization: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_free_storage_space: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
-    metric_read_iops: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
-    metric_write_iops: typing.Optional[list[DatabaseInstanceReadReplicaDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
-    on_event: typing.Optional[list[DatabaseInstanceReadReplicaDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    grant_connect: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
+    metric: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_free_storage_space: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
+    metric_read_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
+    metric_write_iops: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
+    on_event: typing.Optional[list[models.aws_rds.DatabaseInstanceReadReplicaDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     vpc_config: typing.Optional[models._interface_methods.AwsEc2IVpcDefConfig] = pydantic.Field(None)
 
@@ -2342,13 +2354,13 @@ class DatabaseProxyDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    from_database_proxy_attributes: typing.Optional[DatabaseProxyDefFromDatabaseProxyAttributesParams] = pydantic.Field(None, description='Import an existing database proxy.')
-    resource_config: typing.Optional[DatabaseProxyDefConfig] = pydantic.Field(None)
+    from_database_proxy_attributes: typing.Optional[models.aws_rds.DatabaseProxyDefFromDatabaseProxyAttributesParams] = pydantic.Field(None, description='Import an existing database proxy.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseProxyDefConfig] = pydantic.Field(None)
 
 
 class DatabaseProxyDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_connect: typing.Optional[list[DatabaseProxyDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the proxy.')
+    grant_connect: typing.Optional[list[models.aws_rds.DatabaseProxyDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the proxy.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class DatabaseProxyDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2389,23 +2401,23 @@ class DatabaseSecretDef(BaseConstruct):
     ...
 
 
-    from_secret_attributes: typing.Optional[DatabaseSecretDefFromSecretAttributesParams] = pydantic.Field(None, description='Import an existing secret into the Stack.')
-    from_secret_complete_arn: typing.Optional[DatabaseSecretDefFromSecretCompleteArnParams] = pydantic.Field(None, description='Imports a secret by complete ARN.\nThe complete ARN is the ARN with the Secrets Manager-supplied suffix.')
-    from_secret_name_v2: typing.Optional[DatabaseSecretDefFromSecretNameV2Params] = pydantic.Field(None, description='Imports a secret by secret name.\nA secret with this name must exist in the same account & region.\nReplaces the deprecated ``fromSecretName``.\nPlease note this method returns ISecret that only contains partial ARN and could lead to AccessDeniedException\nwhen you pass the partial ARN to CLI or SDK to get the secret value. If your secret name ends with a hyphen and\n6 characters, you should always use fromSecretCompleteArn() to avoid potential AccessDeniedException.')
-    from_secret_partial_arn: typing.Optional[DatabaseSecretDefFromSecretPartialArnParams] = pydantic.Field(None, description='Imports a secret by partial ARN.\nThe partial ARN is the ARN without the Secrets Manager-supplied suffix.')
-    resource_config: typing.Optional[DatabaseSecretDefConfig] = pydantic.Field(None)
+    from_secret_attributes: typing.Optional[models.aws_rds.DatabaseSecretDefFromSecretAttributesParams] = pydantic.Field(None, description='Import an existing secret into the Stack.')
+    from_secret_complete_arn: typing.Optional[models.aws_rds.DatabaseSecretDefFromSecretCompleteArnParams] = pydantic.Field(None, description='Imports a secret by complete ARN.\nThe complete ARN is the ARN with the Secrets Manager-supplied suffix.')
+    from_secret_name_v2: typing.Optional[models.aws_rds.DatabaseSecretDefFromSecretNameV2Params] = pydantic.Field(None, description='Imports a secret by secret name.\nA secret with this name must exist in the same account & region.\nReplaces the deprecated ``fromSecretName``.\nPlease note this method returns ISecret that only contains partial ARN and could lead to AccessDeniedException\nwhen you pass the partial ARN to CLI or SDK to get the secret value. If your secret name ends with a hyphen and\n6 characters, you should always use fromSecretCompleteArn() to avoid potential AccessDeniedException.')
+    from_secret_partial_arn: typing.Optional[models.aws_rds.DatabaseSecretDefFromSecretPartialArnParams] = pydantic.Field(None, description='Imports a secret by partial ARN.\nThe partial ARN is the ARN without the Secrets Manager-supplied suffix.')
+    resource_config: typing.Optional[models.aws_rds.DatabaseSecretDefConfig] = pydantic.Field(None)
 
 
 class DatabaseSecretDefConfig(pydantic.BaseModel):
-    add_replica_region: typing.Optional[list[DatabaseSecretDefAddReplicaRegionParams]] = pydantic.Field(None, description='Adds a replica region for the secret.')
-    add_rotation_schedule: typing.Optional[list[DatabaseSecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
-    add_to_resource_policy: typing.Optional[list[DatabaseSecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
+    add_replica_region: typing.Optional[list[models.aws_rds.DatabaseSecretDefAddReplicaRegionParams]] = pydantic.Field(None, description='Adds a replica region for the secret.')
+    add_rotation_schedule: typing.Optional[list[models.aws_rds.DatabaseSecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
+    add_to_resource_policy: typing.Optional[list[models.aws_rds.DatabaseSecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    attach: typing.Optional[list[DatabaseSecretDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
+    attach: typing.Optional[list[models.aws_rds.DatabaseSecretDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
     deny_account_root_delete: typing.Optional[bool] = pydantic.Field(None, description='Denies the ``DeleteSecret`` action to all principals within the current account.')
-    grant_read: typing.Optional[list[DatabaseSecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
-    grant_write: typing.Optional[list[DatabaseSecretDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
-    secret_value_from_json: typing.Optional[list[DatabaseSecretDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
+    grant_read: typing.Optional[list[models.aws_rds.DatabaseSecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
+    grant_write: typing.Optional[list[models.aws_rds.DatabaseSecretDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
+    secret_value_from_json: typing.Optional[list[models.aws_rds.DatabaseSecretDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
     secret_value_config: typing.Optional[models.core.SecretValueDefConfig] = pydantic.Field(None)
 
 class DatabaseSecretDefAddReplicaRegionParams(pydantic.BaseModel):
@@ -2491,12 +2503,12 @@ class OptionGroupDef(BaseConstruct):
     ...
 
 
-    from_option_group_name: typing.Optional[OptionGroupDefFromOptionGroupNameParams] = pydantic.Field(None, description='Import an existing option group.')
-    resource_config: typing.Optional[OptionGroupDefConfig] = pydantic.Field(None)
+    from_option_group_name: typing.Optional[models.aws_rds.OptionGroupDefFromOptionGroupNameParams] = pydantic.Field(None, description='Import an existing option group.')
+    resource_config: typing.Optional[models.aws_rds.OptionGroupDefConfig] = pydantic.Field(None)
 
 
 class OptionGroupDefConfig(pydantic.BaseModel):
-    add_configuration: typing.Optional[list[OptionGroupDefAddConfigurationParams]] = pydantic.Field(None, description='Adds a configuration to this OptionGroup.\nThis method is a no-op for an imported OptionGroup.')
+    add_configuration: typing.Optional[list[models.aws_rds.OptionGroupDefAddConfigurationParams]] = pydantic.Field(None, description='Adds a configuration to this OptionGroup.\nThis method is a no-op for an imported OptionGroup.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class OptionGroupDefAddConfigurationParams(pydantic.BaseModel):
@@ -2532,15 +2544,15 @@ class ParameterGroupDef(BaseConstruct):
     ...
 
 
-    from_parameter_group_name: typing.Optional[ParameterGroupDefFromParameterGroupNameParams] = pydantic.Field(None, description='Imports a parameter group.')
-    resource_config: typing.Optional[ParameterGroupDefConfig] = pydantic.Field(None)
+    from_parameter_group_name: typing.Optional[models.aws_rds.ParameterGroupDefFromParameterGroupNameParams] = pydantic.Field(None, description='Imports a parameter group.')
+    resource_config: typing.Optional[models.aws_rds.ParameterGroupDefConfig] = pydantic.Field(None)
 
 
 class ParameterGroupDefConfig(pydantic.BaseModel):
-    add_parameter: typing.Optional[list[ParameterGroupDefAddParameterParams]] = pydantic.Field(None, description='Add a parameter to this parameter group.')
+    add_parameter: typing.Optional[list[models.aws_rds.ParameterGroupDefAddParameterParams]] = pydantic.Field(None, description='Add a parameter to this parameter group.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_to_cluster: typing.Optional[list[ParameterGroupDefBindToClusterParams]] = pydantic.Field(None, description='Method called when this Parameter Group is used when defining a database cluster.')
-    bind_to_instance: typing.Optional[list[ParameterGroupDefBindToInstanceParams]] = pydantic.Field(None, description='Method called when this Parameter Group is used when defining a database instance.')
+    bind_to_cluster: typing.Optional[list[models.aws_rds.ParameterGroupDefBindToClusterParams]] = pydantic.Field(None, description='Method called when this Parameter Group is used when defining a database cluster.')
+    bind_to_instance: typing.Optional[list[models.aws_rds.ParameterGroupDefBindToInstanceParams]] = pydantic.Field(None, description='Method called when this Parameter Group is used when defining a database instance.')
 
 class ParameterGroupDefAddParameterParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='The key of the parameter to be added.\n')
@@ -2590,15 +2602,15 @@ class ServerlessClusterDef(BaseConstruct):
     ...
 
 
-    from_serverless_cluster_attributes: typing.Optional[ServerlessClusterDefFromServerlessClusterAttributesParams] = pydantic.Field(None, description='Import an existing DatabaseCluster from properties.')
-    resource_config: typing.Optional[ServerlessClusterDefConfig] = pydantic.Field(None)
+    from_serverless_cluster_attributes: typing.Optional[models.aws_rds.ServerlessClusterDefFromServerlessClusterAttributesParams] = pydantic.Field(None, description='Import an existing DatabaseCluster from properties.')
+    resource_config: typing.Optional[models.aws_rds.ServerlessClusterDefConfig] = pydantic.Field(None)
 
 
 class ServerlessClusterDefConfig(pydantic.BaseModel):
-    add_rotation_multi_user: typing.Optional[list[ServerlessClusterDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this cluster.')
-    add_rotation_single_user: typing.Optional[list[ServerlessClusterDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this cluster.')
+    add_rotation_multi_user: typing.Optional[list[models.aws_rds.ServerlessClusterDefAddRotationMultiUserParams]] = pydantic.Field(None, description='Adds the multi user rotation to this cluster.')
+    add_rotation_single_user: typing.Optional[list[models.aws_rds.ServerlessClusterDefAddRotationSingleUserParams]] = pydantic.Field(None, description='Adds the single user rotation of the master password to this cluster.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_data_api_access: typing.Optional[list[ServerlessClusterDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API, including read access to the secret attached to the cluster if present.')
+    grant_data_api_access: typing.Optional[list[models.aws_rds.ServerlessClusterDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API, including read access to the secret attached to the cluster if present.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class ServerlessClusterDefAddRotationMultiUserParams(pydantic.BaseModel):
@@ -2668,12 +2680,12 @@ class ServerlessClusterFromSnapshotDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ServerlessClusterFromSnapshotDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.ServerlessClusterFromSnapshotDefConfig] = pydantic.Field(None)
 
 
 class ServerlessClusterFromSnapshotDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_data_api_access: typing.Optional[list[ServerlessClusterFromSnapshotDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API, including read access to the secret attached to the cluster if present.')
+    grant_data_api_access: typing.Optional[list[models.aws_rds.ServerlessClusterFromSnapshotDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API, including read access to the secret attached to the cluster if present.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class ServerlessClusterFromSnapshotDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2701,8 +2713,8 @@ class SubnetGroupDef(BaseConstruct):
     ...
 
 
-    from_subnet_group_name: typing.Optional[SubnetGroupDefFromSubnetGroupNameParams] = pydantic.Field(None, description='Imports an existing subnet group by name.')
-    resource_config: typing.Optional[SubnetGroupDefConfig] = pydantic.Field(None)
+    from_subnet_group_name: typing.Optional[models.aws_rds.SubnetGroupDefFromSubnetGroupNameParams] = pydantic.Field(None, description='Imports an existing subnet group by name.')
+    resource_config: typing.Optional[models.aws_rds.SubnetGroupDefConfig] = pydantic.Field(None)
 
 
 class SubnetGroupDefConfig(pydantic.BaseModel):
@@ -2784,7 +2796,7 @@ class BackupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BackupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.BackupPropsDefConfig] = pydantic.Field(None)
 
 
 class BackupPropsDefConfig(pydantic.BaseModel):
@@ -3268,9 +3280,9 @@ class DatabaseClusterFromSnapshotPropsDef(BaseStruct):
     preferred_maintenance_window: typing.Optional[str] = pydantic.Field(None, description="A preferred maintenance window day/time range. Should be specified as a range ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). Example: 'Sun:23:45-Mon:00:15' Default: - 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.\n")
     readers: typing.Optional[typing.Sequence[typing.Union[models.aws_rds.ClusterInstanceDef]]] = pydantic.Field(None, description='A list of instances to create as cluster reader instances. Default: - no readers are created. The cluster will have a single writer/reader\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The removal policy to apply when the cluster and its instances are removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the cluster and instances, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 export. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 import. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='Security group. Default: a new security group is created.\n')
     serverless_v2_max_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128 (256GB). The maximum capacity must be higher than 0.5 ACUs. Default: 2\n')
@@ -3320,9 +3332,9 @@ class DatabaseClusterPropsDef(BaseStruct):
     preferred_maintenance_window: typing.Optional[str] = pydantic.Field(None, description="A preferred maintenance window day/time range. Should be specified as a range ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). Example: 'Sun:23:45-Mon:00:15' Default: - 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.\n")
     readers: typing.Optional[typing.Sequence[typing.Union[models.aws_rds.ClusterInstanceDef]]] = pydantic.Field(None, description='A list of instances to create as cluster reader instances. Default: - no readers are created. The cluster will have a single writer/reader\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The removal policy to apply when the cluster and its instances are removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the cluster and instances, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportRole`` is used. For MySQL: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 export. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ExportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportRole`` is used. For MySQL: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB cluster to enable S3 import. This feature is only supported by the Aurora database engine. This property must not be used if ``s3ImportBuckets`` is used. For MySQL: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='Security group. Default: a new security group is created.\n')
     serverless_v2_max_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of Aurora capacity units (ACUs) for a DB instance in an Aurora Serverless v2 cluster. You can specify ACU values in half-step increments, such as 40, 40.5, 41, and so on. The largest value that you can use is 128 (256GB). The maximum capacity must be higher than 0.5 ACUs. Default: 2\n')
@@ -3396,9 +3408,9 @@ class DatabaseInstanceFromSnapshotPropsDef(BaseStruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -3423,7 +3435,7 @@ class DatabaseInstanceFromSnapshotPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseInstanceFromSnapshotPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceFromSnapshotPropsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceFromSnapshotPropsDefConfig(pydantic.BaseModel):
@@ -3465,9 +3477,9 @@ class DatabaseInstanceNewPropsDef(BaseStruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -3482,7 +3494,7 @@ class DatabaseInstanceNewPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseInstanceNewPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceNewPropsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceNewPropsDefConfig(pydantic.BaseModel):
@@ -3523,9 +3535,9 @@ class DatabaseInstancePropsDef(BaseStruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -3552,7 +3564,7 @@ class DatabaseInstancePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseInstancePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstancePropsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstancePropsDefConfig(pydantic.BaseModel):
@@ -3594,9 +3606,9 @@ class DatabaseInstanceReadReplicaPropsDef(BaseStruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -3615,7 +3627,7 @@ class DatabaseInstanceReadReplicaPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseInstanceReadReplicaPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceReadReplicaPropsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceReadReplicaPropsDefConfig(pydantic.BaseModel):
@@ -3657,9 +3669,9 @@ class DatabaseInstanceSourcePropsDef(BaseStruct):
     processor_features: typing.Union[models.aws_rds.ProcessorFeaturesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The number of CPU cores and the number of threads per core. Default: - the default number of CPU cores and threads per core for the chosen instance class. See https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html#USER_ConfigureProcessor\n')
     publicly_accessible: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the DB instance is an internet-facing instance. Default: - ``true`` if ``vpcSubnets`` is ``subnetType: SubnetType.PUBLIC``, ``false`` otherwise\n')
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='The CloudFormation policy to apply when the instance is removed from the stack or replaced during an update. Default: - RemovalPolicy.SNAPSHOT (remove the resource, but retain a snapshot of the data)\n')
-    s3_export_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_export_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data into. This property must not be used if ``s3ExportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_export_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 export. This property must not be used if ``s3ExportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ExportBuckets`` is set, no role is defined otherwise\n')
-    s3_import_buckets: typing.Optional[typing.Sequence[models.aws_s3.BucketDef]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
+    s3_import_buckets: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description='S3 buckets that you want to load data from. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportRole`` is used. For Microsoft SQL Server: Default: - None\n')
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role that will be associated with this DB instance to enable S3 import. This feature is only supported by the Microsoft SQL Server, Oracle, and PostgreSQL engines. This property must not be used if ``s3ImportBuckets`` is used. For Microsoft SQL Server: Default: - New role is created if ``s3ImportBuckets`` is set, no role is defined otherwise\n')
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='The security groups to assign to the DB instance. Default: - a new security group is created\n')
     storage_throughput: typing.Union[int, float, None] = pydantic.Field(None, description='The storage throughput, specified in mebibytes per second (MiBps). Only applicable for GP3. Default: - 125 MiBps if allocated storage is less than 400 GiB for MariaDB, MySQL, and PostgreSQL, less than 200 GiB for Oracle and less than 20 GiB for SQL Server. 500 MiBps otherwise (except for SQL Server where the default is always 125 MiBps).\n')
@@ -3682,7 +3694,7 @@ class DatabaseInstanceSourcePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseInstanceSourcePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseInstanceSourcePropsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseInstanceSourcePropsDefConfig(pydantic.BaseModel):
@@ -3730,7 +3742,7 @@ class DatabaseProxyOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseProxyOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseProxyOptionsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseProxyOptionsDefConfig(pydantic.BaseModel):
@@ -3763,7 +3775,7 @@ class DatabaseProxyPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DatabaseProxyPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.DatabaseProxyPropsDefConfig] = pydantic.Field(None)
 
 
 class DatabaseProxyPropsDefConfig(pydantic.BaseModel):
@@ -3872,7 +3884,7 @@ class InstancePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[InstancePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.InstancePropsDefConfig] = pydantic.Field(None)
 
 
 class InstancePropsDefConfig(pydantic.BaseModel):
@@ -3890,7 +3902,7 @@ class MariaDbInstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MariaDbInstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.MariaDbInstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class MariaDbInstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -3941,7 +3953,7 @@ class OptionGroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OptionGroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.OptionGroupPropsDefConfig] = pydantic.Field(None)
 
 
 class OptionGroupPropsDefConfig(pydantic.BaseModel):
@@ -3985,7 +3997,7 @@ class OracleSe2CdbInstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OracleSe2CdbInstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.OracleSe2CdbInstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class OracleSe2CdbInstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -4003,7 +4015,7 @@ class OracleSe2InstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OracleSe2InstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.OracleSe2InstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class OracleSe2InstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -4100,7 +4112,7 @@ class PostgresInstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[PostgresInstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.PostgresInstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class PostgresInstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -4178,7 +4190,7 @@ class RotationMultiUserOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RotationMultiUserOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.RotationMultiUserOptionsDefConfig] = pydantic.Field(None)
 
 
 class RotationMultiUserOptionsDefConfig(pydantic.BaseModel):
@@ -4355,7 +4367,7 @@ class SqlServerExInstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SqlServerExInstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.SqlServerExInstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class SqlServerExInstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -4373,7 +4385,7 @@ class SqlServerSeInstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SqlServerSeInstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.SqlServerSeInstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class SqlServerSeInstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -4391,7 +4403,7 @@ class SqlServerWebInstanceEnginePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SqlServerWebInstanceEnginePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.SqlServerWebInstanceEnginePropsDefConfig] = pydantic.Field(None)
 
 
 class SqlServerWebInstanceEnginePropsDefConfig(pydantic.BaseModel):
@@ -4413,7 +4425,7 @@ class SubnetGroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SubnetGroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.SubnetGroupPropsDefConfig] = pydantic.Field(None)
 
 
 class SubnetGroupPropsDefConfig(pydantic.BaseModel):
@@ -4499,26 +4511,26 @@ class CfnCustomDBEngineVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCustomDBEngineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnCustomDBEngineVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnCustomDBEngineVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnCustomDBEngineVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCustomDBEngineVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCustomDBEngineVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCustomDBEngineVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCustomDBEngineVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCustomDBEngineVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCustomDBEngineVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCustomDBEngineVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCustomDBEngineVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCustomDBEngineVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCustomDBEngineVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCustomDBEngineVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCustomDBEngineVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnCustomDBEngineVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnCustomDBEngineVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4648,32 +4660,32 @@ class CfnDBClusterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBClusterDefConfig] = pydantic.Field(None)
 
 
 class CfnDBClusterDefConfig(pydantic.BaseModel):
-    DBClusterRoleProperty: typing.Optional[list[CfnDBClusterDefDbclusterrolepropertyParams]] = pydantic.Field(None, description='')
-    EndpointProperty: typing.Optional[list[CfnDBClusterDefEndpointpropertyParams]] = pydantic.Field(None, description='')
-    MasterUserSecretProperty: typing.Optional[list[CfnDBClusterDefMasterusersecretpropertyParams]] = pydantic.Field(None, description='')
-    ReadEndpointProperty: typing.Optional[list[CfnDBClusterDefReadendpointpropertyParams]] = pydantic.Field(None, description='')
-    ScalingConfigurationProperty: typing.Optional[list[CfnDBClusterDefScalingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ServerlessV2ScalingConfigurationProperty: typing.Optional[list[CfnDBClusterDefServerlessv2ScalingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDBClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DBClusterRoleProperty: typing.Optional[list[models.aws_rds.CfnDBClusterDefDbclusterrolepropertyParams]] = pydantic.Field(None, description='')
+    EndpointProperty: typing.Optional[list[models.aws_rds.CfnDBClusterDefEndpointpropertyParams]] = pydantic.Field(None, description='')
+    MasterUserSecretProperty: typing.Optional[list[models.aws_rds.CfnDBClusterDefMasterusersecretpropertyParams]] = pydantic.Field(None, description='')
+    ReadEndpointProperty: typing.Optional[list[models.aws_rds.CfnDBClusterDefReadendpointpropertyParams]] = pydantic.Field(None, description='')
+    ScalingConfigurationProperty: typing.Optional[list[models.aws_rds.CfnDBClusterDefScalingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ServerlessV2ScalingConfigurationProperty: typing.Optional[list[models.aws_rds.CfnDBClusterDefServerlessv2ScalingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_endpoint_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
     attr_read_endpoint_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
@@ -4791,26 +4803,26 @@ class CfnDBClusterParameterGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBClusterParameterGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBClusterParameterGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnDBClusterParameterGroupDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnDBClusterParameterGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBClusterParameterGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBClusterParameterGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBClusterParameterGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBClusterParameterGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBClusterParameterGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBClusterParameterGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBClusterParameterGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBClusterParameterGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBClusterParameterGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBClusterParameterGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBClusterParameterGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBClusterParameterGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBClusterParameterGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDBClusterParameterGroupDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -4963,31 +4975,31 @@ class CfnDBInstanceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBInstanceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBInstanceDefConfig] = pydantic.Field(None)
 
 
 class CfnDBInstanceDefConfig(pydantic.BaseModel):
-    CertificateDetailsProperty: typing.Optional[list[CfnDBInstanceDefCertificatedetailspropertyParams]] = pydantic.Field(None, description='')
-    DBInstanceRoleProperty: typing.Optional[list[CfnDBInstanceDefDbinstancerolepropertyParams]] = pydantic.Field(None, description='')
-    EndpointProperty: typing.Optional[list[CfnDBInstanceDefEndpointpropertyParams]] = pydantic.Field(None, description='')
-    MasterUserSecretProperty: typing.Optional[list[CfnDBInstanceDefMasterusersecretpropertyParams]] = pydantic.Field(None, description='')
-    ProcessorFeatureProperty: typing.Optional[list[CfnDBInstanceDefProcessorfeaturepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDBInstanceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBInstanceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBInstanceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBInstanceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBInstanceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBInstanceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBInstanceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CertificateDetailsProperty: typing.Optional[list[models.aws_rds.CfnDBInstanceDefCertificatedetailspropertyParams]] = pydantic.Field(None, description='')
+    DBInstanceRoleProperty: typing.Optional[list[models.aws_rds.CfnDBInstanceDefDbinstancerolepropertyParams]] = pydantic.Field(None, description='')
+    EndpointProperty: typing.Optional[list[models.aws_rds.CfnDBInstanceDefEndpointpropertyParams]] = pydantic.Field(None, description='')
+    MasterUserSecretProperty: typing.Optional[list[models.aws_rds.CfnDBInstanceDefMasterusersecretpropertyParams]] = pydantic.Field(None, description='')
+    ProcessorFeatureProperty: typing.Optional[list[models.aws_rds.CfnDBInstanceDefProcessorfeaturepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBInstanceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBInstanceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBInstanceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBInstanceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBInstanceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBInstanceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBInstanceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBInstanceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBInstanceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBInstanceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBInstanceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBInstanceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBInstanceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDBInstanceDefCertificatedetailspropertyParams(pydantic.BaseModel):
@@ -5096,26 +5108,26 @@ class CfnDBParameterGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBParameterGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBParameterGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnDBParameterGroupDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnDBParameterGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBParameterGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBParameterGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBParameterGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBParameterGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBParameterGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBParameterGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBParameterGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBParameterGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBParameterGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBParameterGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBParameterGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBParameterGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBParameterGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDBParameterGroupDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -5203,28 +5215,28 @@ class CfnDBProxyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBProxyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBProxyDefConfig] = pydantic.Field(None)
 
 
 class CfnDBProxyDefConfig(pydantic.BaseModel):
-    AuthFormatProperty: typing.Optional[list[CfnDBProxyDefAuthformatpropertyParams]] = pydantic.Field(None, description='')
-    TagFormatProperty: typing.Optional[list[CfnDBProxyDefTagformatpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDBProxyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBProxyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBProxyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBProxyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBProxyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBProxyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBProxyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AuthFormatProperty: typing.Optional[list[models.aws_rds.CfnDBProxyDefAuthformatpropertyParams]] = pydantic.Field(None, description='')
+    TagFormatProperty: typing.Optional[list[models.aws_rds.CfnDBProxyDefTagformatpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBProxyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBProxyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBProxyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBProxyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBProxyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBProxyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBProxyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBProxyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBProxyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBProxyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBProxyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDBProxyDefAuthformatpropertyParams(pydantic.BaseModel):
     auth_scheme: typing.Optional[str] = pydantic.Field(None, description='')
@@ -5320,27 +5332,27 @@ class CfnDBProxyEndpointDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBProxyEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBProxyEndpointDefConfig] = pydantic.Field(None)
 
 
 class CfnDBProxyEndpointDefConfig(pydantic.BaseModel):
-    TagFormatProperty: typing.Optional[list[CfnDBProxyEndpointDefTagformatpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDBProxyEndpointDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBProxyEndpointDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBProxyEndpointDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBProxyEndpointDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBProxyEndpointDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBProxyEndpointDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBProxyEndpointDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    TagFormatProperty: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefTagformatpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBProxyEndpointDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBProxyEndpointDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBProxyEndpointDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBProxyEndpointDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBProxyEndpointDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBProxyEndpointDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyEndpointDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_is_default_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
 
 class CfnDBProxyEndpointDefTagformatpropertyParams(pydantic.BaseModel):
@@ -5428,27 +5440,27 @@ class CfnDBProxyTargetGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBProxyTargetGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBProxyTargetGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnDBProxyTargetGroupDefConfig(pydantic.BaseModel):
-    ConnectionPoolConfigurationInfoFormatProperty: typing.Optional[list[CfnDBProxyTargetGroupDefConnectionpoolconfigurationinfoformatpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDBProxyTargetGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBProxyTargetGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBProxyTargetGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBProxyTargetGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBProxyTargetGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBProxyTargetGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBProxyTargetGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ConnectionPoolConfigurationInfoFormatProperty: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefConnectionpoolconfigurationinfoformatpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBProxyTargetGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBProxyTargetGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBProxyTargetGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBProxyTargetGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBProxyTargetGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBProxyTargetGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBProxyTargetGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDBProxyTargetGroupDefConnectionpoolconfigurationinfoformatpropertyParams(pydantic.BaseModel):
     connection_borrow_timeout: typing.Union[int, float, None] = pydantic.Field(None, description='')
@@ -5537,27 +5549,27 @@ class CfnDBSecurityGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBSecurityGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBSecurityGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnDBSecurityGroupDefConfig(pydantic.BaseModel):
-    IngressProperty: typing.Optional[list[CfnDBSecurityGroupDefIngresspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDBSecurityGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBSecurityGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBSecurityGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBSecurityGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBSecurityGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBSecurityGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBSecurityGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    IngressProperty: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefIngresspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBSecurityGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBSecurityGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBSecurityGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBSecurityGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBSecurityGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBSecurityGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDBSecurityGroupDefIngresspropertyParams(pydantic.BaseModel):
@@ -5647,26 +5659,26 @@ class CfnDBSecurityGroupIngressDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBSecurityGroupIngressDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBSecurityGroupIngressDefConfig] = pydantic.Field(None)
 
 
 class CfnDBSecurityGroupIngressDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnDBSecurityGroupIngressDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBSecurityGroupIngressDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBSecurityGroupIngressDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBSecurityGroupIngressDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBSecurityGroupIngressDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBSecurityGroupIngressDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBSecurityGroupIngressDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBSecurityGroupIngressDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBSecurityGroupIngressDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBSecurityGroupIngressDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBSecurityGroupIngressDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBSecurityGroupIngressDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBSecurityGroupIngressDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBSecurityGroupIngressDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnDBSecurityGroupIngressDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -5747,26 +5759,26 @@ class CfnDBSubnetGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDBSubnetGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnDBSubnetGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnDBSubnetGroupDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnDBSubnetGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDBSubnetGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDBSubnetGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDBSubnetGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDBSubnetGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDBSubnetGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDBSubnetGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDBSubnetGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDBSubnetGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDBSubnetGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDBSubnetGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDBSubnetGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDBSubnetGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnDBSubnetGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDBSubnetGroupDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -5851,26 +5863,26 @@ class CfnEventSubscriptionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnEventSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnEventSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class CfnEventSubscriptionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnEventSubscriptionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnEventSubscriptionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnEventSubscriptionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnEventSubscriptionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnEventSubscriptionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnEventSubscriptionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnEventSubscriptionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnEventSubscriptionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnEventSubscriptionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnEventSubscriptionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnEventSubscriptionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnEventSubscriptionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnEventSubscriptionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnEventSubscriptionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnEventSubscriptionDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -5954,26 +5966,26 @@ class CfnGlobalClusterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnGlobalClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnGlobalClusterDefConfig] = pydantic.Field(None)
 
 
 class CfnGlobalClusterDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnGlobalClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnGlobalClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnGlobalClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnGlobalClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnGlobalClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnGlobalClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnGlobalClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnGlobalClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnGlobalClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnGlobalClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnGlobalClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnGlobalClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnGlobalClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnGlobalClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnGlobalClusterDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6056,28 +6068,28 @@ class CfnOptionGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnOptionGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rds.CfnOptionGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnOptionGroupDefConfig(pydantic.BaseModel):
-    OptionConfigurationProperty: typing.Optional[list[CfnOptionGroupDefOptionconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    OptionSettingProperty: typing.Optional[list[CfnOptionGroupDefOptionsettingpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnOptionGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnOptionGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnOptionGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnOptionGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnOptionGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnOptionGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnOptionGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    OptionConfigurationProperty: typing.Optional[list[models.aws_rds.CfnOptionGroupDefOptionconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    OptionSettingProperty: typing.Optional[list[models.aws_rds.CfnOptionGroupDefOptionsettingpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rds.CfnOptionGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnOptionGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnOptionGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnOptionGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rds.CfnOptionGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rds.CfnOptionGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rds.CfnOptionGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnOptionGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnOptionGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnOptionGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rds.CfnOptionGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rds.CfnOptionGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rds.CfnOptionGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnOptionGroupDefOptionconfigurationpropertyParams(pydantic.BaseModel):
@@ -6527,148 +6539,148 @@ class CfnOptionGroupPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AuroraEngineVersion: typing.Optional[dict[str, AuroraEngineVersionDef]] = pydantic.Field(None)
-    AuroraMysqlEngineVersion: typing.Optional[dict[str, AuroraMysqlEngineVersionDef]] = pydantic.Field(None)
-    AuroraPostgresEngineVersion: typing.Optional[dict[str, AuroraPostgresEngineVersionDef]] = pydantic.Field(None)
-    CaCertificate: typing.Optional[dict[str, CaCertificateDef]] = pydantic.Field(None)
-    ClusterInstance: typing.Optional[dict[str, ClusterInstanceDef]] = pydantic.Field(None)
-    ClusterInstanceType: typing.Optional[dict[str, ClusterInstanceTypeDef]] = pydantic.Field(None)
-    Credentials: typing.Optional[dict[str, CredentialsDef]] = pydantic.Field(None)
-    DatabaseClusterBase: typing.Optional[dict[str, DatabaseClusterBaseDef]] = pydantic.Field(None)
-    DatabaseClusterEngine: typing.Optional[dict[str, DatabaseClusterEngineDef]] = pydantic.Field(None)
-    DatabaseInstanceBase: typing.Optional[dict[str, DatabaseInstanceBaseDef]] = pydantic.Field(None)
-    DatabaseInstanceEngine: typing.Optional[dict[str, DatabaseInstanceEngineDef]] = pydantic.Field(None)
-    Endpoint: typing.Optional[dict[str, EndpointDef]] = pydantic.Field(None)
-    MariaDbEngineVersion: typing.Optional[dict[str, MariaDbEngineVersionDef]] = pydantic.Field(None)
-    MysqlEngineVersion: typing.Optional[dict[str, MysqlEngineVersionDef]] = pydantic.Field(None)
-    OracleEngineVersion: typing.Optional[dict[str, OracleEngineVersionDef]] = pydantic.Field(None)
-    PostgresEngineVersion: typing.Optional[dict[str, PostgresEngineVersionDef]] = pydantic.Field(None)
-    ProxyTarget: typing.Optional[dict[str, ProxyTargetDef]] = pydantic.Field(None)
-    SessionPinningFilter: typing.Optional[dict[str, SessionPinningFilterDef]] = pydantic.Field(None)
-    SnapshotCredentials: typing.Optional[dict[str, SnapshotCredentialsDef]] = pydantic.Field(None)
-    SqlServerEngineVersion: typing.Optional[dict[str, SqlServerEngineVersionDef]] = pydantic.Field(None)
-    DatabaseCluster: typing.Optional[dict[str, DatabaseClusterDef]] = pydantic.Field(None)
-    DatabaseClusterFromSnapshot: typing.Optional[dict[str, DatabaseClusterFromSnapshotDef]] = pydantic.Field(None)
-    DatabaseInstance: typing.Optional[dict[str, DatabaseInstanceDef]] = pydantic.Field(None)
-    DatabaseInstanceFromSnapshot: typing.Optional[dict[str, DatabaseInstanceFromSnapshotDef]] = pydantic.Field(None)
-    DatabaseInstanceReadReplica: typing.Optional[dict[str, DatabaseInstanceReadReplicaDef]] = pydantic.Field(None)
-    DatabaseProxy: typing.Optional[dict[str, DatabaseProxyDef]] = pydantic.Field(None)
-    DatabaseSecret: typing.Optional[dict[str, DatabaseSecretDef]] = pydantic.Field(None)
-    OptionGroup: typing.Optional[dict[str, OptionGroupDef]] = pydantic.Field(None)
-    ParameterGroup: typing.Optional[dict[str, ParameterGroupDef]] = pydantic.Field(None)
-    ServerlessCluster: typing.Optional[dict[str, ServerlessClusterDef]] = pydantic.Field(None)
-    ServerlessClusterFromSnapshot: typing.Optional[dict[str, ServerlessClusterFromSnapshotDef]] = pydantic.Field(None)
-    SubnetGroup: typing.Optional[dict[str, SubnetGroupDef]] = pydantic.Field(None)
-    AuroraClusterEngineProps: typing.Optional[dict[str, AuroraClusterEnginePropsDef]] = pydantic.Field(None)
-    AuroraMysqlClusterEngineProps: typing.Optional[dict[str, AuroraMysqlClusterEnginePropsDef]] = pydantic.Field(None)
-    AuroraPostgresClusterEngineProps: typing.Optional[dict[str, AuroraPostgresClusterEnginePropsDef]] = pydantic.Field(None)
-    AuroraPostgresEngineFeatures: typing.Optional[dict[str, AuroraPostgresEngineFeaturesDef]] = pydantic.Field(None)
-    BackupProps: typing.Optional[dict[str, BackupPropsDef]] = pydantic.Field(None)
-    CfnDBCluster_DBClusterRoleProperty: typing.Optional[dict[str, CfnDBCluster_DBClusterRolePropertyDef]] = pydantic.Field(None)
-    CfnDBCluster_EndpointProperty: typing.Optional[dict[str, CfnDBCluster_EndpointPropertyDef]] = pydantic.Field(None)
-    CfnDBCluster_MasterUserSecretProperty: typing.Optional[dict[str, CfnDBCluster_MasterUserSecretPropertyDef]] = pydantic.Field(None)
-    CfnDBCluster_ReadEndpointProperty: typing.Optional[dict[str, CfnDBCluster_ReadEndpointPropertyDef]] = pydantic.Field(None)
-    CfnDBCluster_ScalingConfigurationProperty: typing.Optional[dict[str, CfnDBCluster_ScalingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnDBCluster_ServerlessV2ScalingConfigurationProperty: typing.Optional[dict[str, CfnDBCluster_ServerlessV2ScalingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnDBInstance_CertificateDetailsProperty: typing.Optional[dict[str, CfnDBInstance_CertificateDetailsPropertyDef]] = pydantic.Field(None)
-    CfnDBInstance_DBInstanceRoleProperty: typing.Optional[dict[str, CfnDBInstance_DBInstanceRolePropertyDef]] = pydantic.Field(None)
-    CfnDBInstance_EndpointProperty: typing.Optional[dict[str, CfnDBInstance_EndpointPropertyDef]] = pydantic.Field(None)
-    CfnDBInstance_MasterUserSecretProperty: typing.Optional[dict[str, CfnDBInstance_MasterUserSecretPropertyDef]] = pydantic.Field(None)
-    CfnDBInstance_ProcessorFeatureProperty: typing.Optional[dict[str, CfnDBInstance_ProcessorFeaturePropertyDef]] = pydantic.Field(None)
-    CfnDBProxy_AuthFormatProperty: typing.Optional[dict[str, CfnDBProxy_AuthFormatPropertyDef]] = pydantic.Field(None)
-    CfnDBProxy_TagFormatProperty: typing.Optional[dict[str, CfnDBProxy_TagFormatPropertyDef]] = pydantic.Field(None)
-    CfnDBProxyEndpoint_TagFormatProperty: typing.Optional[dict[str, CfnDBProxyEndpoint_TagFormatPropertyDef]] = pydantic.Field(None)
-    CfnDBProxyTargetGroup_ConnectionPoolConfigurationInfoFormatProperty: typing.Optional[dict[str, CfnDBProxyTargetGroup_ConnectionPoolConfigurationInfoFormatPropertyDef]] = pydantic.Field(None)
-    CfnDBSecurityGroup_IngressProperty: typing.Optional[dict[str, CfnDBSecurityGroup_IngressPropertyDef]] = pydantic.Field(None)
-    CfnOptionGroup_OptionConfigurationProperty: typing.Optional[dict[str, CfnOptionGroup_OptionConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnOptionGroup_OptionSettingProperty: typing.Optional[dict[str, CfnOptionGroup_OptionSettingPropertyDef]] = pydantic.Field(None)
-    ClusterEngineBindOptions: typing.Optional[dict[str, ClusterEngineBindOptionsDef]] = pydantic.Field(None)
-    ClusterEngineConfig: typing.Optional[dict[str, ClusterEngineConfigDef]] = pydantic.Field(None)
-    ClusterEngineFeatures: typing.Optional[dict[str, ClusterEngineFeaturesDef]] = pydantic.Field(None)
-    ClusterInstanceBindOptions: typing.Optional[dict[str, ClusterInstanceBindOptionsDef]] = pydantic.Field(None)
-    ClusterInstanceOptions: typing.Optional[dict[str, ClusterInstanceOptionsDef]] = pydantic.Field(None)
-    ClusterInstanceProps: typing.Optional[dict[str, ClusterInstancePropsDef]] = pydantic.Field(None)
-    CommonRotationUserOptions: typing.Optional[dict[str, CommonRotationUserOptionsDef]] = pydantic.Field(None)
-    CredentialsBaseOptions: typing.Optional[dict[str, CredentialsBaseOptionsDef]] = pydantic.Field(None)
-    CredentialsFromUsernameOptions: typing.Optional[dict[str, CredentialsFromUsernameOptionsDef]] = pydantic.Field(None)
-    DatabaseClusterAttributes: typing.Optional[dict[str, DatabaseClusterAttributesDef]] = pydantic.Field(None)
-    DatabaseClusterFromSnapshotProps: typing.Optional[dict[str, DatabaseClusterFromSnapshotPropsDef]] = pydantic.Field(None)
-    DatabaseClusterProps: typing.Optional[dict[str, DatabaseClusterPropsDef]] = pydantic.Field(None)
-    DatabaseInstanceAttributes: typing.Optional[dict[str, DatabaseInstanceAttributesDef]] = pydantic.Field(None)
-    DatabaseInstanceFromSnapshotProps: typing.Optional[dict[str, DatabaseInstanceFromSnapshotPropsDef]] = pydantic.Field(None)
-    DatabaseInstanceNewProps: typing.Optional[dict[str, DatabaseInstanceNewPropsDef]] = pydantic.Field(None)
-    DatabaseInstanceProps: typing.Optional[dict[str, DatabaseInstancePropsDef]] = pydantic.Field(None)
-    DatabaseInstanceReadReplicaProps: typing.Optional[dict[str, DatabaseInstanceReadReplicaPropsDef]] = pydantic.Field(None)
-    DatabaseInstanceSourceProps: typing.Optional[dict[str, DatabaseInstanceSourcePropsDef]] = pydantic.Field(None)
-    DatabaseProxyAttributes: typing.Optional[dict[str, DatabaseProxyAttributesDef]] = pydantic.Field(None)
-    DatabaseProxyOptions: typing.Optional[dict[str, DatabaseProxyOptionsDef]] = pydantic.Field(None)
-    DatabaseProxyProps: typing.Optional[dict[str, DatabaseProxyPropsDef]] = pydantic.Field(None)
-    DatabaseSecretProps: typing.Optional[dict[str, DatabaseSecretPropsDef]] = pydantic.Field(None)
-    EngineVersion: typing.Optional[dict[str, EngineVersionDef]] = pydantic.Field(None)
-    InstanceEngineBindOptions: typing.Optional[dict[str, InstanceEngineBindOptionsDef]] = pydantic.Field(None)
-    InstanceEngineConfig: typing.Optional[dict[str, InstanceEngineConfigDef]] = pydantic.Field(None)
-    InstanceEngineFeatures: typing.Optional[dict[str, InstanceEngineFeaturesDef]] = pydantic.Field(None)
-    InstanceProps: typing.Optional[dict[str, InstancePropsDef]] = pydantic.Field(None)
-    MariaDbInstanceEngineProps: typing.Optional[dict[str, MariaDbInstanceEnginePropsDef]] = pydantic.Field(None)
-    MySqlInstanceEngineProps: typing.Optional[dict[str, MySqlInstanceEnginePropsDef]] = pydantic.Field(None)
-    OptionConfiguration: typing.Optional[dict[str, OptionConfigurationDef]] = pydantic.Field(None)
-    OptionGroupProps: typing.Optional[dict[str, OptionGroupPropsDef]] = pydantic.Field(None)
-    OracleEeCdbInstanceEngineProps: typing.Optional[dict[str, OracleEeCdbInstanceEnginePropsDef]] = pydantic.Field(None)
-    OracleEeInstanceEngineProps: typing.Optional[dict[str, OracleEeInstanceEnginePropsDef]] = pydantic.Field(None)
-    OracleSe2CdbInstanceEngineProps: typing.Optional[dict[str, OracleSe2CdbInstanceEnginePropsDef]] = pydantic.Field(None)
-    OracleSe2InstanceEngineProps: typing.Optional[dict[str, OracleSe2InstanceEnginePropsDef]] = pydantic.Field(None)
-    ParameterGroupClusterBindOptions: typing.Optional[dict[str, ParameterGroupClusterBindOptionsDef]] = pydantic.Field(None)
-    ParameterGroupClusterConfig: typing.Optional[dict[str, ParameterGroupClusterConfigDef]] = pydantic.Field(None)
-    ParameterGroupInstanceBindOptions: typing.Optional[dict[str, ParameterGroupInstanceBindOptionsDef]] = pydantic.Field(None)
-    ParameterGroupInstanceConfig: typing.Optional[dict[str, ParameterGroupInstanceConfigDef]] = pydantic.Field(None)
-    ParameterGroupProps: typing.Optional[dict[str, ParameterGroupPropsDef]] = pydantic.Field(None)
-    PostgresEngineFeatures: typing.Optional[dict[str, PostgresEngineFeaturesDef]] = pydantic.Field(None)
-    PostgresInstanceEngineProps: typing.Optional[dict[str, PostgresInstanceEnginePropsDef]] = pydantic.Field(None)
-    ProcessorFeatures: typing.Optional[dict[str, ProcessorFeaturesDef]] = pydantic.Field(None)
-    ProvisionedClusterInstanceProps: typing.Optional[dict[str, ProvisionedClusterInstancePropsDef]] = pydantic.Field(None)
-    ProxyTargetConfig: typing.Optional[dict[str, ProxyTargetConfigDef]] = pydantic.Field(None)
-    RotationMultiUserOptions: typing.Optional[dict[str, RotationMultiUserOptionsDef]] = pydantic.Field(None)
-    RotationSingleUserOptions: typing.Optional[dict[str, RotationSingleUserOptionsDef]] = pydantic.Field(None)
-    ServerlessClusterAttributes: typing.Optional[dict[str, ServerlessClusterAttributesDef]] = pydantic.Field(None)
-    ServerlessClusterFromSnapshotProps: typing.Optional[dict[str, ServerlessClusterFromSnapshotPropsDef]] = pydantic.Field(None)
-    ServerlessClusterProps: typing.Optional[dict[str, ServerlessClusterPropsDef]] = pydantic.Field(None)
-    ServerlessScalingOptions: typing.Optional[dict[str, ServerlessScalingOptionsDef]] = pydantic.Field(None)
-    ServerlessV2ClusterInstanceProps: typing.Optional[dict[str, ServerlessV2ClusterInstancePropsDef]] = pydantic.Field(None)
-    SnapshotCredentialsFromGeneratedPasswordOptions: typing.Optional[dict[str, SnapshotCredentialsFromGeneratedPasswordOptionsDef]] = pydantic.Field(None)
-    SqlServerEeInstanceEngineProps: typing.Optional[dict[str, SqlServerEeInstanceEnginePropsDef]] = pydantic.Field(None)
-    SqlServerExInstanceEngineProps: typing.Optional[dict[str, SqlServerExInstanceEnginePropsDef]] = pydantic.Field(None)
-    SqlServerSeInstanceEngineProps: typing.Optional[dict[str, SqlServerSeInstanceEnginePropsDef]] = pydantic.Field(None)
-    SqlServerWebInstanceEngineProps: typing.Optional[dict[str, SqlServerWebInstanceEnginePropsDef]] = pydantic.Field(None)
-    SubnetGroupProps: typing.Optional[dict[str, SubnetGroupPropsDef]] = pydantic.Field(None)
-    CfnCustomDBEngineVersion: typing.Optional[dict[str, CfnCustomDBEngineVersionDef]] = pydantic.Field(None)
-    CfnDBCluster: typing.Optional[dict[str, CfnDBClusterDef]] = pydantic.Field(None)
-    CfnDBClusterParameterGroup: typing.Optional[dict[str, CfnDBClusterParameterGroupDef]] = pydantic.Field(None)
-    CfnDBInstance: typing.Optional[dict[str, CfnDBInstanceDef]] = pydantic.Field(None)
-    CfnDBParameterGroup: typing.Optional[dict[str, CfnDBParameterGroupDef]] = pydantic.Field(None)
-    CfnDBProxy: typing.Optional[dict[str, CfnDBProxyDef]] = pydantic.Field(None)
-    CfnDBProxyEndpoint: typing.Optional[dict[str, CfnDBProxyEndpointDef]] = pydantic.Field(None)
-    CfnDBProxyTargetGroup: typing.Optional[dict[str, CfnDBProxyTargetGroupDef]] = pydantic.Field(None)
-    CfnDBSecurityGroup: typing.Optional[dict[str, CfnDBSecurityGroupDef]] = pydantic.Field(None)
-    CfnDBSecurityGroupIngress: typing.Optional[dict[str, CfnDBSecurityGroupIngressDef]] = pydantic.Field(None)
-    CfnDBSubnetGroup: typing.Optional[dict[str, CfnDBSubnetGroupDef]] = pydantic.Field(None)
-    CfnEventSubscription: typing.Optional[dict[str, CfnEventSubscriptionDef]] = pydantic.Field(None)
-    CfnGlobalCluster: typing.Optional[dict[str, CfnGlobalClusterDef]] = pydantic.Field(None)
-    CfnOptionGroup: typing.Optional[dict[str, CfnOptionGroupDef]] = pydantic.Field(None)
-    CfnCustomDBEngineVersionProps: typing.Optional[dict[str, CfnCustomDBEngineVersionPropsDef]] = pydantic.Field(None)
-    CfnDBClusterParameterGroupProps: typing.Optional[dict[str, CfnDBClusterParameterGroupPropsDef]] = pydantic.Field(None)
-    CfnDBClusterProps: typing.Optional[dict[str, CfnDBClusterPropsDef]] = pydantic.Field(None)
-    CfnDBInstanceProps: typing.Optional[dict[str, CfnDBInstancePropsDef]] = pydantic.Field(None)
-    CfnDBParameterGroupProps: typing.Optional[dict[str, CfnDBParameterGroupPropsDef]] = pydantic.Field(None)
-    CfnDBProxyEndpointProps: typing.Optional[dict[str, CfnDBProxyEndpointPropsDef]] = pydantic.Field(None)
-    CfnDBProxyProps: typing.Optional[dict[str, CfnDBProxyPropsDef]] = pydantic.Field(None)
-    CfnDBProxyTargetGroupProps: typing.Optional[dict[str, CfnDBProxyTargetGroupPropsDef]] = pydantic.Field(None)
-    CfnDBSecurityGroupIngressProps: typing.Optional[dict[str, CfnDBSecurityGroupIngressPropsDef]] = pydantic.Field(None)
-    CfnDBSecurityGroupProps: typing.Optional[dict[str, CfnDBSecurityGroupPropsDef]] = pydantic.Field(None)
-    CfnDBSubnetGroupProps: typing.Optional[dict[str, CfnDBSubnetGroupPropsDef]] = pydantic.Field(None)
-    CfnEventSubscriptionProps: typing.Optional[dict[str, CfnEventSubscriptionPropsDef]] = pydantic.Field(None)
-    CfnGlobalClusterProps: typing.Optional[dict[str, CfnGlobalClusterPropsDef]] = pydantic.Field(None)
-    CfnOptionGroupProps: typing.Optional[dict[str, CfnOptionGroupPropsDef]] = pydantic.Field(None)
+    AuroraEngineVersion: typing.Optional[dict[str, models.aws_rds.AuroraEngineVersionDef]] = pydantic.Field(None)
+    AuroraMysqlEngineVersion: typing.Optional[dict[str, models.aws_rds.AuroraMysqlEngineVersionDef]] = pydantic.Field(None)
+    AuroraPostgresEngineVersion: typing.Optional[dict[str, models.aws_rds.AuroraPostgresEngineVersionDef]] = pydantic.Field(None)
+    CaCertificate: typing.Optional[dict[str, models.aws_rds.CaCertificateDef]] = pydantic.Field(None)
+    ClusterInstance: typing.Optional[dict[str, models.aws_rds.ClusterInstanceDef]] = pydantic.Field(None)
+    ClusterInstanceType: typing.Optional[dict[str, models.aws_rds.ClusterInstanceTypeDef]] = pydantic.Field(None)
+    Credentials: typing.Optional[dict[str, models.aws_rds.CredentialsDef]] = pydantic.Field(None)
+    DatabaseClusterBase: typing.Optional[dict[str, models.aws_rds.DatabaseClusterBaseDef]] = pydantic.Field(None)
+    DatabaseClusterEngine: typing.Optional[dict[str, models.aws_rds.DatabaseClusterEngineDef]] = pydantic.Field(None)
+    DatabaseInstanceBase: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceBaseDef]] = pydantic.Field(None)
+    DatabaseInstanceEngine: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceEngineDef]] = pydantic.Field(None)
+    Endpoint: typing.Optional[dict[str, models.aws_rds.EndpointDef]] = pydantic.Field(None)
+    MariaDbEngineVersion: typing.Optional[dict[str, models.aws_rds.MariaDbEngineVersionDef]] = pydantic.Field(None)
+    MysqlEngineVersion: typing.Optional[dict[str, models.aws_rds.MysqlEngineVersionDef]] = pydantic.Field(None)
+    OracleEngineVersion: typing.Optional[dict[str, models.aws_rds.OracleEngineVersionDef]] = pydantic.Field(None)
+    PostgresEngineVersion: typing.Optional[dict[str, models.aws_rds.PostgresEngineVersionDef]] = pydantic.Field(None)
+    ProxyTarget: typing.Optional[dict[str, models.aws_rds.ProxyTargetDef]] = pydantic.Field(None)
+    SessionPinningFilter: typing.Optional[dict[str, models.aws_rds.SessionPinningFilterDef]] = pydantic.Field(None)
+    SnapshotCredentials: typing.Optional[dict[str, models.aws_rds.SnapshotCredentialsDef]] = pydantic.Field(None)
+    SqlServerEngineVersion: typing.Optional[dict[str, models.aws_rds.SqlServerEngineVersionDef]] = pydantic.Field(None)
+    DatabaseCluster: typing.Optional[dict[str, models.aws_rds.DatabaseClusterDef]] = pydantic.Field(None)
+    DatabaseClusterFromSnapshot: typing.Optional[dict[str, models.aws_rds.DatabaseClusterFromSnapshotDef]] = pydantic.Field(None)
+    DatabaseInstance: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceDef]] = pydantic.Field(None)
+    DatabaseInstanceFromSnapshot: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceFromSnapshotDef]] = pydantic.Field(None)
+    DatabaseInstanceReadReplica: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceReadReplicaDef]] = pydantic.Field(None)
+    DatabaseProxy: typing.Optional[dict[str, models.aws_rds.DatabaseProxyDef]] = pydantic.Field(None)
+    DatabaseSecret: typing.Optional[dict[str, models.aws_rds.DatabaseSecretDef]] = pydantic.Field(None)
+    OptionGroup: typing.Optional[dict[str, models.aws_rds.OptionGroupDef]] = pydantic.Field(None)
+    ParameterGroup: typing.Optional[dict[str, models.aws_rds.ParameterGroupDef]] = pydantic.Field(None)
+    ServerlessCluster: typing.Optional[dict[str, models.aws_rds.ServerlessClusterDef]] = pydantic.Field(None)
+    ServerlessClusterFromSnapshot: typing.Optional[dict[str, models.aws_rds.ServerlessClusterFromSnapshotDef]] = pydantic.Field(None)
+    SubnetGroup: typing.Optional[dict[str, models.aws_rds.SubnetGroupDef]] = pydantic.Field(None)
+    AuroraClusterEngineProps: typing.Optional[dict[str, models.aws_rds.AuroraClusterEnginePropsDef]] = pydantic.Field(None)
+    AuroraMysqlClusterEngineProps: typing.Optional[dict[str, models.aws_rds.AuroraMysqlClusterEnginePropsDef]] = pydantic.Field(None)
+    AuroraPostgresClusterEngineProps: typing.Optional[dict[str, models.aws_rds.AuroraPostgresClusterEnginePropsDef]] = pydantic.Field(None)
+    AuroraPostgresEngineFeatures: typing.Optional[dict[str, models.aws_rds.AuroraPostgresEngineFeaturesDef]] = pydantic.Field(None)
+    BackupProps: typing.Optional[dict[str, models.aws_rds.BackupPropsDef]] = pydantic.Field(None)
+    CfnDBCluster_DBClusterRoleProperty: typing.Optional[dict[str, models.aws_rds.CfnDBCluster_DBClusterRolePropertyDef]] = pydantic.Field(None)
+    CfnDBCluster_EndpointProperty: typing.Optional[dict[str, models.aws_rds.CfnDBCluster_EndpointPropertyDef]] = pydantic.Field(None)
+    CfnDBCluster_MasterUserSecretProperty: typing.Optional[dict[str, models.aws_rds.CfnDBCluster_MasterUserSecretPropertyDef]] = pydantic.Field(None)
+    CfnDBCluster_ReadEndpointProperty: typing.Optional[dict[str, models.aws_rds.CfnDBCluster_ReadEndpointPropertyDef]] = pydantic.Field(None)
+    CfnDBCluster_ScalingConfigurationProperty: typing.Optional[dict[str, models.aws_rds.CfnDBCluster_ScalingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnDBCluster_ServerlessV2ScalingConfigurationProperty: typing.Optional[dict[str, models.aws_rds.CfnDBCluster_ServerlessV2ScalingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnDBInstance_CertificateDetailsProperty: typing.Optional[dict[str, models.aws_rds.CfnDBInstance_CertificateDetailsPropertyDef]] = pydantic.Field(None)
+    CfnDBInstance_DBInstanceRoleProperty: typing.Optional[dict[str, models.aws_rds.CfnDBInstance_DBInstanceRolePropertyDef]] = pydantic.Field(None)
+    CfnDBInstance_EndpointProperty: typing.Optional[dict[str, models.aws_rds.CfnDBInstance_EndpointPropertyDef]] = pydantic.Field(None)
+    CfnDBInstance_MasterUserSecretProperty: typing.Optional[dict[str, models.aws_rds.CfnDBInstance_MasterUserSecretPropertyDef]] = pydantic.Field(None)
+    CfnDBInstance_ProcessorFeatureProperty: typing.Optional[dict[str, models.aws_rds.CfnDBInstance_ProcessorFeaturePropertyDef]] = pydantic.Field(None)
+    CfnDBProxy_AuthFormatProperty: typing.Optional[dict[str, models.aws_rds.CfnDBProxy_AuthFormatPropertyDef]] = pydantic.Field(None)
+    CfnDBProxy_TagFormatProperty: typing.Optional[dict[str, models.aws_rds.CfnDBProxy_TagFormatPropertyDef]] = pydantic.Field(None)
+    CfnDBProxyEndpoint_TagFormatProperty: typing.Optional[dict[str, models.aws_rds.CfnDBProxyEndpoint_TagFormatPropertyDef]] = pydantic.Field(None)
+    CfnDBProxyTargetGroup_ConnectionPoolConfigurationInfoFormatProperty: typing.Optional[dict[str, models.aws_rds.CfnDBProxyTargetGroup_ConnectionPoolConfigurationInfoFormatPropertyDef]] = pydantic.Field(None)
+    CfnDBSecurityGroup_IngressProperty: typing.Optional[dict[str, models.aws_rds.CfnDBSecurityGroup_IngressPropertyDef]] = pydantic.Field(None)
+    CfnOptionGroup_OptionConfigurationProperty: typing.Optional[dict[str, models.aws_rds.CfnOptionGroup_OptionConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnOptionGroup_OptionSettingProperty: typing.Optional[dict[str, models.aws_rds.CfnOptionGroup_OptionSettingPropertyDef]] = pydantic.Field(None)
+    ClusterEngineBindOptions: typing.Optional[dict[str, models.aws_rds.ClusterEngineBindOptionsDef]] = pydantic.Field(None)
+    ClusterEngineConfig: typing.Optional[dict[str, models.aws_rds.ClusterEngineConfigDef]] = pydantic.Field(None)
+    ClusterEngineFeatures: typing.Optional[dict[str, models.aws_rds.ClusterEngineFeaturesDef]] = pydantic.Field(None)
+    ClusterInstanceBindOptions: typing.Optional[dict[str, models.aws_rds.ClusterInstanceBindOptionsDef]] = pydantic.Field(None)
+    ClusterInstanceOptions: typing.Optional[dict[str, models.aws_rds.ClusterInstanceOptionsDef]] = pydantic.Field(None)
+    ClusterInstanceProps: typing.Optional[dict[str, models.aws_rds.ClusterInstancePropsDef]] = pydantic.Field(None)
+    CommonRotationUserOptions: typing.Optional[dict[str, models.aws_rds.CommonRotationUserOptionsDef]] = pydantic.Field(None)
+    CredentialsBaseOptions: typing.Optional[dict[str, models.aws_rds.CredentialsBaseOptionsDef]] = pydantic.Field(None)
+    CredentialsFromUsernameOptions: typing.Optional[dict[str, models.aws_rds.CredentialsFromUsernameOptionsDef]] = pydantic.Field(None)
+    DatabaseClusterAttributes: typing.Optional[dict[str, models.aws_rds.DatabaseClusterAttributesDef]] = pydantic.Field(None)
+    DatabaseClusterFromSnapshotProps: typing.Optional[dict[str, models.aws_rds.DatabaseClusterFromSnapshotPropsDef]] = pydantic.Field(None)
+    DatabaseClusterProps: typing.Optional[dict[str, models.aws_rds.DatabaseClusterPropsDef]] = pydantic.Field(None)
+    DatabaseInstanceAttributes: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceAttributesDef]] = pydantic.Field(None)
+    DatabaseInstanceFromSnapshotProps: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceFromSnapshotPropsDef]] = pydantic.Field(None)
+    DatabaseInstanceNewProps: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceNewPropsDef]] = pydantic.Field(None)
+    DatabaseInstanceProps: typing.Optional[dict[str, models.aws_rds.DatabaseInstancePropsDef]] = pydantic.Field(None)
+    DatabaseInstanceReadReplicaProps: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceReadReplicaPropsDef]] = pydantic.Field(None)
+    DatabaseInstanceSourceProps: typing.Optional[dict[str, models.aws_rds.DatabaseInstanceSourcePropsDef]] = pydantic.Field(None)
+    DatabaseProxyAttributes: typing.Optional[dict[str, models.aws_rds.DatabaseProxyAttributesDef]] = pydantic.Field(None)
+    DatabaseProxyOptions: typing.Optional[dict[str, models.aws_rds.DatabaseProxyOptionsDef]] = pydantic.Field(None)
+    DatabaseProxyProps: typing.Optional[dict[str, models.aws_rds.DatabaseProxyPropsDef]] = pydantic.Field(None)
+    DatabaseSecretProps: typing.Optional[dict[str, models.aws_rds.DatabaseSecretPropsDef]] = pydantic.Field(None)
+    EngineVersion: typing.Optional[dict[str, models.aws_rds.EngineVersionDef]] = pydantic.Field(None)
+    InstanceEngineBindOptions: typing.Optional[dict[str, models.aws_rds.InstanceEngineBindOptionsDef]] = pydantic.Field(None)
+    InstanceEngineConfig: typing.Optional[dict[str, models.aws_rds.InstanceEngineConfigDef]] = pydantic.Field(None)
+    InstanceEngineFeatures: typing.Optional[dict[str, models.aws_rds.InstanceEngineFeaturesDef]] = pydantic.Field(None)
+    InstanceProps: typing.Optional[dict[str, models.aws_rds.InstancePropsDef]] = pydantic.Field(None)
+    MariaDbInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.MariaDbInstanceEnginePropsDef]] = pydantic.Field(None)
+    MySqlInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.MySqlInstanceEnginePropsDef]] = pydantic.Field(None)
+    OptionConfiguration: typing.Optional[dict[str, models.aws_rds.OptionConfigurationDef]] = pydantic.Field(None)
+    OptionGroupProps: typing.Optional[dict[str, models.aws_rds.OptionGroupPropsDef]] = pydantic.Field(None)
+    OracleEeCdbInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.OracleEeCdbInstanceEnginePropsDef]] = pydantic.Field(None)
+    OracleEeInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.OracleEeInstanceEnginePropsDef]] = pydantic.Field(None)
+    OracleSe2CdbInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.OracleSe2CdbInstanceEnginePropsDef]] = pydantic.Field(None)
+    OracleSe2InstanceEngineProps: typing.Optional[dict[str, models.aws_rds.OracleSe2InstanceEnginePropsDef]] = pydantic.Field(None)
+    ParameterGroupClusterBindOptions: typing.Optional[dict[str, models.aws_rds.ParameterGroupClusterBindOptionsDef]] = pydantic.Field(None)
+    ParameterGroupClusterConfig: typing.Optional[dict[str, models.aws_rds.ParameterGroupClusterConfigDef]] = pydantic.Field(None)
+    ParameterGroupInstanceBindOptions: typing.Optional[dict[str, models.aws_rds.ParameterGroupInstanceBindOptionsDef]] = pydantic.Field(None)
+    ParameterGroupInstanceConfig: typing.Optional[dict[str, models.aws_rds.ParameterGroupInstanceConfigDef]] = pydantic.Field(None)
+    ParameterGroupProps: typing.Optional[dict[str, models.aws_rds.ParameterGroupPropsDef]] = pydantic.Field(None)
+    PostgresEngineFeatures: typing.Optional[dict[str, models.aws_rds.PostgresEngineFeaturesDef]] = pydantic.Field(None)
+    PostgresInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.PostgresInstanceEnginePropsDef]] = pydantic.Field(None)
+    ProcessorFeatures: typing.Optional[dict[str, models.aws_rds.ProcessorFeaturesDef]] = pydantic.Field(None)
+    ProvisionedClusterInstanceProps: typing.Optional[dict[str, models.aws_rds.ProvisionedClusterInstancePropsDef]] = pydantic.Field(None)
+    ProxyTargetConfig: typing.Optional[dict[str, models.aws_rds.ProxyTargetConfigDef]] = pydantic.Field(None)
+    RotationMultiUserOptions: typing.Optional[dict[str, models.aws_rds.RotationMultiUserOptionsDef]] = pydantic.Field(None)
+    RotationSingleUserOptions: typing.Optional[dict[str, models.aws_rds.RotationSingleUserOptionsDef]] = pydantic.Field(None)
+    ServerlessClusterAttributes: typing.Optional[dict[str, models.aws_rds.ServerlessClusterAttributesDef]] = pydantic.Field(None)
+    ServerlessClusterFromSnapshotProps: typing.Optional[dict[str, models.aws_rds.ServerlessClusterFromSnapshotPropsDef]] = pydantic.Field(None)
+    ServerlessClusterProps: typing.Optional[dict[str, models.aws_rds.ServerlessClusterPropsDef]] = pydantic.Field(None)
+    ServerlessScalingOptions: typing.Optional[dict[str, models.aws_rds.ServerlessScalingOptionsDef]] = pydantic.Field(None)
+    ServerlessV2ClusterInstanceProps: typing.Optional[dict[str, models.aws_rds.ServerlessV2ClusterInstancePropsDef]] = pydantic.Field(None)
+    SnapshotCredentialsFromGeneratedPasswordOptions: typing.Optional[dict[str, models.aws_rds.SnapshotCredentialsFromGeneratedPasswordOptionsDef]] = pydantic.Field(None)
+    SqlServerEeInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.SqlServerEeInstanceEnginePropsDef]] = pydantic.Field(None)
+    SqlServerExInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.SqlServerExInstanceEnginePropsDef]] = pydantic.Field(None)
+    SqlServerSeInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.SqlServerSeInstanceEnginePropsDef]] = pydantic.Field(None)
+    SqlServerWebInstanceEngineProps: typing.Optional[dict[str, models.aws_rds.SqlServerWebInstanceEnginePropsDef]] = pydantic.Field(None)
+    SubnetGroupProps: typing.Optional[dict[str, models.aws_rds.SubnetGroupPropsDef]] = pydantic.Field(None)
+    CfnCustomDBEngineVersion: typing.Optional[dict[str, models.aws_rds.CfnCustomDBEngineVersionDef]] = pydantic.Field(None)
+    CfnDBCluster: typing.Optional[dict[str, models.aws_rds.CfnDBClusterDef]] = pydantic.Field(None)
+    CfnDBClusterParameterGroup: typing.Optional[dict[str, models.aws_rds.CfnDBClusterParameterGroupDef]] = pydantic.Field(None)
+    CfnDBInstance: typing.Optional[dict[str, models.aws_rds.CfnDBInstanceDef]] = pydantic.Field(None)
+    CfnDBParameterGroup: typing.Optional[dict[str, models.aws_rds.CfnDBParameterGroupDef]] = pydantic.Field(None)
+    CfnDBProxy: typing.Optional[dict[str, models.aws_rds.CfnDBProxyDef]] = pydantic.Field(None)
+    CfnDBProxyEndpoint: typing.Optional[dict[str, models.aws_rds.CfnDBProxyEndpointDef]] = pydantic.Field(None)
+    CfnDBProxyTargetGroup: typing.Optional[dict[str, models.aws_rds.CfnDBProxyTargetGroupDef]] = pydantic.Field(None)
+    CfnDBSecurityGroup: typing.Optional[dict[str, models.aws_rds.CfnDBSecurityGroupDef]] = pydantic.Field(None)
+    CfnDBSecurityGroupIngress: typing.Optional[dict[str, models.aws_rds.CfnDBSecurityGroupIngressDef]] = pydantic.Field(None)
+    CfnDBSubnetGroup: typing.Optional[dict[str, models.aws_rds.CfnDBSubnetGroupDef]] = pydantic.Field(None)
+    CfnEventSubscription: typing.Optional[dict[str, models.aws_rds.CfnEventSubscriptionDef]] = pydantic.Field(None)
+    CfnGlobalCluster: typing.Optional[dict[str, models.aws_rds.CfnGlobalClusterDef]] = pydantic.Field(None)
+    CfnOptionGroup: typing.Optional[dict[str, models.aws_rds.CfnOptionGroupDef]] = pydantic.Field(None)
+    CfnCustomDBEngineVersionProps: typing.Optional[dict[str, models.aws_rds.CfnCustomDBEngineVersionPropsDef]] = pydantic.Field(None)
+    CfnDBClusterParameterGroupProps: typing.Optional[dict[str, models.aws_rds.CfnDBClusterParameterGroupPropsDef]] = pydantic.Field(None)
+    CfnDBClusterProps: typing.Optional[dict[str, models.aws_rds.CfnDBClusterPropsDef]] = pydantic.Field(None)
+    CfnDBInstanceProps: typing.Optional[dict[str, models.aws_rds.CfnDBInstancePropsDef]] = pydantic.Field(None)
+    CfnDBParameterGroupProps: typing.Optional[dict[str, models.aws_rds.CfnDBParameterGroupPropsDef]] = pydantic.Field(None)
+    CfnDBProxyEndpointProps: typing.Optional[dict[str, models.aws_rds.CfnDBProxyEndpointPropsDef]] = pydantic.Field(None)
+    CfnDBProxyProps: typing.Optional[dict[str, models.aws_rds.CfnDBProxyPropsDef]] = pydantic.Field(None)
+    CfnDBProxyTargetGroupProps: typing.Optional[dict[str, models.aws_rds.CfnDBProxyTargetGroupPropsDef]] = pydantic.Field(None)
+    CfnDBSecurityGroupIngressProps: typing.Optional[dict[str, models.aws_rds.CfnDBSecurityGroupIngressPropsDef]] = pydantic.Field(None)
+    CfnDBSecurityGroupProps: typing.Optional[dict[str, models.aws_rds.CfnDBSecurityGroupPropsDef]] = pydantic.Field(None)
+    CfnDBSubnetGroupProps: typing.Optional[dict[str, models.aws_rds.CfnDBSubnetGroupPropsDef]] = pydantic.Field(None)
+    CfnEventSubscriptionProps: typing.Optional[dict[str, models.aws_rds.CfnEventSubscriptionPropsDef]] = pydantic.Field(None)
+    CfnGlobalClusterProps: typing.Optional[dict[str, models.aws_rds.CfnGlobalClusterPropsDef]] = pydantic.Field(None)
+    CfnOptionGroupProps: typing.Optional[dict[str, models.aws_rds.CfnOptionGroupPropsDef]] = pydantic.Field(None)
     ...
+
+import models

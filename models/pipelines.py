@@ -48,15 +48,15 @@ class CodeBuildStepDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeBuildStepDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.CodeBuildStepDefConfig] = pydantic.Field(None)
 
 
 class CodeBuildStepDefConfig(pydantic.BaseModel):
-    add_output_directory: typing.Optional[list[CodeBuildStepDefAddOutputDirectoryParams]] = pydantic.Field(None, description='Add an additional output FileSet based on a directory.\nAfter running the script, the contents of the given directory\nwill be exported as a ``FileSet``. Use the ``FileSet`` as the\ninput to another step.\n\nMultiple calls with the exact same directory name string (not normalized)\nwill return the same FileSet.')
-    add_step_dependency: typing.Optional[list[CodeBuildStepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
-    exported_variable: typing.Optional[list[CodeBuildStepDefExportedVariableParams]] = pydantic.Field(None, description='Reference a CodePipeline variable defined by the CodeBuildStep.\nThe variable must be set in the shell of the CodeBuild step when\nit finishes its ``post_build`` phase.')
-    primary_output_directory: typing.Optional[list[CodeBuildStepDefPrimaryOutputDirectoryParams]] = pydantic.Field(None, description='Configure the given output directory as primary output.\nIf no primary output has been configured yet, this directory\nwill become the primary output of this ShellStep, otherwise this\nmethod will throw if the given directory is different than the\ncurrently configured primary output directory.')
-    sequence: typing.Optional[list[CodeBuildStepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
+    add_output_directory: typing.Optional[list[models.pipelines.CodeBuildStepDefAddOutputDirectoryParams]] = pydantic.Field(None, description='Add an additional output FileSet based on a directory.\nAfter running the script, the contents of the given directory\nwill be exported as a ``FileSet``. Use the ``FileSet`` as the\ninput to another step.\n\nMultiple calls with the exact same directory name string (not normalized)\nwill return the same FileSet.')
+    add_step_dependency: typing.Optional[list[models.pipelines.CodeBuildStepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
+    exported_variable: typing.Optional[list[models.pipelines.CodeBuildStepDefExportedVariableParams]] = pydantic.Field(None, description='Reference a CodePipeline variable defined by the CodeBuildStep.\nThe variable must be set in the shell of the CodeBuild step when\nit finishes its ``post_build`` phase.')
+    primary_output_directory: typing.Optional[list[models.pipelines.CodeBuildStepDefPrimaryOutputDirectoryParams]] = pydantic.Field(None, description='Configure the given output directory as primary output.\nIf no primary output has been configured yet, this directory\nwill become the primary output of this ShellStep, otherwise this\nmethod will throw if the given directory is different than the\ncurrently configured primary output directory.')
+    sequence: typing.Optional[list[models.pipelines.CodeBuildStepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
     project_config: typing.Optional[models._interface_methods.AwsCodebuildIProjectDefConfig] = pydantic.Field(None)
 
@@ -94,12 +94,12 @@ class CodePipelineFileSetDef(BaseClass):
     ...
 
 
-    from_artifact: typing.Optional[CodePipelineFileSetDefFromArtifactParams] = pydantic.Field(None, description='Turn a CodePipeline Artifact into a FileSet.')
-    resource_config: typing.Optional[CodePipelineFileSetDefConfig] = pydantic.Field(None)
+    from_artifact: typing.Optional[models.pipelines.CodePipelineFileSetDefFromArtifactParams] = pydantic.Field(None, description='Turn a CodePipeline Artifact into a FileSet.')
+    resource_config: typing.Optional[models.pipelines.CodePipelineFileSetDefConfig] = pydantic.Field(None)
 
 
 class CodePipelineFileSetDefConfig(pydantic.BaseModel):
-    produced_by: typing.Optional[list[CodePipelineFileSetDefProducedByParams]] = pydantic.Field(None, description='Mark the given Step as the producer for this FileSet.\nThis method can only be called once.')
+    produced_by: typing.Optional[list[models.pipelines.CodePipelineFileSetDefProducedByParams]] = pydantic.Field(None, description='Mark the given Step as the producer for this FileSet.\nThis method can only be called once.')
     producer_config: typing.Optional[models.pipelines.StepDefConfig] = pydantic.Field(None)
 
 class CodePipelineFileSetDefFromArtifactParams(pydantic.BaseModel):
@@ -121,19 +121,19 @@ class CodePipelineSourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodePipelineSourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.CodePipelineSourceDefConfig] = pydantic.Field(None)
 
 
 class CodePipelineSourceDefConfig(pydantic.BaseModel):
-    add_step_dependency: typing.Optional[list[CodePipelineSourceDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
-    code_commit: typing.Optional[list[CodePipelineSourceDefCodeCommitParams]] = pydantic.Field(None, description='Returns a CodeCommit source.\nIf you need access to symlinks or the repository history, be sure to set\n``codeBuildCloneOutput``.')
-    connection: typing.Optional[list[CodePipelineSourceDefConnectionParams]] = pydantic.Field(None, description='Returns a CodeStar connection source.\nA CodeStar connection allows AWS CodePipeline to\naccess external resources, such as repositories in GitHub, GitHub Enterprise or\nBitBucket.\n\nTo use this method, you first need to create a CodeStar connection\nusing the AWS console. In the process, you may have to sign in to the external provider\n-- GitHub, for example -- to authorize AWS to read and modify your repository.\nOnce you have done this, copy the connection ARN and use it to create the source.\n\nExample::\n\n   pipelines.CodePipelineSource.connection("owner/repo", "main",\n       connection_arn="arn:aws:codestar-connections:us-east-1:222222222222:connection/7d2469ff-514a-4e4f-9003-5ca4a43cdc41"\n   )\n\nIf you need access to symlinks or the repository history, be sure to set\n``codeBuildCloneOutput``.')
-    ecr: typing.Optional[list[CodePipelineSourceDefEcrParams]] = pydantic.Field(None, description='Returns an ECR source.')
-    git_hub: typing.Optional[list[CodePipelineSourceDefGitHubParams]] = pydantic.Field(None, description='Returns a GitHub source, using OAuth tokens to authenticate with GitHub and a separate webhook to detect changes.\nThis is no longer\nthe recommended method. Please consider using ``connection()``\ninstead.\n\nPass in the owner and repository in a single string, like this::\n\n   pipelines.CodePipelineSource.git_hub("owner/repo", "main")\n\nAuthentication will be done by a secret called ``github-token`` in AWS\nSecrets Manager (unless specified otherwise).\n\nIf you rotate the value in the Secret, you must also change at least one property\non the Pipeline, to force CloudFormation to re-read the secret.\n\nThe token should have these permissions:\n\n- **repo** - to read the repository\n- **admin:repo_hook** - if you plan to use webhooks (true by default)\n\nIf you need access to symlinks or the repository history, use a source of type\n``connection`` instead.')
-    produce_action: typing.Optional[list[CodePipelineSourceDefProduceActionParams]] = pydantic.Field(None, description='Create the desired Action and add it to the pipeline.')
-    s3: typing.Optional[list[CodePipelineSourceDefS3Params]] = pydantic.Field(None, description='Returns an S3 source.')
-    sequence: typing.Optional[list[CodePipelineSourceDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
-    source_attribute: typing.Optional[list[CodePipelineSourceDefSourceAttributeParams]] = pydantic.Field(None, description="Return an attribute of the current source revision.\nThese values can be passed into the environment variables of pipeline steps,\nso your steps can access information about the source revision.\n\nPipeline synth step has some source attributes predefined in the environment.\nIf these suffice, you don't need to use this method for the synth step.")
+    add_step_dependency: typing.Optional[list[models.pipelines.CodePipelineSourceDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
+    code_commit: typing.Optional[list[models.pipelines.CodePipelineSourceDefCodeCommitParams]] = pydantic.Field(None, description='Returns a CodeCommit source.\nIf you need access to symlinks or the repository history, be sure to set\n``codeBuildCloneOutput``.')
+    connection: typing.Optional[list[models.pipelines.CodePipelineSourceDefConnectionParams]] = pydantic.Field(None, description='Returns a CodeStar connection source.\nA CodeStar connection allows AWS CodePipeline to\naccess external resources, such as repositories in GitHub, GitHub Enterprise or\nBitBucket.\n\nTo use this method, you first need to create a CodeStar connection\nusing the AWS console. In the process, you may have to sign in to the external provider\n-- GitHub, for example -- to authorize AWS to read and modify your repository.\nOnce you have done this, copy the connection ARN and use it to create the source.\n\nExample::\n\n   pipelines.CodePipelineSource.connection("owner/repo", "main",\n       connection_arn="arn:aws:codestar-connections:us-east-1:222222222222:connection/7d2469ff-514a-4e4f-9003-5ca4a43cdc41"\n   )\n\nIf you need access to symlinks or the repository history, be sure to set\n``codeBuildCloneOutput``.')
+    ecr: typing.Optional[list[models.pipelines.CodePipelineSourceDefEcrParams]] = pydantic.Field(None, description='Returns an ECR source.')
+    git_hub: typing.Optional[list[models.pipelines.CodePipelineSourceDefGitHubParams]] = pydantic.Field(None, description='Returns a GitHub source, using OAuth tokens to authenticate with GitHub and a separate webhook to detect changes.\nThis is no longer\nthe recommended method. Please consider using ``connection()``\ninstead.\n\nPass in the owner and repository in a single string, like this::\n\n   pipelines.CodePipelineSource.git_hub("owner/repo", "main")\n\nAuthentication will be done by a secret called ``github-token`` in AWS\nSecrets Manager (unless specified otherwise).\n\nIf you rotate the value in the Secret, you must also change at least one property\non the Pipeline, to force CloudFormation to re-read the secret.\n\nThe token should have these permissions:\n\n- **repo** - to read the repository\n- **admin:repo_hook** - if you plan to use webhooks (true by default)\n\nIf you need access to symlinks or the repository history, use a source of type\n``connection`` instead.')
+    produce_action: typing.Optional[list[models.pipelines.CodePipelineSourceDefProduceActionParams]] = pydantic.Field(None, description='Create the desired Action and add it to the pipeline.')
+    s3: typing.Optional[list[models.pipelines.CodePipelineSourceDefS3Params]] = pydantic.Field(None, description='Returns an S3 source.')
+    sequence: typing.Optional[list[models.pipelines.CodePipelineSourceDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
+    source_attribute: typing.Optional[list[models.pipelines.CodePipelineSourceDefSourceAttributeParams]] = pydantic.Field(None, description="Return an attribute of the current source revision.\nThese values can be passed into the environment variables of pipeline steps,\nso your steps can access information about the source revision.\n\nPipeline synth step has some source attributes predefined in the environment.\nIf these suffice, you don't need to use this method for the synth step.")
 
 class CodePipelineSourceDefAddStepDependencyParams(pydantic.BaseModel):
     step: models.pipelines.StepDef = pydantic.Field(..., description='-')
@@ -146,6 +146,7 @@ class CodePipelineSourceDefCodeCommitParams(pydantic.BaseModel):
     code_build_clone_output: typing.Optional[bool] = pydantic.Field(None, description='If this is set, the next CodeBuild job clones the repository (instead of CodePipeline downloading the files). This provides access to repository history, and retains symlinks (symlinks would otherwise be removed by CodePipeline). **Note**: if this option is true, only CodeBuild jobs can use the output artifact. Default: false\n')
     event_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role to be used by on commit event rule. Used only when trigger value is CodeCommitTrigger.EVENTS. Default: a new role will be created.\n')
     trigger: typing.Optional[aws_cdk.aws_codepipeline_actions.CodeCommitTrigger] = pydantic.Field(None, description='How should CodePipeline detect source changes for this Action. Default: CodeCommitTrigger.EVENTS\n\nExample::\n\n    # repository: codecommit.IRepository\n\n    pipelines.CodePipelineSource.code_commit(repository, "main")\n')
+    return_config: typing.Optional[list[models.pipelines.CodePipelineSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class CodePipelineSourceDefConnectionParams(pydantic.BaseModel):
@@ -155,12 +156,14 @@ class CodePipelineSourceDefConnectionParams(pydantic.BaseModel):
     action_name: typing.Optional[str] = pydantic.Field(None, description='The action name used for this source in the CodePipeline. Default: - The repository string\n')
     code_build_clone_output: typing.Optional[bool] = pydantic.Field(None, description='If this is set, the next CodeBuild job clones the repository (instead of CodePipeline downloading the files). This provides access to repository history, and retains symlinks (symlinks would otherwise be removed by CodePipeline). **Note**: if this option is true, only CodeBuild jobs can use the output artifact. Default: false\n')
     trigger_on_push: typing.Optional[bool] = pydantic.Field(None, description='Controls automatically starting your pipeline when a new commit is made on the configured repository and branch. If unspecified, the default value is true, and the field does not display by default. Default: true\n\n:see: https://docs.aws.amazon.com/dtconsole/latest/userguide/welcome-connections.html\n')
+    return_config: typing.Optional[list[models.pipelines.CodePipelineSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class CodePipelineSourceDefEcrParams(pydantic.BaseModel):
     repository: typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef] = pydantic.Field(..., description='The repository that will be watched for changes.\n')
     action_name: typing.Optional[str] = pydantic.Field(None, description='The action name used for this source in the CodePipeline. Default: - The repository name\n')
     image_tag: typing.Optional[str] = pydantic.Field(None, description='The image tag that will be checked for changes. Default: latest\n\nExample::\n\n    # repository: ecr.IRepository\n\n    pipelines.CodePipelineSource.ecr(repository,\n        image_tag="latest"\n    )\n')
+    return_config: typing.Optional[list[models.pipelines.CodePipelineSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class CodePipelineSourceDefGitHubParams(pydantic.BaseModel):
@@ -169,6 +172,7 @@ class CodePipelineSourceDefGitHubParams(pydantic.BaseModel):
     action_name: typing.Optional[str] = pydantic.Field(None, description='The action name used for this source in the CodePipeline. Default: - The repository string\n')
     authentication: typing.Optional[models.SecretValueDef] = pydantic.Field(None, description="A GitHub OAuth token to use for authentication. It is recommended to use a Secrets Manager ``Secret`` to obtain the token:: const oauth = cdk.SecretValue.secretsManager('my-github-token'); The GitHub Personal Access Token should have these scopes: - **repo** - to read the repository - **admin:repo_hook** - if you plan to use webhooks (true by default) Default: - SecretValue.secretsManager('github-token')\n")
     trigger: typing.Optional[aws_cdk.aws_codepipeline_actions.GitHubTrigger] = pydantic.Field(None, description='How AWS CodePipeline should be triggered. With the default value "WEBHOOK", a webhook is created in GitHub that triggers the action. With "POLL", CodePipeline periodically checks the source for changes. With "None", the action is not triggered through changes in the source. To use ``WEBHOOK``, your GitHub Personal Access Token should have **admin:repo_hook** scope (in addition to the regular **repo** scope). Default: GitHubTrigger.WEBHOOK')
+    return_config: typing.Optional[list[models.pipelines.CodePipelineSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class CodePipelineSourceDefProduceActionParams(pydantic.BaseModel):
@@ -186,11 +190,12 @@ class CodePipelineSourceDefProduceActionParams(pydantic.BaseModel):
     ...
 
 class CodePipelineSourceDefS3Params(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The bucket where the source code is located.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The bucket where the source code is located.\n')
     object_key: str = pydantic.Field(..., description='-\n')
     action_name: typing.Optional[str] = pydantic.Field(None, description='The action name used for this source in the CodePipeline. Default: - The bucket name\n')
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The role that will be assumed by the pipeline prior to executing the ``S3Source`` action. Default: - a new role will be generated\n')
     trigger: typing.Optional[aws_cdk.aws_codepipeline_actions.S3Trigger] = pydantic.Field(None, description='How should CodePipeline detect source changes for this Action. Note that if this is S3Trigger.EVENTS, you need to make sure to include the source Bucket in a CloudTrail Trail, as otherwise the CloudWatch Events will not be emitted. Default: S3Trigger.POLL\n\nExample::\n\n    # bucket: s3.Bucket\n\n    pipelines.CodePipelineSource.s3(bucket, "path/to/file.zip")\n')
+    return_config: typing.Optional[list[models.pipelines.CodePipelineSourceDefConfig]] = pydantic.Field(None)
     ...
 
 class CodePipelineSourceDefSequenceParams(pydantic.BaseModel):
@@ -214,13 +219,13 @@ class ConfirmPermissionsBroadeningDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ConfirmPermissionsBroadeningDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.ConfirmPermissionsBroadeningDefConfig] = pydantic.Field(None)
 
 
 class ConfirmPermissionsBroadeningDefConfig(pydantic.BaseModel):
-    add_step_dependency: typing.Optional[list[ConfirmPermissionsBroadeningDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
-    produce_action: typing.Optional[list[ConfirmPermissionsBroadeningDefProduceActionParams]] = pydantic.Field(None, description='Create the desired Action and add it to the pipeline.')
-    sequence: typing.Optional[list[ConfirmPermissionsBroadeningDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
+    add_step_dependency: typing.Optional[list[models.pipelines.ConfirmPermissionsBroadeningDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
+    produce_action: typing.Optional[list[models.pipelines.ConfirmPermissionsBroadeningDefProduceActionParams]] = pydantic.Field(None, description='Create the desired Action and add it to the pipeline.')
+    sequence: typing.Optional[list[models.pipelines.ConfirmPermissionsBroadeningDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
 
 class ConfirmPermissionsBroadeningDefAddStepDependencyParams(pydantic.BaseModel):
     step: models.pipelines.StepDef = pydantic.Field(..., description='-')
@@ -256,14 +261,14 @@ class DockerCredentialDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DockerCredentialDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.DockerCredentialDefConfig] = pydantic.Field(None)
 
 
 class DockerCredentialDefConfig(pydantic.BaseModel):
-    custom_registry: typing.Optional[list[DockerCredentialDefCustomRegistryParams]] = pydantic.Field(None, description="Creates a DockerCredential for a registry, based on its domain name (e.g., 'www.example.com').")
-    docker_hub: typing.Optional[list[DockerCredentialDefDockerHubParams]] = pydantic.Field(None, description="Creates a DockerCredential for DockerHub.\nConvenience method for ``customRegistry('https://index.docker.io/v1/', opts)``.")
-    ecr: typing.Optional[list[DockerCredentialDefEcrParams]] = pydantic.Field(None, description='Creates a DockerCredential for one or more ECR repositories.\nNOTE - All ECR repositories in the same account and region share a domain name\n(e.g., 0123456789012.dkr.ecr.eu-west-1.amazonaws.com), and can only have one associated\nset of credentials (and DockerCredential). Attempting to associate one set of credentials\nwith one ECR repo and another with another ECR repo in the same account and region will\nresult in failures when using these credentials in the pipeline.')
-    grant_read: typing.Optional[list[DockerCredentialDefGrantReadParams]] = pydantic.Field(None, description='Grant read-only access to the registry credentials.\nThis grants read access to any secrets, and pull access to any repositories.')
+    custom_registry: typing.Optional[list[models.pipelines.DockerCredentialDefCustomRegistryParams]] = pydantic.Field(None, description="Creates a DockerCredential for a registry, based on its domain name (e.g., 'www.example.com').")
+    docker_hub: typing.Optional[list[models.pipelines.DockerCredentialDefDockerHubParams]] = pydantic.Field(None, description="Creates a DockerCredential for DockerHub.\nConvenience method for ``customRegistry('https://index.docker.io/v1/', opts)``.")
+    ecr: typing.Optional[list[models.pipelines.DockerCredentialDefEcrParams]] = pydantic.Field(None, description='Creates a DockerCredential for one or more ECR repositories.\nNOTE - All ECR repositories in the same account and region share a domain name\n(e.g., 0123456789012.dkr.ecr.eu-west-1.amazonaws.com), and can only have one associated\nset of credentials (and DockerCredential). Attempting to associate one set of credentials\nwith one ECR repo and another with another ECR repo in the same account and region will\nresult in failures when using these credentials in the pipeline.')
+    grant_read: typing.Optional[list[models.pipelines.DockerCredentialDefGrantReadParams]] = pydantic.Field(None, description='Grant read-only access to the registry credentials.\nThis grants read access to any secrets, and pull access to any repositories.')
 
 class DockerCredentialDefCustomRegistryParams(pydantic.BaseModel):
     registry_domain: str = pydantic.Field(..., description='-\n')
@@ -272,6 +277,7 @@ class DockerCredentialDefCustomRegistryParams(pydantic.BaseModel):
     secret_password_field: typing.Optional[str] = pydantic.Field(None, description="The name of the JSON field of the secret which contains the secret/password. Default: 'secret'\n")
     secret_username_field: typing.Optional[str] = pydantic.Field(None, description="The name of the JSON field of the secret which contains the user/login name. Default: 'username'\n")
     usages: typing.Optional[typing.Sequence[aws_cdk.pipelines.DockerCredentialUsage]] = pydantic.Field(None, description='Defines which stages of the pipeline should be granted access to these credentials. Default: - all relevant stages (synth, self-update, asset publishing) are granted access.')
+    return_config: typing.Optional[list[models.pipelines.DockerCredentialDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerCredentialDefDockerHubParams(pydantic.BaseModel):
@@ -280,12 +286,14 @@ class DockerCredentialDefDockerHubParams(pydantic.BaseModel):
     secret_password_field: typing.Optional[str] = pydantic.Field(None, description="The name of the JSON field of the secret which contains the secret/password. Default: 'secret'\n")
     secret_username_field: typing.Optional[str] = pydantic.Field(None, description="The name of the JSON field of the secret which contains the user/login name. Default: 'username'\n")
     usages: typing.Optional[typing.Sequence[aws_cdk.pipelines.DockerCredentialUsage]] = pydantic.Field(None, description='Defines which stages of the pipeline should be granted access to these credentials. Default: - all relevant stages (synth, self-update, asset publishing) are granted access.')
+    return_config: typing.Optional[list[models.pipelines.DockerCredentialDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerCredentialDefEcrParams(pydantic.BaseModel):
     repositories: typing.Sequence[typing.Union[models.aws_ecr.RepositoryBaseDef, models.aws_ecr.RepositoryDef]] = pydantic.Field(..., description='-\n')
     assume_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='An IAM role to assume prior to accessing the secret. Default: - none. The current execution role will be used.\n')
     usages: typing.Optional[typing.Sequence[aws_cdk.pipelines.DockerCredentialUsage]] = pydantic.Field(None, description='Defines which stages of the pipeline should be granted access to these credentials. Default: - all relevant stages (synth, self-update, asset publishing) are granted access.')
+    return_config: typing.Optional[list[models.pipelines.DockerCredentialDefConfig]] = pydantic.Field(None)
     ...
 
 class DockerCredentialDefGrantReadParams(pydantic.BaseModel):
@@ -305,11 +313,11 @@ class FileSetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FileSetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.FileSetDefConfig] = pydantic.Field(None)
 
 
 class FileSetDefConfig(pydantic.BaseModel):
-    produced_by: typing.Optional[list[FileSetDefProducedByParams]] = pydantic.Field(None, description='Mark the given Step as the producer for this FileSet.\nThis method can only be called once.')
+    produced_by: typing.Optional[list[models.pipelines.FileSetDefProducedByParams]] = pydantic.Field(None, description='Mark the given Step as the producer for this FileSet.\nThis method can only be called once.')
     producer_config: typing.Optional[models.pipelines.StepDefConfig] = pydantic.Field(None)
 
 class FileSetDefProducedByParams(pydantic.BaseModel):
@@ -328,12 +336,12 @@ class ManualApprovalStepDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ManualApprovalStepDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.ManualApprovalStepDefConfig] = pydantic.Field(None)
 
 
 class ManualApprovalStepDefConfig(pydantic.BaseModel):
-    add_step_dependency: typing.Optional[list[ManualApprovalStepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
-    sequence: typing.Optional[list[ManualApprovalStepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
+    add_step_dependency: typing.Optional[list[models.pipelines.ManualApprovalStepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
+    sequence: typing.Optional[list[models.pipelines.ManualApprovalStepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
 
 class ManualApprovalStepDefAddStepDependencyParams(pydantic.BaseModel):
     step: models.pipelines.StepDef = pydantic.Field(..., description='-')
@@ -355,12 +363,12 @@ class PipelineBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PipelineBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.PipelineBaseDefConfig] = pydantic.Field(None)
 
 
 class PipelineBaseDefConfig(pydantic.BaseModel):
-    add_stage: typing.Optional[list[PipelineBaseDefAddStageParams]] = pydantic.Field(None, description='Deploy a single Stage by itself.\nAdd a Stage to the pipeline, to be deployed in sequence with other\nStages added to the pipeline. All Stacks in the stage will be deployed\nin an order automatically determined by their relative dependencies.')
-    add_wave: typing.Optional[list[PipelineBaseDefAddWaveParams]] = pydantic.Field(None, description='Add a Wave to the pipeline, for deploying multiple Stages in parallel.\nUse the return object of this method to deploy multiple stages in parallel.\n\nExample::\n\n   # pipeline: pipelines.CodePipeline\n\n\n   wave = pipeline.add_wave("MyWave")\n   wave.add_stage(MyApplicationStage(self, "Stage1"))\n   wave.add_stage(MyApplicationStage(self, "Stage2"))')
+    add_stage: typing.Optional[list[models.pipelines.PipelineBaseDefAddStageParams]] = pydantic.Field(None, description='Deploy a single Stage by itself.\nAdd a Stage to the pipeline, to be deployed in sequence with other\nStages added to the pipeline. All Stacks in the stage will be deployed\nin an order automatically determined by their relative dependencies.')
+    add_wave: typing.Optional[list[models.pipelines.PipelineBaseDefAddWaveParams]] = pydantic.Field(None, description='Add a Wave to the pipeline, for deploying multiple Stages in parallel.\nUse the return object of this method to deploy multiple stages in parallel.\n\nExample::\n\n   # pipeline: pipelines.CodePipeline\n\n\n   wave = pipeline.add_wave("MyWave")\n   wave.add_stage(MyApplicationStage(self, "Stage1"))\n   wave.add_stage(MyApplicationStage(self, "Stage2"))')
     build_pipeline: typing.Optional[bool] = pydantic.Field(None, description='Send the current pipeline definition to the engine, and construct the pipeline.\nIt is not possible to modify the pipeline after calling this method.')
 
 class PipelineBaseDefAddStageParams(pydantic.BaseModel):
@@ -396,14 +404,14 @@ class ShellStepDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ShellStepDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.ShellStepDefConfig] = pydantic.Field(None)
 
 
 class ShellStepDefConfig(pydantic.BaseModel):
-    add_output_directory: typing.Optional[list[ShellStepDefAddOutputDirectoryParams]] = pydantic.Field(None, description='Add an additional output FileSet based on a directory.\nAfter running the script, the contents of the given directory\nwill be exported as a ``FileSet``. Use the ``FileSet`` as the\ninput to another step.\n\nMultiple calls with the exact same directory name string (not normalized)\nwill return the same FileSet.')
-    add_step_dependency: typing.Optional[list[ShellStepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
-    primary_output_directory: typing.Optional[list[ShellStepDefPrimaryOutputDirectoryParams]] = pydantic.Field(None, description='Configure the given output directory as primary output.\nIf no primary output has been configured yet, this directory\nwill become the primary output of this ShellStep, otherwise this\nmethod will throw if the given directory is different than the\ncurrently configured primary output directory.')
-    sequence: typing.Optional[list[ShellStepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
+    add_output_directory: typing.Optional[list[models.pipelines.ShellStepDefAddOutputDirectoryParams]] = pydantic.Field(None, description='Add an additional output FileSet based on a directory.\nAfter running the script, the contents of the given directory\nwill be exported as a ``FileSet``. Use the ``FileSet`` as the\ninput to another step.\n\nMultiple calls with the exact same directory name string (not normalized)\nwill return the same FileSet.')
+    add_step_dependency: typing.Optional[list[models.pipelines.ShellStepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
+    primary_output_directory: typing.Optional[list[models.pipelines.ShellStepDefPrimaryOutputDirectoryParams]] = pydantic.Field(None, description='Configure the given output directory as primary output.\nIf no primary output has been configured yet, this directory\nwill become the primary output of this ShellStep, otherwise this\nmethod will throw if the given directory is different than the\ncurrently configured primary output directory.')
+    sequence: typing.Optional[list[models.pipelines.ShellStepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
 
 class ShellStepDefAddOutputDirectoryParams(pydantic.BaseModel):
     directory: str = pydantic.Field(..., description='-')
@@ -434,13 +442,13 @@ class StackDeploymentDef(BaseClass):
     ...
 
 
-    from_artifact: typing.Optional[StackDeploymentDefFromArtifactParams] = pydantic.Field(None, description='Build a ``StackDeployment`` from a Stack Artifact in a Cloud Assembly.')
-    resource_config: typing.Optional[StackDeploymentDefConfig] = pydantic.Field(None)
+    from_artifact: typing.Optional[models.pipelines.StackDeploymentDefFromArtifactParams] = pydantic.Field(None, description='Build a ``StackDeployment`` from a Stack Artifact in a Cloud Assembly.')
+    resource_config: typing.Optional[models.pipelines.StackDeploymentDefConfig] = pydantic.Field(None)
 
 
 class StackDeploymentDefConfig(pydantic.BaseModel):
-    add_stack_dependency: typing.Optional[list[StackDeploymentDefAddStackDependencyParams]] = pydantic.Field(None, description='Add a dependency on another stack.')
-    add_stack_steps: typing.Optional[list[StackDeploymentDefAddStackStepsParams]] = pydantic.Field(None, description='Adds steps to each phase of the stack.')
+    add_stack_dependency: typing.Optional[list[models.pipelines.StackDeploymentDefAddStackDependencyParams]] = pydantic.Field(None, description='Add a dependency on another stack.')
+    add_stack_steps: typing.Optional[list[models.pipelines.StackDeploymentDefAddStackStepsParams]] = pydantic.Field(None, description='Adds steps to each phase of the stack.')
 
 class StackDeploymentDefAddStackDependencyParams(pydantic.BaseModel):
     stack_deployment: models.pipelines.StackDeploymentDef = pydantic.Field(..., description='-')
@@ -467,7 +475,7 @@ class StackOutputReferenceDef(BaseClass):
     ...
 
 
-    from_cfn_output: typing.Optional[StackOutputReferenceDefFromCfnOutputParams] = pydantic.Field(None, description='Create a StackOutputReference that references the given CfnOutput.')
+    from_cfn_output: typing.Optional[models.pipelines.StackOutputReferenceDefFromCfnOutputParams] = pydantic.Field(None, description='Create a StackOutputReference that references the given CfnOutput.')
 
 class StackOutputReferenceDefFromCfnOutputParams(pydantic.BaseModel):
     output: models.CfnOutputDef = pydantic.Field(..., description='-')
@@ -497,13 +505,13 @@ class StageDeploymentDef(BaseClass):
     ...
 
 
-    from_stage: typing.Optional[StageDeploymentDefFromStageParams] = pydantic.Field(None, description='Create a new ``StageDeployment`` from a ``Stage``.\nSynthesizes the target stage, and deployes the stacks found inside\nin dependency order.')
-    resource_config: typing.Optional[StageDeploymentDefConfig] = pydantic.Field(None)
+    from_stage: typing.Optional[models.pipelines.StageDeploymentDefFromStageParams] = pydantic.Field(None, description='Create a new ``StageDeployment`` from a ``Stage``.\nSynthesizes the target stage, and deployes the stacks found inside\nin dependency order.')
+    resource_config: typing.Optional[models.pipelines.StageDeploymentDefConfig] = pydantic.Field(None)
 
 
 class StageDeploymentDefConfig(pydantic.BaseModel):
-    add_post: typing.Optional[list[StageDeploymentDefAddPostParams]] = pydantic.Field(None, description='Add an additional step to run after all of the stacks in this stage.')
-    add_pre: typing.Optional[list[StageDeploymentDefAddPreParams]] = pydantic.Field(None, description='Add an additional step to run before any of the stacks in this stage.')
+    add_post: typing.Optional[list[models.pipelines.StageDeploymentDefAddPostParams]] = pydantic.Field(None, description='Add an additional step to run after all of the stacks in this stage.')
+    add_pre: typing.Optional[list[models.pipelines.StageDeploymentDefAddPreParams]] = pydantic.Field(None, description='Add an additional step to run before any of the stacks in this stage.')
 
 class StageDeploymentDefAddPostParams(pydantic.BaseModel):
     steps: list[models.pipelines.StepDef] = pydantic.Field(...)
@@ -532,12 +540,12 @@ class StepDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StepDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.StepDefConfig] = pydantic.Field(None)
 
 
 class StepDefConfig(pydantic.BaseModel):
-    add_step_dependency: typing.Optional[list[StepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
-    sequence: typing.Optional[list[StepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
+    add_step_dependency: typing.Optional[list[models.pipelines.StepDefAddStepDependencyParams]] = pydantic.Field(None, description='Add a dependency on another step.')
+    sequence: typing.Optional[list[models.pipelines.StepDefSequenceParams]] = pydantic.Field(None, description='Define a sequence of steps to be executed in order.\nIf you need more fine-grained step ordering, use the ``addStepDependency()``\nAPI. For example, if you want ``secondStep`` to occur after ``firstStep``, call\n``secondStep.addStepDependency(firstStep)``.')
 
 class StepDefAddStepDependencyParams(pydantic.BaseModel):
     step: models.pipelines.StepDef = pydantic.Field(..., description='-')
@@ -560,13 +568,13 @@ class WaveDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[WaveDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.WaveDefConfig] = pydantic.Field(None)
 
 
 class WaveDefConfig(pydantic.BaseModel):
-    add_post: typing.Optional[list[WaveDefAddPostParams]] = pydantic.Field(None, description='Add an additional step to run after all of the stages in this wave.')
-    add_pre: typing.Optional[list[WaveDefAddPreParams]] = pydantic.Field(None, description='Add an additional step to run before any of the stages in this wave.')
-    add_stage: typing.Optional[list[WaveDefAddStageParams]] = pydantic.Field(None, description='Add a Stage to this wave.\nIt will be deployed in parallel with all other stages in this\nwave.')
+    add_post: typing.Optional[list[models.pipelines.WaveDefAddPostParams]] = pydantic.Field(None, description='Add an additional step to run after all of the stages in this wave.')
+    add_pre: typing.Optional[list[models.pipelines.WaveDefAddPreParams]] = pydantic.Field(None, description='Add an additional step to run before any of the stages in this wave.')
+    add_stage: typing.Optional[list[models.pipelines.WaveDefAddStageParams]] = pydantic.Field(None, description='Add a Stage to this wave.\nIt will be deployed in parallel with all other stages in this\nwave.')
 
 class WaveDefAddPostParams(pydantic.BaseModel):
     steps: list[models.pipelines.StepDef] = pydantic.Field(...)
@@ -588,7 +596,7 @@ class WaveDefAddStageParams(pydantic.BaseModel):
 #  autogenerated from aws_cdk.pipelines.CodePipeline
 class CodePipelineDef(BaseConstruct):
     synth: typing.Union[_REQUIRED_INIT_PARAM, models.pipelines.CodeBuildStepDef, models.pipelines.CodePipelineFileSetDef, models.pipelines.CodePipelineSourceDef, models.pipelines.ConfirmPermissionsBroadeningDef, models.pipelines.FileSetDef, models.pipelines.ManualApprovalStepDef, models.pipelines.ShellStepDef, models.pipelines.StepDef] = pydantic.Field(REQUIRED_INIT_PARAM, description="The build step that produces the CDK Cloud Assembly. The primary output of this step needs to be the ``cdk.out`` directory generated by the ``cdk synth`` command. If you use a ``ShellStep`` here and you don't configure an output directory, the output directory will automatically be assumed to be ``cdk.out``.\n")
-    artifact_bucket: typing.Optional[models.aws_s3.BucketDef] = pydantic.Field(None, description="An existing S3 Bucket to use for storing the pipeline's artifact. Default: - A new S3 bucket will be created.\n")
+    artifact_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description="An existing S3 Bucket to use for storing the pipeline's artifact. Default: - A new S3 bucket will be created.\n")
     asset_publishing_code_build_defaults: typing.Union[models.pipelines.CodeBuildOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional customizations to apply to the asset publishing CodeBuild projects. Default: - Only ``codeBuildDefaults`` are applied\n')
     cli_version: typing.Optional[str] = pydantic.Field(None, description='CDK CLI version to use in self-mutation and asset publishing steps. If you want to lock the CDK CLI version used in the pipeline, by steps that are automatically generated for you, specify the version here. We recommend you do not specify this value, as not specifying it always uses the latest CLI version which is backwards compatible with old versions. If you do specify it, be aware that this version should always be equal to or higher than the version of the CDK framework used by the CDK app, when the CDK commands are run during your pipeline execution. When you change this version, the *next time* the ``SelfMutate`` step runs it will still be using the CLI of the the *previous* version that was in this property: it will only start using the new version after ``SelfMutate`` completes successfully. That means that if you want to update both framework and CLI version, you should update the CLI version first, commit, push and deploy, and only then update the framework version. Default: - Latest version\n')
     code_build_defaults: typing.Union[models.pipelines.CodeBuildOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Customize the CodeBuild projects created for this pipeline. Default: - All projects run non-privileged build, SMALL instance, LinuxBuildImage.STANDARD_7_0\n')
@@ -614,12 +622,12 @@ class CodePipelineDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CodePipelineDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.CodePipelineDefConfig] = pydantic.Field(None)
 
 
 class CodePipelineDefConfig(pydantic.BaseModel):
-    add_stage: typing.Optional[list[CodePipelineDefAddStageParams]] = pydantic.Field(None, description='Deploy a single Stage by itself.\nAdd a Stage to the pipeline, to be deployed in sequence with other\nStages added to the pipeline. All Stacks in the stage will be deployed\nin an order automatically determined by their relative dependencies.')
-    add_wave: typing.Optional[list[CodePipelineDefAddWaveParams]] = pydantic.Field(None, description='Add a Wave to the pipeline, for deploying multiple Stages in parallel.\nUse the return object of this method to deploy multiple stages in parallel.\n\nExample::\n\n   # pipeline: pipelines.CodePipeline\n\n\n   wave = pipeline.add_wave("MyWave")\n   wave.add_stage(MyApplicationStage(self, "Stage1"))\n   wave.add_stage(MyApplicationStage(self, "Stage2"))')
+    add_stage: typing.Optional[list[models.pipelines.CodePipelineDefAddStageParams]] = pydantic.Field(None, description='Deploy a single Stage by itself.\nAdd a Stage to the pipeline, to be deployed in sequence with other\nStages added to the pipeline. All Stacks in the stage will be deployed\nin an order automatically determined by their relative dependencies.')
+    add_wave: typing.Optional[list[models.pipelines.CodePipelineDefAddWaveParams]] = pydantic.Field(None, description='Add a Wave to the pipeline, for deploying multiple Stages in parallel.\nUse the return object of this method to deploy multiple stages in parallel.\n\nExample::\n\n   # pipeline: pipelines.CodePipeline\n\n\n   wave = pipeline.add_wave("MyWave")\n   wave.add_stage(MyApplicationStage(self, "Stage1"))\n   wave.add_stage(MyApplicationStage(self, "Stage2"))')
     build_pipeline: typing.Optional[bool] = pydantic.Field(None, description='Send the current pipeline definition to the engine, and construct the pipeline.\nIt is not possible to modify the pipeline after calling this method.')
     pipeline_config: typing.Optional[models.aws_codepipeline.PipelineDefConfig] = pydantic.Field(None)
     self_mutation_project_config: typing.Optional[models._interface_methods.AwsCodebuildIProjectDefConfig] = pydantic.Field(None)
@@ -743,7 +751,7 @@ class CodePipelineActionFactoryResultDef(BaseStruct):
 #  autogenerated from aws_cdk.pipelines.CodePipelineProps
 class CodePipelinePropsDef(BaseStruct):
     synth: typing.Union[_REQUIRED_INIT_PARAM, models.pipelines.CodeBuildStepDef, models.pipelines.CodePipelineFileSetDef, models.pipelines.CodePipelineSourceDef, models.pipelines.ConfirmPermissionsBroadeningDef, models.pipelines.FileSetDef, models.pipelines.ManualApprovalStepDef, models.pipelines.ShellStepDef, models.pipelines.StepDef] = pydantic.Field(REQUIRED_INIT_PARAM, description="The build step that produces the CDK Cloud Assembly. The primary output of this step needs to be the ``cdk.out`` directory generated by the ``cdk synth`` command. If you use a ``ShellStep`` here and you don't configure an output directory, the output directory will automatically be assumed to be ``cdk.out``.\n")
-    artifact_bucket: typing.Optional[models.aws_s3.BucketDef] = pydantic.Field(None, description="An existing S3 Bucket to use for storing the pipeline's artifact. Default: - A new S3 bucket will be created.\n")
+    artifact_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description="An existing S3 Bucket to use for storing the pipeline's artifact. Default: - A new S3 bucket will be created.\n")
     asset_publishing_code_build_defaults: typing.Union[models.pipelines.CodeBuildOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional customizations to apply to the asset publishing CodeBuild projects. Default: - Only ``codeBuildDefaults`` are applied\n')
     cli_version: typing.Optional[str] = pydantic.Field(None, description='CDK CLI version to use in self-mutation and asset publishing steps. If you want to lock the CDK CLI version used in the pipeline, by steps that are automatically generated for you, specify the version here. We recommend you do not specify this value, as not specifying it always uses the latest CLI version which is backwards compatible with old versions. If you do specify it, be aware that this version should always be equal to or higher than the version of the CDK framework used by the CDK app, when the CDK commands are run during your pipeline execution. When you change this version, the *next time* the ``SelfMutate`` step runs it will still be using the CLI of the the *previous* version that was in this property: it will only start using the new version after ``SelfMutate`` completes successfully. That means that if you want to update both framework and CLI version, you should update the CLI version first, commit, push and deploy, and only then update the framework version. Default: - Latest version\n')
     code_build_defaults: typing.Union[models.pipelines.CodeBuildOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Customize the CodeBuild projects created for this pipeline. Default: - All projects run non-privileged build, SMALL instance, LinuxBuildImage.STANDARD_7_0\n')
@@ -885,7 +893,7 @@ class PermissionsBroadeningCheckPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[PermissionsBroadeningCheckPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.PermissionsBroadeningCheckPropsDefConfig] = pydantic.Field(None)
 
 
 class PermissionsBroadeningCheckPropsDefConfig(pydantic.BaseModel):
@@ -1015,7 +1023,7 @@ class StackStepsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StackStepsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.pipelines.StackStepsDefConfig] = pydantic.Field(None)
 
 
 class StackStepsDefConfig(pydantic.BaseModel):
@@ -1078,48 +1086,48 @@ class WavePropsDef(BaseStruct):
 #  autogenerated from aws_cdk.pipelines.IFileSetProducer
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ArtifactMap: typing.Optional[dict[str, ArtifactMapDef]] = pydantic.Field(None)
-    CodeBuildStep: typing.Optional[dict[str, CodeBuildStepDef]] = pydantic.Field(None)
-    CodePipelineFileSet: typing.Optional[dict[str, CodePipelineFileSetDef]] = pydantic.Field(None)
-    CodePipelineSource: typing.Optional[dict[str, CodePipelineSourceDef]] = pydantic.Field(None)
-    ConfirmPermissionsBroadening: typing.Optional[dict[str, ConfirmPermissionsBroadeningDef]] = pydantic.Field(None)
-    DockerCredential: typing.Optional[dict[str, DockerCredentialDef]] = pydantic.Field(None)
-    FileSet: typing.Optional[dict[str, FileSetDef]] = pydantic.Field(None)
-    ManualApprovalStep: typing.Optional[dict[str, ManualApprovalStepDef]] = pydantic.Field(None)
-    PipelineBase: typing.Optional[dict[str, PipelineBaseDef]] = pydantic.Field(None)
-    ShellStep: typing.Optional[dict[str, ShellStepDef]] = pydantic.Field(None)
-    StackDeployment: typing.Optional[dict[str, StackDeploymentDef]] = pydantic.Field(None)
-    StackOutputReference: typing.Optional[dict[str, StackOutputReferenceDef]] = pydantic.Field(None)
-    StackOutputsMap: typing.Optional[dict[str, StackOutputsMapDef]] = pydantic.Field(None)
-    StageDeployment: typing.Optional[dict[str, StageDeploymentDef]] = pydantic.Field(None)
-    Step: typing.Optional[dict[str, StepDef]] = pydantic.Field(None)
-    Wave: typing.Optional[dict[str, WaveDef]] = pydantic.Field(None)
-    CodePipeline: typing.Optional[dict[str, CodePipelineDef]] = pydantic.Field(None)
-    AddStageOpts: typing.Optional[dict[str, AddStageOptsDef]] = pydantic.Field(None)
-    CodeBuildOptions: typing.Optional[dict[str, CodeBuildOptionsDef]] = pydantic.Field(None)
-    CodeBuildStepProps: typing.Optional[dict[str, CodeBuildStepPropsDef]] = pydantic.Field(None)
-    CodeCommitSourceOptions: typing.Optional[dict[str, CodeCommitSourceOptionsDef]] = pydantic.Field(None)
-    CodePipelineActionFactoryResult: typing.Optional[dict[str, CodePipelineActionFactoryResultDef]] = pydantic.Field(None)
-    CodePipelineProps: typing.Optional[dict[str, CodePipelinePropsDef]] = pydantic.Field(None)
-    ConnectionSourceOptions: typing.Optional[dict[str, ConnectionSourceOptionsDef]] = pydantic.Field(None)
-    EcrDockerCredentialOptions: typing.Optional[dict[str, EcrDockerCredentialOptionsDef]] = pydantic.Field(None)
-    ECRSourceOptions: typing.Optional[dict[str, ECRSourceOptionsDef]] = pydantic.Field(None)
-    ExternalDockerCredentialOptions: typing.Optional[dict[str, ExternalDockerCredentialOptionsDef]] = pydantic.Field(None)
-    FileSetLocation: typing.Optional[dict[str, FileSetLocationDef]] = pydantic.Field(None)
-    GitHubSourceOptions: typing.Optional[dict[str, GitHubSourceOptionsDef]] = pydantic.Field(None)
-    ManualApprovalStepProps: typing.Optional[dict[str, ManualApprovalStepPropsDef]] = pydantic.Field(None)
-    PermissionsBroadeningCheckProps: typing.Optional[dict[str, PermissionsBroadeningCheckPropsDef]] = pydantic.Field(None)
-    PipelineBaseProps: typing.Optional[dict[str, PipelineBasePropsDef]] = pydantic.Field(None)
-    ProduceActionOptions: typing.Optional[dict[str, ProduceActionOptionsDef]] = pydantic.Field(None)
-    S3SourceOptions: typing.Optional[dict[str, S3SourceOptionsDef]] = pydantic.Field(None)
-    ShellStepProps: typing.Optional[dict[str, ShellStepPropsDef]] = pydantic.Field(None)
-    StackAsset: typing.Optional[dict[str, StackAssetDef]] = pydantic.Field(None)
-    StackDeploymentProps: typing.Optional[dict[str, StackDeploymentPropsDef]] = pydantic.Field(None)
-    StackSteps: typing.Optional[dict[str, StackStepsDef]] = pydantic.Field(None)
-    StageDeploymentProps: typing.Optional[dict[str, StageDeploymentPropsDef]] = pydantic.Field(None)
-    WaveOptions: typing.Optional[dict[str, WaveOptionsDef]] = pydantic.Field(None)
-    WaveProps: typing.Optional[dict[str, WavePropsDef]] = pydantic.Field(None)
+    ArtifactMap: typing.Optional[dict[str, models.pipelines.ArtifactMapDef]] = pydantic.Field(None)
+    CodeBuildStep: typing.Optional[dict[str, models.pipelines.CodeBuildStepDef]] = pydantic.Field(None)
+    CodePipelineFileSet: typing.Optional[dict[str, models.pipelines.CodePipelineFileSetDef]] = pydantic.Field(None)
+    CodePipelineSource: typing.Optional[dict[str, models.pipelines.CodePipelineSourceDef]] = pydantic.Field(None)
+    ConfirmPermissionsBroadening: typing.Optional[dict[str, models.pipelines.ConfirmPermissionsBroadeningDef]] = pydantic.Field(None)
+    DockerCredential: typing.Optional[dict[str, models.pipelines.DockerCredentialDef]] = pydantic.Field(None)
+    FileSet: typing.Optional[dict[str, models.pipelines.FileSetDef]] = pydantic.Field(None)
+    ManualApprovalStep: typing.Optional[dict[str, models.pipelines.ManualApprovalStepDef]] = pydantic.Field(None)
+    PipelineBase: typing.Optional[dict[str, models.pipelines.PipelineBaseDef]] = pydantic.Field(None)
+    ShellStep: typing.Optional[dict[str, models.pipelines.ShellStepDef]] = pydantic.Field(None)
+    StackDeployment: typing.Optional[dict[str, models.pipelines.StackDeploymentDef]] = pydantic.Field(None)
+    StackOutputReference: typing.Optional[dict[str, models.pipelines.StackOutputReferenceDef]] = pydantic.Field(None)
+    StackOutputsMap: typing.Optional[dict[str, models.pipelines.StackOutputsMapDef]] = pydantic.Field(None)
+    StageDeployment: typing.Optional[dict[str, models.pipelines.StageDeploymentDef]] = pydantic.Field(None)
+    Step: typing.Optional[dict[str, models.pipelines.StepDef]] = pydantic.Field(None)
+    Wave: typing.Optional[dict[str, models.pipelines.WaveDef]] = pydantic.Field(None)
+    CodePipeline: typing.Optional[dict[str, models.pipelines.CodePipelineDef]] = pydantic.Field(None)
+    AddStageOpts: typing.Optional[dict[str, models.pipelines.AddStageOptsDef]] = pydantic.Field(None)
+    CodeBuildOptions: typing.Optional[dict[str, models.pipelines.CodeBuildOptionsDef]] = pydantic.Field(None)
+    CodeBuildStepProps: typing.Optional[dict[str, models.pipelines.CodeBuildStepPropsDef]] = pydantic.Field(None)
+    CodeCommitSourceOptions: typing.Optional[dict[str, models.pipelines.CodeCommitSourceOptionsDef]] = pydantic.Field(None)
+    CodePipelineActionFactoryResult: typing.Optional[dict[str, models.pipelines.CodePipelineActionFactoryResultDef]] = pydantic.Field(None)
+    CodePipelineProps: typing.Optional[dict[str, models.pipelines.CodePipelinePropsDef]] = pydantic.Field(None)
+    ConnectionSourceOptions: typing.Optional[dict[str, models.pipelines.ConnectionSourceOptionsDef]] = pydantic.Field(None)
+    EcrDockerCredentialOptions: typing.Optional[dict[str, models.pipelines.EcrDockerCredentialOptionsDef]] = pydantic.Field(None)
+    ECRSourceOptions: typing.Optional[dict[str, models.pipelines.ECRSourceOptionsDef]] = pydantic.Field(None)
+    ExternalDockerCredentialOptions: typing.Optional[dict[str, models.pipelines.ExternalDockerCredentialOptionsDef]] = pydantic.Field(None)
+    FileSetLocation: typing.Optional[dict[str, models.pipelines.FileSetLocationDef]] = pydantic.Field(None)
+    GitHubSourceOptions: typing.Optional[dict[str, models.pipelines.GitHubSourceOptionsDef]] = pydantic.Field(None)
+    ManualApprovalStepProps: typing.Optional[dict[str, models.pipelines.ManualApprovalStepPropsDef]] = pydantic.Field(None)
+    PermissionsBroadeningCheckProps: typing.Optional[dict[str, models.pipelines.PermissionsBroadeningCheckPropsDef]] = pydantic.Field(None)
+    PipelineBaseProps: typing.Optional[dict[str, models.pipelines.PipelineBasePropsDef]] = pydantic.Field(None)
+    ProduceActionOptions: typing.Optional[dict[str, models.pipelines.ProduceActionOptionsDef]] = pydantic.Field(None)
+    S3SourceOptions: typing.Optional[dict[str, models.pipelines.S3SourceOptionsDef]] = pydantic.Field(None)
+    ShellStepProps: typing.Optional[dict[str, models.pipelines.ShellStepPropsDef]] = pydantic.Field(None)
+    StackAsset: typing.Optional[dict[str, models.pipelines.StackAssetDef]] = pydantic.Field(None)
+    StackDeploymentProps: typing.Optional[dict[str, models.pipelines.StackDeploymentPropsDef]] = pydantic.Field(None)
+    StackSteps: typing.Optional[dict[str, models.pipelines.StackStepsDef]] = pydantic.Field(None)
+    StageDeploymentProps: typing.Optional[dict[str, models.pipelines.StageDeploymentPropsDef]] = pydantic.Field(None)
+    WaveOptions: typing.Optional[dict[str, models.pipelines.WaveOptionsDef]] = pydantic.Field(None)
+    WaveProps: typing.Optional[dict[str, models.pipelines.WavePropsDef]] = pydantic.Field(None)
     ...
+
+import models

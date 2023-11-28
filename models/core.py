@@ -16,17 +16,17 @@ class AnnotationsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AnnotationsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.AnnotationsDefConfig] = pydantic.Field(None)
 
 
 class AnnotationsDefConfig(pydantic.BaseModel):
-    acknowledge_warning: typing.Optional[list[AnnotationsDefAcknowledgeWarningParams]] = pydantic.Field(None, description='Acknowledge a warning. When a warning is acknowledged for a scope all warnings that match the id will be ignored.\nThe acknowledgement will apply to all child scopes')
-    add_deprecation: typing.Optional[list[AnnotationsDefAddDeprecationParams]] = pydantic.Field(None, description='Adds a deprecation warning for a specific API.\nDeprecations will be added only once per construct as a warning and will be\ndeduplicated based on the ``api``.\n\nIf the environment variable ``CDK_BLOCK_DEPRECATIONS`` is set, this method\nwill throw an error instead with the deprecation message.')
-    add_error: typing.Optional[list[AnnotationsDefAddErrorParams]] = pydantic.Field(None, description='Adds an { "error":  } metadata entry to this construct.\nThe toolkit will fail deployment of any stack that has errors reported against it.')
-    add_info: typing.Optional[list[AnnotationsDefAddInfoParams]] = pydantic.Field(None, description='Adds an info metadata entry to this construct.\nThe CLI will display the info message when apps are synthesized.')
-    add_warning: typing.Optional[list[AnnotationsDefAddWarningParams]] = pydantic.Field(None, description='Adds a warning metadata entry to this construct. Prefer using ``addWarningV2``.\nThe CLI will display the warning when an app is synthesized, or fail if run\nin ``--strict`` mode.\n\nWarnings added by this call cannot be acknowledged. This will block users from\nrunning in ``--strict`` mode until the deal with the warning, which makes it\neffectively not very different from ``addError``. Prefer using ``addWarningV2`` instead.')
-    add_warning_v2: typing.Optional[list[AnnotationsDefAddWarningV2Params]] = pydantic.Field(None, description='Adds an acknowledgeable warning metadata entry to this construct.\nThe CLI will display the warning when an app is synthesized, or fail if run\nin ``--strict`` mode.\n\nIf the warning is acknowledged using ``acknowledgeWarning()``, it will not be shown by\nthe CLI, and will not cause ``--strict`` mode to fail synthesis.')
-    of: typing.Optional[list[AnnotationsDefOfParams]] = pydantic.Field(None, description='Returns the annotations API for a construct scope.')
+    acknowledge_warning: typing.Optional[list[models.core.AnnotationsDefAcknowledgeWarningParams]] = pydantic.Field(None, description='Acknowledge a warning. When a warning is acknowledged for a scope all warnings that match the id will be ignored.\nThe acknowledgement will apply to all child scopes')
+    add_deprecation: typing.Optional[list[models.core.AnnotationsDefAddDeprecationParams]] = pydantic.Field(None, description='Adds a deprecation warning for a specific API.\nDeprecations will be added only once per construct as a warning and will be\ndeduplicated based on the ``api``.\n\nIf the environment variable ``CDK_BLOCK_DEPRECATIONS`` is set, this method\nwill throw an error instead with the deprecation message.')
+    add_error: typing.Optional[list[models.core.AnnotationsDefAddErrorParams]] = pydantic.Field(None, description='Adds an { "error":  } metadata entry to this construct.\nThe toolkit will fail deployment of any stack that has errors reported against it.')
+    add_info: typing.Optional[list[models.core.AnnotationsDefAddInfoParams]] = pydantic.Field(None, description='Adds an info metadata entry to this construct.\nThe CLI will display the info message when apps are synthesized.')
+    add_warning: typing.Optional[list[models.core.AnnotationsDefAddWarningParams]] = pydantic.Field(None, description='Adds a warning metadata entry to this construct. Prefer using ``addWarningV2``.\nThe CLI will display the warning when an app is synthesized, or fail if run\nin ``--strict`` mode.\n\nWarnings added by this call cannot be acknowledged. This will block users from\nrunning in ``--strict`` mode until the deal with the warning, which makes it\neffectively not very different from ``addError``. Prefer using ``addWarningV2`` instead.')
+    add_warning_v2: typing.Optional[list[models.core.AnnotationsDefAddWarningV2Params]] = pydantic.Field(None, description='Adds an acknowledgeable warning metadata entry to this construct.\nThe CLI will display the warning when an app is synthesized, or fail if run\nin ``--strict`` mode.\n\nIf the warning is acknowledged using ``acknowledgeWarning()``, it will not be shown by\nthe CLI, and will not cause ``--strict`` mode to fail synthesis.')
+    of: typing.Optional[list[models.core.AnnotationsDefOfParams]] = pydantic.Field(None, description='Returns the annotations API for a construct scope.')
 
 class AnnotationsDefAcknowledgeWarningParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='- the id of the warning message to acknowledge.\n')
@@ -80,12 +80,12 @@ class AppDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AppDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.AppDefConfig] = pydantic.Field(None)
 
 
 class AppDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AppDefOfParams]] = pydantic.Field(None, description='Return the stage this construct is contained with, if available.\nIf called\non a nested stage, returns its parent.')
-    synth: typing.Optional[list[AppDefSynthParams]] = pydantic.Field(None, description='Synthesize this stage into a cloud assembly.\nOnce an assembly has been synthesized, it cannot be modified. Subsequent\ncalls will return the same assembly.')
+    of: typing.Optional[list[models.core.AppDefOfParams]] = pydantic.Field(None, description='Return the stage this construct is contained with, if available.\nIf called\non a nested stage, returns its parent.')
+    synth: typing.Optional[list[models.core.AppDefSynthParams]] = pydantic.Field(None, description='Synthesize this stage into a cloud assembly.\nOnce an assembly has been synthesized, it cannot be modified. Subsequent\ncalls will return the same assembly.')
 
 class AppDefOfParams(pydantic.BaseModel):
     construct_: models.AnyResource = pydantic.Field(..., description='-', alias='construct')
@@ -109,13 +109,13 @@ class ArnDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ArnDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ArnDefConfig] = pydantic.Field(None)
 
 
 class ArnDefConfig(pydantic.BaseModel):
-    extract_resource_name: typing.Optional[list[ArnDefExtractResourceNameParams]] = pydantic.Field(None, description="Extract the full resource name from an ARN.\nNecessary for resource names (paths) that may contain the separator, like\n``arn:aws:iam::111111111111:role/path/to/role/name``.\n\nOnly works if we statically know the expected ``resourceType`` beforehand, since we're going\nto use that to split the string on ':/' (and take the right-hand side).\n\nWe can't extract the 'resourceType' from the ARN at hand, because CloudFormation Expressions\nonly allow literals in the 'separator' argument to ``{ Fn::Split }``, and so it can't be\n``{ Fn::Select: [5, { Fn::Split: [':', ARN] }}``.\n\nOnly necessary for ARN formats for which the type-name separator is ``/``.")
-    format: typing.Optional[list[ArnDefFormatParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
-    split: typing.Optional[list[ArnDefSplitParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
+    extract_resource_name: typing.Optional[list[models.core.ArnDefExtractResourceNameParams]] = pydantic.Field(None, description="Extract the full resource name from an ARN.\nNecessary for resource names (paths) that may contain the separator, like\n``arn:aws:iam::111111111111:role/path/to/role/name``.\n\nOnly works if we statically know the expected ``resourceType`` beforehand, since we're going\nto use that to split the string on ':/' (and take the right-hand side).\n\nWe can't extract the 'resourceType' from the ARN at hand, because CloudFormation Expressions\nonly allow literals in the 'separator' argument to ``{ Fn::Split }``, and so it can't be\n``{ Fn::Select: [5, { Fn::Split: [':', ARN] }}``.\n\nOnly necessary for ARN formats for which the type-name separator is ``/``.")
+    format: typing.Optional[list[models.core.ArnDefFormatParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
+    split: typing.Optional[list[models.core.ArnDefSplitParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
 
 class ArnDefExtractResourceNameParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='-\n')
@@ -143,12 +143,12 @@ class AspectsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AspectsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.AspectsDefConfig] = pydantic.Field(None)
 
 
 class AspectsDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[AspectsDefAddParams]] = pydantic.Field(None, description='Adds an aspect to apply this scope before synthesis.')
-    of: typing.Optional[list[AspectsDefOfParams]] = pydantic.Field(None, description='Returns the ``Aspects`` object associated with a construct scope.')
+    add: typing.Optional[list[models.core.AspectsDefAddParams]] = pydantic.Field(None, description='Adds an aspect to apply this scope before synthesis.')
+    of: typing.Optional[list[models.core.AspectsDefOfParams]] = pydantic.Field(None, description='Returns the ``Aspects`` object associated with a construct scope.')
 
 class AspectsDefAddParams(pydantic.BaseModel):
     aspect: typing.Union[models.RemoveTagDef, models.TagDef, models.aws_autoscaling.AutoScalingGroupRequireImdsv2AspectDef, models.aws_ec2.InstanceRequireImdsv2AspectDef, models.aws_ec2.LaunchTemplateRequireImdsv2AspectDef, models.aws_lambda.FunctionVersionUpgradeDef] = pydantic.Field(..., description='The aspect to add.')
@@ -170,15 +170,15 @@ class AssetManifestBuilderDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AssetManifestBuilderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.AssetManifestBuilderDefConfig] = pydantic.Field(None)
 
 
 class AssetManifestBuilderDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[AssetManifestBuilderDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Add a docker asset source and destination to the manifest.\nsourceHash should be unique for every source.')
-    add_file_asset: typing.Optional[list[AssetManifestBuilderDefAddFileAssetParams]] = pydantic.Field(None, description='Add a file asset source and destination to the manifest.\nsourceHash should be unique for every source.')
-    default_add_docker_image_asset: typing.Optional[list[AssetManifestBuilderDefDefaultAddDockerImageAssetParams]] = pydantic.Field(None, description='Add a docker image asset to the manifest with default settings.\nDerive the region from the stack, use the asset hash as the key, and set the prefix.')
-    default_add_file_asset: typing.Optional[list[AssetManifestBuilderDefDefaultAddFileAssetParams]] = pydantic.Field(None, description='Add a file asset to the manifest with default settings.\nDerive the region from the stack, use the asset hash as the key, copy the\nfile extension over, and set the prefix.')
-    emit_manifest: typing.Optional[list[AssetManifestBuilderDefEmitManifestParams]] = pydantic.Field(None, description='Write the manifest to disk, and add it to the synthesis session.\nReturn the artifact id, which should be added to the ``additionalDependencies``\nfield of the stack artifact.')
+    add_docker_image_asset: typing.Optional[list[models.core.AssetManifestBuilderDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Add a docker asset source and destination to the manifest.\nsourceHash should be unique for every source.')
+    add_file_asset: typing.Optional[list[models.core.AssetManifestBuilderDefAddFileAssetParams]] = pydantic.Field(None, description='Add a file asset source and destination to the manifest.\nsourceHash should be unique for every source.')
+    default_add_docker_image_asset: typing.Optional[list[models.core.AssetManifestBuilderDefDefaultAddDockerImageAssetParams]] = pydantic.Field(None, description='Add a docker image asset to the manifest with default settings.\nDerive the region from the stack, use the asset hash as the key, and set the prefix.')
+    default_add_file_asset: typing.Optional[list[models.core.AssetManifestBuilderDefDefaultAddFileAssetParams]] = pydantic.Field(None, description='Add a file asset to the manifest with default settings.\nDerive the region from the stack, use the asset hash as the key, copy the\nfile extension over, and set the prefix.')
+    emit_manifest: typing.Optional[list[models.core.AssetManifestBuilderDefEmitManifestParams]] = pydantic.Field(None, description='Write the manifest to disk, and add it to the synthesis session.\nReturn the artifact id, which should be added to the ``additionalDependencies``\nfield of the stack artifact.')
 
 class AssetManifestBuilderDefAddDockerImageAssetParams(pydantic.BaseModel):
     stack: models.StackDef = pydantic.Field(..., description='-\n')
@@ -250,15 +250,15 @@ class BootstraplessSynthesizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[BootstraplessSynthesizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.BootstraplessSynthesizerDefConfig] = pydantic.Field(None)
 
 
 class BootstraplessSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[BootstraplessSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    add_file_asset: typing.Optional[list[BootstraplessSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    bind: typing.Optional[list[BootstraplessSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
-    reusable_bind: typing.Optional[list[BootstraplessSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
-    synthesize: typing.Optional[list[BootstraplessSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models.core.BootstraplessSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    add_file_asset: typing.Optional[list[models.core.BootstraplessSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    bind: typing.Optional[list[models.core.BootstraplessSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
+    reusable_bind: typing.Optional[list[models.core.BootstraplessSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
+    synthesize: typing.Optional[list[models.core.BootstraplessSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 class BootstraplessSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     source_hash: str = pydantic.Field(..., description='The hash of the contents of the docker build context. This hash is used throughout the system to identify this image and avoid duplicate work in case the source did not change. NOTE: this means that if you wish to update your docker image, you must make a modification to the source (e.g. add some metadata to your Dockerfile).\n')
@@ -311,15 +311,11 @@ class CfnDynamicReferenceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CfnDynamicReferenceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnDynamicReferenceDefConfig] = pydantic.Field(None)
 
 
 class CfnDynamicReferenceDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[CfnDynamicReferenceDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
-
-class CfnDynamicReferenceDefResolveParams(pydantic.BaseModel):
-    _context: models.UnsupportedResource = pydantic.Field(..., description='-')
-    ...
+    resolve: typing.Optional[bool] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 #  autogenerated from aws_cdk.CfnElement
@@ -332,11 +328,11 @@ class CfnElementDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CfnElementDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnElementDefConfig] = pydantic.Field(None)
 
 
 class CfnElementDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnElementDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    override_logical_id: typing.Optional[list[models.core.CfnElementDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnElementDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
@@ -353,11 +349,11 @@ class CfnRefElementDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CfnRefElementDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnRefElementDefConfig] = pydantic.Field(None)
 
 
 class CfnRefElementDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnRefElementDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    override_logical_id: typing.Optional[list[models.core.CfnRefElementDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnRefElementDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
@@ -379,15 +375,15 @@ class CliCredentialsStackSynthesizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CliCredentialsStackSynthesizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CliCredentialsStackSynthesizerDefConfig] = pydantic.Field(None)
 
 
 class CliCredentialsStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[CliCredentialsStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    add_file_asset: typing.Optional[list[CliCredentialsStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    bind: typing.Optional[list[CliCredentialsStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
-    reusable_bind: typing.Optional[list[CliCredentialsStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
-    synthesize: typing.Optional[list[CliCredentialsStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models.core.CliCredentialsStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    add_file_asset: typing.Optional[list[models.core.CliCredentialsStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    bind: typing.Optional[list[models.core.CliCredentialsStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
+    reusable_bind: typing.Optional[list[models.core.CliCredentialsStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
+    synthesize: typing.Optional[list[models.core.CliCredentialsStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 class CliCredentialsStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     source_hash: str = pydantic.Field(..., description='The hash of the contents of the docker build context. This hash is used throughout the system to identify this image and avoid duplicate work in case the source did not change. NOTE: this means that if you wish to update your docker image, you must make a modification to the source (e.g. add some metadata to your Dockerfile).\n')
@@ -438,12 +434,12 @@ class ContextProviderDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ContextProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ContextProviderDefConfig] = pydantic.Field(None)
 
 
 class ContextProviderDefConfig(pydantic.BaseModel):
-    get_key: typing.Optional[list[ContextProviderDefGetKeyParams]] = pydantic.Field(None, description='')
-    get_value: typing.Optional[list[ContextProviderDefGetValueParams]] = pydantic.Field(None, description='')
+    get_key: typing.Optional[list[models.core.ContextProviderDefGetKeyParams]] = pydantic.Field(None, description='')
+    get_value: typing.Optional[list[models.core.ContextProviderDefGetValueParams]] = pydantic.Field(None, description='')
 
 class ContextProviderDefGetKeyParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -488,15 +484,15 @@ class DefaultStackSynthesizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DefaultStackSynthesizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.DefaultStackSynthesizerDefConfig] = pydantic.Field(None)
 
 
 class DefaultStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[DefaultStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    add_file_asset: typing.Optional[list[DefaultStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    bind: typing.Optional[list[DefaultStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
-    reusable_bind: typing.Optional[list[DefaultStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
-    synthesize: typing.Optional[list[DefaultStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models.core.DefaultStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    add_file_asset: typing.Optional[list[models.core.DefaultStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    bind: typing.Optional[list[models.core.DefaultStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
+    reusable_bind: typing.Optional[list[models.core.DefaultStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
+    synthesize: typing.Optional[list[models.core.DefaultStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 class DefaultStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     source_hash: str = pydantic.Field(..., description='The hash of the contents of the docker build context. This hash is used throughout the system to identify this image and avoid duplicate work in case the source did not change. NOTE: this means that if you wish to update your docker image, you must make a modification to the source (e.g. add some metadata to your Dockerfile).\n')
@@ -548,13 +544,13 @@ class DefaultTokenResolverDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DefaultTokenResolverDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.DefaultTokenResolverDefConfig] = pydantic.Field(None)
 
 
 class DefaultTokenResolverDefConfig(pydantic.BaseModel):
-    resolve_list: typing.Optional[list[DefaultTokenResolverDefResolveListParams]] = pydantic.Field(None, description='Resolve a tokenized list.')
-    resolve_string: typing.Optional[list[DefaultTokenResolverDefResolveStringParams]] = pydantic.Field(None, description='Resolve string fragments to Tokens.')
-    resolve_token: typing.Optional[list[DefaultTokenResolverDefResolveTokenParams]] = pydantic.Field(None, description='Default Token resolution.\nResolve the Token, recurse into whatever it returns,\nthen finally post-process it.')
+    resolve_list: typing.Optional[list[models.core.DefaultTokenResolverDefResolveListParams]] = pydantic.Field(None, description='Resolve a tokenized list.')
+    resolve_string: typing.Optional[list[models.core.DefaultTokenResolverDefResolveStringParams]] = pydantic.Field(None, description='Resolve string fragments to Tokens.')
+    resolve_token: typing.Optional[list[models.core.DefaultTokenResolverDefResolveTokenParams]] = pydantic.Field(None, description='Default Token resolution.\nResolve the Token, recurse into whatever it returns,\nthen finally post-process it.')
 
 class DefaultTokenResolverDefResolveListParams(pydantic.BaseModel):
     xs: typing.Sequence[str] = pydantic.Field(..., description='-\n')
@@ -583,7 +579,7 @@ class DockerBuildSecretDef(BaseClass):
     ...
 
 
-    from_src: typing.Optional[DockerBuildSecretDefFromSrcParams] = pydantic.Field(None, description='A Docker build secret from a file source.')
+    from_src: typing.Optional[models.core.DockerBuildSecretDefFromSrcParams] = pydantic.Field(None, description='A Docker build secret from a file source.')
 
 class DockerBuildSecretDefFromSrcParams(pydantic.BaseModel):
     src: str = pydantic.Field(..., description='The path to the source file, relative to the build directory.\n')
@@ -602,16 +598,16 @@ class DockerIgnoreStrategyDef(BaseClass):
     ...
 
 
-    from_copy_options: typing.Optional[DockerIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
-    resource_config: typing.Optional[DockerIgnoreStrategyDefConfig] = pydantic.Field(None)
+    from_copy_options: typing.Optional[models.core.DockerIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
+    resource_config: typing.Optional[models.core.DockerIgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class DockerIgnoreStrategyDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[DockerIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
-    docker: typing.Optional[list[DockerIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    git: typing.Optional[list[DockerIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
-    glob: typing.Optional[list[DockerIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
-    ignores: typing.Optional[list[DockerIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
+    add: typing.Optional[list[models.core.DockerIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
+    docker: typing.Optional[list[models.core.DockerIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
+    git: typing.Optional[list[models.core.DockerIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
+    glob: typing.Optional[list[models.core.DockerIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
+    ignores: typing.Optional[list[models.core.DockerIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
 
 class DockerIgnoreStrategyDefAddParams(pydantic.BaseModel):
     pattern: str = pydantic.Field(..., description='-\n')
@@ -648,8 +644,7 @@ class DockerIgnoreStrategyDefIgnoresParams(pydantic.BaseModel):
 #  autogenerated from aws_cdk.DockerImage
 class DockerImageDef(BaseClass):
     image: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The Docker image.')
-    _image_hash: typing.Optional[str] = pydantic.Field(None, description='-')
-    _init_params: typing.ClassVar[list[str]] = ['image', '_image_hash']
+    _init_params: typing.ClassVar[list[str]] = ['image']
     _method_names: typing.ClassVar[list[str]] = ['cp', 'run']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_build', 'from_registry']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.DockerImage'
@@ -657,14 +652,14 @@ class DockerImageDef(BaseClass):
     ...
 
 
-    from_build: typing.Optional[DockerImageDefFromBuildParams] = pydantic.Field(None, description='Builds a Docker image.')
-    from_registry: typing.Optional[DockerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
-    resource_config: typing.Optional[DockerImageDefConfig] = pydantic.Field(None)
+    from_build: typing.Optional[models.core.DockerImageDefFromBuildParams] = pydantic.Field(None, description='Builds a Docker image.')
+    from_registry: typing.Optional[models.core.DockerImageDefFromRegistryParams] = pydantic.Field(None, description='Reference an image on DockerHub or another online registry.')
+    resource_config: typing.Optional[models.core.DockerImageDefConfig] = pydantic.Field(None)
 
 
 class DockerImageDefConfig(pydantic.BaseModel):
-    cp: typing.Optional[list[DockerImageDefCpParams]] = pydantic.Field(None, description='Copies a file or directory out of the Docker image to the local filesystem.\nIf ``outputPath`` is omitted the destination path is a temporary directory.')
-    run: typing.Optional[list[DockerImageDefRunParams]] = pydantic.Field(None, description='Runs a Docker image.')
+    cp: typing.Optional[list[models.core.DockerImageDefCpParams]] = pydantic.Field(None, description='Copies a file or directory out of the Docker image to the local filesystem.\nIf ``outputPath`` is omitted the destination path is a temporary directory.')
+    run: typing.Optional[list[models.core.DockerImageDefRunParams]] = pydantic.Field(None, description='Runs a Docker image.')
 
 class DockerImageDefCpParams(pydantic.BaseModel):
     image_path: str = pydantic.Field(..., description='the path in the Docker image.\n')
@@ -709,19 +704,19 @@ class DurationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.DurationDefConfig] = pydantic.Field(None)
 
 
 class DurationDefConfig(pydantic.BaseModel):
-    days: typing.Optional[list[DurationDefDaysParams]] = pydantic.Field(None, description='Create a Duration representing an amount of days.')
+    days: typing.Optional[list[models.core.DurationDefDaysParams]] = pydantic.Field(None, description='Create a Duration representing an amount of days.')
     format_token_to_number: typing.Optional[bool] = pydantic.Field(None, description='Returns stringified number of duration.')
-    hours: typing.Optional[list[DurationDefHoursParams]] = pydantic.Field(None, description='Create a Duration representing an amount of hours.')
-    millis: typing.Optional[list[DurationDefMillisParams]] = pydantic.Field(None, description='Create a Duration representing an amount of milliseconds.')
-    minus: typing.Optional[list[DurationDefMinusParams]] = pydantic.Field(None, description='Substract two Durations together.')
-    minutes: typing.Optional[list[DurationDefMinutesParams]] = pydantic.Field(None, description='Create a Duration representing an amount of minutes.')
-    parse: typing.Optional[list[DurationDefParseParams]] = pydantic.Field(None, description='Parse a period formatted according to the ISO 8601 standard.')
-    plus: typing.Optional[list[DurationDefPlusParams]] = pydantic.Field(None, description='Add two Durations together.')
-    seconds: typing.Optional[list[DurationDefSecondsParams]] = pydantic.Field(None, description='Create a Duration representing an amount of seconds.')
+    hours: typing.Optional[list[models.core.DurationDefHoursParams]] = pydantic.Field(None, description='Create a Duration representing an amount of hours.')
+    millis: typing.Optional[list[models.core.DurationDefMillisParams]] = pydantic.Field(None, description='Create a Duration representing an amount of milliseconds.')
+    minus: typing.Optional[list[models.core.DurationDefMinusParams]] = pydantic.Field(None, description='Substract two Durations together.')
+    minutes: typing.Optional[list[models.core.DurationDefMinutesParams]] = pydantic.Field(None, description='Create a Duration representing an amount of minutes.')
+    parse: typing.Optional[list[models.core.DurationDefParseParams]] = pydantic.Field(None, description='Parse a period formatted according to the ISO 8601 standard.')
+    plus: typing.Optional[list[models.core.DurationDefPlusParams]] = pydantic.Field(None, description='Add two Durations together.')
+    seconds: typing.Optional[list[models.core.DurationDefSecondsParams]] = pydantic.Field(None, description='Create a Duration representing an amount of seconds.')
     unit_label: typing.Optional[bool] = pydantic.Field(None, description='Returns unit of the duration.')
 
 class DurationDefDaysParams(pydantic.BaseModel):
@@ -775,14 +770,14 @@ class ExpirationDef(BaseClass):
     ...
 
 
-    from_string: typing.Optional[ExpirationDefFromStringParams] = pydantic.Field(None, description='Expire at specified date, represented as a string.')
-    resource_config: typing.Optional[ExpirationDefConfig] = pydantic.Field(None)
+    from_string: typing.Optional[models.core.ExpirationDefFromStringParams] = pydantic.Field(None, description='Expire at specified date, represented as a string.')
+    resource_config: typing.Optional[models.core.ExpirationDefConfig] = pydantic.Field(None)
 
 
 class ExpirationDefConfig(pydantic.BaseModel):
-    after: typing.Optional[list[ExpirationDefAfterParams]] = pydantic.Field(None, description='Expire once the specified duration has passed since deployment time.')
-    at_date: typing.Optional[list[ExpirationDefAtDateParams]] = pydantic.Field(None, description='Expire at the specified date.')
-    at_timestamp: typing.Optional[list[ExpirationDefAtTimestampParams]] = pydantic.Field(None, description='Expire at the specified timestamp.')
+    after: typing.Optional[list[models.core.ExpirationDefAfterParams]] = pydantic.Field(None, description='Expire once the specified duration has passed since deployment time.')
+    at_date: typing.Optional[list[models.core.ExpirationDefAtDateParams]] = pydantic.Field(None, description='Expire at the specified date.')
+    at_timestamp: typing.Optional[list[models.core.ExpirationDefAtTimestampParams]] = pydantic.Field(None, description='Expire at the specified timestamp.')
 
 class ExpirationDefAfterParams(pydantic.BaseModel):
     t: models.DurationDef = pydantic.Field(..., description='the duration to wait before expiring.')
@@ -814,11 +809,11 @@ class FeatureFlagsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FeatureFlagsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.FeatureFlagsDefConfig] = pydantic.Field(None)
 
 
 class FeatureFlagsDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[FeatureFlagsDefOfParams]] = pydantic.Field(None, description="Inspect feature flags on the construct node's context.")
+    of: typing.Optional[list[models.core.FeatureFlagsDefOfParams]] = pydantic.Field(None, description="Inspect feature flags on the construct node's context.")
 
 class FeatureFlagsDefOfParams(pydantic.BaseModel):
     scope: models.AnyResource = pydantic.Field(..., description='-')
@@ -836,13 +831,13 @@ class FileSystemDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FileSystemDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.FileSystemDefConfig] = pydantic.Field(None)
 
 
 class FileSystemDefConfig(pydantic.BaseModel):
-    copy_directory: typing.Optional[list[FileSystemDefCopyDirectoryParams]] = pydantic.Field(None, description='Copies an entire directory structure.')
-    fingerprint: typing.Optional[list[FileSystemDefFingerprintParams]] = pydantic.Field(None, description='Produces fingerprint based on the contents of a single file or an entire directory tree.\nLine endings are converted from CRLF to LF.\n\nThe fingerprint will also include:\n\n1. An extra string if defined in ``options.extra``.\n2. The symlink follow mode value.')
-    mkdtemp: typing.Optional[list[FileSystemDefMkdtempParams]] = pydantic.Field(None, description='Creates a unique temporary directory in the **system temp directory**.')
+    copy_directory: typing.Optional[list[models.core.FileSystemDefCopyDirectoryParams]] = pydantic.Field(None, description='Copies an entire directory structure.')
+    fingerprint: typing.Optional[list[models.core.FileSystemDefFingerprintParams]] = pydantic.Field(None, description='Produces fingerprint based on the contents of a single file or an entire directory tree.\nLine endings are converted from CRLF to LF.\n\nThe fingerprint will also include:\n\n1. An extra string if defined in ``options.extra``.\n2. The symlink follow mode value.')
+    mkdtemp: typing.Optional[list[models.core.FileSystemDefMkdtempParams]] = pydantic.Field(None, description='Creates a unique temporary directory in the **system temp directory**.')
 
 class FileSystemDefCopyDirectoryParams(pydantic.BaseModel):
     src_dir: str = pydantic.Field(..., description='Source directory.\n')
@@ -874,36 +869,36 @@ class FnDef(BaseClass):
     ...
 
 
-    condition_and: typing.Optional[FnDefConditionAndParams] = pydantic.Field(None, description='Returns true if all the specified conditions evaluate to true, or returns false if any one of the conditions evaluates to false.\n``Fn::And`` acts as\nan AND operator. The minimum number of conditions that you can include is\n1.')
-    condition_contains: typing.Optional[FnDefConditionContainsParams] = pydantic.Field(None, description='Returns true if a specified string matches at least one value in a list of strings.')
-    condition_each_member_equals: typing.Optional[FnDefConditionEachMemberEqualsParams] = pydantic.Field(None, description='Returns true if a specified string matches all values in a list.')
-    condition_each_member_in: typing.Optional[FnDefConditionEachMemberInParams] = pydantic.Field(None, description='Returns true if each member in a list of strings matches at least one value in a second list of strings.')
-    condition_equals: typing.Optional[FnDefConditionEqualsParams] = pydantic.Field(None, description="Compares if two values are equal.\nReturns true if the two values are equal\nor false if they aren't.")
-    condition_if: typing.Optional[FnDefConditionIfParams] = pydantic.Field(None, description='Returns one value if the specified condition evaluates to true and another value if the specified condition evaluates to false.\nCurrently, AWS\nCloudFormation supports the ``Fn::If`` intrinsic function in the metadata\nattribute, update policy attribute, and property values in the Resources\nsection and Outputs sections of a template. You can use the AWS::NoValue\npseudo parameter as a return value to remove the corresponding property.')
-    condition_not: typing.Optional[FnDefConditionNotParams] = pydantic.Field(None, description='Returns true for a condition that evaluates to false or returns false for a condition that evaluates to true.\n``Fn::Not`` acts as a NOT operator.')
-    condition_or: typing.Optional[FnDefConditionOrParams] = pydantic.Field(None, description='Returns true if any one of the specified conditions evaluate to true, or returns false if all of the conditions evaluates to false.\n``Fn::Or`` acts\nas an OR operator. The minimum number of conditions that you can include is\n1.')
-    get_att: typing.Optional[FnDefGetAttParams] = pydantic.Field(None, description='The ``Fn::GetAtt`` intrinsic function returns the value of an attribute from a resource in the template.')
-    transform: typing.Optional[FnDefTransformParams] = pydantic.Field(None, description='Creates a token representing the ``Fn::Transform`` expression.')
-    resource_config: typing.Optional[FnDefConfig] = pydantic.Field(None)
+    condition_and: typing.Optional[models.core.FnDefConditionAndParams] = pydantic.Field(None, description='Returns true if all the specified conditions evaluate to true, or returns false if any one of the conditions evaluates to false.\n``Fn::And`` acts as\nan AND operator. The minimum number of conditions that you can include is\n1.')
+    condition_contains: typing.Optional[models.core.FnDefConditionContainsParams] = pydantic.Field(None, description='Returns true if a specified string matches at least one value in a list of strings.')
+    condition_each_member_equals: typing.Optional[models.core.FnDefConditionEachMemberEqualsParams] = pydantic.Field(None, description='Returns true if a specified string matches all values in a list.')
+    condition_each_member_in: typing.Optional[models.core.FnDefConditionEachMemberInParams] = pydantic.Field(None, description='Returns true if each member in a list of strings matches at least one value in a second list of strings.')
+    condition_equals: typing.Optional[models.core.FnDefConditionEqualsParams] = pydantic.Field(None, description="Compares if two values are equal.\nReturns true if the two values are equal\nor false if they aren't.")
+    condition_if: typing.Optional[models.core.FnDefConditionIfParams] = pydantic.Field(None, description='Returns one value if the specified condition evaluates to true and another value if the specified condition evaluates to false.\nCurrently, AWS\nCloudFormation supports the ``Fn::If`` intrinsic function in the metadata\nattribute, update policy attribute, and property values in the Resources\nsection and Outputs sections of a template. You can use the AWS::NoValue\npseudo parameter as a return value to remove the corresponding property.')
+    condition_not: typing.Optional[models.core.FnDefConditionNotParams] = pydantic.Field(None, description='Returns true for a condition that evaluates to false or returns false for a condition that evaluates to true.\n``Fn::Not`` acts as a NOT operator.')
+    condition_or: typing.Optional[models.core.FnDefConditionOrParams] = pydantic.Field(None, description='Returns true if any one of the specified conditions evaluate to true, or returns false if all of the conditions evaluates to false.\n``Fn::Or`` acts\nas an OR operator. The minimum number of conditions that you can include is\n1.')
+    get_att: typing.Optional[models.core.FnDefGetAttParams] = pydantic.Field(None, description='The ``Fn::GetAtt`` intrinsic function returns the value of an attribute from a resource in the template.')
+    transform: typing.Optional[models.core.FnDefTransformParams] = pydantic.Field(None, description='Creates a token representing the ``Fn::Transform`` expression.')
+    resource_config: typing.Optional[models.core.FnDefConfig] = pydantic.Field(None)
 
 
 class FnDefConfig(pydantic.BaseModel):
-    base64: typing.Optional[list[FnDefBase64Params]] = pydantic.Field(None, description='The intrinsic function ``Fn::Base64`` returns the Base64 representation of the input string.\nThis function is typically used to pass encoded data to\nAmazon EC2 instances by way of the UserData property.')
-    cidr: typing.Optional[list[FnDefCidrParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Cidr`` returns the specified Cidr address block.')
-    find_in_map: typing.Optional[list[FnDefFindInMapParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::FindInMap`` returns the value corresponding to keys in a two-level map that is declared in the Mappings section.\nWarning: do not use with lazy mappings as this function will not guarentee a lazy mapping to render in the template.\nPrefer to use ``CfnMapping.findInMap`` in general.')
-    get_azs: typing.Optional[list[FnDefGetAzsParams]] = pydantic.Field(None, description="The intrinsic function ``Fn::GetAZs`` returns an array that lists Availability Zones for a specified region.\nBecause customers have access to\ndifferent Availability Zones, the intrinsic function ``Fn::GetAZs`` enables\ntemplate authors to write templates that adapt to the calling user's\naccess. That way you don't have to hard-code a full list of Availability\nZones for a specified region.")
-    import_list_value: typing.Optional[list[FnDefImportListValueParams]] = pydantic.Field(None, description="Like ``Fn.importValue``, but import a list with a known length.\nIf you explicitly want a list with an unknown length, call ``Fn.split(',', Fn.importValue(exportName))``. See the documentation of ``Fn.split`` to read\nmore about the limitations of using lists of unknown length.\n\n``Fn.importListValue(exportName, assumedLength)`` is the same as\n``Fn.split(',', Fn.importValue(exportName), assumedLength)``,\nbut easier to read and impossible to forget to pass ``assumedLength``.")
-    import_value: typing.Optional[list[FnDefImportValueParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::ImportValue`` returns the value of an output exported by another stack.\nYou typically use this function to create\ncross-stack references. In the following example template snippets, Stack A\nexports VPC security group values and Stack B imports them.')
-    join: typing.Optional[list[FnDefJoinParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Join`` appends a set of values into a single value, separated by the specified delimiter.\nIf a delimiter is the empty\nstring, the set of values are concatenated with no delimiter.')
-    len: typing.Optional[list[FnDefLenParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Length`` returns the number of elements within an array or an intrinsic function that returns an array.')
-    parse_domain_name: typing.Optional[list[FnDefParseDomainNameParams]] = pydantic.Field(None, description='Given an url, parse the domain name.')
-    ref: typing.Optional[list[FnDefRefParams]] = pydantic.Field(None, description="The ``Ref`` intrinsic function returns the value of the specified parameter or resource.\nNote that it doesn't validate the logicalName, it mainly serves parameter/resource reference defined in a ``CfnInclude`` template.")
-    ref_all: typing.Optional[list[FnDefRefAllParams]] = pydantic.Field(None, description='Returns all values for a specified parameter type.')
-    select: typing.Optional[list[FnDefSelectParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Select`` returns a single object from a list of objects by index.')
-    split: typing.Optional[list[FnDefSplitParams]] = pydantic.Field(None, description='Split a string token into a token list of string values.\nSpecify the location of splits with a delimiter such as \',\' (a comma).\nRenders to the ``Fn::Split`` intrinsic function.\n\n\nLists with unknown lengths (default)\n\nSince this function is used to work with deploy-time values, if ``assumedLength``\nis not given the CDK cannot know the length of the resulting list at synthesis time.\nThis brings the following restrictions:\n\n- You must use ``Fn.select(i, list)`` to pick elements out of the list (you must not use\n  ``list[i]``).\n- You cannot add elements to the list, remove elements from the list,\n  combine two such lists together, or take a slice of the list.\n- You cannot pass the list to constructs that do any of the above.\n\nThe only valid operation with such a tokenized list is to pass it unmodified to a\nCloudFormation Resource construct.\n\n\nLists with assumed lengths\n\nPass ``assumedLength`` if you know the length of the list that will be\nproduced by splitting. The actual list length at deploy time may be\n*longer* than the number you pass, but not *shorter*.\n\nThe returned list will look like::\n\n   [Fn.select(0, split), Fn.select(1, split), Fn.select(2, split), ...]\n\nThe restrictions from the section "Lists with unknown lengths" will now be lifted,\nat the expense of having to know and fix the length of the list.')
-    sub: typing.Optional[list[FnDefSubParams]] = pydantic.Field(None, description="The intrinsic function ``Fn::Sub`` substitutes variables in an input string with values that you specify.\nIn your templates, you can use this function\nto construct commands or outputs that include values that aren't available\nuntil you create or update a stack.")
-    value_of: typing.Optional[list[FnDefValueOfParams]] = pydantic.Field(None, description='Returns an attribute value or list of values for a specific parameter and attribute.')
-    value_of_all: typing.Optional[list[FnDefValueOfAllParams]] = pydantic.Field(None, description='Returns a list of all attribute values for a given parameter type and attribute.')
+    base64: typing.Optional[list[models.core.FnDefBase64Params]] = pydantic.Field(None, description='The intrinsic function ``Fn::Base64`` returns the Base64 representation of the input string.\nThis function is typically used to pass encoded data to\nAmazon EC2 instances by way of the UserData property.')
+    cidr: typing.Optional[list[models.core.FnDefCidrParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Cidr`` returns the specified Cidr address block.')
+    find_in_map: typing.Optional[list[models.core.FnDefFindInMapParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::FindInMap`` returns the value corresponding to keys in a two-level map that is declared in the Mappings section.\nWarning: do not use with lazy mappings as this function will not guarentee a lazy mapping to render in the template.\nPrefer to use ``CfnMapping.findInMap`` in general.')
+    get_azs: typing.Optional[list[models.core.FnDefGetAzsParams]] = pydantic.Field(None, description="The intrinsic function ``Fn::GetAZs`` returns an array that lists Availability Zones for a specified region.\nBecause customers have access to\ndifferent Availability Zones, the intrinsic function ``Fn::GetAZs`` enables\ntemplate authors to write templates that adapt to the calling user's\naccess. That way you don't have to hard-code a full list of Availability\nZones for a specified region.")
+    import_list_value: typing.Optional[list[models.core.FnDefImportListValueParams]] = pydantic.Field(None, description="Like ``Fn.importValue``, but import a list with a known length.\nIf you explicitly want a list with an unknown length, call ``Fn.split(',', Fn.importValue(exportName))``. See the documentation of ``Fn.split`` to read\nmore about the limitations of using lists of unknown length.\n\n``Fn.importListValue(exportName, assumedLength)`` is the same as\n``Fn.split(',', Fn.importValue(exportName), assumedLength)``,\nbut easier to read and impossible to forget to pass ``assumedLength``.")
+    import_value: typing.Optional[list[models.core.FnDefImportValueParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::ImportValue`` returns the value of an output exported by another stack.\nYou typically use this function to create\ncross-stack references. In the following example template snippets, Stack A\nexports VPC security group values and Stack B imports them.')
+    join: typing.Optional[list[models.core.FnDefJoinParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Join`` appends a set of values into a single value, separated by the specified delimiter.\nIf a delimiter is the empty\nstring, the set of values are concatenated with no delimiter.')
+    len: typing.Optional[list[models.core.FnDefLenParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Length`` returns the number of elements within an array or an intrinsic function that returns an array.')
+    parse_domain_name: typing.Optional[list[models.core.FnDefParseDomainNameParams]] = pydantic.Field(None, description='Given an url, parse the domain name.')
+    ref: typing.Optional[list[models.core.FnDefRefParams]] = pydantic.Field(None, description="The ``Ref`` intrinsic function returns the value of the specified parameter or resource.\nNote that it doesn't validate the logicalName, it mainly serves parameter/resource reference defined in a ``CfnInclude`` template.")
+    ref_all: typing.Optional[list[models.core.FnDefRefAllParams]] = pydantic.Field(None, description='Returns all values for a specified parameter type.')
+    select: typing.Optional[list[models.core.FnDefSelectParams]] = pydantic.Field(None, description='The intrinsic function ``Fn::Select`` returns a single object from a list of objects by index.')
+    split: typing.Optional[list[models.core.FnDefSplitParams]] = pydantic.Field(None, description='Split a string token into a token list of string values.\nSpecify the location of splits with a delimiter such as \',\' (a comma).\nRenders to the ``Fn::Split`` intrinsic function.\n\n\nLists with unknown lengths (default)\n\nSince this function is used to work with deploy-time values, if ``assumedLength``\nis not given the CDK cannot know the length of the resulting list at synthesis time.\nThis brings the following restrictions:\n\n- You must use ``Fn.select(i, list)`` to pick elements out of the list (you must not use\n  ``list[i]``).\n- You cannot add elements to the list, remove elements from the list,\n  combine two such lists together, or take a slice of the list.\n- You cannot pass the list to constructs that do any of the above.\n\nThe only valid operation with such a tokenized list is to pass it unmodified to a\nCloudFormation Resource construct.\n\n\nLists with assumed lengths\n\nPass ``assumedLength`` if you know the length of the list that will be\nproduced by splitting. The actual list length at deploy time may be\n*longer* than the number you pass, but not *shorter*.\n\nThe returned list will look like::\n\n   [Fn.select(0, split), Fn.select(1, split), Fn.select(2, split), ...]\n\nThe restrictions from the section "Lists with unknown lengths" will now be lifted,\nat the expense of having to know and fix the length of the list.')
+    sub: typing.Optional[list[models.core.FnDefSubParams]] = pydantic.Field(None, description="The intrinsic function ``Fn::Sub`` substitutes variables in an input string with values that you specify.\nIn your templates, you can use this function\nto construct commands or outputs that include values that aren't available\nuntil you create or update a stack.")
+    value_of: typing.Optional[list[models.core.FnDefValueOfParams]] = pydantic.Field(None, description='Returns an attribute value or list of values for a specific parameter and attribute.')
+    value_of_all: typing.Optional[list[models.core.FnDefValueOfAllParams]] = pydantic.Field(None, description='Returns a list of all attribute values for a given parameter type and attribute.')
 
 class FnDefBase64Params(pydantic.BaseModel):
     data: str = pydantic.Field(..., description='The string value you want to convert to Base64.\n')
@@ -1044,16 +1039,16 @@ class GitIgnoreStrategyDef(BaseClass):
     ...
 
 
-    from_copy_options: typing.Optional[GitIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
-    resource_config: typing.Optional[GitIgnoreStrategyDefConfig] = pydantic.Field(None)
+    from_copy_options: typing.Optional[models.core.GitIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
+    resource_config: typing.Optional[models.core.GitIgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class GitIgnoreStrategyDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[GitIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
-    docker: typing.Optional[list[GitIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    git: typing.Optional[list[GitIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
-    glob: typing.Optional[list[GitIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
-    ignores: typing.Optional[list[GitIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
+    add: typing.Optional[list[models.core.GitIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
+    docker: typing.Optional[list[models.core.GitIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
+    git: typing.Optional[list[models.core.GitIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
+    glob: typing.Optional[list[models.core.GitIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
+    ignores: typing.Optional[list[models.core.GitIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
 
 class GitIgnoreStrategyDefAddParams(pydantic.BaseModel):
     pattern: str = pydantic.Field(..., description='-\n')
@@ -1099,16 +1094,16 @@ class GlobIgnoreStrategyDef(BaseClass):
     ...
 
 
-    from_copy_options: typing.Optional[GlobIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
-    resource_config: typing.Optional[GlobIgnoreStrategyDefConfig] = pydantic.Field(None)
+    from_copy_options: typing.Optional[models.core.GlobIgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
+    resource_config: typing.Optional[models.core.GlobIgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class GlobIgnoreStrategyDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[GlobIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
-    docker: typing.Optional[list[GlobIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    git: typing.Optional[list[GlobIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
-    glob: typing.Optional[list[GlobIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
-    ignores: typing.Optional[list[GlobIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
+    add: typing.Optional[list[models.core.GlobIgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
+    docker: typing.Optional[list[models.core.GlobIgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
+    git: typing.Optional[list[models.core.GlobIgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
+    glob: typing.Optional[list[models.core.GlobIgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
+    ignores: typing.Optional[list[models.core.GlobIgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
 
 class GlobIgnoreStrategyDefAddParams(pydantic.BaseModel):
     pattern: str = pydantic.Field(..., description='-\n')
@@ -1152,16 +1147,16 @@ class IgnoreStrategyDef(BaseClass):
     ...
 
 
-    from_copy_options: typing.Optional[IgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
-    resource_config: typing.Optional[IgnoreStrategyDefConfig] = pydantic.Field(None)
+    from_copy_options: typing.Optional[models.core.IgnoreStrategyDefFromCopyOptionsParams] = pydantic.Field(None, description='Creates an IgnoreStrategy based on the ``ignoreMode`` and ``exclude`` in a ``CopyOptions``.')
+    resource_config: typing.Optional[models.core.IgnoreStrategyDefConfig] = pydantic.Field(None)
 
 
 class IgnoreStrategyDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[IgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
-    docker: typing.Optional[list[IgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
-    git: typing.Optional[list[IgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
-    glob: typing.Optional[list[IgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
-    ignores: typing.Optional[list[IgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
+    add: typing.Optional[list[models.core.IgnoreStrategyDefAddParams]] = pydantic.Field(None, description='Adds another pattern.')
+    docker: typing.Optional[list[models.core.IgnoreStrategyDefDockerParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.dockerignore specification`` <https://docs.docker.com/engine/reference/builder/#dockerignore-file>`_.')
+    git: typing.Optional[list[models.core.IgnoreStrategyDefGitParams]] = pydantic.Field(None, description='Ignores file paths based on the ```.gitignore specification`` <https://git-scm.com/docs/gitignore>`_.')
+    glob: typing.Optional[list[models.core.IgnoreStrategyDefGlobParams]] = pydantic.Field(None, description='Ignores file paths based on simple glob patterns.')
+    ignores: typing.Optional[list[models.core.IgnoreStrategyDefIgnoresParams]] = pydantic.Field(None, description='Determines whether a given file path should be ignored or not.')
 
 class IgnoreStrategyDefAddParams(pydantic.BaseModel):
     pattern: str = pydantic.Field(..., description='-\n')
@@ -1208,15 +1203,11 @@ class IntrinsicDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[IntrinsicDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.IntrinsicDefConfig] = pydantic.Field(None)
 
 
 class IntrinsicDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[IntrinsicDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
-
-class IntrinsicDefResolveParams(pydantic.BaseModel):
-    _context: models.UnsupportedResource = pydantic.Field(..., description='-')
-    ...
+    resolve: typing.Optional[bool] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 #  autogenerated from aws_cdk.JsonNull
@@ -1229,15 +1220,11 @@ class JsonNullDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[JsonNullDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.JsonNullDefConfig] = pydantic.Field(None)
 
 
 class JsonNullDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[JsonNullDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
-
-class JsonNullDefResolveParams(pydantic.BaseModel):
-    _ctx: models.UnsupportedResource = pydantic.Field(..., description='-')
-    ...
+    resolve: typing.Optional[bool] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 #  autogenerated from aws_cdk.Lazy
@@ -1250,18 +1237,18 @@ class LazyDef(BaseClass):
     ...
 
 
-    any: typing.Optional[LazyDefAnyParams] = pydantic.Field(None, description='Defer the one-time calculation of an arbitrarily typed value to synthesis time.\nUse this if you want to render an object to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nThe inner function will only be invoked one time and cannot depend on\nresolution context.')
-    uncached_any: typing.Optional[LazyDefUncachedAnyParams] = pydantic.Field(None, description="Defer the calculation of an untyped value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.any()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
-    resource_config: typing.Optional[LazyDefConfig] = pydantic.Field(None)
+    any: typing.Optional[models.core.LazyDefAnyParams] = pydantic.Field(None, description='Defer the one-time calculation of an arbitrarily typed value to synthesis time.\nUse this if you want to render an object to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nThe inner function will only be invoked one time and cannot depend on\nresolution context.')
+    uncached_any: typing.Optional[models.core.LazyDefUncachedAnyParams] = pydantic.Field(None, description="Defer the calculation of an untyped value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.any()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
+    resource_config: typing.Optional[models.core.LazyDefConfig] = pydantic.Field(None)
 
 
 class LazyDefConfig(pydantic.BaseModel):
-    list: typing.Optional[list[LazyDefListParams]] = pydantic.Field(None, description="Defer the one-time calculation of a list value to synthesis time.\nUse this if you want to render a list to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nIf you are simply looking to force a value to a ``string[]`` type and don't need\nthe calculation to be deferred, use ``Token.asList()`` instead.\n\nThe inner function will only be invoked once, and the resolved value\ncannot depend on the Stack the Token is used in.")
-    number: typing.Optional[list[LazyDefNumberParams]] = pydantic.Field(None, description="Defer the one-time calculation of a number value to synthesis time.\nUse this if you want to render a number to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nIf you are simply looking to force a value to a ``number`` type and don't need\nthe calculation to be deferred, use ``Token.asNumber()`` instead.\n\nThe inner function will only be invoked once, and the resolved value\ncannot depend on the Stack the Token is used in.")
-    string: typing.Optional[list[LazyDefStringParams]] = pydantic.Field(None, description="Defer the one-time calculation of a string value to synthesis time.\nUse this if you want to render a string to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nIf you are simply looking to force a value to a ``string`` type and don't need\nthe calculation to be deferred, use ``Token.asString()`` instead.\n\nThe inner function will only be invoked once, and the resolved value\ncannot depend on the Stack the Token is used in.")
-    uncached_list: typing.Optional[list[LazyDefUncachedListParams]] = pydantic.Field(None, description="Defer the calculation of a list value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.list()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
-    uncached_number: typing.Optional[list[LazyDefUncachedNumberParams]] = pydantic.Field(None, description="Defer the calculation of a number value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.number()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
-    uncached_string: typing.Optional[list[LazyDefUncachedStringParams]] = pydantic.Field(None, description="Defer the calculation of a string value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.string()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
+    list_: typing.Optional[list[models.core.LazyDefListParams]] = pydantic.Field(None, description="Defer the one-time calculation of a list value to synthesis time.\nUse this if you want to render a list to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nIf you are simply looking to force a value to a ``string[]`` type and don't need\nthe calculation to be deferred, use ``Token.asList()`` instead.\n\nThe inner function will only be invoked once, and the resolved value\ncannot depend on the Stack the Token is used in.", alias='list')
+    number: typing.Optional[list[models.core.LazyDefNumberParams]] = pydantic.Field(None, description="Defer the one-time calculation of a number value to synthesis time.\nUse this if you want to render a number to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nIf you are simply looking to force a value to a ``number`` type and don't need\nthe calculation to be deferred, use ``Token.asNumber()`` instead.\n\nThe inner function will only be invoked once, and the resolved value\ncannot depend on the Stack the Token is used in.")
+    string: typing.Optional[list[models.core.LazyDefStringParams]] = pydantic.Field(None, description="Defer the one-time calculation of a string value to synthesis time.\nUse this if you want to render a string to a template whose actual value depends on\nsome state mutation that may happen after the construct has been created.\n\nIf you are simply looking to force a value to a ``string`` type and don't need\nthe calculation to be deferred, use ``Token.asString()`` instead.\n\nThe inner function will only be invoked once, and the resolved value\ncannot depend on the Stack the Token is used in.")
+    uncached_list: typing.Optional[list[models.core.LazyDefUncachedListParams]] = pydantic.Field(None, description="Defer the calculation of a list value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.list()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
+    uncached_number: typing.Optional[list[models.core.LazyDefUncachedNumberParams]] = pydantic.Field(None, description="Defer the calculation of a number value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.number()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
+    uncached_string: typing.Optional[list[models.core.LazyDefUncachedStringParams]] = pydantic.Field(None, description="Defer the calculation of a string value to synthesis time.\nUse of this function is not recommended; unless you know you need it for sure, you\nprobably don't. Use ``Lazy.string()`` instead.\n\nThe inner function may be invoked multiple times during synthesis. You\nshould only use this method if the returned value depends on variables\nthat may change during the Aspect application phase of synthesis, or if\nthe value depends on the Stack the value is being used in. Both of these\ncases are rare, and only ever occur for AWS Construct Library authors.")
 
 class LazyDefAnyParams(pydantic.BaseModel):
     producer: models.UnsupportedResource = pydantic.Field(..., description='-\n')
@@ -1316,15 +1303,15 @@ class LegacyStackSynthesizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LegacyStackSynthesizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.LegacyStackSynthesizerDefConfig] = pydantic.Field(None)
 
 
 class LegacyStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[LegacyStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    add_file_asset: typing.Optional[list[LegacyStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    bind: typing.Optional[list[LegacyStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
-    reusable_bind: typing.Optional[list[LegacyStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
-    synthesize: typing.Optional[list[LegacyStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models.core.LegacyStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    add_file_asset: typing.Optional[list[models.core.LegacyStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    bind: typing.Optional[list[models.core.LegacyStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
+    reusable_bind: typing.Optional[list[models.core.LegacyStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
+    synthesize: typing.Optional[list[models.core.LegacyStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 class LegacyStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     source_hash: str = pydantic.Field(..., description='The hash of the contents of the docker build context. This hash is used throughout the system to identify this image and avoid duplicate work in case the source did not change. NOTE: this means that if you wish to update your docker image, you must make a modification to the source (e.g. add some metadata to your Dockerfile).\n')
@@ -1375,13 +1362,13 @@ class NamesDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NamesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.NamesDefConfig] = pydantic.Field(None)
 
 
 class NamesDefConfig(pydantic.BaseModel):
-    node_unique_id: typing.Optional[list[NamesDefNodeUniqueIdParams]] = pydantic.Field(None, description='Returns a CloudFormation-compatible unique identifier for a construct based on its path.\nThe identifier includes a human readable portion rendered\nfrom the path components and a hash suffix.\n\nTODO (v2): replace with API to use ``constructs.Node``.')
-    unique_id: typing.Optional[list[NamesDefUniqueIdParams]] = pydantic.Field(None, description='Returns a CloudFormation-compatible unique identifier for a construct based on its path.\nThe identifier includes a human readable portion rendered\nfrom the path components and a hash suffix. uniqueId is not unique if multiple\ncopies of the stack are deployed. Prefer using uniqueResourceName().')
-    unique_resource_name: typing.Optional[list[NamesDefUniqueResourceNameParams]] = pydantic.Field(None, description='Returns a CloudFormation-compatible unique identifier for a construct based on its path.\nThis function finds the stackName of the parent stack (non-nested)\nto the construct, and the ids of the components in the construct path.\n\nThe user can define allowed special characters, a separator between the elements,\nand the maximum length of the resource name. The name includes a human readable portion rendered\nfrom the path components, with or without user defined separators, and a hash suffix.\nIf the resource name is longer than the maximum length, it is trimmed in the middle.')
+    node_unique_id: typing.Optional[list[models.core.NamesDefNodeUniqueIdParams]] = pydantic.Field(None, description='Returns a CloudFormation-compatible unique identifier for a construct based on its path.\nThe identifier includes a human readable portion rendered\nfrom the path components and a hash suffix.\n\nTODO (v2): replace with API to use ``constructs.Node``.')
+    unique_id: typing.Optional[list[models.core.NamesDefUniqueIdParams]] = pydantic.Field(None, description='Returns a CloudFormation-compatible unique identifier for a construct based on its path.\nThe identifier includes a human readable portion rendered\nfrom the path components and a hash suffix. uniqueId is not unique if multiple\ncopies of the stack are deployed. Prefer using uniqueResourceName().')
+    unique_resource_name: typing.Optional[list[models.core.NamesDefUniqueResourceNameParams]] = pydantic.Field(None, description='Returns a CloudFormation-compatible unique identifier for a construct based on its path.\nThis function finds the stackName of the parent stack (non-nested)\nto the construct, and the ids of the components in the construct path.\n\nThe user can define allowed special characters, a separator between the elements,\nand the maximum length of the resource name. The name includes a human readable portion rendered\nfrom the path components, with or without user defined separators, and a hash suffix.\nIf the resource name is longer than the maximum length, it is trimmed in the middle.')
 
 class NamesDefNodeUniqueIdParams(pydantic.BaseModel):
     node: models.constructs.NodeDef = pydantic.Field(..., description='The construct node.\n')
@@ -1410,14 +1397,14 @@ class NestedStackSynthesizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NestedStackSynthesizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.NestedStackSynthesizerDefConfig] = pydantic.Field(None)
 
 
 class NestedStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[NestedStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    add_file_asset: typing.Optional[list[NestedStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    bind: typing.Optional[list[NestedStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
-    synthesize: typing.Optional[list[NestedStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models.core.NestedStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    add_file_asset: typing.Optional[list[models.core.NestedStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    bind: typing.Optional[list[models.core.NestedStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
+    synthesize: typing.Optional[list[models.core.NestedStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 class NestedStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     source_hash: str = pydantic.Field(..., description='The hash of the contents of the docker build context. This hash is used throughout the system to identify this image and avoid duplicate work in case the source did not change. NOTE: this means that if you wish to update your docker image, you must make a modification to the source (e.g. add some metadata to your Dockerfile).\n')
@@ -1463,8 +1450,8 @@ class PermissionsBoundaryDef(BaseClass):
     ...
 
 
-    from_arn: typing.Optional[PermissionsBoundaryDefFromArnParams] = pydantic.Field(None, description="Apply a permissions boundary with the given ARN to all IAM Roles and Users created within a scope.\nThe arn can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
-    from_name: typing.Optional[PermissionsBoundaryDefFromNameParams] = pydantic.Field(None, description="Apply a permissions boundary with the given name to all IAM Roles and Users created within a scope.\nThe name can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
+    from_arn: typing.Optional[models.core.PermissionsBoundaryDefFromArnParams] = pydantic.Field(None, description="Apply a permissions boundary with the given ARN to all IAM Roles and Users created within a scope.\nThe arn can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
+    from_name: typing.Optional[models.core.PermissionsBoundaryDefFromNameParams] = pydantic.Field(None, description="Apply a permissions boundary with the given name to all IAM Roles and Users created within a scope.\nThe name can include placeholders for the partition, region, qualifier, and account\nThese placeholders will be replaced with the actual values if available. This requires\nthat the Stack has the environment specified, it does not work with environment\nagnostic stacks.\n\n- '${AWS::Partition}'\n- '${AWS::Region}'\n- '${AWS::AccountId}'\n- '${Qualifier}'")
 
 class PermissionsBoundaryDefFromArnParams(pydantic.BaseModel):
     arn: str = pydantic.Field(..., description='the ARN of the permissions boundary policy.\n\nExample::\n\n    Stage(app, "ProdStage",\n        permissions_boundary=PermissionsBoundary.from_arn("arn:aws:iam::${AWS::AccountId}:policy/my-custom-permissions-boundary")\n    )\n')
@@ -1501,15 +1488,11 @@ class ReferenceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ReferenceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ReferenceDefConfig] = pydantic.Field(None)
 
 
 class ReferenceDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[ReferenceDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
-
-class ReferenceDefResolveParams(pydantic.BaseModel):
-    _context: models.UnsupportedResource = pydantic.Field(..., description='-')
-    ...
+    resolve: typing.Optional[bool] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 #  autogenerated from aws_cdk.RemoveTag
@@ -1527,11 +1510,11 @@ class RemoveTagDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RemoveTagDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.RemoveTagDefConfig] = pydantic.Field(None)
 
 
 class RemoveTagDefConfig(pydantic.BaseModel):
-    visit: typing.Optional[list[RemoveTagDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
+    visit: typing.Optional[list[models.core.RemoveTagDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
 
 class RemoveTagDefVisitParams(pydantic.BaseModel):
     construct_: models.AnyResource = pydantic.Field(..., description='-', alias='construct')
@@ -1552,7 +1535,7 @@ class ResourceDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ResourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ResourceDefConfig] = pydantic.Field(None)
 
 
 class ResourceDefConfig(pydantic.BaseModel):
@@ -1588,18 +1571,18 @@ class SecretValueDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SecretValueDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.SecretValueDefConfig] = pydantic.Field(None)
 
 
 class SecretValueDefConfig(pydantic.BaseModel):
-    cfn_dynamic_reference: typing.Optional[list[SecretValueDefCfnDynamicReferenceParams]] = pydantic.Field(None, description='Obtain the secret value through a CloudFormation dynamic reference.\nIf possible, use ``SecretValue.ssmSecure`` or ``SecretValue.secretsManager`` directly.')
-    cfn_parameter: typing.Optional[list[SecretValueDefCfnParameterParams]] = pydantic.Field(None, description='Obtain the secret value through a CloudFormation parameter.\nGenerally, this is not a recommended approach. AWS Secrets Manager is the\nrecommended way to reference secrets.')
-    plain_text: typing.Optional[list[SecretValueDefPlainTextParams]] = pydantic.Field(None, description='(deprecated) Construct a literal secret value for use with secret-aware constructs.\nDo not use this method for any secrets that you care about! The value\nwill be visible to anyone who has access to the CloudFormation template\n(via the AWS Console, SDKs, or CLI).\n\nThe only reasonable use case for using this method is when you are testing.')
-    resolve: typing.Optional[list[SecretValueDefResolveParams]] = pydantic.Field(None, description='Resolve the secret.\nIf the feature flag is not set, resolve as normal. Otherwise, throw a descriptive\nerror that the usage guard is missing.')
-    resource_attribute: typing.Optional[list[SecretValueDefResourceAttributeParams]] = pydantic.Field(None, description="Use a resource's output as secret value.")
-    secrets_manager: typing.Optional[list[SecretValueDefSecretsManagerParams]] = pydantic.Field(None, description='Creates a ``SecretValue`` with a value which is dynamically loaded from AWS Secrets Manager.\nIf you rotate the value in the Secret, you must also change at least one property\non the resource where you are using the secret, to force CloudFormation to re-read the secret.')
-    ssm_secure: typing.Optional[list[SecretValueDefSsmSecureParams]] = pydantic.Field(None, description='Use a secret value stored from a Systems Manager (SSM) parameter.\nThis secret source in only supported in a limited set of resources and\nproperties. `Click here for the list of supported\nproperties <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#template-parameters-dynamic-patterns-resources>`_.')
-    unsafe_plain_text: typing.Optional[list[SecretValueDefUnsafePlainTextParams]] = pydantic.Field(None, description='Construct a literal secret value for use with secret-aware constructs.\nDo not use this method for any secrets that you care about! The value\nwill be visible to anyone who has access to the CloudFormation template\n(via the AWS Console, SDKs, or CLI).\n\nThe primary use case for using this method is when you are testing.\n\nThe other use case where this is appropriate is when constructing a JSON secret.\nFor example, a JSON secret might have multiple fields where only some are actual\nsecret values.')
+    cfn_dynamic_reference: typing.Optional[list[models.core.SecretValueDefCfnDynamicReferenceParams]] = pydantic.Field(None, description='Obtain the secret value through a CloudFormation dynamic reference.\nIf possible, use ``SecretValue.ssmSecure`` or ``SecretValue.secretsManager`` directly.')
+    cfn_parameter: typing.Optional[list[models.core.SecretValueDefCfnParameterParams]] = pydantic.Field(None, description='Obtain the secret value through a CloudFormation parameter.\nGenerally, this is not a recommended approach. AWS Secrets Manager is the\nrecommended way to reference secrets.')
+    plain_text: typing.Optional[list[models.core.SecretValueDefPlainTextParams]] = pydantic.Field(None, description='(deprecated) Construct a literal secret value for use with secret-aware constructs.\nDo not use this method for any secrets that you care about! The value\nwill be visible to anyone who has access to the CloudFormation template\n(via the AWS Console, SDKs, or CLI).\n\nThe only reasonable use case for using this method is when you are testing.')
+    resolve: typing.Optional[list[models.core.SecretValueDefResolveParams]] = pydantic.Field(None, description='Resolve the secret.\nIf the feature flag is not set, resolve as normal. Otherwise, throw a descriptive\nerror that the usage guard is missing.')
+    resource_attribute: typing.Optional[list[models.core.SecretValueDefResourceAttributeParams]] = pydantic.Field(None, description="Use a resource's output as secret value.")
+    secrets_manager: typing.Optional[list[models.core.SecretValueDefSecretsManagerParams]] = pydantic.Field(None, description='Creates a ``SecretValue`` with a value which is dynamically loaded from AWS Secrets Manager.\nIf you rotate the value in the Secret, you must also change at least one property\non the resource where you are using the secret, to force CloudFormation to re-read the secret.')
+    ssm_secure: typing.Optional[list[models.core.SecretValueDefSsmSecureParams]] = pydantic.Field(None, description='Use a secret value stored from a Systems Manager (SSM) parameter.\nThis secret source in only supported in a limited set of resources and\nproperties. `Click here for the list of supported\nproperties <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/dynamic-references.html#template-parameters-dynamic-patterns-resources>`_.')
+    unsafe_plain_text: typing.Optional[list[models.core.SecretValueDefUnsafePlainTextParams]] = pydantic.Field(None, description='Construct a literal secret value for use with secret-aware constructs.\nDo not use this method for any secrets that you care about! The value\nwill be visible to anyone who has access to the CloudFormation template\n(via the AWS Console, SDKs, or CLI).\n\nThe primary use case for using this method is when you are testing.\n\nThe other use case where this is appropriate is when constructing a JSON secret.\nFor example, a JSON secret might have multiple fields where only some are actual\nsecret values.')
     unsafe_unwrap: typing.Optional[bool] = pydantic.Field(None, description="Disable usage protection on this secret.\nCall this to indicate that you want to use the secret value held by this\nobject in an unchecked way. If you don't call this method, using the secret\nvalue directly in a string context or as a property value somewhere will\nproduce an error.\n\nThis method has 'unsafe' in the name on purpose! Make sure that the\nconstruct property you are using the returned value in is does not end up\nin a place in your AWS infrastructure where it could be read by anyone\nunexpected.\n\nWhen in doubt, don't call this method and only pass the object to constructs that\naccept ``SecretValue`` parameters.")
 
 class SecretValueDefCfnDynamicReferenceParams(pydantic.BaseModel):
@@ -1656,16 +1639,16 @@ class SizeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SizeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.SizeDefConfig] = pydantic.Field(None)
 
 
 class SizeDefConfig(pydantic.BaseModel):
-    bytes: typing.Optional[list[SizeDefBytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount bytes.')
-    gibibytes: typing.Optional[list[SizeDefGibibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount gibibytes.\n1 GiB = 1024 MiB')
-    kibibytes: typing.Optional[list[SizeDefKibibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount kibibytes.\n1 KiB = 1024 bytes')
-    mebibytes: typing.Optional[list[SizeDefMebibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount mebibytes.\n1 MiB = 1024 KiB')
-    pebibytes: typing.Optional[list[SizeDefPebibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount pebibytes.\n1 PiB = 1024 TiB')
-    tebibytes: typing.Optional[list[SizeDefTebibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount tebibytes.\n1 TiB = 1024 GiB')
+    bytes: typing.Optional[list[models.core.SizeDefBytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount bytes.')
+    gibibytes: typing.Optional[list[models.core.SizeDefGibibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount gibibytes.\n1 GiB = 1024 MiB')
+    kibibytes: typing.Optional[list[models.core.SizeDefKibibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount kibibytes.\n1 KiB = 1024 bytes')
+    mebibytes: typing.Optional[list[models.core.SizeDefMebibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount mebibytes.\n1 MiB = 1024 KiB')
+    pebibytes: typing.Optional[list[models.core.SizeDefPebibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount pebibytes.\n1 PiB = 1024 TiB')
+    tebibytes: typing.Optional[list[models.core.SizeDefTebibytesParams]] = pydantic.Field(None, description='Create a Storage representing an amount tebibytes.\n1 TiB = 1024 GiB')
 
 class SizeDefBytesParams(pydantic.BaseModel):
     amount: typing.Union[int, float] = pydantic.Field(..., description='the amount of bytes to be represented.\n')
@@ -1708,14 +1691,14 @@ class StackSynthesizerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StackSynthesizerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.StackSynthesizerDefConfig] = pydantic.Field(None)
 
 
 class StackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[StackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    add_file_asset: typing.Optional[list[StackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
-    bind: typing.Optional[list[StackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
-    synthesize: typing.Optional[list[StackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models.core.StackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    add_file_asset: typing.Optional[list[models.core.StackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.\n\nThe synthesizer must rely on some out-of-band mechanism to make sure the given files\nare actually placed in the returned location before the deployment happens. This can\nbe by writing the instructions to the asset manifest (for use by the ``cdk-assets`` tool),\nby relying on the CLI to upload files (legacy behavior), or some other operator controlled\nmechanism.')
+    bind: typing.Optional[list[models.core.StackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called.')
+    synthesize: typing.Optional[list[models.core.StackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 class StackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     source_hash: str = pydantic.Field(..., description='The hash of the contents of the docker build context. This hash is used throughout the system to identify this image and avoid duplicate work in case the source did not change. NOTE: this means that if you wish to update your docker image, you must make a modification to the source (e.g. add some metadata to your Dockerfile).\n')
@@ -1761,11 +1744,11 @@ class StringConcatDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StringConcatDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.StringConcatDefConfig] = pydantic.Field(None)
 
 
 class StringConcatDefConfig(pydantic.BaseModel):
-    join: typing.Optional[list[StringConcatDefJoinParams]] = pydantic.Field(None, description='Join the fragment on the left and on the right.')
+    join: typing.Optional[list[models.core.StringConcatDefJoinParams]] = pydantic.Field(None, description='Join the fragment on the left and on the right.')
 
 class StringConcatDefJoinParams(pydantic.BaseModel):
     left: typing.Any = pydantic.Field(..., description='-\n')
@@ -1789,11 +1772,11 @@ class TagDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TagDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TagDefConfig] = pydantic.Field(None)
 
 
 class TagDefConfig(pydantic.BaseModel):
-    visit: typing.Optional[list[TagDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
+    visit: typing.Optional[list[models.core.TagDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
 
 class TagDefVisitParams(pydantic.BaseModel):
     construct_: models.AnyResource = pydantic.Field(..., description='-', alias='construct')
@@ -1814,16 +1797,16 @@ class TagManagerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TagManagerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 
 class TagManagerDefConfig(pydantic.BaseModel):
-    apply_tag_aspect_here: typing.Optional[list[TagManagerDefApplyTagAspectHereParams]] = pydantic.Field(None, description='Determine if the aspect applies here.\nLooks at the include and exclude resourceTypeName arrays to determine if\nthe aspect applies here')
+    apply_tag_aspect_here: typing.Optional[list[models.core.TagManagerDefApplyTagAspectHereParams]] = pydantic.Field(None, description='Determine if the aspect applies here.\nLooks at the include and exclude resourceTypeName arrays to determine if\nthe aspect applies here')
     has_tags: typing.Optional[bool] = pydantic.Field(None, description='Returns true if there are any tags defined.')
-    of: typing.Optional[list[TagManagerDefOfParams]] = pydantic.Field(None, description='Return the TagManager associated with the given construct, if any.')
-    remove_tag: typing.Optional[list[TagManagerDefRemoveTagParams]] = pydantic.Field(None, description='Removes the specified tag from the array if it exists.')
-    render_tags: typing.Optional[list[TagManagerDefRenderTagsParams]] = pydantic.Field(None, description='Renders tags into the proper format based on TagType.\nThis method will eagerly render the tags currently applied. In\nmost cases, you should be using ``tagManager.renderedTags`` instead,\nwhich will return a ``Lazy`` value that will resolve to the correct\ntags at synthesis time.')
-    set_tag: typing.Optional[list[TagManagerDefSetTagParams]] = pydantic.Field(None, description='Adds the specified tag to the array of tags.')
+    of: typing.Optional[list[models.core.TagManagerDefOfParams]] = pydantic.Field(None, description='Return the TagManager associated with the given construct, if any.')
+    remove_tag: typing.Optional[list[models.core.TagManagerDefRemoveTagParams]] = pydantic.Field(None, description='Removes the specified tag from the array if it exists.')
+    render_tags: typing.Optional[list[models.core.TagManagerDefRenderTagsParams]] = pydantic.Field(None, description='Renders tags into the proper format based on TagType.\nThis method will eagerly render the tags currently applied. In\nmost cases, you should be using ``tagManager.renderedTags`` instead,\nwhich will return a ``Lazy`` value that will resolve to the correct\ntags at synthesis time.')
+    set_tag: typing.Optional[list[models.core.TagManagerDefSetTagParams]] = pydantic.Field(None, description='Adds the specified tag to the array of tags.')
     tag_values: typing.Optional[bool] = pydantic.Field(None, description='Render the tags in a readable format.')
     rendered_tags_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
 
@@ -1863,13 +1846,13 @@ class TagsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TagsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TagsDefConfig] = pydantic.Field(None)
 
 
 class TagsDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[TagsDefAddParams]] = pydantic.Field(None, description='add tags to the node of a construct and all its the taggable children.')
-    of: typing.Optional[list[TagsDefOfParams]] = pydantic.Field(None, description='Returns the tags API for this scope.')
-    remove: typing.Optional[list[TagsDefRemoveParams]] = pydantic.Field(None, description='remove tags to the node of a construct and all its the taggable children.')
+    add: typing.Optional[list[models.core.TagsDefAddParams]] = pydantic.Field(None, description='add tags to the node of a construct and all its the taggable children.')
+    of: typing.Optional[list[models.core.TagsDefOfParams]] = pydantic.Field(None, description='Returns the tags API for this scope.')
+    remove: typing.Optional[list[models.core.TagsDefRemoveParams]] = pydantic.Field(None, description='remove tags to the node of a construct and all its the taggable children.')
 
 class TagsDefAddParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='-\n')
@@ -1904,11 +1887,11 @@ class TimeZoneDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TimeZoneDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TimeZoneDefConfig] = pydantic.Field(None)
 
 
 class TimeZoneDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[TimeZoneDefOfParams]] = pydantic.Field(None, description='Use this to add a timezone not in this class.')
+    of: typing.Optional[list[models.core.TimeZoneDefOfParams]] = pydantic.Field(None, description='Use this to add a timezone not in this class.')
 
 class TimeZoneDefOfParams(pydantic.BaseModel):
     timezone_name: str = pydantic.Field(..., description='the name of the timezone.\n')
@@ -1926,11 +1909,11 @@ class TokenDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TokenDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TokenDefConfig] = pydantic.Field(None)
 
 
 class TokenDefConfig(pydantic.BaseModel):
-    compare_strings: typing.Optional[list[TokenDefCompareStringsParams]] = pydantic.Field(None, description='Compare two strings that might contain Tokens with each other.')
+    compare_strings: typing.Optional[list[models.core.TokenDefCompareStringsParams]] = pydantic.Field(None, description='Compare two strings that might contain Tokens with each other.')
 
 class TokenDefCompareStringsParams(pydantic.BaseModel):
     possible_token1: str = pydantic.Field(..., description='-\n')
@@ -1960,17 +1943,17 @@ class TokenizationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TokenizationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TokenizationDefConfig] = pydantic.Field(None)
 
 
 class TokenizationDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[TokenizationDefResolveParams]] = pydantic.Field(None, description='Resolves an object by evaluating all tokens and removing any undefined or empty objects or arrays.\nValues can only be primitives, arrays or tokens. Other objects (i.e. with methods) will be rejected.')
-    reverse: typing.Optional[list[TokenizationDefReverseParams]] = pydantic.Field(None, description='Reverse any value into a Resolvable, if possible.\nIn case of a string, the string must not be a concatenation.')
-    reverse_complete_string: typing.Optional[list[TokenizationDefReverseCompleteStringParams]] = pydantic.Field(None, description="Un-encode a string which is either a complete encoded token, or doesn't contain tokens at all.\nIt's illegal for the string to be a concatenation of an encoded token and something else.")
-    reverse_list: typing.Optional[list[TokenizationDefReverseListParams]] = pydantic.Field(None, description='Un-encode a Tokenized value from a list.')
-    reverse_number: typing.Optional[list[TokenizationDefReverseNumberParams]] = pydantic.Field(None, description='Un-encode a Tokenized value from a number.')
-    reverse_string: typing.Optional[list[TokenizationDefReverseStringParams]] = pydantic.Field(None, description='Un-encode a string potentially containing encoded tokens.')
-    stringify_number: typing.Optional[list[TokenizationDefStringifyNumberParams]] = pydantic.Field(None, description="Stringify a number directly or lazily if it's a Token.\nIf it is an object (i.e., { Ref: 'SomeLogicalId' }), return it as-is.")
+    resolve: typing.Optional[list[models.core.TokenizationDefResolveParams]] = pydantic.Field(None, description='Resolves an object by evaluating all tokens and removing any undefined or empty objects or arrays.\nValues can only be primitives, arrays or tokens. Other objects (i.e. with methods) will be rejected.')
+    reverse: typing.Optional[list[models.core.TokenizationDefReverseParams]] = pydantic.Field(None, description='Reverse any value into a Resolvable, if possible.\nIn case of a string, the string must not be a concatenation.')
+    reverse_complete_string: typing.Optional[list[models.core.TokenizationDefReverseCompleteStringParams]] = pydantic.Field(None, description="Un-encode a string which is either a complete encoded token, or doesn't contain tokens at all.\nIt's illegal for the string to be a concatenation of an encoded token and something else.")
+    reverse_list: typing.Optional[list[models.core.TokenizationDefReverseListParams]] = pydantic.Field(None, description='Un-encode a Tokenized value from a list.')
+    reverse_number: typing.Optional[list[models.core.TokenizationDefReverseNumberParams]] = pydantic.Field(None, description='Un-encode a Tokenized value from a number.')
+    reverse_string: typing.Optional[list[models.core.TokenizationDefReverseStringParams]] = pydantic.Field(None, description='Un-encode a string potentially containing encoded tokens.')
+    stringify_number: typing.Optional[list[models.core.TokenizationDefStringifyNumberParams]] = pydantic.Field(None, description="Stringify a number directly or lazily if it's a Token.\nIf it is an object (i.e., { Ref: 'SomeLogicalId' }), return it as-is.")
 
 class TokenizationDefResolveParams(pydantic.BaseModel):
     obj: typing.Any = pydantic.Field(..., description='The object to resolve.\n')
@@ -2017,15 +2000,15 @@ class TokenizedStringFragmentsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TokenizedStringFragmentsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TokenizedStringFragmentsDefConfig] = pydantic.Field(None)
 
 
 class TokenizedStringFragmentsDefConfig(pydantic.BaseModel):
-    add_intrinsic: typing.Optional[list[TokenizedStringFragmentsDefAddIntrinsicParams]] = pydantic.Field(None, description='')
-    add_literal: typing.Optional[list[TokenizedStringFragmentsDefAddLiteralParams]] = pydantic.Field(None, description='')
-    add_token: typing.Optional[list[TokenizedStringFragmentsDefAddTokenParams]] = pydantic.Field(None, description='')
-    join: typing.Optional[list[TokenizedStringFragmentsDefJoinParams]] = pydantic.Field(None, description='Combine the string fragments using the given joiner.\nIf there are any')
-    map_tokens: typing.Optional[list[TokenizedStringFragmentsDefMapTokensParams]] = pydantic.Field(None, description='Apply a transformation function to all tokens in the string.')
+    add_intrinsic: typing.Optional[list[models.core.TokenizedStringFragmentsDefAddIntrinsicParams]] = pydantic.Field(None, description='')
+    add_literal: typing.Optional[list[models.core.TokenizedStringFragmentsDefAddLiteralParams]] = pydantic.Field(None, description='')
+    add_token: typing.Optional[list[models.core.TokenizedStringFragmentsDefAddTokenParams]] = pydantic.Field(None, description='')
+    join: typing.Optional[list[models.core.TokenizedStringFragmentsDefJoinParams]] = pydantic.Field(None, description='Combine the string fragments using the given joiner.\nIf there are any')
+    map_tokens: typing.Optional[list[models.core.TokenizedStringFragmentsDefMapTokensParams]] = pydantic.Field(None, description='Apply a transformation function to all tokens in the string.')
 
 class TokenizedStringFragmentsDefAddIntrinsicParams(pydantic.BaseModel):
     value: typing.Any = pydantic.Field(..., description='-')
@@ -2059,11 +2042,11 @@ class TreeInspectorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TreeInspectorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.TreeInspectorDefConfig] = pydantic.Field(None)
 
 
 class TreeInspectorDefConfig(pydantic.BaseModel):
-    add_attribute: typing.Optional[list[TreeInspectorDefAddAttributeParams]] = pydantic.Field(None, description='Adds attribute to bag.\nKeys should be added by convention to prevent conflicts\ni.e. L1 constructs will contain attributes with keys prefixed with aws:cdk:cloudformation')
+    add_attribute: typing.Optional[list[models.core.TreeInspectorDefAddAttributeParams]] = pydantic.Field(None, description='Adds attribute to bag.\nKeys should be added by convention to prevent conflicts\ni.e. L1 constructs will contain attributes with keys prefixed with aws:cdk:cloudformation')
 
 class TreeInspectorDefAddAttributeParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='- key for metadata.\n')
@@ -2083,13 +2066,13 @@ class ValidationResultDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ValidationResultDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ValidationResultDefConfig] = pydantic.Field(None)
 
 
 class ValidationResultDefConfig(pydantic.BaseModel):
     assert_success: typing.Optional[bool] = pydantic.Field(None, description='Turn a failed validation into an exception.')
     error_tree: typing.Optional[bool] = pydantic.Field(None, description='Return a string rendering of the tree of validation failures.')
-    prefix: typing.Optional[list[ValidationResultDefPrefixParams]] = pydantic.Field(None, description='Wrap this result with an error message, if it concerns an error.')
+    prefix: typing.Optional[list[models.core.ValidationResultDefPrefixParams]] = pydantic.Field(None, description='Wrap this result with an error message, if it concerns an error.')
 
 class ValidationResultDefPrefixParams(pydantic.BaseModel):
     message: str = pydantic.Field(..., description='-')
@@ -2108,13 +2091,13 @@ class ValidationResultsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ValidationResultsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ValidationResultsDefConfig] = pydantic.Field(None)
 
 
 class ValidationResultsDefConfig(pydantic.BaseModel):
-    collect: typing.Optional[list[ValidationResultsDefCollectParams]] = pydantic.Field(None, description='')
+    collect: typing.Optional[list[models.core.ValidationResultsDefCollectParams]] = pydantic.Field(None, description='')
     error_tree_list: typing.Optional[bool] = pydantic.Field(None, description='')
-    wrap: typing.Optional[list[ValidationResultsDefWrapParams]] = pydantic.Field(None, description='Wrap up all validation results into a single tree node.\nIf there are failures in the collection, add a message, otherwise\nreturn a success.')
+    wrap: typing.Optional[list[models.core.ValidationResultsDefWrapParams]] = pydantic.Field(None, description='Wrap up all validation results into a single tree node.\nIf there are failures in the collection, add a message, otherwise\nreturn a success.')
 
 class ValidationResultsDefCollectParams(pydantic.BaseModel):
     result: models.ValidationResultDef = pydantic.Field(..., description='-')
@@ -2144,12 +2127,12 @@ class AssetStagingDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AssetStagingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.AssetStagingDefConfig] = pydantic.Field(None)
 
 
 class AssetStagingDefConfig(pydantic.BaseModel):
     clear_asset_hash_cache: typing.Optional[bool] = pydantic.Field(None, description='Clears the asset hash cache.')
-    relative_staged_path: typing.Optional[list[AssetStagingDefRelativeStagedPathParams]] = pydantic.Field(None, description='Return the path to the staged asset, relative to the Cloud Assembly (manifest) directory of the given stack.\nOnly returns a relative path if the asset was staged, returns an absolute path if\nit was not staged.\n\nA bundled asset might end up in the outDir and still not count as\n"staged"; if asset staging is disabled we\'re technically expected to\nreference source directories, but we don\'t have a source directory for the\nbundled outputs (as the bundle output is written to a temporary\ndirectory). Nevertheless, we will still return an absolute path.\n\nA non-obvious directory layout may look like this::\n\n     CLOUD ASSEMBLY ROOT\n       +-- asset.12345abcdef/\n       +-- assembly-Stage\n             +-- MyStack.template.json\n             +-- MyStack.assets.json <- will contain { "path": "../asset.12345abcdef" }')
+    relative_staged_path: typing.Optional[list[models.core.AssetStagingDefRelativeStagedPathParams]] = pydantic.Field(None, description='Return the path to the staged asset, relative to the Cloud Assembly (manifest) directory of the given stack.\nOnly returns a relative path if the asset was staged, returns an absolute path if\nit was not staged.\n\nA bundled asset might end up in the outDir and still not count as\n"staged"; if asset staging is disabled we\'re technically expected to\nreference source directories, but we don\'t have a source directory for the\nbundled outputs (as the bundle output is written to a temporary\ndirectory). Nevertheless, we will still return an absolute path.\n\nA non-obvious directory layout may look like this::\n\n     CLOUD ASSEMBLY ROOT\n       +-- asset.12345abcdef/\n       +-- assembly-Stage\n             +-- MyStack.template.json\n             +-- MyStack.assets.json <- will contain { "path": "../asset.12345abcdef" }')
 
 class AssetStagingDefRelativeStagedPathParams(pydantic.BaseModel):
     stack: models.StackDef = pydantic.Field(..., description='-')
@@ -2171,13 +2154,13 @@ class CustomResourceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CustomResourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CustomResourceDefConfig] = pydantic.Field(None)
 
 
 class CustomResourceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CustomResourceDefGetAttParams]] = pydantic.Field(None, description='Returns the value of an attribute of the custom resource of an arbitrary type.\nAttributes are returned from the custom resource provider through the\n``Data`` map where the key is the attribute name.')
-    get_att_string: typing.Optional[list[CustomResourceDefGetAttStringParams]] = pydantic.Field(None, description='Returns the value of an attribute of the custom resource of type string.\nAttributes are returned from the custom resource provider through the\n``Data`` map where the key is the attribute name.')
+    get_att: typing.Optional[list[models.core.CustomResourceDefGetAttParams]] = pydantic.Field(None, description='Returns the value of an attribute of the custom resource of an arbitrary type.\nAttributes are returned from the custom resource provider through the\n``Data`` map where the key is the attribute name.')
+    get_att_string: typing.Optional[list[models.core.CustomResourceDefGetAttStringParams]] = pydantic.Field(None, description='Returns the value of an attribute of the custom resource of type string.\nAttributes are returned from the custom resource provider through the\n``Data`` map where the key is the attribute name.')
 
 class CustomResourceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -2211,13 +2194,13 @@ class CustomResourceProviderDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CustomResourceProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CustomResourceProviderDefConfig] = pydantic.Field(None)
 
 
 class CustomResourceProviderDefConfig(pydantic.BaseModel):
-    add_to_role_policy: typing.Optional[list[CustomResourceProviderDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add an IAM policy statement to the inline policy of the provider's lambda function's role.\n**Please note**: this is a direct IAM JSON policy blob, *not* a ``iam.PolicyStatement``\nobject like you will see in the rest of the CDK.")
-    get_or_create: typing.Optional[list[CustomResourceProviderDefGetOrCreateParams]] = pydantic.Field(None, description='Returns a stack-level singleton ARN (service token) for the custom resource provider.')
-    get_or_create_provider: typing.Optional[list[CustomResourceProviderDefGetOrCreateProviderParams]] = pydantic.Field(None, description='Returns a stack-level singleton for the custom resource provider.')
+    add_to_role_policy: typing.Optional[list[models.core.CustomResourceProviderDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add an IAM policy statement to the inline policy of the provider's lambda function's role.\n**Please note**: this is a direct IAM JSON policy blob, *not* a ``iam.PolicyStatement``\nobject like you will see in the rest of the CDK.")
+    get_or_create: typing.Optional[list[models.core.CustomResourceProviderDefGetOrCreateParams]] = pydantic.Field(None, description='Returns a stack-level singleton ARN (service token) for the custom resource provider.')
+    get_or_create_provider: typing.Optional[list[models.core.CustomResourceProviderDefGetOrCreateProviderParams]] = pydantic.Field(None, description='Returns a stack-level singleton for the custom resource provider.')
 
 class CustomResourceProviderDefAddToRolePolicyParams(pydantic.BaseModel):
     statement: typing.Any = pydantic.Field(..., description='-\n\nExample::\n\n    # my_provider: CustomResourceProvider\n\n\n    my_provider.add_to_role_policy({\n        "Effect": "Allow",\n        "Action": "s3:GetObject",\n        "Resource": "*"\n    })\n')
@@ -2266,24 +2249,24 @@ class NestedStackDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[NestedStackDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.NestedStackDefConfig] = pydantic.Field(None)
 
 
 class NestedStackDefConfig(pydantic.BaseModel):
-    add_dependency: typing.Optional[list[NestedStackDefAddDependencyParams]] = pydantic.Field(None, description='Add a dependency between this stack and another stack.\nThis can be used to define dependencies between any two stacks within an\napp, and also supports nested stacks.')
-    add_metadata: typing.Optional[list[NestedStackDefAddMetadataParams]] = pydantic.Field(None, description='Adds an arbitary key-value pair, with information you want to record about the stack.\nThese get translated to the Metadata section of the generated template.')
-    add_transform: typing.Optional[list[NestedStackDefAddTransformParams]] = pydantic.Field(None, description='Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template.\nDuplicate values are removed when stack is synthesized.')
-    export_string_list_value: typing.Optional[list[NestedStackDefExportStringListValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string list value.\nReturns a string list representing the corresponding ``Fn.importValue()``\nexpression for this Export. The export expression is automatically wrapped with an\n``Fn::Join`` and the import value with an ``Fn::Split``, since CloudFormation can only\nexport strings. You can control the name for the export by passing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\nSee ``exportValue`` for an example of this process.")
-    export_value: typing.Optional[list[NestedStackDefExportValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string value.\nReturns a string representing the corresponding ``Fn.importValue()``\nexpression for this Export. You can control the name for the export by\npassing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\n\nExample\n\nHere is how the process works. Let's say there are two stacks,\n``producerStack`` and ``consumerStack``, and ``producerStack`` has a bucket\ncalled ``bucket``, which is referenced by ``consumerStack`` (perhaps because\nan AWS Lambda Function writes into it, or something like that).\n\nIt is not safe to remove ``producerStack.bucket`` because as the bucket is being\ndeleted, ``consumerStack`` might still be using it.\n\nInstead, the process takes two deployments:\n\n\nDeployment 1: break the relationship\n\n- Make sure ``consumerStack`` no longer references ``bucket.bucketName`` (maybe the consumer\n  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just\n  remove the Lambda Function altogether).\n- In the ``ProducerStack`` class, call ``this.exportValue(this.bucket.bucketName)``. This\n  will make sure the CloudFormation Export continues to exist while the relationship\n  between the two stacks is being broken.\n- Deploy (this will effectively only change the ``consumerStack``, but it's safe to deploy both).\n\n\n\nDeployment 2: remove the bucket resource\n\n- You are now free to remove the ``bucket`` resource from ``producerStack``.\n- Don't forget to remove the ``exportValue()`` call as well.\n- Deploy again (this time only the ``producerStack`` will be changed -- the bucket will be deleted).")
-    format_arn: typing.Optional[list[NestedStackDefFormatArnParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
-    get_logical_id: typing.Optional[list[NestedStackDefGetLogicalIdParams]] = pydantic.Field(None, description='Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource.\nThis method is called when a ``CfnElement`` is created and used to render the\ninitial logical identity of resources. Logical ID renames are applied at\nthis stage.\n\nThis method uses the protected method ``allocateLogicalId`` to render the\nlogical ID for an element. To modify the naming scheme, extend the ``Stack``\nclass and override this method.')
-    of: typing.Optional[list[NestedStackDefOfParams]] = pydantic.Field(None, description='Looks up the first stack scope in which ``construct`` is defined.\nFails if there is no stack up the tree.')
-    regional_fact: typing.Optional[list[NestedStackDefRegionalFactParams]] = pydantic.Field(None, description='Look up a fact value for the given fact for the region of this stack.\nWill return a definite value only if the region of the current stack is resolved.\nIf not, a lookup map will be added to the stack and the lookup will be done at\nCDK deployment time.\n\nWhat regions will be included in the lookup map is controlled by the\n``@aws-cdk/core:target-partitions`` context value: it must be set to a list\nof partitions, and only regions from the given partitions will be included.\nIf no such context key is set, all regions will be included.\n\nThis function is intended to be used by construct library authors. Application\nbuilders can rely on the abstractions offered by construct libraries and do\nnot have to worry about regional facts.\n\nIf ``defaultValue`` is not given, it is an error if the fact is unknown for\nthe given region.')
-    rename_logical_id: typing.Optional[list[NestedStackDefRenameLogicalIdParams]] = pydantic.Field(None, description='Rename a generated logical identities.\nTo modify the naming scheme strategy, extend the ``Stack`` class and\noverride the ``allocateLogicalId`` method.')
-    report_missing_context_key: typing.Optional[list[NestedStackDefReportMissingContextKeyParams]] = pydantic.Field(None, description='Indicate that a context key was expected.\nContains instructions which will be emitted into the cloud assembly on how\nthe key should be supplied.')
-    resolve: typing.Optional[list[NestedStackDefResolveParams]] = pydantic.Field(None, description='Resolve a tokenized value in the context of the current stack.')
-    set_parameter: typing.Optional[list[NestedStackDefSetParameterParams]] = pydantic.Field(None, description='Assign a value to one of the nested stack parameters.')
-    split_arn: typing.Optional[list[NestedStackDefSplitArnParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
+    add_dependency: typing.Optional[list[models.core.NestedStackDefAddDependencyParams]] = pydantic.Field(None, description='Add a dependency between this stack and another stack.\nThis can be used to define dependencies between any two stacks within an\napp, and also supports nested stacks.')
+    add_metadata: typing.Optional[list[models.core.NestedStackDefAddMetadataParams]] = pydantic.Field(None, description='Adds an arbitary key-value pair, with information you want to record about the stack.\nThese get translated to the Metadata section of the generated template.')
+    add_transform: typing.Optional[list[models.core.NestedStackDefAddTransformParams]] = pydantic.Field(None, description='Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template.\nDuplicate values are removed when stack is synthesized.')
+    export_string_list_value: typing.Optional[list[models.core.NestedStackDefExportStringListValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string list value.\nReturns a string list representing the corresponding ``Fn.importValue()``\nexpression for this Export. The export expression is automatically wrapped with an\n``Fn::Join`` and the import value with an ``Fn::Split``, since CloudFormation can only\nexport strings. You can control the name for the export by passing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\nSee ``exportValue`` for an example of this process.")
+    export_value: typing.Optional[list[models.core.NestedStackDefExportValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string value.\nReturns a string representing the corresponding ``Fn.importValue()``\nexpression for this Export. You can control the name for the export by\npassing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\n\nExample\n\nHere is how the process works. Let's say there are two stacks,\n``producerStack`` and ``consumerStack``, and ``producerStack`` has a bucket\ncalled ``bucket``, which is referenced by ``consumerStack`` (perhaps because\nan AWS Lambda Function writes into it, or something like that).\n\nIt is not safe to remove ``producerStack.bucket`` because as the bucket is being\ndeleted, ``consumerStack`` might still be using it.\n\nInstead, the process takes two deployments:\n\n\nDeployment 1: break the relationship\n\n- Make sure ``consumerStack`` no longer references ``bucket.bucketName`` (maybe the consumer\n  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just\n  remove the Lambda Function altogether).\n- In the ``ProducerStack`` class, call ``this.exportValue(this.bucket.bucketName)``. This\n  will make sure the CloudFormation Export continues to exist while the relationship\n  between the two stacks is being broken.\n- Deploy (this will effectively only change the ``consumerStack``, but it's safe to deploy both).\n\n\n\nDeployment 2: remove the bucket resource\n\n- You are now free to remove the ``bucket`` resource from ``producerStack``.\n- Don't forget to remove the ``exportValue()`` call as well.\n- Deploy again (this time only the ``producerStack`` will be changed -- the bucket will be deleted).")
+    format_arn: typing.Optional[list[models.core.NestedStackDefFormatArnParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
+    get_logical_id: typing.Optional[list[models.core.NestedStackDefGetLogicalIdParams]] = pydantic.Field(None, description='Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource.\nThis method is called when a ``CfnElement`` is created and used to render the\ninitial logical identity of resources. Logical ID renames are applied at\nthis stage.\n\nThis method uses the protected method ``allocateLogicalId`` to render the\nlogical ID for an element. To modify the naming scheme, extend the ``Stack``\nclass and override this method.')
+    of: typing.Optional[list[models.core.NestedStackDefOfParams]] = pydantic.Field(None, description='Looks up the first stack scope in which ``construct`` is defined.\nFails if there is no stack up the tree.')
+    regional_fact: typing.Optional[list[models.core.NestedStackDefRegionalFactParams]] = pydantic.Field(None, description='Look up a fact value for the given fact for the region of this stack.\nWill return a definite value only if the region of the current stack is resolved.\nIf not, a lookup map will be added to the stack and the lookup will be done at\nCDK deployment time.\n\nWhat regions will be included in the lookup map is controlled by the\n``@aws-cdk/core:target-partitions`` context value: it must be set to a list\nof partitions, and only regions from the given partitions will be included.\nIf no such context key is set, all regions will be included.\n\nThis function is intended to be used by construct library authors. Application\nbuilders can rely on the abstractions offered by construct libraries and do\nnot have to worry about regional facts.\n\nIf ``defaultValue`` is not given, it is an error if the fact is unknown for\nthe given region.')
+    rename_logical_id: typing.Optional[list[models.core.NestedStackDefRenameLogicalIdParams]] = pydantic.Field(None, description='Rename a generated logical identities.\nTo modify the naming scheme strategy, extend the ``Stack`` class and\noverride the ``allocateLogicalId`` method.')
+    report_missing_context_key: typing.Optional[list[models.core.NestedStackDefReportMissingContextKeyParams]] = pydantic.Field(None, description='Indicate that a context key was expected.\nContains instructions which will be emitted into the cloud assembly on how\nthe key should be supplied.')
+    resolve: typing.Optional[list[models.core.NestedStackDefResolveParams]] = pydantic.Field(None, description='Resolve a tokenized value in the context of the current stack.')
+    set_parameter: typing.Optional[list[models.core.NestedStackDefSetParameterParams]] = pydantic.Field(None, description='Assign a value to one of the nested stack parameters.')
+    split_arn: typing.Optional[list[models.core.NestedStackDefSplitArnParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
     synthesizer_config: typing.Optional[models._interface_methods.CoreIStackSynthesizerDefConfig] = pydantic.Field(None)
 
 class NestedStackDefAddDependencyParams(pydantic.BaseModel):
@@ -2380,23 +2363,23 @@ class StackDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[StackDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.StackDefConfig] = pydantic.Field(None)
 
 
 class StackDefConfig(pydantic.BaseModel):
-    add_dependency: typing.Optional[list[StackDefAddDependencyParams]] = pydantic.Field(None, description='Add a dependency between this stack and another stack.\nThis can be used to define dependencies between any two stacks within an\napp, and also supports nested stacks.')
-    add_metadata: typing.Optional[list[StackDefAddMetadataParams]] = pydantic.Field(None, description='Adds an arbitary key-value pair, with information you want to record about the stack.\nThese get translated to the Metadata section of the generated template.')
-    add_transform: typing.Optional[list[StackDefAddTransformParams]] = pydantic.Field(None, description='Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template.\nDuplicate values are removed when stack is synthesized.')
-    export_string_list_value: typing.Optional[list[StackDefExportStringListValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string list value.\nReturns a string list representing the corresponding ``Fn.importValue()``\nexpression for this Export. The export expression is automatically wrapped with an\n``Fn::Join`` and the import value with an ``Fn::Split``, since CloudFormation can only\nexport strings. You can control the name for the export by passing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\nSee ``exportValue`` for an example of this process.")
-    export_value: typing.Optional[list[StackDefExportValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string value.\nReturns a string representing the corresponding ``Fn.importValue()``\nexpression for this Export. You can control the name for the export by\npassing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\n\nExample\n\nHere is how the process works. Let's say there are two stacks,\n``producerStack`` and ``consumerStack``, and ``producerStack`` has a bucket\ncalled ``bucket``, which is referenced by ``consumerStack`` (perhaps because\nan AWS Lambda Function writes into it, or something like that).\n\nIt is not safe to remove ``producerStack.bucket`` because as the bucket is being\ndeleted, ``consumerStack`` might still be using it.\n\nInstead, the process takes two deployments:\n\n\nDeployment 1: break the relationship\n\n- Make sure ``consumerStack`` no longer references ``bucket.bucketName`` (maybe the consumer\n  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just\n  remove the Lambda Function altogether).\n- In the ``ProducerStack`` class, call ``this.exportValue(this.bucket.bucketName)``. This\n  will make sure the CloudFormation Export continues to exist while the relationship\n  between the two stacks is being broken.\n- Deploy (this will effectively only change the ``consumerStack``, but it's safe to deploy both).\n\n\n\nDeployment 2: remove the bucket resource\n\n- You are now free to remove the ``bucket`` resource from ``producerStack``.\n- Don't forget to remove the ``exportValue()`` call as well.\n- Deploy again (this time only the ``producerStack`` will be changed -- the bucket will be deleted).")
-    format_arn: typing.Optional[list[StackDefFormatArnParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
-    get_logical_id: typing.Optional[list[StackDefGetLogicalIdParams]] = pydantic.Field(None, description='Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource.\nThis method is called when a ``CfnElement`` is created and used to render the\ninitial logical identity of resources. Logical ID renames are applied at\nthis stage.\n\nThis method uses the protected method ``allocateLogicalId`` to render the\nlogical ID for an element. To modify the naming scheme, extend the ``Stack``\nclass and override this method.')
-    of: typing.Optional[list[StackDefOfParams]] = pydantic.Field(None, description='Looks up the first stack scope in which ``construct`` is defined.\nFails if there is no stack up the tree.')
-    regional_fact: typing.Optional[list[StackDefRegionalFactParams]] = pydantic.Field(None, description='Look up a fact value for the given fact for the region of this stack.\nWill return a definite value only if the region of the current stack is resolved.\nIf not, a lookup map will be added to the stack and the lookup will be done at\nCDK deployment time.\n\nWhat regions will be included in the lookup map is controlled by the\n``@aws-cdk/core:target-partitions`` context value: it must be set to a list\nof partitions, and only regions from the given partitions will be included.\nIf no such context key is set, all regions will be included.\n\nThis function is intended to be used by construct library authors. Application\nbuilders can rely on the abstractions offered by construct libraries and do\nnot have to worry about regional facts.\n\nIf ``defaultValue`` is not given, it is an error if the fact is unknown for\nthe given region.')
-    rename_logical_id: typing.Optional[list[StackDefRenameLogicalIdParams]] = pydantic.Field(None, description='Rename a generated logical identities.\nTo modify the naming scheme strategy, extend the ``Stack`` class and\noverride the ``allocateLogicalId`` method.')
-    report_missing_context_key: typing.Optional[list[StackDefReportMissingContextKeyParams]] = pydantic.Field(None, description='Indicate that a context key was expected.\nContains instructions which will be emitted into the cloud assembly on how\nthe key should be supplied.')
-    resolve: typing.Optional[list[StackDefResolveParams]] = pydantic.Field(None, description='Resolve a tokenized value in the context of the current stack.')
-    split_arn: typing.Optional[list[StackDefSplitArnParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
+    add_dependency: typing.Optional[list[models.core.StackDefAddDependencyParams]] = pydantic.Field(None, description='Add a dependency between this stack and another stack.\nThis can be used to define dependencies between any two stacks within an\napp, and also supports nested stacks.')
+    add_metadata: typing.Optional[list[models.core.StackDefAddMetadataParams]] = pydantic.Field(None, description='Adds an arbitary key-value pair, with information you want to record about the stack.\nThese get translated to the Metadata section of the generated template.')
+    add_transform: typing.Optional[list[models.core.StackDefAddTransformParams]] = pydantic.Field(None, description='Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template.\nDuplicate values are removed when stack is synthesized.')
+    export_string_list_value: typing.Optional[list[models.core.StackDefExportStringListValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string list value.\nReturns a string list representing the corresponding ``Fn.importValue()``\nexpression for this Export. The export expression is automatically wrapped with an\n``Fn::Join`` and the import value with an ``Fn::Split``, since CloudFormation can only\nexport strings. You can control the name for the export by passing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\nSee ``exportValue`` for an example of this process.")
+    export_value: typing.Optional[list[models.core.StackDefExportValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string value.\nReturns a string representing the corresponding ``Fn.importValue()``\nexpression for this Export. You can control the name for the export by\npassing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\n\nExample\n\nHere is how the process works. Let's say there are two stacks,\n``producerStack`` and ``consumerStack``, and ``producerStack`` has a bucket\ncalled ``bucket``, which is referenced by ``consumerStack`` (perhaps because\nan AWS Lambda Function writes into it, or something like that).\n\nIt is not safe to remove ``producerStack.bucket`` because as the bucket is being\ndeleted, ``consumerStack`` might still be using it.\n\nInstead, the process takes two deployments:\n\n\nDeployment 1: break the relationship\n\n- Make sure ``consumerStack`` no longer references ``bucket.bucketName`` (maybe the consumer\n  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just\n  remove the Lambda Function altogether).\n- In the ``ProducerStack`` class, call ``this.exportValue(this.bucket.bucketName)``. This\n  will make sure the CloudFormation Export continues to exist while the relationship\n  between the two stacks is being broken.\n- Deploy (this will effectively only change the ``consumerStack``, but it's safe to deploy both).\n\n\n\nDeployment 2: remove the bucket resource\n\n- You are now free to remove the ``bucket`` resource from ``producerStack``.\n- Don't forget to remove the ``exportValue()`` call as well.\n- Deploy again (this time only the ``producerStack`` will be changed -- the bucket will be deleted).")
+    format_arn: typing.Optional[list[models.core.StackDefFormatArnParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
+    get_logical_id: typing.Optional[list[models.core.StackDefGetLogicalIdParams]] = pydantic.Field(None, description='Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource.\nThis method is called when a ``CfnElement`` is created and used to render the\ninitial logical identity of resources. Logical ID renames are applied at\nthis stage.\n\nThis method uses the protected method ``allocateLogicalId`` to render the\nlogical ID for an element. To modify the naming scheme, extend the ``Stack``\nclass and override this method.')
+    of: typing.Optional[list[models.core.StackDefOfParams]] = pydantic.Field(None, description='Looks up the first stack scope in which ``construct`` is defined.\nFails if there is no stack up the tree.')
+    regional_fact: typing.Optional[list[models.core.StackDefRegionalFactParams]] = pydantic.Field(None, description='Look up a fact value for the given fact for the region of this stack.\nWill return a definite value only if the region of the current stack is resolved.\nIf not, a lookup map will be added to the stack and the lookup will be done at\nCDK deployment time.\n\nWhat regions will be included in the lookup map is controlled by the\n``@aws-cdk/core:target-partitions`` context value: it must be set to a list\nof partitions, and only regions from the given partitions will be included.\nIf no such context key is set, all regions will be included.\n\nThis function is intended to be used by construct library authors. Application\nbuilders can rely on the abstractions offered by construct libraries and do\nnot have to worry about regional facts.\n\nIf ``defaultValue`` is not given, it is an error if the fact is unknown for\nthe given region.')
+    rename_logical_id: typing.Optional[list[models.core.StackDefRenameLogicalIdParams]] = pydantic.Field(None, description='Rename a generated logical identities.\nTo modify the naming scheme strategy, extend the ``Stack`` class and\noverride the ``allocateLogicalId`` method.')
+    report_missing_context_key: typing.Optional[list[models.core.StackDefReportMissingContextKeyParams]] = pydantic.Field(None, description='Indicate that a context key was expected.\nContains instructions which will be emitted into the cloud assembly on how\nthe key should be supplied.')
+    resolve: typing.Optional[list[models.core.StackDefResolveParams]] = pydantic.Field(None, description='Resolve a tokenized value in the context of the current stack.')
+    split_arn: typing.Optional[list[models.core.StackDefSplitArnParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
     synthesizer_config: typing.Optional[models._interface_methods.CoreIStackSynthesizerDefConfig] = pydantic.Field(None)
 
 class StackDefAddDependencyParams(pydantic.BaseModel):
@@ -2483,12 +2466,12 @@ class StageDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[StageDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.StageDefConfig] = pydantic.Field(None)
 
 
 class StageDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[StageDefOfParams]] = pydantic.Field(None, description='Return the stage this construct is contained with, if available.\nIf called\non a nested stage, returns its parent.')
-    synth: typing.Optional[list[StageDefSynthParams]] = pydantic.Field(None, description='Synthesize this stage into a cloud assembly.\nOnce an assembly has been synthesized, it cannot be modified. Subsequent\ncalls will return the same assembly.')
+    of: typing.Optional[list[models.core.StageDefOfParams]] = pydantic.Field(None, description='Return the stage this construct is contained with, if available.\nIf called\non a nested stage, returns its parent.')
+    synth: typing.Optional[list[models.core.StageDefSynthParams]] = pydantic.Field(None, description='Synthesize this stage into a cloud assembly.\nOnce an assembly has been synthesized, it cannot be modified. Subsequent\ncalls will return the same assembly.')
 
 class StageDefOfParams(pydantic.BaseModel):
     construct_: models.AnyResource = pydantic.Field(..., description='-', alias='construct')
@@ -3209,7 +3192,7 @@ class ResolveOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ResolveOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.ResolveOptionsDefConfig] = pydantic.Field(None)
 
 
 class ResolveOptionsDefConfig(pydantic.BaseModel):
@@ -3595,11 +3578,11 @@ class CfnCodeDeployBlueGreenHookDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCodeDeployBlueGreenHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnCodeDeployBlueGreenHookDefConfig] = pydantic.Field(None)
 
 
 class CfnCodeDeployBlueGreenHookDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnCodeDeployBlueGreenHookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    override_logical_id: typing.Optional[list[models.core.CfnCodeDeployBlueGreenHookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnCodeDeployBlueGreenHookDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
@@ -3617,19 +3600,15 @@ class CfnConditionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnConditionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnConditionDefConfig] = pydantic.Field(None)
 
 
 class CfnConditionDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnConditionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    resolve: typing.Optional[list[CfnConditionDefResolveParams]] = pydantic.Field(None, description='Synthesizes the condition.')
+    override_logical_id: typing.Optional[list[models.core.CfnConditionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    resolve: typing.Optional[bool] = pydantic.Field(None, description='Synthesizes the condition.')
 
 class CfnConditionDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
-    ...
-
-class CfnConditionDefResolveParams(pydantic.BaseModel):
-    _context: models.UnsupportedResource = pydantic.Field(..., description='-')
     ...
 
 
@@ -3644,26 +3623,26 @@ class CfnCustomResourceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCustomResourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnCustomResourceDefConfig] = pydantic.Field(None)
 
 
 class CfnCustomResourceDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnCustomResourceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCustomResourceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCustomResourceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCustomResourceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCustomResourceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCustomResourceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCustomResourceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnCustomResourceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnCustomResourceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnCustomResourceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnCustomResourceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnCustomResourceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnCustomResourceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnCustomResourceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCustomResourceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCustomResourceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCustomResourceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnCustomResourceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnCustomResourceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnCustomResourceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCustomResourceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCustomResourceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCustomResourceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnCustomResourceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnCustomResourceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnCustomResourceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnCustomResourceDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3742,11 +3721,11 @@ class CfnHookDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnHookDefConfig] = pydantic.Field(None)
 
 
 class CfnHookDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnHookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    override_logical_id: typing.Optional[list[models.core.CfnHookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnHookDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
@@ -3766,26 +3745,26 @@ class CfnHookDefaultVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnHookDefaultVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnHookDefaultVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnHookDefaultVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnHookDefaultVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnHookDefaultVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnHookDefaultVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnHookDefaultVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnHookDefaultVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnHookDefaultVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnHookDefaultVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnHookDefaultVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnHookDefaultVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnHookDefaultVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnHookDefaultVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnHookDefaultVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnHookDefaultVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnHookDefaultVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnHookDefaultVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnHookDefaultVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnHookDefaultVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnHookDefaultVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnHookDefaultVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnHookDefaultVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnHookDefaultVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3866,26 +3845,26 @@ class CfnHookTypeConfigDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnHookTypeConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnHookTypeConfigDefConfig] = pydantic.Field(None)
 
 
 class CfnHookTypeConfigDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnHookTypeConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnHookTypeConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnHookTypeConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnHookTypeConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnHookTypeConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnHookTypeConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnHookTypeConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnHookTypeConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnHookTypeConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnHookTypeConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnHookTypeConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnHookTypeConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnHookTypeConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnHookTypeConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnHookTypeConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnHookTypeConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnHookTypeConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnHookTypeConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnHookTypeConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnHookTypeConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnHookTypeConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnHookTypeConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnHookTypeConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnHookTypeConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnHookTypeConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnHookTypeConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnHookTypeConfigDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3966,27 +3945,27 @@ class CfnHookVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnHookVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnHookVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnHookVersionDefConfig(pydantic.BaseModel):
-    LoggingConfigProperty: typing.Optional[list[CfnHookVersionDefLoggingconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnHookVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnHookVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnHookVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnHookVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnHookVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnHookVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnHookVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LoggingConfigProperty: typing.Optional[list[models.core.CfnHookVersionDefLoggingconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.core.CfnHookVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnHookVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnHookVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnHookVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnHookVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnHookVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnHookVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnHookVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnHookVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnHookVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnHookVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnHookVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnHookVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnHookVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnHookVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnHookVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnHookVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnHookVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnHookVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_is_default_version_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
 
 class CfnHookVersionDefLoggingconfigpropertyParams(pydantic.BaseModel):
@@ -4070,16 +4049,12 @@ class CfnJsonDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnJsonDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnJsonDefConfig] = pydantic.Field(None)
 
 
 class CfnJsonDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[CfnJsonDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
+    resolve: typing.Optional[bool] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
     value_config: typing.Optional[models.core.ReferenceDefConfig] = pydantic.Field(None)
-
-class CfnJsonDefResolveParams(pydantic.BaseModel):
-    _context: models.UnsupportedResource = pydantic.Field(..., description='-')
-    ...
 
 
 #  autogenerated from aws_cdk.CfnMacro
@@ -4097,26 +4072,26 @@ class CfnMacroDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMacroDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnMacroDefConfig] = pydantic.Field(None)
 
 
 class CfnMacroDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnMacroDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMacroDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMacroDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMacroDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMacroDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMacroDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMacroDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnMacroDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnMacroDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnMacroDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnMacroDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnMacroDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnMacroDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnMacroDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMacroDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMacroDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMacroDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnMacroDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnMacroDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnMacroDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMacroDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMacroDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMacroDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnMacroDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnMacroDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnMacroDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnMacroDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4195,13 +4170,13 @@ class CfnMappingDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMappingDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnMappingDefConfig] = pydantic.Field(None)
 
 
 class CfnMappingDefConfig(pydantic.BaseModel):
-    find_in_map: typing.Optional[list[CfnMappingDefFindInMapParams]] = pydantic.Field(None, description='')
-    override_logical_id: typing.Optional[list[CfnMappingDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    set_value: typing.Optional[list[CfnMappingDefSetValueParams]] = pydantic.Field(None, description='Sets a value in the map based on the two keys.')
+    find_in_map: typing.Optional[list[models.core.CfnMappingDefFindInMapParams]] = pydantic.Field(None, description='')
+    override_logical_id: typing.Optional[list[models.core.CfnMappingDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    set_value: typing.Optional[list[models.core.CfnMappingDefSetValueParams]] = pydantic.Field(None, description='Sets a value in the map based on the two keys.')
 
 class CfnMappingDefFindInMapParams(pydantic.BaseModel):
     key1: str = pydantic.Field(..., description='-')
@@ -4233,26 +4208,26 @@ class CfnModuleDefaultVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnModuleDefaultVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnModuleDefaultVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnModuleDefaultVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnModuleDefaultVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnModuleDefaultVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnModuleDefaultVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnModuleDefaultVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnModuleDefaultVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnModuleDefaultVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnModuleDefaultVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnModuleDefaultVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnModuleDefaultVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnModuleDefaultVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnModuleDefaultVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnModuleDefaultVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnModuleDefaultVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnModuleDefaultVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnModuleDefaultVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnModuleDefaultVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnModuleDefaultVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnModuleDefaultVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnModuleDefaultVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnModuleDefaultVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnModuleDefaultVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4331,26 +4306,26 @@ class CfnModuleVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnModuleVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnModuleVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnModuleVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnModuleVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnModuleVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnModuleVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnModuleVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnModuleVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnModuleVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnModuleVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnModuleVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnModuleVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnModuleVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnModuleVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnModuleVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnModuleVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnModuleVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnModuleVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnModuleVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnModuleVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnModuleVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnModuleVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnModuleVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnModuleVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnModuleVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnModuleVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnModuleVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnModuleVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnModuleVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_is_default_version_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
 
 class CfnModuleVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -4432,11 +4407,11 @@ class CfnOutputDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnOutputDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnOutputDefConfig] = pydantic.Field(None)
 
 
 class CfnOutputDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnOutputDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    override_logical_id: typing.Optional[list[models.core.CfnOutputDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnOutputDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
@@ -4464,19 +4439,15 @@ class CfnParameterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnParameterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnParameterDefConfig] = pydantic.Field(None)
 
 
 class CfnParameterDefConfig(pydantic.BaseModel):
-    override_logical_id: typing.Optional[list[CfnParameterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    resolve: typing.Optional[list[CfnParameterDefResolveParams]] = pydantic.Field(None, description='')
+    override_logical_id: typing.Optional[list[models.core.CfnParameterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    resolve: typing.Optional[bool] = pydantic.Field(None, description='')
 
 class CfnParameterDefOverrideLogicalIdParams(pydantic.BaseModel):
     new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
-    ...
-
-class CfnParameterDefResolveParams(pydantic.BaseModel):
-    _context: models.UnsupportedResource = pydantic.Field(..., description='-')
     ...
 
 
@@ -4495,26 +4466,26 @@ class CfnPublicTypeVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPublicTypeVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnPublicTypeVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnPublicTypeVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnPublicTypeVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPublicTypeVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPublicTypeVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPublicTypeVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPublicTypeVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPublicTypeVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPublicTypeVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnPublicTypeVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPublicTypeVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPublicTypeVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPublicTypeVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnPublicTypeVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnPublicTypeVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnPublicTypeVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPublicTypeVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPublicTypeVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPublicTypeVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnPublicTypeVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnPublicTypeVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnPublicTypeVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPublicTypeVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4593,26 +4564,26 @@ class CfnPublisherDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPublisherDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnPublisherDefConfig] = pydantic.Field(None)
 
 
 class CfnPublisherDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnPublisherDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPublisherDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPublisherDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPublisherDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPublisherDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPublisherDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPublisherDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnPublisherDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnPublisherDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnPublisherDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnPublisherDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnPublisherDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnPublisherDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnPublisherDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPublisherDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPublisherDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPublisherDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnPublisherDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnPublisherDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnPublisherDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPublisherDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPublisherDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPublisherDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnPublisherDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnPublisherDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnPublisherDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPublisherDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4691,25 +4662,25 @@ class CfnResourceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnResourceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnResourceDefConfig] = pydantic.Field(None)
 
 
 class CfnResourceDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnResourceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnResourceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnResourceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnResourceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnResourceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnResourceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnResourceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnResourceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnResourceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnResourceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnResourceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnResourceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnResourceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnResourceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnResourceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnResourceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    get_att: typing.Optional[list[models.core.CfnResourceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnResourceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnResourceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnResourceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnResourceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnResourceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnResourceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnResourceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnResourceDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4785,26 +4756,26 @@ class CfnResourceDefaultVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnResourceDefaultVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnResourceDefaultVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnResourceDefaultVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnResourceDefaultVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnResourceDefaultVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnResourceDefaultVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnResourceDefaultVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnResourceDefaultVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnResourceDefaultVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnResourceDefaultVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnResourceDefaultVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnResourceDefaultVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnResourceDefaultVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnResourceDefaultVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnResourceDefaultVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnResourceDefaultVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnResourceDefaultVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnResourceDefaultVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnResourceDefaultVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnResourceDefaultVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnResourceDefaultVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnResourceDefaultVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnResourceDefaultVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnResourceDefaultVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4885,27 +4856,27 @@ class CfnResourceVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnResourceVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnResourceVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnResourceVersionDefConfig(pydantic.BaseModel):
-    LoggingConfigProperty: typing.Optional[list[CfnResourceVersionDefLoggingconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnResourceVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnResourceVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnResourceVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnResourceVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnResourceVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnResourceVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnResourceVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LoggingConfigProperty: typing.Optional[list[models.core.CfnResourceVersionDefLoggingconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.core.CfnResourceVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnResourceVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnResourceVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnResourceVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnResourceVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnResourceVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnResourceVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnResourceVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnResourceVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnResourceVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnResourceVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnResourceVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnResourceVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnResourceVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnResourceVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnResourceVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnResourceVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnResourceVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnResourceVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_is_default_version_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
 
 class CfnResourceVersionDefLoggingconfigpropertyParams(pydantic.BaseModel):
@@ -4990,12 +4961,12 @@ class CfnRuleDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRuleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnRuleDefConfig] = pydantic.Field(None)
 
 
 class CfnRuleDefConfig(pydantic.BaseModel):
-    add_assertion: typing.Optional[list[CfnRuleDefAddAssertionParams]] = pydantic.Field(None, description='Adds an assertion to the rule.')
-    override_logical_id: typing.Optional[list[CfnRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    add_assertion: typing.Optional[list[models.core.CfnRuleDefAddAssertionParams]] = pydantic.Field(None, description='Adds an assertion to the rule.')
+    override_logical_id: typing.Optional[list[models.core.CfnRuleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnRuleDefAddAssertionParams(pydantic.BaseModel):
     condition: typing.Union[models.CfnConditionDef] = pydantic.Field(..., description='The expression to evaluation.\n')
@@ -5022,27 +4993,27 @@ class CfnStackDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStackDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnStackDefConfig] = pydantic.Field(None)
 
 
 class CfnStackDefConfig(pydantic.BaseModel):
-    OutputProperty: typing.Optional[list[CfnStackDefOutputpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnStackDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStackDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStackDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStackDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStackDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStackDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStackDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    OutputProperty: typing.Optional[list[models.core.CfnStackDefOutputpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.core.CfnStackDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnStackDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnStackDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnStackDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnStackDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnStackDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnStackDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStackDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStackDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStackDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnStackDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnStackDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnStackDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStackDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStackDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStackDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnStackDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnStackDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnStackDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_outputs_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
@@ -5143,32 +5114,32 @@ class CfnStackSetDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStackSetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnStackSetDefConfig] = pydantic.Field(None)
 
 
 class CfnStackSetDefConfig(pydantic.BaseModel):
-    AutoDeploymentProperty: typing.Optional[list[CfnStackSetDefAutodeploymentpropertyParams]] = pydantic.Field(None, description='')
-    DeploymentTargetsProperty: typing.Optional[list[CfnStackSetDefDeploymenttargetspropertyParams]] = pydantic.Field(None, description='')
-    ManagedExecutionProperty: typing.Optional[list[CfnStackSetDefManagedexecutionpropertyParams]] = pydantic.Field(None, description='')
-    OperationPreferencesProperty: typing.Optional[list[CfnStackSetDefOperationpreferencespropertyParams]] = pydantic.Field(None, description='')
-    ParameterProperty: typing.Optional[list[CfnStackSetDefParameterpropertyParams]] = pydantic.Field(None, description='')
-    StackInstancesProperty: typing.Optional[list[CfnStackSetDefStackinstancespropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnStackSetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStackSetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStackSetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStackSetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStackSetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStackSetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStackSetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AutoDeploymentProperty: typing.Optional[list[models.core.CfnStackSetDefAutodeploymentpropertyParams]] = pydantic.Field(None, description='')
+    DeploymentTargetsProperty: typing.Optional[list[models.core.CfnStackSetDefDeploymenttargetspropertyParams]] = pydantic.Field(None, description='')
+    ManagedExecutionProperty: typing.Optional[list[models.core.CfnStackSetDefManagedexecutionpropertyParams]] = pydantic.Field(None, description='')
+    OperationPreferencesProperty: typing.Optional[list[models.core.CfnStackSetDefOperationpreferencespropertyParams]] = pydantic.Field(None, description='')
+    ParameterProperty: typing.Optional[list[models.core.CfnStackSetDefParameterpropertyParams]] = pydantic.Field(None, description='')
+    StackInstancesProperty: typing.Optional[list[models.core.CfnStackSetDefStackinstancespropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.core.CfnStackSetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnStackSetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnStackSetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnStackSetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnStackSetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnStackSetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnStackSetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStackSetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStackSetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStackSetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnStackSetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnStackSetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnStackSetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStackSetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStackSetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStackSetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnStackSetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnStackSetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnStackSetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnStackSetDefAutodeploymentpropertyParams(pydantic.BaseModel):
@@ -5292,27 +5263,27 @@ class CfnTypeActivationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnTypeActivationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnTypeActivationDefConfig] = pydantic.Field(None)
 
 
 class CfnTypeActivationDefConfig(pydantic.BaseModel):
-    LoggingConfigProperty: typing.Optional[list[CfnTypeActivationDefLoggingconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnTypeActivationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnTypeActivationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnTypeActivationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnTypeActivationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnTypeActivationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnTypeActivationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnTypeActivationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LoggingConfigProperty: typing.Optional[list[models.core.CfnTypeActivationDefLoggingconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.core.CfnTypeActivationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnTypeActivationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnTypeActivationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnTypeActivationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnTypeActivationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnTypeActivationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnTypeActivationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnTypeActivationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnTypeActivationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnTypeActivationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnTypeActivationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnTypeActivationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnTypeActivationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnTypeActivationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnTypeActivationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnTypeActivationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnTypeActivationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnTypeActivationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnTypeActivationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnTypeActivationDefLoggingconfigpropertyParams(pydantic.BaseModel):
     log_group_name: typing.Optional[str] = pydantic.Field(None, description='')
@@ -5397,26 +5368,26 @@ class CfnWaitConditionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnWaitConditionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnWaitConditionDefConfig] = pydantic.Field(None)
 
 
 class CfnWaitConditionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnWaitConditionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnWaitConditionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnWaitConditionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnWaitConditionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnWaitConditionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnWaitConditionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnWaitConditionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnWaitConditionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnWaitConditionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnWaitConditionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnWaitConditionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnWaitConditionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnWaitConditionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnWaitConditionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnWaitConditionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnWaitConditionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnWaitConditionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnWaitConditionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnWaitConditionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnWaitConditionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnWaitConditionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnWaitConditionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnWaitConditionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnWaitConditionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnWaitConditionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnWaitConditionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_data_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
 
 class CfnWaitConditionDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -5494,26 +5465,26 @@ class CfnWaitConditionHandleDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnWaitConditionHandleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.core.CfnWaitConditionHandleDefConfig] = pydantic.Field(None)
 
 
 class CfnWaitConditionHandleDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnWaitConditionHandleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnWaitConditionHandleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnWaitConditionHandleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnWaitConditionHandleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnWaitConditionHandleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnWaitConditionHandleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnWaitConditionHandleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.core.CfnWaitConditionHandleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnWaitConditionHandleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnWaitConditionHandleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnWaitConditionHandleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.core.CfnWaitConditionHandleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.core.CfnWaitConditionHandleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.core.CfnWaitConditionHandleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnWaitConditionHandleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnWaitConditionHandleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnWaitConditionHandleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.core.CfnWaitConditionHandleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.core.CfnWaitConditionHandleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.core.CfnWaitConditionHandleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnWaitConditionHandleDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -6434,203 +6405,203 @@ class CfnWaitConditionPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Annotations: typing.Optional[dict[str, AnnotationsDef]] = pydantic.Field(None)
-    App: typing.Optional[dict[str, AppDef]] = pydantic.Field(None)
-    Arn: typing.Optional[dict[str, ArnDef]] = pydantic.Field(None)
-    Aspects: typing.Optional[dict[str, AspectsDef]] = pydantic.Field(None)
-    AssetManifestBuilder: typing.Optional[dict[str, AssetManifestBuilderDef]] = pydantic.Field(None)
-    Aws: typing.Optional[dict[str, AwsDef]] = pydantic.Field(None)
-    BootstraplessSynthesizer: typing.Optional[dict[str, BootstraplessSynthesizerDef]] = pydantic.Field(None)
-    CfnDynamicReference: typing.Optional[dict[str, CfnDynamicReferenceDef]] = pydantic.Field(None)
-    CfnElement: typing.Optional[dict[str, CfnElementDef]] = pydantic.Field(None)
-    CfnRefElement: typing.Optional[dict[str, CfnRefElementDef]] = pydantic.Field(None)
-    CliCredentialsStackSynthesizer: typing.Optional[dict[str, CliCredentialsStackSynthesizerDef]] = pydantic.Field(None)
-    ContextProvider: typing.Optional[dict[str, ContextProviderDef]] = pydantic.Field(None)
-    DefaultStackSynthesizer: typing.Optional[dict[str, DefaultStackSynthesizerDef]] = pydantic.Field(None)
-    DefaultTokenResolver: typing.Optional[dict[str, DefaultTokenResolverDef]] = pydantic.Field(None)
-    DockerBuildSecret: typing.Optional[dict[str, DockerBuildSecretDef]] = pydantic.Field(None)
-    DockerIgnoreStrategy: typing.Optional[dict[str, DockerIgnoreStrategyDef]] = pydantic.Field(None)
-    DockerImage: typing.Optional[dict[str, DockerImageDef]] = pydantic.Field(None)
-    Duration: typing.Optional[dict[str, DurationDef]] = pydantic.Field(None)
-    Expiration: typing.Optional[dict[str, ExpirationDef]] = pydantic.Field(None)
-    FeatureFlags: typing.Optional[dict[str, FeatureFlagsDef]] = pydantic.Field(None)
-    FileSystem: typing.Optional[dict[str, FileSystemDef]] = pydantic.Field(None)
-    Fn: typing.Optional[dict[str, FnDef]] = pydantic.Field(None)
-    GitIgnoreStrategy: typing.Optional[dict[str, GitIgnoreStrategyDef]] = pydantic.Field(None)
-    GlobIgnoreStrategy: typing.Optional[dict[str, GlobIgnoreStrategyDef]] = pydantic.Field(None)
-    IgnoreStrategy: typing.Optional[dict[str, IgnoreStrategyDef]] = pydantic.Field(None)
-    Intrinsic: typing.Optional[dict[str, IntrinsicDef]] = pydantic.Field(None)
-    JsonNull: typing.Optional[dict[str, JsonNullDef]] = pydantic.Field(None)
-    Lazy: typing.Optional[dict[str, LazyDef]] = pydantic.Field(None)
-    LegacyStackSynthesizer: typing.Optional[dict[str, LegacyStackSynthesizerDef]] = pydantic.Field(None)
-    Names: typing.Optional[dict[str, NamesDef]] = pydantic.Field(None)
-    NestedStackSynthesizer: typing.Optional[dict[str, NestedStackSynthesizerDef]] = pydantic.Field(None)
-    PermissionsBoundary: typing.Optional[dict[str, PermissionsBoundaryDef]] = pydantic.Field(None)
-    PhysicalName: typing.Optional[dict[str, PhysicalNameDef]] = pydantic.Field(None)
-    Reference: typing.Optional[dict[str, ReferenceDef]] = pydantic.Field(None)
-    RemoveTag: typing.Optional[dict[str, RemoveTagDef]] = pydantic.Field(None)
-    Resource: typing.Optional[dict[str, ResourceDef]] = pydantic.Field(None)
-    ScopedAws: typing.Optional[dict[str, ScopedAwsDef]] = pydantic.Field(None)
-    SecretValue: typing.Optional[dict[str, SecretValueDef]] = pydantic.Field(None)
-    Size: typing.Optional[dict[str, SizeDef]] = pydantic.Field(None)
-    StackSynthesizer: typing.Optional[dict[str, StackSynthesizerDef]] = pydantic.Field(None)
-    StringConcat: typing.Optional[dict[str, StringConcatDef]] = pydantic.Field(None)
-    Tag: typing.Optional[dict[str, TagDef]] = pydantic.Field(None)
-    TagManager: typing.Optional[dict[str, TagManagerDef]] = pydantic.Field(None)
-    Tags: typing.Optional[dict[str, TagsDef]] = pydantic.Field(None)
-    TimeZone: typing.Optional[dict[str, TimeZoneDef]] = pydantic.Field(None)
-    Token: typing.Optional[dict[str, TokenDef]] = pydantic.Field(None)
-    TokenComparison: typing.Optional[dict[str, TokenComparisonDef]] = pydantic.Field(None)
-    Tokenization: typing.Optional[dict[str, TokenizationDef]] = pydantic.Field(None)
-    TokenizedStringFragments: typing.Optional[dict[str, TokenizedStringFragmentsDef]] = pydantic.Field(None)
-    TreeInspector: typing.Optional[dict[str, TreeInspectorDef]] = pydantic.Field(None)
-    ValidationResult: typing.Optional[dict[str, ValidationResultDef]] = pydantic.Field(None)
-    ValidationResults: typing.Optional[dict[str, ValidationResultsDef]] = pydantic.Field(None)
-    AssetStaging: typing.Optional[dict[str, AssetStagingDef]] = pydantic.Field(None)
-    CustomResource: typing.Optional[dict[str, CustomResourceDef]] = pydantic.Field(None)
-    CustomResourceProvider: typing.Optional[dict[str, CustomResourceProviderDef]] = pydantic.Field(None)
-    NestedStack: typing.Optional[dict[str, NestedStackDef]] = pydantic.Field(None)
-    Stack: typing.Optional[dict[str, StackDef]] = pydantic.Field(None)
-    Stage: typing.Optional[dict[str, StageDef]] = pydantic.Field(None)
-    AppProps: typing.Optional[dict[str, AppPropsDef]] = pydantic.Field(None)
-    ArnComponents: typing.Optional[dict[str, ArnComponentsDef]] = pydantic.Field(None)
-    AssetManifestDockerImageDestination: typing.Optional[dict[str, AssetManifestDockerImageDestinationDef]] = pydantic.Field(None)
-    AssetManifestFileDestination: typing.Optional[dict[str, AssetManifestFileDestinationDef]] = pydantic.Field(None)
-    AssetOptions: typing.Optional[dict[str, AssetOptionsDef]] = pydantic.Field(None)
-    AssetStagingProps: typing.Optional[dict[str, AssetStagingPropsDef]] = pydantic.Field(None)
-    BootstraplessSynthesizerProps: typing.Optional[dict[str, BootstraplessSynthesizerPropsDef]] = pydantic.Field(None)
-    BundlingOptions: typing.Optional[dict[str, BundlingOptionsDef]] = pydantic.Field(None)
-    CliCredentialsStackSynthesizerProps: typing.Optional[dict[str, CliCredentialsStackSynthesizerPropsDef]] = pydantic.Field(None)
-    CopyOptions: typing.Optional[dict[str, CopyOptionsDef]] = pydantic.Field(None)
-    CustomResourceProps: typing.Optional[dict[str, CustomResourcePropsDef]] = pydantic.Field(None)
-    CustomResourceProviderProps: typing.Optional[dict[str, CustomResourceProviderPropsDef]] = pydantic.Field(None)
-    DefaultStackSynthesizerProps: typing.Optional[dict[str, DefaultStackSynthesizerPropsDef]] = pydantic.Field(None)
-    DockerBuildOptions: typing.Optional[dict[str, DockerBuildOptionsDef]] = pydantic.Field(None)
-    DockerCacheOption: typing.Optional[dict[str, DockerCacheOptionDef]] = pydantic.Field(None)
-    DockerImageAssetLocation: typing.Optional[dict[str, DockerImageAssetLocationDef]] = pydantic.Field(None)
-    DockerImageAssetSource: typing.Optional[dict[str, DockerImageAssetSourceDef]] = pydantic.Field(None)
-    DockerRunOptions: typing.Optional[dict[str, DockerRunOptionsDef]] = pydantic.Field(None)
-    DockerVolume: typing.Optional[dict[str, DockerVolumeDef]] = pydantic.Field(None)
-    EncodingOptions: typing.Optional[dict[str, EncodingOptionsDef]] = pydantic.Field(None)
-    Environment: typing.Optional[dict[str, EnvironmentDef]] = pydantic.Field(None)
-    ExportValueOptions: typing.Optional[dict[str, ExportValueOptionsDef]] = pydantic.Field(None)
-    FileAssetLocation: typing.Optional[dict[str, FileAssetLocationDef]] = pydantic.Field(None)
-    FileAssetSource: typing.Optional[dict[str, FileAssetSourceDef]] = pydantic.Field(None)
-    FileCopyOptions: typing.Optional[dict[str, FileCopyOptionsDef]] = pydantic.Field(None)
-    FileFingerprintOptions: typing.Optional[dict[str, FileFingerprintOptionsDef]] = pydantic.Field(None)
-    FingerprintOptions: typing.Optional[dict[str, FingerprintOptionsDef]] = pydantic.Field(None)
-    GetContextKeyOptions: typing.Optional[dict[str, GetContextKeyOptionsDef]] = pydantic.Field(None)
-    GetContextKeyResult: typing.Optional[dict[str, GetContextKeyResultDef]] = pydantic.Field(None)
-    GetContextValueOptions: typing.Optional[dict[str, GetContextValueOptionsDef]] = pydantic.Field(None)
-    GetContextValueResult: typing.Optional[dict[str, GetContextValueResultDef]] = pydantic.Field(None)
-    IntrinsicProps: typing.Optional[dict[str, IntrinsicPropsDef]] = pydantic.Field(None)
-    LazyAnyValueOptions: typing.Optional[dict[str, LazyAnyValueOptionsDef]] = pydantic.Field(None)
-    LazyListValueOptions: typing.Optional[dict[str, LazyListValueOptionsDef]] = pydantic.Field(None)
-    LazyStringValueOptions: typing.Optional[dict[str, LazyStringValueOptionsDef]] = pydantic.Field(None)
-    NestedStackProps: typing.Optional[dict[str, NestedStackPropsDef]] = pydantic.Field(None)
-    PermissionsBoundaryBindOptions: typing.Optional[dict[str, PermissionsBoundaryBindOptionsDef]] = pydantic.Field(None)
-    PolicyValidationPluginReportBeta1: typing.Optional[dict[str, PolicyValidationPluginReportBeta1Def]] = pydantic.Field(None)
-    PolicyViolatingResourceBeta1: typing.Optional[dict[str, PolicyViolatingResourceBeta1Def]] = pydantic.Field(None)
-    PolicyViolationBeta1: typing.Optional[dict[str, PolicyViolationBeta1Def]] = pydantic.Field(None)
-    RemovalPolicyOptions: typing.Optional[dict[str, RemovalPolicyOptionsDef]] = pydantic.Field(None)
-    ResolveChangeContextOptions: typing.Optional[dict[str, ResolveChangeContextOptionsDef]] = pydantic.Field(None)
-    ResolveOptions: typing.Optional[dict[str, ResolveOptionsDef]] = pydantic.Field(None)
-    ResourceEnvironment: typing.Optional[dict[str, ResourceEnvironmentDef]] = pydantic.Field(None)
-    ResourceProps: typing.Optional[dict[str, ResourcePropsDef]] = pydantic.Field(None)
-    ReverseOptions: typing.Optional[dict[str, ReverseOptionsDef]] = pydantic.Field(None)
-    RoleOptions: typing.Optional[dict[str, RoleOptionsDef]] = pydantic.Field(None)
-    SecretsManagerSecretOptions: typing.Optional[dict[str, SecretsManagerSecretOptionsDef]] = pydantic.Field(None)
-    SizeConversionOptions: typing.Optional[dict[str, SizeConversionOptionsDef]] = pydantic.Field(None)
-    StackProps: typing.Optional[dict[str, StackPropsDef]] = pydantic.Field(None)
-    StageProps: typing.Optional[dict[str, StagePropsDef]] = pydantic.Field(None)
-    StageSynthesisOptions: typing.Optional[dict[str, StageSynthesisOptionsDef]] = pydantic.Field(None)
-    SynthesizeStackArtifactOptions: typing.Optional[dict[str, SynthesizeStackArtifactOptionsDef]] = pydantic.Field(None)
-    TagManagerOptions: typing.Optional[dict[str, TagManagerOptionsDef]] = pydantic.Field(None)
-    TagProps: typing.Optional[dict[str, TagPropsDef]] = pydantic.Field(None)
-    TimeConversionOptions: typing.Optional[dict[str, TimeConversionOptionsDef]] = pydantic.Field(None)
-    UniqueResourceNameOptions: typing.Optional[dict[str, UniqueResourceNameOptionsDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenHook: typing.Optional[dict[str, CfnCodeDeployBlueGreenHookDef]] = pydantic.Field(None)
-    CfnCondition: typing.Optional[dict[str, CfnConditionDef]] = pydantic.Field(None)
-    CfnCustomResource: typing.Optional[dict[str, CfnCustomResourceDef]] = pydantic.Field(None)
-    CfnHook: typing.Optional[dict[str, CfnHookDef]] = pydantic.Field(None)
-    CfnHookDefaultVersion: typing.Optional[dict[str, CfnHookDefaultVersionDef]] = pydantic.Field(None)
-    CfnHookTypeConfig: typing.Optional[dict[str, CfnHookTypeConfigDef]] = pydantic.Field(None)
-    CfnHookVersion: typing.Optional[dict[str, CfnHookVersionDef]] = pydantic.Field(None)
-    CfnJson: typing.Optional[dict[str, CfnJsonDef]] = pydantic.Field(None)
-    CfnMacro: typing.Optional[dict[str, CfnMacroDef]] = pydantic.Field(None)
-    CfnMapping: typing.Optional[dict[str, CfnMappingDef]] = pydantic.Field(None)
-    CfnModuleDefaultVersion: typing.Optional[dict[str, CfnModuleDefaultVersionDef]] = pydantic.Field(None)
-    CfnModuleVersion: typing.Optional[dict[str, CfnModuleVersionDef]] = pydantic.Field(None)
-    CfnOutput: typing.Optional[dict[str, CfnOutputDef]] = pydantic.Field(None)
-    CfnParameter: typing.Optional[dict[str, CfnParameterDef]] = pydantic.Field(None)
-    CfnPublicTypeVersion: typing.Optional[dict[str, CfnPublicTypeVersionDef]] = pydantic.Field(None)
-    CfnPublisher: typing.Optional[dict[str, CfnPublisherDef]] = pydantic.Field(None)
-    CfnResource: typing.Optional[dict[str, CfnResourceDef]] = pydantic.Field(None)
-    CfnResourceDefaultVersion: typing.Optional[dict[str, CfnResourceDefaultVersionDef]] = pydantic.Field(None)
-    CfnResourceVersion: typing.Optional[dict[str, CfnResourceVersionDef]] = pydantic.Field(None)
-    CfnRule: typing.Optional[dict[str, CfnRuleDef]] = pydantic.Field(None)
-    CfnStack: typing.Optional[dict[str, CfnStackDef]] = pydantic.Field(None)
-    CfnStackSet: typing.Optional[dict[str, CfnStackSetDef]] = pydantic.Field(None)
-    CfnTypeActivation: typing.Optional[dict[str, CfnTypeActivationDef]] = pydantic.Field(None)
-    CfnWaitCondition: typing.Optional[dict[str, CfnWaitConditionDef]] = pydantic.Field(None)
-    CfnWaitConditionHandle: typing.Optional[dict[str, CfnWaitConditionHandleDef]] = pydantic.Field(None)
-    CfnAutoScalingReplacingUpdate: typing.Optional[dict[str, CfnAutoScalingReplacingUpdateDef]] = pydantic.Field(None)
-    CfnAutoScalingRollingUpdate: typing.Optional[dict[str, CfnAutoScalingRollingUpdateDef]] = pydantic.Field(None)
-    CfnAutoScalingScheduledAction: typing.Optional[dict[str, CfnAutoScalingScheduledActionDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenAdditionalOptions: typing.Optional[dict[str, CfnCodeDeployBlueGreenAdditionalOptionsDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenApplication: typing.Optional[dict[str, CfnCodeDeployBlueGreenApplicationDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenApplicationTarget: typing.Optional[dict[str, CfnCodeDeployBlueGreenApplicationTargetDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenEcsAttributes: typing.Optional[dict[str, CfnCodeDeployBlueGreenEcsAttributesDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenHookProps: typing.Optional[dict[str, CfnCodeDeployBlueGreenHookPropsDef]] = pydantic.Field(None)
-    CfnCodeDeployBlueGreenLifecycleEventHooks: typing.Optional[dict[str, CfnCodeDeployBlueGreenLifecycleEventHooksDef]] = pydantic.Field(None)
-    CfnCodeDeployLambdaAliasUpdate: typing.Optional[dict[str, CfnCodeDeployLambdaAliasUpdateDef]] = pydantic.Field(None)
-    CfnConditionProps: typing.Optional[dict[str, CfnConditionPropsDef]] = pydantic.Field(None)
-    CfnCreationPolicy: typing.Optional[dict[str, CfnCreationPolicyDef]] = pydantic.Field(None)
-    CfnCustomResourceProps: typing.Optional[dict[str, CfnCustomResourcePropsDef]] = pydantic.Field(None)
-    CfnDynamicReferenceProps: typing.Optional[dict[str, CfnDynamicReferencePropsDef]] = pydantic.Field(None)
-    CfnHookDefaultVersionProps: typing.Optional[dict[str, CfnHookDefaultVersionPropsDef]] = pydantic.Field(None)
-    CfnHookProps: typing.Optional[dict[str, CfnHookPropsDef]] = pydantic.Field(None)
-    CfnHookTypeConfigProps: typing.Optional[dict[str, CfnHookTypeConfigPropsDef]] = pydantic.Field(None)
-    CfnHookVersion_LoggingConfigProperty: typing.Optional[dict[str, CfnHookVersion_LoggingConfigPropertyDef]] = pydantic.Field(None)
-    CfnHookVersionProps: typing.Optional[dict[str, CfnHookVersionPropsDef]] = pydantic.Field(None)
-    CfnJsonProps: typing.Optional[dict[str, CfnJsonPropsDef]] = pydantic.Field(None)
-    CfnMacroProps: typing.Optional[dict[str, CfnMacroPropsDef]] = pydantic.Field(None)
-    CfnMappingProps: typing.Optional[dict[str, CfnMappingPropsDef]] = pydantic.Field(None)
-    CfnModuleDefaultVersionProps: typing.Optional[dict[str, CfnModuleDefaultVersionPropsDef]] = pydantic.Field(None)
-    CfnModuleVersionProps: typing.Optional[dict[str, CfnModuleVersionPropsDef]] = pydantic.Field(None)
-    CfnOutputProps: typing.Optional[dict[str, CfnOutputPropsDef]] = pydantic.Field(None)
-    CfnParameterProps: typing.Optional[dict[str, CfnParameterPropsDef]] = pydantic.Field(None)
-    CfnPublicTypeVersionProps: typing.Optional[dict[str, CfnPublicTypeVersionPropsDef]] = pydantic.Field(None)
-    CfnPublisherProps: typing.Optional[dict[str, CfnPublisherPropsDef]] = pydantic.Field(None)
-    CfnResourceAutoScalingCreationPolicy: typing.Optional[dict[str, CfnResourceAutoScalingCreationPolicyDef]] = pydantic.Field(None)
-    CfnResourceDefaultVersionProps: typing.Optional[dict[str, CfnResourceDefaultVersionPropsDef]] = pydantic.Field(None)
-    CfnResourceProps: typing.Optional[dict[str, CfnResourcePropsDef]] = pydantic.Field(None)
-    CfnResourceSignal: typing.Optional[dict[str, CfnResourceSignalDef]] = pydantic.Field(None)
-    CfnResourceVersion_LoggingConfigProperty: typing.Optional[dict[str, CfnResourceVersion_LoggingConfigPropertyDef]] = pydantic.Field(None)
-    CfnResourceVersionProps: typing.Optional[dict[str, CfnResourceVersionPropsDef]] = pydantic.Field(None)
-    CfnRuleAssertion: typing.Optional[dict[str, CfnRuleAssertionDef]] = pydantic.Field(None)
-    CfnRuleProps: typing.Optional[dict[str, CfnRulePropsDef]] = pydantic.Field(None)
-    CfnStack_OutputProperty: typing.Optional[dict[str, CfnStack_OutputPropertyDef]] = pydantic.Field(None)
-    CfnStackProps: typing.Optional[dict[str, CfnStackPropsDef]] = pydantic.Field(None)
-    CfnStackSet_AutoDeploymentProperty: typing.Optional[dict[str, CfnStackSet_AutoDeploymentPropertyDef]] = pydantic.Field(None)
-    CfnStackSet_DeploymentTargetsProperty: typing.Optional[dict[str, CfnStackSet_DeploymentTargetsPropertyDef]] = pydantic.Field(None)
-    CfnStackSet_ManagedExecutionProperty: typing.Optional[dict[str, CfnStackSet_ManagedExecutionPropertyDef]] = pydantic.Field(None)
-    CfnStackSet_OperationPreferencesProperty: typing.Optional[dict[str, CfnStackSet_OperationPreferencesPropertyDef]] = pydantic.Field(None)
-    CfnStackSet_ParameterProperty: typing.Optional[dict[str, CfnStackSet_ParameterPropertyDef]] = pydantic.Field(None)
-    CfnStackSet_StackInstancesProperty: typing.Optional[dict[str, CfnStackSet_StackInstancesPropertyDef]] = pydantic.Field(None)
-    CfnStackSetProps: typing.Optional[dict[str, CfnStackSetPropsDef]] = pydantic.Field(None)
-    CfnTag: typing.Optional[dict[str, CfnTagDef]] = pydantic.Field(None)
-    CfnTrafficRoute: typing.Optional[dict[str, CfnTrafficRouteDef]] = pydantic.Field(None)
-    CfnTrafficRouting: typing.Optional[dict[str, CfnTrafficRoutingDef]] = pydantic.Field(None)
-    CfnTrafficRoutingConfig: typing.Optional[dict[str, CfnTrafficRoutingConfigDef]] = pydantic.Field(None)
-    CfnTrafficRoutingTimeBasedCanary: typing.Optional[dict[str, CfnTrafficRoutingTimeBasedCanaryDef]] = pydantic.Field(None)
-    CfnTrafficRoutingTimeBasedLinear: typing.Optional[dict[str, CfnTrafficRoutingTimeBasedLinearDef]] = pydantic.Field(None)
-    CfnTypeActivation_LoggingConfigProperty: typing.Optional[dict[str, CfnTypeActivation_LoggingConfigPropertyDef]] = pydantic.Field(None)
-    CfnTypeActivationProps: typing.Optional[dict[str, CfnTypeActivationPropsDef]] = pydantic.Field(None)
-    CfnUpdatePolicy: typing.Optional[dict[str, CfnUpdatePolicyDef]] = pydantic.Field(None)
-    CfnWaitConditionHandleProps: typing.Optional[dict[str, CfnWaitConditionHandlePropsDef]] = pydantic.Field(None)
-    CfnWaitConditionProps: typing.Optional[dict[str, CfnWaitConditionPropsDef]] = pydantic.Field(None)
+    Annotations: typing.Optional[dict[str, models.core.AnnotationsDef]] = pydantic.Field(None)
+    App: typing.Optional[dict[str, models.core.AppDef]] = pydantic.Field(None)
+    Arn: typing.Optional[dict[str, models.core.ArnDef]] = pydantic.Field(None)
+    Aspects: typing.Optional[dict[str, models.core.AspectsDef]] = pydantic.Field(None)
+    AssetManifestBuilder: typing.Optional[dict[str, models.core.AssetManifestBuilderDef]] = pydantic.Field(None)
+    Aws: typing.Optional[dict[str, models.core.AwsDef]] = pydantic.Field(None)
+    BootstraplessSynthesizer: typing.Optional[dict[str, models.core.BootstraplessSynthesizerDef]] = pydantic.Field(None)
+    CfnDynamicReference: typing.Optional[dict[str, models.core.CfnDynamicReferenceDef]] = pydantic.Field(None)
+    CfnElement: typing.Optional[dict[str, models.core.CfnElementDef]] = pydantic.Field(None)
+    CfnRefElement: typing.Optional[dict[str, models.core.CfnRefElementDef]] = pydantic.Field(None)
+    CliCredentialsStackSynthesizer: typing.Optional[dict[str, models.core.CliCredentialsStackSynthesizerDef]] = pydantic.Field(None)
+    ContextProvider: typing.Optional[dict[str, models.core.ContextProviderDef]] = pydantic.Field(None)
+    DefaultStackSynthesizer: typing.Optional[dict[str, models.core.DefaultStackSynthesizerDef]] = pydantic.Field(None)
+    DefaultTokenResolver: typing.Optional[dict[str, models.core.DefaultTokenResolverDef]] = pydantic.Field(None)
+    DockerBuildSecret: typing.Optional[dict[str, models.core.DockerBuildSecretDef]] = pydantic.Field(None)
+    DockerIgnoreStrategy: typing.Optional[dict[str, models.core.DockerIgnoreStrategyDef]] = pydantic.Field(None)
+    DockerImage: typing.Optional[dict[str, models.core.DockerImageDef]] = pydantic.Field(None)
+    Duration: typing.Optional[dict[str, models.core.DurationDef]] = pydantic.Field(None)
+    Expiration: typing.Optional[dict[str, models.core.ExpirationDef]] = pydantic.Field(None)
+    FeatureFlags: typing.Optional[dict[str, models.core.FeatureFlagsDef]] = pydantic.Field(None)
+    FileSystem: typing.Optional[dict[str, models.core.FileSystemDef]] = pydantic.Field(None)
+    Fn: typing.Optional[dict[str, models.core.FnDef]] = pydantic.Field(None)
+    GitIgnoreStrategy: typing.Optional[dict[str, models.core.GitIgnoreStrategyDef]] = pydantic.Field(None)
+    GlobIgnoreStrategy: typing.Optional[dict[str, models.core.GlobIgnoreStrategyDef]] = pydantic.Field(None)
+    IgnoreStrategy: typing.Optional[dict[str, models.core.IgnoreStrategyDef]] = pydantic.Field(None)
+    Intrinsic: typing.Optional[dict[str, models.core.IntrinsicDef]] = pydantic.Field(None)
+    JsonNull: typing.Optional[dict[str, models.core.JsonNullDef]] = pydantic.Field(None)
+    Lazy: typing.Optional[dict[str, models.core.LazyDef]] = pydantic.Field(None)
+    LegacyStackSynthesizer: typing.Optional[dict[str, models.core.LegacyStackSynthesizerDef]] = pydantic.Field(None)
+    Names: typing.Optional[dict[str, models.core.NamesDef]] = pydantic.Field(None)
+    NestedStackSynthesizer: typing.Optional[dict[str, models.core.NestedStackSynthesizerDef]] = pydantic.Field(None)
+    PermissionsBoundary: typing.Optional[dict[str, models.core.PermissionsBoundaryDef]] = pydantic.Field(None)
+    PhysicalName: typing.Optional[dict[str, models.core.PhysicalNameDef]] = pydantic.Field(None)
+    Reference: typing.Optional[dict[str, models.core.ReferenceDef]] = pydantic.Field(None)
+    RemoveTag: typing.Optional[dict[str, models.core.RemoveTagDef]] = pydantic.Field(None)
+    Resource: typing.Optional[dict[str, models.core.ResourceDef]] = pydantic.Field(None)
+    ScopedAws: typing.Optional[dict[str, models.core.ScopedAwsDef]] = pydantic.Field(None)
+    SecretValue: typing.Optional[dict[str, models.core.SecretValueDef]] = pydantic.Field(None)
+    Size: typing.Optional[dict[str, models.core.SizeDef]] = pydantic.Field(None)
+    StackSynthesizer: typing.Optional[dict[str, models.core.StackSynthesizerDef]] = pydantic.Field(None)
+    StringConcat: typing.Optional[dict[str, models.core.StringConcatDef]] = pydantic.Field(None)
+    Tag: typing.Optional[dict[str, models.core.TagDef]] = pydantic.Field(None)
+    TagManager: typing.Optional[dict[str, models.core.TagManagerDef]] = pydantic.Field(None)
+    Tags: typing.Optional[dict[str, models.core.TagsDef]] = pydantic.Field(None)
+    TimeZone: typing.Optional[dict[str, models.core.TimeZoneDef]] = pydantic.Field(None)
+    Token: typing.Optional[dict[str, models.core.TokenDef]] = pydantic.Field(None)
+    TokenComparison: typing.Optional[dict[str, models.core.TokenComparisonDef]] = pydantic.Field(None)
+    Tokenization: typing.Optional[dict[str, models.core.TokenizationDef]] = pydantic.Field(None)
+    TokenizedStringFragments: typing.Optional[dict[str, models.core.TokenizedStringFragmentsDef]] = pydantic.Field(None)
+    TreeInspector: typing.Optional[dict[str, models.core.TreeInspectorDef]] = pydantic.Field(None)
+    ValidationResult: typing.Optional[dict[str, models.core.ValidationResultDef]] = pydantic.Field(None)
+    ValidationResults: typing.Optional[dict[str, models.core.ValidationResultsDef]] = pydantic.Field(None)
+    AssetStaging: typing.Optional[dict[str, models.core.AssetStagingDef]] = pydantic.Field(None)
+    CustomResource: typing.Optional[dict[str, models.core.CustomResourceDef]] = pydantic.Field(None)
+    CustomResourceProvider: typing.Optional[dict[str, models.core.CustomResourceProviderDef]] = pydantic.Field(None)
+    NestedStack: typing.Optional[dict[str, models.core.NestedStackDef]] = pydantic.Field(None)
+    Stack: typing.Optional[dict[str, models.core.StackDef]] = pydantic.Field(None)
+    Stage: typing.Optional[dict[str, models.core.StageDef]] = pydantic.Field(None)
+    AppProps: typing.Optional[dict[str, models.core.AppPropsDef]] = pydantic.Field(None)
+    ArnComponents: typing.Optional[dict[str, models.core.ArnComponentsDef]] = pydantic.Field(None)
+    AssetManifestDockerImageDestination: typing.Optional[dict[str, models.core.AssetManifestDockerImageDestinationDef]] = pydantic.Field(None)
+    AssetManifestFileDestination: typing.Optional[dict[str, models.core.AssetManifestFileDestinationDef]] = pydantic.Field(None)
+    AssetOptions: typing.Optional[dict[str, models.core.AssetOptionsDef]] = pydantic.Field(None)
+    AssetStagingProps: typing.Optional[dict[str, models.core.AssetStagingPropsDef]] = pydantic.Field(None)
+    BootstraplessSynthesizerProps: typing.Optional[dict[str, models.core.BootstraplessSynthesizerPropsDef]] = pydantic.Field(None)
+    BundlingOptions: typing.Optional[dict[str, models.core.BundlingOptionsDef]] = pydantic.Field(None)
+    CliCredentialsStackSynthesizerProps: typing.Optional[dict[str, models.core.CliCredentialsStackSynthesizerPropsDef]] = pydantic.Field(None)
+    CopyOptions: typing.Optional[dict[str, models.core.CopyOptionsDef]] = pydantic.Field(None)
+    CustomResourceProps: typing.Optional[dict[str, models.core.CustomResourcePropsDef]] = pydantic.Field(None)
+    CustomResourceProviderProps: typing.Optional[dict[str, models.core.CustomResourceProviderPropsDef]] = pydantic.Field(None)
+    DefaultStackSynthesizerProps: typing.Optional[dict[str, models.core.DefaultStackSynthesizerPropsDef]] = pydantic.Field(None)
+    DockerBuildOptions: typing.Optional[dict[str, models.core.DockerBuildOptionsDef]] = pydantic.Field(None)
+    DockerCacheOption: typing.Optional[dict[str, models.core.DockerCacheOptionDef]] = pydantic.Field(None)
+    DockerImageAssetLocation: typing.Optional[dict[str, models.core.DockerImageAssetLocationDef]] = pydantic.Field(None)
+    DockerImageAssetSource: typing.Optional[dict[str, models.core.DockerImageAssetSourceDef]] = pydantic.Field(None)
+    DockerRunOptions: typing.Optional[dict[str, models.core.DockerRunOptionsDef]] = pydantic.Field(None)
+    DockerVolume: typing.Optional[dict[str, models.core.DockerVolumeDef]] = pydantic.Field(None)
+    EncodingOptions: typing.Optional[dict[str, models.core.EncodingOptionsDef]] = pydantic.Field(None)
+    Environment: typing.Optional[dict[str, models.core.EnvironmentDef]] = pydantic.Field(None)
+    ExportValueOptions: typing.Optional[dict[str, models.core.ExportValueOptionsDef]] = pydantic.Field(None)
+    FileAssetLocation: typing.Optional[dict[str, models.core.FileAssetLocationDef]] = pydantic.Field(None)
+    FileAssetSource: typing.Optional[dict[str, models.core.FileAssetSourceDef]] = pydantic.Field(None)
+    FileCopyOptions: typing.Optional[dict[str, models.core.FileCopyOptionsDef]] = pydantic.Field(None)
+    FileFingerprintOptions: typing.Optional[dict[str, models.core.FileFingerprintOptionsDef]] = pydantic.Field(None)
+    FingerprintOptions: typing.Optional[dict[str, models.core.FingerprintOptionsDef]] = pydantic.Field(None)
+    GetContextKeyOptions: typing.Optional[dict[str, models.core.GetContextKeyOptionsDef]] = pydantic.Field(None)
+    GetContextKeyResult: typing.Optional[dict[str, models.core.GetContextKeyResultDef]] = pydantic.Field(None)
+    GetContextValueOptions: typing.Optional[dict[str, models.core.GetContextValueOptionsDef]] = pydantic.Field(None)
+    GetContextValueResult: typing.Optional[dict[str, models.core.GetContextValueResultDef]] = pydantic.Field(None)
+    IntrinsicProps: typing.Optional[dict[str, models.core.IntrinsicPropsDef]] = pydantic.Field(None)
+    LazyAnyValueOptions: typing.Optional[dict[str, models.core.LazyAnyValueOptionsDef]] = pydantic.Field(None)
+    LazyListValueOptions: typing.Optional[dict[str, models.core.LazyListValueOptionsDef]] = pydantic.Field(None)
+    LazyStringValueOptions: typing.Optional[dict[str, models.core.LazyStringValueOptionsDef]] = pydantic.Field(None)
+    NestedStackProps: typing.Optional[dict[str, models.core.NestedStackPropsDef]] = pydantic.Field(None)
+    PermissionsBoundaryBindOptions: typing.Optional[dict[str, models.core.PermissionsBoundaryBindOptionsDef]] = pydantic.Field(None)
+    PolicyValidationPluginReportBeta1: typing.Optional[dict[str, models.core.PolicyValidationPluginReportBeta1Def]] = pydantic.Field(None)
+    PolicyViolatingResourceBeta1: typing.Optional[dict[str, models.core.PolicyViolatingResourceBeta1Def]] = pydantic.Field(None)
+    PolicyViolationBeta1: typing.Optional[dict[str, models.core.PolicyViolationBeta1Def]] = pydantic.Field(None)
+    RemovalPolicyOptions: typing.Optional[dict[str, models.core.RemovalPolicyOptionsDef]] = pydantic.Field(None)
+    ResolveChangeContextOptions: typing.Optional[dict[str, models.core.ResolveChangeContextOptionsDef]] = pydantic.Field(None)
+    ResolveOptions: typing.Optional[dict[str, models.core.ResolveOptionsDef]] = pydantic.Field(None)
+    ResourceEnvironment: typing.Optional[dict[str, models.core.ResourceEnvironmentDef]] = pydantic.Field(None)
+    ResourceProps: typing.Optional[dict[str, models.core.ResourcePropsDef]] = pydantic.Field(None)
+    ReverseOptions: typing.Optional[dict[str, models.core.ReverseOptionsDef]] = pydantic.Field(None)
+    RoleOptions: typing.Optional[dict[str, models.core.RoleOptionsDef]] = pydantic.Field(None)
+    SecretsManagerSecretOptions: typing.Optional[dict[str, models.core.SecretsManagerSecretOptionsDef]] = pydantic.Field(None)
+    SizeConversionOptions: typing.Optional[dict[str, models.core.SizeConversionOptionsDef]] = pydantic.Field(None)
+    StackProps: typing.Optional[dict[str, models.core.StackPropsDef]] = pydantic.Field(None)
+    StageProps: typing.Optional[dict[str, models.core.StagePropsDef]] = pydantic.Field(None)
+    StageSynthesisOptions: typing.Optional[dict[str, models.core.StageSynthesisOptionsDef]] = pydantic.Field(None)
+    SynthesizeStackArtifactOptions: typing.Optional[dict[str, models.core.SynthesizeStackArtifactOptionsDef]] = pydantic.Field(None)
+    TagManagerOptions: typing.Optional[dict[str, models.core.TagManagerOptionsDef]] = pydantic.Field(None)
+    TagProps: typing.Optional[dict[str, models.core.TagPropsDef]] = pydantic.Field(None)
+    TimeConversionOptions: typing.Optional[dict[str, models.core.TimeConversionOptionsDef]] = pydantic.Field(None)
+    UniqueResourceNameOptions: typing.Optional[dict[str, models.core.UniqueResourceNameOptionsDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenHook: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenHookDef]] = pydantic.Field(None)
+    CfnCondition: typing.Optional[dict[str, models.core.CfnConditionDef]] = pydantic.Field(None)
+    CfnCustomResource: typing.Optional[dict[str, models.core.CfnCustomResourceDef]] = pydantic.Field(None)
+    CfnHook: typing.Optional[dict[str, models.core.CfnHookDef]] = pydantic.Field(None)
+    CfnHookDefaultVersion: typing.Optional[dict[str, models.core.CfnHookDefaultVersionDef]] = pydantic.Field(None)
+    CfnHookTypeConfig: typing.Optional[dict[str, models.core.CfnHookTypeConfigDef]] = pydantic.Field(None)
+    CfnHookVersion: typing.Optional[dict[str, models.core.CfnHookVersionDef]] = pydantic.Field(None)
+    CfnJson: typing.Optional[dict[str, models.core.CfnJsonDef]] = pydantic.Field(None)
+    CfnMacro: typing.Optional[dict[str, models.core.CfnMacroDef]] = pydantic.Field(None)
+    CfnMapping: typing.Optional[dict[str, models.core.CfnMappingDef]] = pydantic.Field(None)
+    CfnModuleDefaultVersion: typing.Optional[dict[str, models.core.CfnModuleDefaultVersionDef]] = pydantic.Field(None)
+    CfnModuleVersion: typing.Optional[dict[str, models.core.CfnModuleVersionDef]] = pydantic.Field(None)
+    CfnOutput: typing.Optional[dict[str, models.core.CfnOutputDef]] = pydantic.Field(None)
+    CfnParameter: typing.Optional[dict[str, models.core.CfnParameterDef]] = pydantic.Field(None)
+    CfnPublicTypeVersion: typing.Optional[dict[str, models.core.CfnPublicTypeVersionDef]] = pydantic.Field(None)
+    CfnPublisher: typing.Optional[dict[str, models.core.CfnPublisherDef]] = pydantic.Field(None)
+    CfnResource: typing.Optional[dict[str, models.core.CfnResourceDef]] = pydantic.Field(None)
+    CfnResourceDefaultVersion: typing.Optional[dict[str, models.core.CfnResourceDefaultVersionDef]] = pydantic.Field(None)
+    CfnResourceVersion: typing.Optional[dict[str, models.core.CfnResourceVersionDef]] = pydantic.Field(None)
+    CfnRule: typing.Optional[dict[str, models.core.CfnRuleDef]] = pydantic.Field(None)
+    CfnStack: typing.Optional[dict[str, models.core.CfnStackDef]] = pydantic.Field(None)
+    CfnStackSet: typing.Optional[dict[str, models.core.CfnStackSetDef]] = pydantic.Field(None)
+    CfnTypeActivation: typing.Optional[dict[str, models.core.CfnTypeActivationDef]] = pydantic.Field(None)
+    CfnWaitCondition: typing.Optional[dict[str, models.core.CfnWaitConditionDef]] = pydantic.Field(None)
+    CfnWaitConditionHandle: typing.Optional[dict[str, models.core.CfnWaitConditionHandleDef]] = pydantic.Field(None)
+    CfnAutoScalingReplacingUpdate: typing.Optional[dict[str, models.core.CfnAutoScalingReplacingUpdateDef]] = pydantic.Field(None)
+    CfnAutoScalingRollingUpdate: typing.Optional[dict[str, models.core.CfnAutoScalingRollingUpdateDef]] = pydantic.Field(None)
+    CfnAutoScalingScheduledAction: typing.Optional[dict[str, models.core.CfnAutoScalingScheduledActionDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenAdditionalOptions: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenAdditionalOptionsDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenApplication: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenApplicationDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenApplicationTarget: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenApplicationTargetDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenEcsAttributes: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenEcsAttributesDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenHookProps: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenHookPropsDef]] = pydantic.Field(None)
+    CfnCodeDeployBlueGreenLifecycleEventHooks: typing.Optional[dict[str, models.core.CfnCodeDeployBlueGreenLifecycleEventHooksDef]] = pydantic.Field(None)
+    CfnCodeDeployLambdaAliasUpdate: typing.Optional[dict[str, models.core.CfnCodeDeployLambdaAliasUpdateDef]] = pydantic.Field(None)
+    CfnConditionProps: typing.Optional[dict[str, models.core.CfnConditionPropsDef]] = pydantic.Field(None)
+    CfnCreationPolicy: typing.Optional[dict[str, models.core.CfnCreationPolicyDef]] = pydantic.Field(None)
+    CfnCustomResourceProps: typing.Optional[dict[str, models.core.CfnCustomResourcePropsDef]] = pydantic.Field(None)
+    CfnDynamicReferenceProps: typing.Optional[dict[str, models.core.CfnDynamicReferencePropsDef]] = pydantic.Field(None)
+    CfnHookDefaultVersionProps: typing.Optional[dict[str, models.core.CfnHookDefaultVersionPropsDef]] = pydantic.Field(None)
+    CfnHookProps: typing.Optional[dict[str, models.core.CfnHookPropsDef]] = pydantic.Field(None)
+    CfnHookTypeConfigProps: typing.Optional[dict[str, models.core.CfnHookTypeConfigPropsDef]] = pydantic.Field(None)
+    CfnHookVersion_LoggingConfigProperty: typing.Optional[dict[str, models.core.CfnHookVersion_LoggingConfigPropertyDef]] = pydantic.Field(None)
+    CfnHookVersionProps: typing.Optional[dict[str, models.core.CfnHookVersionPropsDef]] = pydantic.Field(None)
+    CfnJsonProps: typing.Optional[dict[str, models.core.CfnJsonPropsDef]] = pydantic.Field(None)
+    CfnMacroProps: typing.Optional[dict[str, models.core.CfnMacroPropsDef]] = pydantic.Field(None)
+    CfnMappingProps: typing.Optional[dict[str, models.core.CfnMappingPropsDef]] = pydantic.Field(None)
+    CfnModuleDefaultVersionProps: typing.Optional[dict[str, models.core.CfnModuleDefaultVersionPropsDef]] = pydantic.Field(None)
+    CfnModuleVersionProps: typing.Optional[dict[str, models.core.CfnModuleVersionPropsDef]] = pydantic.Field(None)
+    CfnOutputProps: typing.Optional[dict[str, models.core.CfnOutputPropsDef]] = pydantic.Field(None)
+    CfnParameterProps: typing.Optional[dict[str, models.core.CfnParameterPropsDef]] = pydantic.Field(None)
+    CfnPublicTypeVersionProps: typing.Optional[dict[str, models.core.CfnPublicTypeVersionPropsDef]] = pydantic.Field(None)
+    CfnPublisherProps: typing.Optional[dict[str, models.core.CfnPublisherPropsDef]] = pydantic.Field(None)
+    CfnResourceAutoScalingCreationPolicy: typing.Optional[dict[str, models.core.CfnResourceAutoScalingCreationPolicyDef]] = pydantic.Field(None)
+    CfnResourceDefaultVersionProps: typing.Optional[dict[str, models.core.CfnResourceDefaultVersionPropsDef]] = pydantic.Field(None)
+    CfnResourceProps: typing.Optional[dict[str, models.core.CfnResourcePropsDef]] = pydantic.Field(None)
+    CfnResourceSignal: typing.Optional[dict[str, models.core.CfnResourceSignalDef]] = pydantic.Field(None)
+    CfnResourceVersion_LoggingConfigProperty: typing.Optional[dict[str, models.core.CfnResourceVersion_LoggingConfigPropertyDef]] = pydantic.Field(None)
+    CfnResourceVersionProps: typing.Optional[dict[str, models.core.CfnResourceVersionPropsDef]] = pydantic.Field(None)
+    CfnRuleAssertion: typing.Optional[dict[str, models.core.CfnRuleAssertionDef]] = pydantic.Field(None)
+    CfnRuleProps: typing.Optional[dict[str, models.core.CfnRulePropsDef]] = pydantic.Field(None)
+    CfnStack_OutputProperty: typing.Optional[dict[str, models.core.CfnStack_OutputPropertyDef]] = pydantic.Field(None)
+    CfnStackProps: typing.Optional[dict[str, models.core.CfnStackPropsDef]] = pydantic.Field(None)
+    CfnStackSet_AutoDeploymentProperty: typing.Optional[dict[str, models.core.CfnStackSet_AutoDeploymentPropertyDef]] = pydantic.Field(None)
+    CfnStackSet_DeploymentTargetsProperty: typing.Optional[dict[str, models.core.CfnStackSet_DeploymentTargetsPropertyDef]] = pydantic.Field(None)
+    CfnStackSet_ManagedExecutionProperty: typing.Optional[dict[str, models.core.CfnStackSet_ManagedExecutionPropertyDef]] = pydantic.Field(None)
+    CfnStackSet_OperationPreferencesProperty: typing.Optional[dict[str, models.core.CfnStackSet_OperationPreferencesPropertyDef]] = pydantic.Field(None)
+    CfnStackSet_ParameterProperty: typing.Optional[dict[str, models.core.CfnStackSet_ParameterPropertyDef]] = pydantic.Field(None)
+    CfnStackSet_StackInstancesProperty: typing.Optional[dict[str, models.core.CfnStackSet_StackInstancesPropertyDef]] = pydantic.Field(None)
+    CfnStackSetProps: typing.Optional[dict[str, models.core.CfnStackSetPropsDef]] = pydantic.Field(None)
+    CfnTag: typing.Optional[dict[str, models.core.CfnTagDef]] = pydantic.Field(None)
+    CfnTrafficRoute: typing.Optional[dict[str, models.core.CfnTrafficRouteDef]] = pydantic.Field(None)
+    CfnTrafficRouting: typing.Optional[dict[str, models.core.CfnTrafficRoutingDef]] = pydantic.Field(None)
+    CfnTrafficRoutingConfig: typing.Optional[dict[str, models.core.CfnTrafficRoutingConfigDef]] = pydantic.Field(None)
+    CfnTrafficRoutingTimeBasedCanary: typing.Optional[dict[str, models.core.CfnTrafficRoutingTimeBasedCanaryDef]] = pydantic.Field(None)
+    CfnTrafficRoutingTimeBasedLinear: typing.Optional[dict[str, models.core.CfnTrafficRoutingTimeBasedLinearDef]] = pydantic.Field(None)
+    CfnTypeActivation_LoggingConfigProperty: typing.Optional[dict[str, models.core.CfnTypeActivation_LoggingConfigPropertyDef]] = pydantic.Field(None)
+    CfnTypeActivationProps: typing.Optional[dict[str, models.core.CfnTypeActivationPropsDef]] = pydantic.Field(None)
+    CfnUpdatePolicy: typing.Optional[dict[str, models.core.CfnUpdatePolicyDef]] = pydantic.Field(None)
+    CfnWaitConditionHandleProps: typing.Optional[dict[str, models.core.CfnWaitConditionHandlePropsDef]] = pydantic.Field(None)
+    CfnWaitConditionProps: typing.Optional[dict[str, models.core.CfnWaitConditionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

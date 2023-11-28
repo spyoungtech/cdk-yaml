@@ -17,16 +17,14 @@ class ArtifactsDef(BaseClass):
     ...
 
 
-    s3: typing.Optional[ArtifactsDefS3Params] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[ArtifactsDefConfig] = pydantic.Field(None)
+    s3: typing.Optional[models.aws_codebuild.ArtifactsDefS3Params] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_codebuild.ArtifactsDefConfig] = pydantic.Field(None)
 
 
 class ArtifactsDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ArtifactsDefBindParams]] = pydantic.Field(None, description='Callback when an Artifacts class is used in a CodeBuild Project.')
+    bind: typing.Optional[list[models.aws_codebuild.ArtifactsDefBindParams]] = pydantic.Field(None, description='Callback when an Artifacts class is used in a CodeBuild Project.')
 
 class ArtifactsDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _project: typing.Union[models.aws_codebuild.PipelineProjectDef, models.aws_codebuild.ProjectDef] = pydantic.Field(..., description='-')
     ...
 
 class ArtifactsDefS3Params(pydantic.BaseModel):
@@ -50,10 +48,10 @@ class BuildSpecDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[BuildSpecDefFromAssetParams] = pydantic.Field(None, description='Use the contents of a local file as the build spec string.\nUse this if you have a local .yml or .json file that you want to use as the buildspec')
-    from_object: typing.Optional[BuildSpecDefFromObjectParams] = pydantic.Field(None, description='')
-    from_object_to_yaml: typing.Optional[BuildSpecDefFromObjectToYamlParams] = pydantic.Field(None, description='Create a buildspec from an object that will be rendered as YAML in the resulting CloudFormation template.')
-    from_source_filename: typing.Optional[BuildSpecDefFromSourceFilenameParams] = pydantic.Field(None, description="Use a file from the source as buildspec.\nUse this if you want to use a file different from 'buildspec.yml'`")
+    from_asset: typing.Optional[models.aws_codebuild.BuildSpecDefFromAssetParams] = pydantic.Field(None, description='Use the contents of a local file as the build spec string.\nUse this if you have a local .yml or .json file that you want to use as the buildspec')
+    from_object: typing.Optional[models.aws_codebuild.BuildSpecDefFromObjectParams] = pydantic.Field(None, description='')
+    from_object_to_yaml: typing.Optional[models.aws_codebuild.BuildSpecDefFromObjectToYamlParams] = pydantic.Field(None, description='Create a buildspec from an object that will be rendered as YAML in the resulting CloudFormation template.')
+    from_source_filename: typing.Optional[models.aws_codebuild.BuildSpecDefFromSourceFilenameParams] = pydantic.Field(None, description="Use a file from the source as buildspec.\nUse this if you want to use a file different from 'buildspec.yml'`")
 
 class BuildSpecDefFromAssetParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
@@ -82,13 +80,13 @@ class CacheDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CacheDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.CacheDefConfig] = pydantic.Field(None)
 
 
 class CacheDefConfig(pydantic.BaseModel):
-    bucket: typing.Optional[list[CacheDefBucketParams]] = pydantic.Field(None, description='Create an S3 caching strategy.')
-    local: typing.Optional[list[CacheDefLocalParams]] = pydantic.Field(None, description='Create a local caching strategy.')
-    none: typing.Optional[list[CacheDefNoneParams]] = pydantic.Field(None, description='')
+    bucket: typing.Optional[list[models.aws_codebuild.CacheDefBucketParams]] = pydantic.Field(None, description='Create an S3 caching strategy.')
+    local: typing.Optional[list[models.aws_codebuild.CacheDefLocalParams]] = pydantic.Field(None, description='Create a local caching strategy.')
+    none: typing.Optional[list[models.aws_codebuild.CacheDefNoneParams]] = pydantic.Field(None, description='')
 
 class CacheDefBucketParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='the S3 bucket to use for caching.\n')
@@ -116,7 +114,7 @@ class FileSystemLocationDef(BaseClass):
     ...
 
 
-    efs: typing.Optional[FileSystemLocationDefEfsParams] = pydantic.Field(None, description='EFS file system provider.')
+    efs: typing.Optional[models.aws_codebuild.FileSystemLocationDefEfsParams] = pydantic.Field(None, description='EFS file system provider.')
 
 class FileSystemLocationDefEfsParams(pydantic.BaseModel):
     identifier: str = pydantic.Field(..., description='The name used to access a file system created by Amazon EFS.\n')
@@ -136,27 +134,27 @@ class FilterGroupDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FilterGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.FilterGroupDefConfig] = pydantic.Field(None)
 
 
 class FilterGroupDefConfig(pydantic.BaseModel):
-    and_actor_account_is: typing.Optional[list[FilterGroupDefAndActorAccountIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the account ID of the actor initiating the event must match the given pattern.')
-    and_actor_account_is_not: typing.Optional[list[FilterGroupDefAndActorAccountIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the account ID of the actor initiating the event must not match the given pattern.')
-    and_base_branch_is: typing.Optional[list[FilterGroupDefAndBaseBranchIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must target the given base branch.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
-    and_base_branch_is_not: typing.Optional[list[FilterGroupDefAndBaseBranchIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must not target the given base branch.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
-    and_base_ref_is: typing.Optional[list[FilterGroupDefAndBaseRefIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must target the given Git reference.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
-    and_base_ref_is_not: typing.Optional[list[FilterGroupDefAndBaseRefIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must not target the given Git reference.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
-    and_branch_is: typing.Optional[list[FilterGroupDefAndBranchIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect the given branch.')
-    and_branch_is_not: typing.Optional[list[FilterGroupDefAndBranchIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect the given branch.')
-    and_commit_message_is: typing.Optional[list[FilterGroupDefAndCommitMessageIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect a head commit with the given message.')
-    and_commit_message_is_not: typing.Optional[list[FilterGroupDefAndCommitMessageIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect a head commit with the given message.')
-    and_file_path_is: typing.Optional[list[FilterGroupDefAndFilePathIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the push that is the source of the event must affect a file that matches the given pattern.\nNote that you can only use this method if this Group contains only the ``PUSH`` event action,\nand only for GitHub, Bitbucket and GitHubEnterprise sources.')
-    and_file_path_is_not: typing.Optional[list[FilterGroupDefAndFilePathIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the push that is the source of the event must not affect a file that matches the given pattern.\nNote that you can only use this method if this Group contains only the ``PUSH`` event action,\nand only for GitHub, Bitbucket and GitHubEnterprise sources.')
-    and_head_ref_is: typing.Optional[list[FilterGroupDefAndHeadRefIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect a Git reference (ie., a branch or a tag) that matches the given pattern.')
-    and_head_ref_is_not: typing.Optional[list[FilterGroupDefAndHeadRefIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect a Git reference (ie., a branch or a tag) that matches the given pattern.')
-    and_tag_is: typing.Optional[list[FilterGroupDefAndTagIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect the given tag.')
-    and_tag_is_not: typing.Optional[list[FilterGroupDefAndTagIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect the given tag.')
-    in_event_of: typing.Optional[list[FilterGroupDefInEventOfParams]] = pydantic.Field(None, description='Creates a new event FilterGroup that triggers on any of the provided actions.')
+    and_actor_account_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndActorAccountIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the account ID of the actor initiating the event must match the given pattern.')
+    and_actor_account_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndActorAccountIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the account ID of the actor initiating the event must not match the given pattern.')
+    and_base_branch_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndBaseBranchIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must target the given base branch.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
+    and_base_branch_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndBaseBranchIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must not target the given base branch.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
+    and_base_ref_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndBaseRefIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must target the given Git reference.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
+    and_base_ref_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndBaseRefIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the Pull Request that is the source of the event must not target the given Git reference.\nNote that you cannot use this method if this Group contains the ``PUSH`` event action.')
+    and_branch_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndBranchIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect the given branch.')
+    and_branch_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndBranchIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect the given branch.')
+    and_commit_message_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndCommitMessageIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect a head commit with the given message.')
+    and_commit_message_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndCommitMessageIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect a head commit with the given message.')
+    and_file_path_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndFilePathIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the push that is the source of the event must affect a file that matches the given pattern.\nNote that you can only use this method if this Group contains only the ``PUSH`` event action,\nand only for GitHub, Bitbucket and GitHubEnterprise sources.')
+    and_file_path_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndFilePathIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the push that is the source of the event must not affect a file that matches the given pattern.\nNote that you can only use this method if this Group contains only the ``PUSH`` event action,\nand only for GitHub, Bitbucket and GitHubEnterprise sources.')
+    and_head_ref_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndHeadRefIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect a Git reference (ie., a branch or a tag) that matches the given pattern.')
+    and_head_ref_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndHeadRefIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect a Git reference (ie., a branch or a tag) that matches the given pattern.')
+    and_tag_is: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndTagIsParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must affect the given tag.')
+    and_tag_is_not: typing.Optional[list[models.aws_codebuild.FilterGroupDefAndTagIsNotParams]] = pydantic.Field(None, description='Create a new FilterGroup with an added condition: the event must not affect the given tag.')
+    in_event_of: typing.Optional[list[models.aws_codebuild.FilterGroupDefInEventOfParams]] = pydantic.Field(None, description='Creates a new event FilterGroup that triggers on any of the provided actions.')
 
 class FilterGroupDefAndActorAccountIsParams(pydantic.BaseModel):
     pattern: str = pydantic.Field(..., description='a regular expression.')
@@ -254,15 +252,15 @@ class LinuxArmBuildImageDef(BaseClass):
     ...
 
 
-    from_code_build_image_id: typing.Optional[LinuxArmBuildImageDefFromCodeBuildImageIdParams] = pydantic.Field(None, description='Uses a Docker image provided by CodeBuild.')
-    from_docker_registry: typing.Optional[LinuxArmBuildImageDefFromDockerRegistryParams] = pydantic.Field(None, description='')
-    from_ecr_repository: typing.Optional[LinuxArmBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description="Returns an ARM image running Linux from an ECR repository.\nNOTE: if the repository is external (i.e. imported), then we won't be able to add\na resource policy statement for it so CodeBuild can pull the image.")
-    resource_config: typing.Optional[LinuxArmBuildImageDefConfig] = pydantic.Field(None)
+    from_code_build_image_id: typing.Optional[models.aws_codebuild.LinuxArmBuildImageDefFromCodeBuildImageIdParams] = pydantic.Field(None, description='Uses a Docker image provided by CodeBuild.')
+    from_docker_registry: typing.Optional[models.aws_codebuild.LinuxArmBuildImageDefFromDockerRegistryParams] = pydantic.Field(None, description='')
+    from_ecr_repository: typing.Optional[models.aws_codebuild.LinuxArmBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description="Returns an ARM image running Linux from an ECR repository.\nNOTE: if the repository is external (i.e. imported), then we won't be able to add\na resource policy statement for it so CodeBuild can pull the image.")
+    resource_config: typing.Optional[models.aws_codebuild.LinuxArmBuildImageDefConfig] = pydantic.Field(None)
 
 
 class LinuxArmBuildImageDefConfig(pydantic.BaseModel):
-    run_script_buildspec: typing.Optional[list[LinuxArmBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
-    validate_: typing.Optional[list[LinuxArmBuildImageDefValidateParams]] = pydantic.Field(None, description='Validates by checking the BuildEnvironment computeType as aarch64 images only support ComputeType.SMALL and ComputeType.LARGE.', alias='validate')
+    run_script_buildspec: typing.Optional[list[models.aws_codebuild.LinuxArmBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
+    validate_: typing.Optional[list[models.aws_codebuild.LinuxArmBuildImageDefValidateParams]] = pydantic.Field(None, description='Validates by checking the BuildEnvironment computeType as aarch64 images only support ComputeType.SMALL and ComputeType.LARGE.', alias='validate')
 
 class LinuxArmBuildImageDefFromCodeBuildImageIdParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The image identifier.\n')
@@ -301,16 +299,16 @@ class LinuxBuildImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[LinuxBuildImageDefFromAssetParams] = pydantic.Field(None, description='Uses an Docker image asset as a x86-64 Linux build image.')
-    from_code_build_image_id: typing.Optional[LinuxBuildImageDefFromCodeBuildImageIdParams] = pydantic.Field(None, description='Uses a Docker image provided by CodeBuild.')
-    from_docker_registry: typing.Optional[LinuxBuildImageDefFromDockerRegistryParams] = pydantic.Field(None, description='')
-    from_ecr_repository: typing.Optional[LinuxBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[LinuxBuildImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_codebuild.LinuxBuildImageDefFromAssetParams] = pydantic.Field(None, description='Uses an Docker image asset as a x86-64 Linux build image.')
+    from_code_build_image_id: typing.Optional[models.aws_codebuild.LinuxBuildImageDefFromCodeBuildImageIdParams] = pydantic.Field(None, description='Uses a Docker image provided by CodeBuild.')
+    from_docker_registry: typing.Optional[models.aws_codebuild.LinuxBuildImageDefFromDockerRegistryParams] = pydantic.Field(None, description='')
+    from_ecr_repository: typing.Optional[models.aws_codebuild.LinuxBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_codebuild.LinuxBuildImageDefConfig] = pydantic.Field(None)
 
 
 class LinuxBuildImageDefConfig(pydantic.BaseModel):
-    run_script_buildspec: typing.Optional[list[LinuxBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
-    validate_: typing.Optional[list[LinuxBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
+    run_script_buildspec: typing.Optional[list[models.aws_codebuild.LinuxBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
+    validate_: typing.Optional[list[models.aws_codebuild.LinuxBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
 
 class LinuxBuildImageDefFromAssetParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -371,15 +369,15 @@ class LinuxGpuBuildImageDef(BaseClass):
     ...
 
 
-    aws_deep_learning_containers_image: typing.Optional[LinuxGpuBuildImageDefAwsDeepLearningContainersImageParams] = pydantic.Field(None, description='Returns a Linux GPU build image from AWS Deep Learning Containers.')
-    from_ecr_repository: typing.Optional[LinuxGpuBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description="Returns a GPU image running Linux from an ECR repository.\nNOTE: if the repository is external (i.e. imported), then we won't be able to add\na resource policy statement for it so CodeBuild can pull the image.")
-    resource_config: typing.Optional[LinuxGpuBuildImageDefConfig] = pydantic.Field(None)
+    aws_deep_learning_containers_image: typing.Optional[models.aws_codebuild.LinuxGpuBuildImageDefAwsDeepLearningContainersImageParams] = pydantic.Field(None, description='Returns a Linux GPU build image from AWS Deep Learning Containers.')
+    from_ecr_repository: typing.Optional[models.aws_codebuild.LinuxGpuBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description="Returns a GPU image running Linux from an ECR repository.\nNOTE: if the repository is external (i.e. imported), then we won't be able to add\na resource policy statement for it so CodeBuild can pull the image.")
+    resource_config: typing.Optional[models.aws_codebuild.LinuxGpuBuildImageDefConfig] = pydantic.Field(None)
 
 
 class LinuxGpuBuildImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LinuxGpuBuildImageDefBindParams]] = pydantic.Field(None, description='Function that allows the build image access to the construct tree.')
-    run_script_buildspec: typing.Optional[list[LinuxGpuBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
-    validate_: typing.Optional[list[LinuxGpuBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
+    bind: typing.Optional[list[models.aws_codebuild.LinuxGpuBuildImageDefBindParams]] = pydantic.Field(None, description='Function that allows the build image access to the construct tree.')
+    run_script_buildspec: typing.Optional[list[models.aws_codebuild.LinuxGpuBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
+    validate_: typing.Optional[list[models.aws_codebuild.LinuxGpuBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
 
 class LinuxGpuBuildImageDefAwsDeepLearningContainersImageParams(pydantic.BaseModel):
     repository_name: str = pydantic.Field(..., description='the name of the repository, for example "pytorch-inference".\n')
@@ -433,20 +431,18 @@ class SourceDef(BaseClass):
     ...
 
 
-    bit_bucket: typing.Optional[SourceDefBitBucketParams] = pydantic.Field(None, description='')
-    code_commit: typing.Optional[SourceDefCodeCommitParams] = pydantic.Field(None, description='')
-    git_hub: typing.Optional[SourceDefGitHubParams] = pydantic.Field(None, description='')
-    git_hub_enterprise: typing.Optional[SourceDefGitHubEnterpriseParams] = pydantic.Field(None, description='')
-    s3: typing.Optional[SourceDefS3Params] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[SourceDefConfig] = pydantic.Field(None)
+    bit_bucket: typing.Optional[models.aws_codebuild.SourceDefBitBucketParams] = pydantic.Field(None, description='')
+    code_commit: typing.Optional[models.aws_codebuild.SourceDefCodeCommitParams] = pydantic.Field(None, description='')
+    git_hub: typing.Optional[models.aws_codebuild.SourceDefGitHubParams] = pydantic.Field(None, description='')
+    git_hub_enterprise: typing.Optional[models.aws_codebuild.SourceDefGitHubEnterpriseParams] = pydantic.Field(None, description='')
+    s3: typing.Optional[models.aws_codebuild.SourceDefS3Params] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_codebuild.SourceDefConfig] = pydantic.Field(None)
 
 
 class SourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SourceDefBindParams]] = pydantic.Field(None, description='Called by the project when the source is added so that the source can perform binding operations on the source.\nFor example, it can grant permissions to the\ncode build project to read from the S3 bucket.')
+    bind: typing.Optional[list[models.aws_codebuild.SourceDefBindParams]] = pydantic.Field(None, description='Called by the project when the source is added so that the source can perform binding operations on the source.\nFor example, it can grant permissions to the\ncode build project to read from the S3 bucket.')
 
 class SourceDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _project: typing.Union[models.aws_codebuild.PipelineProjectDef, models.aws_codebuild.ProjectDef] = pydantic.Field(..., description='-')
     ...
 
 class SourceDefBitBucketParams(pydantic.BaseModel):
@@ -532,15 +528,15 @@ class WindowsBuildImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[WindowsBuildImageDefFromAssetParams] = pydantic.Field(None, description='Uses an Docker image asset as a Windows build image.')
-    from_docker_registry: typing.Optional[WindowsBuildImageDefFromDockerRegistryParams] = pydantic.Field(None, description='')
-    from_ecr_repository: typing.Optional[WindowsBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[WindowsBuildImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_codebuild.WindowsBuildImageDefFromAssetParams] = pydantic.Field(None, description='Uses an Docker image asset as a Windows build image.')
+    from_docker_registry: typing.Optional[models.aws_codebuild.WindowsBuildImageDefFromDockerRegistryParams] = pydantic.Field(None, description='')
+    from_ecr_repository: typing.Optional[models.aws_codebuild.WindowsBuildImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_codebuild.WindowsBuildImageDefConfig] = pydantic.Field(None)
 
 
 class WindowsBuildImageDefConfig(pydantic.BaseModel):
-    run_script_buildspec: typing.Optional[list[WindowsBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
-    validate_: typing.Optional[list[WindowsBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
+    run_script_buildspec: typing.Optional[list[models.aws_codebuild.WindowsBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
+    validate_: typing.Optional[list[models.aws_codebuild.WindowsBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
 
 class WindowsBuildImageDefFromAssetParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -586,7 +582,7 @@ class BitBucketSourceCredentialsDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[BitBucketSourceCredentialsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.BitBucketSourceCredentialsDefConfig] = pydantic.Field(None)
 
 
 class BitBucketSourceCredentialsDefConfig(pydantic.BaseModel):
@@ -608,7 +604,7 @@ class GitHubEnterpriseSourceCredentialsDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[GitHubEnterpriseSourceCredentialsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.GitHubEnterpriseSourceCredentialsDefConfig] = pydantic.Field(None)
 
 
 class GitHubEnterpriseSourceCredentialsDefConfig(pydantic.BaseModel):
@@ -630,7 +626,7 @@ class GitHubSourceCredentialsDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[GitHubSourceCredentialsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.GitHubSourceCredentialsDefConfig] = pydantic.Field(None)
 
 
 class GitHubSourceCredentialsDefConfig(pydantic.BaseModel):
@@ -672,35 +668,35 @@ class PipelineProjectDef(BaseConstruct):
     ...
 
 
-    from_project_arn: typing.Optional[PipelineProjectDefFromProjectArnParams] = pydantic.Field(None, description='')
-    from_project_name: typing.Optional[PipelineProjectDefFromProjectNameParams] = pydantic.Field(None, description='Import a Project defined either outside the CDK, or in a different CDK Stack (and exported using the ``export`` method).')
-    resource_config: typing.Optional[PipelineProjectDefConfig] = pydantic.Field(None)
+    from_project_arn: typing.Optional[models.aws_codebuild.PipelineProjectDefFromProjectArnParams] = pydantic.Field(None, description='')
+    from_project_name: typing.Optional[models.aws_codebuild.PipelineProjectDefFromProjectNameParams] = pydantic.Field(None, description='Import a Project defined either outside the CDK, or in a different CDK Stack (and exported using the ``export`` method).')
+    resource_config: typing.Optional[models.aws_codebuild.PipelineProjectDefConfig] = pydantic.Field(None)
 
 
 class PipelineProjectDefConfig(pydantic.BaseModel):
-    add_file_system_location: typing.Optional[list[PipelineProjectDefAddFileSystemLocationParams]] = pydantic.Field(None, description='Adds a fileSystemLocation to the Project.')
-    add_secondary_artifact: typing.Optional[list[PipelineProjectDefAddSecondaryArtifactParams]] = pydantic.Field(None, description='Adds a secondary artifact to the Project.')
-    add_secondary_source: typing.Optional[list[PipelineProjectDefAddSecondarySourceParams]] = pydantic.Field(None, description='Adds a secondary source to the Project.')
-    add_to_role_policy: typing.Optional[list[PipelineProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add a permission only if there's a policy attached.")
+    add_file_system_location: typing.Optional[list[models.aws_codebuild.PipelineProjectDefAddFileSystemLocationParams]] = pydantic.Field(None, description='Adds a fileSystemLocation to the Project.')
+    add_secondary_artifact: typing.Optional[list[models.aws_codebuild.PipelineProjectDefAddSecondaryArtifactParams]] = pydantic.Field(None, description='Adds a secondary artifact to the Project.')
+    add_secondary_source: typing.Optional[list[models.aws_codebuild.PipelineProjectDefAddSecondarySourceParams]] = pydantic.Field(None, description='Adds a secondary source to the Project.')
+    add_to_role_policy: typing.Optional[list[models.aws_codebuild.PipelineProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add a permission only if there's a policy attached.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_source: typing.Optional[list[PipelineProjectDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
-    bind_to_code_pipeline: typing.Optional[list[PipelineProjectDefBindToCodePipelineParams]] = pydantic.Field(None, description='A callback invoked when the given project is added to a CodePipeline.')
+    bind_as_notification_rule_source: typing.Optional[list[models.aws_codebuild.PipelineProjectDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    bind_to_code_pipeline: typing.Optional[list[models.aws_codebuild.PipelineProjectDefBindToCodePipelineParams]] = pydantic.Field(None, description='A callback invoked when the given project is added to a CodePipeline.')
     enable_batch_builds: typing.Optional[bool] = pydantic.Field(None, description='Enable batch builds.\nReturns an object contining the batch service role if batch builds\ncould be enabled.')
-    metric: typing.Optional[list[PipelineProjectDefMetricParams]] = pydantic.Field(None, description='')
-    metric_builds: typing.Optional[list[PipelineProjectDefMetricBuildsParams]] = pydantic.Field(None, description='Measures the number of builds triggered.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    metric_duration: typing.Optional[list[PipelineProjectDefMetricDurationParams]] = pydantic.Field(None, description='Measures the duration of all builds over time.\nUnits: Seconds\n\nValid CloudWatch statistics: Average (recommended), Maximum, Minimum')
-    metric_failed_builds: typing.Optional[list[PipelineProjectDefMetricFailedBuildsParams]] = pydantic.Field(None, description='Measures the number of builds that failed because of client error or because of a timeout.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    metric_succeeded_builds: typing.Optional[list[PipelineProjectDefMetricSucceededBuildsParams]] = pydantic.Field(None, description='Measures the number of successful builds.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    notify_on: typing.Optional[list[PipelineProjectDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnBuildSucceeded`` and\n``notifyOnBuildFailed`` to define rules for these specific event emitted.')
-    notify_on_build_failed: typing.Optional[list[PipelineProjectDefNotifyOnBuildFailedParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build fails.')
-    notify_on_build_succeeded: typing.Optional[list[PipelineProjectDefNotifyOnBuildSucceededParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build completes successfully.')
-    on_build_failed: typing.Optional[list[PipelineProjectDefOnBuildFailedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build fails.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    on_build_started: typing.Optional[list[PipelineProjectDefOnBuildStartedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build starts.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    on_build_succeeded: typing.Optional[list[PipelineProjectDefOnBuildSucceededParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build completes successfully.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    on_event: typing.Optional[list[PipelineProjectDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when something happens with this project.')
-    on_phase_change: typing.Optional[list[PipelineProjectDefOnPhaseChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule that triggers upon phase change of this build project.')
-    on_state_change: typing.Optional[list[PipelineProjectDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when the build project state changes.\nYou can filter specific build status events using an event\npattern filter on the ``build-status`` detail field:\n\nconst rule = project.onStateChange(\'OnBuildStarted\', { target });\nrule.addEventPattern({\ndetail: {\n\'build-status\': [\n"IN_PROGRESS",\n"SUCCEEDED",\n"FAILED",\n"STOPPED"\n]\n}\n});\n\nYou can also use the methods ``onBuildFailed`` and ``onBuildSucceeded`` to define rules for\nthese specific state changes.\n\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    serialize_env_variables: typing.Optional[list[PipelineProjectDefSerializeEnvVariablesParams]] = pydantic.Field(None, description='Convert the environment variables map of string to ``BuildEnvironmentVariable``, which is the customer-facing type, to a list of ``CfnProject.EnvironmentVariableProperty``, which is the representation of environment variables in CloudFormation.')
+    metric: typing.Optional[list[models.aws_codebuild.PipelineProjectDefMetricParams]] = pydantic.Field(None, description='')
+    metric_builds: typing.Optional[list[models.aws_codebuild.PipelineProjectDefMetricBuildsParams]] = pydantic.Field(None, description='Measures the number of builds triggered.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    metric_duration: typing.Optional[list[models.aws_codebuild.PipelineProjectDefMetricDurationParams]] = pydantic.Field(None, description='Measures the duration of all builds over time.\nUnits: Seconds\n\nValid CloudWatch statistics: Average (recommended), Maximum, Minimum')
+    metric_failed_builds: typing.Optional[list[models.aws_codebuild.PipelineProjectDefMetricFailedBuildsParams]] = pydantic.Field(None, description='Measures the number of builds that failed because of client error or because of a timeout.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    metric_succeeded_builds: typing.Optional[list[models.aws_codebuild.PipelineProjectDefMetricSucceededBuildsParams]] = pydantic.Field(None, description='Measures the number of successful builds.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    notify_on: typing.Optional[list[models.aws_codebuild.PipelineProjectDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnBuildSucceeded`` and\n``notifyOnBuildFailed`` to define rules for these specific event emitted.')
+    notify_on_build_failed: typing.Optional[list[models.aws_codebuild.PipelineProjectDefNotifyOnBuildFailedParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build fails.')
+    notify_on_build_succeeded: typing.Optional[list[models.aws_codebuild.PipelineProjectDefNotifyOnBuildSucceededParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build completes successfully.')
+    on_build_failed: typing.Optional[list[models.aws_codebuild.PipelineProjectDefOnBuildFailedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build fails.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    on_build_started: typing.Optional[list[models.aws_codebuild.PipelineProjectDefOnBuildStartedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build starts.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    on_build_succeeded: typing.Optional[list[models.aws_codebuild.PipelineProjectDefOnBuildSucceededParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build completes successfully.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    on_event: typing.Optional[list[models.aws_codebuild.PipelineProjectDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when something happens with this project.')
+    on_phase_change: typing.Optional[list[models.aws_codebuild.PipelineProjectDefOnPhaseChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule that triggers upon phase change of this build project.')
+    on_state_change: typing.Optional[list[models.aws_codebuild.PipelineProjectDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when the build project state changes.\nYou can filter specific build status events using an event\npattern filter on the ``build-status`` detail field:\n\nconst rule = project.onStateChange(\'OnBuildStarted\', { target });\nrule.addEventPattern({\ndetail: {\n\'build-status\': [\n"IN_PROGRESS",\n"SUCCEEDED",\n"FAILED",\n"STOPPED"\n]\n}\n});\n\nYou can also use the methods ``onBuildFailed`` and ``onBuildSucceeded`` to define rules for\nthese specific state changes.\n\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    serialize_env_variables: typing.Optional[list[models.aws_codebuild.PipelineProjectDefSerializeEnvVariablesParams]] = pydantic.Field(None, description='Convert the environment variables map of string to ``BuildEnvironmentVariable``, which is the customer-facing type, to a list of ``CfnProject.EnvironmentVariableProperty``, which is the representation of environment variables in CloudFormation.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
 
@@ -725,11 +721,9 @@ class PipelineProjectDefApplyRemovalPolicyParams(pydantic.BaseModel):
     ...
 
 class PipelineProjectDefBindAsNotificationRuleSourceParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class PipelineProjectDefBindToCodePipelineParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='the construct the binding is taking place in.\n')
     artifact_bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The artifact bucket that will be used by the action that invokes this project.')
     ...
 
@@ -936,35 +930,35 @@ class ProjectDef(BaseConstruct):
     ...
 
 
-    from_project_arn: typing.Optional[ProjectDefFromProjectArnParams] = pydantic.Field(None, description='')
-    from_project_name: typing.Optional[ProjectDefFromProjectNameParams] = pydantic.Field(None, description='Import a Project defined either outside the CDK, or in a different CDK Stack (and exported using the ``export`` method).')
-    resource_config: typing.Optional[ProjectDefConfig] = pydantic.Field(None)
+    from_project_arn: typing.Optional[models.aws_codebuild.ProjectDefFromProjectArnParams] = pydantic.Field(None, description='')
+    from_project_name: typing.Optional[models.aws_codebuild.ProjectDefFromProjectNameParams] = pydantic.Field(None, description='Import a Project defined either outside the CDK, or in a different CDK Stack (and exported using the ``export`` method).')
+    resource_config: typing.Optional[models.aws_codebuild.ProjectDefConfig] = pydantic.Field(None)
 
 
 class ProjectDefConfig(pydantic.BaseModel):
-    add_file_system_location: typing.Optional[list[ProjectDefAddFileSystemLocationParams]] = pydantic.Field(None, description='Adds a fileSystemLocation to the Project.')
-    add_secondary_artifact: typing.Optional[list[ProjectDefAddSecondaryArtifactParams]] = pydantic.Field(None, description='Adds a secondary artifact to the Project.')
-    add_secondary_source: typing.Optional[list[ProjectDefAddSecondarySourceParams]] = pydantic.Field(None, description='Adds a secondary source to the Project.')
-    add_to_role_policy: typing.Optional[list[ProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add a permission only if there's a policy attached.")
+    add_file_system_location: typing.Optional[list[models.aws_codebuild.ProjectDefAddFileSystemLocationParams]] = pydantic.Field(None, description='Adds a fileSystemLocation to the Project.')
+    add_secondary_artifact: typing.Optional[list[models.aws_codebuild.ProjectDefAddSecondaryArtifactParams]] = pydantic.Field(None, description='Adds a secondary artifact to the Project.')
+    add_secondary_source: typing.Optional[list[models.aws_codebuild.ProjectDefAddSecondarySourceParams]] = pydantic.Field(None, description='Adds a secondary source to the Project.')
+    add_to_role_policy: typing.Optional[list[models.aws_codebuild.ProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add a permission only if there's a policy attached.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_source: typing.Optional[list[ProjectDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
-    bind_to_code_pipeline: typing.Optional[list[ProjectDefBindToCodePipelineParams]] = pydantic.Field(None, description='A callback invoked when the given project is added to a CodePipeline.')
+    bind_as_notification_rule_source: typing.Optional[list[models.aws_codebuild.ProjectDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    bind_to_code_pipeline: typing.Optional[list[models.aws_codebuild.ProjectDefBindToCodePipelineParams]] = pydantic.Field(None, description='A callback invoked when the given project is added to a CodePipeline.')
     enable_batch_builds: typing.Optional[bool] = pydantic.Field(None, description='Enable batch builds.\nReturns an object contining the batch service role if batch builds\ncould be enabled.')
-    metric: typing.Optional[list[ProjectDefMetricParams]] = pydantic.Field(None, description='')
-    metric_builds: typing.Optional[list[ProjectDefMetricBuildsParams]] = pydantic.Field(None, description='Measures the number of builds triggered.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    metric_duration: typing.Optional[list[ProjectDefMetricDurationParams]] = pydantic.Field(None, description='Measures the duration of all builds over time.\nUnits: Seconds\n\nValid CloudWatch statistics: Average (recommended), Maximum, Minimum')
-    metric_failed_builds: typing.Optional[list[ProjectDefMetricFailedBuildsParams]] = pydantic.Field(None, description='Measures the number of builds that failed because of client error or because of a timeout.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    metric_succeeded_builds: typing.Optional[list[ProjectDefMetricSucceededBuildsParams]] = pydantic.Field(None, description='Measures the number of successful builds.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    notify_on: typing.Optional[list[ProjectDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnBuildSucceeded`` and\n``notifyOnBuildFailed`` to define rules for these specific event emitted.')
-    notify_on_build_failed: typing.Optional[list[ProjectDefNotifyOnBuildFailedParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build fails.')
-    notify_on_build_succeeded: typing.Optional[list[ProjectDefNotifyOnBuildSucceededParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build completes successfully.')
-    on_build_failed: typing.Optional[list[ProjectDefOnBuildFailedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build fails.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    on_build_started: typing.Optional[list[ProjectDefOnBuildStartedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build starts.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    on_build_succeeded: typing.Optional[list[ProjectDefOnBuildSucceededParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build completes successfully.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    on_event: typing.Optional[list[ProjectDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when something happens with this project.')
-    on_phase_change: typing.Optional[list[ProjectDefOnPhaseChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule that triggers upon phase change of this build project.')
-    on_state_change: typing.Optional[list[ProjectDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when the build project state changes.\nYou can filter specific build status events using an event\npattern filter on the ``build-status`` detail field:\n\nconst rule = project.onStateChange(\'OnBuildStarted\', { target });\nrule.addEventPattern({\ndetail: {\n\'build-status\': [\n"IN_PROGRESS",\n"SUCCEEDED",\n"FAILED",\n"STOPPED"\n]\n}\n});\n\nYou can also use the methods ``onBuildFailed`` and ``onBuildSucceeded`` to define rules for\nthese specific state changes.\n\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
-    serialize_env_variables: typing.Optional[list[ProjectDefSerializeEnvVariablesParams]] = pydantic.Field(None, description='Convert the environment variables map of string to ``BuildEnvironmentVariable``, which is the customer-facing type, to a list of ``CfnProject.EnvironmentVariableProperty``, which is the representation of environment variables in CloudFormation.')
+    metric: typing.Optional[list[models.aws_codebuild.ProjectDefMetricParams]] = pydantic.Field(None, description='')
+    metric_builds: typing.Optional[list[models.aws_codebuild.ProjectDefMetricBuildsParams]] = pydantic.Field(None, description='Measures the number of builds triggered.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    metric_duration: typing.Optional[list[models.aws_codebuild.ProjectDefMetricDurationParams]] = pydantic.Field(None, description='Measures the duration of all builds over time.\nUnits: Seconds\n\nValid CloudWatch statistics: Average (recommended), Maximum, Minimum')
+    metric_failed_builds: typing.Optional[list[models.aws_codebuild.ProjectDefMetricFailedBuildsParams]] = pydantic.Field(None, description='Measures the number of builds that failed because of client error or because of a timeout.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    metric_succeeded_builds: typing.Optional[list[models.aws_codebuild.ProjectDefMetricSucceededBuildsParams]] = pydantic.Field(None, description='Measures the number of successful builds.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    notify_on: typing.Optional[list[models.aws_codebuild.ProjectDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnBuildSucceeded`` and\n``notifyOnBuildFailed`` to define rules for these specific event emitted.')
+    notify_on_build_failed: typing.Optional[list[models.aws_codebuild.ProjectDefNotifyOnBuildFailedParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build fails.')
+    notify_on_build_succeeded: typing.Optional[list[models.aws_codebuild.ProjectDefNotifyOnBuildSucceededParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build completes successfully.')
+    on_build_failed: typing.Optional[list[models.aws_codebuild.ProjectDefOnBuildFailedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build fails.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    on_build_started: typing.Optional[list[models.aws_codebuild.ProjectDefOnBuildStartedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build starts.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    on_build_succeeded: typing.Optional[list[models.aws_codebuild.ProjectDefOnBuildSucceededParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build completes successfully.\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    on_event: typing.Optional[list[models.aws_codebuild.ProjectDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when something happens with this project.')
+    on_phase_change: typing.Optional[list[models.aws_codebuild.ProjectDefOnPhaseChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule that triggers upon phase change of this build project.')
+    on_state_change: typing.Optional[list[models.aws_codebuild.ProjectDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when the build project state changes.\nYou can filter specific build status events using an event\npattern filter on the ``build-status`` detail field:\n\nconst rule = project.onStateChange(\'OnBuildStarted\', { target });\nrule.addEventPattern({\ndetail: {\n\'build-status\': [\n"IN_PROGRESS",\n"SUCCEEDED",\n"FAILED",\n"STOPPED"\n]\n}\n});\n\nYou can also use the methods ``onBuildFailed`` and ``onBuildSucceeded`` to define rules for\nthese specific state changes.\n\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    serialize_env_variables: typing.Optional[list[models.aws_codebuild.ProjectDefSerializeEnvVariablesParams]] = pydantic.Field(None, description='Convert the environment variables map of string to ``BuildEnvironmentVariable``, which is the customer-facing type, to a list of ``CfnProject.EnvironmentVariableProperty``, which is the representation of environment variables in CloudFormation.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
 
@@ -989,11 +983,9 @@ class ProjectDefApplyRemovalPolicyParams(pydantic.BaseModel):
     ...
 
 class ProjectDefBindAsNotificationRuleSourceParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class ProjectDefBindToCodePipelineParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='the construct the binding is taking place in.\n')
     artifact_bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The artifact bucket that will be used by the action that invokes this project.')
     ...
 
@@ -1180,13 +1172,13 @@ class ReportGroupDef(BaseConstruct):
     ...
 
 
-    from_report_group_name: typing.Optional[ReportGroupDefFromReportGroupNameParams] = pydantic.Field(None, description='Reference an existing ReportGroup, defined outside of the CDK code, by name.')
-    resource_config: typing.Optional[ReportGroupDefConfig] = pydantic.Field(None)
+    from_report_group_name: typing.Optional[models.aws_codebuild.ReportGroupDefFromReportGroupNameParams] = pydantic.Field(None, description='Reference an existing ReportGroup, defined outside of the CDK code, by name.')
+    resource_config: typing.Optional[models.aws_codebuild.ReportGroupDefConfig] = pydantic.Field(None)
 
 
 class ReportGroupDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_write: typing.Optional[list[ReportGroupDefGrantWriteParams]] = pydantic.Field(None, description='Grants the given entity permissions to write (that is, upload reports to) this report group.')
+    grant_write: typing.Optional[list[models.aws_codebuild.ReportGroupDefGrantWriteParams]] = pydantic.Field(None, description='Grants the given entity permissions to write (that is, upload reports to) this report group.')
 
 class ReportGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -1216,18 +1208,18 @@ class UntrustedCodeBoundaryPolicyDef(BaseConstruct):
     ...
 
 
-    from_aws_managed_policy_name: typing.Optional[UntrustedCodeBoundaryPolicyDefFromAwsManagedPolicyNameParams] = pydantic.Field(None, description='Import a managed policy from one of the policies that AWS manages.\nFor this managed policy, you only need to know the name to be able to use it.\n\nSome managed policy names start with "service-role/", some start with\n"job-function/", and some don\'t start with anything. Include the\nprefix when constructing this object.')
-    from_managed_policy_arn: typing.Optional[UntrustedCodeBoundaryPolicyDefFromManagedPolicyArnParams] = pydantic.Field(None, description='Import an external managed policy by ARN.\nFor this managed policy, you only need to know the ARN to be able to use it.\nThis can be useful if you got the ARN from a CloudFormation Export.\n\nIf the imported Managed Policy ARN is a Token (such as a\n``CfnParameter.valueAsString`` or a ``Fn.importValue()``) *and* the referenced\nmanaged policy has a ``path`` (like ``arn:...:policy/AdminPolicy/AdminAllow``), the\n``managedPolicyName`` property will not resolve to the correct value. Instead it\nwill resolve to the first path component. We unfortunately cannot express\nthe correct calculation of the full path name as a CloudFormation\nexpression. In this scenario the Managed Policy ARN should be supplied without the\n``path`` in order to resolve the correct managed policy resource.')
-    from_managed_policy_name: typing.Optional[UntrustedCodeBoundaryPolicyDefFromManagedPolicyNameParams] = pydantic.Field(None, description='Import a customer managed policy from the managedPolicyName.\nFor this managed policy, you only need to know the name to be able to use it.')
-    resource_config: typing.Optional[UntrustedCodeBoundaryPolicyDefConfig] = pydantic.Field(None)
+    from_aws_managed_policy_name: typing.Optional[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefFromAwsManagedPolicyNameParams] = pydantic.Field(None, description='Import a managed policy from one of the policies that AWS manages.\nFor this managed policy, you only need to know the name to be able to use it.\n\nSome managed policy names start with "service-role/", some start with\n"job-function/", and some don\'t start with anything. Include the\nprefix when constructing this object.')
+    from_managed_policy_arn: typing.Optional[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefFromManagedPolicyArnParams] = pydantic.Field(None, description='Import an external managed policy by ARN.\nFor this managed policy, you only need to know the ARN to be able to use it.\nThis can be useful if you got the ARN from a CloudFormation Export.\n\nIf the imported Managed Policy ARN is a Token (such as a\n``CfnParameter.valueAsString`` or a ``Fn.importValue()``) *and* the referenced\nmanaged policy has a ``path`` (like ``arn:...:policy/AdminPolicy/AdminAllow``), the\n``managedPolicyName`` property will not resolve to the correct value. Instead it\nwill resolve to the first path component. We unfortunately cannot express\nthe correct calculation of the full path name as a CloudFormation\nexpression. In this scenario the Managed Policy ARN should be supplied without the\n``path`` in order to resolve the correct managed policy resource.')
+    from_managed_policy_name: typing.Optional[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefFromManagedPolicyNameParams] = pydantic.Field(None, description='Import a customer managed policy from the managedPolicyName.\nFor this managed policy, you only need to know the name to be able to use it.')
+    resource_config: typing.Optional[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefConfig] = pydantic.Field(None)
 
 
 class UntrustedCodeBoundaryPolicyDefConfig(pydantic.BaseModel):
-    add_statements: typing.Optional[list[UntrustedCodeBoundaryPolicyDefAddStatementsParams]] = pydantic.Field(None, description='Adds a statement to the policy document.')
+    add_statements: typing.Optional[list[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefAddStatementsParams]] = pydantic.Field(None, description='Adds a statement to the policy document.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    attach_to_group: typing.Optional[list[UntrustedCodeBoundaryPolicyDefAttachToGroupParams]] = pydantic.Field(None, description='Attaches this policy to a group.')
-    attach_to_role: typing.Optional[list[UntrustedCodeBoundaryPolicyDefAttachToRoleParams]] = pydantic.Field(None, description='Attaches this policy to a role.')
-    attach_to_user: typing.Optional[list[UntrustedCodeBoundaryPolicyDefAttachToUserParams]] = pydantic.Field(None, description='Attaches this policy to a user.')
+    attach_to_group: typing.Optional[list[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefAttachToGroupParams]] = pydantic.Field(None, description='Attaches this policy to a group.')
+    attach_to_role: typing.Optional[list[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefAttachToRoleParams]] = pydantic.Field(None, description='Attaches this policy to a role.')
+    attach_to_user: typing.Optional[list[models.aws_codebuild.UntrustedCodeBoundaryPolicyDefAttachToUserParams]] = pydantic.Field(None, description='Attaches this policy to a user.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
 
 class UntrustedCodeBoundaryPolicyDefAddStatementsParams(pydantic.BaseModel):
@@ -1304,7 +1296,7 @@ class BatchBuildConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BatchBuildConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.BatchBuildConfigDefConfig] = pydantic.Field(None)
 
 
 class BatchBuildConfigDefConfig(pydantic.BaseModel):
@@ -1322,7 +1314,7 @@ class BindToCodePipelineOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BindToCodePipelineOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.BindToCodePipelineOptionsDefConfig] = pydantic.Field(None)
 
 
 class BindToCodePipelineOptionsDefConfig(pydantic.BaseModel):
@@ -1341,7 +1333,7 @@ class BitBucketSourceCredentialsPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BitBucketSourceCredentialsPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.BitBucketSourceCredentialsPropsDefConfig] = pydantic.Field(None)
 
 
 class BitBucketSourceCredentialsPropsDefConfig(pydantic.BaseModel):
@@ -1415,7 +1407,7 @@ class BuildEnvironmentCertificateDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BuildEnvironmentCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.BuildEnvironmentCertificateDefConfig] = pydantic.Field(None)
 
 
 class BuildEnvironmentCertificateDefConfig(pydantic.BaseModel):
@@ -1821,7 +1813,7 @@ class CodeCommitSourcePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeCommitSourcePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.CodeCommitSourcePropsDefConfig] = pydantic.Field(None)
 
 
 class CodeCommitSourcePropsDefConfig(pydantic.BaseModel):
@@ -1914,7 +1906,7 @@ class GitHubEnterpriseSourceCredentialsPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[GitHubEnterpriseSourceCredentialsPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.GitHubEnterpriseSourceCredentialsPropsDefConfig] = pydantic.Field(None)
 
 
 class GitHubEnterpriseSourceCredentialsPropsDefConfig(pydantic.BaseModel):
@@ -1956,7 +1948,7 @@ class GitHubSourceCredentialsPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[GitHubSourceCredentialsPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.GitHubSourceCredentialsPropsDefConfig] = pydantic.Field(None)
 
 
 class GitHubSourceCredentialsPropsDefConfig(pydantic.BaseModel):
@@ -2121,7 +2113,7 @@ class S3ArtifactsPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[S3ArtifactsPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.S3ArtifactsPropsDefConfig] = pydantic.Field(None)
 
 
 class S3ArtifactsPropsDefConfig(pydantic.BaseModel):
@@ -2142,7 +2134,7 @@ class S3LoggingOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[S3LoggingOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.S3LoggingOptionsDefConfig] = pydantic.Field(None)
 
 
 class S3LoggingOptionsDefConfig(pydantic.BaseModel):
@@ -2163,7 +2155,7 @@ class S3SourcePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[S3SourcePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.S3SourcePropsDefConfig] = pydantic.Field(None)
 
 
 class S3SourcePropsDefConfig(pydantic.BaseModel):
@@ -2291,45 +2283,45 @@ class CfnProjectDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnProjectDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.CfnProjectDefConfig] = pydantic.Field(None)
 
 
 class CfnProjectDefConfig(pydantic.BaseModel):
-    ArtifactsProperty: typing.Optional[list[CfnProjectDefArtifactspropertyParams]] = pydantic.Field(None, description='')
-    BatchRestrictionsProperty: typing.Optional[list[CfnProjectDefBatchrestrictionspropertyParams]] = pydantic.Field(None, description='')
-    BuildStatusConfigProperty: typing.Optional[list[CfnProjectDefBuildstatusconfigpropertyParams]] = pydantic.Field(None, description='')
-    CloudWatchLogsConfigProperty: typing.Optional[list[CfnProjectDefCloudwatchlogsconfigpropertyParams]] = pydantic.Field(None, description='')
-    EnvironmentProperty: typing.Optional[list[CfnProjectDefEnvironmentpropertyParams]] = pydantic.Field(None, description='')
-    EnvironmentVariableProperty: typing.Optional[list[CfnProjectDefEnvironmentvariablepropertyParams]] = pydantic.Field(None, description='')
-    GitSubmodulesConfigProperty: typing.Optional[list[CfnProjectDefGitsubmodulesconfigpropertyParams]] = pydantic.Field(None, description='')
-    LogsConfigProperty: typing.Optional[list[CfnProjectDefLogsconfigpropertyParams]] = pydantic.Field(None, description='')
-    ProjectBuildBatchConfigProperty: typing.Optional[list[CfnProjectDefProjectbuildbatchconfigpropertyParams]] = pydantic.Field(None, description='')
-    ProjectCacheProperty: typing.Optional[list[CfnProjectDefProjectcachepropertyParams]] = pydantic.Field(None, description='')
-    ProjectFileSystemLocationProperty: typing.Optional[list[CfnProjectDefProjectfilesystemlocationpropertyParams]] = pydantic.Field(None, description='')
-    ProjectSourceVersionProperty: typing.Optional[list[CfnProjectDefProjectsourceversionpropertyParams]] = pydantic.Field(None, description='')
-    ProjectTriggersProperty: typing.Optional[list[CfnProjectDefProjecttriggerspropertyParams]] = pydantic.Field(None, description='')
-    RegistryCredentialProperty: typing.Optional[list[CfnProjectDefRegistrycredentialpropertyParams]] = pydantic.Field(None, description='')
-    S3LogsConfigProperty: typing.Optional[list[CfnProjectDefS3LogsconfigpropertyParams]] = pydantic.Field(None, description='')
-    SourceAuthProperty: typing.Optional[list[CfnProjectDefSourceauthpropertyParams]] = pydantic.Field(None, description='')
-    SourceProperty: typing.Optional[list[CfnProjectDefSourcepropertyParams]] = pydantic.Field(None, description='')
-    VpcConfigProperty: typing.Optional[list[CfnProjectDefVpcconfigpropertyParams]] = pydantic.Field(None, description='')
-    WebhookFilterProperty: typing.Optional[list[CfnProjectDefWebhookfilterpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnProjectDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnProjectDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnProjectDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnProjectDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnProjectDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnProjectDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnProjectDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ArtifactsProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefArtifactspropertyParams]] = pydantic.Field(None, description='')
+    BatchRestrictionsProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefBatchrestrictionspropertyParams]] = pydantic.Field(None, description='')
+    BuildStatusConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefBuildstatusconfigpropertyParams]] = pydantic.Field(None, description='')
+    CloudWatchLogsConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefCloudwatchlogsconfigpropertyParams]] = pydantic.Field(None, description='')
+    EnvironmentProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefEnvironmentpropertyParams]] = pydantic.Field(None, description='')
+    EnvironmentVariableProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefEnvironmentvariablepropertyParams]] = pydantic.Field(None, description='')
+    GitSubmodulesConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefGitsubmodulesconfigpropertyParams]] = pydantic.Field(None, description='')
+    LogsConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefLogsconfigpropertyParams]] = pydantic.Field(None, description='')
+    ProjectBuildBatchConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefProjectbuildbatchconfigpropertyParams]] = pydantic.Field(None, description='')
+    ProjectCacheProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefProjectcachepropertyParams]] = pydantic.Field(None, description='')
+    ProjectFileSystemLocationProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefProjectfilesystemlocationpropertyParams]] = pydantic.Field(None, description='')
+    ProjectSourceVersionProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefProjectsourceversionpropertyParams]] = pydantic.Field(None, description='')
+    ProjectTriggersProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefProjecttriggerspropertyParams]] = pydantic.Field(None, description='')
+    RegistryCredentialProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefRegistrycredentialpropertyParams]] = pydantic.Field(None, description='')
+    S3LogsConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefS3LogsconfigpropertyParams]] = pydantic.Field(None, description='')
+    SourceAuthProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefSourceauthpropertyParams]] = pydantic.Field(None, description='')
+    SourceProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefSourcepropertyParams]] = pydantic.Field(None, description='')
+    VpcConfigProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefVpcconfigpropertyParams]] = pydantic.Field(None, description='')
+    WebhookFilterProperty: typing.Optional[list[models.aws_codebuild.CfnProjectDefWebhookfilterpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codebuild.CfnProjectDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnProjectDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnProjectDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnProjectDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codebuild.CfnProjectDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codebuild.CfnProjectDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codebuild.CfnProjectDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnProjectDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnProjectDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnProjectDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codebuild.CfnProjectDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codebuild.CfnProjectDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codebuild.CfnProjectDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnProjectDefArtifactspropertyParams(pydantic.BaseModel):
@@ -2540,28 +2532,28 @@ class CfnReportGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnReportGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.CfnReportGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnReportGroupDefConfig(pydantic.BaseModel):
-    ReportExportConfigProperty: typing.Optional[list[CfnReportGroupDefReportexportconfigpropertyParams]] = pydantic.Field(None, description='')
-    S3ReportExportConfigProperty: typing.Optional[list[CfnReportGroupDefS3ReportexportconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnReportGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnReportGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnReportGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnReportGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnReportGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnReportGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnReportGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ReportExportConfigProperty: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefReportexportconfigpropertyParams]] = pydantic.Field(None, description='')
+    S3ReportExportConfigProperty: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefS3ReportexportconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnReportGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnReportGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnReportGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnReportGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnReportGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnReportGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codebuild.CfnReportGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnReportGroupDefReportexportconfigpropertyParams(pydantic.BaseModel):
@@ -2657,26 +2649,26 @@ class CfnSourceCredentialDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSourceCredentialDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codebuild.CfnSourceCredentialDefConfig] = pydantic.Field(None)
 
 
 class CfnSourceCredentialDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnSourceCredentialDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSourceCredentialDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSourceCredentialDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSourceCredentialDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSourceCredentialDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSourceCredentialDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSourceCredentialDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSourceCredentialDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSourceCredentialDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSourceCredentialDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSourceCredentialDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSourceCredentialDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSourceCredentialDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codebuild.CfnSourceCredentialDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnSourceCredentialDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -2812,86 +2804,86 @@ class CfnSourceCredentialPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Artifacts: typing.Optional[dict[str, ArtifactsDef]] = pydantic.Field(None)
-    BuildSpec: typing.Optional[dict[str, BuildSpecDef]] = pydantic.Field(None)
-    Cache: typing.Optional[dict[str, CacheDef]] = pydantic.Field(None)
-    FileSystemLocation: typing.Optional[dict[str, FileSystemLocationDef]] = pydantic.Field(None)
-    FilterGroup: typing.Optional[dict[str, FilterGroupDef]] = pydantic.Field(None)
-    LinuxArmBuildImage: typing.Optional[dict[str, LinuxArmBuildImageDef]] = pydantic.Field(None)
-    LinuxBuildImage: typing.Optional[dict[str, LinuxBuildImageDef]] = pydantic.Field(None)
-    LinuxGpuBuildImage: typing.Optional[dict[str, LinuxGpuBuildImageDef]] = pydantic.Field(None)
-    PhaseChangeEvent: typing.Optional[dict[str, PhaseChangeEventDef]] = pydantic.Field(None)
-    Source: typing.Optional[dict[str, SourceDef]] = pydantic.Field(None)
-    StateChangeEvent: typing.Optional[dict[str, StateChangeEventDef]] = pydantic.Field(None)
-    WindowsBuildImage: typing.Optional[dict[str, WindowsBuildImageDef]] = pydantic.Field(None)
-    BitBucketSourceCredentials: typing.Optional[dict[str, BitBucketSourceCredentialsDef]] = pydantic.Field(None)
-    GitHubEnterpriseSourceCredentials: typing.Optional[dict[str, GitHubEnterpriseSourceCredentialsDef]] = pydantic.Field(None)
-    GitHubSourceCredentials: typing.Optional[dict[str, GitHubSourceCredentialsDef]] = pydantic.Field(None)
-    PipelineProject: typing.Optional[dict[str, PipelineProjectDef]] = pydantic.Field(None)
-    Project: typing.Optional[dict[str, ProjectDef]] = pydantic.Field(None)
-    ReportGroup: typing.Optional[dict[str, ReportGroupDef]] = pydantic.Field(None)
-    UntrustedCodeBoundaryPolicy: typing.Optional[dict[str, UntrustedCodeBoundaryPolicyDef]] = pydantic.Field(None)
-    ArtifactsConfig: typing.Optional[dict[str, ArtifactsConfigDef]] = pydantic.Field(None)
-    ArtifactsProps: typing.Optional[dict[str, ArtifactsPropsDef]] = pydantic.Field(None)
-    BatchBuildConfig: typing.Optional[dict[str, BatchBuildConfigDef]] = pydantic.Field(None)
-    BindToCodePipelineOptions: typing.Optional[dict[str, BindToCodePipelineOptionsDef]] = pydantic.Field(None)
-    BitBucketSourceCredentialsProps: typing.Optional[dict[str, BitBucketSourceCredentialsPropsDef]] = pydantic.Field(None)
-    BitBucketSourceProps: typing.Optional[dict[str, BitBucketSourcePropsDef]] = pydantic.Field(None)
-    BucketCacheOptions: typing.Optional[dict[str, BucketCacheOptionsDef]] = pydantic.Field(None)
-    BuildEnvironment: typing.Optional[dict[str, BuildEnvironmentDef]] = pydantic.Field(None)
-    BuildEnvironmentCertificate: typing.Optional[dict[str, BuildEnvironmentCertificateDef]] = pydantic.Field(None)
-    BuildEnvironmentVariable: typing.Optional[dict[str, BuildEnvironmentVariableDef]] = pydantic.Field(None)
-    BuildImageBindOptions: typing.Optional[dict[str, BuildImageBindOptionsDef]] = pydantic.Field(None)
-    BuildImageConfig: typing.Optional[dict[str, BuildImageConfigDef]] = pydantic.Field(None)
-    CfnProject_ArtifactsProperty: typing.Optional[dict[str, CfnProject_ArtifactsPropertyDef]] = pydantic.Field(None)
-    CfnProject_BatchRestrictionsProperty: typing.Optional[dict[str, CfnProject_BatchRestrictionsPropertyDef]] = pydantic.Field(None)
-    CfnProject_BuildStatusConfigProperty: typing.Optional[dict[str, CfnProject_BuildStatusConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_CloudWatchLogsConfigProperty: typing.Optional[dict[str, CfnProject_CloudWatchLogsConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_EnvironmentProperty: typing.Optional[dict[str, CfnProject_EnvironmentPropertyDef]] = pydantic.Field(None)
-    CfnProject_EnvironmentVariableProperty: typing.Optional[dict[str, CfnProject_EnvironmentVariablePropertyDef]] = pydantic.Field(None)
-    CfnProject_GitSubmodulesConfigProperty: typing.Optional[dict[str, CfnProject_GitSubmodulesConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_LogsConfigProperty: typing.Optional[dict[str, CfnProject_LogsConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_ProjectBuildBatchConfigProperty: typing.Optional[dict[str, CfnProject_ProjectBuildBatchConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_ProjectCacheProperty: typing.Optional[dict[str, CfnProject_ProjectCachePropertyDef]] = pydantic.Field(None)
-    CfnProject_ProjectFileSystemLocationProperty: typing.Optional[dict[str, CfnProject_ProjectFileSystemLocationPropertyDef]] = pydantic.Field(None)
-    CfnProject_ProjectSourceVersionProperty: typing.Optional[dict[str, CfnProject_ProjectSourceVersionPropertyDef]] = pydantic.Field(None)
-    CfnProject_ProjectTriggersProperty: typing.Optional[dict[str, CfnProject_ProjectTriggersPropertyDef]] = pydantic.Field(None)
-    CfnProject_RegistryCredentialProperty: typing.Optional[dict[str, CfnProject_RegistryCredentialPropertyDef]] = pydantic.Field(None)
-    CfnProject_S3LogsConfigProperty: typing.Optional[dict[str, CfnProject_S3LogsConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_SourceAuthProperty: typing.Optional[dict[str, CfnProject_SourceAuthPropertyDef]] = pydantic.Field(None)
-    CfnProject_SourceProperty: typing.Optional[dict[str, CfnProject_SourcePropertyDef]] = pydantic.Field(None)
-    CfnProject_VpcConfigProperty: typing.Optional[dict[str, CfnProject_VpcConfigPropertyDef]] = pydantic.Field(None)
-    CfnProject_WebhookFilterProperty: typing.Optional[dict[str, CfnProject_WebhookFilterPropertyDef]] = pydantic.Field(None)
-    CfnReportGroup_ReportExportConfigProperty: typing.Optional[dict[str, CfnReportGroup_ReportExportConfigPropertyDef]] = pydantic.Field(None)
-    CfnReportGroup_S3ReportExportConfigProperty: typing.Optional[dict[str, CfnReportGroup_S3ReportExportConfigPropertyDef]] = pydantic.Field(None)
-    CloudWatchLoggingOptions: typing.Optional[dict[str, CloudWatchLoggingOptionsDef]] = pydantic.Field(None)
-    CodeCommitSourceProps: typing.Optional[dict[str, CodeCommitSourcePropsDef]] = pydantic.Field(None)
-    CommonProjectProps: typing.Optional[dict[str, CommonProjectPropsDef]] = pydantic.Field(None)
-    DockerImageOptions: typing.Optional[dict[str, DockerImageOptionsDef]] = pydantic.Field(None)
-    EfsFileSystemLocationProps: typing.Optional[dict[str, EfsFileSystemLocationPropsDef]] = pydantic.Field(None)
-    FileSystemConfig: typing.Optional[dict[str, FileSystemConfigDef]] = pydantic.Field(None)
-    GitHubEnterpriseSourceCredentialsProps: typing.Optional[dict[str, GitHubEnterpriseSourceCredentialsPropsDef]] = pydantic.Field(None)
-    GitHubEnterpriseSourceProps: typing.Optional[dict[str, GitHubEnterpriseSourcePropsDef]] = pydantic.Field(None)
-    GitHubSourceCredentialsProps: typing.Optional[dict[str, GitHubSourceCredentialsPropsDef]] = pydantic.Field(None)
-    GitHubSourceProps: typing.Optional[dict[str, GitHubSourcePropsDef]] = pydantic.Field(None)
-    LoggingOptions: typing.Optional[dict[str, LoggingOptionsDef]] = pydantic.Field(None)
-    PipelineProjectProps: typing.Optional[dict[str, PipelineProjectPropsDef]] = pydantic.Field(None)
-    ProjectNotifyOnOptions: typing.Optional[dict[str, ProjectNotifyOnOptionsDef]] = pydantic.Field(None)
-    ProjectProps: typing.Optional[dict[str, ProjectPropsDef]] = pydantic.Field(None)
-    ReportGroupProps: typing.Optional[dict[str, ReportGroupPropsDef]] = pydantic.Field(None)
-    S3ArtifactsProps: typing.Optional[dict[str, S3ArtifactsPropsDef]] = pydantic.Field(None)
-    S3LoggingOptions: typing.Optional[dict[str, S3LoggingOptionsDef]] = pydantic.Field(None)
-    S3SourceProps: typing.Optional[dict[str, S3SourcePropsDef]] = pydantic.Field(None)
-    SourceConfig: typing.Optional[dict[str, SourceConfigDef]] = pydantic.Field(None)
-    SourceProps: typing.Optional[dict[str, SourcePropsDef]] = pydantic.Field(None)
-    UntrustedCodeBoundaryPolicyProps: typing.Optional[dict[str, UntrustedCodeBoundaryPolicyPropsDef]] = pydantic.Field(None)
-    CfnProject: typing.Optional[dict[str, CfnProjectDef]] = pydantic.Field(None)
-    CfnReportGroup: typing.Optional[dict[str, CfnReportGroupDef]] = pydantic.Field(None)
-    CfnSourceCredential: typing.Optional[dict[str, CfnSourceCredentialDef]] = pydantic.Field(None)
-    CfnProjectProps: typing.Optional[dict[str, CfnProjectPropsDef]] = pydantic.Field(None)
-    CfnReportGroupProps: typing.Optional[dict[str, CfnReportGroupPropsDef]] = pydantic.Field(None)
-    CfnSourceCredentialProps: typing.Optional[dict[str, CfnSourceCredentialPropsDef]] = pydantic.Field(None)
+    Artifacts: typing.Optional[dict[str, models.aws_codebuild.ArtifactsDef]] = pydantic.Field(None)
+    BuildSpec: typing.Optional[dict[str, models.aws_codebuild.BuildSpecDef]] = pydantic.Field(None)
+    Cache: typing.Optional[dict[str, models.aws_codebuild.CacheDef]] = pydantic.Field(None)
+    FileSystemLocation: typing.Optional[dict[str, models.aws_codebuild.FileSystemLocationDef]] = pydantic.Field(None)
+    FilterGroup: typing.Optional[dict[str, models.aws_codebuild.FilterGroupDef]] = pydantic.Field(None)
+    LinuxArmBuildImage: typing.Optional[dict[str, models.aws_codebuild.LinuxArmBuildImageDef]] = pydantic.Field(None)
+    LinuxBuildImage: typing.Optional[dict[str, models.aws_codebuild.LinuxBuildImageDef]] = pydantic.Field(None)
+    LinuxGpuBuildImage: typing.Optional[dict[str, models.aws_codebuild.LinuxGpuBuildImageDef]] = pydantic.Field(None)
+    PhaseChangeEvent: typing.Optional[dict[str, models.aws_codebuild.PhaseChangeEventDef]] = pydantic.Field(None)
+    Source: typing.Optional[dict[str, models.aws_codebuild.SourceDef]] = pydantic.Field(None)
+    StateChangeEvent: typing.Optional[dict[str, models.aws_codebuild.StateChangeEventDef]] = pydantic.Field(None)
+    WindowsBuildImage: typing.Optional[dict[str, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None)
+    BitBucketSourceCredentials: typing.Optional[dict[str, models.aws_codebuild.BitBucketSourceCredentialsDef]] = pydantic.Field(None)
+    GitHubEnterpriseSourceCredentials: typing.Optional[dict[str, models.aws_codebuild.GitHubEnterpriseSourceCredentialsDef]] = pydantic.Field(None)
+    GitHubSourceCredentials: typing.Optional[dict[str, models.aws_codebuild.GitHubSourceCredentialsDef]] = pydantic.Field(None)
+    PipelineProject: typing.Optional[dict[str, models.aws_codebuild.PipelineProjectDef]] = pydantic.Field(None)
+    Project: typing.Optional[dict[str, models.aws_codebuild.ProjectDef]] = pydantic.Field(None)
+    ReportGroup: typing.Optional[dict[str, models.aws_codebuild.ReportGroupDef]] = pydantic.Field(None)
+    UntrustedCodeBoundaryPolicy: typing.Optional[dict[str, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef]] = pydantic.Field(None)
+    ArtifactsConfig: typing.Optional[dict[str, models.aws_codebuild.ArtifactsConfigDef]] = pydantic.Field(None)
+    ArtifactsProps: typing.Optional[dict[str, models.aws_codebuild.ArtifactsPropsDef]] = pydantic.Field(None)
+    BatchBuildConfig: typing.Optional[dict[str, models.aws_codebuild.BatchBuildConfigDef]] = pydantic.Field(None)
+    BindToCodePipelineOptions: typing.Optional[dict[str, models.aws_codebuild.BindToCodePipelineOptionsDef]] = pydantic.Field(None)
+    BitBucketSourceCredentialsProps: typing.Optional[dict[str, models.aws_codebuild.BitBucketSourceCredentialsPropsDef]] = pydantic.Field(None)
+    BitBucketSourceProps: typing.Optional[dict[str, models.aws_codebuild.BitBucketSourcePropsDef]] = pydantic.Field(None)
+    BucketCacheOptions: typing.Optional[dict[str, models.aws_codebuild.BucketCacheOptionsDef]] = pydantic.Field(None)
+    BuildEnvironment: typing.Optional[dict[str, models.aws_codebuild.BuildEnvironmentDef]] = pydantic.Field(None)
+    BuildEnvironmentCertificate: typing.Optional[dict[str, models.aws_codebuild.BuildEnvironmentCertificateDef]] = pydantic.Field(None)
+    BuildEnvironmentVariable: typing.Optional[dict[str, models.aws_codebuild.BuildEnvironmentVariableDef]] = pydantic.Field(None)
+    BuildImageBindOptions: typing.Optional[dict[str, models.aws_codebuild.BuildImageBindOptionsDef]] = pydantic.Field(None)
+    BuildImageConfig: typing.Optional[dict[str, models.aws_codebuild.BuildImageConfigDef]] = pydantic.Field(None)
+    CfnProject_ArtifactsProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_ArtifactsPropertyDef]] = pydantic.Field(None)
+    CfnProject_BatchRestrictionsProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_BatchRestrictionsPropertyDef]] = pydantic.Field(None)
+    CfnProject_BuildStatusConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_BuildStatusConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_CloudWatchLogsConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_CloudWatchLogsConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_EnvironmentProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_EnvironmentPropertyDef]] = pydantic.Field(None)
+    CfnProject_EnvironmentVariableProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_EnvironmentVariablePropertyDef]] = pydantic.Field(None)
+    CfnProject_GitSubmodulesConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_GitSubmodulesConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_LogsConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_LogsConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_ProjectBuildBatchConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_ProjectBuildBatchConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_ProjectCacheProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_ProjectCachePropertyDef]] = pydantic.Field(None)
+    CfnProject_ProjectFileSystemLocationProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_ProjectFileSystemLocationPropertyDef]] = pydantic.Field(None)
+    CfnProject_ProjectSourceVersionProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_ProjectSourceVersionPropertyDef]] = pydantic.Field(None)
+    CfnProject_ProjectTriggersProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_ProjectTriggersPropertyDef]] = pydantic.Field(None)
+    CfnProject_RegistryCredentialProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_RegistryCredentialPropertyDef]] = pydantic.Field(None)
+    CfnProject_S3LogsConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_S3LogsConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_SourceAuthProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_SourceAuthPropertyDef]] = pydantic.Field(None)
+    CfnProject_SourceProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_SourcePropertyDef]] = pydantic.Field(None)
+    CfnProject_VpcConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_VpcConfigPropertyDef]] = pydantic.Field(None)
+    CfnProject_WebhookFilterProperty: typing.Optional[dict[str, models.aws_codebuild.CfnProject_WebhookFilterPropertyDef]] = pydantic.Field(None)
+    CfnReportGroup_ReportExportConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnReportGroup_ReportExportConfigPropertyDef]] = pydantic.Field(None)
+    CfnReportGroup_S3ReportExportConfigProperty: typing.Optional[dict[str, models.aws_codebuild.CfnReportGroup_S3ReportExportConfigPropertyDef]] = pydantic.Field(None)
+    CloudWatchLoggingOptions: typing.Optional[dict[str, models.aws_codebuild.CloudWatchLoggingOptionsDef]] = pydantic.Field(None)
+    CodeCommitSourceProps: typing.Optional[dict[str, models.aws_codebuild.CodeCommitSourcePropsDef]] = pydantic.Field(None)
+    CommonProjectProps: typing.Optional[dict[str, models.aws_codebuild.CommonProjectPropsDef]] = pydantic.Field(None)
+    DockerImageOptions: typing.Optional[dict[str, models.aws_codebuild.DockerImageOptionsDef]] = pydantic.Field(None)
+    EfsFileSystemLocationProps: typing.Optional[dict[str, models.aws_codebuild.EfsFileSystemLocationPropsDef]] = pydantic.Field(None)
+    FileSystemConfig: typing.Optional[dict[str, models.aws_codebuild.FileSystemConfigDef]] = pydantic.Field(None)
+    GitHubEnterpriseSourceCredentialsProps: typing.Optional[dict[str, models.aws_codebuild.GitHubEnterpriseSourceCredentialsPropsDef]] = pydantic.Field(None)
+    GitHubEnterpriseSourceProps: typing.Optional[dict[str, models.aws_codebuild.GitHubEnterpriseSourcePropsDef]] = pydantic.Field(None)
+    GitHubSourceCredentialsProps: typing.Optional[dict[str, models.aws_codebuild.GitHubSourceCredentialsPropsDef]] = pydantic.Field(None)
+    GitHubSourceProps: typing.Optional[dict[str, models.aws_codebuild.GitHubSourcePropsDef]] = pydantic.Field(None)
+    LoggingOptions: typing.Optional[dict[str, models.aws_codebuild.LoggingOptionsDef]] = pydantic.Field(None)
+    PipelineProjectProps: typing.Optional[dict[str, models.aws_codebuild.PipelineProjectPropsDef]] = pydantic.Field(None)
+    ProjectNotifyOnOptions: typing.Optional[dict[str, models.aws_codebuild.ProjectNotifyOnOptionsDef]] = pydantic.Field(None)
+    ProjectProps: typing.Optional[dict[str, models.aws_codebuild.ProjectPropsDef]] = pydantic.Field(None)
+    ReportGroupProps: typing.Optional[dict[str, models.aws_codebuild.ReportGroupPropsDef]] = pydantic.Field(None)
+    S3ArtifactsProps: typing.Optional[dict[str, models.aws_codebuild.S3ArtifactsPropsDef]] = pydantic.Field(None)
+    S3LoggingOptions: typing.Optional[dict[str, models.aws_codebuild.S3LoggingOptionsDef]] = pydantic.Field(None)
+    S3SourceProps: typing.Optional[dict[str, models.aws_codebuild.S3SourcePropsDef]] = pydantic.Field(None)
+    SourceConfig: typing.Optional[dict[str, models.aws_codebuild.SourceConfigDef]] = pydantic.Field(None)
+    SourceProps: typing.Optional[dict[str, models.aws_codebuild.SourcePropsDef]] = pydantic.Field(None)
+    UntrustedCodeBoundaryPolicyProps: typing.Optional[dict[str, models.aws_codebuild.UntrustedCodeBoundaryPolicyPropsDef]] = pydantic.Field(None)
+    CfnProject: typing.Optional[dict[str, models.aws_codebuild.CfnProjectDef]] = pydantic.Field(None)
+    CfnReportGroup: typing.Optional[dict[str, models.aws_codebuild.CfnReportGroupDef]] = pydantic.Field(None)
+    CfnSourceCredential: typing.Optional[dict[str, models.aws_codebuild.CfnSourceCredentialDef]] = pydantic.Field(None)
+    CfnProjectProps: typing.Optional[dict[str, models.aws_codebuild.CfnProjectPropsDef]] = pydantic.Field(None)
+    CfnReportGroupProps: typing.Optional[dict[str, models.aws_codebuild.CfnReportGroupPropsDef]] = pydantic.Field(None)
+    CfnSourceCredentialProps: typing.Optional[dict[str, models.aws_codebuild.CfnSourceCredentialPropsDef]] = pydantic.Field(None)
     ...
+
+import models

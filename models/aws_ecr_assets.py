@@ -16,15 +16,16 @@ class NetworkModeDef(BaseClass):
     ...
 
 
-    from_container: typing.Optional[NetworkModeDefFromContainerParams] = pydantic.Field(None, description="Reuse another container's network stack.")
-    resource_config: typing.Optional[NetworkModeDefConfig] = pydantic.Field(None)
+    from_container: typing.Optional[models.aws_ecr_assets.NetworkModeDefFromContainerParams] = pydantic.Field(None, description="Reuse another container's network stack.")
+    resource_config: typing.Optional[models.aws_ecr_assets.NetworkModeDefConfig] = pydantic.Field(None)
 
 
 class NetworkModeDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[NetworkModeDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom networking mode Use this if the networking mode name is not yet supported by the CDK.')
+    custom: typing.Optional[list[models.aws_ecr_assets.NetworkModeDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom networking mode Use this if the networking mode name is not yet supported by the CDK.')
 
 class NetworkModeDefCustomParams(pydantic.BaseModel):
     mode: str = pydantic.Field(..., description='The networking mode to use for docker build.')
+    return_config: typing.Optional[list[models.aws_ecr_assets.NetworkModeDefConfig]] = pydantic.Field(None)
     ...
 
 class NetworkModeDefFromContainerParams(pydantic.BaseModel):
@@ -42,14 +43,15 @@ class PlatformDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PlatformDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr_assets.PlatformDefConfig] = pydantic.Field(None)
 
 
 class PlatformDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[PlatformDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom platform Use this if the platform name is not yet supported by the CDK.')
+    custom: typing.Optional[list[models.aws_ecr_assets.PlatformDefCustomParams]] = pydantic.Field(None, description='Used to specify a custom platform Use this if the platform name is not yet supported by the CDK.')
 
 class PlatformDefCustomParams(pydantic.BaseModel):
     platform: str = pydantic.Field(..., description='The platform to use for docker build.')
+    return_config: typing.Optional[list[models.aws_ecr_assets.PlatformDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -80,11 +82,11 @@ class DockerImageAssetDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DockerImageAssetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr_assets.DockerImageAssetDefConfig] = pydantic.Field(None)
 
 
 class DockerImageAssetDefConfig(pydantic.BaseModel):
-    add_resource_metadata: typing.Optional[list[DockerImageAssetDefAddResourceMetadataParams]] = pydantic.Field(None, description='Adds CloudFormation template metadata to the specified resource with information that indicates which resource property is mapped to this local asset.\nThis can be used by tools such as SAM CLI to provide local\nexperience such as local invocation and debugging of Lambda functions.\n\nAsset metadata will only be included if the stack is synthesized with the\n"aws:cdk:enable-asset-metadata" context key defined, which is the default\nbehavior when synthesizing via the CDK Toolkit.')
+    add_resource_metadata: typing.Optional[list[models.aws_ecr_assets.DockerImageAssetDefAddResourceMetadataParams]] = pydantic.Field(None, description='Adds CloudFormation template metadata to the specified resource with information that indicates which resource property is mapped to this local asset.\nThis can be used by tools such as SAM CLI to provide local\nexperience such as local invocation and debugging of Lambda functions.\n\nAsset metadata will only be included if the stack is synthesized with the\n"aws:cdk:enable-asset-metadata" context key defined, which is the default\nbehavior when synthesizing via the CDK Toolkit.')
     repository_config: typing.Optional[models._interface_methods.AwsEcrIRepositoryDefConfig] = pydantic.Field(None)
 
 class DockerImageAssetDefAddResourceMetadataParams(pydantic.BaseModel):
@@ -104,7 +106,7 @@ class TarballImageAssetDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[TarballImageAssetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecr_assets.TarballImageAssetDefConfig] = pydantic.Field(None)
 
 
 class TarballImageAssetDefConfig(pydantic.BaseModel):
@@ -217,16 +219,16 @@ class TarballImageAssetPropsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    NetworkMode: typing.Optional[dict[str, NetworkModeDef]] = pydantic.Field(None)
-    Platform: typing.Optional[dict[str, PlatformDef]] = pydantic.Field(None)
-    DockerImageAsset: typing.Optional[dict[str, DockerImageAssetDef]] = pydantic.Field(None)
-    TarballImageAsset: typing.Optional[dict[str, TarballImageAssetDef]] = pydantic.Field(None)
-    DockerCacheOption: typing.Optional[dict[str, DockerCacheOptionDef]] = pydantic.Field(None)
-    DockerImageAssetInvalidationOptions: typing.Optional[dict[str, DockerImageAssetInvalidationOptionsDef]] = pydantic.Field(None)
-    DockerImageAssetOptions: typing.Optional[dict[str, DockerImageAssetOptionsDef]] = pydantic.Field(None)
-    DockerImageAssetProps: typing.Optional[dict[str, DockerImageAssetPropsDef]] = pydantic.Field(None)
-    TarballImageAssetProps: typing.Optional[dict[str, TarballImageAssetPropsDef]] = pydantic.Field(None)
+    NetworkMode: typing.Optional[dict[str, models.aws_ecr_assets.NetworkModeDef]] = pydantic.Field(None)
+    Platform: typing.Optional[dict[str, models.aws_ecr_assets.PlatformDef]] = pydantic.Field(None)
+    DockerImageAsset: typing.Optional[dict[str, models.aws_ecr_assets.DockerImageAssetDef]] = pydantic.Field(None)
+    TarballImageAsset: typing.Optional[dict[str, models.aws_ecr_assets.TarballImageAssetDef]] = pydantic.Field(None)
+    DockerCacheOption: typing.Optional[dict[str, models.aws_ecr_assets.DockerCacheOptionDef]] = pydantic.Field(None)
+    DockerImageAssetInvalidationOptions: typing.Optional[dict[str, models.aws_ecr_assets.DockerImageAssetInvalidationOptionsDef]] = pydantic.Field(None)
+    DockerImageAssetOptions: typing.Optional[dict[str, models.aws_ecr_assets.DockerImageAssetOptionsDef]] = pydantic.Field(None)
+    DockerImageAssetProps: typing.Optional[dict[str, models.aws_ecr_assets.DockerImageAssetPropsDef]] = pydantic.Field(None)
+    TarballImageAssetProps: typing.Optional[dict[str, models.aws_ecr_assets.TarballImageAssetPropsDef]] = pydantic.Field(None)
     ...
+
+import models

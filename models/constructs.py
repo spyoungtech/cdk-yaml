@@ -28,16 +28,17 @@ class DependableDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DependableDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.constructs.DependableDefConfig] = pydantic.Field(None)
 
 
 class DependableDefConfig(pydantic.BaseModel):
-    get: typing.Optional[list[DependableDefGetParams]] = pydantic.Field(None, description='(deprecated) Return the matching Dependable for the given class instance.')
-    implement: typing.Optional[list[DependableDefImplementParams]] = pydantic.Field(None, description='(experimental) Turn any object into an IDependable.')
-    of: typing.Optional[list[DependableDefOfParams]] = pydantic.Field(None, description='(experimental) Return the matching Dependable for the given class instance.')
+    get: typing.Optional[list[models.constructs.DependableDefGetParams]] = pydantic.Field(None, description='(deprecated) Return the matching Dependable for the given class instance.')
+    implement: typing.Optional[list[models.constructs.DependableDefImplementParams]] = pydantic.Field(None, description='(experimental) Turn any object into an IDependable.')
+    of: typing.Optional[list[models.constructs.DependableDefOfParams]] = pydantic.Field(None, description='(experimental) Return the matching Dependable for the given class instance.')
 
 class DependableDefGetParams(pydantic.BaseModel):
     instance: models.UnsupportedResource = pydantic.Field(..., description='-\n\n:deprecated: use ``of``\n\n:stability: deprecated\n')
+    return_config: typing.Optional[list[models.constructs.DependableDefConfig]] = pydantic.Field(None)
     ...
 
 class DependableDefImplementParams(pydantic.BaseModel):
@@ -47,6 +48,7 @@ class DependableDefImplementParams(pydantic.BaseModel):
 
 class DependableDefOfParams(pydantic.BaseModel):
     instance: models.UnsupportedResource = pydantic.Field(..., description='-\n\n:stability: experimental\n')
+    return_config: typing.Optional[list[models.constructs.DependableDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -61,11 +63,11 @@ class DependencyGroupDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DependencyGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.constructs.DependencyGroupDefConfig] = pydantic.Field(None)
 
 
 class DependencyGroupDefConfig(pydantic.BaseModel):
-    add: typing.Optional[list[DependencyGroupDefAddParams]] = pydantic.Field(None, description='(experimental) Add a construct to the dependency roots.')
+    add: typing.Optional[list[models.constructs.DependencyGroupDefAddParams]] = pydantic.Field(None, description='(experimental) Add a construct to the dependency roots.')
 
 class DependencyGroupDefAddParams(pydantic.BaseModel):
     scopes: list[models.UnsupportedResource] = pydantic.Field(...)
@@ -83,22 +85,22 @@ class NodeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NodeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.constructs.NodeDefConfig] = pydantic.Field(None)
 
 
 class NodeDefConfig(pydantic.BaseModel):
-    add_dependency: typing.Optional[list[NodeDefAddDependencyParams]] = pydantic.Field(None, description='Add an ordering dependency on another construct.\nAn ``IDependable``')
-    add_metadata: typing.Optional[list[NodeDefAddMetadataParams]] = pydantic.Field(None, description='Adds a metadata entry to this construct.\nEntries are arbitrary values and will also include a stack trace to allow tracing back to\nthe code location for when the entry was added. It can be used, for example, to include source\nmapping in CloudFormation templates to improve diagnostics.')
-    add_validation: typing.Optional[list[NodeDefAddValidationParams]] = pydantic.Field(None, description='Adds a validation to this construct.\nWhen ``node.validate()`` is called, the ``validate()`` method will be called on\nall validations and all errors will be returned.')
-    find_all: typing.Optional[list[NodeDefFindAllParams]] = pydantic.Field(None, description='Return this construct and all of its children in the given order.')
-    find_child: typing.Optional[list[NodeDefFindChildParams]] = pydantic.Field(None, description='Return a direct child by id.\nThrows an error if the child is not found.')
-    get_context: typing.Optional[list[NodeDefGetContextParams]] = pydantic.Field(None, description='Retrieves a value from tree context if present. Otherwise, would throw an error.\nContext is usually initialized at the root, but can be overridden at any point in the tree.')
+    add_dependency: typing.Optional[list[models.constructs.NodeDefAddDependencyParams]] = pydantic.Field(None, description='Add an ordering dependency on another construct.\nAn ``IDependable``')
+    add_metadata: typing.Optional[list[models.constructs.NodeDefAddMetadataParams]] = pydantic.Field(None, description='Adds a metadata entry to this construct.\nEntries are arbitrary values and will also include a stack trace to allow tracing back to\nthe code location for when the entry was added. It can be used, for example, to include source\nmapping in CloudFormation templates to improve diagnostics.')
+    add_validation: typing.Optional[list[models.constructs.NodeDefAddValidationParams]] = pydantic.Field(None, description='Adds a validation to this construct.\nWhen ``node.validate()`` is called, the ``validate()`` method will be called on\nall validations and all errors will be returned.')
+    find_all: typing.Optional[list[models.constructs.NodeDefFindAllParams]] = pydantic.Field(None, description='Return this construct and all of its children in the given order.')
+    find_child: typing.Optional[list[models.constructs.NodeDefFindChildParams]] = pydantic.Field(None, description='Return a direct child by id.\nThrows an error if the child is not found.')
+    get_context: typing.Optional[list[models.constructs.NodeDefGetContextParams]] = pydantic.Field(None, description='Retrieves a value from tree context if present. Otherwise, would throw an error.\nContext is usually initialized at the root, but can be overridden at any point in the tree.')
     lock: typing.Optional[bool] = pydantic.Field(None, description='Locks this construct from allowing more children to be added.\nAfter this\ncall, no more children can be added to this construct or to any children.')
-    of: typing.Optional[list[NodeDefOfParams]] = pydantic.Field(None, description='(deprecated) Returns the node associated with a construct.')
-    set_context: typing.Optional[list[NodeDefSetContextParams]] = pydantic.Field(None, description='This can be used to set contextual values.\nContext must be set before any children are added, since children may consult context info during construction.\nIf the key already exists, it will be overridden.')
-    try_find_child: typing.Optional[list[NodeDefTryFindChildParams]] = pydantic.Field(None, description='Return a direct child by id, or undefined.')
-    try_get_context: typing.Optional[list[NodeDefTryGetContextParams]] = pydantic.Field(None, description='Retrieves a value from tree context.\nContext is usually initialized at the root, but can be overridden at any point in the tree.')
-    try_remove_child: typing.Optional[list[NodeDefTryRemoveChildParams]] = pydantic.Field(None, description='(experimental) Remove the child with the given name, if present.')
+    of: typing.Optional[list[models.constructs.NodeDefOfParams]] = pydantic.Field(None, description='(deprecated) Returns the node associated with a construct.')
+    set_context: typing.Optional[list[models.constructs.NodeDefSetContextParams]] = pydantic.Field(None, description='This can be used to set contextual values.\nContext must be set before any children are added, since children may consult context info during construction.\nIf the key already exists, it will be overridden.')
+    try_find_child: typing.Optional[list[models.constructs.NodeDefTryFindChildParams]] = pydantic.Field(None, description='Return a direct child by id, or undefined.')
+    try_get_context: typing.Optional[list[models.constructs.NodeDefTryGetContextParams]] = pydantic.Field(None, description='Retrieves a value from tree context.\nContext is usually initialized at the root, but can be overridden at any point in the tree.')
+    try_remove_child: typing.Optional[list[models.constructs.NodeDefTryRemoveChildParams]] = pydantic.Field(None, description='(experimental) Remove the child with the given name, if present.')
     validate_: typing.Optional[bool] = pydantic.Field(None, description='Validates this construct.\nInvokes the ``validate()`` method on all validations added through\n``addValidation()``.\n\n:return:\n\nan array of validation error messages associated with this\nconstruct.', alias='validate')
 
 class NodeDefAddDependencyParams(pydantic.BaseModel):
@@ -130,6 +132,7 @@ class NodeDefGetContextParams(pydantic.BaseModel):
 
 class NodeDefOfParams(pydantic.BaseModel):
     construct_: models.AnyResource = pydantic.Field(..., description='the construct.\n\n:deprecated: use ``construct.node`` instead\n\n:stability: deprecated\n', alias='construct')
+    return_config: typing.Optional[list[models.constructs.NodeDefConfig]] = pydantic.Field(None)
     ...
 
 class NodeDefSetContextParams(pydantic.BaseModel):
@@ -191,13 +194,13 @@ class MetadataOptionsDef(BaseStruct):
 #  autogenerated from constructs.IValidation
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Construct: typing.Optional[dict[str, ConstructDef]] = pydantic.Field(None)
-    Dependable: typing.Optional[dict[str, DependableDef]] = pydantic.Field(None)
-    DependencyGroup: typing.Optional[dict[str, DependencyGroupDef]] = pydantic.Field(None)
-    Node: typing.Optional[dict[str, NodeDef]] = pydantic.Field(None)
-    MetadataEntry: typing.Optional[dict[str, MetadataEntryDef]] = pydantic.Field(None)
-    MetadataOptions: typing.Optional[dict[str, MetadataOptionsDef]] = pydantic.Field(None)
+    Construct: typing.Optional[dict[str, models.constructs.ConstructDef]] = pydantic.Field(None)
+    Dependable: typing.Optional[dict[str, models.constructs.DependableDef]] = pydantic.Field(None)
+    DependencyGroup: typing.Optional[dict[str, models.constructs.DependencyGroupDef]] = pydantic.Field(None)
+    Node: typing.Optional[dict[str, models.constructs.NodeDef]] = pydantic.Field(None)
+    MetadataEntry: typing.Optional[dict[str, models.constructs.MetadataEntryDef]] = pydantic.Field(None)
+    MetadataOptions: typing.Optional[dict[str, models.constructs.MetadataOptionsDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -16,14 +16,14 @@ class CodeDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[CodeDefFromAssetParams] = pydantic.Field(None, description='Code from user-supplied asset.')
-    from_directory: typing.Optional[CodeDefFromDirectoryParams] = pydantic.Field(None, description='Code from directory.')
-    from_zip_file: typing.Optional[CodeDefFromZipFileParams] = pydantic.Field(None, description='Code from preexisting ZIP file.')
-    resource_config: typing.Optional[CodeDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_codecommit.CodeDefFromAssetParams] = pydantic.Field(None, description='Code from user-supplied asset.')
+    from_directory: typing.Optional[models.aws_codecommit.CodeDefFromDirectoryParams] = pydantic.Field(None, description='Code from directory.')
+    from_zip_file: typing.Optional[models.aws_codecommit.CodeDefFromZipFileParams] = pydantic.Field(None, description='Code from preexisting ZIP file.')
+    resource_config: typing.Optional[models.aws_codecommit.CodeDefConfig] = pydantic.Field(None)
 
 
 class CodeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeDefBindParams]] = pydantic.Field(None, description="This method is called after a repository is passed this instance of Code in its 'code' property.")
+    bind: typing.Optional[list[models.aws_codecommit.CodeDefBindParams]] = pydantic.Field(None, description="This method is called after a repository is passed this instance of Code in its 'code' property.")
 
 class CodeDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='the binding scope.')
@@ -70,44 +70,43 @@ class RepositoryDef(BaseConstruct):
     ...
 
 
-    from_repository_arn: typing.Optional[RepositoryDefFromRepositoryArnParams] = pydantic.Field(None, description='Imports a codecommit repository.')
-    from_repository_name: typing.Optional[RepositoryDefFromRepositoryNameParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[RepositoryDefConfig] = pydantic.Field(None)
+    from_repository_arn: typing.Optional[models.aws_codecommit.RepositoryDefFromRepositoryArnParams] = pydantic.Field(None, description='Imports a codecommit repository.')
+    from_repository_name: typing.Optional[models.aws_codecommit.RepositoryDefFromRepositoryNameParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_codecommit.RepositoryDefConfig] = pydantic.Field(None)
 
 
 class RepositoryDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_source: typing.Optional[list[RepositoryDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
-    grant: typing.Optional[list[RepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
-    grant_pull: typing.Optional[list[RepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull this repository.')
-    grant_pull_push: typing.Optional[list[RepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push this repository.')
-    grant_read: typing.Optional[list[RepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read this repository.')
-    notifiy_on_pull_request_merged: typing.Optional[list[RepositoryDefNotifiyOnPullRequestMergedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is merged.')
-    notify: typing.Optional[list[RepositoryDefNotifyParams]] = pydantic.Field(None, description='Create a trigger to notify another service to run actions on repository events.')
-    notify_on: typing.Optional[list[RepositoryDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events specified by you are emitted. Similar to ``onEvent`` API.\nYou can also use the methods to define rules for the specific event emitted.\neg: ``notifyOnPullRequstCreated``.')
-    notify_on_approval_rule_overridden: typing.Optional[list[RepositoryDefNotifyOnApprovalRuleOverriddenParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval rule is overridden.')
-    notify_on_approval_status_changed: typing.Optional[list[RepositoryDefNotifyOnApprovalStatusChangedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval status is changed.')
-    notify_on_branch_or_tag_created: typing.Optional[list[RepositoryDefNotifyOnBranchOrTagCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a new branch or tag is created.')
-    notify_on_branch_or_tag_deleted: typing.Optional[list[RepositoryDefNotifyOnBranchOrTagDeletedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a branch or tag is deleted.')
-    notify_on_pull_request_comment: typing.Optional[list[RepositoryDefNotifyOnPullRequestCommentParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a comment is made on a pull request.')
-    notify_on_pull_request_created: typing.Optional[list[RepositoryDefNotifyOnPullRequestCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is created.')
-    notify_on_pull_request_merged: typing.Optional[list[RepositoryDefNotifyOnPullRequestMergedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is merged.')
-    on_comment_on_commit: typing.Optional[list[RepositoryDefOnCommentOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a commit.')
-    on_comment_on_pull_request: typing.Optional[list[RepositoryDefOnCommentOnPullRequestParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a pull request.')
-    on_commit: typing.Optional[list[RepositoryDefOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a commit is pushed to a branch.')
-    on_event: typing.Optional[list[RepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
-    on_pull_request_state_change: typing.Optional[list[RepositoryDefOnPullRequestStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a pull request state is changed.')
-    on_reference_created: typing.Optional[list[RepositoryDefOnReferenceCreatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is created (i.e. a new branch/tag is created) to the repository.')
-    on_reference_deleted: typing.Optional[list[RepositoryDefOnReferenceDeletedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is delete (i.e. a branch/tag is deleted) from the repository.')
-    on_reference_updated: typing.Optional[list[RepositoryDefOnReferenceUpdatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is updated (i.e. a commit is pushed to an existing or new branch) from the repository.')
-    on_state_change: typing.Optional[list[RepositoryDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a "CodeCommit Repository State Change" event occurs.')
+    bind_as_notification_rule_source: typing.Optional[list[models.aws_codecommit.RepositoryDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    grant: typing.Optional[list[models.aws_codecommit.RepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
+    grant_pull: typing.Optional[list[models.aws_codecommit.RepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull this repository.')
+    grant_pull_push: typing.Optional[list[models.aws_codecommit.RepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push this repository.')
+    grant_read: typing.Optional[list[models.aws_codecommit.RepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read this repository.')
+    notifiy_on_pull_request_merged: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifiyOnPullRequestMergedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is merged.')
+    notify: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyParams]] = pydantic.Field(None, description='Create a trigger to notify another service to run actions on repository events.')
+    notify_on: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events specified by you are emitted. Similar to ``onEvent`` API.\nYou can also use the methods to define rules for the specific event emitted.\neg: ``notifyOnPullRequstCreated``.')
+    notify_on_approval_rule_overridden: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnApprovalRuleOverriddenParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval rule is overridden.')
+    notify_on_approval_status_changed: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnApprovalStatusChangedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval status is changed.')
+    notify_on_branch_or_tag_created: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnBranchOrTagCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a new branch or tag is created.')
+    notify_on_branch_or_tag_deleted: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnBranchOrTagDeletedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a branch or tag is deleted.')
+    notify_on_pull_request_comment: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnPullRequestCommentParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a comment is made on a pull request.')
+    notify_on_pull_request_created: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnPullRequestCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is created.')
+    notify_on_pull_request_merged: typing.Optional[list[models.aws_codecommit.RepositoryDefNotifyOnPullRequestMergedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is merged.')
+    on_comment_on_commit: typing.Optional[list[models.aws_codecommit.RepositoryDefOnCommentOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a commit.')
+    on_comment_on_pull_request: typing.Optional[list[models.aws_codecommit.RepositoryDefOnCommentOnPullRequestParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a pull request.')
+    on_commit: typing.Optional[list[models.aws_codecommit.RepositoryDefOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a commit is pushed to a branch.')
+    on_event: typing.Optional[list[models.aws_codecommit.RepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    on_pull_request_state_change: typing.Optional[list[models.aws_codecommit.RepositoryDefOnPullRequestStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a pull request state is changed.')
+    on_reference_created: typing.Optional[list[models.aws_codecommit.RepositoryDefOnReferenceCreatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is created (i.e. a new branch/tag is created) to the repository.')
+    on_reference_deleted: typing.Optional[list[models.aws_codecommit.RepositoryDefOnReferenceDeletedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is delete (i.e. a branch/tag is deleted) from the repository.')
+    on_reference_updated: typing.Optional[list[models.aws_codecommit.RepositoryDefOnReferenceUpdatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is updated (i.e. a commit is pushed to an existing or new branch) from the repository.')
+    on_state_change: typing.Optional[list[models.aws_codecommit.RepositoryDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a "CodeCommit Repository State Change" event occurs.')
 
 class RepositoryDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
     ...
 
 class RepositoryDefBindAsNotificationRuleSourceParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class RepositoryDefFromRepositoryArnParams(pydantic.BaseModel):
@@ -474,29 +473,29 @@ class CfnRepositoryDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRepositoryDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codecommit.CfnRepositoryDefConfig] = pydantic.Field(None)
 
 
 class CfnRepositoryDefConfig(pydantic.BaseModel):
-    CodeProperty: typing.Optional[list[CfnRepositoryDefCodepropertyParams]] = pydantic.Field(None, description='')
-    RepositoryTriggerProperty: typing.Optional[list[CfnRepositoryDefRepositorytriggerpropertyParams]] = pydantic.Field(None, description='')
-    S3Property: typing.Optional[list[CfnRepositoryDefS3PropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnRepositoryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRepositoryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRepositoryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRepositoryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRepositoryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRepositoryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRepositoryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CodeProperty: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefCodepropertyParams]] = pydantic.Field(None, description='')
+    RepositoryTriggerProperty: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefRepositorytriggerpropertyParams]] = pydantic.Field(None, description='')
+    S3Property: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefS3PropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRepositoryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRepositoryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRepositoryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRepositoryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRepositoryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRepositoryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codecommit.CfnRepositoryDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnRepositoryDefCodepropertyParams(pydantic.BaseModel):
@@ -600,20 +599,20 @@ class CfnRepositoryPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Code: typing.Optional[dict[str, CodeDef]] = pydantic.Field(None)
-    ReferenceEvent: typing.Optional[dict[str, ReferenceEventDef]] = pydantic.Field(None)
-    Repository: typing.Optional[dict[str, RepositoryDef]] = pydantic.Field(None)
-    CfnRepository_CodeProperty: typing.Optional[dict[str, CfnRepository_CodePropertyDef]] = pydantic.Field(None)
-    CfnRepository_RepositoryTriggerProperty: typing.Optional[dict[str, CfnRepository_RepositoryTriggerPropertyDef]] = pydantic.Field(None)
-    CfnRepository_S3Property: typing.Optional[dict[str, CfnRepository_S3PropertyDef]] = pydantic.Field(None)
-    CodeConfig: typing.Optional[dict[str, CodeConfigDef]] = pydantic.Field(None)
-    OnCommitOptions: typing.Optional[dict[str, OnCommitOptionsDef]] = pydantic.Field(None)
-    RepositoryNotifyOnOptions: typing.Optional[dict[str, RepositoryNotifyOnOptionsDef]] = pydantic.Field(None)
-    RepositoryProps: typing.Optional[dict[str, RepositoryPropsDef]] = pydantic.Field(None)
-    RepositoryTriggerOptions: typing.Optional[dict[str, RepositoryTriggerOptionsDef]] = pydantic.Field(None)
-    CfnRepository: typing.Optional[dict[str, CfnRepositoryDef]] = pydantic.Field(None)
-    CfnRepositoryProps: typing.Optional[dict[str, CfnRepositoryPropsDef]] = pydantic.Field(None)
+    Code: typing.Optional[dict[str, models.aws_codecommit.CodeDef]] = pydantic.Field(None)
+    ReferenceEvent: typing.Optional[dict[str, models.aws_codecommit.ReferenceEventDef]] = pydantic.Field(None)
+    Repository: typing.Optional[dict[str, models.aws_codecommit.RepositoryDef]] = pydantic.Field(None)
+    CfnRepository_CodeProperty: typing.Optional[dict[str, models.aws_codecommit.CfnRepository_CodePropertyDef]] = pydantic.Field(None)
+    CfnRepository_RepositoryTriggerProperty: typing.Optional[dict[str, models.aws_codecommit.CfnRepository_RepositoryTriggerPropertyDef]] = pydantic.Field(None)
+    CfnRepository_S3Property: typing.Optional[dict[str, models.aws_codecommit.CfnRepository_S3PropertyDef]] = pydantic.Field(None)
+    CodeConfig: typing.Optional[dict[str, models.aws_codecommit.CodeConfigDef]] = pydantic.Field(None)
+    OnCommitOptions: typing.Optional[dict[str, models.aws_codecommit.OnCommitOptionsDef]] = pydantic.Field(None)
+    RepositoryNotifyOnOptions: typing.Optional[dict[str, models.aws_codecommit.RepositoryNotifyOnOptionsDef]] = pydantic.Field(None)
+    RepositoryProps: typing.Optional[dict[str, models.aws_codecommit.RepositoryPropsDef]] = pydantic.Field(None)
+    RepositoryTriggerOptions: typing.Optional[dict[str, models.aws_codecommit.RepositoryTriggerOptionsDef]] = pydantic.Field(None)
+    CfnRepository: typing.Optional[dict[str, models.aws_codecommit.CfnRepositoryDef]] = pydantic.Field(None)
+    CfnRepositoryProps: typing.Optional[dict[str, models.aws_codecommit.CfnRepositoryPropsDef]] = pydantic.Field(None)
     ...
+
+import models

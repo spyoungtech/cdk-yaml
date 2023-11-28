@@ -106,32 +106,32 @@ class CfnCampaignDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCampaignDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_connectcampaigns.CfnCampaignDefConfig] = pydantic.Field(None)
 
 
 class CfnCampaignDefConfig(pydantic.BaseModel):
-    AgentlessDialerConfigProperty: typing.Optional[list[CfnCampaignDefAgentlessdialerconfigpropertyParams]] = pydantic.Field(None, description='')
-    AnswerMachineDetectionConfigProperty: typing.Optional[list[CfnCampaignDefAnswermachinedetectionconfigpropertyParams]] = pydantic.Field(None, description='')
-    DialerConfigProperty: typing.Optional[list[CfnCampaignDefDialerconfigpropertyParams]] = pydantic.Field(None, description='')
-    OutboundCallConfigProperty: typing.Optional[list[CfnCampaignDefOutboundcallconfigpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveDialerConfigProperty: typing.Optional[list[CfnCampaignDefPredictivedialerconfigpropertyParams]] = pydantic.Field(None, description='')
-    ProgressiveDialerConfigProperty: typing.Optional[list[CfnCampaignDefProgressivedialerconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCampaignDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCampaignDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCampaignDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCampaignDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCampaignDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCampaignDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCampaignDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AgentlessDialerConfigProperty: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAgentlessdialerconfigpropertyParams]] = pydantic.Field(None, description='')
+    AnswerMachineDetectionConfigProperty: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAnswermachinedetectionconfigpropertyParams]] = pydantic.Field(None, description='')
+    DialerConfigProperty: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefDialerconfigpropertyParams]] = pydantic.Field(None, description='')
+    OutboundCallConfigProperty: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefOutboundcallconfigpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveDialerConfigProperty: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefPredictivedialerconfigpropertyParams]] = pydantic.Field(None, description='')
+    ProgressiveDialerConfigProperty: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefProgressivedialerconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCampaignDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCampaignDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCampaignDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCampaignDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCampaignDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCampaignDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_connectcampaigns.CfnCampaignDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCampaignDefAgentlessdialerconfigpropertyParams(pydantic.BaseModel):
@@ -247,15 +247,15 @@ class CfnCampaignPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnCampaign_AgentlessDialerConfigProperty: typing.Optional[dict[str, CfnCampaign_AgentlessDialerConfigPropertyDef]] = pydantic.Field(None)
-    CfnCampaign_AnswerMachineDetectionConfigProperty: typing.Optional[dict[str, CfnCampaign_AnswerMachineDetectionConfigPropertyDef]] = pydantic.Field(None)
-    CfnCampaign_DialerConfigProperty: typing.Optional[dict[str, CfnCampaign_DialerConfigPropertyDef]] = pydantic.Field(None)
-    CfnCampaign_OutboundCallConfigProperty: typing.Optional[dict[str, CfnCampaign_OutboundCallConfigPropertyDef]] = pydantic.Field(None)
-    CfnCampaign_PredictiveDialerConfigProperty: typing.Optional[dict[str, CfnCampaign_PredictiveDialerConfigPropertyDef]] = pydantic.Field(None)
-    CfnCampaign_ProgressiveDialerConfigProperty: typing.Optional[dict[str, CfnCampaign_ProgressiveDialerConfigPropertyDef]] = pydantic.Field(None)
-    CfnCampaign: typing.Optional[dict[str, CfnCampaignDef]] = pydantic.Field(None)
-    CfnCampaignProps: typing.Optional[dict[str, CfnCampaignPropsDef]] = pydantic.Field(None)
+    CfnCampaign_AgentlessDialerConfigProperty: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaign_AgentlessDialerConfigPropertyDef]] = pydantic.Field(None)
+    CfnCampaign_AnswerMachineDetectionConfigProperty: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaign_AnswerMachineDetectionConfigPropertyDef]] = pydantic.Field(None)
+    CfnCampaign_DialerConfigProperty: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaign_DialerConfigPropertyDef]] = pydantic.Field(None)
+    CfnCampaign_OutboundCallConfigProperty: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaign_OutboundCallConfigPropertyDef]] = pydantic.Field(None)
+    CfnCampaign_PredictiveDialerConfigProperty: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaign_PredictiveDialerConfigPropertyDef]] = pydantic.Field(None)
+    CfnCampaign_ProgressiveDialerConfigProperty: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaign_ProgressiveDialerConfigPropertyDef]] = pydantic.Field(None)
+    CfnCampaign: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaignDef]] = pydantic.Field(None)
+    CfnCampaignProps: typing.Optional[dict[str, models.aws_connectcampaigns.CfnCampaignPropsDef]] = pydantic.Field(None)
     ...
+
+import models

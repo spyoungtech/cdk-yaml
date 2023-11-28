@@ -16,15 +16,16 @@ class AlbControllerVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AlbControllerVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.AlbControllerVersionDefConfig] = pydantic.Field(None)
 
 
 class AlbControllerVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AlbControllerVersionDefOfParams]] = pydantic.Field(None, description='Specify a custom version and an associated helm chart version.\nUse this if the version you need is not available in one of the predefined versions.\nNote that in this case, you will also need to provide an IAM policy in the controller options.\n\nALB controller version and helm chart version compatibility information can be found\nhere: https://github.com/aws/eks-charts/blob/v0.0.133/stable/aws-load-balancer-controller/Chart.yaml')
+    of: typing.Optional[list[models.aws_eks.AlbControllerVersionDefOfParams]] = pydantic.Field(None, description='Specify a custom version and an associated helm chart version.\nUse this if the version you need is not available in one of the predefined versions.\nNote that in this case, you will also need to provide an IAM policy in the controller options.\n\nALB controller version and helm chart version compatibility information can be found\nhere: https://github.com/aws/eks-charts/blob/v0.0.133/stable/aws-load-balancer-controller/Chart.yaml')
 
 class AlbControllerVersionDefOfParams(pydantic.BaseModel):
     version: str = pydantic.Field(..., description='The version number.\n')
     helm_chart_version: typing.Optional[str] = pydantic.Field(None, description='The version of the helm chart. Version 1.4.1 is the default version to support legacy users.')
+    return_config: typing.Optional[list[models.aws_eks.AlbControllerVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -41,11 +42,11 @@ class EksOptimizedImageDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EksOptimizedImageDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.EksOptimizedImageDefConfig] = pydantic.Field(None)
 
 
 class EksOptimizedImageDefConfig(pydantic.BaseModel):
-    get_image: typing.Optional[list[EksOptimizedImageDefGetImageParams]] = pydantic.Field(None, description='Return the correct image.')
+    get_image: typing.Optional[list[models.aws_eks.EksOptimizedImageDefGetImageParams]] = pydantic.Field(None, description='Return the correct image.')
 
 class EksOptimizedImageDefGetImageParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -62,14 +63,15 @@ class EndpointAccessDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EndpointAccessDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.EndpointAccessDefConfig] = pydantic.Field(None)
 
 
 class EndpointAccessDefConfig(pydantic.BaseModel):
-    only_from: typing.Optional[list[EndpointAccessDefOnlyFromParams]] = pydantic.Field(None, description='Restrict public access to specific CIDR blocks.\nIf public access is disabled, this method will result in an error.')
+    only_from: typing.Optional[list[models.aws_eks.EndpointAccessDefOnlyFromParams]] = pydantic.Field(None, description='Restrict public access to specific CIDR blocks.\nIf public access is disabled, this method will result in an error.')
 
 class EndpointAccessDefOnlyFromParams(pydantic.BaseModel):
     cidr: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_eks.EndpointAccessDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -83,14 +85,15 @@ class KubernetesVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[KubernetesVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.KubernetesVersionDefConfig] = pydantic.Field(None)
 
 
 class KubernetesVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[KubernetesVersionDefOfParams]] = pydantic.Field(None, description='Custom cluster version.')
+    of: typing.Optional[list[models.aws_eks.KubernetesVersionDefOfParams]] = pydantic.Field(None, description='Custom cluster version.')
 
 class KubernetesVersionDefOfParams(pydantic.BaseModel):
     version: str = pydantic.Field(..., description='custom version number.')
+    return_config: typing.Optional[list[models.aws_eks.KubernetesVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -108,11 +111,11 @@ class AlbControllerDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AlbControllerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.AlbControllerDefConfig] = pydantic.Field(None)
 
 
 class AlbControllerDefConfig(pydantic.BaseModel):
-    create: typing.Optional[list[AlbControllerDefCreateParams]] = pydantic.Field(None, description='Create the controller construct associated with this cluster and scope.\nSingleton per stack/cluster.')
+    create: typing.Optional[list[models.aws_eks.AlbControllerDefCreateParams]] = pydantic.Field(None, description='Create the controller construct associated with this cluster and scope.\nSingleton per stack/cluster.')
 
 class AlbControllerDefCreateParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -120,6 +123,7 @@ class AlbControllerDefCreateParams(pydantic.BaseModel):
     version: models.aws_eks.AlbControllerVersionDef = pydantic.Field(..., description='Version of the controller.\n')
     policy: typing.Any = pydantic.Field(None, description="The IAM policy to apply to the service account. If you're using one of the built-in versions, this is not required since CDK ships with the appropriate policies for those versions. However, if you are using a custom version, this is required (and validated). Default: - Corresponds to the predefined version.\n")
     repository: typing.Optional[str] = pydantic.Field(None, description="The repository to pull the controller image from. Note that the default repository works for most regions, but not all. If the repository is not applicable to your region, use a custom repository according to the information here: https://github.com/kubernetes-sigs/aws-load-balancer-controller/releases. Default: '602401143452.dkr.ecr.us-west-2.amazonaws.com/amazon/aws-load-balancer-controller'")
+    return_config: typing.Optional[list[models.aws_eks.AlbControllerDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -134,14 +138,14 @@ class AwsAuthDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AwsAuthDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.AwsAuthDefConfig] = pydantic.Field(None)
 
 
 class AwsAuthDefConfig(pydantic.BaseModel):
-    add_account: typing.Optional[list[AwsAuthDefAddAccountParams]] = pydantic.Field(None, description='Additional AWS account to add to the aws-auth configmap.')
-    add_masters_role: typing.Optional[list[AwsAuthDefAddMastersRoleParams]] = pydantic.Field(None, description='Adds the specified IAM role to the ``system:masters`` RBAC group, which means that anyone that can assume it will be able to administer this Kubernetes system.')
-    add_role_mapping: typing.Optional[list[AwsAuthDefAddRoleMappingParams]] = pydantic.Field(None, description='Adds a mapping between an IAM role to a Kubernetes user and groups.')
-    add_user_mapping: typing.Optional[list[AwsAuthDefAddUserMappingParams]] = pydantic.Field(None, description='Adds a mapping between an IAM user to a Kubernetes user and groups.')
+    add_account: typing.Optional[list[models.aws_eks.AwsAuthDefAddAccountParams]] = pydantic.Field(None, description='Additional AWS account to add to the aws-auth configmap.')
+    add_masters_role: typing.Optional[list[models.aws_eks.AwsAuthDefAddMastersRoleParams]] = pydantic.Field(None, description='Adds the specified IAM role to the ``system:masters`` RBAC group, which means that anyone that can assume it will be able to administer this Kubernetes system.')
+    add_role_mapping: typing.Optional[list[models.aws_eks.AwsAuthDefAddRoleMappingParams]] = pydantic.Field(None, description='Adds a mapping between an IAM role to a Kubernetes user and groups.')
+    add_user_mapping: typing.Optional[list[models.aws_eks.AwsAuthDefAddUserMappingParams]] = pydantic.Field(None, description='Adds a mapping between an IAM user to a Kubernetes user and groups.')
 
 class AwsAuthDefAddAccountParams(pydantic.BaseModel):
     account_id: str = pydantic.Field(..., description='account number.')
@@ -206,22 +210,22 @@ class ClusterDef(BaseConstruct):
     ...
 
 
-    from_cluster_attributes: typing.Optional[ClusterDefFromClusterAttributesParams] = pydantic.Field(None, description='Import an existing cluster.')
-    resource_config: typing.Optional[ClusterDefConfig] = pydantic.Field(None)
+    from_cluster_attributes: typing.Optional[models.aws_eks.ClusterDefFromClusterAttributesParams] = pydantic.Field(None, description='Import an existing cluster.')
+    resource_config: typing.Optional[models.aws_eks.ClusterDefConfig] = pydantic.Field(None)
 
 
 class ClusterDefConfig(pydantic.BaseModel):
-    add_auto_scaling_group_capacity: typing.Optional[list[ClusterDefAddAutoScalingGroupCapacityParams]] = pydantic.Field(None, description='Add nodes to this EKS cluster.\nThe nodes will automatically be configured with the right VPC and AMI\nfor the instance type and Kubernetes version.\n\nNote that if you specify ``updateType: RollingUpdate`` or ``updateType: ReplacingUpdate``, your nodes might be replaced at deploy\ntime without notice in case the recommended AMI for your machine image type has been updated by AWS.\nThe default behavior for ``updateType`` is ``None``, which means only new instances will be launched using the new AMI.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIn addition, the `spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.')
-    add_cdk8s_chart: typing.Optional[list[ClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
-    add_fargate_profile: typing.Optional[list[ClusterDefAddFargateProfileParams]] = pydantic.Field(None, description='Adds a Fargate profile to this cluster.')
-    add_helm_chart: typing.Optional[list[ClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
-    add_manifest: typing.Optional[list[ClusterDefAddManifestParams]] = pydantic.Field(None, description='Defines a Kubernetes resource in this cluster.\nThe manifest will be applied/deleted using kubectl as needed.')
-    add_nodegroup_capacity: typing.Optional[list[ClusterDefAddNodegroupCapacityParams]] = pydantic.Field(None, description='Add managed nodegroup to this Amazon EKS cluster.\nThis method will create a new managed nodegroup and add into the capacity.')
-    add_service_account: typing.Optional[list[ClusterDefAddServiceAccountParams]] = pydantic.Field(None, description='Creates a new service account with corresponding IAM Role (IRSA).')
+    add_auto_scaling_group_capacity: typing.Optional[list[models.aws_eks.ClusterDefAddAutoScalingGroupCapacityParams]] = pydantic.Field(None, description='Add nodes to this EKS cluster.\nThe nodes will automatically be configured with the right VPC and AMI\nfor the instance type and Kubernetes version.\n\nNote that if you specify ``updateType: RollingUpdate`` or ``updateType: ReplacingUpdate``, your nodes might be replaced at deploy\ntime without notice in case the recommended AMI for your machine image type has been updated by AWS.\nThe default behavior for ``updateType`` is ``None``, which means only new instances will be launched using the new AMI.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIn addition, the `spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.')
+    add_cdk8s_chart: typing.Optional[list[models.aws_eks.ClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
+    add_fargate_profile: typing.Optional[list[models.aws_eks.ClusterDefAddFargateProfileParams]] = pydantic.Field(None, description='Adds a Fargate profile to this cluster.')
+    add_helm_chart: typing.Optional[list[models.aws_eks.ClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
+    add_manifest: typing.Optional[list[models.aws_eks.ClusterDefAddManifestParams]] = pydantic.Field(None, description='Defines a Kubernetes resource in this cluster.\nThe manifest will be applied/deleted using kubectl as needed.')
+    add_nodegroup_capacity: typing.Optional[list[models.aws_eks.ClusterDefAddNodegroupCapacityParams]] = pydantic.Field(None, description='Add managed nodegroup to this Amazon EKS cluster.\nThis method will create a new managed nodegroup and add into the capacity.')
+    add_service_account: typing.Optional[list[models.aws_eks.ClusterDefAddServiceAccountParams]] = pydantic.Field(None, description='Creates a new service account with corresponding IAM Role (IRSA).')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    connect_auto_scaling_group_capacity: typing.Optional[list[ClusterDefConnectAutoScalingGroupCapacityParams]] = pydantic.Field(None, description="Connect capacity in the form of an existing AutoScalingGroup to the EKS cluster.\nThe AutoScalingGroup must be running an EKS-optimized AMI containing the\n/etc/eks/bootstrap.sh script. This method will configure Security Groups,\nadd the right policies to the instance role, apply the right tags, and add\nthe required user data to the instance's launch configuration.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIf kubectl is enabled, the\n`spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.\n\nPrefer to use ``addAutoScalingGroupCapacity`` if possible.")
-    get_ingress_load_balancer_address: typing.Optional[list[ClusterDefGetIngressLoadBalancerAddressParams]] = pydantic.Field(None, description='Fetch the load balancer address of an ingress backed by a load balancer.')
-    get_service_load_balancer_address: typing.Optional[list[ClusterDefGetServiceLoadBalancerAddressParams]] = pydantic.Field(None, description="Fetch the load balancer address of a service of type 'LoadBalancer'.")
+    connect_auto_scaling_group_capacity: typing.Optional[list[models.aws_eks.ClusterDefConnectAutoScalingGroupCapacityParams]] = pydantic.Field(None, description="Connect capacity in the form of an existing AutoScalingGroup to the EKS cluster.\nThe AutoScalingGroup must be running an EKS-optimized AMI containing the\n/etc/eks/bootstrap.sh script. This method will configure Security Groups,\nadd the right policies to the instance role, apply the right tags, and add\nthe required user data to the instance's launch configuration.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIf kubectl is enabled, the\n`spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.\n\nPrefer to use ``addAutoScalingGroupCapacity`` if possible.")
+    get_ingress_load_balancer_address: typing.Optional[list[models.aws_eks.ClusterDefGetIngressLoadBalancerAddressParams]] = pydantic.Field(None, description='Fetch the load balancer address of an ingress backed by a load balancer.')
+    get_service_load_balancer_address: typing.Optional[list[models.aws_eks.ClusterDefGetServiceLoadBalancerAddressParams]] = pydantic.Field(None, description="Fetch the load balancer address of a service of type 'LoadBalancer'.")
     admin_role_config: typing.Optional[models.aws_iam.RoleDefConfig] = pydantic.Field(None)
     aws_auth_config: typing.Optional[models.aws_eks.AwsAuthDefConfig] = pydantic.Field(None)
     cluster_security_group_config: typing.Optional[models._interface_methods.AwsEc2ISecurityGroupDefConfig] = pydantic.Field(None)
@@ -426,22 +430,22 @@ class FargateClusterDef(BaseConstruct):
     ...
 
 
-    from_cluster_attributes: typing.Optional[FargateClusterDefFromClusterAttributesParams] = pydantic.Field(None, description='Import an existing cluster.')
-    resource_config: typing.Optional[FargateClusterDefConfig] = pydantic.Field(None)
+    from_cluster_attributes: typing.Optional[models.aws_eks.FargateClusterDefFromClusterAttributesParams] = pydantic.Field(None, description='Import an existing cluster.')
+    resource_config: typing.Optional[models.aws_eks.FargateClusterDefConfig] = pydantic.Field(None)
 
 
 class FargateClusterDefConfig(pydantic.BaseModel):
-    add_auto_scaling_group_capacity: typing.Optional[list[FargateClusterDefAddAutoScalingGroupCapacityParams]] = pydantic.Field(None, description='Add nodes to this EKS cluster.\nThe nodes will automatically be configured with the right VPC and AMI\nfor the instance type and Kubernetes version.\n\nNote that if you specify ``updateType: RollingUpdate`` or ``updateType: ReplacingUpdate``, your nodes might be replaced at deploy\ntime without notice in case the recommended AMI for your machine image type has been updated by AWS.\nThe default behavior for ``updateType`` is ``None``, which means only new instances will be launched using the new AMI.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIn addition, the `spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.')
-    add_cdk8s_chart: typing.Optional[list[FargateClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
-    add_fargate_profile: typing.Optional[list[FargateClusterDefAddFargateProfileParams]] = pydantic.Field(None, description='Adds a Fargate profile to this cluster.')
-    add_helm_chart: typing.Optional[list[FargateClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
-    add_manifest: typing.Optional[list[FargateClusterDefAddManifestParams]] = pydantic.Field(None, description='Defines a Kubernetes resource in this cluster.\nThe manifest will be applied/deleted using kubectl as needed.')
-    add_nodegroup_capacity: typing.Optional[list[FargateClusterDefAddNodegroupCapacityParams]] = pydantic.Field(None, description='Add managed nodegroup to this Amazon EKS cluster.\nThis method will create a new managed nodegroup and add into the capacity.')
-    add_service_account: typing.Optional[list[FargateClusterDefAddServiceAccountParams]] = pydantic.Field(None, description='Creates a new service account with corresponding IAM Role (IRSA).')
+    add_auto_scaling_group_capacity: typing.Optional[list[models.aws_eks.FargateClusterDefAddAutoScalingGroupCapacityParams]] = pydantic.Field(None, description='Add nodes to this EKS cluster.\nThe nodes will automatically be configured with the right VPC and AMI\nfor the instance type and Kubernetes version.\n\nNote that if you specify ``updateType: RollingUpdate`` or ``updateType: ReplacingUpdate``, your nodes might be replaced at deploy\ntime without notice in case the recommended AMI for your machine image type has been updated by AWS.\nThe default behavior for ``updateType`` is ``None``, which means only new instances will be launched using the new AMI.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIn addition, the `spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.')
+    add_cdk8s_chart: typing.Optional[list[models.aws_eks.FargateClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
+    add_fargate_profile: typing.Optional[list[models.aws_eks.FargateClusterDefAddFargateProfileParams]] = pydantic.Field(None, description='Adds a Fargate profile to this cluster.')
+    add_helm_chart: typing.Optional[list[models.aws_eks.FargateClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
+    add_manifest: typing.Optional[list[models.aws_eks.FargateClusterDefAddManifestParams]] = pydantic.Field(None, description='Defines a Kubernetes resource in this cluster.\nThe manifest will be applied/deleted using kubectl as needed.')
+    add_nodegroup_capacity: typing.Optional[list[models.aws_eks.FargateClusterDefAddNodegroupCapacityParams]] = pydantic.Field(None, description='Add managed nodegroup to this Amazon EKS cluster.\nThis method will create a new managed nodegroup and add into the capacity.')
+    add_service_account: typing.Optional[list[models.aws_eks.FargateClusterDefAddServiceAccountParams]] = pydantic.Field(None, description='Creates a new service account with corresponding IAM Role (IRSA).')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    connect_auto_scaling_group_capacity: typing.Optional[list[FargateClusterDefConnectAutoScalingGroupCapacityParams]] = pydantic.Field(None, description="Connect capacity in the form of an existing AutoScalingGroup to the EKS cluster.\nThe AutoScalingGroup must be running an EKS-optimized AMI containing the\n/etc/eks/bootstrap.sh script. This method will configure Security Groups,\nadd the right policies to the instance role, apply the right tags, and add\nthe required user data to the instance's launch configuration.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIf kubectl is enabled, the\n`spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.\n\nPrefer to use ``addAutoScalingGroupCapacity`` if possible.")
-    get_ingress_load_balancer_address: typing.Optional[list[FargateClusterDefGetIngressLoadBalancerAddressParams]] = pydantic.Field(None, description='Fetch the load balancer address of an ingress backed by a load balancer.')
-    get_service_load_balancer_address: typing.Optional[list[FargateClusterDefGetServiceLoadBalancerAddressParams]] = pydantic.Field(None, description="Fetch the load balancer address of a service of type 'LoadBalancer'.")
+    connect_auto_scaling_group_capacity: typing.Optional[list[models.aws_eks.FargateClusterDefConnectAutoScalingGroupCapacityParams]] = pydantic.Field(None, description="Connect capacity in the form of an existing AutoScalingGroup to the EKS cluster.\nThe AutoScalingGroup must be running an EKS-optimized AMI containing the\n/etc/eks/bootstrap.sh script. This method will configure Security Groups,\nadd the right policies to the instance role, apply the right tags, and add\nthe required user data to the instance's launch configuration.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIf kubectl is enabled, the\n`spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.\n\nPrefer to use ``addAutoScalingGroupCapacity`` if possible.")
+    get_ingress_load_balancer_address: typing.Optional[list[models.aws_eks.FargateClusterDefGetIngressLoadBalancerAddressParams]] = pydantic.Field(None, description='Fetch the load balancer address of an ingress backed by a load balancer.')
+    get_service_load_balancer_address: typing.Optional[list[models.aws_eks.FargateClusterDefGetServiceLoadBalancerAddressParams]] = pydantic.Field(None, description="Fetch the load balancer address of a service of type 'LoadBalancer'.")
     admin_role_config: typing.Optional[models.aws_iam.RoleDefConfig] = pydantic.Field(None)
     aws_auth_config: typing.Optional[models.aws_eks.AwsAuthDefConfig] = pydantic.Field(None)
     cluster_security_group_config: typing.Optional[models._interface_methods.AwsEc2ISecurityGroupDefConfig] = pydantic.Field(None)
@@ -625,7 +629,7 @@ class FargateProfileDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[FargateProfileDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.FargateProfileDefConfig] = pydantic.Field(None)
 
 
 class FargateProfileDefConfig(pydantic.BaseModel):
@@ -668,26 +672,26 @@ class KubectlProviderDef(BaseConstruct):
     ...
 
 
-    from_kubectl_provider_attributes: typing.Optional[KubectlProviderDefFromKubectlProviderAttributesParams] = pydantic.Field(None, description='Import an existing provider.')
-    get_or_create: typing.Optional[KubectlProviderDefGetOrCreateParams] = pydantic.Field(None, description='Take existing provider or create new based on cluster.')
-    resource_config: typing.Optional[KubectlProviderDefConfig] = pydantic.Field(None)
+    from_kubectl_provider_attributes: typing.Optional[models.aws_eks.KubectlProviderDefFromKubectlProviderAttributesParams] = pydantic.Field(None, description='Import an existing provider.')
+    get_or_create: typing.Optional[models.aws_eks.KubectlProviderDefGetOrCreateParams] = pydantic.Field(None, description='Take existing provider or create new based on cluster.')
+    resource_config: typing.Optional[models.aws_eks.KubectlProviderDefConfig] = pydantic.Field(None)
 
 
 class KubectlProviderDefConfig(pydantic.BaseModel):
-    add_dependency: typing.Optional[list[KubectlProviderDefAddDependencyParams]] = pydantic.Field(None, description='Add a dependency between this stack and another stack.\nThis can be used to define dependencies between any two stacks within an\napp, and also supports nested stacks.')
-    add_metadata: typing.Optional[list[KubectlProviderDefAddMetadataParams]] = pydantic.Field(None, description='Adds an arbitary key-value pair, with information you want to record about the stack.\nThese get translated to the Metadata section of the generated template.')
-    add_transform: typing.Optional[list[KubectlProviderDefAddTransformParams]] = pydantic.Field(None, description='Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template.\nDuplicate values are removed when stack is synthesized.')
-    export_string_list_value: typing.Optional[list[KubectlProviderDefExportStringListValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string list value.\nReturns a string list representing the corresponding ``Fn.importValue()``\nexpression for this Export. The export expression is automatically wrapped with an\n``Fn::Join`` and the import value with an ``Fn::Split``, since CloudFormation can only\nexport strings. You can control the name for the export by passing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\nSee ``exportValue`` for an example of this process.")
-    export_value: typing.Optional[list[KubectlProviderDefExportValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string value.\nReturns a string representing the corresponding ``Fn.importValue()``\nexpression for this Export. You can control the name for the export by\npassing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\n\nExample\n\nHere is how the process works. Let's say there are two stacks,\n``producerStack`` and ``consumerStack``, and ``producerStack`` has a bucket\ncalled ``bucket``, which is referenced by ``consumerStack`` (perhaps because\nan AWS Lambda Function writes into it, or something like that).\n\nIt is not safe to remove ``producerStack.bucket`` because as the bucket is being\ndeleted, ``consumerStack`` might still be using it.\n\nInstead, the process takes two deployments:\n\n\nDeployment 1: break the relationship\n\n- Make sure ``consumerStack`` no longer references ``bucket.bucketName`` (maybe the consumer\n  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just\n  remove the Lambda Function altogether).\n- In the ``ProducerStack`` class, call ``this.exportValue(this.bucket.bucketName)``. This\n  will make sure the CloudFormation Export continues to exist while the relationship\n  between the two stacks is being broken.\n- Deploy (this will effectively only change the ``consumerStack``, but it's safe to deploy both).\n\n\n\nDeployment 2: remove the bucket resource\n\n- You are now free to remove the ``bucket`` resource from ``producerStack``.\n- Don't forget to remove the ``exportValue()`` call as well.\n- Deploy again (this time only the ``producerStack`` will be changed -- the bucket will be deleted).")
-    format_arn: typing.Optional[list[KubectlProviderDefFormatArnParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
-    get_logical_id: typing.Optional[list[KubectlProviderDefGetLogicalIdParams]] = pydantic.Field(None, description='Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource.\nThis method is called when a ``CfnElement`` is created and used to render the\ninitial logical identity of resources. Logical ID renames are applied at\nthis stage.\n\nThis method uses the protected method ``allocateLogicalId`` to render the\nlogical ID for an element. To modify the naming scheme, extend the ``Stack``\nclass and override this method.')
-    of: typing.Optional[list[KubectlProviderDefOfParams]] = pydantic.Field(None, description='Looks up the first stack scope in which ``construct`` is defined.\nFails if there is no stack up the tree.')
-    regional_fact: typing.Optional[list[KubectlProviderDefRegionalFactParams]] = pydantic.Field(None, description='Look up a fact value for the given fact for the region of this stack.\nWill return a definite value only if the region of the current stack is resolved.\nIf not, a lookup map will be added to the stack and the lookup will be done at\nCDK deployment time.\n\nWhat regions will be included in the lookup map is controlled by the\n``@aws-cdk/core:target-partitions`` context value: it must be set to a list\nof partitions, and only regions from the given partitions will be included.\nIf no such context key is set, all regions will be included.\n\nThis function is intended to be used by construct library authors. Application\nbuilders can rely on the abstractions offered by construct libraries and do\nnot have to worry about regional facts.\n\nIf ``defaultValue`` is not given, it is an error if the fact is unknown for\nthe given region.')
-    rename_logical_id: typing.Optional[list[KubectlProviderDefRenameLogicalIdParams]] = pydantic.Field(None, description='Rename a generated logical identities.\nTo modify the naming scheme strategy, extend the ``Stack`` class and\noverride the ``allocateLogicalId`` method.')
-    report_missing_context_key: typing.Optional[list[KubectlProviderDefReportMissingContextKeyParams]] = pydantic.Field(None, description='Indicate that a context key was expected.\nContains instructions which will be emitted into the cloud assembly on how\nthe key should be supplied.')
-    resolve: typing.Optional[list[KubectlProviderDefResolveParams]] = pydantic.Field(None, description='Resolve a tokenized value in the context of the current stack.')
-    set_parameter: typing.Optional[list[KubectlProviderDefSetParameterParams]] = pydantic.Field(None, description='Assign a value to one of the nested stack parameters.')
-    split_arn: typing.Optional[list[KubectlProviderDefSplitArnParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
+    add_dependency: typing.Optional[list[models.aws_eks.KubectlProviderDefAddDependencyParams]] = pydantic.Field(None, description='Add a dependency between this stack and another stack.\nThis can be used to define dependencies between any two stacks within an\napp, and also supports nested stacks.')
+    add_metadata: typing.Optional[list[models.aws_eks.KubectlProviderDefAddMetadataParams]] = pydantic.Field(None, description='Adds an arbitary key-value pair, with information you want to record about the stack.\nThese get translated to the Metadata section of the generated template.')
+    add_transform: typing.Optional[list[models.aws_eks.KubectlProviderDefAddTransformParams]] = pydantic.Field(None, description='Add a Transform to this stack. A Transform is a macro that AWS CloudFormation uses to process your template.\nDuplicate values are removed when stack is synthesized.')
+    export_string_list_value: typing.Optional[list[models.aws_eks.KubectlProviderDefExportStringListValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string list value.\nReturns a string list representing the corresponding ``Fn.importValue()``\nexpression for this Export. The export expression is automatically wrapped with an\n``Fn::Join`` and the import value with an ``Fn::Split``, since CloudFormation can only\nexport strings. You can control the name for the export by passing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\nSee ``exportValue`` for an example of this process.")
+    export_value: typing.Optional[list[models.aws_eks.KubectlProviderDefExportValueParams]] = pydantic.Field(None, description="Create a CloudFormation Export for a string value.\nReturns a string representing the corresponding ``Fn.importValue()``\nexpression for this Export. You can control the name for the export by\npassing the ``name`` option.\n\nIf you don't supply a value for ``name``, the value you're exporting must be\na Resource attribute (for example: ``bucket.bucketName``) and it will be\ngiven the same name as the automatic cross-stack reference that would be created\nif you used the attribute in another Stack.\n\nOne of the uses for this method is to *remove* the relationship between\ntwo Stacks established by automatic cross-stack references. It will\ntemporarily ensure that the CloudFormation Export still exists while you\nremove the reference from the consuming stack. After that, you can remove\nthe resource and the manual export.\n\n\nExample\n\nHere is how the process works. Let's say there are two stacks,\n``producerStack`` and ``consumerStack``, and ``producerStack`` has a bucket\ncalled ``bucket``, which is referenced by ``consumerStack`` (perhaps because\nan AWS Lambda Function writes into it, or something like that).\n\nIt is not safe to remove ``producerStack.bucket`` because as the bucket is being\ndeleted, ``consumerStack`` might still be using it.\n\nInstead, the process takes two deployments:\n\n\nDeployment 1: break the relationship\n\n- Make sure ``consumerStack`` no longer references ``bucket.bucketName`` (maybe the consumer\n  stack now uses its own bucket, or it writes to an AWS DynamoDB table, or maybe you just\n  remove the Lambda Function altogether).\n- In the ``ProducerStack`` class, call ``this.exportValue(this.bucket.bucketName)``. This\n  will make sure the CloudFormation Export continues to exist while the relationship\n  between the two stacks is being broken.\n- Deploy (this will effectively only change the ``consumerStack``, but it's safe to deploy both).\n\n\n\nDeployment 2: remove the bucket resource\n\n- You are now free to remove the ``bucket`` resource from ``producerStack``.\n- Don't forget to remove the ``exportValue()`` call as well.\n- Deploy again (this time only the ``producerStack`` will be changed -- the bucket will be deleted).")
+    format_arn: typing.Optional[list[models.aws_eks.KubectlProviderDefFormatArnParams]] = pydantic.Field(None, description="Creates an ARN from components.\nIf ``partition``, ``region`` or ``account`` are not specified, the stack's\npartition, region and account will be used.\n\nIf any component is the empty string, an empty string will be inserted\ninto the generated ARN at the location that component corresponds to.\n\nThe ARN will be formatted as follows:\n\narn:{partition}:{service}:{region}:{account}:{resource}{sep}{resource-name}\n\nThe required ARN pieces that are omitted will be taken from the stack that\nthe 'scope' is attached to. If all ARN pieces are supplied, the supplied scope\ncan be 'undefined'.")
+    get_logical_id: typing.Optional[list[models.aws_eks.KubectlProviderDefGetLogicalIdParams]] = pydantic.Field(None, description='Allocates a stack-unique CloudFormation-compatible logical identity for a specific resource.\nThis method is called when a ``CfnElement`` is created and used to render the\ninitial logical identity of resources. Logical ID renames are applied at\nthis stage.\n\nThis method uses the protected method ``allocateLogicalId`` to render the\nlogical ID for an element. To modify the naming scheme, extend the ``Stack``\nclass and override this method.')
+    of: typing.Optional[list[models.aws_eks.KubectlProviderDefOfParams]] = pydantic.Field(None, description='Looks up the first stack scope in which ``construct`` is defined.\nFails if there is no stack up the tree.')
+    regional_fact: typing.Optional[list[models.aws_eks.KubectlProviderDefRegionalFactParams]] = pydantic.Field(None, description='Look up a fact value for the given fact for the region of this stack.\nWill return a definite value only if the region of the current stack is resolved.\nIf not, a lookup map will be added to the stack and the lookup will be done at\nCDK deployment time.\n\nWhat regions will be included in the lookup map is controlled by the\n``@aws-cdk/core:target-partitions`` context value: it must be set to a list\nof partitions, and only regions from the given partitions will be included.\nIf no such context key is set, all regions will be included.\n\nThis function is intended to be used by construct library authors. Application\nbuilders can rely on the abstractions offered by construct libraries and do\nnot have to worry about regional facts.\n\nIf ``defaultValue`` is not given, it is an error if the fact is unknown for\nthe given region.')
+    rename_logical_id: typing.Optional[list[models.aws_eks.KubectlProviderDefRenameLogicalIdParams]] = pydantic.Field(None, description='Rename a generated logical identities.\nTo modify the naming scheme strategy, extend the ``Stack`` class and\noverride the ``allocateLogicalId`` method.')
+    report_missing_context_key: typing.Optional[list[models.aws_eks.KubectlProviderDefReportMissingContextKeyParams]] = pydantic.Field(None, description='Indicate that a context key was expected.\nContains instructions which will be emitted into the cloud assembly on how\nthe key should be supplied.')
+    resolve: typing.Optional[list[models.aws_eks.KubectlProviderDefResolveParams]] = pydantic.Field(None, description='Resolve a tokenized value in the context of the current stack.')
+    set_parameter: typing.Optional[list[models.aws_eks.KubectlProviderDefSetParameterParams]] = pydantic.Field(None, description='Assign a value to one of the nested stack parameters.')
+    split_arn: typing.Optional[list[models.aws_eks.KubectlProviderDefSplitArnParams]] = pydantic.Field(None, description="Splits the provided ARN into its components.\nWorks both if 'arn' is a string like 'arn:aws:s3:::bucket',\nand a Token representing a dynamic CloudFormation expression\n(in which case the returned components will also be dynamic CloudFormation expressions,\nencoded as Tokens).")
     handler_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
     synthesizer_config: typing.Optional[models._interface_methods.CoreIStackSynthesizerDefConfig] = pydantic.Field(None)
 
@@ -863,8 +867,8 @@ class NodegroupDef(BaseConstruct):
     ...
 
 
-    from_nodegroup_name: typing.Optional[NodegroupDefFromNodegroupNameParams] = pydantic.Field(None, description='Import the Nodegroup from attributes.')
-    resource_config: typing.Optional[NodegroupDefConfig] = pydantic.Field(None)
+    from_nodegroup_name: typing.Optional[models.aws_eks.NodegroupDefFromNodegroupNameParams] = pydantic.Field(None, description='Import the Nodegroup from attributes.')
+    resource_config: typing.Optional[models.aws_eks.NodegroupDefConfig] = pydantic.Field(None)
 
 
 class NodegroupDefConfig(pydantic.BaseModel):
@@ -894,8 +898,8 @@ class OpenIdConnectProviderDef(BaseConstruct):
     ...
 
 
-    from_open_id_connect_provider_arn: typing.Optional[OpenIdConnectProviderDefFromOpenIdConnectProviderArnParams] = pydantic.Field(None, description='Imports an Open ID connect provider from an ARN.')
-    resource_config: typing.Optional[OpenIdConnectProviderDefConfig] = pydantic.Field(None)
+    from_open_id_connect_provider_arn: typing.Optional[models.aws_eks.OpenIdConnectProviderDefFromOpenIdConnectProviderArnParams] = pydantic.Field(None, description='Imports an Open ID connect provider from an ARN.')
+    resource_config: typing.Optional[models.aws_eks.OpenIdConnectProviderDefConfig] = pydantic.Field(None)
 
 
 class OpenIdConnectProviderDefConfig(pydantic.BaseModel):
@@ -927,11 +931,11 @@ class ServiceAccountDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ServiceAccountDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.ServiceAccountDefConfig] = pydantic.Field(None)
 
 
 class ServiceAccountDefConfig(pydantic.BaseModel):
-    add_to_principal_policy: typing.Optional[list[ServiceAccountDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    add_to_principal_policy: typing.Optional[list[models.aws_eks.ServiceAccountDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
@@ -1011,7 +1015,7 @@ class AutoScalingGroupCapacityOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AutoScalingGroupCapacityOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.AutoScalingGroupCapacityOptionsDefConfig] = pydantic.Field(None)
 
 
 class AutoScalingGroupCapacityOptionsDefConfig(pydantic.BaseModel):
@@ -1409,7 +1413,7 @@ class ClusterOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ClusterOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.ClusterOptionsDefConfig] = pydantic.Field(None)
 
 
 class ClusterOptionsDefConfig(pydantic.BaseModel):
@@ -1457,7 +1461,7 @@ class ClusterPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ClusterPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.ClusterPropsDefConfig] = pydantic.Field(None)
 
 
 class ClusterPropsDefConfig(pydantic.BaseModel):
@@ -1536,7 +1540,7 @@ class FargateClusterPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FargateClusterPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.FargateClusterPropsDefConfig] = pydantic.Field(None)
 
 
 class FargateClusterPropsDefConfig(pydantic.BaseModel):
@@ -1652,7 +1656,7 @@ class KubectlProviderAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[KubectlProviderAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.KubectlProviderAttributesDefConfig] = pydantic.Field(None)
 
 
 class KubectlProviderAttributesDefConfig(pydantic.BaseModel):
@@ -1670,7 +1674,7 @@ class KubectlProviderPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[KubectlProviderPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.KubectlProviderPropsDefConfig] = pydantic.Field(None)
 
 
 class KubectlProviderPropsDefConfig(pydantic.BaseModel):
@@ -1710,7 +1714,7 @@ class KubernetesManifestPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[KubernetesManifestPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.KubernetesManifestPropsDefConfig] = pydantic.Field(None)
 
 
 class KubernetesManifestPropsDefConfig(pydantic.BaseModel):
@@ -1733,7 +1737,7 @@ class KubernetesObjectValuePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[KubernetesObjectValuePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.KubernetesObjectValuePropsDefConfig] = pydantic.Field(None)
 
 
 class KubernetesObjectValuePropsDefConfig(pydantic.BaseModel):
@@ -1756,7 +1760,7 @@ class KubernetesPatchPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[KubernetesPatchPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.KubernetesPatchPropsDefConfig] = pydantic.Field(None)
 
 
 class KubernetesPatchPropsDefConfig(pydantic.BaseModel):
@@ -1837,7 +1841,7 @@ class NodegroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[NodegroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.NodegroupPropsDefConfig] = pydantic.Field(None)
 
 
 class NodegroupPropsDefConfig(pydantic.BaseModel):
@@ -1916,7 +1920,7 @@ class ServiceAccountPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ServiceAccountPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.ServiceAccountPropsDefConfig] = pydantic.Field(None)
 
 
 class ServiceAccountPropsDefConfig(pydantic.BaseModel):
@@ -2015,26 +2019,26 @@ class CfnAddonDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAddonDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.CfnAddonDefConfig] = pydantic.Field(None)
 
 
 class CfnAddonDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnAddonDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAddonDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAddonDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAddonDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAddonDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAddonDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAddonDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_eks.CfnAddonDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_eks.CfnAddonDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_eks.CfnAddonDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_eks.CfnAddonDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_eks.CfnAddonDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_eks.CfnAddonDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_eks.CfnAddonDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAddonDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAddonDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAddonDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_eks.CfnAddonDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_eks.CfnAddonDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_eks.CfnAddonDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAddonDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAddonDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAddonDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_eks.CfnAddonDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_eks.CfnAddonDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_eks.CfnAddonDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnAddonDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -2121,35 +2125,35 @@ class CfnClusterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.CfnClusterDefConfig] = pydantic.Field(None)
 
 
 class CfnClusterDefConfig(pydantic.BaseModel):
-    ClusterLoggingProperty: typing.Optional[list[CfnClusterDefClusterloggingpropertyParams]] = pydantic.Field(None, description='')
-    ControlPlanePlacementProperty: typing.Optional[list[CfnClusterDefControlplaneplacementpropertyParams]] = pydantic.Field(None, description='')
-    EncryptionConfigProperty: typing.Optional[list[CfnClusterDefEncryptionconfigpropertyParams]] = pydantic.Field(None, description='')
-    KubernetesNetworkConfigProperty: typing.Optional[list[CfnClusterDefKubernetesnetworkconfigpropertyParams]] = pydantic.Field(None, description='')
-    LoggingProperty: typing.Optional[list[CfnClusterDefLoggingpropertyParams]] = pydantic.Field(None, description='')
-    LoggingTypeConfigProperty: typing.Optional[list[CfnClusterDefLoggingtypeconfigpropertyParams]] = pydantic.Field(None, description='')
-    OutpostConfigProperty: typing.Optional[list[CfnClusterDefOutpostconfigpropertyParams]] = pydantic.Field(None, description='')
-    ProviderProperty: typing.Optional[list[CfnClusterDefProviderpropertyParams]] = pydantic.Field(None, description='')
-    ResourcesVpcConfigProperty: typing.Optional[list[CfnClusterDefResourcesvpcconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ClusterLoggingProperty: typing.Optional[list[models.aws_eks.CfnClusterDefClusterloggingpropertyParams]] = pydantic.Field(None, description='')
+    ControlPlanePlacementProperty: typing.Optional[list[models.aws_eks.CfnClusterDefControlplaneplacementpropertyParams]] = pydantic.Field(None, description='')
+    EncryptionConfigProperty: typing.Optional[list[models.aws_eks.CfnClusterDefEncryptionconfigpropertyParams]] = pydantic.Field(None, description='')
+    KubernetesNetworkConfigProperty: typing.Optional[list[models.aws_eks.CfnClusterDefKubernetesnetworkconfigpropertyParams]] = pydantic.Field(None, description='')
+    LoggingProperty: typing.Optional[list[models.aws_eks.CfnClusterDefLoggingpropertyParams]] = pydantic.Field(None, description='')
+    LoggingTypeConfigProperty: typing.Optional[list[models.aws_eks.CfnClusterDefLoggingtypeconfigpropertyParams]] = pydantic.Field(None, description='')
+    OutpostConfigProperty: typing.Optional[list[models.aws_eks.CfnClusterDefOutpostconfigpropertyParams]] = pydantic.Field(None, description='')
+    ProviderProperty: typing.Optional[list[models.aws_eks.CfnClusterDefProviderpropertyParams]] = pydantic.Field(None, description='')
+    ResourcesVpcConfigProperty: typing.Optional[list[models.aws_eks.CfnClusterDefResourcesvpcconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_eks.CfnClusterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_eks.CfnClusterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_eks.CfnClusterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_eks.CfnClusterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_eks.CfnClusterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_eks.CfnClusterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_eks.CfnClusterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_eks.CfnClusterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_eks.CfnClusterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_eks.CfnClusterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_eks.CfnClusterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_eks.CfnClusterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_eks.CfnClusterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnClusterDefClusterloggingpropertyParams(pydantic.BaseModel):
@@ -2278,28 +2282,28 @@ class CfnFargateProfileDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnFargateProfileDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.CfnFargateProfileDefConfig] = pydantic.Field(None)
 
 
 class CfnFargateProfileDefConfig(pydantic.BaseModel):
-    LabelProperty: typing.Optional[list[CfnFargateProfileDefLabelpropertyParams]] = pydantic.Field(None, description='')
-    SelectorProperty: typing.Optional[list[CfnFargateProfileDefSelectorpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnFargateProfileDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnFargateProfileDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnFargateProfileDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnFargateProfileDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnFargateProfileDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnFargateProfileDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnFargateProfileDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LabelProperty: typing.Optional[list[models.aws_eks.CfnFargateProfileDefLabelpropertyParams]] = pydantic.Field(None, description='')
+    SelectorProperty: typing.Optional[list[models.aws_eks.CfnFargateProfileDefSelectorpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_eks.CfnFargateProfileDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnFargateProfileDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnFargateProfileDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnFargateProfileDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_eks.CfnFargateProfileDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_eks.CfnFargateProfileDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_eks.CfnFargateProfileDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnFargateProfileDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnFargateProfileDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnFargateProfileDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_eks.CfnFargateProfileDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_eks.CfnFargateProfileDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_eks.CfnFargateProfileDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnFargateProfileDefLabelpropertyParams(pydantic.BaseModel):
@@ -2392,28 +2396,28 @@ class CfnIdentityProviderConfigDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnIdentityProviderConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.CfnIdentityProviderConfigDefConfig] = pydantic.Field(None)
 
 
 class CfnIdentityProviderConfigDefConfig(pydantic.BaseModel):
-    OidcIdentityProviderConfigProperty: typing.Optional[list[CfnIdentityProviderConfigDefOidcidentityproviderconfigpropertyParams]] = pydantic.Field(None, description='')
-    RequiredClaimProperty: typing.Optional[list[CfnIdentityProviderConfigDefRequiredclaimpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnIdentityProviderConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnIdentityProviderConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnIdentityProviderConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnIdentityProviderConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnIdentityProviderConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnIdentityProviderConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnIdentityProviderConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    OidcIdentityProviderConfigProperty: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefOidcidentityproviderconfigpropertyParams]] = pydantic.Field(None, description='')
+    RequiredClaimProperty: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefRequiredclaimpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnIdentityProviderConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnIdentityProviderConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnIdentityProviderConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnIdentityProviderConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnIdentityProviderConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnIdentityProviderConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_eks.CfnIdentityProviderConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnIdentityProviderConfigDefOidcidentityproviderconfigpropertyParams(pydantic.BaseModel):
@@ -2524,31 +2528,31 @@ class CfnNodegroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnNodegroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_eks.CfnNodegroupDefConfig] = pydantic.Field(None)
 
 
 class CfnNodegroupDefConfig(pydantic.BaseModel):
-    LaunchTemplateSpecificationProperty: typing.Optional[list[CfnNodegroupDefLaunchtemplatespecificationpropertyParams]] = pydantic.Field(None, description='')
-    RemoteAccessProperty: typing.Optional[list[CfnNodegroupDefRemoteaccesspropertyParams]] = pydantic.Field(None, description='')
-    ScalingConfigProperty: typing.Optional[list[CfnNodegroupDefScalingconfigpropertyParams]] = pydantic.Field(None, description='')
-    TaintProperty: typing.Optional[list[CfnNodegroupDefTaintpropertyParams]] = pydantic.Field(None, description='')
-    UpdateConfigProperty: typing.Optional[list[CfnNodegroupDefUpdateconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnNodegroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnNodegroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnNodegroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnNodegroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnNodegroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnNodegroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnNodegroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LaunchTemplateSpecificationProperty: typing.Optional[list[models.aws_eks.CfnNodegroupDefLaunchtemplatespecificationpropertyParams]] = pydantic.Field(None, description='')
+    RemoteAccessProperty: typing.Optional[list[models.aws_eks.CfnNodegroupDefRemoteaccesspropertyParams]] = pydantic.Field(None, description='')
+    ScalingConfigProperty: typing.Optional[list[models.aws_eks.CfnNodegroupDefScalingconfigpropertyParams]] = pydantic.Field(None, description='')
+    TaintProperty: typing.Optional[list[models.aws_eks.CfnNodegroupDefTaintpropertyParams]] = pydantic.Field(None, description='')
+    UpdateConfigProperty: typing.Optional[list[models.aws_eks.CfnNodegroupDefUpdateconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_eks.CfnNodegroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnNodegroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnNodegroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnNodegroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_eks.CfnNodegroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_eks.CfnNodegroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_eks.CfnNodegroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnNodegroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnNodegroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnNodegroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_eks.CfnNodegroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_eks.CfnNodegroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_eks.CfnNodegroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnNodegroupDefLaunchtemplatespecificationpropertyParams(pydantic.BaseModel):
@@ -2750,86 +2754,86 @@ class CfnNodegroupPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AlbControllerVersion: typing.Optional[dict[str, AlbControllerVersionDef]] = pydantic.Field(None)
-    EksOptimizedImage: typing.Optional[dict[str, EksOptimizedImageDef]] = pydantic.Field(None)
-    EndpointAccess: typing.Optional[dict[str, EndpointAccessDef]] = pydantic.Field(None)
-    KubernetesVersion: typing.Optional[dict[str, KubernetesVersionDef]] = pydantic.Field(None)
-    AlbController: typing.Optional[dict[str, AlbControllerDef]] = pydantic.Field(None)
-    AwsAuth: typing.Optional[dict[str, AwsAuthDef]] = pydantic.Field(None)
-    Cluster: typing.Optional[dict[str, ClusterDef]] = pydantic.Field(None)
-    FargateCluster: typing.Optional[dict[str, FargateClusterDef]] = pydantic.Field(None)
-    FargateProfile: typing.Optional[dict[str, FargateProfileDef]] = pydantic.Field(None)
-    HelmChart: typing.Optional[dict[str, HelmChartDef]] = pydantic.Field(None)
-    KubectlProvider: typing.Optional[dict[str, KubectlProviderDef]] = pydantic.Field(None)
-    KubernetesManifest: typing.Optional[dict[str, KubernetesManifestDef]] = pydantic.Field(None)
-    KubernetesObjectValue: typing.Optional[dict[str, KubernetesObjectValueDef]] = pydantic.Field(None)
-    KubernetesPatch: typing.Optional[dict[str, KubernetesPatchDef]] = pydantic.Field(None)
-    Nodegroup: typing.Optional[dict[str, NodegroupDef]] = pydantic.Field(None)
-    OpenIdConnectProvider: typing.Optional[dict[str, OpenIdConnectProviderDef]] = pydantic.Field(None)
-    ServiceAccount: typing.Optional[dict[str, ServiceAccountDef]] = pydantic.Field(None)
-    AlbControllerOptions: typing.Optional[dict[str, AlbControllerOptionsDef]] = pydantic.Field(None)
-    AlbControllerProps: typing.Optional[dict[str, AlbControllerPropsDef]] = pydantic.Field(None)
-    AutoScalingGroupCapacityOptions: typing.Optional[dict[str, AutoScalingGroupCapacityOptionsDef]] = pydantic.Field(None)
-    AutoScalingGroupOptions: typing.Optional[dict[str, AutoScalingGroupOptionsDef]] = pydantic.Field(None)
-    AwsAuthMapping: typing.Optional[dict[str, AwsAuthMappingDef]] = pydantic.Field(None)
-    AwsAuthProps: typing.Optional[dict[str, AwsAuthPropsDef]] = pydantic.Field(None)
-    BootstrapOptions: typing.Optional[dict[str, BootstrapOptionsDef]] = pydantic.Field(None)
-    CfnCluster_ClusterLoggingProperty: typing.Optional[dict[str, CfnCluster_ClusterLoggingPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ControlPlanePlacementProperty: typing.Optional[dict[str, CfnCluster_ControlPlanePlacementPropertyDef]] = pydantic.Field(None)
-    CfnCluster_EncryptionConfigProperty: typing.Optional[dict[str, CfnCluster_EncryptionConfigPropertyDef]] = pydantic.Field(None)
-    CfnCluster_KubernetesNetworkConfigProperty: typing.Optional[dict[str, CfnCluster_KubernetesNetworkConfigPropertyDef]] = pydantic.Field(None)
-    CfnCluster_LoggingProperty: typing.Optional[dict[str, CfnCluster_LoggingPropertyDef]] = pydantic.Field(None)
-    CfnCluster_LoggingTypeConfigProperty: typing.Optional[dict[str, CfnCluster_LoggingTypeConfigPropertyDef]] = pydantic.Field(None)
-    CfnCluster_OutpostConfigProperty: typing.Optional[dict[str, CfnCluster_OutpostConfigPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ProviderProperty: typing.Optional[dict[str, CfnCluster_ProviderPropertyDef]] = pydantic.Field(None)
-    CfnCluster_ResourcesVpcConfigProperty: typing.Optional[dict[str, CfnCluster_ResourcesVpcConfigPropertyDef]] = pydantic.Field(None)
-    CfnFargateProfile_LabelProperty: typing.Optional[dict[str, CfnFargateProfile_LabelPropertyDef]] = pydantic.Field(None)
-    CfnFargateProfile_SelectorProperty: typing.Optional[dict[str, CfnFargateProfile_SelectorPropertyDef]] = pydantic.Field(None)
-    CfnIdentityProviderConfig_OidcIdentityProviderConfigProperty: typing.Optional[dict[str, CfnIdentityProviderConfig_OidcIdentityProviderConfigPropertyDef]] = pydantic.Field(None)
-    CfnIdentityProviderConfig_RequiredClaimProperty: typing.Optional[dict[str, CfnIdentityProviderConfig_RequiredClaimPropertyDef]] = pydantic.Field(None)
-    CfnNodegroup_LaunchTemplateSpecificationProperty: typing.Optional[dict[str, CfnNodegroup_LaunchTemplateSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnNodegroup_RemoteAccessProperty: typing.Optional[dict[str, CfnNodegroup_RemoteAccessPropertyDef]] = pydantic.Field(None)
-    CfnNodegroup_ScalingConfigProperty: typing.Optional[dict[str, CfnNodegroup_ScalingConfigPropertyDef]] = pydantic.Field(None)
-    CfnNodegroup_TaintProperty: typing.Optional[dict[str, CfnNodegroup_TaintPropertyDef]] = pydantic.Field(None)
-    CfnNodegroup_UpdateConfigProperty: typing.Optional[dict[str, CfnNodegroup_UpdateConfigPropertyDef]] = pydantic.Field(None)
-    ClusterAttributes: typing.Optional[dict[str, ClusterAttributesDef]] = pydantic.Field(None)
-    ClusterOptions: typing.Optional[dict[str, ClusterOptionsDef]] = pydantic.Field(None)
-    ClusterProps: typing.Optional[dict[str, ClusterPropsDef]] = pydantic.Field(None)
-    CommonClusterOptions: typing.Optional[dict[str, CommonClusterOptionsDef]] = pydantic.Field(None)
-    EksOptimizedImageProps: typing.Optional[dict[str, EksOptimizedImagePropsDef]] = pydantic.Field(None)
-    FargateClusterProps: typing.Optional[dict[str, FargateClusterPropsDef]] = pydantic.Field(None)
-    FargateProfileOptions: typing.Optional[dict[str, FargateProfileOptionsDef]] = pydantic.Field(None)
-    FargateProfileProps: typing.Optional[dict[str, FargateProfilePropsDef]] = pydantic.Field(None)
-    HelmChartOptions: typing.Optional[dict[str, HelmChartOptionsDef]] = pydantic.Field(None)
-    HelmChartProps: typing.Optional[dict[str, HelmChartPropsDef]] = pydantic.Field(None)
-    IngressLoadBalancerAddressOptions: typing.Optional[dict[str, IngressLoadBalancerAddressOptionsDef]] = pydantic.Field(None)
-    KubectlProviderAttributes: typing.Optional[dict[str, KubectlProviderAttributesDef]] = pydantic.Field(None)
-    KubectlProviderProps: typing.Optional[dict[str, KubectlProviderPropsDef]] = pydantic.Field(None)
-    KubernetesManifestOptions: typing.Optional[dict[str, KubernetesManifestOptionsDef]] = pydantic.Field(None)
-    KubernetesManifestProps: typing.Optional[dict[str, KubernetesManifestPropsDef]] = pydantic.Field(None)
-    KubernetesObjectValueProps: typing.Optional[dict[str, KubernetesObjectValuePropsDef]] = pydantic.Field(None)
-    KubernetesPatchProps: typing.Optional[dict[str, KubernetesPatchPropsDef]] = pydantic.Field(None)
-    LaunchTemplateSpec: typing.Optional[dict[str, LaunchTemplateSpecDef]] = pydantic.Field(None)
-    NodegroupOptions: typing.Optional[dict[str, NodegroupOptionsDef]] = pydantic.Field(None)
-    NodegroupProps: typing.Optional[dict[str, NodegroupPropsDef]] = pydantic.Field(None)
-    NodegroupRemoteAccess: typing.Optional[dict[str, NodegroupRemoteAccessDef]] = pydantic.Field(None)
-    OpenIdConnectProviderProps: typing.Optional[dict[str, OpenIdConnectProviderPropsDef]] = pydantic.Field(None)
-    Selector: typing.Optional[dict[str, SelectorDef]] = pydantic.Field(None)
-    ServiceAccountOptions: typing.Optional[dict[str, ServiceAccountOptionsDef]] = pydantic.Field(None)
-    ServiceAccountProps: typing.Optional[dict[str, ServiceAccountPropsDef]] = pydantic.Field(None)
-    ServiceLoadBalancerAddressOptions: typing.Optional[dict[str, ServiceLoadBalancerAddressOptionsDef]] = pydantic.Field(None)
-    TaintSpec: typing.Optional[dict[str, TaintSpecDef]] = pydantic.Field(None)
-    CfnAddon: typing.Optional[dict[str, CfnAddonDef]] = pydantic.Field(None)
-    CfnCluster: typing.Optional[dict[str, CfnClusterDef]] = pydantic.Field(None)
-    CfnFargateProfile: typing.Optional[dict[str, CfnFargateProfileDef]] = pydantic.Field(None)
-    CfnIdentityProviderConfig: typing.Optional[dict[str, CfnIdentityProviderConfigDef]] = pydantic.Field(None)
-    CfnNodegroup: typing.Optional[dict[str, CfnNodegroupDef]] = pydantic.Field(None)
-    CfnAddonProps: typing.Optional[dict[str, CfnAddonPropsDef]] = pydantic.Field(None)
-    CfnClusterProps: typing.Optional[dict[str, CfnClusterPropsDef]] = pydantic.Field(None)
-    CfnFargateProfileProps: typing.Optional[dict[str, CfnFargateProfilePropsDef]] = pydantic.Field(None)
-    CfnIdentityProviderConfigProps: typing.Optional[dict[str, CfnIdentityProviderConfigPropsDef]] = pydantic.Field(None)
-    CfnNodegroupProps: typing.Optional[dict[str, CfnNodegroupPropsDef]] = pydantic.Field(None)
+    AlbControllerVersion: typing.Optional[dict[str, models.aws_eks.AlbControllerVersionDef]] = pydantic.Field(None)
+    EksOptimizedImage: typing.Optional[dict[str, models.aws_eks.EksOptimizedImageDef]] = pydantic.Field(None)
+    EndpointAccess: typing.Optional[dict[str, models.aws_eks.EndpointAccessDef]] = pydantic.Field(None)
+    KubernetesVersion: typing.Optional[dict[str, models.aws_eks.KubernetesVersionDef]] = pydantic.Field(None)
+    AlbController: typing.Optional[dict[str, models.aws_eks.AlbControllerDef]] = pydantic.Field(None)
+    AwsAuth: typing.Optional[dict[str, models.aws_eks.AwsAuthDef]] = pydantic.Field(None)
+    Cluster: typing.Optional[dict[str, models.aws_eks.ClusterDef]] = pydantic.Field(None)
+    FargateCluster: typing.Optional[dict[str, models.aws_eks.FargateClusterDef]] = pydantic.Field(None)
+    FargateProfile: typing.Optional[dict[str, models.aws_eks.FargateProfileDef]] = pydantic.Field(None)
+    HelmChart: typing.Optional[dict[str, models.aws_eks.HelmChartDef]] = pydantic.Field(None)
+    KubectlProvider: typing.Optional[dict[str, models.aws_eks.KubectlProviderDef]] = pydantic.Field(None)
+    KubernetesManifest: typing.Optional[dict[str, models.aws_eks.KubernetesManifestDef]] = pydantic.Field(None)
+    KubernetesObjectValue: typing.Optional[dict[str, models.aws_eks.KubernetesObjectValueDef]] = pydantic.Field(None)
+    KubernetesPatch: typing.Optional[dict[str, models.aws_eks.KubernetesPatchDef]] = pydantic.Field(None)
+    Nodegroup: typing.Optional[dict[str, models.aws_eks.NodegroupDef]] = pydantic.Field(None)
+    OpenIdConnectProvider: typing.Optional[dict[str, models.aws_eks.OpenIdConnectProviderDef]] = pydantic.Field(None)
+    ServiceAccount: typing.Optional[dict[str, models.aws_eks.ServiceAccountDef]] = pydantic.Field(None)
+    AlbControllerOptions: typing.Optional[dict[str, models.aws_eks.AlbControllerOptionsDef]] = pydantic.Field(None)
+    AlbControllerProps: typing.Optional[dict[str, models.aws_eks.AlbControllerPropsDef]] = pydantic.Field(None)
+    AutoScalingGroupCapacityOptions: typing.Optional[dict[str, models.aws_eks.AutoScalingGroupCapacityOptionsDef]] = pydantic.Field(None)
+    AutoScalingGroupOptions: typing.Optional[dict[str, models.aws_eks.AutoScalingGroupOptionsDef]] = pydantic.Field(None)
+    AwsAuthMapping: typing.Optional[dict[str, models.aws_eks.AwsAuthMappingDef]] = pydantic.Field(None)
+    AwsAuthProps: typing.Optional[dict[str, models.aws_eks.AwsAuthPropsDef]] = pydantic.Field(None)
+    BootstrapOptions: typing.Optional[dict[str, models.aws_eks.BootstrapOptionsDef]] = pydantic.Field(None)
+    CfnCluster_ClusterLoggingProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_ClusterLoggingPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ControlPlanePlacementProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_ControlPlanePlacementPropertyDef]] = pydantic.Field(None)
+    CfnCluster_EncryptionConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_EncryptionConfigPropertyDef]] = pydantic.Field(None)
+    CfnCluster_KubernetesNetworkConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_KubernetesNetworkConfigPropertyDef]] = pydantic.Field(None)
+    CfnCluster_LoggingProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_LoggingPropertyDef]] = pydantic.Field(None)
+    CfnCluster_LoggingTypeConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_LoggingTypeConfigPropertyDef]] = pydantic.Field(None)
+    CfnCluster_OutpostConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_OutpostConfigPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ProviderProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_ProviderPropertyDef]] = pydantic.Field(None)
+    CfnCluster_ResourcesVpcConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnCluster_ResourcesVpcConfigPropertyDef]] = pydantic.Field(None)
+    CfnFargateProfile_LabelProperty: typing.Optional[dict[str, models.aws_eks.CfnFargateProfile_LabelPropertyDef]] = pydantic.Field(None)
+    CfnFargateProfile_SelectorProperty: typing.Optional[dict[str, models.aws_eks.CfnFargateProfile_SelectorPropertyDef]] = pydantic.Field(None)
+    CfnIdentityProviderConfig_OidcIdentityProviderConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnIdentityProviderConfig_OidcIdentityProviderConfigPropertyDef]] = pydantic.Field(None)
+    CfnIdentityProviderConfig_RequiredClaimProperty: typing.Optional[dict[str, models.aws_eks.CfnIdentityProviderConfig_RequiredClaimPropertyDef]] = pydantic.Field(None)
+    CfnNodegroup_LaunchTemplateSpecificationProperty: typing.Optional[dict[str, models.aws_eks.CfnNodegroup_LaunchTemplateSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnNodegroup_RemoteAccessProperty: typing.Optional[dict[str, models.aws_eks.CfnNodegroup_RemoteAccessPropertyDef]] = pydantic.Field(None)
+    CfnNodegroup_ScalingConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnNodegroup_ScalingConfigPropertyDef]] = pydantic.Field(None)
+    CfnNodegroup_TaintProperty: typing.Optional[dict[str, models.aws_eks.CfnNodegroup_TaintPropertyDef]] = pydantic.Field(None)
+    CfnNodegroup_UpdateConfigProperty: typing.Optional[dict[str, models.aws_eks.CfnNodegroup_UpdateConfigPropertyDef]] = pydantic.Field(None)
+    ClusterAttributes: typing.Optional[dict[str, models.aws_eks.ClusterAttributesDef]] = pydantic.Field(None)
+    ClusterOptions: typing.Optional[dict[str, models.aws_eks.ClusterOptionsDef]] = pydantic.Field(None)
+    ClusterProps: typing.Optional[dict[str, models.aws_eks.ClusterPropsDef]] = pydantic.Field(None)
+    CommonClusterOptions: typing.Optional[dict[str, models.aws_eks.CommonClusterOptionsDef]] = pydantic.Field(None)
+    EksOptimizedImageProps: typing.Optional[dict[str, models.aws_eks.EksOptimizedImagePropsDef]] = pydantic.Field(None)
+    FargateClusterProps: typing.Optional[dict[str, models.aws_eks.FargateClusterPropsDef]] = pydantic.Field(None)
+    FargateProfileOptions: typing.Optional[dict[str, models.aws_eks.FargateProfileOptionsDef]] = pydantic.Field(None)
+    FargateProfileProps: typing.Optional[dict[str, models.aws_eks.FargateProfilePropsDef]] = pydantic.Field(None)
+    HelmChartOptions: typing.Optional[dict[str, models.aws_eks.HelmChartOptionsDef]] = pydantic.Field(None)
+    HelmChartProps: typing.Optional[dict[str, models.aws_eks.HelmChartPropsDef]] = pydantic.Field(None)
+    IngressLoadBalancerAddressOptions: typing.Optional[dict[str, models.aws_eks.IngressLoadBalancerAddressOptionsDef]] = pydantic.Field(None)
+    KubectlProviderAttributes: typing.Optional[dict[str, models.aws_eks.KubectlProviderAttributesDef]] = pydantic.Field(None)
+    KubectlProviderProps: typing.Optional[dict[str, models.aws_eks.KubectlProviderPropsDef]] = pydantic.Field(None)
+    KubernetesManifestOptions: typing.Optional[dict[str, models.aws_eks.KubernetesManifestOptionsDef]] = pydantic.Field(None)
+    KubernetesManifestProps: typing.Optional[dict[str, models.aws_eks.KubernetesManifestPropsDef]] = pydantic.Field(None)
+    KubernetesObjectValueProps: typing.Optional[dict[str, models.aws_eks.KubernetesObjectValuePropsDef]] = pydantic.Field(None)
+    KubernetesPatchProps: typing.Optional[dict[str, models.aws_eks.KubernetesPatchPropsDef]] = pydantic.Field(None)
+    LaunchTemplateSpec: typing.Optional[dict[str, models.aws_eks.LaunchTemplateSpecDef]] = pydantic.Field(None)
+    NodegroupOptions: typing.Optional[dict[str, models.aws_eks.NodegroupOptionsDef]] = pydantic.Field(None)
+    NodegroupProps: typing.Optional[dict[str, models.aws_eks.NodegroupPropsDef]] = pydantic.Field(None)
+    NodegroupRemoteAccess: typing.Optional[dict[str, models.aws_eks.NodegroupRemoteAccessDef]] = pydantic.Field(None)
+    OpenIdConnectProviderProps: typing.Optional[dict[str, models.aws_eks.OpenIdConnectProviderPropsDef]] = pydantic.Field(None)
+    Selector: typing.Optional[dict[str, models.aws_eks.SelectorDef]] = pydantic.Field(None)
+    ServiceAccountOptions: typing.Optional[dict[str, models.aws_eks.ServiceAccountOptionsDef]] = pydantic.Field(None)
+    ServiceAccountProps: typing.Optional[dict[str, models.aws_eks.ServiceAccountPropsDef]] = pydantic.Field(None)
+    ServiceLoadBalancerAddressOptions: typing.Optional[dict[str, models.aws_eks.ServiceLoadBalancerAddressOptionsDef]] = pydantic.Field(None)
+    TaintSpec: typing.Optional[dict[str, models.aws_eks.TaintSpecDef]] = pydantic.Field(None)
+    CfnAddon: typing.Optional[dict[str, models.aws_eks.CfnAddonDef]] = pydantic.Field(None)
+    CfnCluster: typing.Optional[dict[str, models.aws_eks.CfnClusterDef]] = pydantic.Field(None)
+    CfnFargateProfile: typing.Optional[dict[str, models.aws_eks.CfnFargateProfileDef]] = pydantic.Field(None)
+    CfnIdentityProviderConfig: typing.Optional[dict[str, models.aws_eks.CfnIdentityProviderConfigDef]] = pydantic.Field(None)
+    CfnNodegroup: typing.Optional[dict[str, models.aws_eks.CfnNodegroupDef]] = pydantic.Field(None)
+    CfnAddonProps: typing.Optional[dict[str, models.aws_eks.CfnAddonPropsDef]] = pydantic.Field(None)
+    CfnClusterProps: typing.Optional[dict[str, models.aws_eks.CfnClusterPropsDef]] = pydantic.Field(None)
+    CfnFargateProfileProps: typing.Optional[dict[str, models.aws_eks.CfnFargateProfilePropsDef]] = pydantic.Field(None)
+    CfnIdentityProviderConfigProps: typing.Optional[dict[str, models.aws_eks.CfnIdentityProviderConfigPropsDef]] = pydantic.Field(None)
+    CfnNodegroupProps: typing.Optional[dict[str, models.aws_eks.CfnNodegroupPropsDef]] = pydantic.Field(None)
     ...
+
+import models

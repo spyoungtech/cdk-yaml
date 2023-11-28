@@ -16,14 +16,15 @@ class ElasticsearchVersionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ElasticsearchVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticsearch.ElasticsearchVersionDefConfig] = pydantic.Field(None)
 
 
 class ElasticsearchVersionDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[ElasticsearchVersionDefOfParams]] = pydantic.Field(None, description='Custom Elasticsearch version.')
+    of: typing.Optional[list[models.aws_elasticsearch.ElasticsearchVersionDefOfParams]] = pydantic.Field(None, description='Custom Elasticsearch version.')
 
 class ElasticsearchVersionDefOfParams(pydantic.BaseModel):
     version: str = pydantic.Field(..., description='custom version number.')
+    return_config: typing.Optional[list[models.aws_elasticsearch.ElasticsearchVersionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -59,39 +60,39 @@ class DomainDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    from_domain_attributes: typing.Optional[DomainDefFromDomainAttributesParams] = pydantic.Field(None, description='(deprecated) Creates a Domain construct that represents an external domain.')
-    from_domain_endpoint: typing.Optional[DomainDefFromDomainEndpointParams] = pydantic.Field(None, description='(deprecated) Creates a Domain construct that represents an external domain via domain endpoint.')
-    resource_config: typing.Optional[DomainDefConfig] = pydantic.Field(None)
+    from_domain_attributes: typing.Optional[models.aws_elasticsearch.DomainDefFromDomainAttributesParams] = pydantic.Field(None, description='(deprecated) Creates a Domain construct that represents an external domain.')
+    from_domain_endpoint: typing.Optional[models.aws_elasticsearch.DomainDefFromDomainEndpointParams] = pydantic.Field(None, description='(deprecated) Creates a Domain construct that represents an external domain via domain endpoint.')
+    resource_config: typing.Optional[models.aws_elasticsearch.DomainDefConfig] = pydantic.Field(None)
 
 
 class DomainDefConfig(pydantic.BaseModel):
-    add_access_policies: typing.Optional[list[DomainDefAddAccessPoliciesParams]] = pydantic.Field(None, description='(deprecated) Add policy statements to the domain access policy.')
+    add_access_policies: typing.Optional[list[models.aws_elasticsearch.DomainDefAddAccessPoliciesParams]] = pydantic.Field(None, description='(deprecated) Add policy statements to the domain access policy.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_index_read: typing.Optional[list[DomainDefGrantIndexReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_index_read_write: typing.Optional[list[DomainDefGrantIndexReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_index_write: typing.Optional[list[DomainDefGrantIndexWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_path_read: typing.Optional[list[DomainDefGrantPathReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_path_read_write: typing.Optional[list[DomainDefGrantPathReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_path_write: typing.Optional[list[DomainDefGrantPathWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_read: typing.Optional[list[DomainDefGrantReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    grant_read_write: typing.Optional[list[DomainDefGrantReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    grant_write: typing.Optional[list[DomainDefGrantWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    metric: typing.Optional[list[DomainDefMetricParams]] = pydantic.Field(None, description='(deprecated) Return the given named metric for this Domain.')
-    metric_automated_snapshot_failure: typing.Optional[list[DomainDefMetricAutomatedSnapshotFailureParams]] = pydantic.Field(None, description='(deprecated) Metric for automated snapshot failures.')
-    metric_cluster_index_writes_blocked: typing.Optional[list[DomainDefMetricClusterIndexWritesBlockedParams]] = pydantic.Field(None, description='(deprecated) Metric for the cluster blocking index writes.')
-    metric_cluster_status_red: typing.Optional[list[DomainDefMetricClusterStatusRedParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is red.')
-    metric_cluster_status_yellow: typing.Optional[list[DomainDefMetricClusterStatusYellowParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is yellow.')
-    metric_cpu_utilization: typing.Optional[list[DomainDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for CPU utilization.')
-    metric_free_storage_space: typing.Optional[list[DomainDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='(deprecated) Metric for the storage space of nodes in the cluster.')
-    metric_indexing_latency: typing.Optional[list[DomainDefMetricIndexingLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for indexing latency.')
-    metric_jvm_memory_pressure: typing.Optional[list[DomainDefMetricJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for JVM memory pressure.')
-    metric_kms_key_error: typing.Optional[list[DomainDefMetricKmsKeyErrorParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key errors.')
-    metric_kms_key_inaccessible: typing.Optional[list[DomainDefMetricKmsKeyInaccessibleParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key being inaccessible.')
-    metric_master_cpu_utilization: typing.Optional[list[DomainDefMetricMasterCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for master CPU utilization.')
-    metric_master_jvm_memory_pressure: typing.Optional[list[DomainDefMetricMasterJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for master JVM memory pressure.')
-    metric_nodes: typing.Optional[list[DomainDefMetricNodesParams]] = pydantic.Field(None, description='(deprecated) Metric for the number of nodes.')
-    metric_search_latency: typing.Optional[list[DomainDefMetricSearchLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for search latency.')
-    metric_searchable_documents: typing.Optional[list[DomainDefMetricSearchableDocumentsParams]] = pydantic.Field(None, description='(deprecated) Metric for number of searchable documents.')
+    grant_index_read: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantIndexReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_index_read_write: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantIndexReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_index_write: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantIndexWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_path_read: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantPathReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_path_read_write: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantPathReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_path_write: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantPathWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_read: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    grant_read_write: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    grant_write: typing.Optional[list[models.aws_elasticsearch.DomainDefGrantWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    metric: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricParams]] = pydantic.Field(None, description='(deprecated) Return the given named metric for this Domain.')
+    metric_automated_snapshot_failure: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricAutomatedSnapshotFailureParams]] = pydantic.Field(None, description='(deprecated) Metric for automated snapshot failures.')
+    metric_cluster_index_writes_blocked: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricClusterIndexWritesBlockedParams]] = pydantic.Field(None, description='(deprecated) Metric for the cluster blocking index writes.')
+    metric_cluster_status_red: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricClusterStatusRedParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is red.')
+    metric_cluster_status_yellow: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricClusterStatusYellowParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is yellow.')
+    metric_cpu_utilization: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for CPU utilization.')
+    metric_free_storage_space: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='(deprecated) Metric for the storage space of nodes in the cluster.')
+    metric_indexing_latency: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricIndexingLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for indexing latency.')
+    metric_jvm_memory_pressure: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for JVM memory pressure.')
+    metric_kms_key_error: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricKmsKeyErrorParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key errors.')
+    metric_kms_key_inaccessible: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricKmsKeyInaccessibleParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key being inaccessible.')
+    metric_master_cpu_utilization: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricMasterCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for master CPU utilization.')
+    metric_master_jvm_memory_pressure: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricMasterJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for master JVM memory pressure.')
+    metric_nodes: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricNodesParams]] = pydantic.Field(None, description='(deprecated) Metric for the number of nodes.')
+    metric_search_latency: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricSearchLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for search latency.')
+    metric_searchable_documents: typing.Optional[list[models.aws_elasticsearch.DomainDefMetricSearchableDocumentsParams]] = pydantic.Field(None, description='(deprecated) Metric for number of searchable documents.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class DomainDefAddAccessPoliciesParams(pydantic.BaseModel):
@@ -603,7 +604,7 @@ class CognitoOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CognitoOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticsearch.CognitoOptionsDefConfig] = pydantic.Field(None)
 
 
 class CognitoOptionsDefConfig(pydantic.BaseModel):
@@ -769,39 +770,39 @@ class CfnDomainDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDomainDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticsearch.CfnDomainDefConfig] = pydantic.Field(None)
 
 
 class CfnDomainDefConfig(pydantic.BaseModel):
-    AdvancedSecurityOptionsInputProperty: typing.Optional[list[CfnDomainDefAdvancedsecurityoptionsinputpropertyParams]] = pydantic.Field(None, description='')
-    CognitoOptionsProperty: typing.Optional[list[CfnDomainDefCognitooptionspropertyParams]] = pydantic.Field(None, description='')
-    ColdStorageOptionsProperty: typing.Optional[list[CfnDomainDefColdstorageoptionspropertyParams]] = pydantic.Field(None, description='')
-    DomainEndpointOptionsProperty: typing.Optional[list[CfnDomainDefDomainendpointoptionspropertyParams]] = pydantic.Field(None, description='')
-    EBSOptionsProperty: typing.Optional[list[CfnDomainDefEbsoptionspropertyParams]] = pydantic.Field(None, description='')
-    ElasticsearchClusterConfigProperty: typing.Optional[list[CfnDomainDefElasticsearchclusterconfigpropertyParams]] = pydantic.Field(None, description='')
-    EncryptionAtRestOptionsProperty: typing.Optional[list[CfnDomainDefEncryptionatrestoptionspropertyParams]] = pydantic.Field(None, description='')
-    LogPublishingOptionProperty: typing.Optional[list[CfnDomainDefLogpublishingoptionpropertyParams]] = pydantic.Field(None, description='')
-    MasterUserOptionsProperty: typing.Optional[list[CfnDomainDefMasteruseroptionspropertyParams]] = pydantic.Field(None, description='')
-    NodeToNodeEncryptionOptionsProperty: typing.Optional[list[CfnDomainDefNodetonodeencryptionoptionspropertyParams]] = pydantic.Field(None, description='')
-    SnapshotOptionsProperty: typing.Optional[list[CfnDomainDefSnapshotoptionspropertyParams]] = pydantic.Field(None, description='')
-    VPCOptionsProperty: typing.Optional[list[CfnDomainDefVpcoptionspropertyParams]] = pydantic.Field(None, description='')
-    ZoneAwarenessConfigProperty: typing.Optional[list[CfnDomainDefZoneawarenessconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDomainDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDomainDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDomainDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDomainDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDomainDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDomainDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDomainDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AdvancedSecurityOptionsInputProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAdvancedsecurityoptionsinputpropertyParams]] = pydantic.Field(None, description='')
+    CognitoOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefCognitooptionspropertyParams]] = pydantic.Field(None, description='')
+    ColdStorageOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefColdstorageoptionspropertyParams]] = pydantic.Field(None, description='')
+    DomainEndpointOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefDomainendpointoptionspropertyParams]] = pydantic.Field(None, description='')
+    EBSOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefEbsoptionspropertyParams]] = pydantic.Field(None, description='')
+    ElasticsearchClusterConfigProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefElasticsearchclusterconfigpropertyParams]] = pydantic.Field(None, description='')
+    EncryptionAtRestOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefEncryptionatrestoptionspropertyParams]] = pydantic.Field(None, description='')
+    LogPublishingOptionProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefLogpublishingoptionpropertyParams]] = pydantic.Field(None, description='')
+    MasterUserOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefMasteruseroptionspropertyParams]] = pydantic.Field(None, description='')
+    NodeToNodeEncryptionOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefNodetonodeencryptionoptionspropertyParams]] = pydantic.Field(None, description='')
+    SnapshotOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefSnapshotoptionspropertyParams]] = pydantic.Field(None, description='')
+    VPCOptionsProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefVpcoptionspropertyParams]] = pydantic.Field(None, description='')
+    ZoneAwarenessConfigProperty: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefZoneawarenessconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDomainDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDomainDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDomainDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDomainDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDomainDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDomainDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_elasticsearch.CfnDomainDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDomainDefAdvancedsecurityoptionsinputpropertyParams(pydantic.BaseModel):
@@ -977,34 +978,34 @@ class CfnDomainPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ElasticsearchVersion: typing.Optional[dict[str, ElasticsearchVersionDef]] = pydantic.Field(None)
-    Domain: typing.Optional[dict[str, DomainDef]] = pydantic.Field(None)
-    AdvancedSecurityOptions: typing.Optional[dict[str, AdvancedSecurityOptionsDef]] = pydantic.Field(None)
-    CapacityConfig: typing.Optional[dict[str, CapacityConfigDef]] = pydantic.Field(None)
-    CfnDomain_AdvancedSecurityOptionsInputProperty: typing.Optional[dict[str, CfnDomain_AdvancedSecurityOptionsInputPropertyDef]] = pydantic.Field(None)
-    CfnDomain_CognitoOptionsProperty: typing.Optional[dict[str, CfnDomain_CognitoOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_ColdStorageOptionsProperty: typing.Optional[dict[str, CfnDomain_ColdStorageOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_DomainEndpointOptionsProperty: typing.Optional[dict[str, CfnDomain_DomainEndpointOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_EBSOptionsProperty: typing.Optional[dict[str, CfnDomain_EBSOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_ElasticsearchClusterConfigProperty: typing.Optional[dict[str, CfnDomain_ElasticsearchClusterConfigPropertyDef]] = pydantic.Field(None)
-    CfnDomain_EncryptionAtRestOptionsProperty: typing.Optional[dict[str, CfnDomain_EncryptionAtRestOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_LogPublishingOptionProperty: typing.Optional[dict[str, CfnDomain_LogPublishingOptionPropertyDef]] = pydantic.Field(None)
-    CfnDomain_MasterUserOptionsProperty: typing.Optional[dict[str, CfnDomain_MasterUserOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_NodeToNodeEncryptionOptionsProperty: typing.Optional[dict[str, CfnDomain_NodeToNodeEncryptionOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_SnapshotOptionsProperty: typing.Optional[dict[str, CfnDomain_SnapshotOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_VPCOptionsProperty: typing.Optional[dict[str, CfnDomain_VPCOptionsPropertyDef]] = pydantic.Field(None)
-    CfnDomain_ZoneAwarenessConfigProperty: typing.Optional[dict[str, CfnDomain_ZoneAwarenessConfigPropertyDef]] = pydantic.Field(None)
-    CognitoOptions: typing.Optional[dict[str, CognitoOptionsDef]] = pydantic.Field(None)
-    CustomEndpointOptions: typing.Optional[dict[str, CustomEndpointOptionsDef]] = pydantic.Field(None)
-    DomainAttributes: typing.Optional[dict[str, DomainAttributesDef]] = pydantic.Field(None)
-    DomainProps: typing.Optional[dict[str, DomainPropsDef]] = pydantic.Field(None)
-    EbsOptions: typing.Optional[dict[str, EbsOptionsDef]] = pydantic.Field(None)
-    EncryptionAtRestOptions: typing.Optional[dict[str, EncryptionAtRestOptionsDef]] = pydantic.Field(None)
-    LoggingOptions: typing.Optional[dict[str, LoggingOptionsDef]] = pydantic.Field(None)
-    ZoneAwarenessConfig: typing.Optional[dict[str, ZoneAwarenessConfigDef]] = pydantic.Field(None)
-    CfnDomain: typing.Optional[dict[str, CfnDomainDef]] = pydantic.Field(None)
-    CfnDomainProps: typing.Optional[dict[str, CfnDomainPropsDef]] = pydantic.Field(None)
+    ElasticsearchVersion: typing.Optional[dict[str, models.aws_elasticsearch.ElasticsearchVersionDef]] = pydantic.Field(None)
+    Domain: typing.Optional[dict[str, models.aws_elasticsearch.DomainDef]] = pydantic.Field(None)
+    AdvancedSecurityOptions: typing.Optional[dict[str, models.aws_elasticsearch.AdvancedSecurityOptionsDef]] = pydantic.Field(None)
+    CapacityConfig: typing.Optional[dict[str, models.aws_elasticsearch.CapacityConfigDef]] = pydantic.Field(None)
+    CfnDomain_AdvancedSecurityOptionsInputProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_AdvancedSecurityOptionsInputPropertyDef]] = pydantic.Field(None)
+    CfnDomain_CognitoOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_CognitoOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_ColdStorageOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_ColdStorageOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_DomainEndpointOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_DomainEndpointOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_EBSOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_EBSOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_ElasticsearchClusterConfigProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_ElasticsearchClusterConfigPropertyDef]] = pydantic.Field(None)
+    CfnDomain_EncryptionAtRestOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_EncryptionAtRestOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_LogPublishingOptionProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_LogPublishingOptionPropertyDef]] = pydantic.Field(None)
+    CfnDomain_MasterUserOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_MasterUserOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_NodeToNodeEncryptionOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_NodeToNodeEncryptionOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_SnapshotOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_SnapshotOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_VPCOptionsProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_VPCOptionsPropertyDef]] = pydantic.Field(None)
+    CfnDomain_ZoneAwarenessConfigProperty: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomain_ZoneAwarenessConfigPropertyDef]] = pydantic.Field(None)
+    CognitoOptions: typing.Optional[dict[str, models.aws_elasticsearch.CognitoOptionsDef]] = pydantic.Field(None)
+    CustomEndpointOptions: typing.Optional[dict[str, models.aws_elasticsearch.CustomEndpointOptionsDef]] = pydantic.Field(None)
+    DomainAttributes: typing.Optional[dict[str, models.aws_elasticsearch.DomainAttributesDef]] = pydantic.Field(None)
+    DomainProps: typing.Optional[dict[str, models.aws_elasticsearch.DomainPropsDef]] = pydantic.Field(None)
+    EbsOptions: typing.Optional[dict[str, models.aws_elasticsearch.EbsOptionsDef]] = pydantic.Field(None)
+    EncryptionAtRestOptions: typing.Optional[dict[str, models.aws_elasticsearch.EncryptionAtRestOptionsDef]] = pydantic.Field(None)
+    LoggingOptions: typing.Optional[dict[str, models.aws_elasticsearch.LoggingOptionsDef]] = pydantic.Field(None)
+    ZoneAwarenessConfig: typing.Optional[dict[str, models.aws_elasticsearch.ZoneAwarenessConfigDef]] = pydantic.Field(None)
+    CfnDomain: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomainDef]] = pydantic.Field(None)
+    CfnDomainProps: typing.Optional[dict[str, models.aws_elasticsearch.CfnDomainPropsDef]] = pydantic.Field(None)
     ...
+
+import models

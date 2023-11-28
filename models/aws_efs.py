@@ -20,9 +20,9 @@ class AccessPointDef(BaseConstruct):
     ...
 
 
-    from_access_point_attributes: typing.Optional[AccessPointDefFromAccessPointAttributesParams] = pydantic.Field(None, description='Import an existing Access Point by attributes.')
-    from_access_point_id: typing.Optional[AccessPointDefFromAccessPointIdParams] = pydantic.Field(None, description='Import an existing Access Point by id.')
-    resource_config: typing.Optional[AccessPointDefConfig] = pydantic.Field(None)
+    from_access_point_attributes: typing.Optional[models.aws_efs.AccessPointDefFromAccessPointAttributesParams] = pydantic.Field(None, description='Import an existing Access Point by attributes.')
+    from_access_point_id: typing.Optional[models.aws_efs.AccessPointDefFromAccessPointIdParams] = pydantic.Field(None, description='Import an existing Access Point by id.')
+    resource_config: typing.Optional[models.aws_efs.AccessPointDefConfig] = pydantic.Field(None)
 
 
 class AccessPointDefConfig(pydantic.BaseModel):
@@ -73,18 +73,18 @@ class FileSystemDef(BaseConstruct):
     ...
 
 
-    from_file_system_attributes: typing.Optional[FileSystemDefFromFileSystemAttributesParams] = pydantic.Field(None, description='Import an existing File System from the given properties.')
-    resource_config: typing.Optional[FileSystemDefConfig] = pydantic.Field(None)
+    from_file_system_attributes: typing.Optional[models.aws_efs.FileSystemDefFromFileSystemAttributesParams] = pydantic.Field(None, description='Import an existing File System from the given properties.')
+    resource_config: typing.Optional[models.aws_efs.FileSystemDefConfig] = pydantic.Field(None)
 
 
 class FileSystemDefConfig(pydantic.BaseModel):
-    add_access_point: typing.Optional[list[FileSystemDefAddAccessPointParams]] = pydantic.Field(None, description='create access point from this filesystem.')
-    add_to_resource_policy: typing.Optional[list[FileSystemDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the resource policy associated with this file system.\nA resource policy will be automatically created upon the first call to ``addToResourcePolicy``.\n\nNote that this does not work with imported file systems.')
+    add_access_point: typing.Optional[list[models.aws_efs.FileSystemDefAddAccessPointParams]] = pydantic.Field(None, description='create access point from this filesystem.')
+    add_to_resource_policy: typing.Optional[list[models.aws_efs.FileSystemDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the resource policy associated with this file system.\nA resource policy will be automatically created upon the first call to ``addToResourcePolicy``.\n\nNote that this does not work with imported file systems.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[FileSystemDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this File System resource.')
-    grant_read: typing.Optional[list[FileSystemDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this file system to an IAM principal.')
-    grant_read_write: typing.Optional[list[FileSystemDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read and write permissions for this file system to an IAM principal.')
-    grant_root_access: typing.Optional[list[FileSystemDefGrantRootAccessParams]] = pydantic.Field(None, description='As root user, grant read and write permissions for this file system to an IAM principal.')
+    grant: typing.Optional[list[models.aws_efs.FileSystemDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this File System resource.')
+    grant_read: typing.Optional[list[models.aws_efs.FileSystemDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this file system to an IAM principal.')
+    grant_read_write: typing.Optional[list[models.aws_efs.FileSystemDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read and write permissions for this file system to an IAM principal.')
+    grant_root_access: typing.Optional[list[models.aws_efs.FileSystemDefGrantRootAccessParams]] = pydantic.Field(None, description='As root user, grant read and write permissions for this file system to an IAM principal.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class FileSystemDefAddAccessPointParams(pydantic.BaseModel):
@@ -335,7 +335,7 @@ class FileSystemAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FileSystemAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_efs.FileSystemAttributesDefConfig] = pydantic.Field(None)
 
 
 class FileSystemAttributesDefConfig(pydantic.BaseModel):
@@ -367,7 +367,7 @@ class FileSystemPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FileSystemPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_efs.FileSystemPropsDefConfig] = pydantic.Field(None)
 
 
 class FileSystemPropsDefConfig(pydantic.BaseModel):
@@ -422,30 +422,30 @@ class CfnAccessPointDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAccessPointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_efs.CfnAccessPointDefConfig] = pydantic.Field(None)
 
 
 class CfnAccessPointDefConfig(pydantic.BaseModel):
-    AccessPointTagProperty: typing.Optional[list[CfnAccessPointDefAccesspointtagpropertyParams]] = pydantic.Field(None, description='')
-    CreationInfoProperty: typing.Optional[list[CfnAccessPointDefCreationinfopropertyParams]] = pydantic.Field(None, description='')
-    PosixUserProperty: typing.Optional[list[CfnAccessPointDefPosixuserpropertyParams]] = pydantic.Field(None, description='')
-    RootDirectoryProperty: typing.Optional[list[CfnAccessPointDefRootdirectorypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAccessPointDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAccessPointDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAccessPointDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAccessPointDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAccessPointDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAccessPointDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAccessPointDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccessPointTagProperty: typing.Optional[list[models.aws_efs.CfnAccessPointDefAccesspointtagpropertyParams]] = pydantic.Field(None, description='')
+    CreationInfoProperty: typing.Optional[list[models.aws_efs.CfnAccessPointDefCreationinfopropertyParams]] = pydantic.Field(None, description='')
+    PosixUserProperty: typing.Optional[list[models.aws_efs.CfnAccessPointDefPosixuserpropertyParams]] = pydantic.Field(None, description='')
+    RootDirectoryProperty: typing.Optional[list[models.aws_efs.CfnAccessPointDefRootdirectorypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_efs.CfnAccessPointDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAccessPointDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAccessPointDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAccessPointDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_efs.CfnAccessPointDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_efs.CfnAccessPointDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_efs.CfnAccessPointDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAccessPointDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAccessPointDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAccessPointDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_efs.CfnAccessPointDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_efs.CfnAccessPointDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_efs.CfnAccessPointDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnAccessPointDefAccesspointtagpropertyParams(pydantic.BaseModel):
@@ -557,31 +557,31 @@ class CfnFileSystemDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnFileSystemDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_efs.CfnFileSystemDefConfig] = pydantic.Field(None)
 
 
 class CfnFileSystemDefConfig(pydantic.BaseModel):
-    BackupPolicyProperty: typing.Optional[list[CfnFileSystemDefBackuppolicypropertyParams]] = pydantic.Field(None, description='')
-    ElasticFileSystemTagProperty: typing.Optional[list[CfnFileSystemDefElasticfilesystemtagpropertyParams]] = pydantic.Field(None, description='')
-    LifecyclePolicyProperty: typing.Optional[list[CfnFileSystemDefLifecyclepolicypropertyParams]] = pydantic.Field(None, description='')
-    ReplicationConfigurationProperty: typing.Optional[list[CfnFileSystemDefReplicationconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ReplicationDestinationProperty: typing.Optional[list[CfnFileSystemDefReplicationdestinationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnFileSystemDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnFileSystemDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnFileSystemDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnFileSystemDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnFileSystemDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnFileSystemDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnFileSystemDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    BackupPolicyProperty: typing.Optional[list[models.aws_efs.CfnFileSystemDefBackuppolicypropertyParams]] = pydantic.Field(None, description='')
+    ElasticFileSystemTagProperty: typing.Optional[list[models.aws_efs.CfnFileSystemDefElasticfilesystemtagpropertyParams]] = pydantic.Field(None, description='')
+    LifecyclePolicyProperty: typing.Optional[list[models.aws_efs.CfnFileSystemDefLifecyclepolicypropertyParams]] = pydantic.Field(None, description='')
+    ReplicationConfigurationProperty: typing.Optional[list[models.aws_efs.CfnFileSystemDefReplicationconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ReplicationDestinationProperty: typing.Optional[list[models.aws_efs.CfnFileSystemDefReplicationdestinationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_efs.CfnFileSystemDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnFileSystemDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnFileSystemDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnFileSystemDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_efs.CfnFileSystemDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_efs.CfnFileSystemDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_efs.CfnFileSystemDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnFileSystemDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnFileSystemDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnFileSystemDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_efs.CfnFileSystemDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_efs.CfnFileSystemDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_efs.CfnFileSystemDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnFileSystemDefBackuppolicypropertyParams(pydantic.BaseModel):
@@ -688,26 +688,26 @@ class CfnMountTargetDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMountTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_efs.CfnMountTargetDefConfig] = pydantic.Field(None)
 
 
 class CfnMountTargetDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnMountTargetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMountTargetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMountTargetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMountTargetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMountTargetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMountTargetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMountTargetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_efs.CfnMountTargetDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMountTargetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMountTargetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMountTargetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_efs.CfnMountTargetDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_efs.CfnMountTargetDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_efs.CfnMountTargetDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMountTargetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMountTargetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMountTargetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_efs.CfnMountTargetDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_efs.CfnMountTargetDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_efs.CfnMountTargetDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnMountTargetDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -831,31 +831,31 @@ class CfnMountTargetPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AccessPoint: typing.Optional[dict[str, AccessPointDef]] = pydantic.Field(None)
-    FileSystem: typing.Optional[dict[str, FileSystemDef]] = pydantic.Field(None)
-    AccessPointAttributes: typing.Optional[dict[str, AccessPointAttributesDef]] = pydantic.Field(None)
-    AccessPointOptions: typing.Optional[dict[str, AccessPointOptionsDef]] = pydantic.Field(None)
-    AccessPointProps: typing.Optional[dict[str, AccessPointPropsDef]] = pydantic.Field(None)
-    Acl: typing.Optional[dict[str, AclDef]] = pydantic.Field(None)
-    CfnAccessPoint_AccessPointTagProperty: typing.Optional[dict[str, CfnAccessPoint_AccessPointTagPropertyDef]] = pydantic.Field(None)
-    CfnAccessPoint_CreationInfoProperty: typing.Optional[dict[str, CfnAccessPoint_CreationInfoPropertyDef]] = pydantic.Field(None)
-    CfnAccessPoint_PosixUserProperty: typing.Optional[dict[str, CfnAccessPoint_PosixUserPropertyDef]] = pydantic.Field(None)
-    CfnAccessPoint_RootDirectoryProperty: typing.Optional[dict[str, CfnAccessPoint_RootDirectoryPropertyDef]] = pydantic.Field(None)
-    CfnFileSystem_BackupPolicyProperty: typing.Optional[dict[str, CfnFileSystem_BackupPolicyPropertyDef]] = pydantic.Field(None)
-    CfnFileSystem_ElasticFileSystemTagProperty: typing.Optional[dict[str, CfnFileSystem_ElasticFileSystemTagPropertyDef]] = pydantic.Field(None)
-    CfnFileSystem_LifecyclePolicyProperty: typing.Optional[dict[str, CfnFileSystem_LifecyclePolicyPropertyDef]] = pydantic.Field(None)
-    CfnFileSystem_ReplicationConfigurationProperty: typing.Optional[dict[str, CfnFileSystem_ReplicationConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnFileSystem_ReplicationDestinationProperty: typing.Optional[dict[str, CfnFileSystem_ReplicationDestinationPropertyDef]] = pydantic.Field(None)
-    FileSystemAttributes: typing.Optional[dict[str, FileSystemAttributesDef]] = pydantic.Field(None)
-    FileSystemProps: typing.Optional[dict[str, FileSystemPropsDef]] = pydantic.Field(None)
-    PosixUser: typing.Optional[dict[str, PosixUserDef]] = pydantic.Field(None)
-    CfnAccessPoint: typing.Optional[dict[str, CfnAccessPointDef]] = pydantic.Field(None)
-    CfnFileSystem: typing.Optional[dict[str, CfnFileSystemDef]] = pydantic.Field(None)
-    CfnMountTarget: typing.Optional[dict[str, CfnMountTargetDef]] = pydantic.Field(None)
-    CfnAccessPointProps: typing.Optional[dict[str, CfnAccessPointPropsDef]] = pydantic.Field(None)
-    CfnFileSystemProps: typing.Optional[dict[str, CfnFileSystemPropsDef]] = pydantic.Field(None)
-    CfnMountTargetProps: typing.Optional[dict[str, CfnMountTargetPropsDef]] = pydantic.Field(None)
+    AccessPoint: typing.Optional[dict[str, models.aws_efs.AccessPointDef]] = pydantic.Field(None)
+    FileSystem: typing.Optional[dict[str, models.aws_efs.FileSystemDef]] = pydantic.Field(None)
+    AccessPointAttributes: typing.Optional[dict[str, models.aws_efs.AccessPointAttributesDef]] = pydantic.Field(None)
+    AccessPointOptions: typing.Optional[dict[str, models.aws_efs.AccessPointOptionsDef]] = pydantic.Field(None)
+    AccessPointProps: typing.Optional[dict[str, models.aws_efs.AccessPointPropsDef]] = pydantic.Field(None)
+    Acl: typing.Optional[dict[str, models.aws_efs.AclDef]] = pydantic.Field(None)
+    CfnAccessPoint_AccessPointTagProperty: typing.Optional[dict[str, models.aws_efs.CfnAccessPoint_AccessPointTagPropertyDef]] = pydantic.Field(None)
+    CfnAccessPoint_CreationInfoProperty: typing.Optional[dict[str, models.aws_efs.CfnAccessPoint_CreationInfoPropertyDef]] = pydantic.Field(None)
+    CfnAccessPoint_PosixUserProperty: typing.Optional[dict[str, models.aws_efs.CfnAccessPoint_PosixUserPropertyDef]] = pydantic.Field(None)
+    CfnAccessPoint_RootDirectoryProperty: typing.Optional[dict[str, models.aws_efs.CfnAccessPoint_RootDirectoryPropertyDef]] = pydantic.Field(None)
+    CfnFileSystem_BackupPolicyProperty: typing.Optional[dict[str, models.aws_efs.CfnFileSystem_BackupPolicyPropertyDef]] = pydantic.Field(None)
+    CfnFileSystem_ElasticFileSystemTagProperty: typing.Optional[dict[str, models.aws_efs.CfnFileSystem_ElasticFileSystemTagPropertyDef]] = pydantic.Field(None)
+    CfnFileSystem_LifecyclePolicyProperty: typing.Optional[dict[str, models.aws_efs.CfnFileSystem_LifecyclePolicyPropertyDef]] = pydantic.Field(None)
+    CfnFileSystem_ReplicationConfigurationProperty: typing.Optional[dict[str, models.aws_efs.CfnFileSystem_ReplicationConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnFileSystem_ReplicationDestinationProperty: typing.Optional[dict[str, models.aws_efs.CfnFileSystem_ReplicationDestinationPropertyDef]] = pydantic.Field(None)
+    FileSystemAttributes: typing.Optional[dict[str, models.aws_efs.FileSystemAttributesDef]] = pydantic.Field(None)
+    FileSystemProps: typing.Optional[dict[str, models.aws_efs.FileSystemPropsDef]] = pydantic.Field(None)
+    PosixUser: typing.Optional[dict[str, models.aws_efs.PosixUserDef]] = pydantic.Field(None)
+    CfnAccessPoint: typing.Optional[dict[str, models.aws_efs.CfnAccessPointDef]] = pydantic.Field(None)
+    CfnFileSystem: typing.Optional[dict[str, models.aws_efs.CfnFileSystemDef]] = pydantic.Field(None)
+    CfnMountTarget: typing.Optional[dict[str, models.aws_efs.CfnMountTargetDef]] = pydantic.Field(None)
+    CfnAccessPointProps: typing.Optional[dict[str, models.aws_efs.CfnAccessPointPropsDef]] = pydantic.Field(None)
+    CfnFileSystemProps: typing.Optional[dict[str, models.aws_efs.CfnFileSystemPropsDef]] = pydantic.Field(None)
+    CfnMountTargetProps: typing.Optional[dict[str, models.aws_efs.CfnMountTargetPropsDef]] = pydantic.Field(None)
     ...
+
+import models

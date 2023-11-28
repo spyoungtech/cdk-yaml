@@ -16,12 +16,12 @@ class AccessLogDef(BaseClass):
     ...
 
 
-    from_file_path: typing.Optional[AccessLogDefFromFilePathParams] = pydantic.Field(None, description='Path to a file to write access logs to.')
-    resource_config: typing.Optional[AccessLogDefConfig] = pydantic.Field(None)
+    from_file_path: typing.Optional[models.aws_appmesh.AccessLogDefFromFilePathParams] = pydantic.Field(None, description='Path to a file to write access logs to.')
+    resource_config: typing.Optional[models.aws_appmesh.AccessLogDefConfig] = pydantic.Field(None)
 
 
 class AccessLogDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AccessLogDefBindParams]] = pydantic.Field(None, description='Called when the AccessLog type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
+    bind: typing.Optional[list[models.aws_appmesh.AccessLogDefBindParams]] = pydantic.Field(None, description='Called when the AccessLog type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
 
 class AccessLogDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -43,15 +43,14 @@ class BackendDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[BackendDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.BackendDefConfig] = pydantic.Field(None)
 
 
 class BackendDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[BackendDefBindParams]] = pydantic.Field(None, description='Return backend config.')
-    virtual_service: typing.Optional[list[BackendDefVirtualServiceParams]] = pydantic.Field(None, description='Construct a Virtual Service backend.')
+    bind: typing.Optional[list[models.aws_appmesh.BackendDefBindParams]] = pydantic.Field(None, description='Return backend config.')
+    virtual_service: typing.Optional[list[models.aws_appmesh.BackendDefVirtualServiceParams]] = pydantic.Field(None, description='Construct a Virtual Service backend.')
 
 class BackendDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class BackendDefVirtualServiceParams(pydantic.BaseModel):
@@ -71,13 +70,13 @@ class GatewayRouteHostnameMatchDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GatewayRouteHostnameMatchDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.GatewayRouteHostnameMatchDefConfig] = pydantic.Field(None)
 
 
 class GatewayRouteHostnameMatchDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[GatewayRouteHostnameMatchDefBindParams]] = pydantic.Field(None, description='Returns the gateway route host name match configuration.')
-    ends_with: typing.Optional[list[GatewayRouteHostnameMatchDefEndsWithParams]] = pydantic.Field(None, description='The value of the host name with the given name must end with the specified characters.')
-    exactly: typing.Optional[list[GatewayRouteHostnameMatchDefExactlyParams]] = pydantic.Field(None, description='The value of the host name must match the specified value exactly.')
+    bind: typing.Optional[list[models.aws_appmesh.GatewayRouteHostnameMatchDefBindParams]] = pydantic.Field(None, description='Returns the gateway route host name match configuration.')
+    ends_with: typing.Optional[list[models.aws_appmesh.GatewayRouteHostnameMatchDefEndsWithParams]] = pydantic.Field(None, description='The value of the host name with the given name must end with the specified characters.')
+    exactly: typing.Optional[list[models.aws_appmesh.GatewayRouteHostnameMatchDefExactlyParams]] = pydantic.Field(None, description='The value of the host name must match the specified value exactly.')
 
 class GatewayRouteHostnameMatchDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -104,14 +103,14 @@ class GatewayRouteSpecDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GatewayRouteSpecDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.GatewayRouteSpecDefConfig] = pydantic.Field(None)
 
 
 class GatewayRouteSpecDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[GatewayRouteSpecDefBindParams]] = pydantic.Field(None, description='Called when the GatewayRouteSpec type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
-    grpc: typing.Optional[list[GatewayRouteSpecDefGrpcParams]] = pydantic.Field(None, description='Creates an gRPC Based GatewayRoute.')
-    http: typing.Optional[list[GatewayRouteSpecDefHttpParams]] = pydantic.Field(None, description='Creates an HTTP Based GatewayRoute.')
-    http2: typing.Optional[list[GatewayRouteSpecDefHttp2Params]] = pydantic.Field(None, description='Creates an HTTP2 Based GatewayRoute.')
+    bind: typing.Optional[list[models.aws_appmesh.GatewayRouteSpecDefBindParams]] = pydantic.Field(None, description='Called when the GatewayRouteSpec type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
+    grpc: typing.Optional[list[models.aws_appmesh.GatewayRouteSpecDefGrpcParams]] = pydantic.Field(None, description='Creates an gRPC Based GatewayRoute.')
+    http: typing.Optional[list[models.aws_appmesh.GatewayRouteSpecDefHttpParams]] = pydantic.Field(None, description='Creates an HTTP Based GatewayRoute.')
+    http2: typing.Optional[list[models.aws_appmesh.GatewayRouteSpecDefHttp2Params]] = pydantic.Field(None, description='Creates an HTTP2 Based GatewayRoute.')
 
 class GatewayRouteSpecDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -149,21 +148,21 @@ class HeaderMatchDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HeaderMatchDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.HeaderMatchDefConfig] = pydantic.Field(None)
 
 
 class HeaderMatchDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HeaderMatchDefBindParams]] = pydantic.Field(None, description='Returns the header match configuration.')
-    value_does_not_end_with: typing.Optional[list[HeaderMatchDefValueDoesNotEndWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not end with the specified characters.')
-    value_does_not_match_regex: typing.Optional[list[HeaderMatchDefValueDoesNotMatchRegexParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not include the specified characters.')
-    value_does_not_start_with: typing.Optional[list[HeaderMatchDefValueDoesNotStartWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not start with the specified characters.')
-    value_ends_with: typing.Optional[list[HeaderMatchDefValueEndsWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must end with the specified characters.')
-    value_is: typing.Optional[list[HeaderMatchDefValueIsParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must match the specified value exactly.')
-    value_is_not: typing.Optional[list[HeaderMatchDefValueIsNotParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not match the specified value exactly.')
-    value_matches_regex: typing.Optional[list[HeaderMatchDefValueMatchesRegexParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must include the specified characters.')
-    value_starts_with: typing.Optional[list[HeaderMatchDefValueStartsWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must start with the specified characters.')
-    values_is_in_range: typing.Optional[list[HeaderMatchDefValuesIsInRangeParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must be in a range of values.')
-    values_is_not_in_range: typing.Optional[list[HeaderMatchDefValuesIsNotInRangeParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not be in a range of values.')
+    bind: typing.Optional[list[models.aws_appmesh.HeaderMatchDefBindParams]] = pydantic.Field(None, description='Returns the header match configuration.')
+    value_does_not_end_with: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueDoesNotEndWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not end with the specified characters.')
+    value_does_not_match_regex: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueDoesNotMatchRegexParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not include the specified characters.')
+    value_does_not_start_with: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueDoesNotStartWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not start with the specified characters.')
+    value_ends_with: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueEndsWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must end with the specified characters.')
+    value_is: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueIsParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must match the specified value exactly.')
+    value_is_not: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueIsNotParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not match the specified value exactly.')
+    value_matches_regex: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueMatchesRegexParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must include the specified characters.')
+    value_starts_with: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValueStartsWithParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must start with the specified characters.')
+    values_is_in_range: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValuesIsInRangeParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must be in a range of values.')
+    values_is_not_in_range: typing.Optional[list[models.aws_appmesh.HeaderMatchDefValuesIsNotInRangeParams]] = pydantic.Field(None, description='The value of the header with the given name in the request must not be in a range of values.')
 
 class HeaderMatchDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -242,15 +241,15 @@ class HealthCheckDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HealthCheckDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.HealthCheckDefConfig] = pydantic.Field(None)
 
 
 class HealthCheckDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HealthCheckDefBindParams]] = pydantic.Field(None, description='Called when the AccessLog type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
-    grpc: typing.Optional[list[HealthCheckDefGrpcParams]] = pydantic.Field(None, description='Construct a GRPC health check.')
-    http: typing.Optional[list[HealthCheckDefHttpParams]] = pydantic.Field(None, description='Construct a HTTP health check.')
-    http2: typing.Optional[list[HealthCheckDefHttp2Params]] = pydantic.Field(None, description='Construct a HTTP2 health check.')
-    tcp: typing.Optional[list[HealthCheckDefTcpParams]] = pydantic.Field(None, description='Construct a TCP health check.')
+    bind: typing.Optional[list[models.aws_appmesh.HealthCheckDefBindParams]] = pydantic.Field(None, description='Called when the AccessLog type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
+    grpc: typing.Optional[list[models.aws_appmesh.HealthCheckDefGrpcParams]] = pydantic.Field(None, description='Construct a GRPC health check.')
+    http: typing.Optional[list[models.aws_appmesh.HealthCheckDefHttpParams]] = pydantic.Field(None, description='Construct a HTTP health check.')
+    http2: typing.Optional[list[models.aws_appmesh.HealthCheckDefHttp2Params]] = pydantic.Field(None, description='Construct a HTTP2 health check.')
+    tcp: typing.Optional[list[models.aws_appmesh.HealthCheckDefTcpParams]] = pydantic.Field(None, description='Construct a TCP health check.')
 
 class HealthCheckDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -302,14 +301,14 @@ class HttpGatewayRoutePathMatchDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HttpGatewayRoutePathMatchDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.HttpGatewayRoutePathMatchDefConfig] = pydantic.Field(None)
 
 
 class HttpGatewayRoutePathMatchDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HttpGatewayRoutePathMatchDefBindParams]] = pydantic.Field(None, description='Returns the gateway route path match configuration.')
-    exactly: typing.Optional[list[HttpGatewayRoutePathMatchDefExactlyParams]] = pydantic.Field(None, description="The value of the path must match the specified value exactly.\nThe provided ``path`` must start with the '/' character.")
-    regex: typing.Optional[list[HttpGatewayRoutePathMatchDefRegexParams]] = pydantic.Field(None, description='The value of the path must match the specified regex.')
-    starts_with: typing.Optional[list[HttpGatewayRoutePathMatchDefStartsWithParams]] = pydantic.Field(None, description='The value of the path must match the specified prefix.')
+    bind: typing.Optional[list[models.aws_appmesh.HttpGatewayRoutePathMatchDefBindParams]] = pydantic.Field(None, description='Returns the gateway route path match configuration.')
+    exactly: typing.Optional[list[models.aws_appmesh.HttpGatewayRoutePathMatchDefExactlyParams]] = pydantic.Field(None, description="The value of the path must match the specified value exactly.\nThe provided ``path`` must start with the '/' character.")
+    regex: typing.Optional[list[models.aws_appmesh.HttpGatewayRoutePathMatchDefRegexParams]] = pydantic.Field(None, description='The value of the path must match the specified regex.')
+    starts_with: typing.Optional[list[models.aws_appmesh.HttpGatewayRoutePathMatchDefStartsWithParams]] = pydantic.Field(None, description='The value of the path must match the specified prefix.')
 
 class HttpGatewayRoutePathMatchDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -344,14 +343,14 @@ class HttpRoutePathMatchDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HttpRoutePathMatchDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.HttpRoutePathMatchDefConfig] = pydantic.Field(None)
 
 
 class HttpRoutePathMatchDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HttpRoutePathMatchDefBindParams]] = pydantic.Field(None, description='Returns the route path match configuration.')
-    exactly: typing.Optional[list[HttpRoutePathMatchDefExactlyParams]] = pydantic.Field(None, description="The value of the path must match the specified value exactly.\nThe provided ``path`` must start with the '/' character.")
-    regex: typing.Optional[list[HttpRoutePathMatchDefRegexParams]] = pydantic.Field(None, description='The value of the path must match the specified regex.')
-    starts_with: typing.Optional[list[HttpRoutePathMatchDefStartsWithParams]] = pydantic.Field(None, description='The value of the path must match the specified prefix.')
+    bind: typing.Optional[list[models.aws_appmesh.HttpRoutePathMatchDefBindParams]] = pydantic.Field(None, description='Returns the route path match configuration.')
+    exactly: typing.Optional[list[models.aws_appmesh.HttpRoutePathMatchDefExactlyParams]] = pydantic.Field(None, description="The value of the path must match the specified value exactly.\nThe provided ``path`` must start with the '/' character.")
+    regex: typing.Optional[list[models.aws_appmesh.HttpRoutePathMatchDefRegexParams]] = pydantic.Field(None, description='The value of the path must match the specified regex.')
+    starts_with: typing.Optional[list[models.aws_appmesh.HttpRoutePathMatchDefStartsWithParams]] = pydantic.Field(None, description='The value of the path must match the specified prefix.')
 
 class HttpRoutePathMatchDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -383,13 +382,13 @@ class LoggingFormatDef(BaseClass):
     ...
 
 
-    from_json: typing.Optional[LoggingFormatDefFromJsonParams] = pydantic.Field(None, description='Generate logging format from json key pairs.')
-    from_text: typing.Optional[LoggingFormatDefFromTextParams] = pydantic.Field(None, description='Generate logging format from text pattern.')
-    resource_config: typing.Optional[LoggingFormatDefConfig] = pydantic.Field(None)
+    from_json: typing.Optional[models.aws_appmesh.LoggingFormatDefFromJsonParams] = pydantic.Field(None, description='Generate logging format from json key pairs.')
+    from_text: typing.Optional[models.aws_appmesh.LoggingFormatDefFromTextParams] = pydantic.Field(None, description='Generate logging format from text pattern.')
+    resource_config: typing.Optional[models.aws_appmesh.LoggingFormatDefConfig] = pydantic.Field(None)
 
 
 class LoggingFormatDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LoggingFormatDefBindParams]] = pydantic.Field(None, description='Called when the Access Log Format is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
+    bind: typing.Optional[list[models.aws_appmesh.LoggingFormatDefBindParams]] = pydantic.Field(None, description='Called when the Access Log Format is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
 
 class LoggingFormatDefBindParams(pydantic.BaseModel):
     ...
@@ -413,14 +412,14 @@ class MutualTlsCertificateDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MutualTlsCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.MutualTlsCertificateDefConfig] = pydantic.Field(None)
 
 
 class MutualTlsCertificateDefConfig(pydantic.BaseModel):
-    acm: typing.Optional[list[MutualTlsCertificateDefAcmParams]] = pydantic.Field(None, description='Returns an ACM TLS Certificate.')
-    bind: typing.Optional[list[MutualTlsCertificateDefBindParams]] = pydantic.Field(None, description='Returns TLS certificate based provider.')
-    file: typing.Optional[list[MutualTlsCertificateDefFileParams]] = pydantic.Field(None, description='Returns an File TLS Certificate.')
-    sds: typing.Optional[list[MutualTlsCertificateDefSdsParams]] = pydantic.Field(None, description='Returns an SDS TLS Certificate.')
+    acm: typing.Optional[list[models.aws_appmesh.MutualTlsCertificateDefAcmParams]] = pydantic.Field(None, description='Returns an ACM TLS Certificate.')
+    bind: typing.Optional[list[models.aws_appmesh.MutualTlsCertificateDefBindParams]] = pydantic.Field(None, description='Returns TLS certificate based provider.')
+    file: typing.Optional[list[models.aws_appmesh.MutualTlsCertificateDefFileParams]] = pydantic.Field(None, description='Returns an File TLS Certificate.')
+    sds: typing.Optional[list[models.aws_appmesh.MutualTlsCertificateDefSdsParams]] = pydantic.Field(None, description='Returns an SDS TLS Certificate.')
 
 class MutualTlsCertificateDefAcmParams(pydantic.BaseModel):
     certificate: typing.Union[models.aws_certificatemanager.CertificateDef, models.aws_certificatemanager.DnsValidatedCertificateDef, models.aws_certificatemanager.PrivateCertificateDef] = pydantic.Field(..., description='-')
@@ -428,7 +427,6 @@ class MutualTlsCertificateDefAcmParams(pydantic.BaseModel):
     ...
 
 class MutualTlsCertificateDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class MutualTlsCertificateDefFileParams(pydantic.BaseModel):
@@ -453,14 +451,14 @@ class MutualTlsValidationTrustDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MutualTlsValidationTrustDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.MutualTlsValidationTrustDefConfig] = pydantic.Field(None)
 
 
 class MutualTlsValidationTrustDefConfig(pydantic.BaseModel):
-    acm: typing.Optional[list[MutualTlsValidationTrustDefAcmParams]] = pydantic.Field(None, description='TLS Validation Context Trust for ACM Private Certificate Authority (CA).')
-    bind: typing.Optional[list[MutualTlsValidationTrustDefBindParams]] = pydantic.Field(None, description='Returns Trust context based on trust type.')
-    file: typing.Optional[list[MutualTlsValidationTrustDefFileParams]] = pydantic.Field(None, description='Tells envoy where to fetch the validation context from.')
-    sds: typing.Optional[list[MutualTlsValidationTrustDefSdsParams]] = pydantic.Field(None, description="TLS Validation Context Trust for Envoy' service discovery service.")
+    acm: typing.Optional[list[models.aws_appmesh.MutualTlsValidationTrustDefAcmParams]] = pydantic.Field(None, description='TLS Validation Context Trust for ACM Private Certificate Authority (CA).')
+    bind: typing.Optional[list[models.aws_appmesh.MutualTlsValidationTrustDefBindParams]] = pydantic.Field(None, description='Returns Trust context based on trust type.')
+    file: typing.Optional[list[models.aws_appmesh.MutualTlsValidationTrustDefFileParams]] = pydantic.Field(None, description='Tells envoy where to fetch the validation context from.')
+    sds: typing.Optional[list[models.aws_appmesh.MutualTlsValidationTrustDefSdsParams]] = pydantic.Field(None, description="TLS Validation Context Trust for Envoy' service discovery service.")
 
 class MutualTlsValidationTrustDefAcmParams(pydantic.BaseModel):
     certificate_authorities: typing.Sequence[models.UnsupportedResource] = pydantic.Field(..., description='-')
@@ -492,12 +490,12 @@ class QueryParameterMatchDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[QueryParameterMatchDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.QueryParameterMatchDefConfig] = pydantic.Field(None)
 
 
 class QueryParameterMatchDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[QueryParameterMatchDefBindParams]] = pydantic.Field(None, description='Returns the query parameter match configuration.')
-    value_is: typing.Optional[list[QueryParameterMatchDefValueIsParams]] = pydantic.Field(None, description='The value of the query parameter with the given name in the request must match the specified value exactly.')
+    bind: typing.Optional[list[models.aws_appmesh.QueryParameterMatchDefBindParams]] = pydantic.Field(None, description='Returns the query parameter match configuration.')
+    value_is: typing.Optional[list[models.aws_appmesh.QueryParameterMatchDefValueIsParams]] = pydantic.Field(None, description='The value of the query parameter with the given name in the request must match the specified value exactly.')
 
 class QueryParameterMatchDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -520,15 +518,15 @@ class RouteSpecDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RouteSpecDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.RouteSpecDefConfig] = pydantic.Field(None)
 
 
 class RouteSpecDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[RouteSpecDefBindParams]] = pydantic.Field(None, description='Called when the RouteSpec type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
-    grpc: typing.Optional[list[RouteSpecDefGrpcParams]] = pydantic.Field(None, description='Creates a GRPC Based RouteSpec.')
-    http: typing.Optional[list[RouteSpecDefHttpParams]] = pydantic.Field(None, description='Creates an HTTP Based RouteSpec.')
-    http2: typing.Optional[list[RouteSpecDefHttp2Params]] = pydantic.Field(None, description='Creates an HTTP2 Based RouteSpec.')
-    tcp: typing.Optional[list[RouteSpecDefTcpParams]] = pydantic.Field(None, description='Creates a TCP Based RouteSpec.')
+    bind: typing.Optional[list[models.aws_appmesh.RouteSpecDefBindParams]] = pydantic.Field(None, description='Called when the RouteSpec type is initialized.\nCan be used to enforce\nmutual exclusivity with future properties')
+    grpc: typing.Optional[list[models.aws_appmesh.RouteSpecDefGrpcParams]] = pydantic.Field(None, description='Creates a GRPC Based RouteSpec.')
+    http: typing.Optional[list[models.aws_appmesh.RouteSpecDefHttpParams]] = pydantic.Field(None, description='Creates an HTTP Based RouteSpec.')
+    http2: typing.Optional[list[models.aws_appmesh.RouteSpecDefHttp2Params]] = pydantic.Field(None, description='Creates an HTTP2 Based RouteSpec.')
+    tcp: typing.Optional[list[models.aws_appmesh.RouteSpecDefTcpParams]] = pydantic.Field(None, description='Creates a TCP Based RouteSpec.')
 
 class RouteSpecDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -579,13 +577,13 @@ class ServiceDiscoveryDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ServiceDiscoveryDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.ServiceDiscoveryDefConfig] = pydantic.Field(None)
 
 
 class ServiceDiscoveryDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ServiceDiscoveryDefBindParams]] = pydantic.Field(None, description='Binds the current object when adding Service Discovery to a VirtualNode.')
-    cloud_map: typing.Optional[list[ServiceDiscoveryDefCloudMapParams]] = pydantic.Field(None, description='Returns Cloud Map based service discovery.')
-    dns: typing.Optional[list[ServiceDiscoveryDefDnsParams]] = pydantic.Field(None, description='Returns DNS based service discovery.')
+    bind: typing.Optional[list[models.aws_appmesh.ServiceDiscoveryDefBindParams]] = pydantic.Field(None, description='Binds the current object when adding Service Discovery to a VirtualNode.')
+    cloud_map: typing.Optional[list[models.aws_appmesh.ServiceDiscoveryDefCloudMapParams]] = pydantic.Field(None, description='Returns Cloud Map based service discovery.')
+    dns: typing.Optional[list[models.aws_appmesh.ServiceDiscoveryDefDnsParams]] = pydantic.Field(None, description='Returns DNS based service discovery.')
 
 class ServiceDiscoveryDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -616,12 +614,12 @@ class SubjectAlternativeNamesDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SubjectAlternativeNamesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.SubjectAlternativeNamesDefConfig] = pydantic.Field(None)
 
 
 class SubjectAlternativeNamesDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SubjectAlternativeNamesDefBindParams]] = pydantic.Field(None, description='Returns Subject Alternative Names Matcher based on method type.')
-    matching_exactly: typing.Optional[list[SubjectAlternativeNamesDefMatchingExactlyParams]] = pydantic.Field(None, description='The values of the SAN must match the specified values exactly.')
+    bind: typing.Optional[list[models.aws_appmesh.SubjectAlternativeNamesDefBindParams]] = pydantic.Field(None, description='Returns Subject Alternative Names Matcher based on method type.')
+    matching_exactly: typing.Optional[list[models.aws_appmesh.SubjectAlternativeNamesDefMatchingExactlyParams]] = pydantic.Field(None, description='The values of the SAN must match the specified values exactly.')
 
 class SubjectAlternativeNamesDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -643,14 +641,14 @@ class TlsCertificateDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TlsCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.TlsCertificateDefConfig] = pydantic.Field(None)
 
 
 class TlsCertificateDefConfig(pydantic.BaseModel):
-    acm: typing.Optional[list[TlsCertificateDefAcmParams]] = pydantic.Field(None, description='Returns an ACM TLS Certificate.')
-    bind: typing.Optional[list[TlsCertificateDefBindParams]] = pydantic.Field(None, description='Returns TLS certificate based provider.')
-    file: typing.Optional[list[TlsCertificateDefFileParams]] = pydantic.Field(None, description='Returns an File TLS Certificate.')
-    sds: typing.Optional[list[TlsCertificateDefSdsParams]] = pydantic.Field(None, description='Returns an SDS TLS Certificate.')
+    acm: typing.Optional[list[models.aws_appmesh.TlsCertificateDefAcmParams]] = pydantic.Field(None, description='Returns an ACM TLS Certificate.')
+    bind: typing.Optional[list[models.aws_appmesh.TlsCertificateDefBindParams]] = pydantic.Field(None, description='Returns TLS certificate based provider.')
+    file: typing.Optional[list[models.aws_appmesh.TlsCertificateDefFileParams]] = pydantic.Field(None, description='Returns an File TLS Certificate.')
+    sds: typing.Optional[list[models.aws_appmesh.TlsCertificateDefSdsParams]] = pydantic.Field(None, description='Returns an SDS TLS Certificate.')
 
 class TlsCertificateDefAcmParams(pydantic.BaseModel):
     certificate: typing.Union[models.aws_certificatemanager.CertificateDef, models.aws_certificatemanager.DnsValidatedCertificateDef, models.aws_certificatemanager.PrivateCertificateDef] = pydantic.Field(..., description='-')
@@ -658,7 +656,6 @@ class TlsCertificateDefAcmParams(pydantic.BaseModel):
     ...
 
 class TlsCertificateDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class TlsCertificateDefFileParams(pydantic.BaseModel):
@@ -683,14 +680,14 @@ class TlsValidationTrustDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TlsValidationTrustDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.TlsValidationTrustDefConfig] = pydantic.Field(None)
 
 
 class TlsValidationTrustDefConfig(pydantic.BaseModel):
-    acm: typing.Optional[list[TlsValidationTrustDefAcmParams]] = pydantic.Field(None, description='TLS Validation Context Trust for ACM Private Certificate Authority (CA).')
-    bind: typing.Optional[list[TlsValidationTrustDefBindParams]] = pydantic.Field(None, description='Returns Trust context based on trust type.')
-    file: typing.Optional[list[TlsValidationTrustDefFileParams]] = pydantic.Field(None, description='Tells envoy where to fetch the validation context from.')
-    sds: typing.Optional[list[TlsValidationTrustDefSdsParams]] = pydantic.Field(None, description="TLS Validation Context Trust for Envoy' service discovery service.")
+    acm: typing.Optional[list[models.aws_appmesh.TlsValidationTrustDefAcmParams]] = pydantic.Field(None, description='TLS Validation Context Trust for ACM Private Certificate Authority (CA).')
+    bind: typing.Optional[list[models.aws_appmesh.TlsValidationTrustDefBindParams]] = pydantic.Field(None, description='Returns Trust context based on trust type.')
+    file: typing.Optional[list[models.aws_appmesh.TlsValidationTrustDefFileParams]] = pydantic.Field(None, description='Tells envoy where to fetch the validation context from.')
+    sds: typing.Optional[list[models.aws_appmesh.TlsValidationTrustDefSdsParams]] = pydantic.Field(None, description="TLS Validation Context Trust for Envoy' service discovery service.")
 
 class TlsValidationTrustDefAcmParams(pydantic.BaseModel):
     certificate_authorities: typing.Sequence[models.UnsupportedResource] = pydantic.Field(..., description='-')
@@ -722,14 +719,14 @@ class VirtualGatewayListenerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[VirtualGatewayListenerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualGatewayListenerDefConfig] = pydantic.Field(None)
 
 
 class VirtualGatewayListenerDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[VirtualGatewayListenerDefBindParams]] = pydantic.Field(None, description='Called when the GatewayListener type is initialized.\nCan be used to enforce\nmutual exclusivity')
-    grpc: typing.Optional[list[VirtualGatewayListenerDefGrpcParams]] = pydantic.Field(None, description='Returns a GRPC Listener for a VirtualGateway.')
-    http: typing.Optional[list[VirtualGatewayListenerDefHttpParams]] = pydantic.Field(None, description='Returns an HTTP Listener for a VirtualGateway.')
-    http2: typing.Optional[list[VirtualGatewayListenerDefHttp2Params]] = pydantic.Field(None, description='Returns an HTTP2 Listener for a VirtualGateway.')
+    bind: typing.Optional[list[models.aws_appmesh.VirtualGatewayListenerDefBindParams]] = pydantic.Field(None, description='Called when the GatewayListener type is initialized.\nCan be used to enforce\nmutual exclusivity')
+    grpc: typing.Optional[list[models.aws_appmesh.VirtualGatewayListenerDefGrpcParams]] = pydantic.Field(None, description='Returns a GRPC Listener for a VirtualGateway.')
+    http: typing.Optional[list[models.aws_appmesh.VirtualGatewayListenerDefHttpParams]] = pydantic.Field(None, description='Returns an HTTP Listener for a VirtualGateway.')
+    http2: typing.Optional[list[models.aws_appmesh.VirtualGatewayListenerDefHttp2Params]] = pydantic.Field(None, description='Returns an HTTP2 Listener for a VirtualGateway.')
 
 class VirtualGatewayListenerDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -770,15 +767,15 @@ class VirtualNodeListenerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[VirtualNodeListenerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualNodeListenerDefConfig] = pydantic.Field(None)
 
 
 class VirtualNodeListenerDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[VirtualNodeListenerDefBindParams]] = pydantic.Field(None, description='Binds the current object when adding Listener to a VirtualNode.')
-    grpc: typing.Optional[list[VirtualNodeListenerDefGrpcParams]] = pydantic.Field(None, description='Returns an GRPC Listener for a VirtualNode.')
-    http: typing.Optional[list[VirtualNodeListenerDefHttpParams]] = pydantic.Field(None, description='Returns an HTTP Listener for a VirtualNode.')
-    http2: typing.Optional[list[VirtualNodeListenerDefHttp2Params]] = pydantic.Field(None, description='Returns an HTTP2 Listener for a VirtualNode.')
-    tcp: typing.Optional[list[VirtualNodeListenerDefTcpParams]] = pydantic.Field(None, description='Returns an TCP Listener for a VirtualNode.')
+    bind: typing.Optional[list[models.aws_appmesh.VirtualNodeListenerDefBindParams]] = pydantic.Field(None, description='Binds the current object when adding Listener to a VirtualNode.')
+    grpc: typing.Optional[list[models.aws_appmesh.VirtualNodeListenerDefGrpcParams]] = pydantic.Field(None, description='Returns an GRPC Listener for a VirtualNode.')
+    http: typing.Optional[list[models.aws_appmesh.VirtualNodeListenerDefHttpParams]] = pydantic.Field(None, description='Returns an HTTP Listener for a VirtualNode.')
+    http2: typing.Optional[list[models.aws_appmesh.VirtualNodeListenerDefHttp2Params]] = pydantic.Field(None, description='Returns an HTTP2 Listener for a VirtualNode.')
+    tcp: typing.Optional[list[models.aws_appmesh.VirtualNodeListenerDefTcpParams]] = pydantic.Field(None, description='Returns an TCP Listener for a VirtualNode.')
 
 class VirtualNodeListenerDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -835,15 +832,15 @@ class VirtualRouterListenerDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[VirtualRouterListenerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualRouterListenerDefConfig] = pydantic.Field(None)
 
 
 class VirtualRouterListenerDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[VirtualRouterListenerDefBindParams]] = pydantic.Field(None, description='Called when the VirtualRouterListener type is initialized.\nCan be used to enforce\nmutual exclusivity')
-    grpc: typing.Optional[list[VirtualRouterListenerDefGrpcParams]] = pydantic.Field(None, description='Returns a GRPC Listener for a VirtualRouter.')
-    http: typing.Optional[list[VirtualRouterListenerDefHttpParams]] = pydantic.Field(None, description='Returns an HTTP Listener for a VirtualRouter.')
-    http2: typing.Optional[list[VirtualRouterListenerDefHttp2Params]] = pydantic.Field(None, description='Returns an HTTP2 Listener for a VirtualRouter.')
-    tcp: typing.Optional[list[VirtualRouterListenerDefTcpParams]] = pydantic.Field(None, description='Returns a TCP Listener for a VirtualRouter.')
+    bind: typing.Optional[list[models.aws_appmesh.VirtualRouterListenerDefBindParams]] = pydantic.Field(None, description='Called when the VirtualRouterListener type is initialized.\nCan be used to enforce\nmutual exclusivity')
+    grpc: typing.Optional[list[models.aws_appmesh.VirtualRouterListenerDefGrpcParams]] = pydantic.Field(None, description='Returns a GRPC Listener for a VirtualRouter.')
+    http: typing.Optional[list[models.aws_appmesh.VirtualRouterListenerDefHttpParams]] = pydantic.Field(None, description='Returns an HTTP Listener for a VirtualRouter.')
+    http2: typing.Optional[list[models.aws_appmesh.VirtualRouterListenerDefHttp2Params]] = pydantic.Field(None, description='Returns an HTTP2 Listener for a VirtualRouter.')
+    tcp: typing.Optional[list[models.aws_appmesh.VirtualRouterListenerDefTcpParams]] = pydantic.Field(None, description='Returns a TCP Listener for a VirtualRouter.')
 
 class VirtualRouterListenerDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -880,17 +877,16 @@ class VirtualServiceProviderDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[VirtualServiceProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualServiceProviderDefConfig] = pydantic.Field(None)
 
 
 class VirtualServiceProviderDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[VirtualServiceProviderDefBindParams]] = pydantic.Field(None, description='Enforces mutual exclusivity for VirtualService provider types.')
-    none: typing.Optional[list[VirtualServiceProviderDefNoneParams]] = pydantic.Field(None, description='Returns an Empty Provider for a VirtualService.\nThis provides no routing capabilities\nand should only be used as a placeholder')
-    virtual_node: typing.Optional[list[VirtualServiceProviderDefVirtualNodeParams]] = pydantic.Field(None, description='Returns a VirtualNode based Provider for a VirtualService.')
-    virtual_router: typing.Optional[list[VirtualServiceProviderDefVirtualRouterParams]] = pydantic.Field(None, description='Returns a VirtualRouter based Provider for a VirtualService.')
+    bind: typing.Optional[list[models.aws_appmesh.VirtualServiceProviderDefBindParams]] = pydantic.Field(None, description='Enforces mutual exclusivity for VirtualService provider types.')
+    none: typing.Optional[list[models.aws_appmesh.VirtualServiceProviderDefNoneParams]] = pydantic.Field(None, description='Returns an Empty Provider for a VirtualService.\nThis provides no routing capabilities\nand should only be used as a placeholder')
+    virtual_node: typing.Optional[list[models.aws_appmesh.VirtualServiceProviderDefVirtualNodeParams]] = pydantic.Field(None, description='Returns a VirtualNode based Provider for a VirtualService.')
+    virtual_router: typing.Optional[list[models.aws_appmesh.VirtualServiceProviderDefVirtualRouterParams]] = pydantic.Field(None, description='Returns a VirtualRouter based Provider for a VirtualService.')
 
 class VirtualServiceProviderDefBindParams(pydantic.BaseModel):
-    _construct: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_appmesh.VirtualServiceProviderConfigDefConfig]] = pydantic.Field(None)
     ...
 
@@ -923,9 +919,9 @@ class GatewayRouteDef(BaseConstruct):
     ...
 
 
-    from_gateway_route_arn: typing.Optional[GatewayRouteDefFromGatewayRouteArnParams] = pydantic.Field(None, description='Import an existing GatewayRoute given an ARN.')
-    from_gateway_route_attributes: typing.Optional[GatewayRouteDefFromGatewayRouteAttributesParams] = pydantic.Field(None, description='Import an existing GatewayRoute given attributes.')
-    resource_config: typing.Optional[GatewayRouteDefConfig] = pydantic.Field(None)
+    from_gateway_route_arn: typing.Optional[models.aws_appmesh.GatewayRouteDefFromGatewayRouteArnParams] = pydantic.Field(None, description='Import an existing GatewayRoute given an ARN.')
+    from_gateway_route_attributes: typing.Optional[models.aws_appmesh.GatewayRouteDefFromGatewayRouteAttributesParams] = pydantic.Field(None, description='Import an existing GatewayRoute given attributes.')
+    resource_config: typing.Optional[models.aws_appmesh.GatewayRouteDefConfig] = pydantic.Field(None)
 
 
 class GatewayRouteDefConfig(pydantic.BaseModel):
@@ -963,15 +959,15 @@ class MeshDef(BaseConstruct):
     ...
 
 
-    from_mesh_arn: typing.Optional[MeshDefFromMeshArnParams] = pydantic.Field(None, description='Import an existing mesh by arn.')
-    from_mesh_name: typing.Optional[MeshDefFromMeshNameParams] = pydantic.Field(None, description='Import an existing mesh by name.')
-    resource_config: typing.Optional[MeshDefConfig] = pydantic.Field(None)
+    from_mesh_arn: typing.Optional[models.aws_appmesh.MeshDefFromMeshArnParams] = pydantic.Field(None, description='Import an existing mesh by arn.')
+    from_mesh_name: typing.Optional[models.aws_appmesh.MeshDefFromMeshNameParams] = pydantic.Field(None, description='Import an existing mesh by name.')
+    resource_config: typing.Optional[models.aws_appmesh.MeshDefConfig] = pydantic.Field(None)
 
 
 class MeshDefConfig(pydantic.BaseModel):
-    add_virtual_gateway: typing.Optional[list[MeshDefAddVirtualGatewayParams]] = pydantic.Field(None, description='Adds a VirtualGateway to the Mesh.')
-    add_virtual_node: typing.Optional[list[MeshDefAddVirtualNodeParams]] = pydantic.Field(None, description='Adds a VirtualNode to the Mesh.')
-    add_virtual_router: typing.Optional[list[MeshDefAddVirtualRouterParams]] = pydantic.Field(None, description='Adds a VirtualRouter to the Mesh with the given id and props.')
+    add_virtual_gateway: typing.Optional[list[models.aws_appmesh.MeshDefAddVirtualGatewayParams]] = pydantic.Field(None, description='Adds a VirtualGateway to the Mesh.')
+    add_virtual_node: typing.Optional[list[models.aws_appmesh.MeshDefAddVirtualNodeParams]] = pydantic.Field(None, description='Adds a VirtualNode to the Mesh.')
+    add_virtual_router: typing.Optional[list[models.aws_appmesh.MeshDefAddVirtualRouterParams]] = pydantic.Field(None, description='Adds a VirtualRouter to the Mesh with the given id and props.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class MeshDefAddVirtualGatewayParams(pydantic.BaseModel):
@@ -1032,9 +1028,9 @@ class RouteDef(BaseConstruct):
     ...
 
 
-    from_route_arn: typing.Optional[RouteDefFromRouteArnParams] = pydantic.Field(None, description='Import an existing Route given an ARN.')
-    from_route_attributes: typing.Optional[RouteDefFromRouteAttributesParams] = pydantic.Field(None, description='Import an existing Route given attributes.')
-    resource_config: typing.Optional[RouteDefConfig] = pydantic.Field(None)
+    from_route_arn: typing.Optional[models.aws_appmesh.RouteDefFromRouteArnParams] = pydantic.Field(None, description='Import an existing Route given an ARN.')
+    from_route_attributes: typing.Optional[models.aws_appmesh.RouteDefFromRouteAttributesParams] = pydantic.Field(None, description='Import an existing Route given attributes.')
+    resource_config: typing.Optional[models.aws_appmesh.RouteDefConfig] = pydantic.Field(None)
 
 
 class RouteDefConfig(pydantic.BaseModel):
@@ -1074,15 +1070,15 @@ class VirtualGatewayDef(BaseConstruct):
     ...
 
 
-    from_virtual_gateway_arn: typing.Optional[VirtualGatewayDefFromVirtualGatewayArnParams] = pydantic.Field(None, description='Import an existing VirtualGateway given an ARN.')
-    from_virtual_gateway_attributes: typing.Optional[VirtualGatewayDefFromVirtualGatewayAttributesParams] = pydantic.Field(None, description='Import an existing VirtualGateway given its attributes.')
-    resource_config: typing.Optional[VirtualGatewayDefConfig] = pydantic.Field(None)
+    from_virtual_gateway_arn: typing.Optional[models.aws_appmesh.VirtualGatewayDefFromVirtualGatewayArnParams] = pydantic.Field(None, description='Import an existing VirtualGateway given an ARN.')
+    from_virtual_gateway_attributes: typing.Optional[models.aws_appmesh.VirtualGatewayDefFromVirtualGatewayAttributesParams] = pydantic.Field(None, description='Import an existing VirtualGateway given its attributes.')
+    resource_config: typing.Optional[models.aws_appmesh.VirtualGatewayDefConfig] = pydantic.Field(None)
 
 
 class VirtualGatewayDefConfig(pydantic.BaseModel):
-    add_gateway_route: typing.Optional[list[VirtualGatewayDefAddGatewayRouteParams]] = pydantic.Field(None, description='Utility method to add a new GatewayRoute to the VirtualGateway.')
+    add_gateway_route: typing.Optional[list[models.aws_appmesh.VirtualGatewayDefAddGatewayRouteParams]] = pydantic.Field(None, description='Utility method to add a new GatewayRoute to the VirtualGateway.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_stream_aggregated_resources: typing.Optional[list[VirtualGatewayDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
+    grant_stream_aggregated_resources: typing.Optional[list[models.aws_appmesh.VirtualGatewayDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
     mesh_config: typing.Optional[models._interface_methods.AwsAppmeshIMeshDefConfig] = pydantic.Field(None)
 
 class VirtualGatewayDefAddGatewayRouteParams(pydantic.BaseModel):
@@ -1132,16 +1128,16 @@ class VirtualNodeDef(BaseConstruct):
     ...
 
 
-    from_virtual_node_arn: typing.Optional[VirtualNodeDefFromVirtualNodeArnParams] = pydantic.Field(None, description='Import an existing VirtualNode given an ARN.')
-    from_virtual_node_attributes: typing.Optional[VirtualNodeDefFromVirtualNodeAttributesParams] = pydantic.Field(None, description='Import an existing VirtualNode given its name.')
-    resource_config: typing.Optional[VirtualNodeDefConfig] = pydantic.Field(None)
+    from_virtual_node_arn: typing.Optional[models.aws_appmesh.VirtualNodeDefFromVirtualNodeArnParams] = pydantic.Field(None, description='Import an existing VirtualNode given an ARN.')
+    from_virtual_node_attributes: typing.Optional[models.aws_appmesh.VirtualNodeDefFromVirtualNodeAttributesParams] = pydantic.Field(None, description='Import an existing VirtualNode given its name.')
+    resource_config: typing.Optional[models.aws_appmesh.VirtualNodeDefConfig] = pydantic.Field(None)
 
 
 class VirtualNodeDefConfig(pydantic.BaseModel):
-    add_backend: typing.Optional[list[VirtualNodeDefAddBackendParams]] = pydantic.Field(None, description='Add a Virtual Services that this node is expected to send outbound traffic to.')
-    add_listener: typing.Optional[list[VirtualNodeDefAddListenerParams]] = pydantic.Field(None, description='Utility method to add an inbound listener for this VirtualNode.\nNote: At this time, Virtual Nodes support at most one listener. Adding\nmore than one will result in a failure to deploy the CloudFormation stack.\nHowever, the App Mesh team has plans to add support for multiple listeners\non Virtual Nodes and Virtual Routers.')
+    add_backend: typing.Optional[list[models.aws_appmesh.VirtualNodeDefAddBackendParams]] = pydantic.Field(None, description='Add a Virtual Services that this node is expected to send outbound traffic to.')
+    add_listener: typing.Optional[list[models.aws_appmesh.VirtualNodeDefAddListenerParams]] = pydantic.Field(None, description='Utility method to add an inbound listener for this VirtualNode.\nNote: At this time, Virtual Nodes support at most one listener. Adding\nmore than one will result in a failure to deploy the CloudFormation stack.\nHowever, the App Mesh team has plans to add support for multiple listeners\non Virtual Nodes and Virtual Routers.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_stream_aggregated_resources: typing.Optional[list[VirtualNodeDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
+    grant_stream_aggregated_resources: typing.Optional[list[models.aws_appmesh.VirtualNodeDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
     mesh_config: typing.Optional[models._interface_methods.AwsAppmeshIMeshDefConfig] = pydantic.Field(None)
 
 class VirtualNodeDefAddBackendParams(pydantic.BaseModel):
@@ -1188,13 +1184,13 @@ class VirtualRouterDef(BaseConstruct):
     ...
 
 
-    from_virtual_router_arn: typing.Optional[VirtualRouterDefFromVirtualRouterArnParams] = pydantic.Field(None, description='Import an existing VirtualRouter given an ARN.')
-    from_virtual_router_attributes: typing.Optional[VirtualRouterDefFromVirtualRouterAttributesParams] = pydantic.Field(None, description='Import an existing VirtualRouter given attributes.')
-    resource_config: typing.Optional[VirtualRouterDefConfig] = pydantic.Field(None)
+    from_virtual_router_arn: typing.Optional[models.aws_appmesh.VirtualRouterDefFromVirtualRouterArnParams] = pydantic.Field(None, description='Import an existing VirtualRouter given an ARN.')
+    from_virtual_router_attributes: typing.Optional[models.aws_appmesh.VirtualRouterDefFromVirtualRouterAttributesParams] = pydantic.Field(None, description='Import an existing VirtualRouter given attributes.')
+    resource_config: typing.Optional[models.aws_appmesh.VirtualRouterDefConfig] = pydantic.Field(None)
 
 
 class VirtualRouterDefConfig(pydantic.BaseModel):
-    add_route: typing.Optional[list[VirtualRouterDefAddRouteParams]] = pydantic.Field(None, description='Add a single route to the router.')
+    add_route: typing.Optional[list[models.aws_appmesh.VirtualRouterDefAddRouteParams]] = pydantic.Field(None, description='Add a single route to the router.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     mesh_config: typing.Optional[models._interface_methods.AwsAppmeshIMeshDefConfig] = pydantic.Field(None)
 
@@ -1235,9 +1231,9 @@ class VirtualServiceDef(BaseConstruct):
     ...
 
 
-    from_virtual_service_arn: typing.Optional[VirtualServiceDefFromVirtualServiceArnParams] = pydantic.Field(None, description='Import an existing VirtualService given an ARN.')
-    from_virtual_service_attributes: typing.Optional[VirtualServiceDefFromVirtualServiceAttributesParams] = pydantic.Field(None, description='Import an existing VirtualService given its attributes.')
-    resource_config: typing.Optional[VirtualServiceDefConfig] = pydantic.Field(None)
+    from_virtual_service_arn: typing.Optional[models.aws_appmesh.VirtualServiceDefFromVirtualServiceArnParams] = pydantic.Field(None, description='Import an existing VirtualService given an ARN.')
+    from_virtual_service_attributes: typing.Optional[models.aws_appmesh.VirtualServiceDefFromVirtualServiceAttributesParams] = pydantic.Field(None, description='Import an existing VirtualService given its attributes.')
+    resource_config: typing.Optional[models.aws_appmesh.VirtualServiceDefConfig] = pydantic.Field(None)
 
 
 class VirtualServiceDefConfig(pydantic.BaseModel):
@@ -3381,7 +3377,7 @@ class GrpcRetryPolicyDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[GrpcRetryPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.GrpcRetryPolicyDefConfig] = pydantic.Field(None)
 
 
 class GrpcRetryPolicyDefConfig(pydantic.BaseModel):
@@ -3651,7 +3647,7 @@ class HttpRetryPolicyDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[HttpRetryPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.HttpRetryPolicyDefConfig] = pydantic.Field(None)
 
 
 class HttpRetryPolicyDefConfig(pydantic.BaseModel):
@@ -3823,7 +3819,7 @@ class OutlierDetectionDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OutlierDetectionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.OutlierDetectionDefConfig] = pydantic.Field(None)
 
 
 class OutlierDetectionDefConfig(pydantic.BaseModel):
@@ -3856,7 +3852,7 @@ class RouteAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RouteAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.RouteAttributesDefConfig] = pydantic.Field(None)
 
 
 class RouteAttributesDefConfig(pydantic.BaseModel):
@@ -3891,7 +3887,7 @@ class RoutePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RoutePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.RoutePropsDefConfig] = pydantic.Field(None)
 
 
 class RoutePropsDefConfig(pydantic.BaseModel):
@@ -4099,7 +4095,7 @@ class VirtualGatewayAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualGatewayAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualGatewayAttributesDefConfig] = pydantic.Field(None)
 
 
 class VirtualGatewayAttributesDefConfig(pydantic.BaseModel):
@@ -4150,7 +4146,7 @@ class VirtualGatewayPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualGatewayPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualGatewayPropsDefConfig] = pydantic.Field(None)
 
 
 class VirtualGatewayPropsDefConfig(pydantic.BaseModel):
@@ -4169,7 +4165,7 @@ class VirtualNodeAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualNodeAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualNodeAttributesDefConfig] = pydantic.Field(None)
 
 
 class VirtualNodeAttributesDefConfig(pydantic.BaseModel):
@@ -4224,7 +4220,7 @@ class VirtualNodePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualNodePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualNodePropsDefConfig] = pydantic.Field(None)
 
 
 class VirtualNodePropsDefConfig(pydantic.BaseModel):
@@ -4243,7 +4239,7 @@ class VirtualRouterAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualRouterAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualRouterAttributesDefConfig] = pydantic.Field(None)
 
 
 class VirtualRouterAttributesDefConfig(pydantic.BaseModel):
@@ -4290,7 +4286,7 @@ class VirtualRouterPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualRouterPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualRouterPropsDefConfig] = pydantic.Field(None)
 
 
 class VirtualRouterPropsDefConfig(pydantic.BaseModel):
@@ -4309,7 +4305,7 @@ class VirtualServiceAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualServiceAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualServiceAttributesDefConfig] = pydantic.Field(None)
 
 
 class VirtualServiceAttributesDefConfig(pydantic.BaseModel):
@@ -4356,7 +4352,7 @@ class VirtualServiceProviderConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VirtualServiceProviderConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.VirtualServiceProviderConfigDefConfig] = pydantic.Field(None)
 
 
 class VirtualServiceProviderConfigDefConfig(pydantic.BaseModel):
@@ -4376,7 +4372,7 @@ class WeightedTargetDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[WeightedTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.WeightedTargetDefConfig] = pydantic.Field(None)
 
 
 class WeightedTargetDefConfig(pydantic.BaseModel):
@@ -4447,49 +4443,49 @@ class CfnGatewayRouteDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnGatewayRouteDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnGatewayRouteDefConfig] = pydantic.Field(None)
 
 
 class CfnGatewayRouteDefConfig(pydantic.BaseModel):
-    GatewayRouteHostnameMatchProperty: typing.Optional[list[CfnGatewayRouteDefGatewayroutehostnamematchpropertyParams]] = pydantic.Field(None, description='')
-    GatewayRouteHostnameRewriteProperty: typing.Optional[list[CfnGatewayRouteDefGatewayroutehostnamerewritepropertyParams]] = pydantic.Field(None, description='')
-    GatewayRouteMetadataMatchProperty: typing.Optional[list[CfnGatewayRouteDefGatewayroutemetadatamatchpropertyParams]] = pydantic.Field(None, description='')
-    GatewayRouteRangeMatchProperty: typing.Optional[list[CfnGatewayRouteDefGatewayrouterangematchpropertyParams]] = pydantic.Field(None, description='')
-    GatewayRouteSpecProperty: typing.Optional[list[CfnGatewayRouteDefGatewayroutespecpropertyParams]] = pydantic.Field(None, description='')
-    GatewayRouteTargetProperty: typing.Optional[list[CfnGatewayRouteDefGatewayroutetargetpropertyParams]] = pydantic.Field(None, description='')
-    GatewayRouteVirtualServiceProperty: typing.Optional[list[CfnGatewayRouteDefGatewayroutevirtualservicepropertyParams]] = pydantic.Field(None, description='')
-    GrpcGatewayRouteActionProperty: typing.Optional[list[CfnGatewayRouteDefGrpcgatewayrouteactionpropertyParams]] = pydantic.Field(None, description='')
-    GrpcGatewayRouteMatchProperty: typing.Optional[list[CfnGatewayRouteDefGrpcgatewayroutematchpropertyParams]] = pydantic.Field(None, description='')
-    GrpcGatewayRouteMetadataProperty: typing.Optional[list[CfnGatewayRouteDefGrpcgatewayroutemetadatapropertyParams]] = pydantic.Field(None, description='')
-    GrpcGatewayRouteProperty: typing.Optional[list[CfnGatewayRouteDefGrpcgatewayroutepropertyParams]] = pydantic.Field(None, description='')
-    GrpcGatewayRouteRewriteProperty: typing.Optional[list[CfnGatewayRouteDefGrpcgatewayrouterewritepropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRouteActionProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayrouteactionpropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRouteHeaderMatchProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayrouteheadermatchpropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRouteHeaderProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayrouteheaderpropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRouteMatchProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayroutematchpropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRoutePathRewriteProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayroutepathrewritepropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRoutePrefixRewriteProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayrouteprefixrewritepropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRouteProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayroutepropertyParams]] = pydantic.Field(None, description='')
-    HttpGatewayRouteRewriteProperty: typing.Optional[list[CfnGatewayRouteDefHttpgatewayrouterewritepropertyParams]] = pydantic.Field(None, description='')
-    HttpPathMatchProperty: typing.Optional[list[CfnGatewayRouteDefHttppathmatchpropertyParams]] = pydantic.Field(None, description='')
-    HttpQueryParameterMatchProperty: typing.Optional[list[CfnGatewayRouteDefHttpqueryparametermatchpropertyParams]] = pydantic.Field(None, description='')
-    QueryParameterProperty: typing.Optional[list[CfnGatewayRouteDefQueryparameterpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnGatewayRouteDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnGatewayRouteDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnGatewayRouteDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnGatewayRouteDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnGatewayRouteDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnGatewayRouteDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnGatewayRouteDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    GatewayRouteHostnameMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayroutehostnamematchpropertyParams]] = pydantic.Field(None, description='')
+    GatewayRouteHostnameRewriteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayroutehostnamerewritepropertyParams]] = pydantic.Field(None, description='')
+    GatewayRouteMetadataMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayroutemetadatamatchpropertyParams]] = pydantic.Field(None, description='')
+    GatewayRouteRangeMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayrouterangematchpropertyParams]] = pydantic.Field(None, description='')
+    GatewayRouteSpecProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayroutespecpropertyParams]] = pydantic.Field(None, description='')
+    GatewayRouteTargetProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayroutetargetpropertyParams]] = pydantic.Field(None, description='')
+    GatewayRouteVirtualServiceProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGatewayroutevirtualservicepropertyParams]] = pydantic.Field(None, description='')
+    GrpcGatewayRouteActionProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGrpcgatewayrouteactionpropertyParams]] = pydantic.Field(None, description='')
+    GrpcGatewayRouteMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGrpcgatewayroutematchpropertyParams]] = pydantic.Field(None, description='')
+    GrpcGatewayRouteMetadataProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGrpcgatewayroutemetadatapropertyParams]] = pydantic.Field(None, description='')
+    GrpcGatewayRouteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGrpcgatewayroutepropertyParams]] = pydantic.Field(None, description='')
+    GrpcGatewayRouteRewriteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGrpcgatewayrouterewritepropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRouteActionProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayrouteactionpropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRouteHeaderMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayrouteheadermatchpropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRouteHeaderProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayrouteheaderpropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRouteMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayroutematchpropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRoutePathRewriteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayroutepathrewritepropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRoutePrefixRewriteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayrouteprefixrewritepropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRouteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayroutepropertyParams]] = pydantic.Field(None, description='')
+    HttpGatewayRouteRewriteProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpgatewayrouterewritepropertyParams]] = pydantic.Field(None, description='')
+    HttpPathMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttppathmatchpropertyParams]] = pydantic.Field(None, description='')
+    HttpQueryParameterMatchProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefHttpqueryparametermatchpropertyParams]] = pydantic.Field(None, description='')
+    QueryParameterProperty: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefQueryparameterpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnGatewayRouteDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnGatewayRouteDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnGatewayRouteDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnGatewayRouteDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnGatewayRouteDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnGatewayRouteDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnGatewayRouteDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnGatewayRouteDefGatewayroutehostnamematchpropertyParams(pydantic.BaseModel):
@@ -4698,29 +4694,29 @@ class CfnMeshDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMeshDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnMeshDefConfig] = pydantic.Field(None)
 
 
 class CfnMeshDefConfig(pydantic.BaseModel):
-    EgressFilterProperty: typing.Optional[list[CfnMeshDefEgressfilterpropertyParams]] = pydantic.Field(None, description='')
-    MeshServiceDiscoveryProperty: typing.Optional[list[CfnMeshDefMeshservicediscoverypropertyParams]] = pydantic.Field(None, description='')
-    MeshSpecProperty: typing.Optional[list[CfnMeshDefMeshspecpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnMeshDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMeshDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMeshDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMeshDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMeshDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMeshDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMeshDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    EgressFilterProperty: typing.Optional[list[models.aws_appmesh.CfnMeshDefEgressfilterpropertyParams]] = pydantic.Field(None, description='')
+    MeshServiceDiscoveryProperty: typing.Optional[list[models.aws_appmesh.CfnMeshDefMeshservicediscoverypropertyParams]] = pydantic.Field(None, description='')
+    MeshSpecProperty: typing.Optional[list[models.aws_appmesh.CfnMeshDefMeshspecpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnMeshDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMeshDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMeshDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMeshDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnMeshDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnMeshDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnMeshDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMeshDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMeshDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMeshDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnMeshDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnMeshDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnMeshDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnMeshDefEgressfilterpropertyParams(pydantic.BaseModel):
@@ -4817,51 +4813,51 @@ class CfnRouteDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRouteDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnRouteDefConfig] = pydantic.Field(None)
 
 
 class CfnRouteDefConfig(pydantic.BaseModel):
-    DurationProperty: typing.Optional[list[CfnRouteDefDurationpropertyParams]] = pydantic.Field(None, description='')
-    GrpcRetryPolicyProperty: typing.Optional[list[CfnRouteDefGrpcretrypolicypropertyParams]] = pydantic.Field(None, description='')
-    GrpcRouteActionProperty: typing.Optional[list[CfnRouteDefGrpcrouteactionpropertyParams]] = pydantic.Field(None, description='')
-    GrpcRouteMatchProperty: typing.Optional[list[CfnRouteDefGrpcroutematchpropertyParams]] = pydantic.Field(None, description='')
-    GrpcRouteMetadataMatchMethodProperty: typing.Optional[list[CfnRouteDefGrpcroutemetadatamatchmethodpropertyParams]] = pydantic.Field(None, description='')
-    GrpcRouteMetadataProperty: typing.Optional[list[CfnRouteDefGrpcroutemetadatapropertyParams]] = pydantic.Field(None, description='')
-    GrpcRouteProperty: typing.Optional[list[CfnRouteDefGrpcroutepropertyParams]] = pydantic.Field(None, description='')
-    GrpcTimeoutProperty: typing.Optional[list[CfnRouteDefGrpctimeoutpropertyParams]] = pydantic.Field(None, description='')
-    HeaderMatchMethodProperty: typing.Optional[list[CfnRouteDefHeadermatchmethodpropertyParams]] = pydantic.Field(None, description='')
-    HttpPathMatchProperty: typing.Optional[list[CfnRouteDefHttppathmatchpropertyParams]] = pydantic.Field(None, description='')
-    HttpQueryParameterMatchProperty: typing.Optional[list[CfnRouteDefHttpqueryparametermatchpropertyParams]] = pydantic.Field(None, description='')
-    HttpRetryPolicyProperty: typing.Optional[list[CfnRouteDefHttpretrypolicypropertyParams]] = pydantic.Field(None, description='')
-    HttpRouteActionProperty: typing.Optional[list[CfnRouteDefHttprouteactionpropertyParams]] = pydantic.Field(None, description='')
-    HttpRouteHeaderProperty: typing.Optional[list[CfnRouteDefHttprouteheaderpropertyParams]] = pydantic.Field(None, description='')
-    HttpRouteMatchProperty: typing.Optional[list[CfnRouteDefHttproutematchpropertyParams]] = pydantic.Field(None, description='')
-    HttpRouteProperty: typing.Optional[list[CfnRouteDefHttproutepropertyParams]] = pydantic.Field(None, description='')
-    HttpTimeoutProperty: typing.Optional[list[CfnRouteDefHttptimeoutpropertyParams]] = pydantic.Field(None, description='')
-    MatchRangeProperty: typing.Optional[list[CfnRouteDefMatchrangepropertyParams]] = pydantic.Field(None, description='')
-    QueryParameterProperty: typing.Optional[list[CfnRouteDefQueryparameterpropertyParams]] = pydantic.Field(None, description='')
-    RouteSpecProperty: typing.Optional[list[CfnRouteDefRoutespecpropertyParams]] = pydantic.Field(None, description='')
-    TcpRouteActionProperty: typing.Optional[list[CfnRouteDefTcprouteactionpropertyParams]] = pydantic.Field(None, description='')
-    TcpRouteMatchProperty: typing.Optional[list[CfnRouteDefTcproutematchpropertyParams]] = pydantic.Field(None, description='')
-    TcpRouteProperty: typing.Optional[list[CfnRouteDefTcproutepropertyParams]] = pydantic.Field(None, description='')
-    TcpTimeoutProperty: typing.Optional[list[CfnRouteDefTcptimeoutpropertyParams]] = pydantic.Field(None, description='')
-    WeightedTargetProperty: typing.Optional[list[CfnRouteDefWeightedtargetpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnRouteDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRouteDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRouteDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRouteDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRouteDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRouteDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRouteDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DurationProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefDurationpropertyParams]] = pydantic.Field(None, description='')
+    GrpcRetryPolicyProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpcretrypolicypropertyParams]] = pydantic.Field(None, description='')
+    GrpcRouteActionProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpcrouteactionpropertyParams]] = pydantic.Field(None, description='')
+    GrpcRouteMatchProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpcroutematchpropertyParams]] = pydantic.Field(None, description='')
+    GrpcRouteMetadataMatchMethodProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpcroutemetadatamatchmethodpropertyParams]] = pydantic.Field(None, description='')
+    GrpcRouteMetadataProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpcroutemetadatapropertyParams]] = pydantic.Field(None, description='')
+    GrpcRouteProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpcroutepropertyParams]] = pydantic.Field(None, description='')
+    GrpcTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefGrpctimeoutpropertyParams]] = pydantic.Field(None, description='')
+    HeaderMatchMethodProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHeadermatchmethodpropertyParams]] = pydantic.Field(None, description='')
+    HttpPathMatchProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttppathmatchpropertyParams]] = pydantic.Field(None, description='')
+    HttpQueryParameterMatchProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttpqueryparametermatchpropertyParams]] = pydantic.Field(None, description='')
+    HttpRetryPolicyProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttpretrypolicypropertyParams]] = pydantic.Field(None, description='')
+    HttpRouteActionProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttprouteactionpropertyParams]] = pydantic.Field(None, description='')
+    HttpRouteHeaderProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttprouteheaderpropertyParams]] = pydantic.Field(None, description='')
+    HttpRouteMatchProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttproutematchpropertyParams]] = pydantic.Field(None, description='')
+    HttpRouteProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttproutepropertyParams]] = pydantic.Field(None, description='')
+    HttpTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefHttptimeoutpropertyParams]] = pydantic.Field(None, description='')
+    MatchRangeProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefMatchrangepropertyParams]] = pydantic.Field(None, description='')
+    QueryParameterProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefQueryparameterpropertyParams]] = pydantic.Field(None, description='')
+    RouteSpecProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefRoutespecpropertyParams]] = pydantic.Field(None, description='')
+    TcpRouteActionProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefTcprouteactionpropertyParams]] = pydantic.Field(None, description='')
+    TcpRouteMatchProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefTcproutematchpropertyParams]] = pydantic.Field(None, description='')
+    TcpRouteProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefTcproutepropertyParams]] = pydantic.Field(None, description='')
+    TcpTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefTcptimeoutpropertyParams]] = pydantic.Field(None, description='')
+    WeightedTargetProperty: typing.Optional[list[models.aws_appmesh.CfnRouteDefWeightedtargetpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnRouteDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRouteDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRouteDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRouteDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnRouteDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnRouteDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnRouteDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRouteDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRouteDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRouteDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnRouteDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnRouteDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnRouteDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnRouteDefDurationpropertyParams(pydantic.BaseModel):
@@ -5092,57 +5088,57 @@ class CfnVirtualGatewayDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVirtualGatewayDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnVirtualGatewayDefConfig] = pydantic.Field(None)
 
 
 class CfnVirtualGatewayDefConfig(pydantic.BaseModel):
-    JsonFormatRefProperty: typing.Optional[list[CfnVirtualGatewayDefJsonformatrefpropertyParams]] = pydantic.Field(None, description='')
-    LoggingFormatProperty: typing.Optional[list[CfnVirtualGatewayDefLoggingformatpropertyParams]] = pydantic.Field(None, description='')
-    SubjectAlternativeNameMatchersProperty: typing.Optional[list[CfnVirtualGatewayDefSubjectalternativenamematcherspropertyParams]] = pydantic.Field(None, description='')
-    SubjectAlternativeNamesProperty: typing.Optional[list[CfnVirtualGatewayDefSubjectalternativenamespropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayAccessLogProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayaccesslogpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayBackendDefaultsProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaybackenddefaultspropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayClientPolicyProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayclientpolicypropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayClientPolicyTlsProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayclientpolicytlspropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayClientTlsCertificateProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayclienttlscertificatepropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayConnectionPoolProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayFileAccessLogProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayfileaccesslogpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayGrpcConnectionPoolProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaygrpcconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayHealthCheckPolicyProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayhealthcheckpolicypropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayHttp2ConnectionPoolProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayhttp2ConnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayHttpConnectionPoolProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayhttpconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenerpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsAcmCertificateProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlsacmcertificatepropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsCertificateProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlscertificatepropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsFileCertificateProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlsfilecertificatepropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlspropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsSdsCertificateProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlssdscertificatepropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsValidationContextProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayListenerTlsValidationContextTrustProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaylistenertlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayLoggingProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayloggingpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayPortMappingProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayportmappingpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewaySpecProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewayspecpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayTlsValidationContextAcmTrustProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextacmtrustpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayTlsValidationContextFileTrustProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextfiletrustpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayTlsValidationContextProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayTlsValidationContextSdsTrustProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextsdstrustpropertyParams]] = pydantic.Field(None, description='')
-    VirtualGatewayTlsValidationContextTrustProperty: typing.Optional[list[CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnVirtualGatewayDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVirtualGatewayDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVirtualGatewayDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVirtualGatewayDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVirtualGatewayDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVirtualGatewayDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVirtualGatewayDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    JsonFormatRefProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefJsonformatrefpropertyParams]] = pydantic.Field(None, description='')
+    LoggingFormatProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefLoggingformatpropertyParams]] = pydantic.Field(None, description='')
+    SubjectAlternativeNameMatchersProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefSubjectalternativenamematcherspropertyParams]] = pydantic.Field(None, description='')
+    SubjectAlternativeNamesProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefSubjectalternativenamespropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayAccessLogProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayaccesslogpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayBackendDefaultsProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaybackenddefaultspropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayClientPolicyProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayclientpolicypropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayClientPolicyTlsProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayclientpolicytlspropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayClientTlsCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayclienttlscertificatepropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayFileAccessLogProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayfileaccesslogpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayGrpcConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaygrpcconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayHealthCheckPolicyProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayhealthcheckpolicypropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayHttp2ConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayhttp2ConnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayHttpConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayhttpconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenerpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsAcmCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlsacmcertificatepropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlscertificatepropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsFileCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlsfilecertificatepropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlspropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsSdsCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlssdscertificatepropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsValidationContextProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayListenerTlsValidationContextTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaylistenertlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayLoggingProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayloggingpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayPortMappingProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayportmappingpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewaySpecProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewayspecpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayTlsValidationContextAcmTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextacmtrustpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayTlsValidationContextFileTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextfiletrustpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayTlsValidationContextProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayTlsValidationContextSdsTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontextsdstrustpropertyParams]] = pydantic.Field(None, description='')
+    VirtualGatewayTlsValidationContextTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefVirtualgatewaytlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVirtualGatewayDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVirtualGatewayDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVirtualGatewayDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVirtualGatewayDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVirtualGatewayDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVirtualGatewayDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualGatewayDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnVirtualGatewayDefJsonformatrefpropertyParams(pydantic.BaseModel):
@@ -5381,70 +5377,70 @@ class CfnVirtualNodeDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVirtualNodeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnVirtualNodeDefConfig] = pydantic.Field(None)
 
 
 class CfnVirtualNodeDefConfig(pydantic.BaseModel):
-    AccessLogProperty: typing.Optional[list[CfnVirtualNodeDefAccesslogpropertyParams]] = pydantic.Field(None, description='')
-    AwsCloudMapInstanceAttributeProperty: typing.Optional[list[CfnVirtualNodeDefAwscloudmapinstanceattributepropertyParams]] = pydantic.Field(None, description='')
-    AwsCloudMapServiceDiscoveryProperty: typing.Optional[list[CfnVirtualNodeDefAwscloudmapservicediscoverypropertyParams]] = pydantic.Field(None, description='')
-    BackendDefaultsProperty: typing.Optional[list[CfnVirtualNodeDefBackenddefaultspropertyParams]] = pydantic.Field(None, description='')
-    BackendProperty: typing.Optional[list[CfnVirtualNodeDefBackendpropertyParams]] = pydantic.Field(None, description='')
-    ClientPolicyProperty: typing.Optional[list[CfnVirtualNodeDefClientpolicypropertyParams]] = pydantic.Field(None, description='')
-    ClientPolicyTlsProperty: typing.Optional[list[CfnVirtualNodeDefClientpolicytlspropertyParams]] = pydantic.Field(None, description='')
-    ClientTlsCertificateProperty: typing.Optional[list[CfnVirtualNodeDefClienttlscertificatepropertyParams]] = pydantic.Field(None, description='')
-    DnsServiceDiscoveryProperty: typing.Optional[list[CfnVirtualNodeDefDnsservicediscoverypropertyParams]] = pydantic.Field(None, description='')
-    DurationProperty: typing.Optional[list[CfnVirtualNodeDefDurationpropertyParams]] = pydantic.Field(None, description='')
-    FileAccessLogProperty: typing.Optional[list[CfnVirtualNodeDefFileaccesslogpropertyParams]] = pydantic.Field(None, description='')
-    GrpcTimeoutProperty: typing.Optional[list[CfnVirtualNodeDefGrpctimeoutpropertyParams]] = pydantic.Field(None, description='')
-    HealthCheckProperty: typing.Optional[list[CfnVirtualNodeDefHealthcheckpropertyParams]] = pydantic.Field(None, description='')
-    HttpTimeoutProperty: typing.Optional[list[CfnVirtualNodeDefHttptimeoutpropertyParams]] = pydantic.Field(None, description='')
-    JsonFormatRefProperty: typing.Optional[list[CfnVirtualNodeDefJsonformatrefpropertyParams]] = pydantic.Field(None, description='')
-    ListenerProperty: typing.Optional[list[CfnVirtualNodeDefListenerpropertyParams]] = pydantic.Field(None, description='')
-    ListenerTimeoutProperty: typing.Optional[list[CfnVirtualNodeDefListenertimeoutpropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsAcmCertificateProperty: typing.Optional[list[CfnVirtualNodeDefListenertlsacmcertificatepropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsCertificateProperty: typing.Optional[list[CfnVirtualNodeDefListenertlscertificatepropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsFileCertificateProperty: typing.Optional[list[CfnVirtualNodeDefListenertlsfilecertificatepropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsProperty: typing.Optional[list[CfnVirtualNodeDefListenertlspropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsSdsCertificateProperty: typing.Optional[list[CfnVirtualNodeDefListenertlssdscertificatepropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsValidationContextProperty: typing.Optional[list[CfnVirtualNodeDefListenertlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
-    ListenerTlsValidationContextTrustProperty: typing.Optional[list[CfnVirtualNodeDefListenertlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
-    LoggingFormatProperty: typing.Optional[list[CfnVirtualNodeDefLoggingformatpropertyParams]] = pydantic.Field(None, description='')
-    LoggingProperty: typing.Optional[list[CfnVirtualNodeDefLoggingpropertyParams]] = pydantic.Field(None, description='')
-    OutlierDetectionProperty: typing.Optional[list[CfnVirtualNodeDefOutlierdetectionpropertyParams]] = pydantic.Field(None, description='')
-    PortMappingProperty: typing.Optional[list[CfnVirtualNodeDefPortmappingpropertyParams]] = pydantic.Field(None, description='')
-    ServiceDiscoveryProperty: typing.Optional[list[CfnVirtualNodeDefServicediscoverypropertyParams]] = pydantic.Field(None, description='')
-    SubjectAlternativeNameMatchersProperty: typing.Optional[list[CfnVirtualNodeDefSubjectalternativenamematcherspropertyParams]] = pydantic.Field(None, description='')
-    SubjectAlternativeNamesProperty: typing.Optional[list[CfnVirtualNodeDefSubjectalternativenamespropertyParams]] = pydantic.Field(None, description='')
-    TcpTimeoutProperty: typing.Optional[list[CfnVirtualNodeDefTcptimeoutpropertyParams]] = pydantic.Field(None, description='')
-    TlsValidationContextAcmTrustProperty: typing.Optional[list[CfnVirtualNodeDefTlsvalidationcontextacmtrustpropertyParams]] = pydantic.Field(None, description='')
-    TlsValidationContextFileTrustProperty: typing.Optional[list[CfnVirtualNodeDefTlsvalidationcontextfiletrustpropertyParams]] = pydantic.Field(None, description='')
-    TlsValidationContextProperty: typing.Optional[list[CfnVirtualNodeDefTlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
-    TlsValidationContextSdsTrustProperty: typing.Optional[list[CfnVirtualNodeDefTlsvalidationcontextsdstrustpropertyParams]] = pydantic.Field(None, description='')
-    TlsValidationContextTrustProperty: typing.Optional[list[CfnVirtualNodeDefTlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
-    VirtualNodeConnectionPoolProperty: typing.Optional[list[CfnVirtualNodeDefVirtualnodeconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualNodeGrpcConnectionPoolProperty: typing.Optional[list[CfnVirtualNodeDefVirtualnodegrpcconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualNodeHttp2ConnectionPoolProperty: typing.Optional[list[CfnVirtualNodeDefVirtualnodehttp2ConnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualNodeHttpConnectionPoolProperty: typing.Optional[list[CfnVirtualNodeDefVirtualnodehttpconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualNodeSpecProperty: typing.Optional[list[CfnVirtualNodeDefVirtualnodespecpropertyParams]] = pydantic.Field(None, description='')
-    VirtualNodeTcpConnectionPoolProperty: typing.Optional[list[CfnVirtualNodeDefVirtualnodetcpconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
-    VirtualServiceBackendProperty: typing.Optional[list[CfnVirtualNodeDefVirtualservicebackendpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnVirtualNodeDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVirtualNodeDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVirtualNodeDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVirtualNodeDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVirtualNodeDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVirtualNodeDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVirtualNodeDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccessLogProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAccesslogpropertyParams]] = pydantic.Field(None, description='')
+    AwsCloudMapInstanceAttributeProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAwscloudmapinstanceattributepropertyParams]] = pydantic.Field(None, description='')
+    AwsCloudMapServiceDiscoveryProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAwscloudmapservicediscoverypropertyParams]] = pydantic.Field(None, description='')
+    BackendDefaultsProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefBackenddefaultspropertyParams]] = pydantic.Field(None, description='')
+    BackendProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefBackendpropertyParams]] = pydantic.Field(None, description='')
+    ClientPolicyProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefClientpolicypropertyParams]] = pydantic.Field(None, description='')
+    ClientPolicyTlsProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefClientpolicytlspropertyParams]] = pydantic.Field(None, description='')
+    ClientTlsCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefClienttlscertificatepropertyParams]] = pydantic.Field(None, description='')
+    DnsServiceDiscoveryProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefDnsservicediscoverypropertyParams]] = pydantic.Field(None, description='')
+    DurationProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefDurationpropertyParams]] = pydantic.Field(None, description='')
+    FileAccessLogProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefFileaccesslogpropertyParams]] = pydantic.Field(None, description='')
+    GrpcTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefGrpctimeoutpropertyParams]] = pydantic.Field(None, description='')
+    HealthCheckProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefHealthcheckpropertyParams]] = pydantic.Field(None, description='')
+    HttpTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefHttptimeoutpropertyParams]] = pydantic.Field(None, description='')
+    JsonFormatRefProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefJsonformatrefpropertyParams]] = pydantic.Field(None, description='')
+    ListenerProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenerpropertyParams]] = pydantic.Field(None, description='')
+    ListenerTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertimeoutpropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsAcmCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlsacmcertificatepropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlscertificatepropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsFileCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlsfilecertificatepropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlspropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsSdsCertificateProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlssdscertificatepropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsValidationContextProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
+    ListenerTlsValidationContextTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefListenertlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
+    LoggingFormatProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefLoggingformatpropertyParams]] = pydantic.Field(None, description='')
+    LoggingProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefLoggingpropertyParams]] = pydantic.Field(None, description='')
+    OutlierDetectionProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefOutlierdetectionpropertyParams]] = pydantic.Field(None, description='')
+    PortMappingProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefPortmappingpropertyParams]] = pydantic.Field(None, description='')
+    ServiceDiscoveryProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefServicediscoverypropertyParams]] = pydantic.Field(None, description='')
+    SubjectAlternativeNameMatchersProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefSubjectalternativenamematcherspropertyParams]] = pydantic.Field(None, description='')
+    SubjectAlternativeNamesProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefSubjectalternativenamespropertyParams]] = pydantic.Field(None, description='')
+    TcpTimeoutProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefTcptimeoutpropertyParams]] = pydantic.Field(None, description='')
+    TlsValidationContextAcmTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefTlsvalidationcontextacmtrustpropertyParams]] = pydantic.Field(None, description='')
+    TlsValidationContextFileTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefTlsvalidationcontextfiletrustpropertyParams]] = pydantic.Field(None, description='')
+    TlsValidationContextProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefTlsvalidationcontextpropertyParams]] = pydantic.Field(None, description='')
+    TlsValidationContextSdsTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefTlsvalidationcontextsdstrustpropertyParams]] = pydantic.Field(None, description='')
+    TlsValidationContextTrustProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefTlsvalidationcontexttrustpropertyParams]] = pydantic.Field(None, description='')
+    VirtualNodeConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualnodeconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualNodeGrpcConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualnodegrpcconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualNodeHttp2ConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualnodehttp2ConnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualNodeHttpConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualnodehttpconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualNodeSpecProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualnodespecpropertyParams]] = pydantic.Field(None, description='')
+    VirtualNodeTcpConnectionPoolProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualnodetcpconnectionpoolpropertyParams]] = pydantic.Field(None, description='')
+    VirtualServiceBackendProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefVirtualservicebackendpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVirtualNodeDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVirtualNodeDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVirtualNodeDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVirtualNodeDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVirtualNodeDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVirtualNodeDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualNodeDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnVirtualNodeDefAccesslogpropertyParams(pydantic.BaseModel):
@@ -5757,29 +5753,29 @@ class CfnVirtualRouterDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVirtualRouterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnVirtualRouterDefConfig] = pydantic.Field(None)
 
 
 class CfnVirtualRouterDefConfig(pydantic.BaseModel):
-    PortMappingProperty: typing.Optional[list[CfnVirtualRouterDefPortmappingpropertyParams]] = pydantic.Field(None, description='')
-    VirtualRouterListenerProperty: typing.Optional[list[CfnVirtualRouterDefVirtualrouterlistenerpropertyParams]] = pydantic.Field(None, description='')
-    VirtualRouterSpecProperty: typing.Optional[list[CfnVirtualRouterDefVirtualrouterspecpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnVirtualRouterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVirtualRouterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVirtualRouterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVirtualRouterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVirtualRouterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVirtualRouterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVirtualRouterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    PortMappingProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefPortmappingpropertyParams]] = pydantic.Field(None, description='')
+    VirtualRouterListenerProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefVirtualrouterlistenerpropertyParams]] = pydantic.Field(None, description='')
+    VirtualRouterSpecProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefVirtualrouterspecpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVirtualRouterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVirtualRouterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVirtualRouterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVirtualRouterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVirtualRouterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVirtualRouterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualRouterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnVirtualRouterDefPortmappingpropertyParams(pydantic.BaseModel):
@@ -5875,30 +5871,30 @@ class CfnVirtualServiceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnVirtualServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_appmesh.CfnVirtualServiceDefConfig] = pydantic.Field(None)
 
 
 class CfnVirtualServiceDefConfig(pydantic.BaseModel):
-    VirtualNodeServiceProviderProperty: typing.Optional[list[CfnVirtualServiceDefVirtualnodeserviceproviderpropertyParams]] = pydantic.Field(None, description='')
-    VirtualRouterServiceProviderProperty: typing.Optional[list[CfnVirtualServiceDefVirtualrouterserviceproviderpropertyParams]] = pydantic.Field(None, description='')
-    VirtualServiceProviderProperty: typing.Optional[list[CfnVirtualServiceDefVirtualserviceproviderpropertyParams]] = pydantic.Field(None, description='')
-    VirtualServiceSpecProperty: typing.Optional[list[CfnVirtualServiceDefVirtualservicespecpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnVirtualServiceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnVirtualServiceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnVirtualServiceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnVirtualServiceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnVirtualServiceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnVirtualServiceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnVirtualServiceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    VirtualNodeServiceProviderProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefVirtualnodeserviceproviderpropertyParams]] = pydantic.Field(None, description='')
+    VirtualRouterServiceProviderProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefVirtualrouterserviceproviderpropertyParams]] = pydantic.Field(None, description='')
+    VirtualServiceProviderProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefVirtualserviceproviderpropertyParams]] = pydantic.Field(None, description='')
+    VirtualServiceSpecProperty: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefVirtualservicespecpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnVirtualServiceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnVirtualServiceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnVirtualServiceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnVirtualServiceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnVirtualServiceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnVirtualServiceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_appmesh.CfnVirtualServiceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnVirtualServiceDefVirtualnodeserviceproviderpropertyParams(pydantic.BaseModel):
@@ -6102,259 +6098,259 @@ class CfnVirtualServicePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AccessLog: typing.Optional[dict[str, AccessLogDef]] = pydantic.Field(None)
-    Backend: typing.Optional[dict[str, BackendDef]] = pydantic.Field(None)
-    GatewayRouteHostnameMatch: typing.Optional[dict[str, GatewayRouteHostnameMatchDef]] = pydantic.Field(None)
-    GatewayRouteSpec: typing.Optional[dict[str, GatewayRouteSpecDef]] = pydantic.Field(None)
-    HeaderMatch: typing.Optional[dict[str, HeaderMatchDef]] = pydantic.Field(None)
-    HealthCheck: typing.Optional[dict[str, HealthCheckDef]] = pydantic.Field(None)
-    HttpGatewayRoutePathMatch: typing.Optional[dict[str, HttpGatewayRoutePathMatchDef]] = pydantic.Field(None)
-    HttpRoutePathMatch: typing.Optional[dict[str, HttpRoutePathMatchDef]] = pydantic.Field(None)
-    LoggingFormat: typing.Optional[dict[str, LoggingFormatDef]] = pydantic.Field(None)
-    MutualTlsCertificate: typing.Optional[dict[str, MutualTlsCertificateDef]] = pydantic.Field(None)
-    MutualTlsValidationTrust: typing.Optional[dict[str, MutualTlsValidationTrustDef]] = pydantic.Field(None)
-    QueryParameterMatch: typing.Optional[dict[str, QueryParameterMatchDef]] = pydantic.Field(None)
-    RouteSpec: typing.Optional[dict[str, RouteSpecDef]] = pydantic.Field(None)
-    ServiceDiscovery: typing.Optional[dict[str, ServiceDiscoveryDef]] = pydantic.Field(None)
-    SubjectAlternativeNames: typing.Optional[dict[str, SubjectAlternativeNamesDef]] = pydantic.Field(None)
-    TlsCertificate: typing.Optional[dict[str, TlsCertificateDef]] = pydantic.Field(None)
-    TlsValidationTrust: typing.Optional[dict[str, TlsValidationTrustDef]] = pydantic.Field(None)
-    VirtualGatewayListener: typing.Optional[dict[str, VirtualGatewayListenerDef]] = pydantic.Field(None)
-    VirtualNodeListener: typing.Optional[dict[str, VirtualNodeListenerDef]] = pydantic.Field(None)
-    VirtualRouterListener: typing.Optional[dict[str, VirtualRouterListenerDef]] = pydantic.Field(None)
-    VirtualServiceProvider: typing.Optional[dict[str, VirtualServiceProviderDef]] = pydantic.Field(None)
-    GatewayRoute: typing.Optional[dict[str, GatewayRouteDef]] = pydantic.Field(None)
-    Mesh: typing.Optional[dict[str, MeshDef]] = pydantic.Field(None)
-    Route: typing.Optional[dict[str, RouteDef]] = pydantic.Field(None)
-    VirtualGateway: typing.Optional[dict[str, VirtualGatewayDef]] = pydantic.Field(None)
-    VirtualNode: typing.Optional[dict[str, VirtualNodeDef]] = pydantic.Field(None)
-    VirtualRouter: typing.Optional[dict[str, VirtualRouterDef]] = pydantic.Field(None)
-    VirtualService: typing.Optional[dict[str, VirtualServiceDef]] = pydantic.Field(None)
-    AccessLogConfig: typing.Optional[dict[str, AccessLogConfigDef]] = pydantic.Field(None)
-    BackendConfig: typing.Optional[dict[str, BackendConfigDef]] = pydantic.Field(None)
-    BackendDefaults: typing.Optional[dict[str, BackendDefaultsDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteHostnameMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteHostnameMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteHostnameRewriteProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteHostnameRewritePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteMetadataMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteMetadataMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteRangeMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteRangeMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteSpecProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteSpecPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteTargetProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteTargetPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GatewayRouteVirtualServiceProperty: typing.Optional[dict[str, CfnGatewayRoute_GatewayRouteVirtualServicePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GrpcGatewayRouteActionProperty: typing.Optional[dict[str, CfnGatewayRoute_GrpcGatewayRouteActionPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GrpcGatewayRouteMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_GrpcGatewayRouteMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GrpcGatewayRouteMetadataProperty: typing.Optional[dict[str, CfnGatewayRoute_GrpcGatewayRouteMetadataPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GrpcGatewayRouteProperty: typing.Optional[dict[str, CfnGatewayRoute_GrpcGatewayRoutePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_GrpcGatewayRouteRewriteProperty: typing.Optional[dict[str, CfnGatewayRoute_GrpcGatewayRouteRewritePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRouteActionProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRouteActionPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRouteHeaderMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRouteHeaderMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRouteHeaderProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRouteHeaderPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRouteMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRouteMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRoutePathRewriteProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRoutePathRewritePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRoutePrefixRewriteProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRoutePrefixRewritePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRouteProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRoutePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpGatewayRouteRewriteProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpGatewayRouteRewritePropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpPathMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpPathMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_HttpQueryParameterMatchProperty: typing.Optional[dict[str, CfnGatewayRoute_HttpQueryParameterMatchPropertyDef]] = pydantic.Field(None)
-    CfnGatewayRoute_QueryParameterProperty: typing.Optional[dict[str, CfnGatewayRoute_QueryParameterPropertyDef]] = pydantic.Field(None)
-    CfnMesh_EgressFilterProperty: typing.Optional[dict[str, CfnMesh_EgressFilterPropertyDef]] = pydantic.Field(None)
-    CfnMesh_MeshServiceDiscoveryProperty: typing.Optional[dict[str, CfnMesh_MeshServiceDiscoveryPropertyDef]] = pydantic.Field(None)
-    CfnMesh_MeshSpecProperty: typing.Optional[dict[str, CfnMesh_MeshSpecPropertyDef]] = pydantic.Field(None)
-    CfnRoute_DurationProperty: typing.Optional[dict[str, CfnRoute_DurationPropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcRetryPolicyProperty: typing.Optional[dict[str, CfnRoute_GrpcRetryPolicyPropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcRouteActionProperty: typing.Optional[dict[str, CfnRoute_GrpcRouteActionPropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcRouteMatchProperty: typing.Optional[dict[str, CfnRoute_GrpcRouteMatchPropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcRouteMetadataMatchMethodProperty: typing.Optional[dict[str, CfnRoute_GrpcRouteMetadataMatchMethodPropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcRouteMetadataProperty: typing.Optional[dict[str, CfnRoute_GrpcRouteMetadataPropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcRouteProperty: typing.Optional[dict[str, CfnRoute_GrpcRoutePropertyDef]] = pydantic.Field(None)
-    CfnRoute_GrpcTimeoutProperty: typing.Optional[dict[str, CfnRoute_GrpcTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HeaderMatchMethodProperty: typing.Optional[dict[str, CfnRoute_HeaderMatchMethodPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpPathMatchProperty: typing.Optional[dict[str, CfnRoute_HttpPathMatchPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpQueryParameterMatchProperty: typing.Optional[dict[str, CfnRoute_HttpQueryParameterMatchPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpRetryPolicyProperty: typing.Optional[dict[str, CfnRoute_HttpRetryPolicyPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpRouteActionProperty: typing.Optional[dict[str, CfnRoute_HttpRouteActionPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpRouteHeaderProperty: typing.Optional[dict[str, CfnRoute_HttpRouteHeaderPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpRouteMatchProperty: typing.Optional[dict[str, CfnRoute_HttpRouteMatchPropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpRouteProperty: typing.Optional[dict[str, CfnRoute_HttpRoutePropertyDef]] = pydantic.Field(None)
-    CfnRoute_HttpTimeoutProperty: typing.Optional[dict[str, CfnRoute_HttpTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnRoute_MatchRangeProperty: typing.Optional[dict[str, CfnRoute_MatchRangePropertyDef]] = pydantic.Field(None)
-    CfnRoute_QueryParameterProperty: typing.Optional[dict[str, CfnRoute_QueryParameterPropertyDef]] = pydantic.Field(None)
-    CfnRoute_RouteSpecProperty: typing.Optional[dict[str, CfnRoute_RouteSpecPropertyDef]] = pydantic.Field(None)
-    CfnRoute_TcpRouteActionProperty: typing.Optional[dict[str, CfnRoute_TcpRouteActionPropertyDef]] = pydantic.Field(None)
-    CfnRoute_TcpRouteMatchProperty: typing.Optional[dict[str, CfnRoute_TcpRouteMatchPropertyDef]] = pydantic.Field(None)
-    CfnRoute_TcpRouteProperty: typing.Optional[dict[str, CfnRoute_TcpRoutePropertyDef]] = pydantic.Field(None)
-    CfnRoute_TcpTimeoutProperty: typing.Optional[dict[str, CfnRoute_TcpTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnRoute_WeightedTargetProperty: typing.Optional[dict[str, CfnRoute_WeightedTargetPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_JsonFormatRefProperty: typing.Optional[dict[str, CfnVirtualGateway_JsonFormatRefPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_LoggingFormatProperty: typing.Optional[dict[str, CfnVirtualGateway_LoggingFormatPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_SubjectAlternativeNameMatchersProperty: typing.Optional[dict[str, CfnVirtualGateway_SubjectAlternativeNameMatchersPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_SubjectAlternativeNamesProperty: typing.Optional[dict[str, CfnVirtualGateway_SubjectAlternativeNamesPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayAccessLogProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayAccessLogPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayBackendDefaultsProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayBackendDefaultsPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayClientPolicyProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayClientPolicyPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayClientPolicyTlsProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayClientPolicyTlsPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayClientTlsCertificateProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayClientTlsCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayFileAccessLogProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayFileAccessLogPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayGrpcConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayGrpcConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayHealthCheckPolicyProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayHealthCheckPolicyPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayHttp2ConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayHttp2ConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayHttpConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayHttpConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsAcmCertificateProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsAcmCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsCertificateProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsFileCertificateProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsFileCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsSdsCertificateProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsSdsCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextTrustProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayLoggingProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayLoggingPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayPortMappingProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayPortMappingPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewaySpecProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewaySpecPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayTlsValidationContextAcmTrustProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayTlsValidationContextAcmTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayTlsValidationContextFileTrustProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayTlsValidationContextFileTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayTlsValidationContextProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayTlsValidationContextPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayTlsValidationContextSdsTrustProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayTlsValidationContextSdsTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualGateway_VirtualGatewayTlsValidationContextTrustProperty: typing.Optional[dict[str, CfnVirtualGateway_VirtualGatewayTlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_AccessLogProperty: typing.Optional[dict[str, CfnVirtualNode_AccessLogPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_AwsCloudMapInstanceAttributeProperty: typing.Optional[dict[str, CfnVirtualNode_AwsCloudMapInstanceAttributePropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_AwsCloudMapServiceDiscoveryProperty: typing.Optional[dict[str, CfnVirtualNode_AwsCloudMapServiceDiscoveryPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_BackendDefaultsProperty: typing.Optional[dict[str, CfnVirtualNode_BackendDefaultsPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_BackendProperty: typing.Optional[dict[str, CfnVirtualNode_BackendPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ClientPolicyProperty: typing.Optional[dict[str, CfnVirtualNode_ClientPolicyPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ClientPolicyTlsProperty: typing.Optional[dict[str, CfnVirtualNode_ClientPolicyTlsPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ClientTlsCertificateProperty: typing.Optional[dict[str, CfnVirtualNode_ClientTlsCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_DnsServiceDiscoveryProperty: typing.Optional[dict[str, CfnVirtualNode_DnsServiceDiscoveryPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_DurationProperty: typing.Optional[dict[str, CfnVirtualNode_DurationPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_FileAccessLogProperty: typing.Optional[dict[str, CfnVirtualNode_FileAccessLogPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_GrpcTimeoutProperty: typing.Optional[dict[str, CfnVirtualNode_GrpcTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_HealthCheckProperty: typing.Optional[dict[str, CfnVirtualNode_HealthCheckPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_HttpTimeoutProperty: typing.Optional[dict[str, CfnVirtualNode_HttpTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_JsonFormatRefProperty: typing.Optional[dict[str, CfnVirtualNode_JsonFormatRefPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTimeoutProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsAcmCertificateProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsAcmCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsCertificateProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsFileCertificateProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsFileCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsSdsCertificateProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsSdsCertificatePropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsValidationContextProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsValidationContextPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ListenerTlsValidationContextTrustProperty: typing.Optional[dict[str, CfnVirtualNode_ListenerTlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_LoggingFormatProperty: typing.Optional[dict[str, CfnVirtualNode_LoggingFormatPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_LoggingProperty: typing.Optional[dict[str, CfnVirtualNode_LoggingPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_OutlierDetectionProperty: typing.Optional[dict[str, CfnVirtualNode_OutlierDetectionPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_PortMappingProperty: typing.Optional[dict[str, CfnVirtualNode_PortMappingPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_ServiceDiscoveryProperty: typing.Optional[dict[str, CfnVirtualNode_ServiceDiscoveryPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_SubjectAlternativeNameMatchersProperty: typing.Optional[dict[str, CfnVirtualNode_SubjectAlternativeNameMatchersPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_SubjectAlternativeNamesProperty: typing.Optional[dict[str, CfnVirtualNode_SubjectAlternativeNamesPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_TcpTimeoutProperty: typing.Optional[dict[str, CfnVirtualNode_TcpTimeoutPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_TlsValidationContextAcmTrustProperty: typing.Optional[dict[str, CfnVirtualNode_TlsValidationContextAcmTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_TlsValidationContextFileTrustProperty: typing.Optional[dict[str, CfnVirtualNode_TlsValidationContextFileTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_TlsValidationContextProperty: typing.Optional[dict[str, CfnVirtualNode_TlsValidationContextPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_TlsValidationContextSdsTrustProperty: typing.Optional[dict[str, CfnVirtualNode_TlsValidationContextSdsTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_TlsValidationContextTrustProperty: typing.Optional[dict[str, CfnVirtualNode_TlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualNodeConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualNodeConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualNodeGrpcConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualNodeGrpcConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualNodeHttp2ConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualNodeHttp2ConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualNodeHttpConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualNodeHttpConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualNodeSpecProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualNodeSpecPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualNodeTcpConnectionPoolProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualNodeTcpConnectionPoolPropertyDef]] = pydantic.Field(None)
-    CfnVirtualNode_VirtualServiceBackendProperty: typing.Optional[dict[str, CfnVirtualNode_VirtualServiceBackendPropertyDef]] = pydantic.Field(None)
-    CfnVirtualRouter_PortMappingProperty: typing.Optional[dict[str, CfnVirtualRouter_PortMappingPropertyDef]] = pydantic.Field(None)
-    CfnVirtualRouter_VirtualRouterListenerProperty: typing.Optional[dict[str, CfnVirtualRouter_VirtualRouterListenerPropertyDef]] = pydantic.Field(None)
-    CfnVirtualRouter_VirtualRouterSpecProperty: typing.Optional[dict[str, CfnVirtualRouter_VirtualRouterSpecPropertyDef]] = pydantic.Field(None)
-    CfnVirtualService_VirtualNodeServiceProviderProperty: typing.Optional[dict[str, CfnVirtualService_VirtualNodeServiceProviderPropertyDef]] = pydantic.Field(None)
-    CfnVirtualService_VirtualRouterServiceProviderProperty: typing.Optional[dict[str, CfnVirtualService_VirtualRouterServiceProviderPropertyDef]] = pydantic.Field(None)
-    CfnVirtualService_VirtualServiceProviderProperty: typing.Optional[dict[str, CfnVirtualService_VirtualServiceProviderPropertyDef]] = pydantic.Field(None)
-    CfnVirtualService_VirtualServiceSpecProperty: typing.Optional[dict[str, CfnVirtualService_VirtualServiceSpecPropertyDef]] = pydantic.Field(None)
-    CommonGatewayRouteSpecOptions: typing.Optional[dict[str, CommonGatewayRouteSpecOptionsDef]] = pydantic.Field(None)
-    GatewayRouteAttributes: typing.Optional[dict[str, GatewayRouteAttributesDef]] = pydantic.Field(None)
-    GatewayRouteBaseProps: typing.Optional[dict[str, GatewayRouteBasePropsDef]] = pydantic.Field(None)
-    GatewayRouteHostnameMatchConfig: typing.Optional[dict[str, GatewayRouteHostnameMatchConfigDef]] = pydantic.Field(None)
-    GatewayRouteProps: typing.Optional[dict[str, GatewayRoutePropsDef]] = pydantic.Field(None)
-    GatewayRouteSpecConfig: typing.Optional[dict[str, GatewayRouteSpecConfigDef]] = pydantic.Field(None)
-    GrpcConnectionPool: typing.Optional[dict[str, GrpcConnectionPoolDef]] = pydantic.Field(None)
-    GrpcGatewayListenerOptions: typing.Optional[dict[str, GrpcGatewayListenerOptionsDef]] = pydantic.Field(None)
-    GrpcGatewayRouteMatch: typing.Optional[dict[str, GrpcGatewayRouteMatchDef]] = pydantic.Field(None)
-    GrpcGatewayRouteSpecOptions: typing.Optional[dict[str, GrpcGatewayRouteSpecOptionsDef]] = pydantic.Field(None)
-    GrpcHealthCheckOptions: typing.Optional[dict[str, GrpcHealthCheckOptionsDef]] = pydantic.Field(None)
-    GrpcRetryPolicy: typing.Optional[dict[str, GrpcRetryPolicyDef]] = pydantic.Field(None)
-    GrpcRouteMatch: typing.Optional[dict[str, GrpcRouteMatchDef]] = pydantic.Field(None)
-    GrpcRouteSpecOptions: typing.Optional[dict[str, GrpcRouteSpecOptionsDef]] = pydantic.Field(None)
-    GrpcTimeout: typing.Optional[dict[str, GrpcTimeoutDef]] = pydantic.Field(None)
-    GrpcVirtualNodeListenerOptions: typing.Optional[dict[str, GrpcVirtualNodeListenerOptionsDef]] = pydantic.Field(None)
-    HeaderMatchConfig: typing.Optional[dict[str, HeaderMatchConfigDef]] = pydantic.Field(None)
-    HealthCheckBindOptions: typing.Optional[dict[str, HealthCheckBindOptionsDef]] = pydantic.Field(None)
-    HealthCheckConfig: typing.Optional[dict[str, HealthCheckConfigDef]] = pydantic.Field(None)
-    Http2ConnectionPool: typing.Optional[dict[str, Http2ConnectionPoolDef]] = pydantic.Field(None)
-    Http2GatewayListenerOptions: typing.Optional[dict[str, Http2GatewayListenerOptionsDef]] = pydantic.Field(None)
-    Http2VirtualNodeListenerOptions: typing.Optional[dict[str, Http2VirtualNodeListenerOptionsDef]] = pydantic.Field(None)
-    HttpConnectionPool: typing.Optional[dict[str, HttpConnectionPoolDef]] = pydantic.Field(None)
-    HttpGatewayListenerOptions: typing.Optional[dict[str, HttpGatewayListenerOptionsDef]] = pydantic.Field(None)
-    HttpGatewayRouteMatch: typing.Optional[dict[str, HttpGatewayRouteMatchDef]] = pydantic.Field(None)
-    HttpGatewayRoutePathMatchConfig: typing.Optional[dict[str, HttpGatewayRoutePathMatchConfigDef]] = pydantic.Field(None)
-    HttpGatewayRouteSpecOptions: typing.Optional[dict[str, HttpGatewayRouteSpecOptionsDef]] = pydantic.Field(None)
-    HttpHealthCheckOptions: typing.Optional[dict[str, HttpHealthCheckOptionsDef]] = pydantic.Field(None)
-    HttpRetryPolicy: typing.Optional[dict[str, HttpRetryPolicyDef]] = pydantic.Field(None)
-    HttpRouteMatch: typing.Optional[dict[str, HttpRouteMatchDef]] = pydantic.Field(None)
-    HttpRoutePathMatchConfig: typing.Optional[dict[str, HttpRoutePathMatchConfigDef]] = pydantic.Field(None)
-    HttpRouteSpecOptions: typing.Optional[dict[str, HttpRouteSpecOptionsDef]] = pydantic.Field(None)
-    HttpTimeout: typing.Optional[dict[str, HttpTimeoutDef]] = pydantic.Field(None)
-    HttpVirtualNodeListenerOptions: typing.Optional[dict[str, HttpVirtualNodeListenerOptionsDef]] = pydantic.Field(None)
-    ListenerTlsOptions: typing.Optional[dict[str, ListenerTlsOptionsDef]] = pydantic.Field(None)
-    LoggingFormatConfig: typing.Optional[dict[str, LoggingFormatConfigDef]] = pydantic.Field(None)
-    MeshProps: typing.Optional[dict[str, MeshPropsDef]] = pydantic.Field(None)
-    MeshServiceDiscovery: typing.Optional[dict[str, MeshServiceDiscoveryDef]] = pydantic.Field(None)
-    MutualTlsValidation: typing.Optional[dict[str, MutualTlsValidationDef]] = pydantic.Field(None)
-    OutlierDetection: typing.Optional[dict[str, OutlierDetectionDef]] = pydantic.Field(None)
-    QueryParameterMatchConfig: typing.Optional[dict[str, QueryParameterMatchConfigDef]] = pydantic.Field(None)
-    RouteAttributes: typing.Optional[dict[str, RouteAttributesDef]] = pydantic.Field(None)
-    RouteBaseProps: typing.Optional[dict[str, RouteBasePropsDef]] = pydantic.Field(None)
-    RouteProps: typing.Optional[dict[str, RoutePropsDef]] = pydantic.Field(None)
-    RouteSpecConfig: typing.Optional[dict[str, RouteSpecConfigDef]] = pydantic.Field(None)
-    RouteSpecOptionsBase: typing.Optional[dict[str, RouteSpecOptionsBaseDef]] = pydantic.Field(None)
-    ServiceDiscoveryConfig: typing.Optional[dict[str, ServiceDiscoveryConfigDef]] = pydantic.Field(None)
-    SubjectAlternativeNamesMatcherConfig: typing.Optional[dict[str, SubjectAlternativeNamesMatcherConfigDef]] = pydantic.Field(None)
-    TcpConnectionPool: typing.Optional[dict[str, TcpConnectionPoolDef]] = pydantic.Field(None)
-    TcpHealthCheckOptions: typing.Optional[dict[str, TcpHealthCheckOptionsDef]] = pydantic.Field(None)
-    TcpRouteSpecOptions: typing.Optional[dict[str, TcpRouteSpecOptionsDef]] = pydantic.Field(None)
-    TcpTimeout: typing.Optional[dict[str, TcpTimeoutDef]] = pydantic.Field(None)
-    TcpVirtualNodeListenerOptions: typing.Optional[dict[str, TcpVirtualNodeListenerOptionsDef]] = pydantic.Field(None)
-    TlsCertificateConfig: typing.Optional[dict[str, TlsCertificateConfigDef]] = pydantic.Field(None)
-    TlsClientPolicy: typing.Optional[dict[str, TlsClientPolicyDef]] = pydantic.Field(None)
-    TlsValidation: typing.Optional[dict[str, TlsValidationDef]] = pydantic.Field(None)
-    TlsValidationTrustConfig: typing.Optional[dict[str, TlsValidationTrustConfigDef]] = pydantic.Field(None)
-    VirtualGatewayAttributes: typing.Optional[dict[str, VirtualGatewayAttributesDef]] = pydantic.Field(None)
-    VirtualGatewayBaseProps: typing.Optional[dict[str, VirtualGatewayBasePropsDef]] = pydantic.Field(None)
-    VirtualGatewayListenerConfig: typing.Optional[dict[str, VirtualGatewayListenerConfigDef]] = pydantic.Field(None)
-    VirtualGatewayProps: typing.Optional[dict[str, VirtualGatewayPropsDef]] = pydantic.Field(None)
-    VirtualNodeAttributes: typing.Optional[dict[str, VirtualNodeAttributesDef]] = pydantic.Field(None)
-    VirtualNodeBaseProps: typing.Optional[dict[str, VirtualNodeBasePropsDef]] = pydantic.Field(None)
-    VirtualNodeListenerConfig: typing.Optional[dict[str, VirtualNodeListenerConfigDef]] = pydantic.Field(None)
-    VirtualNodeProps: typing.Optional[dict[str, VirtualNodePropsDef]] = pydantic.Field(None)
-    VirtualRouterAttributes: typing.Optional[dict[str, VirtualRouterAttributesDef]] = pydantic.Field(None)
-    VirtualRouterBaseProps: typing.Optional[dict[str, VirtualRouterBasePropsDef]] = pydantic.Field(None)
-    VirtualRouterListenerConfig: typing.Optional[dict[str, VirtualRouterListenerConfigDef]] = pydantic.Field(None)
-    VirtualRouterProps: typing.Optional[dict[str, VirtualRouterPropsDef]] = pydantic.Field(None)
-    VirtualServiceAttributes: typing.Optional[dict[str, VirtualServiceAttributesDef]] = pydantic.Field(None)
-    VirtualServiceBackendOptions: typing.Optional[dict[str, VirtualServiceBackendOptionsDef]] = pydantic.Field(None)
-    VirtualServiceProps: typing.Optional[dict[str, VirtualServicePropsDef]] = pydantic.Field(None)
-    VirtualServiceProviderConfig: typing.Optional[dict[str, VirtualServiceProviderConfigDef]] = pydantic.Field(None)
-    WeightedTarget: typing.Optional[dict[str, WeightedTargetDef]] = pydantic.Field(None)
-    CfnGatewayRoute: typing.Optional[dict[str, CfnGatewayRouteDef]] = pydantic.Field(None)
-    CfnMesh: typing.Optional[dict[str, CfnMeshDef]] = pydantic.Field(None)
-    CfnRoute: typing.Optional[dict[str, CfnRouteDef]] = pydantic.Field(None)
-    CfnVirtualGateway: typing.Optional[dict[str, CfnVirtualGatewayDef]] = pydantic.Field(None)
-    CfnVirtualNode: typing.Optional[dict[str, CfnVirtualNodeDef]] = pydantic.Field(None)
-    CfnVirtualRouter: typing.Optional[dict[str, CfnVirtualRouterDef]] = pydantic.Field(None)
-    CfnVirtualService: typing.Optional[dict[str, CfnVirtualServiceDef]] = pydantic.Field(None)
-    CfnGatewayRouteProps: typing.Optional[dict[str, CfnGatewayRoutePropsDef]] = pydantic.Field(None)
-    CfnMeshProps: typing.Optional[dict[str, CfnMeshPropsDef]] = pydantic.Field(None)
-    CfnRouteProps: typing.Optional[dict[str, CfnRoutePropsDef]] = pydantic.Field(None)
-    CfnVirtualGatewayProps: typing.Optional[dict[str, CfnVirtualGatewayPropsDef]] = pydantic.Field(None)
-    CfnVirtualNodeProps: typing.Optional[dict[str, CfnVirtualNodePropsDef]] = pydantic.Field(None)
-    CfnVirtualRouterProps: typing.Optional[dict[str, CfnVirtualRouterPropsDef]] = pydantic.Field(None)
-    CfnVirtualServiceProps: typing.Optional[dict[str, CfnVirtualServicePropsDef]] = pydantic.Field(None)
+    AccessLog: typing.Optional[dict[str, models.aws_appmesh.AccessLogDef]] = pydantic.Field(None)
+    Backend: typing.Optional[dict[str, models.aws_appmesh.BackendDef]] = pydantic.Field(None)
+    GatewayRouteHostnameMatch: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteHostnameMatchDef]] = pydantic.Field(None)
+    GatewayRouteSpec: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteSpecDef]] = pydantic.Field(None)
+    HeaderMatch: typing.Optional[dict[str, models.aws_appmesh.HeaderMatchDef]] = pydantic.Field(None)
+    HealthCheck: typing.Optional[dict[str, models.aws_appmesh.HealthCheckDef]] = pydantic.Field(None)
+    HttpGatewayRoutePathMatch: typing.Optional[dict[str, models.aws_appmesh.HttpGatewayRoutePathMatchDef]] = pydantic.Field(None)
+    HttpRoutePathMatch: typing.Optional[dict[str, models.aws_appmesh.HttpRoutePathMatchDef]] = pydantic.Field(None)
+    LoggingFormat: typing.Optional[dict[str, models.aws_appmesh.LoggingFormatDef]] = pydantic.Field(None)
+    MutualTlsCertificate: typing.Optional[dict[str, models.aws_appmesh.MutualTlsCertificateDef]] = pydantic.Field(None)
+    MutualTlsValidationTrust: typing.Optional[dict[str, models.aws_appmesh.MutualTlsValidationTrustDef]] = pydantic.Field(None)
+    QueryParameterMatch: typing.Optional[dict[str, models.aws_appmesh.QueryParameterMatchDef]] = pydantic.Field(None)
+    RouteSpec: typing.Optional[dict[str, models.aws_appmesh.RouteSpecDef]] = pydantic.Field(None)
+    ServiceDiscovery: typing.Optional[dict[str, models.aws_appmesh.ServiceDiscoveryDef]] = pydantic.Field(None)
+    SubjectAlternativeNames: typing.Optional[dict[str, models.aws_appmesh.SubjectAlternativeNamesDef]] = pydantic.Field(None)
+    TlsCertificate: typing.Optional[dict[str, models.aws_appmesh.TlsCertificateDef]] = pydantic.Field(None)
+    TlsValidationTrust: typing.Optional[dict[str, models.aws_appmesh.TlsValidationTrustDef]] = pydantic.Field(None)
+    VirtualGatewayListener: typing.Optional[dict[str, models.aws_appmesh.VirtualGatewayListenerDef]] = pydantic.Field(None)
+    VirtualNodeListener: typing.Optional[dict[str, models.aws_appmesh.VirtualNodeListenerDef]] = pydantic.Field(None)
+    VirtualRouterListener: typing.Optional[dict[str, models.aws_appmesh.VirtualRouterListenerDef]] = pydantic.Field(None)
+    VirtualServiceProvider: typing.Optional[dict[str, models.aws_appmesh.VirtualServiceProviderDef]] = pydantic.Field(None)
+    GatewayRoute: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteDef]] = pydantic.Field(None)
+    Mesh: typing.Optional[dict[str, models.aws_appmesh.MeshDef]] = pydantic.Field(None)
+    Route: typing.Optional[dict[str, models.aws_appmesh.RouteDef]] = pydantic.Field(None)
+    VirtualGateway: typing.Optional[dict[str, models.aws_appmesh.VirtualGatewayDef]] = pydantic.Field(None)
+    VirtualNode: typing.Optional[dict[str, models.aws_appmesh.VirtualNodeDef]] = pydantic.Field(None)
+    VirtualRouter: typing.Optional[dict[str, models.aws_appmesh.VirtualRouterDef]] = pydantic.Field(None)
+    VirtualService: typing.Optional[dict[str, models.aws_appmesh.VirtualServiceDef]] = pydantic.Field(None)
+    AccessLogConfig: typing.Optional[dict[str, models.aws_appmesh.AccessLogConfigDef]] = pydantic.Field(None)
+    BackendConfig: typing.Optional[dict[str, models.aws_appmesh.BackendConfigDef]] = pydantic.Field(None)
+    BackendDefaults: typing.Optional[dict[str, models.aws_appmesh.BackendDefaultsDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteHostnameMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteHostnameMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteHostnameRewriteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteHostnameRewritePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteMetadataMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteMetadataMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteRangeMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteRangeMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteSpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteSpecPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteTargetProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteTargetPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GatewayRouteVirtualServiceProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GatewayRouteVirtualServicePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GrpcGatewayRouteActionProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GrpcGatewayRouteActionPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GrpcGatewayRouteMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GrpcGatewayRouteMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GrpcGatewayRouteMetadataProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GrpcGatewayRouteMetadataPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GrpcGatewayRouteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GrpcGatewayRoutePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_GrpcGatewayRouteRewriteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_GrpcGatewayRouteRewritePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRouteActionProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRouteActionPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRouteHeaderMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRouteHeaderMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRouteHeaderProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRouteHeaderPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRouteMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRouteMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRoutePathRewriteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRoutePathRewritePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRoutePrefixRewriteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRoutePrefixRewritePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRouteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRoutePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpGatewayRouteRewriteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpGatewayRouteRewritePropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpPathMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpPathMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_HttpQueryParameterMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_HttpQueryParameterMatchPropertyDef]] = pydantic.Field(None)
+    CfnGatewayRoute_QueryParameterProperty: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoute_QueryParameterPropertyDef]] = pydantic.Field(None)
+    CfnMesh_EgressFilterProperty: typing.Optional[dict[str, models.aws_appmesh.CfnMesh_EgressFilterPropertyDef]] = pydantic.Field(None)
+    CfnMesh_MeshServiceDiscoveryProperty: typing.Optional[dict[str, models.aws_appmesh.CfnMesh_MeshServiceDiscoveryPropertyDef]] = pydantic.Field(None)
+    CfnMesh_MeshSpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnMesh_MeshSpecPropertyDef]] = pydantic.Field(None)
+    CfnRoute_DurationProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_DurationPropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcRetryPolicyProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcRetryPolicyPropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcRouteActionProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcRouteActionPropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcRouteMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcRouteMatchPropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcRouteMetadataMatchMethodProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcRouteMetadataMatchMethodPropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcRouteMetadataProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcRouteMetadataPropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcRouteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcRoutePropertyDef]] = pydantic.Field(None)
+    CfnRoute_GrpcTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_GrpcTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HeaderMatchMethodProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HeaderMatchMethodPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpPathMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpPathMatchPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpQueryParameterMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpQueryParameterMatchPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpRetryPolicyProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpRetryPolicyPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpRouteActionProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpRouteActionPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpRouteHeaderProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpRouteHeaderPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpRouteMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpRouteMatchPropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpRouteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpRoutePropertyDef]] = pydantic.Field(None)
+    CfnRoute_HttpTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_HttpTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnRoute_MatchRangeProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_MatchRangePropertyDef]] = pydantic.Field(None)
+    CfnRoute_QueryParameterProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_QueryParameterPropertyDef]] = pydantic.Field(None)
+    CfnRoute_RouteSpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_RouteSpecPropertyDef]] = pydantic.Field(None)
+    CfnRoute_TcpRouteActionProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_TcpRouteActionPropertyDef]] = pydantic.Field(None)
+    CfnRoute_TcpRouteMatchProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_TcpRouteMatchPropertyDef]] = pydantic.Field(None)
+    CfnRoute_TcpRouteProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_TcpRoutePropertyDef]] = pydantic.Field(None)
+    CfnRoute_TcpTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_TcpTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnRoute_WeightedTargetProperty: typing.Optional[dict[str, models.aws_appmesh.CfnRoute_WeightedTargetPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_JsonFormatRefProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_JsonFormatRefPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_LoggingFormatProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_LoggingFormatPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_SubjectAlternativeNameMatchersProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_SubjectAlternativeNameMatchersPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_SubjectAlternativeNamesProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_SubjectAlternativeNamesPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayAccessLogProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayAccessLogPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayBackendDefaultsProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayBackendDefaultsPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayClientPolicyProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayClientPolicyPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayClientPolicyTlsProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayClientPolicyTlsPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayClientTlsCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayClientTlsCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayFileAccessLogProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayFileAccessLogPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayGrpcConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayGrpcConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayHealthCheckPolicyProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayHealthCheckPolicyPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayHttp2ConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayHttp2ConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayHttpConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayHttpConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsAcmCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsAcmCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsFileCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsFileCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsSdsCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsSdsCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayListenerTlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayLoggingProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayLoggingPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayPortMappingProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayPortMappingPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewaySpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewaySpecPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayTlsValidationContextAcmTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayTlsValidationContextAcmTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayTlsValidationContextFileTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayTlsValidationContextFileTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayTlsValidationContextProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayTlsValidationContextPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayTlsValidationContextSdsTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayTlsValidationContextSdsTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualGateway_VirtualGatewayTlsValidationContextTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGateway_VirtualGatewayTlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_AccessLogProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_AccessLogPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_AwsCloudMapInstanceAttributeProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_AwsCloudMapInstanceAttributePropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_AwsCloudMapServiceDiscoveryProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_AwsCloudMapServiceDiscoveryPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_BackendDefaultsProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_BackendDefaultsPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_BackendProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_BackendPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ClientPolicyProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ClientPolicyPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ClientPolicyTlsProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ClientPolicyTlsPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ClientTlsCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ClientTlsCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_DnsServiceDiscoveryProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_DnsServiceDiscoveryPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_DurationProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_DurationPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_FileAccessLogProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_FileAccessLogPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_GrpcTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_GrpcTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_HealthCheckProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_HealthCheckPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_HttpTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_HttpTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_JsonFormatRefProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_JsonFormatRefPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsAcmCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsAcmCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsFileCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsFileCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsSdsCertificateProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsSdsCertificatePropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsValidationContextProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsValidationContextPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ListenerTlsValidationContextTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ListenerTlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_LoggingFormatProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_LoggingFormatPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_LoggingProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_LoggingPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_OutlierDetectionProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_OutlierDetectionPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_PortMappingProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_PortMappingPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_ServiceDiscoveryProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_ServiceDiscoveryPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_SubjectAlternativeNameMatchersProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_SubjectAlternativeNameMatchersPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_SubjectAlternativeNamesProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_SubjectAlternativeNamesPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_TcpTimeoutProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_TcpTimeoutPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_TlsValidationContextAcmTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_TlsValidationContextAcmTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_TlsValidationContextFileTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_TlsValidationContextFileTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_TlsValidationContextProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_TlsValidationContextPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_TlsValidationContextSdsTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_TlsValidationContextSdsTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_TlsValidationContextTrustProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_TlsValidationContextTrustPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualNodeConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualNodeConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualNodeGrpcConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualNodeGrpcConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualNodeHttp2ConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualNodeHttp2ConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualNodeHttpConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualNodeHttpConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualNodeSpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualNodeSpecPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualNodeTcpConnectionPoolProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualNodeTcpConnectionPoolPropertyDef]] = pydantic.Field(None)
+    CfnVirtualNode_VirtualServiceBackendProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNode_VirtualServiceBackendPropertyDef]] = pydantic.Field(None)
+    CfnVirtualRouter_PortMappingProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualRouter_PortMappingPropertyDef]] = pydantic.Field(None)
+    CfnVirtualRouter_VirtualRouterListenerProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualRouter_VirtualRouterListenerPropertyDef]] = pydantic.Field(None)
+    CfnVirtualRouter_VirtualRouterSpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualRouter_VirtualRouterSpecPropertyDef]] = pydantic.Field(None)
+    CfnVirtualService_VirtualNodeServiceProviderProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualService_VirtualNodeServiceProviderPropertyDef]] = pydantic.Field(None)
+    CfnVirtualService_VirtualRouterServiceProviderProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualService_VirtualRouterServiceProviderPropertyDef]] = pydantic.Field(None)
+    CfnVirtualService_VirtualServiceProviderProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualService_VirtualServiceProviderPropertyDef]] = pydantic.Field(None)
+    CfnVirtualService_VirtualServiceSpecProperty: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualService_VirtualServiceSpecPropertyDef]] = pydantic.Field(None)
+    CommonGatewayRouteSpecOptions: typing.Optional[dict[str, models.aws_appmesh.CommonGatewayRouteSpecOptionsDef]] = pydantic.Field(None)
+    GatewayRouteAttributes: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteAttributesDef]] = pydantic.Field(None)
+    GatewayRouteBaseProps: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteBasePropsDef]] = pydantic.Field(None)
+    GatewayRouteHostnameMatchConfig: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteHostnameMatchConfigDef]] = pydantic.Field(None)
+    GatewayRouteProps: typing.Optional[dict[str, models.aws_appmesh.GatewayRoutePropsDef]] = pydantic.Field(None)
+    GatewayRouteSpecConfig: typing.Optional[dict[str, models.aws_appmesh.GatewayRouteSpecConfigDef]] = pydantic.Field(None)
+    GrpcConnectionPool: typing.Optional[dict[str, models.aws_appmesh.GrpcConnectionPoolDef]] = pydantic.Field(None)
+    GrpcGatewayListenerOptions: typing.Optional[dict[str, models.aws_appmesh.GrpcGatewayListenerOptionsDef]] = pydantic.Field(None)
+    GrpcGatewayRouteMatch: typing.Optional[dict[str, models.aws_appmesh.GrpcGatewayRouteMatchDef]] = pydantic.Field(None)
+    GrpcGatewayRouteSpecOptions: typing.Optional[dict[str, models.aws_appmesh.GrpcGatewayRouteSpecOptionsDef]] = pydantic.Field(None)
+    GrpcHealthCheckOptions: typing.Optional[dict[str, models.aws_appmesh.GrpcHealthCheckOptionsDef]] = pydantic.Field(None)
+    GrpcRetryPolicy: typing.Optional[dict[str, models.aws_appmesh.GrpcRetryPolicyDef]] = pydantic.Field(None)
+    GrpcRouteMatch: typing.Optional[dict[str, models.aws_appmesh.GrpcRouteMatchDef]] = pydantic.Field(None)
+    GrpcRouteSpecOptions: typing.Optional[dict[str, models.aws_appmesh.GrpcRouteSpecOptionsDef]] = pydantic.Field(None)
+    GrpcTimeout: typing.Optional[dict[str, models.aws_appmesh.GrpcTimeoutDef]] = pydantic.Field(None)
+    GrpcVirtualNodeListenerOptions: typing.Optional[dict[str, models.aws_appmesh.GrpcVirtualNodeListenerOptionsDef]] = pydantic.Field(None)
+    HeaderMatchConfig: typing.Optional[dict[str, models.aws_appmesh.HeaderMatchConfigDef]] = pydantic.Field(None)
+    HealthCheckBindOptions: typing.Optional[dict[str, models.aws_appmesh.HealthCheckBindOptionsDef]] = pydantic.Field(None)
+    HealthCheckConfig: typing.Optional[dict[str, models.aws_appmesh.HealthCheckConfigDef]] = pydantic.Field(None)
+    Http2ConnectionPool: typing.Optional[dict[str, models.aws_appmesh.Http2ConnectionPoolDef]] = pydantic.Field(None)
+    Http2GatewayListenerOptions: typing.Optional[dict[str, models.aws_appmesh.Http2GatewayListenerOptionsDef]] = pydantic.Field(None)
+    Http2VirtualNodeListenerOptions: typing.Optional[dict[str, models.aws_appmesh.Http2VirtualNodeListenerOptionsDef]] = pydantic.Field(None)
+    HttpConnectionPool: typing.Optional[dict[str, models.aws_appmesh.HttpConnectionPoolDef]] = pydantic.Field(None)
+    HttpGatewayListenerOptions: typing.Optional[dict[str, models.aws_appmesh.HttpGatewayListenerOptionsDef]] = pydantic.Field(None)
+    HttpGatewayRouteMatch: typing.Optional[dict[str, models.aws_appmesh.HttpGatewayRouteMatchDef]] = pydantic.Field(None)
+    HttpGatewayRoutePathMatchConfig: typing.Optional[dict[str, models.aws_appmesh.HttpGatewayRoutePathMatchConfigDef]] = pydantic.Field(None)
+    HttpGatewayRouteSpecOptions: typing.Optional[dict[str, models.aws_appmesh.HttpGatewayRouteSpecOptionsDef]] = pydantic.Field(None)
+    HttpHealthCheckOptions: typing.Optional[dict[str, models.aws_appmesh.HttpHealthCheckOptionsDef]] = pydantic.Field(None)
+    HttpRetryPolicy: typing.Optional[dict[str, models.aws_appmesh.HttpRetryPolicyDef]] = pydantic.Field(None)
+    HttpRouteMatch: typing.Optional[dict[str, models.aws_appmesh.HttpRouteMatchDef]] = pydantic.Field(None)
+    HttpRoutePathMatchConfig: typing.Optional[dict[str, models.aws_appmesh.HttpRoutePathMatchConfigDef]] = pydantic.Field(None)
+    HttpRouteSpecOptions: typing.Optional[dict[str, models.aws_appmesh.HttpRouteSpecOptionsDef]] = pydantic.Field(None)
+    HttpTimeout: typing.Optional[dict[str, models.aws_appmesh.HttpTimeoutDef]] = pydantic.Field(None)
+    HttpVirtualNodeListenerOptions: typing.Optional[dict[str, models.aws_appmesh.HttpVirtualNodeListenerOptionsDef]] = pydantic.Field(None)
+    ListenerTlsOptions: typing.Optional[dict[str, models.aws_appmesh.ListenerTlsOptionsDef]] = pydantic.Field(None)
+    LoggingFormatConfig: typing.Optional[dict[str, models.aws_appmesh.LoggingFormatConfigDef]] = pydantic.Field(None)
+    MeshProps: typing.Optional[dict[str, models.aws_appmesh.MeshPropsDef]] = pydantic.Field(None)
+    MeshServiceDiscovery: typing.Optional[dict[str, models.aws_appmesh.MeshServiceDiscoveryDef]] = pydantic.Field(None)
+    MutualTlsValidation: typing.Optional[dict[str, models.aws_appmesh.MutualTlsValidationDef]] = pydantic.Field(None)
+    OutlierDetection: typing.Optional[dict[str, models.aws_appmesh.OutlierDetectionDef]] = pydantic.Field(None)
+    QueryParameterMatchConfig: typing.Optional[dict[str, models.aws_appmesh.QueryParameterMatchConfigDef]] = pydantic.Field(None)
+    RouteAttributes: typing.Optional[dict[str, models.aws_appmesh.RouteAttributesDef]] = pydantic.Field(None)
+    RouteBaseProps: typing.Optional[dict[str, models.aws_appmesh.RouteBasePropsDef]] = pydantic.Field(None)
+    RouteProps: typing.Optional[dict[str, models.aws_appmesh.RoutePropsDef]] = pydantic.Field(None)
+    RouteSpecConfig: typing.Optional[dict[str, models.aws_appmesh.RouteSpecConfigDef]] = pydantic.Field(None)
+    RouteSpecOptionsBase: typing.Optional[dict[str, models.aws_appmesh.RouteSpecOptionsBaseDef]] = pydantic.Field(None)
+    ServiceDiscoveryConfig: typing.Optional[dict[str, models.aws_appmesh.ServiceDiscoveryConfigDef]] = pydantic.Field(None)
+    SubjectAlternativeNamesMatcherConfig: typing.Optional[dict[str, models.aws_appmesh.SubjectAlternativeNamesMatcherConfigDef]] = pydantic.Field(None)
+    TcpConnectionPool: typing.Optional[dict[str, models.aws_appmesh.TcpConnectionPoolDef]] = pydantic.Field(None)
+    TcpHealthCheckOptions: typing.Optional[dict[str, models.aws_appmesh.TcpHealthCheckOptionsDef]] = pydantic.Field(None)
+    TcpRouteSpecOptions: typing.Optional[dict[str, models.aws_appmesh.TcpRouteSpecOptionsDef]] = pydantic.Field(None)
+    TcpTimeout: typing.Optional[dict[str, models.aws_appmesh.TcpTimeoutDef]] = pydantic.Field(None)
+    TcpVirtualNodeListenerOptions: typing.Optional[dict[str, models.aws_appmesh.TcpVirtualNodeListenerOptionsDef]] = pydantic.Field(None)
+    TlsCertificateConfig: typing.Optional[dict[str, models.aws_appmesh.TlsCertificateConfigDef]] = pydantic.Field(None)
+    TlsClientPolicy: typing.Optional[dict[str, models.aws_appmesh.TlsClientPolicyDef]] = pydantic.Field(None)
+    TlsValidation: typing.Optional[dict[str, models.aws_appmesh.TlsValidationDef]] = pydantic.Field(None)
+    TlsValidationTrustConfig: typing.Optional[dict[str, models.aws_appmesh.TlsValidationTrustConfigDef]] = pydantic.Field(None)
+    VirtualGatewayAttributes: typing.Optional[dict[str, models.aws_appmesh.VirtualGatewayAttributesDef]] = pydantic.Field(None)
+    VirtualGatewayBaseProps: typing.Optional[dict[str, models.aws_appmesh.VirtualGatewayBasePropsDef]] = pydantic.Field(None)
+    VirtualGatewayListenerConfig: typing.Optional[dict[str, models.aws_appmesh.VirtualGatewayListenerConfigDef]] = pydantic.Field(None)
+    VirtualGatewayProps: typing.Optional[dict[str, models.aws_appmesh.VirtualGatewayPropsDef]] = pydantic.Field(None)
+    VirtualNodeAttributes: typing.Optional[dict[str, models.aws_appmesh.VirtualNodeAttributesDef]] = pydantic.Field(None)
+    VirtualNodeBaseProps: typing.Optional[dict[str, models.aws_appmesh.VirtualNodeBasePropsDef]] = pydantic.Field(None)
+    VirtualNodeListenerConfig: typing.Optional[dict[str, models.aws_appmesh.VirtualNodeListenerConfigDef]] = pydantic.Field(None)
+    VirtualNodeProps: typing.Optional[dict[str, models.aws_appmesh.VirtualNodePropsDef]] = pydantic.Field(None)
+    VirtualRouterAttributes: typing.Optional[dict[str, models.aws_appmesh.VirtualRouterAttributesDef]] = pydantic.Field(None)
+    VirtualRouterBaseProps: typing.Optional[dict[str, models.aws_appmesh.VirtualRouterBasePropsDef]] = pydantic.Field(None)
+    VirtualRouterListenerConfig: typing.Optional[dict[str, models.aws_appmesh.VirtualRouterListenerConfigDef]] = pydantic.Field(None)
+    VirtualRouterProps: typing.Optional[dict[str, models.aws_appmesh.VirtualRouterPropsDef]] = pydantic.Field(None)
+    VirtualServiceAttributes: typing.Optional[dict[str, models.aws_appmesh.VirtualServiceAttributesDef]] = pydantic.Field(None)
+    VirtualServiceBackendOptions: typing.Optional[dict[str, models.aws_appmesh.VirtualServiceBackendOptionsDef]] = pydantic.Field(None)
+    VirtualServiceProps: typing.Optional[dict[str, models.aws_appmesh.VirtualServicePropsDef]] = pydantic.Field(None)
+    VirtualServiceProviderConfig: typing.Optional[dict[str, models.aws_appmesh.VirtualServiceProviderConfigDef]] = pydantic.Field(None)
+    WeightedTarget: typing.Optional[dict[str, models.aws_appmesh.WeightedTargetDef]] = pydantic.Field(None)
+    CfnGatewayRoute: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRouteDef]] = pydantic.Field(None)
+    CfnMesh: typing.Optional[dict[str, models.aws_appmesh.CfnMeshDef]] = pydantic.Field(None)
+    CfnRoute: typing.Optional[dict[str, models.aws_appmesh.CfnRouteDef]] = pydantic.Field(None)
+    CfnVirtualGateway: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGatewayDef]] = pydantic.Field(None)
+    CfnVirtualNode: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNodeDef]] = pydantic.Field(None)
+    CfnVirtualRouter: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualRouterDef]] = pydantic.Field(None)
+    CfnVirtualService: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualServiceDef]] = pydantic.Field(None)
+    CfnGatewayRouteProps: typing.Optional[dict[str, models.aws_appmesh.CfnGatewayRoutePropsDef]] = pydantic.Field(None)
+    CfnMeshProps: typing.Optional[dict[str, models.aws_appmesh.CfnMeshPropsDef]] = pydantic.Field(None)
+    CfnRouteProps: typing.Optional[dict[str, models.aws_appmesh.CfnRoutePropsDef]] = pydantic.Field(None)
+    CfnVirtualGatewayProps: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualGatewayPropsDef]] = pydantic.Field(None)
+    CfnVirtualNodeProps: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualNodePropsDef]] = pydantic.Field(None)
+    CfnVirtualRouterProps: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualRouterPropsDef]] = pydantic.Field(None)
+    CfnVirtualServiceProps: typing.Optional[dict[str, models.aws_appmesh.CfnVirtualServicePropsDef]] = pydantic.Field(None)
     ...
+
+import models

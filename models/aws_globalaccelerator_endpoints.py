@@ -19,7 +19,7 @@ class ApplicationLoadBalancerEndpointDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApplicationLoadBalancerEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator_endpoints.ApplicationLoadBalancerEndpointDefConfig] = pydantic.Field(None)
 
 
 class ApplicationLoadBalancerEndpointDefConfig(pydantic.BaseModel):
@@ -38,7 +38,7 @@ class CfnEipEndpointDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CfnEipEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator_endpoints.CfnEipEndpointDefConfig] = pydantic.Field(None)
 
 
 class CfnEipEndpointDefConfig(pydantic.BaseModel):
@@ -58,7 +58,7 @@ class InstanceEndpointDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[InstanceEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator_endpoints.InstanceEndpointDefConfig] = pydantic.Field(None)
 
 
 class InstanceEndpointDefConfig(pydantic.BaseModel):
@@ -77,7 +77,7 @@ class NetworkLoadBalancerEndpointDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NetworkLoadBalancerEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator_endpoints.NetworkLoadBalancerEndpointDefConfig] = pydantic.Field(None)
 
 
 class NetworkLoadBalancerEndpointDefConfig(pydantic.BaseModel):
@@ -138,15 +138,15 @@ class CfnEipEndpointPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ApplicationLoadBalancerEndpoint: typing.Optional[dict[str, ApplicationLoadBalancerEndpointDef]] = pydantic.Field(None)
-    CfnEipEndpoint: typing.Optional[dict[str, CfnEipEndpointDef]] = pydantic.Field(None)
-    InstanceEndpoint: typing.Optional[dict[str, InstanceEndpointDef]] = pydantic.Field(None)
-    NetworkLoadBalancerEndpoint: typing.Optional[dict[str, NetworkLoadBalancerEndpointDef]] = pydantic.Field(None)
-    ApplicationLoadBalancerEndpointOptions: typing.Optional[dict[str, ApplicationLoadBalancerEndpointOptionsDef]] = pydantic.Field(None)
-    InstanceEndpointProps: typing.Optional[dict[str, InstanceEndpointPropsDef]] = pydantic.Field(None)
-    NetworkLoadBalancerEndpointProps: typing.Optional[dict[str, NetworkLoadBalancerEndpointPropsDef]] = pydantic.Field(None)
-    CfnEipEndpointProps: typing.Optional[dict[str, CfnEipEndpointPropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancerEndpoint: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.ApplicationLoadBalancerEndpointDef]] = pydantic.Field(None)
+    CfnEipEndpoint: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.CfnEipEndpointDef]] = pydantic.Field(None)
+    InstanceEndpoint: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.InstanceEndpointDef]] = pydantic.Field(None)
+    NetworkLoadBalancerEndpoint: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.NetworkLoadBalancerEndpointDef]] = pydantic.Field(None)
+    ApplicationLoadBalancerEndpointOptions: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.ApplicationLoadBalancerEndpointOptionsDef]] = pydantic.Field(None)
+    InstanceEndpointProps: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.InstanceEndpointPropsDef]] = pydantic.Field(None)
+    NetworkLoadBalancerEndpointProps: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.NetworkLoadBalancerEndpointPropsDef]] = pydantic.Field(None)
+    CfnEipEndpointProps: typing.Optional[dict[str, models.aws_globalaccelerator_endpoints.CfnEipEndpointPropsDef]] = pydantic.Field(None)
     ...
+
+import models

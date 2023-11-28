@@ -7,14 +7,14 @@ import datetime
 
 
 class CoreIAnyProducerDefConfig(pydantic.BaseModel):
-    produce: typing.Optional[list[CoreIAnyProducerDefProduceParams]] = pydantic.Field(None, description='Produce the value.')
+    produce: typing.Optional[list[models._interface_methods.CoreIAnyProducerDefProduceParams]] = pydantic.Field(None, description='Produce the value.')
 
 
 class CoreIAnyProducerDefProduceParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreIAspectDefConfig(pydantic.BaseModel):
-    visit: typing.Optional[list[CoreIAspectDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
+    visit: typing.Optional[list[models._interface_methods.CoreIAspectDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
 
 
 class CoreIAspectDefVisitParams(pydantic.BaseModel):
@@ -23,10 +23,10 @@ class CoreIAspectDefVisitParams(pydantic.BaseModel):
 
 
 class CoreIBoundStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[CoreIBoundStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
-    add_file_asset: typing.Optional[list[CoreIBoundStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
-    bind: typing.Optional[list[CoreIBoundStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called, and can only be called once.')
-    synthesize: typing.Optional[list[CoreIBoundStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models._interface_methods.CoreIBoundStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
+    add_file_asset: typing.Optional[list[models._interface_methods.CoreIBoundStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
+    bind: typing.Optional[list[models._interface_methods.CoreIBoundStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called, and can only be called once.')
+    synthesize: typing.Optional[list[models._interface_methods.CoreIBoundStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 
 class CoreIBoundStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
@@ -59,7 +59,7 @@ class CoreIBoundStackSynthesizerDefSynthesizeParams(pydantic.BaseModel):
     session: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreICfnConditionExpressionDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[CoreICfnConditionExpressionDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
+    resolve: typing.Optional[list[models._interface_methods.CoreICfnConditionExpressionDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 class CoreICfnConditionExpressionDefResolveParams(pydantic.BaseModel):
@@ -68,14 +68,14 @@ class CoreICfnConditionExpressionDefResolveParams(pydantic.BaseModel):
 
 
 class CoreICfnRuleConditionExpressionDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[CoreICfnRuleConditionExpressionDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
+    resolve: typing.Optional[list[models._interface_methods.CoreICfnRuleConditionExpressionDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 class CoreICfnRuleConditionExpressionDefResolveParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreIFragmentConcatenatorDefConfig(pydantic.BaseModel):
-    join: typing.Optional[list[CoreIFragmentConcatenatorDefJoinParams]] = pydantic.Field(None, description='Join the fragment on the left and on the right.')
+    join: typing.Optional[list[models._interface_methods.CoreIFragmentConcatenatorDefJoinParams]] = pydantic.Field(None, description='Join the fragment on the left and on the right.')
 
 
 class CoreIFragmentConcatenatorDefJoinParams(pydantic.BaseModel):
@@ -83,21 +83,21 @@ class CoreIFragmentConcatenatorDefJoinParams(pydantic.BaseModel):
     right: typing.Any = pydantic.Field(..., description='-')
 
 class CoreIInspectableDefConfig(pydantic.BaseModel):
-    inspect: typing.Optional[list[CoreIInspectableDefInspectParams]] = pydantic.Field(None, description='Examines construct.')
+    inspect: typing.Optional[list[models._interface_methods.CoreIInspectableDefInspectParams]] = pydantic.Field(None, description='Examines construct.')
 
 
 class CoreIInspectableDefInspectParams(pydantic.BaseModel):
     inspector: models.TreeInspectorDef = pydantic.Field(..., description='- tree inspector to collect and process attributes.')
 
 class CoreIListProducerDefConfig(pydantic.BaseModel):
-    produce: typing.Optional[list[CoreIListProducerDefProduceParams]] = pydantic.Field(None, description='Produce the list value.')
+    produce: typing.Optional[list[models._interface_methods.CoreIListProducerDefProduceParams]] = pydantic.Field(None, description='Produce the list value.')
 
 
 class CoreIListProducerDefProduceParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreILocalBundlingDefConfig(pydantic.BaseModel):
-    try_bundle: typing.Optional[list[CoreILocalBundlingDefTryBundleParams]] = pydantic.Field(None, description='This method is called before attempting docker bundling to allow the bundler to be executed locally.\nIf the local bundler exists, and bundling\nwas performed locally, return ``true``. Otherwise, return ``false``.')
+    try_bundle: typing.Optional[list[models._interface_methods.CoreILocalBundlingDefTryBundleParams]] = pydantic.Field(None, description='This method is called before attempting docker bundling to allow the bundler to be executed locally.\nIf the local bundler exists, and bundling\nwas performed locally, return ``true``. Otherwise, return ``false``.')
 
 
 class CoreILocalBundlingDefTryBundleParams(pydantic.BaseModel):
@@ -118,7 +118,7 @@ class CoreILocalBundlingDefTryBundleParams(pydantic.BaseModel):
     working_directory: typing.Optional[str] = pydantic.Field(None, description='Working directory inside the Docker container. Default: /asset-input')
 
 class CoreINumberProducerDefConfig(pydantic.BaseModel):
-    produce: typing.Optional[list[CoreINumberProducerDefProduceParams]] = pydantic.Field(None, description='Produce the number value.')
+    produce: typing.Optional[list[models._interface_methods.CoreINumberProducerDefProduceParams]] = pydantic.Field(None, description='Produce the number value.')
 
 
 class CoreINumberProducerDefProduceParams(pydantic.BaseModel):
@@ -127,14 +127,14 @@ class CoreINumberProducerDefProduceParams(pydantic.BaseModel):
 
 
 class CoreIPolicyValidationPluginBeta1DefConfig(pydantic.BaseModel):
-    validate_: typing.Optional[list[CoreIPolicyValidationPluginBeta1DefValidateParams]] = pydantic.Field(None, description='The method that will be called by the CDK framework to perform validations.\nThis is where the plugin will evaluate the CloudFormation\ntemplates for compliance and report and violations', alias='validate')
+    validate_: typing.Optional[list[models._interface_methods.CoreIPolicyValidationPluginBeta1DefValidateParams]] = pydantic.Field(None, description='The method that will be called by the CDK framework to perform validations.\nThis is where the plugin will evaluate the CloudFormation\ntemplates for compliance and report and violations', alias='validate')
 
 
 class CoreIPolicyValidationPluginBeta1DefValidateParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreIPostProcessorDefConfig(pydantic.BaseModel):
-    post_process: typing.Optional[list[CoreIPostProcessorDefPostProcessParams]] = pydantic.Field(None, description='Process the completely resolved value, after full recursion/resolution has happened.')
+    post_process: typing.Optional[list[models._interface_methods.CoreIPostProcessorDefPostProcessParams]] = pydantic.Field(None, description='Process the completely resolved value, after full recursion/resolution has happened.')
 
 
 class CoreIPostProcessorDefPostProcessParams(pydantic.BaseModel):
@@ -142,15 +142,15 @@ class CoreIPostProcessorDefPostProcessParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreIResolvableDefConfig(pydantic.BaseModel):
-    resolve: typing.Optional[list[CoreIResolvableDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
+    resolve: typing.Optional[list[models._interface_methods.CoreIResolvableDefResolveParams]] = pydantic.Field(None, description="Produce the Token's value at resolution time.")
 
 
 class CoreIResolvableDefResolveParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreIResolveContextDefConfig(pydantic.BaseModel):
-    register_post_processor: typing.Optional[list[CoreIResolveContextDefRegisterPostProcessorParams]] = pydantic.Field(None, description='Use this postprocessor after the entire token structure has been resolved.')
-    resolve: typing.Optional[list[CoreIResolveContextDefResolveParams]] = pydantic.Field(None, description='Resolve an inner object.')
+    register_post_processor: typing.Optional[list[models._interface_methods.CoreIResolveContextDefRegisterPostProcessorParams]] = pydantic.Field(None, description='Use this postprocessor after the entire token structure has been resolved.')
+    resolve: typing.Optional[list[models._interface_methods.CoreIResolveContextDefResolveParams]] = pydantic.Field(None, description='Resolve an inner object.')
 
 
 class CoreIResolveContextDefRegisterPostProcessorParams(pydantic.BaseModel):
@@ -162,18 +162,18 @@ class CoreIResolveContextDefResolveParams(pydantic.BaseModel):
     remove_empty: typing.Optional[bool] = pydantic.Field(None, description='Whether to remove undefined elements from arrays and objects when resolving. Default: - Unchanged')
 
 class CoreIResourceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[CoreIResourceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.CoreIResourceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class CoreIResourceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class CoreIReusableStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[CoreIReusableStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
-    add_file_asset: typing.Optional[list[CoreIReusableStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
-    bind: typing.Optional[list[CoreIReusableStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called, and can only be called once.')
-    reusable_bind: typing.Optional[list[CoreIReusableStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
-    synthesize: typing.Optional[list[CoreIReusableStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models._interface_methods.CoreIReusableStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
+    add_file_asset: typing.Optional[list[models._interface_methods.CoreIReusableStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
+    bind: typing.Optional[list[models._interface_methods.CoreIReusableStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called, and can only be called once.')
+    reusable_bind: typing.Optional[list[models._interface_methods.CoreIReusableStackSynthesizerDefReusableBindParams]] = pydantic.Field(None, description='Produce a bound Stack Synthesizer for the given stack.\nThis method may be called more than once on the same object.')
+    synthesize: typing.Optional[list[models._interface_methods.CoreIReusableStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 
 class CoreIReusableStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
@@ -226,10 +226,10 @@ class CoreIStableStringProducerDefConfig(pydantic.BaseModel):
 
 
 class CoreIStackSynthesizerDefConfig(pydantic.BaseModel):
-    add_docker_image_asset: typing.Optional[list[CoreIStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
-    add_file_asset: typing.Optional[list[CoreIStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
-    bind: typing.Optional[list[CoreIStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called, and can only be called once.')
-    synthesize: typing.Optional[list[CoreIStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
+    add_docker_image_asset: typing.Optional[list[models._interface_methods.CoreIStackSynthesizerDefAddDockerImageAssetParams]] = pydantic.Field(None, description='Register a Docker Image Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
+    add_file_asset: typing.Optional[list[models._interface_methods.CoreIStackSynthesizerDefAddFileAssetParams]] = pydantic.Field(None, description='Register a File Asset.\nReturns the parameters that can be used to refer to the asset inside the template.')
+    bind: typing.Optional[list[models._interface_methods.CoreIStackSynthesizerDefBindParams]] = pydantic.Field(None, description='Bind to the stack this environment is going to be used on.\nMust be called before any of the other methods are called, and can only be called once.')
+    synthesize: typing.Optional[list[models._interface_methods.CoreIStackSynthesizerDefSynthesizeParams]] = pydantic.Field(None, description='Synthesize the associated stack to the session.')
 
 
 class CoreIStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
@@ -262,7 +262,7 @@ class CoreIStackSynthesizerDefSynthesizeParams(pydantic.BaseModel):
     session: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreIStringProducerDefConfig(pydantic.BaseModel):
-    produce: typing.Optional[list[CoreIStringProducerDefProduceParams]] = pydantic.Field(None, description='Produce the string value.')
+    produce: typing.Optional[list[models._interface_methods.CoreIStringProducerDefProduceParams]] = pydantic.Field(None, description='Produce the string value.')
 
 
 class CoreIStringProducerDefProduceParams(pydantic.BaseModel):
@@ -277,16 +277,16 @@ class CoreIStringProducerDefProduceParams(pydantic.BaseModel):
 
 
 class CoreITokenMapperDefConfig(pydantic.BaseModel):
-    map_token: typing.Optional[list[CoreITokenMapperDefMapTokenParams]] = pydantic.Field(None, description='Replace a single token.')
+    map_token: typing.Optional[list[models._interface_methods.CoreITokenMapperDefMapTokenParams]] = pydantic.Field(None, description='Replace a single token.')
 
 
 class CoreITokenMapperDefMapTokenParams(pydantic.BaseModel):
     t: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreITokenResolverDefConfig(pydantic.BaseModel):
-    resolve_list: typing.Optional[list[CoreITokenResolverDefResolveListParams]] = pydantic.Field(None, description='Resolve a tokenized list.')
-    resolve_string: typing.Optional[list[CoreITokenResolverDefResolveStringParams]] = pydantic.Field(None, description='Resolve a string with at least one stringified token in it.\n(May use concatenation)')
-    resolve_token: typing.Optional[list[CoreITokenResolverDefResolveTokenParams]] = pydantic.Field(None, description='Resolve a single token.')
+    resolve_list: typing.Optional[list[models._interface_methods.CoreITokenResolverDefResolveListParams]] = pydantic.Field(None, description='Resolve a tokenized list.')
+    resolve_string: typing.Optional[list[models._interface_methods.CoreITokenResolverDefResolveStringParams]] = pydantic.Field(None, description='Resolve a string with at least one stringified token in it.\n(May use concatenation)')
+    resolve_token: typing.Optional[list[models._interface_methods.CoreITokenResolverDefResolveTokenParams]] = pydantic.Field(None, description='Resolve a single token.')
 
 
 class CoreITokenResolverDefResolveListParams(pydantic.BaseModel):
@@ -303,21 +303,21 @@ class CoreITokenResolverDefResolveTokenParams(pydantic.BaseModel):
     post_processor: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class AwsAcmpcaICertificateAuthorityDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAcmpcaICertificateAuthorityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAcmpcaICertificateAuthorityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAcmpcaICertificateAuthorityDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsApigatewayIAccessLogDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsApigatewayIAccessLogDestinationDefBindParams]] = pydantic.Field(None, description='Binds this destination to the RestApi Stage.')
+    bind: typing.Optional[list[models._interface_methods.AwsApigatewayIAccessLogDestinationDefBindParams]] = pydantic.Field(None, description='Binds this destination to the RestApi Stage.')
 
 
 class AwsApigatewayIAccessLogDestinationDefBindParams(pydantic.BaseModel):
     stage: typing.Union[models.aws_apigateway.StageBaseDef, models.aws_apigateway.StageDef] = pydantic.Field(..., description='-')
 
 class AwsApigatewayIApiKeyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIApiKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIApiKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIApiKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -326,14 +326,14 @@ class AwsApigatewayIApiKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsApigatewayIDomainNameDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIDomainNameDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIDomainNameDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIDomainNameDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsApigatewayIGatewayResponseDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIGatewayResponseDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIGatewayResponseDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIGatewayResponseDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -342,20 +342,20 @@ class AwsApigatewayIGatewayResponseDefApplyRemovalPolicyParams(pydantic.BaseMode
 
 
 class AwsApigatewayIRequestValidatorDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIRequestValidatorDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIRequestValidatorDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIRequestValidatorDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsApigatewayIResourceDefConfig(pydantic.BaseModel):
-    add_cors_preflight: typing.Optional[list[AwsApigatewayIResourceDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
-    add_method: typing.Optional[list[AwsApigatewayIResourceDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
-    add_proxy: typing.Optional[list[AwsApigatewayIResourceDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
-    add_resource: typing.Optional[list[AwsApigatewayIResourceDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIResourceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    get_resource: typing.Optional[list[AwsApigatewayIResourceDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
-    resource_for_path: typing.Optional[list[AwsApigatewayIResourceDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
+    add_cors_preflight: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefAddCorsPreflightParams]] = pydantic.Field(None, description='Adds an OPTIONS method to this resource which responds to Cross-Origin Resource Sharing (CORS) preflight requests.\nCross-Origin Resource Sharing (CORS) is a mechanism that uses additional\nHTTP headers to tell browsers to give a web application running at one\norigin, access to selected resources from a different origin. A web\napplication executes a cross-origin HTTP request when it requests a\nresource that has a different origin (domain, protocol, or port) from its\nown.')
+    add_method: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefAddMethodParams]] = pydantic.Field(None, description='Defines a new method for this resource.')
+    add_proxy: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefAddProxyParams]] = pydantic.Field(None, description='Adds a greedy proxy resource ("{proxy+}") and an ANY method to this route.')
+    add_resource: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefAddResourceParams]] = pydantic.Field(None, description='Defines a new child resource where this resource is the parent.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    get_resource: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefGetResourceParams]] = pydantic.Field(None, description='Retrieves a child resource by path part.')
+    resource_for_path: typing.Optional[list[models._interface_methods.AwsApigatewayIResourceDefResourceForPathParams]] = pydantic.Field(None, description='Gets or create all resources leading up to the specified path.\n- Path may only start with "/" if this method is called on the root resource.\n- All resources are created using default options.')
 
 
 class AwsApigatewayIResourceDefAddCorsPreflightParams(pydantic.BaseModel):
@@ -409,8 +409,8 @@ class AwsApigatewayIResourceDefResourceForPathParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_apigateway.ResourceDefConfig]] = pydantic.Field(None)
 
 class AwsApigatewayIRestApiDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIRestApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    arn_for_execute_api: typing.Optional[list[AwsApigatewayIRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIRestApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    arn_for_execute_api: typing.Optional[list[models._interface_methods.AwsApigatewayIRestApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Gets the "execute-api" ARN.')
 
 
 class AwsApigatewayIRestApiDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -422,8 +422,8 @@ class AwsApigatewayIRestApiDefArnForExecuteApiParams(pydantic.BaseModel):
     stage: typing.Optional[str] = pydantic.Field(None, description='The stage (default ``*``).\n\n:default:\n\n"*" returns the execute API ARN for all methods/resources in\nthis API.\n')
 
 class AwsApigatewayIStageDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[AwsApigatewayIStageDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to this Stage.')
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIStageDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_api_key: typing.Optional[list[models._interface_methods.AwsApigatewayIStageDefAddApiKeyParams]] = pydantic.Field(None, description='Add an ApiKey to this Stage.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIStageDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIStageDefAddApiKeyParams(pydantic.BaseModel):
@@ -440,8 +440,8 @@ class AwsApigatewayIStageDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsApigatewayIUsagePlanDefConfig(pydantic.BaseModel):
-    add_api_key: typing.Optional[list[AwsApigatewayIUsagePlanDefAddApiKeyParams]] = pydantic.Field(None, description='Adds an ApiKey.')
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIUsagePlanDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_api_key: typing.Optional[list[models._interface_methods.AwsApigatewayIUsagePlanDefAddApiKeyParams]] = pydantic.Field(None, description='Adds an ApiKey.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIUsagePlanDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIUsagePlanDefAddApiKeyParams(pydantic.BaseModel):
@@ -452,31 +452,31 @@ class AwsApigatewayIUsagePlanDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsApigatewayIVpcLinkDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApigatewayIVpcLinkDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayIVpcLinkDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApigatewayIVpcLinkDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsApplicationautoscalingIScalableTargetDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsApplicationautoscalingIScalableTargetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApplicationautoscalingIScalableTargetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsApplicationautoscalingIScalableTargetDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIGatewayRouteDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIGatewayRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIGatewayRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppmeshIGatewayRouteDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIMeshDefConfig(pydantic.BaseModel):
-    add_virtual_gateway: typing.Optional[list[AwsAppmeshIMeshDefAddVirtualGatewayParams]] = pydantic.Field(None, description='Creates a new VirtualGateway in this Mesh.\nNote that the Gateway is created in the same Stack that this Mesh belongs to,\nwhich might be different than the current stack.')
-    add_virtual_node: typing.Optional[list[AwsAppmeshIMeshDefAddVirtualNodeParams]] = pydantic.Field(None, description='Creates a new VirtualNode in this Mesh.\nNote that the Node is created in the same Stack that this Mesh belongs to,\nwhich might be different than the current stack.')
-    add_virtual_router: typing.Optional[list[AwsAppmeshIMeshDefAddVirtualRouterParams]] = pydantic.Field(None, description='Creates a new VirtualRouter in this Mesh.\nNote that the Router is created in the same Stack that this Mesh belongs to,\nwhich might be different than the current stack.')
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIMeshDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_virtual_gateway: typing.Optional[list[models._interface_methods.AwsAppmeshIMeshDefAddVirtualGatewayParams]] = pydantic.Field(None, description='Creates a new VirtualGateway in this Mesh.\nNote that the Gateway is created in the same Stack that this Mesh belongs to,\nwhich might be different than the current stack.')
+    add_virtual_node: typing.Optional[list[models._interface_methods.AwsAppmeshIMeshDefAddVirtualNodeParams]] = pydantic.Field(None, description='Creates a new VirtualNode in this Mesh.\nNote that the Node is created in the same Stack that this Mesh belongs to,\nwhich might be different than the current stack.')
+    add_virtual_router: typing.Optional[list[models._interface_methods.AwsAppmeshIMeshDefAddVirtualRouterParams]] = pydantic.Field(None, description='Creates a new VirtualRouter in this Mesh.\nNote that the Router is created in the same Stack that this Mesh belongs to,\nwhich might be different than the current stack.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIMeshDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppmeshIMeshDefAddVirtualGatewayParams(pydantic.BaseModel):
@@ -507,16 +507,16 @@ class AwsAppmeshIMeshDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIRouteDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppmeshIRouteDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIVirtualGatewayDefConfig(pydantic.BaseModel):
-    add_gateway_route: typing.Optional[list[AwsAppmeshIVirtualGatewayDefAddGatewayRouteParams]] = pydantic.Field(None, description='Utility method to add a new GatewayRoute to the VirtualGateway.')
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIVirtualGatewayDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_stream_aggregated_resources: typing.Optional[list[AwsAppmeshIVirtualGatewayDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
+    add_gateway_route: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualGatewayDefAddGatewayRouteParams]] = pydantic.Field(None, description='Utility method to add a new GatewayRoute to the VirtualGateway.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualGatewayDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_stream_aggregated_resources: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualGatewayDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
 
 
 class AwsAppmeshIVirtualGatewayDefAddGatewayRouteParams(pydantic.BaseModel):
@@ -533,8 +533,8 @@ class AwsAppmeshIVirtualGatewayDefGrantStreamAggregatedResourcesParams(pydantic.
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsAppmeshIVirtualNodeDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIVirtualNodeDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_stream_aggregated_resources: typing.Optional[list[AwsAppmeshIVirtualNodeDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualNodeDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_stream_aggregated_resources: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualNodeDefGrantStreamAggregatedResourcesParams]] = pydantic.Field(None, description='Grants the given entity ``appmesh:StreamAggregatedResources``.')
 
 
 class AwsAppmeshIVirtualNodeDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -545,8 +545,8 @@ class AwsAppmeshIVirtualNodeDefGrantStreamAggregatedResourcesParams(pydantic.Bas
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsAppmeshIVirtualRouterDefConfig(pydantic.BaseModel):
-    add_route: typing.Optional[list[AwsAppmeshIVirtualRouterDefAddRouteParams]] = pydantic.Field(None, description='Add a single route to the router.')
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIVirtualRouterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_route: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualRouterDefAddRouteParams]] = pydantic.Field(None, description='Add a single route to the router.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualRouterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppmeshIVirtualRouterDefAddRouteParams(pydantic.BaseModel):
@@ -559,31 +559,31 @@ class AwsAppmeshIVirtualRouterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIVirtualServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAppmeshIVirtualServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppmeshIVirtualServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppmeshIVirtualServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppsyncIAppsyncFunctionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAppsyncIAppsyncFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppsyncIAppsyncFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppsyncIAppsyncFunctionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppsyncIGraphqlApiDefConfig(pydantic.BaseModel):
-    add_dynamo_db_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddDynamoDbDataSourceParams]] = pydantic.Field(None, description='add a new DynamoDB data source to this API.')
-    add_elasticsearch_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddElasticsearchDataSourceParams]] = pydantic.Field(None, description='(deprecated) add a new elasticsearch data source to this API.')
-    add_event_bridge_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddEventBridgeDataSourceParams]] = pydantic.Field(None, description='Add an EventBridge data source to this api.')
-    add_http_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddHttpDataSourceParams]] = pydantic.Field(None, description='add a new http data source to this API.')
-    add_lambda_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddLambdaDataSourceParams]] = pydantic.Field(None, description='add a new Lambda data source to this API.')
-    add_none_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddNoneDataSourceParams]] = pydantic.Field(None, description="add a new dummy data source to this API.\nUseful for pipeline resolvers\nand for backend changes that don't require a data source.")
-    add_open_search_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddOpenSearchDataSourceParams]] = pydantic.Field(None, description='Add a new OpenSearch data source to this API.')
-    add_rds_data_source: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddRdsDataSourceParams]] = pydantic.Field(None, description='add a new Rds data source to this API.')
-    add_schema_dependency: typing.Optional[list[AwsAppsyncIGraphqlApiDefAddSchemaDependencyParams]] = pydantic.Field(None, description='Add schema dependency if not imported.')
-    apply_removal_policy: typing.Optional[list[AwsAppsyncIGraphqlApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    create_resolver: typing.Optional[list[AwsAppsyncIGraphqlApiDefCreateResolverParams]] = pydantic.Field(None, description='creates a new resolver for this datasource and API using the given properties.')
+    add_dynamo_db_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddDynamoDbDataSourceParams]] = pydantic.Field(None, description='add a new DynamoDB data source to this API.')
+    add_elasticsearch_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddElasticsearchDataSourceParams]] = pydantic.Field(None, description='(deprecated) add a new elasticsearch data source to this API.')
+    add_event_bridge_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddEventBridgeDataSourceParams]] = pydantic.Field(None, description='Add an EventBridge data source to this api.')
+    add_http_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddHttpDataSourceParams]] = pydantic.Field(None, description='add a new http data source to this API.')
+    add_lambda_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddLambdaDataSourceParams]] = pydantic.Field(None, description='add a new Lambda data source to this API.')
+    add_none_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddNoneDataSourceParams]] = pydantic.Field(None, description="add a new dummy data source to this API.\nUseful for pipeline resolvers\nand for backend changes that don't require a data source.")
+    add_open_search_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddOpenSearchDataSourceParams]] = pydantic.Field(None, description='Add a new OpenSearch data source to this API.')
+    add_rds_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddRdsDataSourceParams]] = pydantic.Field(None, description='add a new Rds data source to this API.')
+    add_schema_dependency: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddSchemaDependencyParams]] = pydantic.Field(None, description='Add schema dependency if not imported.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    create_resolver: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefCreateResolverParams]] = pydantic.Field(None, description='creates a new resolver for this datasource and API using the given properties.')
 
 
 class AwsAppsyncIGraphqlApiDefAddDynamoDbDataSourceParams(pydantic.BaseModel):
@@ -664,7 +664,7 @@ class AwsAppsyncIGraphqlApiDefCreateResolverParams(pydantic.BaseModel):
     runtime: typing.Optional[models.aws_appsync.FunctionRuntimeDef] = pydantic.Field(None, description='The functions runtime. Default: - no function runtime, VTL mapping templates used')
 
 class AwsAppsyncISchemaDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsAppsyncISchemaDefBindParams]] = pydantic.Field(None, description='Binds a schema string to a GraphQlApi.')
+    bind: typing.Optional[list[models._interface_methods.AwsAppsyncISchemaDefBindParams]] = pydantic.Field(None, description='Binds a schema string to a GraphQlApi.')
 
 
 class AwsAppsyncISchemaDefBindParams(pydantic.BaseModel):
@@ -673,23 +673,23 @@ class AwsAppsyncISchemaDefBindParams(pydantic.BaseModel):
 
 
 class AwsAppsyncISourceApiAssociationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAppsyncISourceApiAssociationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppsyncISourceApiAssociationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAppsyncISourceApiAssociationDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAutoscalingIAutoScalingGroupDefConfig(pydantic.BaseModel):
-    add_lifecycle_hook: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefAddLifecycleHookParams]] = pydantic.Field(None, description='Send a message to either an SQS queue or SNS topic when instances launch or terminate.')
-    add_user_data: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefAddUserDataParams]] = pydantic.Field(None, description="Add command to the startup script of fleet instances.\nThe command must be in the scripting language supported by the fleet's OS (i.e. Linux/Windows).\nDoes nothing for imported ASGs.")
-    add_warm_pool: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefAddWarmPoolParams]] = pydantic.Field(None, description='Add a pool of pre-initialized EC2 instances that sits alongside an Auto Scaling group.')
-    apply_removal_policy: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    scale_on_cpu_utilization: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefScaleOnCpuUtilizationParams]] = pydantic.Field(None, description='Scale out or in to achieve a target CPU utilization.')
-    scale_on_incoming_bytes: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefScaleOnIncomingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network ingress rate.')
-    scale_on_metric: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefScaleOnMetricParams]] = pydantic.Field(None, description='Scale out or in, in response to a metric.')
-    scale_on_outgoing_bytes: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefScaleOnOutgoingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network egress rate.')
-    scale_on_schedule: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scale out or in based on time.')
-    scale_to_track_metric: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefScaleToTrackMetricParams]] = pydantic.Field(None, description='Scale out or in in order to keep a metric around a target value.')
+    add_lifecycle_hook: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefAddLifecycleHookParams]] = pydantic.Field(None, description='Send a message to either an SQS queue or SNS topic when instances launch or terminate.')
+    add_user_data: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefAddUserDataParams]] = pydantic.Field(None, description="Add command to the startup script of fleet instances.\nThe command must be in the scripting language supported by the fleet's OS (i.e. Linux/Windows).\nDoes nothing for imported ASGs.")
+    add_warm_pool: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefAddWarmPoolParams]] = pydantic.Field(None, description='Add a pool of pre-initialized EC2 instances that sits alongside an Auto Scaling group.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    scale_on_cpu_utilization: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefScaleOnCpuUtilizationParams]] = pydantic.Field(None, description='Scale out or in to achieve a target CPU utilization.')
+    scale_on_incoming_bytes: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefScaleOnIncomingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network ingress rate.')
+    scale_on_metric: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefScaleOnMetricParams]] = pydantic.Field(None, description='Scale out or in, in response to a metric.')
+    scale_on_outgoing_bytes: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefScaleOnOutgoingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network egress rate.')
+    scale_on_schedule: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scale out or in based on time.')
+    scale_to_track_metric: typing.Optional[list[models._interface_methods.AwsAutoscalingIAutoScalingGroupDefScaleToTrackMetricParams]] = pydantic.Field(None, description='Scale out or in in order to keep a metric around a target value.')
 
 
 class AwsAutoscalingIAutoScalingGroupDefAddLifecycleHookParams(pydantic.BaseModel):
@@ -768,14 +768,14 @@ class AwsAutoscalingIAutoScalingGroupDefScaleToTrackMetricParams(pydantic.BaseMo
     estimated_instance_warmup: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Estimated time until a newly launched instance can send metrics to CloudWatch. Default: - Same as the cooldown.')
 
 class AwsAutoscalingILifecycleHookDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsAutoscalingILifecycleHookDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAutoscalingILifecycleHookDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsAutoscalingILifecycleHookDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAutoscalingILifecycleHookTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsAutoscalingILifecycleHookTargetDefBindParams]] = pydantic.Field(None, description='Called when this object is used as the target of a lifecycle hook.')
+    bind: typing.Optional[list[models._interface_methods.AwsAutoscalingILifecycleHookTargetDefBindParams]] = pydantic.Field(None, description='Called when this object is used as the target of a lifecycle hook.')
 
 
 class AwsAutoscalingILifecycleHookTargetDefBindParams(pydantic.BaseModel):
@@ -786,7 +786,7 @@ class AwsAutoscalingILifecycleHookTargetDefBindParams(pydantic.BaseModel):
 
 class AwsAutoscalingCommonIRandomGeneratorDefConfig(pydantic.BaseModel):
     next_boolean: typing.Optional[bool] = pydantic.Field(None, description='')
-    next_int: typing.Optional[list[AwsAutoscalingCommonIRandomGeneratorDefNextIntParams]] = pydantic.Field(None, description='')
+    next_int: typing.Optional[list[models._interface_methods.AwsAutoscalingCommonIRandomGeneratorDefNextIntParams]] = pydantic.Field(None, description='')
 
 
 class AwsAutoscalingCommonIRandomGeneratorDefNextIntParams(pydantic.BaseModel):
@@ -794,15 +794,15 @@ class AwsAutoscalingCommonIRandomGeneratorDefNextIntParams(pydantic.BaseModel):
     max: typing.Union[int, float] = pydantic.Field(..., description='-')
 
 class AwsBackupIBackupPlanDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBackupIBackupPlanDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBackupIBackupPlanDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBackupIBackupPlanDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBackupIBackupVaultDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBackupIBackupVaultDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsBackupIBackupVaultDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this backup vault.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBackupIBackupVaultDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsBackupIBackupVaultDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this backup vault.')
 
 
 class AwsBackupIBackupVaultDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -814,22 +814,22 @@ class AwsBackupIBackupVaultDefGrantParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsBatchIComputeEnvironmentDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBatchIComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIEcsContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_volume: typing.Optional[list[AwsBatchIEcsContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+    add_volume: typing.Optional[list[models._interface_methods.AwsBatchIEcsContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
 
 
 class AwsBatchIEcsContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
     volume: models.aws_batch.EcsVolumeDef = pydantic.Field(..., description='-')
 
 class AwsBatchIEcsEc2ContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_ulimit: typing.Optional[list[AwsBatchIEcsEc2ContainerDefinitionDefAddUlimitParams]] = pydantic.Field(None, description='Add a ulimit to this container.')
-    add_volume: typing.Optional[list[AwsBatchIEcsEc2ContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+    add_ulimit: typing.Optional[list[models._interface_methods.AwsBatchIEcsEc2ContainerDefinitionDefAddUlimitParams]] = pydantic.Field(None, description='Add a ulimit to this container.')
+    add_volume: typing.Optional[list[models._interface_methods.AwsBatchIEcsEc2ContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
 
 
 class AwsBatchIEcsEc2ContainerDefinitionDefAddUlimitParams(pydantic.BaseModel):
@@ -841,22 +841,22 @@ class AwsBatchIEcsEc2ContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
     volume: models.aws_batch.EcsVolumeDef = pydantic.Field(..., description='-')
 
 class AwsBatchIEcsFargateContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_volume: typing.Optional[list[AwsBatchIEcsFargateContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+    add_volume: typing.Optional[list[models._interface_methods.AwsBatchIEcsFargateContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
 
 
 class AwsBatchIEcsFargateContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
     volume: models.aws_batch.EcsVolumeDef = pydantic.Field(..., description='-')
 
 class AwsBatchIEksContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_volume: typing.Optional[list[AwsBatchIEksContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Mount a Volume to this container.\nAutomatically added to the Pod.')
+    add_volume: typing.Optional[list[models._interface_methods.AwsBatchIEksContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Mount a Volume to this container.\nAutomatically added to the Pod.')
 
 
 class AwsBatchIEksContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
     volume: models.aws_batch.EksVolumeDef = pydantic.Field(..., description='-')
 
 class AwsBatchIEksJobDefinitionDefConfig(pydantic.BaseModel):
-    add_retry_strategy: typing.Optional[list[AwsBatchIEksJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
-    apply_removal_policy: typing.Optional[list[AwsBatchIEksJobDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_retry_strategy: typing.Optional[list[models._interface_methods.AwsBatchIEksJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIEksJobDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIEksJobDefinitionDefAddRetryStrategyParams(pydantic.BaseModel):
@@ -866,22 +866,22 @@ class AwsBatchIEksJobDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIFairshareSchedulingPolicyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBatchIFairshareSchedulingPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIFairshareSchedulingPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIFairshareSchedulingPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIFargateComputeEnvironmentDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBatchIFargateComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIFargateComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIFargateComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIJobDefinitionDefConfig(pydantic.BaseModel):
-    add_retry_strategy: typing.Optional[list[AwsBatchIJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
-    apply_removal_policy: typing.Optional[list[AwsBatchIJobDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_retry_strategy: typing.Optional[list[models._interface_methods.AwsBatchIJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIJobDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIJobDefinitionDefAddRetryStrategyParams(pydantic.BaseModel):
@@ -891,8 +891,8 @@ class AwsBatchIJobDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIJobQueueDefConfig(pydantic.BaseModel):
-    add_compute_environment: typing.Optional[list[AwsBatchIJobQueueDefAddComputeEnvironmentParams]] = pydantic.Field(None, description='Add a ``ComputeEnvironment`` to this Queue.\nThe Queue will prefer lower-order ``ComputeEnvironment``s.')
-    apply_removal_policy: typing.Optional[list[AwsBatchIJobQueueDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_compute_environment: typing.Optional[list[models._interface_methods.AwsBatchIJobQueueDefAddComputeEnvironmentParams]] = pydantic.Field(None, description='Add a ``ComputeEnvironment`` to this Queue.\nThe Queue will prefer lower-order ``ComputeEnvironment``s.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIJobQueueDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIJobQueueDefAddComputeEnvironmentParams(pydantic.BaseModel):
@@ -903,16 +903,16 @@ class AwsBatchIJobQueueDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIManagedComputeEnvironmentDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBatchIManagedComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIManagedComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIManagedComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIManagedEc2EcsComputeEnvironmentDefConfig(pydantic.BaseModel):
-    add_instance_class: typing.Optional[list[AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
-    add_instance_type: typing.Optional[list[AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
-    apply_removal_policy: typing.Optional[list[AwsBatchIManagedEc2EcsComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_instance_class: typing.Optional[list[models._interface_methods.AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
+    add_instance_type: typing.Optional[list[models._interface_methods.AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIManagedEc2EcsComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams(pydantic.BaseModel):
@@ -925,22 +925,22 @@ class AwsBatchIManagedEc2EcsComputeEnvironmentDefApplyRemovalPolicyParams(pydant
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchISchedulingPolicyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBatchISchedulingPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchISchedulingPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchISchedulingPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBatchIUnmanagedComputeEnvironmentDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsBatchIUnmanagedComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsBatchIUnmanagedComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsBatchIUnmanagedComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCertificatemanagerICertificateDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCertificatemanagerICertificateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    metric_days_to_expiry: typing.Optional[list[AwsCertificatemanagerICertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCertificatemanagerICertificateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric_days_to_expiry: typing.Optional[list[models._interface_methods.AwsCertificatemanagerICertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
 
 
 class AwsCertificatemanagerICertificateDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -958,10 +958,10 @@ class AwsCertificatemanagerICertificateDefMetricDaysToExpiryParams(pydantic.Base
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsChatbotISlackChannelConfigurationDefConfig(pydantic.BaseModel):
-    add_to_role_policy: typing.Optional[list[AwsChatbotISlackChannelConfigurationDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role.')
-    apply_removal_policy: typing.Optional[list[AwsChatbotISlackChannelConfigurationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    bind_as_notification_rule_target: typing.Optional[list[AwsChatbotISlackChannelConfigurationDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
-    metric: typing.Optional[list[AwsChatbotISlackChannelConfigurationDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this SlackChannelConfiguration.')
+    add_to_role_policy: typing.Optional[list[models._interface_methods.AwsChatbotISlackChannelConfigurationDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsChatbotISlackChannelConfigurationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    bind_as_notification_rule_target: typing.Optional[list[models._interface_methods.AwsChatbotISlackChannelConfigurationDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
+    metric: typing.Optional[list[models._interface_methods.AwsChatbotISlackChannelConfigurationDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this SlackChannelConfiguration.')
 
 
 class AwsChatbotISlackChannelConfigurationDefAddToRolePolicyParams(pydantic.BaseModel):
@@ -988,9 +988,9 @@ class AwsChatbotISlackChannelConfigurationDefMetricParams(pydantic.BaseModel):
 
 
 class AwsCloudfrontIDistributionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudfrontIDistributionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsCloudfrontIDistributionDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this distribution to an IAM principal's policy.")
-    grant_create_invalidation: typing.Optional[list[AwsCloudfrontIDistributionDefGrantCreateInvalidationParams]] = pydantic.Field(None, description='Grant to create invalidations for this bucket to an IAM principal (Role/Group/User).')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIDistributionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsCloudfrontIDistributionDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this distribution to an IAM principal's policy.")
+    grant_create_invalidation: typing.Optional[list[models._interface_methods.AwsCloudfrontIDistributionDefGrantCreateInvalidationParams]] = pydantic.Field(None, description='Grant to create invalidations for this bucket to an IAM principal (Role/Group/User).')
 
 
 class AwsCloudfrontIDistributionDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1006,21 +1006,21 @@ class AwsCloudfrontIDistributionDefGrantCreateInvalidationParams(pydantic.BaseMo
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCloudfrontIFunctionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudfrontIFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCloudfrontIFunctionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCloudfrontIKeyGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudfrontIKeyGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIKeyGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCloudfrontIKeyGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCloudfrontIOriginDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCloudfrontIOriginDefBindParams]] = pydantic.Field(None, description='The method called when a given Origin is added (for the first time) to a Distribution.')
+    bind: typing.Optional[list[models._interface_methods.AwsCloudfrontIOriginDefBindParams]] = pydantic.Field(None, description='The method called when a given Origin is added (for the first time) to a Distribution.')
 
 
 class AwsCloudfrontIOriginDefBindParams(pydantic.BaseModel):
@@ -1028,7 +1028,7 @@ class AwsCloudfrontIOriginDefBindParams(pydantic.BaseModel):
     origin_id: str = pydantic.Field(..., description='The identifier of this Origin, as assigned by the Distribution this Origin has been used added to.')
 
 class AwsCloudfrontIOriginAccessIdentityDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudfrontIOriginAccessIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIOriginAccessIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCloudfrontIOriginAccessIdentityDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1037,14 +1037,14 @@ class AwsCloudfrontIOriginAccessIdentityDefApplyRemovalPolicyParams(pydantic.Bas
 
 
 class AwsCloudfrontIPublicKeyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudfrontIPublicKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIPublicKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCloudfrontIPublicKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCloudfrontIRealtimeLogConfigDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudfrontIRealtimeLogConfigDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIRealtimeLogConfigDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCloudfrontIRealtimeLogConfigDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1053,7 +1053,7 @@ class AwsCloudfrontIRealtimeLogConfigDefApplyRemovalPolicyParams(pydantic.BaseMo
 
 
 class AwsCloudwatchIAlarmDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCloudwatchIAlarmDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudwatchIAlarmDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     render_alarm_rule: typing.Optional[bool] = pydantic.Field(None, description='serialized representation of Alarm Rule to be used when building the Composite Alarm resource.')
 
 
@@ -1061,7 +1061,7 @@ class AwsCloudwatchIAlarmDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCloudwatchIAlarmActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCloudwatchIAlarmActionDefBindParams]] = pydantic.Field(None, description='Return the properties required to send alarm actions to this CloudWatch alarm.')
+    bind: typing.Optional[list[models._interface_methods.AwsCloudwatchIAlarmActionDefBindParams]] = pydantic.Field(None, description='Return the properties required to send alarm actions to this CloudWatch alarm.')
 
 
 class AwsCloudwatchIAlarmActionDefBindParams(pydantic.BaseModel):
@@ -1077,7 +1077,7 @@ class AwsCloudwatchIAlarmRuleDefConfig(pydantic.BaseModel):
 
 
 class AwsCloudwatchIWidgetDefConfig(pydantic.BaseModel):
-    position: typing.Optional[list[AwsCloudwatchIWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
+    position: typing.Optional[list[models._interface_methods.AwsCloudwatchIWidgetDefPositionParams]] = pydantic.Field(None, description='Place the widget at a given position.')
 
 
 class AwsCloudwatchIWidgetDefPositionParams(pydantic.BaseModel):
@@ -1085,7 +1085,7 @@ class AwsCloudwatchIWidgetDefPositionParams(pydantic.BaseModel):
     y: typing.Union[int, float] = pydantic.Field(..., description='-')
 
 class AwsCodebuildIArtifactsDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCodebuildIArtifactsDefBindParams]] = pydantic.Field(None, description='Callback when an Artifacts class is used in a CodeBuild Project.')
+    bind: typing.Optional[list[models._interface_methods.AwsCodebuildIArtifactsDefBindParams]] = pydantic.Field(None, description='Callback when an Artifacts class is used in a CodeBuild Project.')
 
 
 class AwsCodebuildIArtifactsDefBindParams(pydantic.BaseModel):
@@ -1093,9 +1093,9 @@ class AwsCodebuildIArtifactsDefBindParams(pydantic.BaseModel):
     project: typing.Union[models.aws_codebuild.PipelineProjectDef, models.aws_codebuild.ProjectDef] = pydantic.Field(..., description='the Project this Artifacts is used in.')
 
 class AwsCodebuildIBindableBuildImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCodebuildIBindableBuildImageDefBindParams]] = pydantic.Field(None, description='Function that allows the build image access to the construct tree.')
-    run_script_buildspec: typing.Optional[list[AwsCodebuildIBindableBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
-    validate_: typing.Optional[list[AwsCodebuildIBindableBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
+    bind: typing.Optional[list[models._interface_methods.AwsCodebuildIBindableBuildImageDefBindParams]] = pydantic.Field(None, description='Function that allows the build image access to the construct tree.')
+    run_script_buildspec: typing.Optional[list[models._interface_methods.AwsCodebuildIBindableBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
+    validate_: typing.Optional[list[models._interface_methods.AwsCodebuildIBindableBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
 
 
 class AwsCodebuildIBindableBuildImageDefBindParams(pydantic.BaseModel):
@@ -1113,8 +1113,8 @@ class AwsCodebuildIBindableBuildImageDefValidateParams(pydantic.BaseModel):
     privileged: typing.Optional[bool] = pydantic.Field(None, description='Indicates how the project builds Docker images. Specify true to enable running the Docker daemon inside a Docker container. This value must be set to true only if this build project will be used to build Docker images, and the specified build environment image is not one provided by AWS CodeBuild with Docker support. Otherwise, all associated builds that attempt to interact with the Docker daemon will fail. Default: false')
 
 class AwsCodebuildIBuildImageDefConfig(pydantic.BaseModel):
-    run_script_buildspec: typing.Optional[list[AwsCodebuildIBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
-    validate_: typing.Optional[list[AwsCodebuildIBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
+    run_script_buildspec: typing.Optional[list[models._interface_methods.AwsCodebuildIBuildImageDefRunScriptBuildspecParams]] = pydantic.Field(None, description='Make a buildspec to run the indicated script.')
+    validate_: typing.Optional[list[models._interface_methods.AwsCodebuildIBuildImageDefValidateParams]] = pydantic.Field(None, description='Allows the image a chance to validate whether the passed configuration is correct.', alias='validate')
 
 
 class AwsCodebuildIBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
@@ -1128,7 +1128,7 @@ class AwsCodebuildIBuildImageDefValidateParams(pydantic.BaseModel):
     privileged: typing.Optional[bool] = pydantic.Field(None, description='Indicates how the project builds Docker images. Specify true to enable running the Docker daemon inside a Docker container. This value must be set to true only if this build project will be used to build Docker images, and the specified build environment image is not one provided by AWS CodeBuild with Docker support. Otherwise, all associated builds that attempt to interact with the Docker daemon will fail. Default: false')
 
 class AwsCodebuildIFileSystemLocationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCodebuildIFileSystemLocationDefBindParams]] = pydantic.Field(None, description='Called by the project when a file system is added so it can perform binding operations on this file system location.')
+    bind: typing.Optional[list[models._interface_methods.AwsCodebuildIFileSystemLocationDefBindParams]] = pydantic.Field(None, description='Called by the project when a file system is added so it can perform binding operations on this file system location.')
 
 
 class AwsCodebuildIFileSystemLocationDefBindParams(pydantic.BaseModel):
@@ -1136,24 +1136,24 @@ class AwsCodebuildIFileSystemLocationDefBindParams(pydantic.BaseModel):
     project: typing.Union[models.aws_codebuild.PipelineProjectDef, models.aws_codebuild.ProjectDef] = pydantic.Field(..., description='-')
 
 class AwsCodebuildIProjectDefConfig(pydantic.BaseModel):
-    add_to_role_policy: typing.Optional[list[AwsCodebuildIProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description='')
-    apply_removal_policy: typing.Optional[list[AwsCodebuildIProjectDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    bind_as_notification_rule_source: typing.Optional[list[AwsCodebuildIProjectDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    add_to_role_policy: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description='')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    bind_as_notification_rule_source: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
     enable_batch_builds: typing.Optional[bool] = pydantic.Field(None, description='Enable batch builds.\nReturns an object contining the batch service role if batch builds\ncould be enabled.')
-    metric: typing.Optional[list[AwsCodebuildIProjectDefMetricParams]] = pydantic.Field(None, description='')
-    metric_builds: typing.Optional[list[AwsCodebuildIProjectDefMetricBuildsParams]] = pydantic.Field(None, description='Measures the number of builds triggered.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    metric_duration: typing.Optional[list[AwsCodebuildIProjectDefMetricDurationParams]] = pydantic.Field(None, description='Measures the duration of all builds over time.\nUnits: Seconds\n\nValid CloudWatch statistics: Average (recommended), Maximum, Minimum')
-    metric_failed_builds: typing.Optional[list[AwsCodebuildIProjectDefMetricFailedBuildsParams]] = pydantic.Field(None, description='Measures the number of builds that failed because of client error or because of a timeout.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    metric_succeeded_builds: typing.Optional[list[AwsCodebuildIProjectDefMetricSucceededBuildsParams]] = pydantic.Field(None, description='Measures the number of successful builds.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
-    notify_on: typing.Optional[list[AwsCodebuildIProjectDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnBuildSucceeded`` and\n``notifyOnBuildFailed`` to define rules for these specific event emitted.')
-    notify_on_build_failed: typing.Optional[list[AwsCodebuildIProjectDefNotifyOnBuildFailedParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build fails.')
-    notify_on_build_succeeded: typing.Optional[list[AwsCodebuildIProjectDefNotifyOnBuildSucceededParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build completes successfully.')
-    on_build_failed: typing.Optional[list[AwsCodebuildIProjectDefOnBuildFailedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build fails.')
-    on_build_started: typing.Optional[list[AwsCodebuildIProjectDefOnBuildStartedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build starts.')
-    on_build_succeeded: typing.Optional[list[AwsCodebuildIProjectDefOnBuildSucceededParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build completes successfully.')
-    on_event: typing.Optional[list[AwsCodebuildIProjectDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when something happens with this project.')
-    on_phase_change: typing.Optional[list[AwsCodebuildIProjectDefOnPhaseChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule that triggers upon phase change of this build project.')
-    on_state_change: typing.Optional[list[AwsCodebuildIProjectDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when the build project state changes.\nYou can filter specific build status events using an event\npattern filter on the ``build-status`` detail field:\n\nconst rule = project.onStateChange(\'OnBuildStarted\', { target });\nrule.addEventPattern({\ndetail: {\n\'build-status\': [\n"IN_PROGRESS",\n"SUCCEEDED",\n"FAILED",\n"STOPPED"\n]\n}\n});\n\nYou can also use the methods ``onBuildFailed`` and ``onBuildSucceeded`` to define rules for\nthese specific state changes.\n\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
+    metric: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefMetricParams]] = pydantic.Field(None, description='')
+    metric_builds: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefMetricBuildsParams]] = pydantic.Field(None, description='Measures the number of builds triggered.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    metric_duration: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefMetricDurationParams]] = pydantic.Field(None, description='Measures the duration of all builds over time.\nUnits: Seconds\n\nValid CloudWatch statistics: Average (recommended), Maximum, Minimum')
+    metric_failed_builds: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefMetricFailedBuildsParams]] = pydantic.Field(None, description='Measures the number of builds that failed because of client error or because of a timeout.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    metric_succeeded_builds: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefMetricSucceededBuildsParams]] = pydantic.Field(None, description='Measures the number of successful builds.\nUnits: Count\n\nValid CloudWatch statistics: Sum')
+    notify_on: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnBuildSucceeded`` and\n``notifyOnBuildFailed`` to define rules for these specific event emitted.')
+    notify_on_build_failed: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefNotifyOnBuildFailedParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build fails.')
+    notify_on_build_succeeded: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefNotifyOnBuildSucceededParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule which triggers when a build completes successfully.')
+    on_build_failed: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefOnBuildFailedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build fails.')
+    on_build_started: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefOnBuildStartedParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build starts.')
+    on_build_succeeded: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefOnBuildSucceededParams]] = pydantic.Field(None, description='Defines an event rule which triggers when a build completes successfully.')
+    on_event: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when something happens with this project.')
+    on_phase_change: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefOnPhaseChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule that triggers upon phase change of this build project.')
+    on_state_change: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule triggered when the build project state changes.\nYou can filter specific build status events using an event\npattern filter on the ``build-status`` detail field:\n\nconst rule = project.onStateChange(\'OnBuildStarted\', { target });\nrule.addEventPattern({\ndetail: {\n\'build-status\': [\n"IN_PROGRESS",\n"SUCCEEDED",\n"FAILED",\n"STOPPED"\n]\n}\n});\n\nYou can also use the methods ``onBuildFailed`` and ``onBuildSucceeded`` to define rules for\nthese specific state changes.\n\nTo access fields from the event in the event target input,\nuse the static fields on the ``StateChangeEvent`` class.')
 
 
 class AwsCodebuildIProjectDefAddToRolePolicyParams(pydantic.BaseModel):
@@ -1301,8 +1301,8 @@ class AwsCodebuildIProjectDefOnStateChangeParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_events.RuleDefConfig]] = pydantic.Field(None)
 
 class AwsCodebuildIReportGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodebuildIReportGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_write: typing.Optional[list[AwsCodebuildIReportGroupDefGrantWriteParams]] = pydantic.Field(None, description='Grants the given entity permissions to write (that is, upload reports to) this report group.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodebuildIReportGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_write: typing.Optional[list[models._interface_methods.AwsCodebuildIReportGroupDefGrantWriteParams]] = pydantic.Field(None, description='Grants the given entity permissions to write (that is, upload reports to) this report group.')
 
 
 class AwsCodebuildIReportGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1313,7 +1313,7 @@ class AwsCodebuildIReportGroupDefGrantWriteParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodebuildISourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCodebuildISourceDefBindParams]] = pydantic.Field(None, description='')
+    bind: typing.Optional[list[models._interface_methods.AwsCodebuildISourceDefBindParams]] = pydantic.Field(None, description='')
 
 
 class AwsCodebuildISourceDefBindParams(pydantic.BaseModel):
@@ -1321,29 +1321,29 @@ class AwsCodebuildISourceDefBindParams(pydantic.BaseModel):
     project: typing.Union[models.aws_codebuild.PipelineProjectDef, models.aws_codebuild.ProjectDef] = pydantic.Field(..., description='-')
 
 class AwsCodecommitIRepositoryDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodecommitIRepositoryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    bind_as_notification_rule_source: typing.Optional[list[AwsCodecommitIRepositoryDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
-    grant: typing.Optional[list[AwsCodecommitIRepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
-    grant_pull: typing.Optional[list[AwsCodecommitIRepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull this repository.')
-    grant_pull_push: typing.Optional[list[AwsCodecommitIRepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push this repository.')
-    grant_read: typing.Optional[list[AwsCodecommitIRepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read this repository.')
-    notify_on: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events specified by you are emitted. Similar to ``onEvent`` API.\nYou can also use the methods to define rules for the specific event emitted.\neg: ``notifyOnPullRequstCreated``.')
-    notify_on_approval_rule_overridden: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnApprovalRuleOverriddenParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval rule is overridden.')
-    notify_on_approval_status_changed: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnApprovalStatusChangedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval status is changed.')
-    notify_on_branch_or_tag_created: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnBranchOrTagCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a new branch or tag is created.')
-    notify_on_branch_or_tag_deleted: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnBranchOrTagDeletedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a branch or tag is deleted.')
-    notify_on_pull_request_comment: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnPullRequestCommentParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a comment is made on a pull request.')
-    notify_on_pull_request_created: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnPullRequestCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is created.')
-    notify_on_pull_request_merged: typing.Optional[list[AwsCodecommitIRepositoryDefNotifyOnPullRequestMergedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is merged.')
-    on_comment_on_commit: typing.Optional[list[AwsCodecommitIRepositoryDefOnCommentOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a commit.')
-    on_comment_on_pull_request: typing.Optional[list[AwsCodecommitIRepositoryDefOnCommentOnPullRequestParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a pull request.')
-    on_commit: typing.Optional[list[AwsCodecommitIRepositoryDefOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a commit is pushed to a branch.')
-    on_event: typing.Optional[list[AwsCodecommitIRepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
-    on_pull_request_state_change: typing.Optional[list[AwsCodecommitIRepositoryDefOnPullRequestStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a pull request state is changed.')
-    on_reference_created: typing.Optional[list[AwsCodecommitIRepositoryDefOnReferenceCreatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is created (i.e. a new branch/tag is created) to the repository.')
-    on_reference_deleted: typing.Optional[list[AwsCodecommitIRepositoryDefOnReferenceDeletedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is delete (i.e. a branch/tag is deleted) from the repository.')
-    on_reference_updated: typing.Optional[list[AwsCodecommitIRepositoryDefOnReferenceUpdatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is updated (i.e. a commit is pushed to an existing or new branch) from the repository.')
-    on_state_change: typing.Optional[list[AwsCodecommitIRepositoryDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a "CodeCommit Repository State Change" event occurs.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    bind_as_notification_rule_source: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    grant: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
+    grant_pull: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull this repository.')
+    grant_pull_push: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push this repository.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read this repository.')
+    notify_on: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule triggered when the project events specified by you are emitted. Similar to ``onEvent`` API.\nYou can also use the methods to define rules for the specific event emitted.\neg: ``notifyOnPullRequstCreated``.')
+    notify_on_approval_rule_overridden: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnApprovalRuleOverriddenParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval rule is overridden.')
+    notify_on_approval_status_changed: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnApprovalStatusChangedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when an approval status is changed.')
+    notify_on_branch_or_tag_created: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnBranchOrTagCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a new branch or tag is created.')
+    notify_on_branch_or_tag_deleted: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnBranchOrTagDeletedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a branch or tag is deleted.')
+    notify_on_pull_request_comment: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnPullRequestCommentParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a comment is made on a pull request.')
+    notify_on_pull_request_created: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnPullRequestCreatedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is created.')
+    notify_on_pull_request_merged: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefNotifyOnPullRequestMergedParams]] = pydantic.Field(None, description='Defines a CodeStar Notification rule which triggers when a pull request is merged.')
+    on_comment_on_commit: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnCommentOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a commit.')
+    on_comment_on_pull_request: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnCommentOnPullRequestParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a comment is made on a pull request.')
+    on_commit: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnCommitParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a commit is pushed to a branch.')
+    on_event: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    on_pull_request_state_change: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnPullRequestStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a pull request state is changed.')
+    on_reference_created: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnReferenceCreatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is created (i.e. a new branch/tag is created) to the repository.')
+    on_reference_deleted: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnReferenceDeletedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is delete (i.e. a branch/tag is deleted) from the repository.')
+    on_reference_updated: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnReferenceUpdatedParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a reference is updated (i.e. a commit is pushed to an existing or new branch) from the repository.')
+    on_state_change: typing.Optional[list[models._interface_methods.AwsCodecommitIRepositoryDefOnStateChangeParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers when a "CodeCommit Repository State Change" event occurs.')
 
 
 class AwsCodecommitIRepositoryDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1519,7 +1519,7 @@ class AwsCodecommitIRepositoryDefOnStateChangeParams(pydantic.BaseModel):
 
 
 class AwsCodedeployIEcsApplicationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodedeployIEcsApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodedeployIEcsApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodedeployIEcsApplicationDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1528,14 +1528,14 @@ class AwsCodedeployIEcsApplicationDefApplyRemovalPolicyParams(pydantic.BaseModel
 
 
 class AwsCodedeployIEcsDeploymentGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodedeployIEcsDeploymentGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodedeployIEcsDeploymentGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodedeployIEcsDeploymentGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodedeployILambdaApplicationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodedeployILambdaApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodedeployILambdaApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodedeployILambdaApplicationDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1544,14 +1544,14 @@ class AwsCodedeployILambdaApplicationDefApplyRemovalPolicyParams(pydantic.BaseMo
 
 
 class AwsCodedeployILambdaDeploymentGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodedeployILambdaDeploymentGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodedeployILambdaDeploymentGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodedeployILambdaDeploymentGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodedeployIServerApplicationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodedeployIServerApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodedeployIServerApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodedeployIServerApplicationDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1560,16 +1560,16 @@ class AwsCodedeployIServerApplicationDefApplyRemovalPolicyParams(pydantic.BaseMo
 
 
 class AwsCodedeployIServerDeploymentGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodedeployIServerDeploymentGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodedeployIServerDeploymentGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodedeployIServerDeploymentGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodeguruprofilerIProfilingGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodeguruprofilerIProfilingGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_publish: typing.Optional[list[AwsCodeguruprofilerIProfilingGroupDefGrantPublishParams]] = pydantic.Field(None, description='Grant access to publish profiling information to the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:ConfigureAgent\n- codeguru-profiler:PostAgentProfile')
-    grant_read: typing.Optional[list[AwsCodeguruprofilerIProfilingGroupDefGrantReadParams]] = pydantic.Field(None, description='Grant access to read profiling information from the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:GetProfile\n- codeguru-profiler:DescribeProfilingGroup')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodeguruprofilerIProfilingGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_publish: typing.Optional[list[models._interface_methods.AwsCodeguruprofilerIProfilingGroupDefGrantPublishParams]] = pydantic.Field(None, description='Grant access to publish profiling information to the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:ConfigureAgent\n- codeguru-profiler:PostAgentProfile')
+    grant_read: typing.Optional[list[models._interface_methods.AwsCodeguruprofilerIProfilingGroupDefGrantReadParams]] = pydantic.Field(None, description='Grant access to read profiling information from the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:GetProfile\n- codeguru-profiler:DescribeProfilingGroup')
 
 
 class AwsCodeguruprofilerIProfilingGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1584,8 +1584,8 @@ class AwsCodeguruprofilerIProfilingGroupDefGrantReadParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodepipelineIActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsCodepipelineIActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[AwsCodepipelineIActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models._interface_methods.AwsCodepipelineIActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 
 class AwsCodepipelineIActionDefBindParams(pydantic.BaseModel):
@@ -1608,15 +1608,15 @@ class AwsCodepipelineIActionDefOnStateChangeParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_events.RuleDefConfig]] = pydantic.Field(None)
 
 class AwsCodepipelineIPipelineDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCodepipelineIPipelineDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    bind_as_notification_rule_source: typing.Optional[list[AwsCodepipelineIPipelineDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
-    notify_on: typing.Optional[list[AwsCodepipelineIPipelineDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule triggered when the pipeline events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnExecutionStateChange``, ``notifyOnAnyStageStateChange``,\n``notifyOnAnyActionStateChange`` and ``notifyOnAnyManualApprovalStateChange``\nto define rules for these specific event emitted.')
-    notify_on_any_action_state_change: typing.Optional[list[AwsCodepipelineIPipelineDefNotifyOnAnyActionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Action execution" events emitted from this pipeline.')
-    notify_on_any_manual_approval_state_change: typing.Optional[list[AwsCodepipelineIPipelineDefNotifyOnAnyManualApprovalStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Manual approval" events emitted from this pipeline.')
-    notify_on_any_stage_state_change: typing.Optional[list[AwsCodepipelineIPipelineDefNotifyOnAnyStageStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Stage execution" events emitted from this pipeline.')
-    notify_on_execution_state_change: typing.Optional[list[AwsCodepipelineIPipelineDefNotifyOnExecutionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Pipeline execution" events emitted from this pipeline.')
-    on_event: typing.Optional[list[AwsCodepipelineIPipelineDefOnEventParams]] = pydantic.Field(None, description='Define an event rule triggered by this CodePipeline.')
-    on_state_change: typing.Optional[list[AwsCodepipelineIPipelineDefOnStateChangeParams]] = pydantic.Field(None, description='Define an event rule triggered by the "CodePipeline Pipeline Execution State Change" event emitted from this pipeline.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    bind_as_notification_rule_source: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    notify_on: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule triggered when the pipeline events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnExecutionStateChange``, ``notifyOnAnyStageStateChange``,\n``notifyOnAnyActionStateChange`` and ``notifyOnAnyManualApprovalStateChange``\nto define rules for these specific event emitted.')
+    notify_on_any_action_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefNotifyOnAnyActionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Action execution" events emitted from this pipeline.')
+    notify_on_any_manual_approval_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefNotifyOnAnyManualApprovalStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Manual approval" events emitted from this pipeline.')
+    notify_on_any_stage_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefNotifyOnAnyStageStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Stage execution" events emitted from this pipeline.')
+    notify_on_execution_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefNotifyOnExecutionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Pipeline execution" events emitted from this pipeline.')
+    on_event: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefOnEventParams]] = pydantic.Field(None, description='Define an event rule triggered by this CodePipeline.')
+    on_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIPipelineDefOnStateChangeParams]] = pydantic.Field(None, description='Define an event rule triggered by the "CodePipeline Pipeline Execution State Change" event emitted from this pipeline.')
 
 
 class AwsCodepipelineIPipelineDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1685,8 +1685,8 @@ class AwsCodepipelineIPipelineDefOnStateChangeParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_events.RuleDefConfig]] = pydantic.Field(None)
 
 class AwsCodepipelineIStageDefConfig(pydantic.BaseModel):
-    add_action: typing.Optional[list[AwsCodepipelineIStageDefAddActionParams]] = pydantic.Field(None, description='')
-    on_state_change: typing.Optional[list[AwsCodepipelineIStageDefOnStateChangeParams]] = pydantic.Field(None, description='')
+    add_action: typing.Optional[list[models._interface_methods.AwsCodepipelineIStageDefAddActionParams]] = pydantic.Field(None, description='')
+    on_state_change: typing.Optional[list[models._interface_methods.AwsCodepipelineIStageDefOnStateChangeParams]] = pydantic.Field(None, description='')
 
 
 class AwsCodepipelineIStageDefAddActionParams(pydantic.BaseModel):
@@ -1708,8 +1708,8 @@ class AwsCodepipelineIStageDefOnStateChangeParams(pydantic.BaseModel):
 
 
 class AwsCodestarnotificationsINotificationRuleDefConfig(pydantic.BaseModel):
-    add_target: typing.Optional[list[AwsCodestarnotificationsINotificationRuleDefAddTargetParams]] = pydantic.Field(None, description='Adds target to notification rule.')
-    apply_removal_policy: typing.Optional[list[AwsCodestarnotificationsINotificationRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_target: typing.Optional[list[models._interface_methods.AwsCodestarnotificationsINotificationRuleDefAddTargetParams]] = pydantic.Field(None, description='Adds target to notification rule.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodestarnotificationsINotificationRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCodestarnotificationsINotificationRuleDefAddTargetParams(pydantic.BaseModel):
@@ -1719,14 +1719,14 @@ class AwsCodestarnotificationsINotificationRuleDefApplyRemovalPolicyParams(pydan
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodestarnotificationsINotificationRuleSourceDefConfig(pydantic.BaseModel):
-    bind_as_notification_rule_source: typing.Optional[list[AwsCodestarnotificationsINotificationRuleSourceDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    bind_as_notification_rule_source: typing.Optional[list[models._interface_methods.AwsCodestarnotificationsINotificationRuleSourceDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
 
 
 class AwsCodestarnotificationsINotificationRuleSourceDefBindAsNotificationRuleSourceParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
 
 class AwsCodestarnotificationsINotificationRuleTargetDefConfig(pydantic.BaseModel):
-    bind_as_notification_rule_target: typing.Optional[list[AwsCodestarnotificationsINotificationRuleTargetDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
+    bind_as_notification_rule_target: typing.Optional[list[models._interface_methods.AwsCodestarnotificationsINotificationRuleTargetDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
 
 
 class AwsCodestarnotificationsINotificationRuleTargetDefBindAsNotificationRuleTargetParams(pydantic.BaseModel):
@@ -1737,12 +1737,12 @@ class AwsCognitoICustomAttributeDefConfig(pydantic.BaseModel):
 
 
 class AwsCognitoIUserPoolDefConfig(pydantic.BaseModel):
-    add_client: typing.Optional[list[AwsCognitoIUserPoolDefAddClientParams]] = pydantic.Field(None, description='Add a new app client to this user pool.')
-    add_domain: typing.Optional[list[AwsCognitoIUserPoolDefAddDomainParams]] = pydantic.Field(None, description='Associate a domain to this user pool.')
-    add_resource_server: typing.Optional[list[AwsCognitoIUserPoolDefAddResourceServerParams]] = pydantic.Field(None, description='Add a new resource server to this user pool.')
-    apply_removal_policy: typing.Optional[list[AwsCognitoIUserPoolDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsCognitoIUserPoolDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this user pool to an IAM principal's policy.")
-    register_identity_provider: typing.Optional[list[AwsCognitoIUserPoolDefRegisterIdentityProviderParams]] = pydantic.Field(None, description='Register an identity provider with this user pool.')
+    add_client: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDefAddClientParams]] = pydantic.Field(None, description='Add a new app client to this user pool.')
+    add_domain: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDefAddDomainParams]] = pydantic.Field(None, description='Associate a domain to this user pool.')
+    add_resource_server: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDefAddResourceServerParams]] = pydantic.Field(None, description='Add a new resource server to this user pool.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this user pool to an IAM principal's policy.")
+    register_identity_provider: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDefRegisterIdentityProviderParams]] = pydantic.Field(None, description='Register an identity provider with this user pool.')
 
 
 class AwsCognitoIUserPoolDefAddClientParams(pydantic.BaseModel):
@@ -1788,38 +1788,38 @@ class AwsCognitoIUserPoolDefRegisterIdentityProviderParams(pydantic.BaseModel):
     provider: typing.Union[models.aws_cognito.UserPoolIdentityProviderAmazonDef, models.aws_cognito.UserPoolIdentityProviderAppleDef, models.aws_cognito.UserPoolIdentityProviderFacebookDef, models.aws_cognito.UserPoolIdentityProviderGoogleDef, models.aws_cognito.UserPoolIdentityProviderOidcDef, models.aws_cognito.UserPoolIdentityProviderSamlDef] = pydantic.Field(..., description='-')
 
 class AwsCognitoIUserPoolClientDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCognitoIUserPoolClientDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolClientDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCognitoIUserPoolClientDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCognitoIUserPoolDomainDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCognitoIUserPoolDomainDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolDomainDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCognitoIUserPoolDomainDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCognitoIUserPoolIdentityProviderDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCognitoIUserPoolIdentityProviderDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolIdentityProviderDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCognitoIUserPoolIdentityProviderDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCognitoIUserPoolResourceServerDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsCognitoIUserPoolResourceServerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCognitoIUserPoolResourceServerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsCognitoIUserPoolResourceServerDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsConfigIRuleDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsConfigIRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    on_compliance_change: typing.Optional[list[AwsConfigIRuleDefOnComplianceChangeParams]] = pydantic.Field(None, description='Defines a EventBridge event rule which triggers for rule compliance events.')
-    on_event: typing.Optional[list[AwsConfigIRuleDefOnEventParams]] = pydantic.Field(None, description='Defines an EventBridge event rule which triggers for rule events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
-    on_re_evaluation_status: typing.Optional[list[AwsConfigIRuleDefOnReEvaluationStatusParams]] = pydantic.Field(None, description='Defines a EventBridge event rule which triggers for rule re-evaluation status events.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsConfigIRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    on_compliance_change: typing.Optional[list[models._interface_methods.AwsConfigIRuleDefOnComplianceChangeParams]] = pydantic.Field(None, description='Defines a EventBridge event rule which triggers for rule compliance events.')
+    on_event: typing.Optional[list[models._interface_methods.AwsConfigIRuleDefOnEventParams]] = pydantic.Field(None, description='Defines an EventBridge event rule which triggers for rule events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    on_re_evaluation_status: typing.Optional[list[models._interface_methods.AwsConfigIRuleDefOnReEvaluationStatusParams]] = pydantic.Field(None, description='Defines a EventBridge event rule which triggers for rule re-evaluation status events.')
 
 
 class AwsConfigIRuleDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -1853,29 +1853,29 @@ class AwsConfigIRuleDefOnReEvaluationStatusParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_events.RuleDefConfig]] = pydantic.Field(None)
 
 class AwsDocdbIClusterParameterGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsDocdbIClusterParameterGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsDocdbIClusterParameterGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsDocdbIClusterParameterGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsDocdbIDatabaseClusterDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsDocdbIDatabaseClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsDocdbIDatabaseClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsDocdbIDatabaseClusterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsDocdbIDatabaseInstanceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsDocdbIDatabaseInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsDocdbIDatabaseInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsDocdbIDatabaseInstanceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsDynamodbIScalableTableAttributeDefConfig(pydantic.BaseModel):
-    scale_on_schedule: typing.Optional[list[AwsDynamodbIScalableTableAttributeDefScaleOnScheduleParams]] = pydantic.Field(None, description='Add scheduled scaling for this scaling attribute.')
-    scale_on_utilization: typing.Optional[list[AwsDynamodbIScalableTableAttributeDefScaleOnUtilizationParams]] = pydantic.Field(None, description='Scale out or in to keep utilization at a given level.')
+    scale_on_schedule: typing.Optional[list[models._interface_methods.AwsDynamodbIScalableTableAttributeDefScaleOnScheduleParams]] = pydantic.Field(None, description='Add scheduled scaling for this scaling attribute.')
+    scale_on_utilization: typing.Optional[list[models._interface_methods.AwsDynamodbIScalableTableAttributeDefScaleOnUtilizationParams]] = pydantic.Field(None, description='Scale out or in to keep utilization at a given level.')
 
 
 class AwsDynamodbIScalableTableAttributeDefScaleOnScheduleParams(pydantic.BaseModel):
@@ -1894,24 +1894,24 @@ class AwsDynamodbIScalableTableAttributeDefScaleOnUtilizationParams(pydantic.Bas
     scale_out_cooldown: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Period after a scale out activity completes before another scale out activity can start. Default: Duration.seconds(300) for the following scalable targets: ECS services, Spot Fleet requests, EMR clusters, AppStream 2.0 fleets, Aurora DB clusters, Amazon SageMaker endpoint variants, Custom resources. For all other scalable targets, the default value is Duration.seconds(0): DynamoDB tables, DynamoDB global secondary indexes, Amazon Comprehend document classification endpoints, Lambda provisioned concurrency')
 
 class AwsDynamodbITableDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsDynamodbITableDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsDynamodbITableDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
-    grant_full_access: typing.Optional[list[AwsDynamodbITableDefGrantFullAccessParams]] = pydantic.Field(None, description='Permits all DynamoDB operations ("dynamodb:*") to an IAM principal.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    grant_read_data: typing.Optional[list[AwsDynamodbITableDefGrantReadDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data read operations from this table: BatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    grant_read_write_data: typing.Optional[list[AwsDynamodbITableDefGrantReadWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal to all data read/write operations to this table.\nBatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan,\nBatchWriteItem, PutItem, UpdateItem, DeleteItem\n\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    grant_stream: typing.Optional[list[AwsDynamodbITableDefGrantStreamParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table's stream to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
-    grant_stream_read: typing.Optional[list[AwsDynamodbITableDefGrantStreamReadParams]] = pydantic.Field(None, description="Permits an IAM principal all stream data read operations for this table's stream: DescribeStream, GetRecords, GetShardIterator, ListStreams.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.")
-    grant_table_list_streams: typing.Optional[list[AwsDynamodbITableDefGrantTableListStreamsParams]] = pydantic.Field(None, description='Permits an IAM Principal to list streams attached to current dynamodb table.')
-    grant_write_data: typing.Optional[list[AwsDynamodbITableDefGrantWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data write operations to this table: BatchWriteItem, PutItem, UpdateItem, DeleteItem.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    metric: typing.Optional[list[AwsDynamodbITableDefMetricParams]] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
-    metric_conditional_check_failed_requests: typing.Optional[list[AwsDynamodbITableDefMetricConditionalCheckFailedRequestsParams]] = pydantic.Field(None, description='Metric for the conditional check failed requests.')
-    metric_consumed_read_capacity_units: typing.Optional[list[AwsDynamodbITableDefMetricConsumedReadCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed read capacity units.')
-    metric_consumed_write_capacity_units: typing.Optional[list[AwsDynamodbITableDefMetricConsumedWriteCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed write capacity units.')
-    metric_successful_request_latency: typing.Optional[list[AwsDynamodbITableDefMetricSuccessfulRequestLatencyParams]] = pydantic.Field(None, description='Metric for the successful request latency.')
-    metric_system_errors_for_operations: typing.Optional[list[AwsDynamodbITableDefMetricSystemErrorsForOperationsParams]] = pydantic.Field(None, description='Metric for the system errors this table.')
-    metric_throttled_requests: typing.Optional[list[AwsDynamodbITableDefMetricThrottledRequestsParams]] = pydantic.Field(None, description='(deprecated) Metric for throttled requests.')
-    metric_throttled_requests_for_operations: typing.Optional[list[AwsDynamodbITableDefMetricThrottledRequestsForOperationsParams]] = pydantic.Field(None, description='Metric for throttled requests.')
-    metric_user_errors: typing.Optional[list[AwsDynamodbITableDefMetricUserErrorsParams]] = pydantic.Field(None, description='Metric for the user errors.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
+    grant_full_access: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantFullAccessParams]] = pydantic.Field(None, description='Permits all DynamoDB operations ("dynamodb:*") to an IAM principal.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_read_data: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantReadDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data read operations from this table: BatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_read_write_data: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantReadWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal to all data read/write operations to this table.\nBatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan,\nBatchWriteItem, PutItem, UpdateItem, DeleteItem\n\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_stream: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantStreamParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table's stream to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
+    grant_stream_read: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantStreamReadParams]] = pydantic.Field(None, description="Permits an IAM principal all stream data read operations for this table's stream: DescribeStream, GetRecords, GetShardIterator, ListStreams.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.")
+    grant_table_list_streams: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantTableListStreamsParams]] = pydantic.Field(None, description='Permits an IAM Principal to list streams attached to current dynamodb table.')
+    grant_write_data: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefGrantWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data write operations to this table: BatchWriteItem, PutItem, UpdateItem, DeleteItem.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    metric: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricParams]] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_conditional_check_failed_requests: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricConditionalCheckFailedRequestsParams]] = pydantic.Field(None, description='Metric for the conditional check failed requests.')
+    metric_consumed_read_capacity_units: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricConsumedReadCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed read capacity units.')
+    metric_consumed_write_capacity_units: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricConsumedWriteCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed write capacity units.')
+    metric_successful_request_latency: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricSuccessfulRequestLatencyParams]] = pydantic.Field(None, description='Metric for the successful request latency.')
+    metric_system_errors_for_operations: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricSystemErrorsForOperationsParams]] = pydantic.Field(None, description='Metric for the system errors this table.')
+    metric_throttled_requests: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricThrottledRequestsParams]] = pydantic.Field(None, description='(deprecated) Metric for throttled requests.')
+    metric_throttled_requests_for_operations: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricThrottledRequestsForOperationsParams]] = pydantic.Field(None, description='Metric for throttled requests.')
+    metric_user_errors: typing.Optional[list[models._interface_methods.AwsDynamodbITableDefMetricUserErrorsParams]] = pydantic.Field(None, description='Metric for the user errors.')
 
 
 class AwsDynamodbITableDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2052,24 +2052,24 @@ class AwsDynamodbITableDefMetricUserErrorsParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableV2DefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsDynamodbITableV2DefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsDynamodbITableV2DefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
-    grant_full_access: typing.Optional[list[AwsDynamodbITableV2DefGrantFullAccessParams]] = pydantic.Field(None, description='Permits all DynamoDB operations ("dynamodb:*") to an IAM principal.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    grant_read_data: typing.Optional[list[AwsDynamodbITableV2DefGrantReadDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data read operations from this table: BatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    grant_read_write_data: typing.Optional[list[AwsDynamodbITableV2DefGrantReadWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal to all data read/write operations to this table.\nBatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan,\nBatchWriteItem, PutItem, UpdateItem, DeleteItem\n\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    grant_stream: typing.Optional[list[AwsDynamodbITableV2DefGrantStreamParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table's stream to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
-    grant_stream_read: typing.Optional[list[AwsDynamodbITableV2DefGrantStreamReadParams]] = pydantic.Field(None, description="Permits an IAM principal all stream data read operations for this table's stream: DescribeStream, GetRecords, GetShardIterator, ListStreams.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.")
-    grant_table_list_streams: typing.Optional[list[AwsDynamodbITableV2DefGrantTableListStreamsParams]] = pydantic.Field(None, description='Permits an IAM Principal to list streams attached to current dynamodb table.')
-    grant_write_data: typing.Optional[list[AwsDynamodbITableV2DefGrantWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data write operations to this table: BatchWriteItem, PutItem, UpdateItem, DeleteItem.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
-    metric: typing.Optional[list[AwsDynamodbITableV2DefMetricParams]] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
-    metric_conditional_check_failed_requests: typing.Optional[list[AwsDynamodbITableV2DefMetricConditionalCheckFailedRequestsParams]] = pydantic.Field(None, description='Metric for the conditional check failed requests.')
-    metric_consumed_read_capacity_units: typing.Optional[list[AwsDynamodbITableV2DefMetricConsumedReadCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed read capacity units.')
-    metric_consumed_write_capacity_units: typing.Optional[list[AwsDynamodbITableV2DefMetricConsumedWriteCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed write capacity units.')
-    metric_successful_request_latency: typing.Optional[list[AwsDynamodbITableV2DefMetricSuccessfulRequestLatencyParams]] = pydantic.Field(None, description='Metric for the successful request latency.')
-    metric_system_errors_for_operations: typing.Optional[list[AwsDynamodbITableV2DefMetricSystemErrorsForOperationsParams]] = pydantic.Field(None, description='Metric for the system errors this table.')
-    metric_throttled_requests: typing.Optional[list[AwsDynamodbITableV2DefMetricThrottledRequestsParams]] = pydantic.Field(None, description='(deprecated) Metric for throttled requests.')
-    metric_throttled_requests_for_operations: typing.Optional[list[AwsDynamodbITableV2DefMetricThrottledRequestsForOperationsParams]] = pydantic.Field(None, description='Metric for throttled requests.')
-    metric_user_errors: typing.Optional[list[AwsDynamodbITableV2DefMetricUserErrorsParams]] = pydantic.Field(None, description='Metric for the user errors.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
+    grant_full_access: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantFullAccessParams]] = pydantic.Field(None, description='Permits all DynamoDB operations ("dynamodb:*") to an IAM principal.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_read_data: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantReadDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data read operations from this table: BatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_read_write_data: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantReadWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal to all data read/write operations to this table.\nBatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan,\nBatchWriteItem, PutItem, UpdateItem, DeleteItem\n\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_stream: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantStreamParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table's stream to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
+    grant_stream_read: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantStreamReadParams]] = pydantic.Field(None, description="Permits an IAM principal all stream data read operations for this table's stream: DescribeStream, GetRecords, GetShardIterator, ListStreams.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.")
+    grant_table_list_streams: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantTableListStreamsParams]] = pydantic.Field(None, description='Permits an IAM Principal to list streams attached to current dynamodb table.')
+    grant_write_data: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefGrantWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data write operations to this table: BatchWriteItem, PutItem, UpdateItem, DeleteItem.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    metric: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricParams]] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_conditional_check_failed_requests: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricConditionalCheckFailedRequestsParams]] = pydantic.Field(None, description='Metric for the conditional check failed requests.')
+    metric_consumed_read_capacity_units: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricConsumedReadCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed read capacity units.')
+    metric_consumed_write_capacity_units: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricConsumedWriteCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed write capacity units.')
+    metric_successful_request_latency: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricSuccessfulRequestLatencyParams]] = pydantic.Field(None, description='Metric for the successful request latency.')
+    metric_system_errors_for_operations: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricSystemErrorsForOperationsParams]] = pydantic.Field(None, description='Metric for the system errors this table.')
+    metric_throttled_requests: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricThrottledRequestsParams]] = pydantic.Field(None, description='(deprecated) Metric for throttled requests.')
+    metric_throttled_requests_for_operations: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricThrottledRequestsForOperationsParams]] = pydantic.Field(None, description='Metric for throttled requests.')
+    metric_user_errors: typing.Optional[list[models._interface_methods.AwsDynamodbITableV2DefMetricUserErrorsParams]] = pydantic.Field(None, description='Metric for the user errors.')
 
 
 class AwsDynamodbITableV2DefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2212,7 +2212,7 @@ class AwsDynamodbITableV2DefMetricUserErrorsParams(pydantic.BaseModel):
 
 
 class AwsEc2IClientVpnEndpointDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IClientVpnEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IClientVpnEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IClientVpnEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2221,14 +2221,14 @@ class AwsEc2IClientVpnEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsEc2IFlowLogDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IFlowLogDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IFlowLogDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IFlowLogDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IGatewayVpcEndpointDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IGatewayVpcEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IGatewayVpcEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IGatewayVpcEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2237,14 +2237,14 @@ class AwsEc2IGatewayVpcEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsEc2IInstanceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IInstanceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IInterfaceVpcEndpointDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IInterfaceVpcEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IInterfaceVpcEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IInterfaceVpcEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2253,7 +2253,7 @@ class AwsEc2IInterfaceVpcEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel)
 
 
 class AwsEc2IIpAddressesDefConfig(pydantic.BaseModel):
-    allocate_subnets_cidr: typing.Optional[list[AwsEc2IIpAddressesDefAllocateSubnetsCidrParams]] = pydantic.Field(None, description="Called by the VPC to retrieve Subnet options from the Ipam.\nDon't call this directly, the VPC will call it automatically.")
+    allocate_subnets_cidr: typing.Optional[list[models._interface_methods.AwsEc2IIpAddressesDefAllocateSubnetsCidrParams]] = pydantic.Field(None, description="Called by the VPC to retrieve Subnet options from the Ipam.\nDon't call this directly, the VPC will call it automatically.")
     allocate_vpc_cidr: typing.Optional[bool] = pydantic.Field(None, description="Called by the VPC to retrieve VPC options from the Ipam.\nDon't call this directly, the VPC will call it automatically.")
 
 
@@ -2262,22 +2262,22 @@ class AwsEc2IIpAddressesDefAllocateSubnetsCidrParams(pydantic.BaseModel):
     vpc_cidr: str = pydantic.Field(..., description='The IPv4 CIDR block for this Vpc.')
 
 class AwsEc2ILaunchTemplateDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2ILaunchTemplateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2ILaunchTemplateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2ILaunchTemplateDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IMachineImageDefConfig(pydantic.BaseModel):
-    get_image: typing.Optional[list[AwsEc2IMachineImageDefGetImageParams]] = pydantic.Field(None, description='Return the image to use in the given context.')
+    get_image: typing.Optional[list[models._interface_methods.AwsEc2IMachineImageDefGetImageParams]] = pydantic.Field(None, description='Return the image to use in the given context.')
 
 
 class AwsEc2IMachineImageDefGetImageParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
 
 class AwsEc2INetworkAclDefConfig(pydantic.BaseModel):
-    add_entry: typing.Optional[list[AwsEc2INetworkAclDefAddEntryParams]] = pydantic.Field(None, description='Add a new entry to the ACL.')
-    apply_removal_policy: typing.Optional[list[AwsEc2INetworkAclDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_entry: typing.Optional[list[models._interface_methods.AwsEc2INetworkAclDefAddEntryParams]] = pydantic.Field(None, description='Add a new entry to the ACL.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2INetworkAclDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2INetworkAclDefAddEntryParams(pydantic.BaseModel):
@@ -2294,7 +2294,7 @@ class AwsEc2INetworkAclDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2INetworkAclEntryDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2INetworkAclEntryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2INetworkAclEntryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2INetworkAclEntryDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2303,22 +2303,22 @@ class AwsEc2INetworkAclEntryDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsEc2IPlacementGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IPlacementGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IPlacementGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IPlacementGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IPrefixListDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IPrefixListDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IPrefixListDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IPrefixListDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IPrivateSubnetDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IPrivateSubnetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    associate_network_acl: typing.Optional[list[AwsEc2IPrivateSubnetDefAssociateNetworkAclParams]] = pydantic.Field(None, description='Associate a Network ACL with this subnet.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IPrivateSubnetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    associate_network_acl: typing.Optional[list[models._interface_methods.AwsEc2IPrivateSubnetDefAssociateNetworkAclParams]] = pydantic.Field(None, description='Associate a Network ACL with this subnet.')
 
 
 class AwsEc2IPrivateSubnetDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2329,8 +2329,8 @@ class AwsEc2IPrivateSubnetDefAssociateNetworkAclParams(pydantic.BaseModel):
     acl: typing.Union[models.aws_ec2.NetworkAclDef] = pydantic.Field(..., description='The Network ACL to associate.')
 
 class AwsEc2IPublicSubnetDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IPublicSubnetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    associate_network_acl: typing.Optional[list[AwsEc2IPublicSubnetDefAssociateNetworkAclParams]] = pydantic.Field(None, description='Associate a Network ACL with this subnet.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IPublicSubnetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    associate_network_acl: typing.Optional[list[models._interface_methods.AwsEc2IPublicSubnetDefAssociateNetworkAclParams]] = pydantic.Field(None, description='Associate a Network ACL with this subnet.')
 
 
 class AwsEc2IPublicSubnetDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2343,9 +2343,9 @@ class AwsEc2IPublicSubnetDefAssociateNetworkAclParams(pydantic.BaseModel):
 
 
 class AwsEc2ISecurityGroupDefConfig(pydantic.BaseModel):
-    add_egress_rule: typing.Optional[list[AwsEc2ISecurityGroupDefAddEgressRuleParams]] = pydantic.Field(None, description='Add an egress rule for the current security group.\n``remoteRule`` controls where the Rule object is created if the peer is also a\nsecurityGroup and they are in different stack. If false (default) the\nrule object is created under the current SecurityGroup object. If true and the\npeer is also a SecurityGroup, the rule object is created under the remote\nSecurityGroup object.')
-    add_ingress_rule: typing.Optional[list[AwsEc2ISecurityGroupDefAddIngressRuleParams]] = pydantic.Field(None, description='Add an ingress rule for the current security group.\n``remoteRule`` controls where the Rule object is created if the peer is also a\nsecurityGroup and they are in different stack. If false (default) the\nrule object is created under the current SecurityGroup object. If true and the\npeer is also a SecurityGroup, the rule object is created under the remote\nSecurityGroup object.')
-    apply_removal_policy: typing.Optional[list[AwsEc2ISecurityGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_egress_rule: typing.Optional[list[models._interface_methods.AwsEc2ISecurityGroupDefAddEgressRuleParams]] = pydantic.Field(None, description='Add an egress rule for the current security group.\n``remoteRule`` controls where the Rule object is created if the peer is also a\nsecurityGroup and they are in different stack. If false (default) the\nrule object is created under the current SecurityGroup object. If true and the\npeer is also a SecurityGroup, the rule object is created under the remote\nSecurityGroup object.')
+    add_ingress_rule: typing.Optional[list[models._interface_methods.AwsEc2ISecurityGroupDefAddIngressRuleParams]] = pydantic.Field(None, description='Add an ingress rule for the current security group.\n``remoteRule`` controls where the Rule object is created if the peer is also a\nsecurityGroup and they are in different stack. If false (default) the\nrule object is created under the current SecurityGroup object. If true and the\npeer is also a SecurityGroup, the rule object is created under the remote\nSecurityGroup object.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2ISecurityGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2ISecurityGroupDefAddEgressRuleParams(pydantic.BaseModel):
@@ -2364,8 +2364,8 @@ class AwsEc2ISecurityGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2ISubnetDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2ISubnetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    associate_network_acl: typing.Optional[list[AwsEc2ISubnetDefAssociateNetworkAclParams]] = pydantic.Field(None, description='Associate a Network ACL with this subnet.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2ISubnetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    associate_network_acl: typing.Optional[list[models._interface_methods.AwsEc2ISubnetDefAssociateNetworkAclParams]] = pydantic.Field(None, description='Associate a Network ACL with this subnet.')
 
 
 class AwsEc2ISubnetDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2376,18 +2376,18 @@ class AwsEc2ISubnetDefAssociateNetworkAclParams(pydantic.BaseModel):
     acl: typing.Union[models.aws_ec2.NetworkAclDef] = pydantic.Field(..., description='The Network ACL to associate.')
 
 class AwsEc2ISubnetNetworkAclAssociationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2ISubnetNetworkAclAssociationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2ISubnetNetworkAclAssociationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2ISubnetNetworkAclAssociationDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IVolumeDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IVolumeDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_attach_volume: typing.Optional[list[AwsEc2IVolumeDefGrantAttachVolumeParams]] = pydantic.Field(None, description='Grants permission to attach this Volume to an instance.\nCAUTION: Granting an instance permission to attach to itself using this method will lead to\nan unresolvable circular reference between the instance role and the instance.\nUse ``IVolume.grantAttachVolumeToSelf`` to grant an instance permission to attach this\nvolume to itself.')
-    grant_attach_volume_by_resource_tag: typing.Optional[list[AwsEc2IVolumeDefGrantAttachVolumeByResourceTagParams]] = pydantic.Field(None, description='Grants permission to attach the Volume by a ResourceTag condition.\nIf you are looking to\ngrant an Instance, AutoScalingGroup, EC2-Fleet, SpotFleet, ECS host, etc the ability to attach\nthis volume to **itself** then this is the method you want to use.\n\nThis is implemented by adding a Tag with key ``VolumeGrantAttach-<suffix>`` to the given\nconstructs and this Volume, and then conditioning the Grant such that the grantee is only\ngiven the ability to AttachVolume if both the Volume and the destination Instance have that\ntag applied to them.')
-    grant_detach_volume: typing.Optional[list[AwsEc2IVolumeDefGrantDetachVolumeParams]] = pydantic.Field(None, description='Grants permission to detach this Volume from an instance CAUTION: Granting an instance permission to detach from itself using this method will lead to an unresolvable circular reference between the instance role and the instance.\nUse ``IVolume.grantDetachVolumeFromSelf`` to grant an instance permission to detach this\nvolume from itself.')
-    grant_detach_volume_by_resource_tag: typing.Optional[list[AwsEc2IVolumeDefGrantDetachVolumeByResourceTagParams]] = pydantic.Field(None, description='Grants permission to detach the Volume by a ResourceTag condition.\nThis is implemented via the same mechanism as ``IVolume.grantAttachVolumeByResourceTag``,\nand is subject to the same conditions.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IVolumeDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_attach_volume: typing.Optional[list[models._interface_methods.AwsEc2IVolumeDefGrantAttachVolumeParams]] = pydantic.Field(None, description='Grants permission to attach this Volume to an instance.\nCAUTION: Granting an instance permission to attach to itself using this method will lead to\nan unresolvable circular reference between the instance role and the instance.\nUse ``IVolume.grantAttachVolumeToSelf`` to grant an instance permission to attach this\nvolume to itself.')
+    grant_attach_volume_by_resource_tag: typing.Optional[list[models._interface_methods.AwsEc2IVolumeDefGrantAttachVolumeByResourceTagParams]] = pydantic.Field(None, description='Grants permission to attach the Volume by a ResourceTag condition.\nIf you are looking to\ngrant an Instance, AutoScalingGroup, EC2-Fleet, SpotFleet, ECS host, etc the ability to attach\nthis volume to **itself** then this is the method you want to use.\n\nThis is implemented by adding a Tag with key ``VolumeGrantAttach-<suffix>`` to the given\nconstructs and this Volume, and then conditioning the Grant such that the grantee is only\ngiven the ability to AttachVolume if both the Volume and the destination Instance have that\ntag applied to them.')
+    grant_detach_volume: typing.Optional[list[models._interface_methods.AwsEc2IVolumeDefGrantDetachVolumeParams]] = pydantic.Field(None, description='Grants permission to detach this Volume from an instance CAUTION: Granting an instance permission to detach from itself using this method will lead to an unresolvable circular reference between the instance role and the instance.\nUse ``IVolume.grantDetachVolumeFromSelf`` to grant an instance permission to detach this\nvolume from itself.')
+    grant_detach_volume_by_resource_tag: typing.Optional[list[models._interface_methods.AwsEc2IVolumeDefGrantDetachVolumeByResourceTagParams]] = pydantic.Field(None, description='Grants permission to detach the Volume by a ResourceTag condition.\nThis is implemented via the same mechanism as ``IVolume.grantAttachVolumeByResourceTag``,\nand is subject to the same conditions.')
 
 
 class AwsEc2IVolumeDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2416,14 +2416,14 @@ class AwsEc2IVolumeDefGrantDetachVolumeByResourceTagParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEc2IVpcDefConfig(pydantic.BaseModel):
-    add_client_vpn_endpoint: typing.Optional[list[AwsEc2IVpcDefAddClientVpnEndpointParams]] = pydantic.Field(None, description='Adds a new client VPN endpoint to this VPC.')
-    add_flow_log: typing.Optional[list[AwsEc2IVpcDefAddFlowLogParams]] = pydantic.Field(None, description='Adds a new Flow Log to this VPC.')
-    add_gateway_endpoint: typing.Optional[list[AwsEc2IVpcDefAddGatewayEndpointParams]] = pydantic.Field(None, description='Adds a new gateway endpoint to this VPC.')
-    add_interface_endpoint: typing.Optional[list[AwsEc2IVpcDefAddInterfaceEndpointParams]] = pydantic.Field(None, description='Adds a new interface endpoint to this VPC.')
-    add_vpn_connection: typing.Optional[list[AwsEc2IVpcDefAddVpnConnectionParams]] = pydantic.Field(None, description='Adds a new VPN connection to this VPC.')
-    apply_removal_policy: typing.Optional[list[AwsEc2IVpcDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    enable_vpn_gateway: typing.Optional[list[AwsEc2IVpcDefEnableVpnGatewayParams]] = pydantic.Field(None, description='Adds a VPN Gateway to this VPC.')
-    select_subnets: typing.Optional[list[AwsEc2IVpcDefSelectSubnetsParams]] = pydantic.Field(None, description='Return information on the subnets appropriate for the given selection strategy.\nRequires that at least one subnet is matched, throws a descriptive\nerror message otherwise.')
+    add_client_vpn_endpoint: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefAddClientVpnEndpointParams]] = pydantic.Field(None, description='Adds a new client VPN endpoint to this VPC.')
+    add_flow_log: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefAddFlowLogParams]] = pydantic.Field(None, description='Adds a new Flow Log to this VPC.')
+    add_gateway_endpoint: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefAddGatewayEndpointParams]] = pydantic.Field(None, description='Adds a new gateway endpoint to this VPC.')
+    add_interface_endpoint: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefAddInterfaceEndpointParams]] = pydantic.Field(None, description='Adds a new interface endpoint to this VPC.')
+    add_vpn_connection: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefAddVpnConnectionParams]] = pydantic.Field(None, description='Adds a new VPN connection to this VPC.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    enable_vpn_gateway: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefEnableVpnGatewayParams]] = pydantic.Field(None, description='Adds a VPN Gateway to this VPC.')
+    select_subnets: typing.Optional[list[models._interface_methods.AwsEc2IVpcDefSelectSubnetsParams]] = pydantic.Field(None, description='Return information on the subnets appropriate for the given selection strategy.\nRequires that at least one subnet is matched, throws a descriptive\nerror message otherwise.')
 
 
 class AwsEc2IVpcDefAddClientVpnEndpointParams(pydantic.BaseModel):
@@ -2498,14 +2498,14 @@ class AwsEc2IVpcDefSelectSubnetsParams(pydantic.BaseModel):
     subnet_type: typing.Optional[aws_cdk.aws_ec2.SubnetType] = pydantic.Field(None, description='Select all subnets of the given type. At most one of ``subnetType`` and ``subnetGroupName`` can be supplied. Default: SubnetType.PRIVATE_WITH_EGRESS (or ISOLATED or PUBLIC if there are no PRIVATE_WITH_EGRESS subnets)')
 
 class AwsEc2IVpcEndpointDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IVpcEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IVpcEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IVpcEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IVpcEndpointServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IVpcEndpointServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IVpcEndpointServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IVpcEndpointServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2514,11 +2514,11 @@ class AwsEc2IVpcEndpointServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsEc2IVpnConnectionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IVpnConnectionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    metric: typing.Optional[list[AwsEc2IVpnConnectionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this VPNConnection.')
-    metric_tunnel_data_in: typing.Optional[list[AwsEc2IVpnConnectionDefMetricTunnelDataInParams]] = pydantic.Field(None, description='The bytes received through the VPN tunnel.\nSum over 5 minutes')
-    metric_tunnel_data_out: typing.Optional[list[AwsEc2IVpnConnectionDefMetricTunnelDataOutParams]] = pydantic.Field(None, description='The bytes sent through the VPN tunnel.\nSum over 5 minutes')
-    metric_tunnel_state: typing.Optional[list[AwsEc2IVpnConnectionDefMetricTunnelStateParams]] = pydantic.Field(None, description='The state of the tunnel. 0 indicates DOWN and 1 indicates UP.\nAverage over 5 minutes')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IVpnConnectionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsEc2IVpnConnectionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this VPNConnection.')
+    metric_tunnel_data_in: typing.Optional[list[models._interface_methods.AwsEc2IVpnConnectionDefMetricTunnelDataInParams]] = pydantic.Field(None, description='The bytes received through the VPN tunnel.\nSum over 5 minutes')
+    metric_tunnel_data_out: typing.Optional[list[models._interface_methods.AwsEc2IVpnConnectionDefMetricTunnelDataOutParams]] = pydantic.Field(None, description='The bytes sent through the VPN tunnel.\nSum over 5 minutes')
+    metric_tunnel_state: typing.Optional[list[models._interface_methods.AwsEc2IVpnConnectionDefMetricTunnelStateParams]] = pydantic.Field(None, description='The state of the tunnel. 0 indicates DOWN and 1 indicates UP.\nAverage over 5 minutes')
 
 
 class AwsEc2IVpnConnectionDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -2570,27 +2570,27 @@ class AwsEc2IVpnConnectionDefMetricTunnelStateParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsEc2IVpnGatewayDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEc2IVpnGatewayDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IVpnGatewayDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEc2IVpnGatewayDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcrIRepositoryDefConfig(pydantic.BaseModel):
-    add_to_resource_policy: typing.Optional[list[AwsEcrIRepositoryDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a policy statement to the repository's resource policy.")
-    apply_removal_policy: typing.Optional[list[AwsEcrIRepositoryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsEcrIRepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
-    grant_pull: typing.Optional[list[AwsEcrIRepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull images in this repository.')
-    grant_pull_push: typing.Optional[list[AwsEcrIRepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
-    grant_push: typing.Optional[list[AwsEcrIRepositoryDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to push images in this repository.')
-    grant_read: typing.Optional[list[AwsEcrIRepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read images in this repository.')
-    on_cloud_trail_event: typing.Optional[list[AwsEcrIRepositoryDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_cloud_trail_image_pushed: typing.Optional[list[AwsEcrIRepositoryDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_event: typing.Optional[list[AwsEcrIRepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
-    on_image_scan_completed: typing.Optional[list[AwsEcrIRepositoryDefOnImageScanCompletedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when the image scan is completed.')
-    repository_uri_for_digest: typing.Optional[list[AwsEcrIRepositoryDefRepositoryUriForDigestParams]] = pydantic.Field(None, description='Returns the URI of the repository for a certain digest. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
-    repository_uri_for_tag: typing.Optional[list[AwsEcrIRepositoryDefRepositoryUriForTagParams]] = pydantic.Field(None, description='Returns the URI of the repository for a certain tag. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]')
-    repository_uri_for_tag_or_digest: typing.Optional[list[AwsEcrIRepositoryDefRepositoryUriForTagOrDigestParams]] = pydantic.Field(None, description='Returns the URI of the repository for a certain tag or digest, inferring based on the syntax of the tag.\nCan be used in ``docker push/pull``.\n\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a policy statement to the repository's resource policy.")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
+    grant_pull: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull images in this repository.')
+    grant_pull_push: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
+    grant_push: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to push images in this repository.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read images in this repository.')
+    on_cloud_trail_event: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_cloud_trail_image_pushed: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_event: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    on_image_scan_completed: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefOnImageScanCompletedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when the image scan is completed.')
+    repository_uri_for_digest: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefRepositoryUriForDigestParams]] = pydantic.Field(None, description='Returns the URI of the repository for a certain digest. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
+    repository_uri_for_tag: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefRepositoryUriForTagParams]] = pydantic.Field(None, description='Returns the URI of the repository for a certain tag. Can be used in ``docker push/pull``.\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]')
+    repository_uri_for_tag_or_digest: typing.Optional[list[models._interface_methods.AwsEcrIRepositoryDefRepositoryUriForTagOrDigestParams]] = pydantic.Field(None, description='Returns the URI of the repository for a certain tag or digest, inferring based on the syntax of the tag.\nCan be used in ``docker push/pull``.\n\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[:TAG]\nACCOUNT.dkr.ecr.REGION.amazonaws.com/REPOSITORY[@DIGEST]')
 
 
 class AwsEcrIRepositoryDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -2668,37 +2668,37 @@ class AwsEcrIRepositoryDefRepositoryUriForTagOrDigestParams(pydantic.BaseModel):
     tag_or_digest: typing.Optional[str] = pydantic.Field(None, description='Image tag or digest to use (tools usually default to the image with the "latest" tag if omitted).')
 
 class AwsEcsIBaseServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIBaseServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIBaseServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIBaseServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIClusterDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIClusterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIEc2ServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIEc2ServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIEc2ServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIEc2ServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIEc2TaskDefinitionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIEc2TaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIEc2TaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIEc2TaskDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIEcsLoadBalancerTargetDefConfig(pydantic.BaseModel):
-    attach_to_application_target_group: typing.Optional[list[AwsEcsIEcsLoadBalancerTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
-    attach_to_classic_lb: typing.Optional[list[AwsEcsIEcsLoadBalancerTargetDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach load-balanced target to a classic ELB.')
-    attach_to_network_target_group: typing.Optional[list[AwsEcsIEcsLoadBalancerTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
+    attach_to_application_target_group: typing.Optional[list[models._interface_methods.AwsEcsIEcsLoadBalancerTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
+    attach_to_classic_lb: typing.Optional[list[models._interface_methods.AwsEcsIEcsLoadBalancerTargetDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach load-balanced target to a classic ELB.')
+    attach_to_network_target_group: typing.Optional[list[models._interface_methods.AwsEcsIEcsLoadBalancerTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
 
 
 class AwsEcsIEcsLoadBalancerTargetDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
@@ -2711,68 +2711,68 @@ class AwsEcsIEcsLoadBalancerTargetDefAttachToNetworkTargetGroupParams(pydantic.B
     target_group: typing.Union[models.aws_elasticloadbalancingv2.NetworkTargetGroupDef] = pydantic.Field(..., description='-')
 
 class AwsEcsIExternalServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIExternalServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIExternalServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIExternalServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIExternalTaskDefinitionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIExternalTaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIExternalTaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIExternalTaskDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIFargateServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIFargateServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIFargateServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIFargateServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIFargateTaskDefinitionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIFargateTaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIFargateTaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIFargateTaskDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsIServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsIServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsIServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsIServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsITaskDefinitionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEcsITaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEcsITaskDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEcsITaskDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcsITaskDefinitionExtensionDefConfig(pydantic.BaseModel):
-    extend: typing.Optional[list[AwsEcsITaskDefinitionExtensionDefExtendParams]] = pydantic.Field(None, description='Apply the extension to the given TaskDefinition.')
+    extend: typing.Optional[list[models._interface_methods.AwsEcsITaskDefinitionExtensionDefExtendParams]] = pydantic.Field(None, description='Apply the extension to the given TaskDefinition.')
 
 
 class AwsEcsITaskDefinitionExtensionDefExtendParams(pydantic.BaseModel):
     task_definition: models.aws_ecs.TaskDefinitionDef = pydantic.Field(..., description='[disable-awslint:ref-via-interface].')
 
 class AwsEfsIAccessPointDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEfsIAccessPointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEfsIAccessPointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEfsIAccessPointDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEfsIFileSystemDefConfig(pydantic.BaseModel):
-    add_to_resource_policy: typing.Optional[list[AwsEfsIFileSystemDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
-    apply_removal_policy: typing.Optional[list[AwsEfsIFileSystemDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsEfsIFileSystemDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this File System resource.')
-    grant_read: typing.Optional[list[AwsEfsIFileSystemDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this file system to an IAM principal.')
-    grant_read_write: typing.Optional[list[AwsEfsIFileSystemDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read and write permissions for this file system to an IAM principal.')
-    grant_root_access: typing.Optional[list[AwsEfsIFileSystemDefGrantRootAccessParams]] = pydantic.Field(None, description='As root user, grant read and write permissions for this file system to an IAM principal.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsEfsIFileSystemDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEfsIFileSystemDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsEfsIFileSystemDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this File System resource.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsEfsIFileSystemDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this file system to an IAM principal.')
+    grant_read_write: typing.Optional[list[models._interface_methods.AwsEfsIFileSystemDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read and write permissions for this file system to an IAM principal.')
+    grant_root_access: typing.Optional[list[models._interface_methods.AwsEfsIFileSystemDefGrantRootAccessParams]] = pydantic.Field(None, description='As root user, grant read and write permissions for this file system to an IAM principal.')
 
 
 class AwsEfsIFileSystemDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -2799,12 +2799,12 @@ class AwsEfsIFileSystemDefGrantRootAccessParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEksIClusterDefConfig(pydantic.BaseModel):
-    add_cdk8s_chart: typing.Optional[list[AwsEksIClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
-    add_helm_chart: typing.Optional[list[AwsEksIClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
-    add_manifest: typing.Optional[list[AwsEksIClusterDefAddManifestParams]] = pydantic.Field(None, description='Defines a Kubernetes resource in this cluster.\nThe manifest will be applied/deleted using kubectl as needed.')
-    add_service_account: typing.Optional[list[AwsEksIClusterDefAddServiceAccountParams]] = pydantic.Field(None, description='Creates a new service account with corresponding IAM Role (IRSA).')
-    apply_removal_policy: typing.Optional[list[AwsEksIClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    connect_auto_scaling_group_capacity: typing.Optional[list[AwsEksIClusterDefConnectAutoScalingGroupCapacityParams]] = pydantic.Field(None, description="Connect capacity in the form of an existing AutoScalingGroup to the EKS cluster.\nThe AutoScalingGroup must be running an EKS-optimized AMI containing the\n/etc/eks/bootstrap.sh script. This method will configure Security Groups,\nadd the right policies to the instance role, apply the right tags, and add\nthe required user data to the instance's launch configuration.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIf kubectl is enabled, the\n`spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.\n\nPrefer to use ``addAutoScalingGroupCapacity`` if possible.")
+    add_cdk8s_chart: typing.Optional[list[models._interface_methods.AwsEksIClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
+    add_helm_chart: typing.Optional[list[models._interface_methods.AwsEksIClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
+    add_manifest: typing.Optional[list[models._interface_methods.AwsEksIClusterDefAddManifestParams]] = pydantic.Field(None, description='Defines a Kubernetes resource in this cluster.\nThe manifest will be applied/deleted using kubectl as needed.')
+    add_service_account: typing.Optional[list[models._interface_methods.AwsEksIClusterDefAddServiceAccountParams]] = pydantic.Field(None, description='Creates a new service account with corresponding IAM Role (IRSA).')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEksIClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    connect_auto_scaling_group_capacity: typing.Optional[list[models._interface_methods.AwsEksIClusterDefConnectAutoScalingGroupCapacityParams]] = pydantic.Field(None, description="Connect capacity in the form of an existing AutoScalingGroup to the EKS cluster.\nThe AutoScalingGroup must be running an EKS-optimized AMI containing the\n/etc/eks/bootstrap.sh script. This method will configure Security Groups,\nadd the right policies to the instance role, apply the right tags, and add\nthe required user data to the instance's launch configuration.\n\nSpot instances will be labeled ``lifecycle=Ec2Spot`` and tainted with ``PreferNoSchedule``.\nIf kubectl is enabled, the\n`spot interrupt handler <https://github.com/awslabs/ec2-spot-labs/tree/master/ec2-spot-eks-solution/spot-termination-handler>`_\ndaemon will be installed on all spot instances to handle\n`EC2 Spot Instance Termination Notices <https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/>`_.\n\nPrefer to use ``addAutoScalingGroupCapacity`` if possible.")
 
 
 class AwsEksIClusterDefAddCdk8SChartParams(pydantic.BaseModel):
@@ -2855,26 +2855,26 @@ class AwsEksIClusterDefConnectAutoScalingGroupCapacityParams(pydantic.BaseModel)
 
 
 class AwsEksINodegroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEksINodegroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEksINodegroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEksINodegroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingILoadBalancerTargetDefConfig(pydantic.BaseModel):
-    attach_to_classic_lb: typing.Optional[list[AwsElasticloadbalancingILoadBalancerTargetDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach load-balanced target to a classic ELB.')
+    attach_to_classic_lb: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingILoadBalancerTargetDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach load-balanced target to a classic ELB.')
 
 
 class AwsElasticloadbalancingILoadBalancerTargetDefAttachToClassicLbParams(pydantic.BaseModel):
     load_balancer: models.aws_elasticloadbalancing.LoadBalancerDef = pydantic.Field(..., description='[disable-awslint:ref-via-interface] The load balancer to attach the target to.')
 
 class AwsElasticloadbalancingv2IApplicationListenerDefConfig(pydantic.BaseModel):
-    add_action: typing.Optional[list[AwsElasticloadbalancingv2IApplicationListenerDefAddActionParams]] = pydantic.Field(None, description="Perform the given action on incoming requests.\nThis allows full control of the default action of the load balancer,\nincluding Action chaining, fixed responses and redirect responses. See\nthe ``ListenerAction`` class for all options.\n\nIt's possible to add routing conditions to the Action added in this way.\n\nIt is not possible to add a default action to an imported IApplicationListener.\nIn order to add actions to an imported IApplicationListener a ``priority``\nmust be provided.")
-    add_certificates: typing.Optional[list[AwsElasticloadbalancingv2IApplicationListenerDefAddCertificatesParams]] = pydantic.Field(None, description='Add one or more certificates to this listener.')
-    add_target_groups: typing.Optional[list[AwsElasticloadbalancingv2IApplicationListenerDefAddTargetGroupsParams]] = pydantic.Field(None, description="Load balance incoming requests to the given target groups.\nIt's possible to add conditions to the TargetGroups added in this way.\nAt least one TargetGroup must be added without conditions.")
-    add_targets: typing.Optional[list[AwsElasticloadbalancingv2IApplicationListenerDefAddTargetsParams]] = pydantic.Field(None, description="Load balance incoming requests to the given load balancing targets.\nThis method implicitly creates an ApplicationTargetGroup for the targets\ninvolved.\n\nIt's possible to add conditions to the targets added in this way. At least\none set of targets must be added without conditions.")
-    apply_removal_policy: typing.Optional[list[AwsElasticloadbalancingv2IApplicationListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    register_connectable: typing.Optional[list[AwsElasticloadbalancingv2IApplicationListenerDefRegisterConnectableParams]] = pydantic.Field(None, description="Register that a connectable that has been added to this load balancer.\nDon't call this directly. It is called by ApplicationTargetGroup.")
+    add_action: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationListenerDefAddActionParams]] = pydantic.Field(None, description="Perform the given action on incoming requests.\nThis allows full control of the default action of the load balancer,\nincluding Action chaining, fixed responses and redirect responses. See\nthe ``ListenerAction`` class for all options.\n\nIt's possible to add routing conditions to the Action added in this way.\n\nIt is not possible to add a default action to an imported IApplicationListener.\nIn order to add actions to an imported IApplicationListener a ``priority``\nmust be provided.")
+    add_certificates: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationListenerDefAddCertificatesParams]] = pydantic.Field(None, description='Add one or more certificates to this listener.')
+    add_target_groups: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationListenerDefAddTargetGroupsParams]] = pydantic.Field(None, description="Load balance incoming requests to the given target groups.\nIt's possible to add conditions to the TargetGroups added in this way.\nAt least one TargetGroup must be added without conditions.")
+    add_targets: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationListenerDefAddTargetsParams]] = pydantic.Field(None, description="Load balance incoming requests to the given load balancing targets.\nThis method implicitly creates an ApplicationTargetGroup for the targets\ninvolved.\n\nIt's possible to add conditions to the targets added in this way. At least\none set of targets must be added without conditions.")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    register_connectable: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationListenerDefRegisterConnectableParams]] = pydantic.Field(None, description="Register that a connectable that has been added to this load balancer.\nDon't call this directly. It is called by ApplicationTargetGroup.")
 
 
 class AwsElasticloadbalancingv2IApplicationListenerDefAddActionParams(pydantic.BaseModel):
@@ -2918,8 +2918,8 @@ class AwsElasticloadbalancingv2IApplicationListenerDefRegisterConnectableParams(
     port_range: models.aws_ec2.PortDef = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerDefConfig(pydantic.BaseModel):
-    add_listener: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerDefAddListenerParams]] = pydantic.Field(None, description='Add a new listener to this load balancer.')
-    apply_removal_policy: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_listener: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerDefAddListenerParams]] = pydantic.Field(None, description='Add a new listener to this load balancer.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerDefAddListenerParams(pydantic.BaseModel):
@@ -2937,29 +2937,29 @@ class AwsElasticloadbalancingv2IApplicationLoadBalancerDefApplyRemovalPolicyPara
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefConfig(pydantic.BaseModel):
-    active_connection_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefActiveConnectionCountParams]] = pydantic.Field(None, description='The total number of concurrent TCP connections active from clients to the load balancer and from the load balancer to targets.')
-    client_tls_negotiation_error_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefClientTlsNegotiationErrorCountParams]] = pydantic.Field(None, description='The number of TLS connections initiated by the client that did not establish a session with the load balancer.\nPossible causes include a\nmismatch of ciphers or protocols.')
-    consumed_lc_us: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefConsumedLcUsParams]] = pydantic.Field(None, description='The number of load balancer capacity units (LCU) used by your load balancer.')
-    custom: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Application Load Balancer.')
-    elb_auth_error: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthErrorParams]] = pydantic.Field(None, description="The number of user authentications that could not be completed.\nBecause an authenticate action was misconfigured, the load balancer\ncouldn't establish a connection with the IdP, or the load balancer\ncouldn't complete the authentication flow due to an internal error.")
-    elb_auth_failure: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthFailureParams]] = pydantic.Field(None, description='The number of user authentications that could not be completed because the IdP denied access to the user or an authorization code was used more than once.')
-    elb_auth_latency: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthLatencyParams]] = pydantic.Field(None, description='The time elapsed, in milliseconds, to query the IdP for the ID token and user info.\nIf one or more of these operations fail, this is the time to failure.')
-    elb_auth_success: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthSuccessParams]] = pydantic.Field(None, description='The number of authenticate actions that were successful.\nThis metric is incremented at the end of the authentication workflow,\nafter the load balancer has retrieved the user claims from the IdP.')
-    http_code_elb: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpCodeElbParams]] = pydantic.Field(None, description='The number of HTTP 3xx/4xx/5xx codes that originate from the load balancer.\nThis does not include any response codes generated by the targets.')
-    http_code_target: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpCodeTargetParams]] = pydantic.Field(None, description='The number of HTTP 2xx/3xx/4xx/5xx response codes generated by all targets in the load balancer.\nThis does not include any response codes generated by the load balancer.')
-    http_fixed_response_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpFixedResponseCountParams]] = pydantic.Field(None, description='The number of fixed-response actions that were successful.')
-    http_redirect_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpRedirectCountParams]] = pydantic.Field(None, description='The number of redirect actions that were successful.')
-    http_redirect_url_limit_exceeded_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpRedirectUrlLimitExceededCountParams]] = pydantic.Field(None, description="The number of redirect actions that couldn't be completed because the URL in the response location header is larger than 8K.")
-    ipv6_processed_bytes: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefIpv6ProcessedBytesParams]] = pydantic.Field(None, description='The total number of bytes processed by the load balancer over IPv6.')
-    ipv6_request_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefIpv6RequestCountParams]] = pydantic.Field(None, description='The number of IPv6 requests received by the load balancer.')
-    new_connection_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefNewConnectionCountParams]] = pydantic.Field(None, description='The total number of new TCP connections established from clients to the load balancer and from the load balancer to targets.')
-    processed_bytes: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefProcessedBytesParams]] = pydantic.Field(None, description='The total number of bytes processed by the load balancer over IPv4 and IPv6.')
-    rejected_connection_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefRejectedConnectionCountParams]] = pydantic.Field(None, description='The number of connections that were rejected because the load balancer had reached its maximum number of connections.')
-    request_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefRequestCountParams]] = pydantic.Field(None, description='The number of requests processed over IPv4 and IPv6.\nThis count includes only the requests with a response generated by a target of the load balancer.')
-    rule_evaluations: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefRuleEvaluationsParams]] = pydantic.Field(None, description='The number of rules processed by the load balancer given a request rate averaged over an hour.')
-    target_connection_error_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetConnectionErrorCountParams]] = pydantic.Field(None, description='The number of connections that were not successfully established between the load balancer and target.')
-    target_response_time: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetResponseTimeParams]] = pydantic.Field(None, description='The time elapsed, in seconds, after the request leaves the load balancer until a response from the target is received.')
-    target_tls_negotiation_error_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetTlsNegotiationErrorCountParams]] = pydantic.Field(None, description='The number of TLS connections initiated by the load balancer that did not establish a session with the target.\nPossible causes include a mismatch of ciphers or protocols.')
+    active_connection_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefActiveConnectionCountParams]] = pydantic.Field(None, description='The total number of concurrent TCP connections active from clients to the load balancer and from the load balancer to targets.')
+    client_tls_negotiation_error_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefClientTlsNegotiationErrorCountParams]] = pydantic.Field(None, description='The number of TLS connections initiated by the client that did not establish a session with the load balancer.\nPossible causes include a\nmismatch of ciphers or protocols.')
+    consumed_lc_us: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefConsumedLcUsParams]] = pydantic.Field(None, description='The number of load balancer capacity units (LCU) used by your load balancer.')
+    custom: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Application Load Balancer.')
+    elb_auth_error: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthErrorParams]] = pydantic.Field(None, description="The number of user authentications that could not be completed.\nBecause an authenticate action was misconfigured, the load balancer\ncouldn't establish a connection with the IdP, or the load balancer\ncouldn't complete the authentication flow due to an internal error.")
+    elb_auth_failure: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthFailureParams]] = pydantic.Field(None, description='The number of user authentications that could not be completed because the IdP denied access to the user or an authorization code was used more than once.')
+    elb_auth_latency: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthLatencyParams]] = pydantic.Field(None, description='The time elapsed, in milliseconds, to query the IdP for the ID token and user info.\nIf one or more of these operations fail, this is the time to failure.')
+    elb_auth_success: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefElbAuthSuccessParams]] = pydantic.Field(None, description='The number of authenticate actions that were successful.\nThis metric is incremented at the end of the authentication workflow,\nafter the load balancer has retrieved the user claims from the IdP.')
+    http_code_elb: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpCodeElbParams]] = pydantic.Field(None, description='The number of HTTP 3xx/4xx/5xx codes that originate from the load balancer.\nThis does not include any response codes generated by the targets.')
+    http_code_target: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpCodeTargetParams]] = pydantic.Field(None, description='The number of HTTP 2xx/3xx/4xx/5xx response codes generated by all targets in the load balancer.\nThis does not include any response codes generated by the load balancer.')
+    http_fixed_response_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpFixedResponseCountParams]] = pydantic.Field(None, description='The number of fixed-response actions that were successful.')
+    http_redirect_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpRedirectCountParams]] = pydantic.Field(None, description='The number of redirect actions that were successful.')
+    http_redirect_url_limit_exceeded_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefHttpRedirectUrlLimitExceededCountParams]] = pydantic.Field(None, description="The number of redirect actions that couldn't be completed because the URL in the response location header is larger than 8K.")
+    ipv6_processed_bytes: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefIpv6ProcessedBytesParams]] = pydantic.Field(None, description='The total number of bytes processed by the load balancer over IPv6.')
+    ipv6_request_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefIpv6RequestCountParams]] = pydantic.Field(None, description='The number of IPv6 requests received by the load balancer.')
+    new_connection_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefNewConnectionCountParams]] = pydantic.Field(None, description='The total number of new TCP connections established from clients to the load balancer and from the load balancer to targets.')
+    processed_bytes: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefProcessedBytesParams]] = pydantic.Field(None, description='The total number of bytes processed by the load balancer over IPv4 and IPv6.')
+    rejected_connection_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefRejectedConnectionCountParams]] = pydantic.Field(None, description='The number of connections that were rejected because the load balancer had reached its maximum number of connections.')
+    request_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefRequestCountParams]] = pydantic.Field(None, description='The number of requests processed over IPv4 and IPv6.\nThis count includes only the requests with a response generated by a target of the load balancer.')
+    rule_evaluations: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefRuleEvaluationsParams]] = pydantic.Field(None, description='The number of rules processed by the load balancer given a request rate averaged over an hour.')
+    target_connection_error_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetConnectionErrorCountParams]] = pydantic.Field(None, description='The number of connections that were not successfully established between the load balancer and target.')
+    target_response_time: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetResponseTimeParams]] = pydantic.Field(None, description='The time elapsed, in seconds, after the request leaves the load balancer until a response from the target is received.')
+    target_tls_negotiation_error_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetTlsNegotiationErrorCountParams]] = pydantic.Field(None, description='The number of TLS connections initiated by the load balancer that did not establish a session with the target.\nPossible causes include a mismatch of ciphers or protocols.')
 
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefActiveConnectionCountParams(pydantic.BaseModel):
@@ -3219,16 +3219,16 @@ class AwsElasticloadbalancingv2IApplicationLoadBalancerMetricsDefTargetTlsNegoti
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerTargetDefConfig(pydantic.BaseModel):
-    attach_to_application_target_group: typing.Optional[list[AwsElasticloadbalancingv2IApplicationLoadBalancerTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
+    attach_to_application_target_group: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationLoadBalancerTargetDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
 
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerTargetDefAttachToApplicationTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.ApplicationTargetGroupDef] = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupDefConfig(pydantic.BaseModel):
-    add_target: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupDefAddTargetParams]] = pydantic.Field(None, description='Add a load balancing target to this target group.')
-    register_connectable: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterConnectableParams]] = pydantic.Field(None, description="Register a connectable as a member of this target group.\nDon't call this directly. It will be called by load balancing targets.")
-    register_listener: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterListenerParams]] = pydantic.Field(None, description="Register a listener that is load balancing to this target group.\nDon't call this directly. It will be called by listeners.")
+    add_target: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupDefAddTargetParams]] = pydantic.Field(None, description='Add a load balancing target to this target group.')
+    register_connectable: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterConnectableParams]] = pydantic.Field(None, description="Register a connectable as a member of this target group.\nDon't call this directly. It will be called by load balancing targets.")
+    register_listener: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterListenerParams]] = pydantic.Field(None, description="Register a listener that is load balancing to this target group.\nDon't call this directly. It will be called by listeners.")
 
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupDefAddTargetParams(pydantic.BaseModel):
@@ -3243,16 +3243,16 @@ class AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterListenerParams(
     associating_construct: typing.Optional[models.AnyResource] = pydantic.Field(None, description='-')
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Network Target Group.')
-    healthy_host_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefHealthyHostCountParams]] = pydantic.Field(None, description='The number of healthy hosts in the target group.')
-    http_code_target: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefHttpCodeTargetParams]] = pydantic.Field(None, description='The number of HTTP 2xx/3xx/4xx/5xx response codes generated by all targets in this target group.\nThis does not include any response codes generated by the load balancer.')
-    ipv6_request_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefIpv6RequestCountParams]] = pydantic.Field(None, description='The number of IPv6 requests received by the target group.')
-    request_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefRequestCountParams]] = pydantic.Field(None, description='The number of requests processed over IPv4 and IPv6.\nThis count includes only the requests with a response generated by a target of the load balancer.')
-    request_count_per_target: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefRequestCountPerTargetParams]] = pydantic.Field(None, description='The average number of requests received by each target in a target group.\nThe only valid statistic is Sum. Note that this represents the average not the sum.')
-    target_connection_error_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefTargetConnectionErrorCountParams]] = pydantic.Field(None, description='The number of connections that were not successfully established between the load balancer and target.')
-    target_response_time: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefTargetResponseTimeParams]] = pydantic.Field(None, description='The time elapsed, in seconds, after the request leaves the load balancer until a response from the target is received.')
-    target_tls_negotiation_error_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefTargetTlsNegotiationErrorCountParams]] = pydantic.Field(None, description='The number of TLS connections initiated by the load balancer that did not establish a session with the target.\nPossible causes include a mismatch of ciphers or protocols.')
-    unhealthy_host_count: typing.Optional[list[AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefUnhealthyHostCountParams]] = pydantic.Field(None, description='The number of unhealthy hosts in the target group.')
+    custom: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Network Target Group.')
+    healthy_host_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefHealthyHostCountParams]] = pydantic.Field(None, description='The number of healthy hosts in the target group.')
+    http_code_target: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefHttpCodeTargetParams]] = pydantic.Field(None, description='The number of HTTP 2xx/3xx/4xx/5xx response codes generated by all targets in this target group.\nThis does not include any response codes generated by the load balancer.')
+    ipv6_request_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefIpv6RequestCountParams]] = pydantic.Field(None, description='The number of IPv6 requests received by the target group.')
+    request_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefRequestCountParams]] = pydantic.Field(None, description='The number of requests processed over IPv4 and IPv6.\nThis count includes only the requests with a response generated by a target of the load balancer.')
+    request_count_per_target: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefRequestCountPerTargetParams]] = pydantic.Field(None, description='The average number of requests received by each target in a target group.\nThe only valid statistic is Sum. Note that this represents the average not the sum.')
+    target_connection_error_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefTargetConnectionErrorCountParams]] = pydantic.Field(None, description='The number of connections that were not successfully established between the load balancer and target.')
+    target_response_time: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefTargetResponseTimeParams]] = pydantic.Field(None, description='The time elapsed, in seconds, after the request leaves the load balancer until a response from the target is received.')
+    target_tls_negotiation_error_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefTargetTlsNegotiationErrorCountParams]] = pydantic.Field(None, description='The number of TLS connections initiated by the load balancer that did not establish a session with the target.\nPossible causes include a mismatch of ciphers or protocols.')
+    unhealthy_host_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefUnhealthyHostCountParams]] = pydantic.Field(None, description='The number of unhealthy hosts in the target group.')
 
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefCustomParams(pydantic.BaseModel):
@@ -3368,7 +3368,7 @@ class AwsElasticloadbalancingv2IApplicationTargetGroupMetricsDefUnhealthyHostCou
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsElasticloadbalancingv2IListenerDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsElasticloadbalancingv2IListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2IListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsElasticloadbalancingv2IListenerDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -3382,22 +3382,22 @@ class AwsElasticloadbalancingv2IListenerActionDefConfig(pydantic.BaseModel):
 
 
 class AwsElasticloadbalancingv2ILoadBalancerV2DefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsElasticloadbalancingv2ILoadBalancerV2DefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2ILoadBalancerV2DefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsElasticloadbalancingv2ILoadBalancerV2DefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2INetworkListenerDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsElasticloadbalancingv2INetworkListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsElasticloadbalancingv2INetworkListenerDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2INetworkLoadBalancerDefConfig(pydantic.BaseModel):
-    add_listener: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerDefAddListenerParams]] = pydantic.Field(None, description='Add a listener to this load balancer.')
-    apply_removal_policy: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_listener: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerDefAddListenerParams]] = pydantic.Field(None, description='Add a listener to this load balancer.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsElasticloadbalancingv2INetworkLoadBalancerDefAddListenerParams(pydantic.BaseModel):
@@ -3415,14 +3415,14 @@ class AwsElasticloadbalancingv2INetworkLoadBalancerDefApplyRemovalPolicyParams(p
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefConfig(pydantic.BaseModel):
-    active_flow_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefActiveFlowCountParams]] = pydantic.Field(None, description='The total number of concurrent TCP flows (or connections) from clients to targets.\nThis metric includes connections in the SYN_SENT and ESTABLISHED states.\nTCP connections are not terminated at the load balancer, so a client\nopening a TCP connection to a target counts as a single flow.')
-    consumed_lc_us: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefConsumedLcUsParams]] = pydantic.Field(None, description='The number of load balancer capacity units (LCU) used by your load balancer.')
-    custom: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Network Load Balancer.')
-    new_flow_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefNewFlowCountParams]] = pydantic.Field(None, description='The total number of new TCP flows (or connections) established from clients to targets in the time period.')
-    processed_bytes: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefProcessedBytesParams]] = pydantic.Field(None, description='The total number of bytes processed by the load balancer, including TCP/IP headers.')
-    tcp_client_reset_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpClientResetCountParams]] = pydantic.Field(None, description='The total number of reset (RST) packets sent from a client to a target.\nThese resets are generated by the client and forwarded by the load balancer.')
-    tcp_elb_reset_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpElbResetCountParams]] = pydantic.Field(None, description='The total number of reset (RST) packets generated by the load balancer.')
-    tcp_target_reset_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpTargetResetCountParams]] = pydantic.Field(None, description='The total number of reset (RST) packets sent from a target to a client.\nThese resets are generated by the target and forwarded by the load balancer.')
+    active_flow_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefActiveFlowCountParams]] = pydantic.Field(None, description='The total number of concurrent TCP flows (or connections) from clients to targets.\nThis metric includes connections in the SYN_SENT and ESTABLISHED states.\nTCP connections are not terminated at the load balancer, so a client\nopening a TCP connection to a target counts as a single flow.')
+    consumed_lc_us: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefConsumedLcUsParams]] = pydantic.Field(None, description='The number of load balancer capacity units (LCU) used by your load balancer.')
+    custom: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Network Load Balancer.')
+    new_flow_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefNewFlowCountParams]] = pydantic.Field(None, description='The total number of new TCP flows (or connections) established from clients to targets in the time period.')
+    processed_bytes: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefProcessedBytesParams]] = pydantic.Field(None, description='The total number of bytes processed by the load balancer, including TCP/IP headers.')
+    tcp_client_reset_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpClientResetCountParams]] = pydantic.Field(None, description='The total number of reset (RST) packets sent from a client to a target.\nThese resets are generated by the client and forwarded by the load balancer.')
+    tcp_elb_reset_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpElbResetCountParams]] = pydantic.Field(None, description='The total number of reset (RST) packets generated by the load balancer.')
+    tcp_target_reset_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpTargetResetCountParams]] = pydantic.Field(None, description='The total number of reset (RST) packets sent from a target to a client.\nThese resets are generated by the target and forwarded by the load balancer.')
 
 
 class AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefActiveFlowCountParams(pydantic.BaseModel):
@@ -3515,15 +3515,15 @@ class AwsElasticloadbalancingv2INetworkLoadBalancerMetricsDefTcpTargetResetCount
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsElasticloadbalancingv2INetworkLoadBalancerTargetDefConfig(pydantic.BaseModel):
-    attach_to_network_target_group: typing.Optional[list[AwsElasticloadbalancingv2INetworkLoadBalancerTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
+    attach_to_network_target_group: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkLoadBalancerTargetDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description='Attach load-balanced target to a TargetGroup.\nMay return JSON to directly add to the [Targets] list, or return undefined\nif the target will register itself with the load balancer.')
 
 
 class AwsElasticloadbalancingv2INetworkLoadBalancerTargetDefAttachToNetworkTargetGroupParams(pydantic.BaseModel):
     target_group: typing.Union[models.aws_elasticloadbalancingv2.NetworkTargetGroupDef] = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2INetworkTargetGroupDefConfig(pydantic.BaseModel):
-    add_target: typing.Optional[list[AwsElasticloadbalancingv2INetworkTargetGroupDefAddTargetParams]] = pydantic.Field(None, description='Add a load balancing target to this target group.')
-    register_listener: typing.Optional[list[AwsElasticloadbalancingv2INetworkTargetGroupDefRegisterListenerParams]] = pydantic.Field(None, description="Register a listener that is load balancing to this target group.\nDon't call this directly. It will be called by listeners.")
+    add_target: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkTargetGroupDefAddTargetParams]] = pydantic.Field(None, description='Add a load balancing target to this target group.')
+    register_listener: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkTargetGroupDefRegisterListenerParams]] = pydantic.Field(None, description="Register a listener that is load balancing to this target group.\nDon't call this directly. It will be called by listeners.")
 
 
 class AwsElasticloadbalancingv2INetworkTargetGroupDefAddTargetParams(pydantic.BaseModel):
@@ -3533,9 +3533,9 @@ class AwsElasticloadbalancingv2INetworkTargetGroupDefRegisterListenerParams(pyda
     listener: typing.Union[models.aws_elasticloadbalancingv2.NetworkListenerDef] = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Network Target Group.')
-    healthy_host_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefHealthyHostCountParams]] = pydantic.Field(None, description='The number of targets that are considered healthy.')
-    un_healthy_host_count: typing.Optional[list[AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefUnHealthyHostCountParams]] = pydantic.Field(None, description='The number of targets that are considered unhealthy.')
+    custom: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefCustomParams]] = pydantic.Field(None, description='Return the given named metric for this Network Target Group.')
+    healthy_host_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefHealthyHostCountParams]] = pydantic.Field(None, description='The number of targets that are considered healthy.')
+    un_healthy_host_count: typing.Optional[list[models._interface_methods.AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefUnHealthyHostCountParams]] = pydantic.Field(None, description='The number of targets that are considered unhealthy.')
 
 
 class AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefCustomParams(pydantic.BaseModel):
@@ -3575,32 +3575,32 @@ class AwsElasticloadbalancingv2INetworkTargetGroupMetricsDefUnHealthyHostCountPa
 
 
 class AwsElasticsearchIDomainDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsElasticsearchIDomainDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_index_read: typing.Optional[list[AwsElasticsearchIDomainDefGrantIndexReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_index_read_write: typing.Optional[list[AwsElasticsearchIDomainDefGrantIndexReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_index_write: typing.Optional[list[AwsElasticsearchIDomainDefGrantIndexWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_path_read: typing.Optional[list[AwsElasticsearchIDomainDefGrantPathReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_path_read_write: typing.Optional[list[AwsElasticsearchIDomainDefGrantPathReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_path_write: typing.Optional[list[AwsElasticsearchIDomainDefGrantPathWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_read: typing.Optional[list[AwsElasticsearchIDomainDefGrantReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    grant_read_write: typing.Optional[list[AwsElasticsearchIDomainDefGrantReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    grant_write: typing.Optional[list[AwsElasticsearchIDomainDefGrantWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    metric: typing.Optional[list[AwsElasticsearchIDomainDefMetricParams]] = pydantic.Field(None, description='(deprecated) Return the given named metric for this Domain.')
-    metric_automated_snapshot_failure: typing.Optional[list[AwsElasticsearchIDomainDefMetricAutomatedSnapshotFailureParams]] = pydantic.Field(None, description='(deprecated) Metric for automated snapshot failures.')
-    metric_cluster_index_writes_blocked: typing.Optional[list[AwsElasticsearchIDomainDefMetricClusterIndexWritesBlockedParams]] = pydantic.Field(None, description='(deprecated) Metric for the cluster blocking index writes.')
-    metric_cluster_status_red: typing.Optional[list[AwsElasticsearchIDomainDefMetricClusterStatusRedParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is red.')
-    metric_cluster_status_yellow: typing.Optional[list[AwsElasticsearchIDomainDefMetricClusterStatusYellowParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is yellow.')
-    metric_cpu_utilization: typing.Optional[list[AwsElasticsearchIDomainDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for CPU utilization.')
-    metric_free_storage_space: typing.Optional[list[AwsElasticsearchIDomainDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='(deprecated) Metric for the storage space of nodes in the cluster.')
-    metric_indexing_latency: typing.Optional[list[AwsElasticsearchIDomainDefMetricIndexingLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for indexing latency.')
-    metric_jvm_memory_pressure: typing.Optional[list[AwsElasticsearchIDomainDefMetricJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for JVM memory pressure.')
-    metric_kms_key_error: typing.Optional[list[AwsElasticsearchIDomainDefMetricKmsKeyErrorParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key errors.')
-    metric_kms_key_inaccessible: typing.Optional[list[AwsElasticsearchIDomainDefMetricKmsKeyInaccessibleParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key being inaccessible.')
-    metric_master_cpu_utilization: typing.Optional[list[AwsElasticsearchIDomainDefMetricMasterCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for master CPU utilization.')
-    metric_master_jvm_memory_pressure: typing.Optional[list[AwsElasticsearchIDomainDefMetricMasterJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for master JVM memory pressure.')
-    metric_nodes: typing.Optional[list[AwsElasticsearchIDomainDefMetricNodesParams]] = pydantic.Field(None, description='(deprecated) Metric for the number of nodes.')
-    metric_search_latency: typing.Optional[list[AwsElasticsearchIDomainDefMetricSearchLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for search latency.')
-    metric_searchable_documents: typing.Optional[list[AwsElasticsearchIDomainDefMetricSearchableDocumentsParams]] = pydantic.Field(None, description='(deprecated) Metric for number of searchable documents.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_index_read: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantIndexReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_index_read_write: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantIndexReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_index_write: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantIndexWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_path_read: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantPathReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_path_read_write: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantPathReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_path_write: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantPathWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_read: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantReadParams]] = pydantic.Field(None, description='(deprecated) Grant read permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    grant_read_write: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantReadWriteParams]] = pydantic.Field(None, description='(deprecated) Grant read/write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    grant_write: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefGrantWriteParams]] = pydantic.Field(None, description='(deprecated) Grant write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    metric: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricParams]] = pydantic.Field(None, description='(deprecated) Return the given named metric for this Domain.')
+    metric_automated_snapshot_failure: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricAutomatedSnapshotFailureParams]] = pydantic.Field(None, description='(deprecated) Metric for automated snapshot failures.')
+    metric_cluster_index_writes_blocked: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricClusterIndexWritesBlockedParams]] = pydantic.Field(None, description='(deprecated) Metric for the cluster blocking index writes.')
+    metric_cluster_status_red: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricClusterStatusRedParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is red.')
+    metric_cluster_status_yellow: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricClusterStatusYellowParams]] = pydantic.Field(None, description='(deprecated) Metric for the time the cluster status is yellow.')
+    metric_cpu_utilization: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for CPU utilization.')
+    metric_free_storage_space: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='(deprecated) Metric for the storage space of nodes in the cluster.')
+    metric_indexing_latency: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricIndexingLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for indexing latency.')
+    metric_jvm_memory_pressure: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for JVM memory pressure.')
+    metric_kms_key_error: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricKmsKeyErrorParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key errors.')
+    metric_kms_key_inaccessible: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricKmsKeyInaccessibleParams]] = pydantic.Field(None, description='(deprecated) Metric for KMS key being inaccessible.')
+    metric_master_cpu_utilization: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricMasterCpuUtilizationParams]] = pydantic.Field(None, description='(deprecated) Metric for master CPU utilization.')
+    metric_master_jvm_memory_pressure: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricMasterJvmMemoryPressureParams]] = pydantic.Field(None, description='(deprecated) Metric for master JVM memory pressure.')
+    metric_nodes: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricNodesParams]] = pydantic.Field(None, description='(deprecated) Metric for the number of nodes.')
+    metric_search_latency: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricSearchLatencyParams]] = pydantic.Field(None, description='(deprecated) Metric for search latency.')
+    metric_searchable_documents: typing.Optional[list[models._interface_methods.AwsElasticsearchIDomainDefMetricSearchableDocumentsParams]] = pydantic.Field(None, description='(deprecated) Metric for number of searchable documents.')
 
 
 class AwsElasticsearchIDomainDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -3826,23 +3826,23 @@ class AwsElasticsearchIDomainDefMetricSearchableDocumentsParams(pydantic.BaseMod
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsEventsIApiDestinationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEventsIApiDestinationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEventsIApiDestinationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEventsIApiDestinationDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEventsIConnectionDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEventsIConnectionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEventsIConnectionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEventsIConnectionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEventsIEventBusDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEventsIEventBusDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    archive: typing.Optional[list[AwsEventsIEventBusDefArchiveParams]] = pydantic.Field(None, description='Create an EventBridge archive to send events to.\nWhen you create an archive, incoming events might not immediately start being sent to the archive.\nAllow a short period of time for changes to take effect.')
-    grant_put_events_to: typing.Optional[list[AwsEventsIEventBusDefGrantPutEventsToParams]] = pydantic.Field(None, description='Grants an IAM Principal to send custom events to the eventBus so that they can be matched to rules.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEventsIEventBusDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    archive: typing.Optional[list[models._interface_methods.AwsEventsIEventBusDefArchiveParams]] = pydantic.Field(None, description='Create an EventBridge archive to send events to.\nWhen you create an archive, incoming events might not immediately start being sent to the archive.\nAllow a short period of time for changes to take effect.')
+    grant_put_events_to: typing.Optional[list[models._interface_methods.AwsEventsIEventBusDefGrantPutEventsToParams]] = pydantic.Field(None, description='Grants an IAM Principal to send custom events to the eventBus so that they can be matched to rules.')
 
 
 class AwsEventsIEventBusDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -3861,14 +3861,14 @@ class AwsEventsIEventBusDefGrantPutEventsToParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEventsIRuleDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsEventsIRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEventsIRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsEventsIRuleDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEventsIRuleTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsEventsIRuleTargetDefBindParams]] = pydantic.Field(None, description='Returns the rule target specification.\nNOTE: Do not use the various ``inputXxx`` options. They can be set in a call to ``addTarget``.')
+    bind: typing.Optional[list[models._interface_methods.AwsEventsIRuleTargetDefBindParams]] = pydantic.Field(None, description='Returns the rule target specification.\nNOTE: Do not use the various ``inputXxx`` options. They can be set in a call to ``addTarget``.')
 
 
 class AwsEventsIRuleTargetDefBindParams(pydantic.BaseModel):
@@ -3878,7 +3878,7 @@ class AwsEventsIRuleTargetDefBindParams(pydantic.BaseModel):
 
 
 class AwsGlobalacceleratorIAcceleratorDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsGlobalacceleratorIAcceleratorDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsGlobalacceleratorIAcceleratorDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsGlobalacceleratorIAcceleratorDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -3889,29 +3889,29 @@ class AwsGlobalacceleratorIEndpointDefConfig(pydantic.BaseModel):
 
 
 class AwsGlobalacceleratorIEndpointGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsGlobalacceleratorIEndpointGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsGlobalacceleratorIEndpointGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsGlobalacceleratorIEndpointGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsGlobalacceleratorIListenerDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsGlobalacceleratorIListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsGlobalacceleratorIListenerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsGlobalacceleratorIListenerDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsIamIAccessKeyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsIamIAccessKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIAccessKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsIamIAccessKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsIamIAssumeRolePrincipalDefConfig(pydantic.BaseModel):
-    add_to_assume_role_policy: typing.Optional[list[AwsIamIAssumeRolePrincipalDefAddToAssumeRolePolicyParams]] = pydantic.Field(None, description='Add the principal to the AssumeRolePolicyDocument.\nAdd the statements to the AssumeRolePolicyDocument necessary to give this principal\npermissions to assume the given role.')
-    add_to_principal_policy: typing.Optional[list[AwsIamIAssumeRolePrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    add_to_assume_role_policy: typing.Optional[list[models._interface_methods.AwsIamIAssumeRolePrincipalDefAddToAssumeRolePolicyParams]] = pydantic.Field(None, description='Add the principal to the AssumeRolePolicyDocument.\nAdd the statements to the AssumeRolePolicyDocument necessary to give this principal\npermissions to assume the given role.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIAssumeRolePrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
 
 
 class AwsIamIAssumeRolePrincipalDefAddToAssumeRolePolicyParams(pydantic.BaseModel):
@@ -3921,7 +3921,7 @@ class AwsIamIAssumeRolePrincipalDefAddToPrincipalPolicyParams(pydantic.BaseModel
     statement: models.aws_iam.PolicyStatementDef = pydantic.Field(..., description='-')
 
 class AwsIamIComparablePrincipalDefConfig(pydantic.BaseModel):
-    add_to_principal_policy: typing.Optional[list[AwsIamIComparablePrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIComparablePrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
     dedupe_string: typing.Optional[bool] = pydantic.Field(None, description='Return a string format of this principal which should be identical if the two principals are the same.')
 
 
@@ -3931,10 +3931,10 @@ class AwsIamIComparablePrincipalDefAddToPrincipalPolicyParams(pydantic.BaseModel
 
 
 class AwsIamIGroupDefConfig(pydantic.BaseModel):
-    add_managed_policy: typing.Optional[list[AwsIamIGroupDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
-    add_to_principal_policy: typing.Optional[list[AwsIamIGroupDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
-    apply_removal_policy: typing.Optional[list[AwsIamIGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    attach_inline_policy: typing.Optional[list[AwsIamIGroupDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
+    add_managed_policy: typing.Optional[list[models._interface_methods.AwsIamIGroupDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIGroupDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    attach_inline_policy: typing.Optional[list[models._interface_methods.AwsIamIGroupDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
 
 
 class AwsIamIGroupDefAddManagedPolicyParams(pydantic.BaseModel):
@@ -3950,10 +3950,10 @@ class AwsIamIGroupDefAttachInlinePolicyParams(pydantic.BaseModel):
     policy: models.aws_iam.PolicyDef = pydantic.Field(..., description='The policy resource to attach to this principal [disable-awslint:ref-via-interface].')
 
 class AwsIamIIdentityDefConfig(pydantic.BaseModel):
-    add_managed_policy: typing.Optional[list[AwsIamIIdentityDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
-    add_to_principal_policy: typing.Optional[list[AwsIamIIdentityDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
-    apply_removal_policy: typing.Optional[list[AwsIamIIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    attach_inline_policy: typing.Optional[list[AwsIamIIdentityDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
+    add_managed_policy: typing.Optional[list[models._interface_methods.AwsIamIIdentityDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIIdentityDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    attach_inline_policy: typing.Optional[list[models._interface_methods.AwsIamIIdentityDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
 
 
 class AwsIamIIdentityDefAddManagedPolicyParams(pydantic.BaseModel):
@@ -3969,7 +3969,7 @@ class AwsIamIIdentityDefAttachInlinePolicyParams(pydantic.BaseModel):
     policy: models.aws_iam.PolicyDef = pydantic.Field(..., description='The policy resource to attach to this principal [disable-awslint:ref-via-interface].')
 
 class AwsIamIInstanceProfileDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsIamIInstanceProfileDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIInstanceProfileDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsIamIInstanceProfileDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -3978,29 +3978,29 @@ class AwsIamIInstanceProfileDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsIamIOpenIdConnectProviderDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsIamIOpenIdConnectProviderDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIOpenIdConnectProviderDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsIamIOpenIdConnectProviderDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsIamIPolicyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsIamIPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsIamIPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsIamIPrincipalDefConfig(pydantic.BaseModel):
-    add_to_principal_policy: typing.Optional[list[AwsIamIPrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIPrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
 
 
 class AwsIamIPrincipalDefAddToPrincipalPolicyParams(pydantic.BaseModel):
     statement: models.aws_iam.PolicyStatementDef = pydantic.Field(..., description='-')
 
 class AwsIamIResourceWithPolicyDefConfig(pydantic.BaseModel):
-    add_to_resource_policy: typing.Optional[list[AwsIamIResourceWithPolicyDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
-    apply_removal_policy: typing.Optional[list[AwsIamIResourceWithPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsIamIResourceWithPolicyDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIResourceWithPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsIamIResourceWithPolicyDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -4010,13 +4010,13 @@ class AwsIamIResourceWithPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsIamIRoleDefConfig(pydantic.BaseModel):
-    add_managed_policy: typing.Optional[list[AwsIamIRoleDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
-    add_to_principal_policy: typing.Optional[list[AwsIamIRoleDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
-    apply_removal_policy: typing.Optional[list[AwsIamIRoleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    attach_inline_policy: typing.Optional[list[AwsIamIRoleDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
-    grant: typing.Optional[list[AwsIamIRoleDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the identity Principal on this resource.')
-    grant_assume_role: typing.Optional[list[AwsIamIRoleDefGrantAssumeRoleParams]] = pydantic.Field(None, description='Grant permissions to the given principal to assume this role.')
-    grant_pass_role: typing.Optional[list[AwsIamIRoleDefGrantPassRoleParams]] = pydantic.Field(None, description='Grant permissions to the given principal to pass this role.')
+    add_managed_policy: typing.Optional[list[models._interface_methods.AwsIamIRoleDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIRoleDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIRoleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    attach_inline_policy: typing.Optional[list[models._interface_methods.AwsIamIRoleDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
+    grant: typing.Optional[list[models._interface_methods.AwsIamIRoleDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the identity Principal on this resource.')
+    grant_assume_role: typing.Optional[list[models._interface_methods.AwsIamIRoleDefGrantAssumeRoleParams]] = pydantic.Field(None, description='Grant permissions to the given principal to assume this role.')
+    grant_pass_role: typing.Optional[list[models._interface_methods.AwsIamIRoleDefGrantPassRoleParams]] = pydantic.Field(None, description='Grant permissions to the given principal to pass this role.')
 
 
 class AwsIamIRoleDefAddManagedPolicyParams(pydantic.BaseModel):
@@ -4045,18 +4045,18 @@ class AwsIamIRoleDefGrantPassRoleParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsIamISamlProviderDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsIamISamlProviderDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamISamlProviderDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsIamISamlProviderDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsIamIUserDefConfig(pydantic.BaseModel):
-    add_managed_policy: typing.Optional[list[AwsIamIUserDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
-    add_to_group: typing.Optional[list[AwsIamIUserDefAddToGroupParams]] = pydantic.Field(None, description='Adds this user to a group.')
-    add_to_principal_policy: typing.Optional[list[AwsIamIUserDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
-    apply_removal_policy: typing.Optional[list[AwsIamIUserDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    attach_inline_policy: typing.Optional[list[AwsIamIUserDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
+    add_managed_policy: typing.Optional[list[models._interface_methods.AwsIamIUserDefAddManagedPolicyParams]] = pydantic.Field(None, description='Attaches a managed policy to this principal.')
+    add_to_group: typing.Optional[list[models._interface_methods.AwsIamIUserDefAddToGroupParams]] = pydantic.Field(None, description='Adds this user to a group.')
+    add_to_principal_policy: typing.Optional[list[models._interface_methods.AwsIamIUserDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsIamIUserDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    attach_inline_policy: typing.Optional[list[models._interface_methods.AwsIamIUserDefAttachInlinePolicyParams]] = pydantic.Field(None, description='Attaches an inline policy to this principal.\nThis is the same as calling ``policy.addToXxx(principal)``.')
 
 
 class AwsIamIUserDefAddManagedPolicyParams(pydantic.BaseModel):
@@ -4075,31 +4075,31 @@ class AwsIamIUserDefAttachInlinePolicyParams(pydantic.BaseModel):
     policy: models.aws_iam.PolicyDef = pydantic.Field(..., description='The policy resource to attach to this principal [disable-awslint:ref-via-interface].')
 
 class AwsKinesisIStreamDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsKinesisIStreamDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsKinesisIStreamDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this stream to the provided IAM principal.')
-    grant_read: typing.Optional[list[AwsKinesisIStreamDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this stream and its contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to ues the key to decrypt the\ncontents of the stream will also be granted.')
-    grant_read_write: typing.Optional[list[AwsKinesisIStreamDefGrantReadWriteParams]] = pydantic.Field(None, description='Grants read/write permissions for this stream and its contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to use the key for\nencrypt/decrypt will also be granted.')
-    grant_write: typing.Optional[list[AwsKinesisIStreamDefGrantWriteParams]] = pydantic.Field(None, description='Grant write permissions for this stream and its contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to ues the key to encrypt the\ncontents of the stream will also be granted.')
-    metric: typing.Optional[list[AwsKinesisIStreamDefMetricParams]] = pydantic.Field(None, description='Return stream metric based from its metric name.')
-    metric_get_records: typing.Optional[list[AwsKinesisIStreamDefMetricGetRecordsParams]] = pydantic.Field(None, description='The number of records retrieved from the shard, measured over the specified time period.\nMinimum, Maximum, and\nAverage statistics represent the records in a single GetRecords operation for the stream in the specified time\nperiod.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_get_records_bytes: typing.Optional[list[AwsKinesisIStreamDefMetricGetRecordsBytesParams]] = pydantic.Field(None, description='The number of bytes retrieved from the Kinesis stream, measured over the specified time period.\nMinimum, Maximum,\nand Average statistics represent the bytes in a single GetRecords operation for the stream in the specified time\nperiod.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_get_records_iterator_age_milliseconds: typing.Optional[list[AwsKinesisIStreamDefMetricGetRecordsIteratorAgeMillisecondsParams]] = pydantic.Field(None, description='The age of the last record in all GetRecords calls made against a Kinesis stream, measured over the specified time period.\nAge is the difference between the current time and when the last record of the GetRecords call was written\nto the stream. The Minimum and Maximum statistics can be used to track the progress of Kinesis consumer\napplications. A value of zero indicates that the records being read are completely caught up with the stream.\n\nThe metric defaults to maximum over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_get_records_latency: typing.Optional[list[AwsKinesisIStreamDefMetricGetRecordsLatencyParams]] = pydantic.Field(None, description='The time taken per GetRecords operation, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_get_records_success: typing.Optional[list[AwsKinesisIStreamDefMetricGetRecordsSuccessParams]] = pydantic.Field(None, description='The number of successful GetRecords operations per stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_incoming_bytes: typing.Optional[list[AwsKinesisIStreamDefMetricIncomingBytesParams]] = pydantic.Field(None, description='The number of bytes successfully put to the Kinesis stream over the specified time period.\nThis metric includes\nbytes from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the bytes in a\nsingle put operation for the stream in the specified time period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_incoming_records: typing.Optional[list[AwsKinesisIStreamDefMetricIncomingRecordsParams]] = pydantic.Field(None, description='The number of records successfully put to the Kinesis stream over the specified time period.\nThis metric includes\nrecord counts from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the\nrecords in a single put operation for the stream in the specified time period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_record_bytes: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordBytesParams]] = pydantic.Field(None, description='The number of bytes put to the Kinesis stream using the PutRecord operation over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_record_latency: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordLatencyParams]] = pydantic.Field(None, description='The time taken per PutRecord operation, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_record_success: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordSuccessParams]] = pydantic.Field(None, description='The number of successful PutRecord operations per Kinesis stream, measured over the specified time period.\nAverage\nreflects the percentage of successful writes to a stream.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_bytes: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsBytesParams]] = pydantic.Field(None, description='The number of bytes put to the Kinesis stream using the PutRecords operation over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_failed_records: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsFailedRecordsParams]] = pydantic.Field(None, description='The number of records rejected due to internal failures in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nOccasional internal failures are to be expected and should be retried.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_latency: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsLatencyParams]] = pydantic.Field(None, description='The time taken per PutRecords operation, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_success: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsSuccessParams]] = pydantic.Field(None, description='The number of PutRecords operations where at least one record succeeded, per Kinesis stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_successful_records: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsSuccessfulRecordsParams]] = pydantic.Field(None, description='The number of successful records in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_throttled_records: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsThrottledRecordsParams]] = pydantic.Field(None, description='The number of records rejected due to throttling in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_put_records_total_records: typing.Optional[list[AwsKinesisIStreamDefMetricPutRecordsTotalRecordsParams]] = pydantic.Field(None, description='The total number of records sent in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
-    metric_read_provisioned_throughput_exceeded: typing.Optional[list[AwsKinesisIStreamDefMetricReadProvisionedThroughputExceededParams]] = pydantic.Field(None, description='The number of GetRecords calls throttled for the stream over the specified time period.\nThe most commonly used\nstatistic for this metric is Average.\n\nWhen the Minimum statistic has a value of 1, all records were throttled for the stream during the specified time\nperiod.\n\nWhen the Maximum statistic has a value of 0 (zero), no records were throttled for the stream during the specified\ntime period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties')
-    metric_write_provisioned_throughput_exceeded: typing.Optional[list[AwsKinesisIStreamDefMetricWriteProvisionedThroughputExceededParams]] = pydantic.Field(None, description='The number of records rejected due to throttling for the stream over the specified time period.\nThis metric\nincludes throttling from PutRecord and PutRecords operations.\n\nWhen the Minimum statistic has a non-zero value, records were being throttled for the stream during the specified\ntime period.\n\nWhen the Maximum statistic has a value of 0 (zero), no records were being throttled for the stream during the\nspecified time period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this stream to the provided IAM principal.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this stream and its contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to ues the key to decrypt the\ncontents of the stream will also be granted.')
+    grant_read_write: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefGrantReadWriteParams]] = pydantic.Field(None, description='Grants read/write permissions for this stream and its contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to use the key for\nencrypt/decrypt will also be granted.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefGrantWriteParams]] = pydantic.Field(None, description='Grant write permissions for this stream and its contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to ues the key to encrypt the\ncontents of the stream will also be granted.')
+    metric: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricParams]] = pydantic.Field(None, description='Return stream metric based from its metric name.')
+    metric_get_records: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricGetRecordsParams]] = pydantic.Field(None, description='The number of records retrieved from the shard, measured over the specified time period.\nMinimum, Maximum, and\nAverage statistics represent the records in a single GetRecords operation for the stream in the specified time\nperiod.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_get_records_bytes: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricGetRecordsBytesParams]] = pydantic.Field(None, description='The number of bytes retrieved from the Kinesis stream, measured over the specified time period.\nMinimum, Maximum,\nand Average statistics represent the bytes in a single GetRecords operation for the stream in the specified time\nperiod.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_get_records_iterator_age_milliseconds: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricGetRecordsIteratorAgeMillisecondsParams]] = pydantic.Field(None, description='The age of the last record in all GetRecords calls made against a Kinesis stream, measured over the specified time period.\nAge is the difference between the current time and when the last record of the GetRecords call was written\nto the stream. The Minimum and Maximum statistics can be used to track the progress of Kinesis consumer\napplications. A value of zero indicates that the records being read are completely caught up with the stream.\n\nThe metric defaults to maximum over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_get_records_latency: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricGetRecordsLatencyParams]] = pydantic.Field(None, description='The time taken per GetRecords operation, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_get_records_success: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricGetRecordsSuccessParams]] = pydantic.Field(None, description='The number of successful GetRecords operations per stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_incoming_bytes: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricIncomingBytesParams]] = pydantic.Field(None, description='The number of bytes successfully put to the Kinesis stream over the specified time period.\nThis metric includes\nbytes from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the bytes in a\nsingle put operation for the stream in the specified time period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_incoming_records: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricIncomingRecordsParams]] = pydantic.Field(None, description='The number of records successfully put to the Kinesis stream over the specified time period.\nThis metric includes\nrecord counts from PutRecord and PutRecords operations. Minimum, Maximum, and Average statistics represent the\nrecords in a single put operation for the stream in the specified time period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_record_bytes: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordBytesParams]] = pydantic.Field(None, description='The number of bytes put to the Kinesis stream using the PutRecord operation over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_record_latency: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordLatencyParams]] = pydantic.Field(None, description='The time taken per PutRecord operation, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_record_success: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordSuccessParams]] = pydantic.Field(None, description='The number of successful PutRecord operations per Kinesis stream, measured over the specified time period.\nAverage\nreflects the percentage of successful writes to a stream.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_bytes: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsBytesParams]] = pydantic.Field(None, description='The number of bytes put to the Kinesis stream using the PutRecords operation over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_failed_records: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsFailedRecordsParams]] = pydantic.Field(None, description='The number of records rejected due to internal failures in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nOccasional internal failures are to be expected and should be retried.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_latency: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsLatencyParams]] = pydantic.Field(None, description='The time taken per PutRecords operation, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_success: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsSuccessParams]] = pydantic.Field(None, description='The number of PutRecords operations where at least one record succeeded, per Kinesis stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_successful_records: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsSuccessfulRecordsParams]] = pydantic.Field(None, description='The number of successful records in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_throttled_records: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsThrottledRecordsParams]] = pydantic.Field(None, description='The number of records rejected due to throttling in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_put_records_total_records: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricPutRecordsTotalRecordsParams]] = pydantic.Field(None, description='The total number of records sent in a PutRecords operation per Kinesis data stream, measured over the specified time period.\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
+    metric_read_provisioned_throughput_exceeded: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricReadProvisionedThroughputExceededParams]] = pydantic.Field(None, description='The number of GetRecords calls throttled for the stream over the specified time period.\nThe most commonly used\nstatistic for this metric is Average.\n\nWhen the Minimum statistic has a value of 1, all records were throttled for the stream during the specified time\nperiod.\n\nWhen the Maximum statistic has a value of 0 (zero), no records were throttled for the stream during the specified\ntime period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties')
+    metric_write_provisioned_throughput_exceeded: typing.Optional[list[models._interface_methods.AwsKinesisIStreamDefMetricWriteProvisionedThroughputExceededParams]] = pydantic.Field(None, description='The number of records rejected due to throttling for the stream over the specified time period.\nThis metric\nincludes throttling from PutRecord and PutRecords operations.\n\nWhen the Minimum statistic has a non-zero value, records were being throttled for the stream during the specified\ntime period.\n\nWhen the Maximum statistic has a value of 0 (zero), no records were being throttled for the stream during the\nspecified time period.\n\nThe metric defaults to average over 5 minutes, it can be changed by passing ``statistic`` and ``period`` properties.')
 
 
 class AwsKinesisIStreamDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -4344,15 +4344,15 @@ class AwsKinesisIStreamDefMetricWriteProvisionedThroughputExceededParams(pydanti
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIAliasDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[AwsKmsIAliasDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
-    add_to_resource_policy: typing.Optional[list[AwsKmsIAliasDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
-    apply_removal_policy: typing.Optional[list[AwsKmsIAliasDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsKmsIAliasDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this key to the given principal.')
-    grant_decrypt: typing.Optional[list[AwsKmsIAliasDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
-    grant_encrypt: typing.Optional[list[AwsKmsIAliasDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
-    grant_encrypt_decrypt: typing.Optional[list[AwsKmsIAliasDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
-    grant_generate_mac: typing.Optional[list[AwsKmsIAliasDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
-    grant_verify_mac: typing.Optional[list[AwsKmsIAliasDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
+    add_alias: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this key to the given principal.')
+    grant_decrypt: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
+    grant_encrypt: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
+    grant_encrypt_decrypt: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
+    grant_generate_mac: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
+    grant_verify_mac: typing.Optional[list[models._interface_methods.AwsKmsIAliasDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
 
 
 class AwsKmsIAliasDefAddAliasParams(pydantic.BaseModel):
@@ -4392,15 +4392,15 @@ class AwsKmsIAliasDefGrantVerifyMacParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[AwsKmsIKeyDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
-    add_to_resource_policy: typing.Optional[list[AwsKmsIKeyDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
-    apply_removal_policy: typing.Optional[list[AwsKmsIKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsKmsIKeyDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this key to the given principal.')
-    grant_decrypt: typing.Optional[list[AwsKmsIKeyDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
-    grant_encrypt: typing.Optional[list[AwsKmsIKeyDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
-    grant_encrypt_decrypt: typing.Optional[list[AwsKmsIKeyDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
-    grant_generate_mac: typing.Optional[list[AwsKmsIKeyDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
-    grant_verify_mac: typing.Optional[list[AwsKmsIKeyDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
+    add_alias: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this key to the given principal.')
+    grant_decrypt: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
+    grant_encrypt: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
+    grant_encrypt_decrypt: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
+    grant_generate_mac: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
+    grant_verify_mac: typing.Optional[list[models._interface_methods.AwsKmsIKeyDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
 
 
 class AwsKmsIKeyDefAddAliasParams(pydantic.BaseModel):
@@ -4440,21 +4440,21 @@ class AwsKmsIKeyDefGrantVerifyMacParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIAliasDefConfig(pydantic.BaseModel):
-    add_event_source: typing.Optional[list[AwsLambdaIAliasDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[AwsLambdaIAliasDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[AwsLambdaIAliasDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[AwsLambdaIAliasDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[AwsLambdaIAliasDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
-    apply_removal_policy: typing.Optional[list[AwsLambdaIAliasDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    configure_async_invoke: typing.Optional[list[AwsLambdaIAliasDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    grant_invoke: typing.Optional[list[AwsLambdaIAliasDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[AwsLambdaIAliasDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[AwsLambdaIAliasDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[AwsLambdaIAliasDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[AwsLambdaIAliasDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[AwsLambdaIAliasDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[AwsLambdaIAliasDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[AwsLambdaIAliasDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
+    add_event_source: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    configure_async_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    grant_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
 
 
 class AwsLambdaIAliasDefAddEventSourceParams(pydantic.BaseModel):
@@ -4580,14 +4580,14 @@ class AwsLambdaIAliasDefMetricThrottlesParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaICodeSigningConfigDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsLambdaICodeSigningConfigDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaICodeSigningConfigDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsLambdaICodeSigningConfigDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsLambdaIDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsLambdaIDestinationDefBindParams]] = pydantic.Field(None, description='Binds this destination to the Lambda function.')
+    bind: typing.Optional[list[models._interface_methods.AwsLambdaIDestinationDefBindParams]] = pydantic.Field(None, description='Binds this destination to the Lambda function.')
 
 
 class AwsLambdaIDestinationDefBindParams(pydantic.BaseModel):
@@ -4596,14 +4596,14 @@ class AwsLambdaIDestinationDefBindParams(pydantic.BaseModel):
     type: aws_cdk.aws_lambda.DestinationType = pydantic.Field(..., description='The destination type.')
 
 class AwsLambdaIEventSourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsLambdaIEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
+    bind: typing.Optional[list[models._interface_methods.AwsLambdaIEventSourceDefBindParams]] = pydantic.Field(None, description='Called by ``lambda.addEventSource`` to allow the event source to bind to this function.')
 
 
 class AwsLambdaIEventSourceDefBindParams(pydantic.BaseModel):
     target: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='That lambda function to bind to.')
 
 class AwsLambdaIEventSourceDlqDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsLambdaIEventSourceDlqDefBindParams]] = pydantic.Field(None, description='Returns the DLQ destination config of the DLQ.')
+    bind: typing.Optional[list[models._interface_methods.AwsLambdaIEventSourceDlqDefBindParams]] = pydantic.Field(None, description='Returns the DLQ destination config of the DLQ.')
 
 
 class AwsLambdaIEventSourceDlqDefBindParams(pydantic.BaseModel):
@@ -4611,28 +4611,28 @@ class AwsLambdaIEventSourceDlqDefBindParams(pydantic.BaseModel):
     target_handler: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-')
 
 class AwsLambdaIEventSourceMappingDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsLambdaIEventSourceMappingDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaIEventSourceMappingDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsLambdaIEventSourceMappingDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsLambdaIFunctionDefConfig(pydantic.BaseModel):
-    add_event_source: typing.Optional[list[AwsLambdaIFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[AwsLambdaIFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[AwsLambdaIFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[AwsLambdaIFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[AwsLambdaIFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
-    apply_removal_policy: typing.Optional[list[AwsLambdaIFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    configure_async_invoke: typing.Optional[list[AwsLambdaIFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    grant_invoke: typing.Optional[list[AwsLambdaIFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[AwsLambdaIFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[AwsLambdaIFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[AwsLambdaIFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[AwsLambdaIFunctionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[AwsLambdaIFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[AwsLambdaIFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[AwsLambdaIFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
+    add_event_source: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    configure_async_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    grant_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
 
 
 class AwsLambdaIFunctionDefAddEventSourceParams(pydantic.BaseModel):
@@ -4758,8 +4758,8 @@ class AwsLambdaIFunctionDefMetricThrottlesParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIFunctionUrlDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsLambdaIFunctionUrlDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_invoke_url: typing.Optional[list[AwsLambdaIFunctionUrlDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionUrlDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionUrlDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
 
 
 class AwsLambdaIFunctionUrlDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -4770,8 +4770,8 @@ class AwsLambdaIFunctionUrlDefGrantInvokeUrlParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaILayerVersionDefConfig(pydantic.BaseModel):
-    add_permission: typing.Optional[list[AwsLambdaILayerVersionDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
-    apply_removal_policy: typing.Optional[list[AwsLambdaILayerVersionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_permission: typing.Optional[list[models._interface_methods.AwsLambdaILayerVersionDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaILayerVersionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsLambdaILayerVersionDefAddPermissionParams(pydantic.BaseModel):
@@ -4783,8 +4783,8 @@ class AwsLambdaILayerVersionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsLambdaIScalableFunctionAttributeDefConfig(pydantic.BaseModel):
-    scale_on_schedule: typing.Optional[list[AwsLambdaIScalableFunctionAttributeDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scale out or in based on schedule.')
-    scale_on_utilization: typing.Optional[list[AwsLambdaIScalableFunctionAttributeDefScaleOnUtilizationParams]] = pydantic.Field(None, description='Scale out or in to keep utilization at a given level.\nThe utilization is tracked by the\nLambdaProvisionedConcurrencyUtilization metric, emitted by lambda. See:\nhttps://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html#monitoring-metrics-concurrency')
+    scale_on_schedule: typing.Optional[list[models._interface_methods.AwsLambdaIScalableFunctionAttributeDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scale out or in based on schedule.')
+    scale_on_utilization: typing.Optional[list[models._interface_methods.AwsLambdaIScalableFunctionAttributeDefScaleOnUtilizationParams]] = pydantic.Field(None, description='Scale out or in to keep utilization at a given level.\nThe utilization is tracked by the\nLambdaProvisionedConcurrencyUtilization metric, emitted by lambda. See:\nhttps://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html#monitoring-metrics-concurrency')
 
 
 class AwsLambdaIScalableFunctionAttributeDefScaleOnScheduleParams(pydantic.BaseModel):
@@ -4803,22 +4803,22 @@ class AwsLambdaIScalableFunctionAttributeDefScaleOnUtilizationParams(pydantic.Ba
     scale_out_cooldown: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Period after a scale out activity completes before another scale out activity can start. Default: Duration.seconds(300) for the following scalable targets: ECS services, Spot Fleet requests, EMR clusters, AppStream 2.0 fleets, Aurora DB clusters, Amazon SageMaker endpoint variants, Custom resources. For all other scalable targets, the default value is Duration.seconds(0): DynamoDB tables, DynamoDB global secondary indexes, Amazon Comprehend document classification endpoints, Lambda provisioned concurrency')
 
 class AwsLambdaIVersionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[AwsLambdaIVersionDefAddAliasParams]] = pydantic.Field(None, description='(deprecated) Defines an alias for this version.')
-    add_event_source: typing.Optional[list[AwsLambdaIVersionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[AwsLambdaIVersionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[AwsLambdaIVersionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_permission: typing.Optional[list[AwsLambdaIVersionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[AwsLambdaIVersionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
-    apply_removal_policy: typing.Optional[list[AwsLambdaIVersionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    configure_async_invoke: typing.Optional[list[AwsLambdaIVersionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    grant_invoke: typing.Optional[list[AwsLambdaIVersionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[AwsLambdaIVersionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[AwsLambdaIVersionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    metric: typing.Optional[list[AwsLambdaIVersionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[AwsLambdaIVersionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[AwsLambdaIVersionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[AwsLambdaIVersionDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[AwsLambdaIVersionDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
+    add_alias: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefAddAliasParams]] = pydantic.Field(None, description='(deprecated) Defines an alias for this version.')
+    add_event_source: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_permission: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    configure_async_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    grant_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    metric: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricInvocationsParams]] = pydantic.Field(None, description='Metric for the number of invocations of this Lambda How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricThrottlesParams]] = pydantic.Field(None, description='Metric for the number of throttled invocations of this Lambda How often this Lambda is throttled.\nSum over 5 minutes')
 
 
 class AwsLambdaIVersionDefAddAliasParams(pydantic.BaseModel):
@@ -4955,9 +4955,9 @@ class AwsLambdaIVersionDefMetricThrottlesParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaNodejsICommandHooksDefConfig(pydantic.BaseModel):
-    after_bundling: typing.Optional[list[AwsLambdaNodejsICommandHooksDefAfterBundlingParams]] = pydantic.Field(None, description='Returns commands to run after bundling.\nCommands are chained with ``&&``.')
-    before_bundling: typing.Optional[list[AwsLambdaNodejsICommandHooksDefBeforeBundlingParams]] = pydantic.Field(None, description='Returns commands to run before bundling.\nCommands are chained with ``&&``.')
-    before_install: typing.Optional[list[AwsLambdaNodejsICommandHooksDefBeforeInstallParams]] = pydantic.Field(None, description='Returns commands to run before installing node modules.\nThis hook only runs when node modules are installed.\n\nCommands are chained with ``&&``.')
+    after_bundling: typing.Optional[list[models._interface_methods.AwsLambdaNodejsICommandHooksDefAfterBundlingParams]] = pydantic.Field(None, description='Returns commands to run after bundling.\nCommands are chained with ``&&``.')
+    before_bundling: typing.Optional[list[models._interface_methods.AwsLambdaNodejsICommandHooksDefBeforeBundlingParams]] = pydantic.Field(None, description='Returns commands to run before bundling.\nCommands are chained with ``&&``.')
+    before_install: typing.Optional[list[models._interface_methods.AwsLambdaNodejsICommandHooksDefBeforeInstallParams]] = pydantic.Field(None, description='Returns commands to run before installing node modules.\nThis hook only runs when node modules are installed.\n\nCommands are chained with ``&&``.')
 
 
 class AwsLambdaNodejsICommandHooksDefAfterBundlingParams(pydantic.BaseModel):
@@ -4975,15 +4975,15 @@ class AwsLambdaNodejsICommandHooksDefBeforeInstallParams(pydantic.BaseModel):
 
 
 class AwsLogsILogGroupDefConfig(pydantic.BaseModel):
-    add_metric_filter: typing.Optional[list[AwsLogsILogGroupDefAddMetricFilterParams]] = pydantic.Field(None, description='Create a new Metric Filter on this Log Group.')
-    add_stream: typing.Optional[list[AwsLogsILogGroupDefAddStreamParams]] = pydantic.Field(None, description='Create a new Log Stream for this Log Group.')
-    add_subscription_filter: typing.Optional[list[AwsLogsILogGroupDefAddSubscriptionFilterParams]] = pydantic.Field(None, description='Create a new Subscription Filter on this Log Group.')
-    add_to_resource_policy: typing.Optional[list[AwsLogsILogGroupDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
-    apply_removal_policy: typing.Optional[list[AwsLogsILogGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    extract_metric: typing.Optional[list[AwsLogsILogGroupDefExtractMetricParams]] = pydantic.Field(None, description='Extract a metric from structured log events in the LogGroup.\nCreates a MetricFilter on this LogGroup that will extract the value\nof the indicated JSON field in all records where it occurs.\n\nThe metric will be available in CloudWatch Metrics under the\nindicated namespace and name.')
-    grant: typing.Optional[list[AwsLogsILogGroupDefGrantParams]] = pydantic.Field(None, description='Give the indicated permissions on this log group and all streams.')
-    grant_read: typing.Optional[list[AwsLogsILogGroupDefGrantReadParams]] = pydantic.Field(None, description='Give permissions to read from this log group and streams.')
-    grant_write: typing.Optional[list[AwsLogsILogGroupDefGrantWriteParams]] = pydantic.Field(None, description='Give permissions to write to create and write to streams in this log group.')
+    add_metric_filter: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefAddMetricFilterParams]] = pydantic.Field(None, description='Create a new Metric Filter on this Log Group.')
+    add_stream: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefAddStreamParams]] = pydantic.Field(None, description='Create a new Log Stream for this Log Group.')
+    add_subscription_filter: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefAddSubscriptionFilterParams]] = pydantic.Field(None, description='Create a new Subscription Filter on this Log Group.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    extract_metric: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefExtractMetricParams]] = pydantic.Field(None, description='Extract a metric from structured log events in the LogGroup.\nCreates a MetricFilter on this LogGroup that will extract the value\nof the indicated JSON field in all records where it occurs.\n\nThe metric will be available in CloudWatch Metrics under the\nindicated namespace and name.')
+    grant: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefGrantParams]] = pydantic.Field(None, description='Give the indicated permissions on this log group and all streams.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefGrantReadParams]] = pydantic.Field(None, description='Give permissions to read from this log group and streams.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsLogsILogGroupDefGrantWriteParams]] = pydantic.Field(None, description='Give permissions to write to create and write to streams in this log group.')
     log_group_physical_name: typing.Optional[bool] = pydantic.Field(None, description='Public method to get the physical name of this log group.')
 
 
@@ -5037,14 +5037,14 @@ class AwsLogsILogGroupDefGrantWriteParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLogsILogStreamDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsLogsILogStreamDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsLogsILogStreamDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsLogsILogStreamDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsLogsILogSubscriptionDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsLogsILogSubscriptionDestinationDefBindParams]] = pydantic.Field(None, description='Return the properties required to send subscription events to this destination.\nIf necessary, the destination can use the properties of the SubscriptionFilter\nobject itself to configure its permissions to allow the subscription to write\nto it.\n\nThe destination may reconfigure its own permissions in response to this\nfunction call.')
+    bind: typing.Optional[list[models._interface_methods.AwsLogsILogSubscriptionDestinationDefBindParams]] = pydantic.Field(None, description='Return the properties required to send subscription events to this destination.\nIf necessary, the destination can use the properties of the SubscriptionFilter\nobject itself to configure its permissions to allow the subscription to write\nto it.\n\nThe destination may reconfigure its own permissions in response to this\nfunction call.')
 
 
 class AwsLogsILogSubscriptionDestinationDefBindParams(pydantic.BaseModel):
@@ -5052,32 +5052,32 @@ class AwsLogsILogSubscriptionDestinationDefBindParams(pydantic.BaseModel):
     source_log_group: typing.Union[models.aws_logs.LogGroupDef] = pydantic.Field(..., description='-')
 
 class AwsOpensearchserviceIDomainDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsOpensearchserviceIDomainDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_index_read: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantIndexReadParams]] = pydantic.Field(None, description='Grant read permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_index_read_write: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantIndexReadWriteParams]] = pydantic.Field(None, description='Grant read/write permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_index_write: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantIndexWriteParams]] = pydantic.Field(None, description='Grant write permissions for an index in this domain to an IAM principal (Role/Group/User).')
-    grant_path_read: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantPathReadParams]] = pydantic.Field(None, description='Grant read permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_path_read_write: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantPathReadWriteParams]] = pydantic.Field(None, description='Grant read/write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_path_write: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantPathWriteParams]] = pydantic.Field(None, description='Grant write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
-    grant_read: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    grant_read_write: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read/write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    grant_write: typing.Optional[list[AwsOpensearchserviceIDomainDefGrantWriteParams]] = pydantic.Field(None, description='Grant write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
-    metric: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this domain.')
-    metric_automated_snapshot_failure: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricAutomatedSnapshotFailureParams]] = pydantic.Field(None, description='Metric for automated snapshot failures.')
-    metric_cluster_index_writes_blocked: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricClusterIndexWritesBlockedParams]] = pydantic.Field(None, description='Metric for the cluster blocking index writes.')
-    metric_cluster_status_red: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricClusterStatusRedParams]] = pydantic.Field(None, description='Metric for the time the cluster status is red.')
-    metric_cluster_status_yellow: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricClusterStatusYellowParams]] = pydantic.Field(None, description='Metric for the time the cluster status is yellow.')
-    metric_cpu_utilization: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='Metric for CPU utilization.')
-    metric_free_storage_space: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='Metric for the storage space of nodes in the cluster.')
-    metric_indexing_latency: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricIndexingLatencyParams]] = pydantic.Field(None, description='Metric for indexing latency.')
-    metric_jvm_memory_pressure: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricJvmMemoryPressureParams]] = pydantic.Field(None, description='Metric for JVM memory pressure.')
-    metric_kms_key_error: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricKmsKeyErrorParams]] = pydantic.Field(None, description='Metric for KMS key errors.')
-    metric_kms_key_inaccessible: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricKmsKeyInaccessibleParams]] = pydantic.Field(None, description='Metric for KMS key being inaccessible.')
-    metric_master_cpu_utilization: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricMasterCpuUtilizationParams]] = pydantic.Field(None, description='Metric for master CPU utilization.')
-    metric_master_jvm_memory_pressure: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricMasterJvmMemoryPressureParams]] = pydantic.Field(None, description='Metric for master JVM memory pressure.')
-    metric_nodes: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricNodesParams]] = pydantic.Field(None, description='Metric for the number of nodes.')
-    metric_search_latency: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricSearchLatencyParams]] = pydantic.Field(None, description='Metric for search latency.')
-    metric_searchable_documents: typing.Optional[list[AwsOpensearchserviceIDomainDefMetricSearchableDocumentsParams]] = pydantic.Field(None, description='Metric for number of searchable documents.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_index_read: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantIndexReadParams]] = pydantic.Field(None, description='Grant read permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_index_read_write: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantIndexReadWriteParams]] = pydantic.Field(None, description='Grant read/write permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_index_write: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantIndexWriteParams]] = pydantic.Field(None, description='Grant write permissions for an index in this domain to an IAM principal (Role/Group/User).')
+    grant_path_read: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantPathReadParams]] = pydantic.Field(None, description='Grant read permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_path_read_write: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantPathReadWriteParams]] = pydantic.Field(None, description='Grant read/write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_path_write: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantPathWriteParams]] = pydantic.Field(None, description='Grant write permissions for a specific path in this domain to an IAM principal (Role/Group/User).')
+    grant_read: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    grant_read_write: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read/write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    grant_write: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefGrantWriteParams]] = pydantic.Field(None, description='Grant write permissions for this domain and its contents to an IAM principal (Role/Group/User).')
+    metric: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this domain.')
+    metric_automated_snapshot_failure: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricAutomatedSnapshotFailureParams]] = pydantic.Field(None, description='Metric for automated snapshot failures.')
+    metric_cluster_index_writes_blocked: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricClusterIndexWritesBlockedParams]] = pydantic.Field(None, description='Metric for the cluster blocking index writes.')
+    metric_cluster_status_red: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricClusterStatusRedParams]] = pydantic.Field(None, description='Metric for the time the cluster status is red.')
+    metric_cluster_status_yellow: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricClusterStatusYellowParams]] = pydantic.Field(None, description='Metric for the time the cluster status is yellow.')
+    metric_cpu_utilization: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='Metric for CPU utilization.')
+    metric_free_storage_space: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='Metric for the storage space of nodes in the cluster.')
+    metric_indexing_latency: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricIndexingLatencyParams]] = pydantic.Field(None, description='Metric for indexing latency.')
+    metric_jvm_memory_pressure: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricJvmMemoryPressureParams]] = pydantic.Field(None, description='Metric for JVM memory pressure.')
+    metric_kms_key_error: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricKmsKeyErrorParams]] = pydantic.Field(None, description='Metric for KMS key errors.')
+    metric_kms_key_inaccessible: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricKmsKeyInaccessibleParams]] = pydantic.Field(None, description='Metric for KMS key being inaccessible.')
+    metric_master_cpu_utilization: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricMasterCpuUtilizationParams]] = pydantic.Field(None, description='Metric for master CPU utilization.')
+    metric_master_jvm_memory_pressure: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricMasterJvmMemoryPressureParams]] = pydantic.Field(None, description='Metric for master JVM memory pressure.')
+    metric_nodes: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricNodesParams]] = pydantic.Field(None, description='Metric for the number of nodes.')
+    metric_search_latency: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricSearchLatencyParams]] = pydantic.Field(None, description='Metric for search latency.')
+    metric_searchable_documents: typing.Optional[list[models._interface_methods.AwsOpensearchserviceIDomainDefMetricSearchableDocumentsParams]] = pydantic.Field(None, description='Metric for number of searchable documents.')
 
 
 class AwsOpensearchserviceIDomainDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5303,14 +5303,14 @@ class AwsOpensearchserviceIDomainDefMetricSearchableDocumentsParams(pydantic.Bas
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsRdsIAuroraClusterInstanceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRdsIAuroraClusterInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIAuroraClusterInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsRdsIAuroraClusterInstanceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRdsIClusterEngineDefConfig(pydantic.BaseModel):
-    bind_to_cluster: typing.Optional[list[AwsRdsIClusterEngineDefBindToClusterParams]] = pydantic.Field(None, description='Method called when the engine is used to create a new cluster.')
+    bind_to_cluster: typing.Optional[list[models._interface_methods.AwsRdsIClusterEngineDefBindToClusterParams]] = pydantic.Field(None, description='Method called when the engine is used to create a new cluster.')
 
 
 class AwsRdsIClusterEngineDefBindToClusterParams(pydantic.BaseModel):
@@ -5320,7 +5320,7 @@ class AwsRdsIClusterEngineDefBindToClusterParams(pydantic.BaseModel):
     s3_import_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The role used for S3 importing. Default: - none')
 
 class AwsRdsIClusterInstanceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsRdsIClusterInstanceDefBindParams]] = pydantic.Field(None, description='Create the database instance within the provided cluster.')
+    bind: typing.Optional[list[models._interface_methods.AwsRdsIClusterInstanceDefBindParams]] = pydantic.Field(None, description='Create the database instance within the provided cluster.')
 
 
 class AwsRdsIClusterInstanceDefBindParams(pydantic.BaseModel):
@@ -5334,23 +5334,23 @@ class AwsRdsIClusterInstanceDefBindParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models._interface_methods.AwsRdsIAuroraClusterInstanceDefConfig]] = pydantic.Field(None)
 
 class AwsRdsIDatabaseClusterDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[AwsRdsIDatabaseClusterDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
-    apply_removal_policy: typing.Optional[list[AwsRdsIDatabaseClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    metric: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
-    metric_cpu_utilization: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_deadlocks: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
-    metric_engine_uptime: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
-    metric_free_local_storage: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
-    metric_network_receive_throughput: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_throughput: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_network_transmit_throughput: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
-    metric_snapshot_storage_used: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
-    metric_total_backup_storage_billed: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
-    metric_volume_bytes_used: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
-    metric_volume_read_io_ps: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
-    metric_volume_write_io_ps: typing.Optional[list[AwsRdsIDatabaseClusterDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    add_proxy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
+    metric_cpu_utilization: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_deadlocks: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricDeadlocksParams]] = pydantic.Field(None, description='The average number of deadlocks in the database per second.\nAverage over 5 minutes')
+    metric_engine_uptime: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricEngineUptimeParams]] = pydantic.Field(None, description='The amount of time that the instance has been running, in seconds.\nAverage over 5 minutes')
+    metric_free_local_storage: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricFreeLocalStorageParams]] = pydantic.Field(None, description='The amount of local storage available, in bytes.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory, in bytes.\nAverage over 5 minutes')
+    metric_network_receive_throughput: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricNetworkReceiveThroughputParams]] = pydantic.Field(None, description='The amount of network throughput received from clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_throughput: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricNetworkThroughputParams]] = pydantic.Field(None, description='The amount of network throughput both received from and transmitted to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_network_transmit_throughput: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricNetworkTransmitThroughputParams]] = pydantic.Field(None, description='The amount of network throughput sent to clients by each instance, in bytes per second.\nAverage over 5 minutes')
+    metric_snapshot_storage_used: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricSnapshotStorageUsedParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes consumed by all Aurora snapshots outside its backup retention window.\nAverage over 5 minutes')
+    metric_total_backup_storage_billed: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricTotalBackupStorageBilledParams]] = pydantic.Field(None, description='The total amount of backup storage in bytes for which you are billed.\nAverage over 5 minutes')
+    metric_volume_bytes_used: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricVolumeBytesUsedParams]] = pydantic.Field(None, description='The amount of storage used by your Aurora DB instance, in bytes.\nAverage over 5 minutes')
+    metric_volume_read_io_ps: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricVolumeReadIoPsParams]] = pydantic.Field(None, description='The number of billed read I/O operations from a cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
+    metric_volume_write_io_ps: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricVolumeWriteIoPsParams]] = pydantic.Field(None, description='The number of write disk I/O operations to the cluster volume, reported at 5-minute intervals.\nAverage over 5 minutes')
 
 
 class AwsRdsIDatabaseClusterDefAddProxyParams(pydantic.BaseModel):
@@ -5542,17 +5542,17 @@ class AwsRdsIDatabaseClusterDefMetricVolumeWriteIoPsParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsRdsIDatabaseInstanceDefConfig(pydantic.BaseModel):
-    add_proxy: typing.Optional[list[AwsRdsIDatabaseInstanceDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
-    apply_removal_policy: typing.Optional[list[AwsRdsIDatabaseInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_connect: typing.Optional[list[AwsRdsIDatabaseInstanceDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
-    metric: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
-    metric_cpu_utilization: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
-    metric_database_connections: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
-    metric_free_storage_space: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
-    metric_freeable_memory: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
-    metric_read_iops: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
-    metric_write_iops: typing.Optional[list[AwsRdsIDatabaseInstanceDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
-    on_event: typing.Optional[list[AwsRdsIDatabaseInstanceDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
+    add_proxy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this instance.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_connect: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the database.')
+    metric: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBInstance.')
+    metric_cpu_utilization: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
+    metric_database_connections: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
+    metric_free_storage_space: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricFreeStorageSpaceParams]] = pydantic.Field(None, description='The amount of available storage space.\nAverage over 5 minutes')
+    metric_freeable_memory: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricFreeableMemoryParams]] = pydantic.Field(None, description='The amount of available random access memory.\nAverage over 5 minutes')
+    metric_read_iops: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricReadIopsParams]] = pydantic.Field(None, description='The average number of disk write I/O operations per second.\nAverage over 5 minutes')
+    metric_write_iops: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefMetricWriteIopsParams]] = pydantic.Field(None, description='The average number of disk read I/O operations per second.\nAverage over 5 minutes')
+    on_event: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseInstanceDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for instance events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
 
 
 class AwsRdsIDatabaseInstanceDefAddProxyParams(pydantic.BaseModel):
@@ -5670,8 +5670,8 @@ class AwsRdsIDatabaseInstanceDefOnEventParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_events.RuleDefConfig]] = pydantic.Field(None)
 
 class AwsRdsIDatabaseProxyDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRdsIDatabaseProxyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_connect: typing.Optional[list[AwsRdsIDatabaseProxyDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the proxy.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseProxyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_connect: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseProxyDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the proxy.')
 
 
 class AwsRdsIDatabaseProxyDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5685,7 +5685,7 @@ class AwsRdsIDatabaseProxyDefGrantConnectParams(pydantic.BaseModel):
 
 
 class AwsRdsIInstanceEngineDefConfig(pydantic.BaseModel):
-    bind_to_instance: typing.Optional[list[AwsRdsIInstanceEngineDefBindToInstanceParams]] = pydantic.Field(None, description='Method called when the engine is used to create a new instance.')
+    bind_to_instance: typing.Optional[list[models._interface_methods.AwsRdsIInstanceEngineDefBindToInstanceParams]] = pydantic.Field(None, description='Method called when the engine is used to create a new instance.')
 
 
 class AwsRdsIInstanceEngineDefBindToInstanceParams(pydantic.BaseModel):
@@ -5697,8 +5697,8 @@ class AwsRdsIInstanceEngineDefBindToInstanceParams(pydantic.BaseModel):
     timezone: typing.Optional[str] = pydantic.Field(None, description="The timezone of the database, set by the customer. Default: - none (it's an optional field)")
 
 class AwsRdsIOptionGroupDefConfig(pydantic.BaseModel):
-    add_configuration: typing.Optional[list[AwsRdsIOptionGroupDefAddConfigurationParams]] = pydantic.Field(None, description='Adds a configuration to this OptionGroup.\nThis method is a no-op for an imported OptionGroup.')
-    apply_removal_policy: typing.Optional[list[AwsRdsIOptionGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_configuration: typing.Optional[list[models._interface_methods.AwsRdsIOptionGroupDefAddConfigurationParams]] = pydantic.Field(None, description='Adds a configuration to this OptionGroup.\nThis method is a no-op for an imported OptionGroup.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIOptionGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsRdsIOptionGroupDefAddConfigurationParams(pydantic.BaseModel):
@@ -5713,8 +5713,8 @@ class AwsRdsIOptionGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRdsIParameterGroupDefConfig(pydantic.BaseModel):
-    add_parameter: typing.Optional[list[AwsRdsIParameterGroupDefAddParameterParams]] = pydantic.Field(None, description='Adds a parameter to this group.\nIf this is an imported parameter group,\nthis method does nothing.')
-    apply_removal_policy: typing.Optional[list[AwsRdsIParameterGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_parameter: typing.Optional[list[models._interface_methods.AwsRdsIParameterGroupDefAddParameterParams]] = pydantic.Field(None, description='Adds a parameter to this group.\nIf this is an imported parameter group,\nthis method does nothing.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIParameterGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     bind_to_cluster: typing.Optional[bool] = pydantic.Field(None, description='Method called when this Parameter Group is used when defining a database cluster.')
     bind_to_instance: typing.Optional[bool] = pydantic.Field(None, description='Method called when this Parameter Group is used when defining a database instance.')
 
@@ -5727,8 +5727,8 @@ class AwsRdsIParameterGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRdsIServerlessClusterDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRdsIServerlessClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_data_api_access: typing.Optional[list[AwsRdsIServerlessClusterDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIServerlessClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_data_api_access: typing.Optional[list[models._interface_methods.AwsRdsIServerlessClusterDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API.')
 
 
 class AwsRdsIServerlessClusterDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5739,14 +5739,14 @@ class AwsRdsIServerlessClusterDefGrantDataApiAccessParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRdsISubnetGroupDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRdsISubnetGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsISubnetGroupDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsRdsISubnetGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRoute53IAliasRecordTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsRoute53IAliasRecordTargetDefBindParams]] = pydantic.Field(None, description='Return hosted zone ID and DNS name, usable for Route53 alias targets.')
+    bind: typing.Optional[list[models._interface_methods.AwsRoute53IAliasRecordTargetDefBindParams]] = pydantic.Field(None, description='Return hosted zone ID and DNS name, usable for Route53 alias targets.')
 
 
 class AwsRoute53IAliasRecordTargetDefBindParams(pydantic.BaseModel):
@@ -5754,8 +5754,8 @@ class AwsRoute53IAliasRecordTargetDefBindParams(pydantic.BaseModel):
     zone: typing.Optional[typing.Union[models.aws_route53.HostedZoneDef, models.aws_route53.PrivateHostedZoneDef, models.aws_route53.PublicHostedZoneDef]] = pydantic.Field(None, description='-')
 
 class AwsRoute53IHostedZoneDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRoute53IHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_delegation: typing.Optional[list[AwsRoute53IHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRoute53IHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_delegation: typing.Optional[list[models._interface_methods.AwsRoute53IHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
 
 
 class AwsRoute53IHostedZoneDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5766,8 +5766,8 @@ class AwsRoute53IHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRoute53IPrivateHostedZoneDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRoute53IPrivateHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_delegation: typing.Optional[list[AwsRoute53IPrivateHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRoute53IPrivateHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_delegation: typing.Optional[list[models._interface_methods.AwsRoute53IPrivateHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
 
 
 class AwsRoute53IPrivateHostedZoneDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5778,8 +5778,8 @@ class AwsRoute53IPrivateHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRoute53IPublicHostedZoneDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRoute53IPublicHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_delegation: typing.Optional[list[AwsRoute53IPublicHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRoute53IPublicHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_delegation: typing.Optional[list[models._interface_methods.AwsRoute53IPublicHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
 
 
 class AwsRoute53IPublicHostedZoneDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5790,34 +5790,34 @@ class AwsRoute53IPublicHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRoute53IRecordSetDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsRoute53IRecordSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRoute53IRecordSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsRoute53IRecordSetDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsS3IBucketDefConfig(pydantic.BaseModel):
-    add_event_notification: typing.Optional[list[AwsS3IBucketDefAddEventNotificationParams]] = pydantic.Field(None, description='Adds a bucket notification event destination.')
-    add_object_created_notification: typing.Optional[list[AwsS3IBucketDefAddObjectCreatedNotificationParams]] = pydantic.Field(None, description='Subscribes a destination to receive notifications when an object is created in the bucket.\nThis is identical to calling\n``onEvent(s3.EventType.OBJECT_CREATED)``.')
-    add_object_removed_notification: typing.Optional[list[AwsS3IBucketDefAddObjectRemovedNotificationParams]] = pydantic.Field(None, description='Subscribes a destination to receive notifications when an object is removed from the bucket.\nThis is identical to calling\n``onEvent(EventType.OBJECT_REMOVED)``.')
-    add_to_resource_policy: typing.Optional[list[AwsS3IBucketDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Adds a statement to the resource policy for a principal (i.e. account/role/service) to perform actions on this bucket and/or its contents. Use ``bucketArn`` and ``arnForObjects(keys)`` to obtain ARNs for this bucket or objects.\nNote that the policy statement may or may not be added to the policy.\nFor example, when an ``IBucket`` is created from an existing bucket,\nit's not possible to tell whether the bucket already has a policy\nattached, let alone to re-use that policy to add more statements to it.\nSo it's safest to do nothing in these cases.")
-    apply_removal_policy: typing.Optional[list[AwsS3IBucketDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    arn_for_objects: typing.Optional[list[AwsS3IBucketDefArnForObjectsParams]] = pydantic.Field(None, description='Returns an ARN that represents all objects within the bucket that match the key pattern specified.\nTo represent all keys, specify ``"*"``.')
+    add_event_notification: typing.Optional[list[models._interface_methods.AwsS3IBucketDefAddEventNotificationParams]] = pydantic.Field(None, description='Adds a bucket notification event destination.')
+    add_object_created_notification: typing.Optional[list[models._interface_methods.AwsS3IBucketDefAddObjectCreatedNotificationParams]] = pydantic.Field(None, description='Subscribes a destination to receive notifications when an object is created in the bucket.\nThis is identical to calling\n``onEvent(s3.EventType.OBJECT_CREATED)``.')
+    add_object_removed_notification: typing.Optional[list[models._interface_methods.AwsS3IBucketDefAddObjectRemovedNotificationParams]] = pydantic.Field(None, description='Subscribes a destination to receive notifications when an object is removed from the bucket.\nThis is identical to calling\n``onEvent(EventType.OBJECT_REMOVED)``.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsS3IBucketDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Adds a statement to the resource policy for a principal (i.e. account/role/service) to perform actions on this bucket and/or its contents. Use ``bucketArn`` and ``arnForObjects(keys)`` to obtain ARNs for this bucket or objects.\nNote that the policy statement may or may not be added to the policy.\nFor example, when an ``IBucket`` is created from an existing bucket,\nit's not possible to tell whether the bucket already has a policy\nattached, let alone to re-use that policy to add more statements to it.\nSo it's safest to do nothing in these cases.")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsS3IBucketDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    arn_for_objects: typing.Optional[list[models._interface_methods.AwsS3IBucketDefArnForObjectsParams]] = pydantic.Field(None, description='Returns an ARN that represents all objects within the bucket that match the key pattern specified.\nTo represent all keys, specify ``"*"``.')
     enable_event_bridge_notification: typing.Optional[bool] = pydantic.Field(None, description='Enables event bridge notification, causing all events below to be sent to EventBridge:.\n- Object Deleted (DeleteObject)\n- Object Deleted (Lifecycle expiration)\n- Object Restore Initiated\n- Object Restore Completed\n- Object Restore Expired\n- Object Storage Class Changed\n- Object Access Tier Changed\n- Object ACL Updated\n- Object Tags Added\n- Object Tags Deleted')
-    grant_delete: typing.Optional[list[AwsS3IBucketDefGrantDeleteParams]] = pydantic.Field(None, description='Grants s3:DeleteObject* permission to an IAM principal for objects in this bucket.')
-    grant_public_access: typing.Optional[list[AwsS3IBucketDefGrantPublicAccessParams]] = pydantic.Field(None, description='Allows unrestricted access to objects from this bucket.\nIMPORTANT: This permission allows anyone to perform actions on S3 objects\nin this bucket, which is useful for when you configure your bucket as a\nwebsite and want everyone to be able to read objects in the bucket without\nneeding to authenticate.\n\nWithout arguments, this method will grant read ("s3:GetObject") access to\nall objects ("*") in the bucket.\n\nThe method returns the ``iam.Grant`` object, which can then be modified\nas needed. For example, you can add a condition that will restrict access only\nto an IPv4 range like this::\n\n   const grant = bucket.grantPublicAccess();\n   grant.resourceStatement!.addCondition(‘IpAddress’, { “aws:SourceIp”: “54.240.143.0/24” });')
-    grant_put: typing.Optional[list[AwsS3IBucketDefGrantPutParams]] = pydantic.Field(None, description='Grants s3:PutObject* and s3:Abort* permissions for this bucket to an IAM principal.\nIf encryption is used, permission to use the key to encrypt the contents\nof written files will also be granted to the same principal.')
-    grant_put_acl: typing.Optional[list[AwsS3IBucketDefGrantPutAclParams]] = pydantic.Field(None, description="Grant the given IAM identity permissions to modify the ACLs of objects in the given Bucket.\nIf your application has the '@aws-cdk/aws-s3:grantWriteWithoutAcl' feature flag set,\ncalling ``grantWrite`` or ``grantReadWrite`` no longer grants permissions to modify the ACLs of the objects;\nin this case, if you need to modify object ACLs, call this method explicitly.")
-    grant_read: typing.Optional[list[AwsS3IBucketDefGrantReadParams]] = pydantic.Field(None, description="Grant read permissions for this bucket and it's contents to an IAM principal (Role/Group/User).\nIf encryption is used, permission to use the key to decrypt the contents\nof the bucket will also be granted to the same principal.")
-    grant_read_write: typing.Optional[list[AwsS3IBucketDefGrantReadWriteParams]] = pydantic.Field(None, description="Grants read/write permissions for this bucket and it's contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to use the key for\nencrypt/decrypt will also be granted.\n\nBefore CDK version 1.85.0, this method granted the ``s3:PutObject*`` permission that included ``s3:PutObjectAcl``,\nwhich could be used to grant read/write object access to IAM principals in other accounts.\nIf you want to get rid of that behavior, update your CDK version to 1.85.0 or later,\nand make sure the ``@aws-cdk/aws-s3:grantWriteWithoutAcl`` feature flag is set to ``true``\nin the ``context`` key of your cdk.json file.\nIf you've already updated, but still need the principal to have permissions to modify the ACLs,\nuse the ``grantPutAcl`` method.")
-    grant_write: typing.Optional[list[AwsS3IBucketDefGrantWriteParams]] = pydantic.Field(None, description="Grant write permissions to this bucket to an IAM principal.\nIf encryption is used, permission to use the key to encrypt the contents\nof written files will also be granted to the same principal.\n\nBefore CDK version 1.85.0, this method granted the ``s3:PutObject*`` permission that included ``s3:PutObjectAcl``,\nwhich could be used to grant read/write object access to IAM principals in other accounts.\nIf you want to get rid of that behavior, update your CDK version to 1.85.0 or later,\nand make sure the ``@aws-cdk/aws-s3:grantWriteWithoutAcl`` feature flag is set to ``true``\nin the ``context`` key of your cdk.json file.\nIf you've already updated, but still need the principal to have permissions to modify the ACLs,\nuse the ``grantPutAcl`` method.")
-    on_cloud_trail_event: typing.Optional[list[AwsS3IBucketDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event that triggers when something happens to this bucket.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_cloud_trail_put_object: typing.Optional[list[AwsS3IBucketDefOnCloudTrailPutObjectParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event that triggers when an object is uploaded to the specified paths (keys) in this bucket using the PutObject API call.\nNote that some tools like ``aws s3 cp`` will automatically use either\nPutObject or the multipart upload API depending on the file size,\nso using ``onCloudTrailWriteObject`` may be preferable.\n\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    on_cloud_trail_write_object: typing.Optional[list[AwsS3IBucketDefOnCloudTrailWriteObjectParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event that triggers when an object at the specified paths (keys) in this bucket are written to.\nThis includes\nthe events PutObject, CopyObject, and CompleteMultipartUpload.\n\nNote that some tools like ``aws s3 cp`` will automatically use either\nPutObject or the multipart upload API depending on the file size,\nso using this method may be preferable to ``onCloudTrailPutObject``.\n\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
-    s3_url_for_object: typing.Optional[list[AwsS3IBucketDefS3UrlForObjectParams]] = pydantic.Field(None, description='The S3 URL of an S3 object.\nFor example:\n\n- ``s3://onlybucket``\n- ``s3://bucket/key``')
-    transfer_acceleration_url_for_object: typing.Optional[list[AwsS3IBucketDefTransferAccelerationUrlForObjectParams]] = pydantic.Field(None, description='The https Transfer Acceleration URL of an S3 object.\nSpecify ``dualStack: true`` at the options\nfor dual-stack endpoint (connect to the bucket over IPv6). For example:\n\n- ``https://bucket.s3-accelerate.amazonaws.com``\n- ``https://bucket.s3-accelerate.amazonaws.com/key``')
-    url_for_object: typing.Optional[list[AwsS3IBucketDefUrlForObjectParams]] = pydantic.Field(None, description='The https URL of an S3 object. For example:.\n- ``https://s3.us-west-1.amazonaws.com/onlybucket``\n- ``https://s3.us-west-1.amazonaws.com/bucket/key``\n- ``https://s3.cn-north-1.amazonaws.com.cn/china-bucket/mykey``')
-    virtual_hosted_url_for_object: typing.Optional[list[AwsS3IBucketDefVirtualHostedUrlForObjectParams]] = pydantic.Field(None, description='The virtual hosted-style URL of an S3 object. Specify ``regional: false`` at the options for non-regional URL. For example:.\n- ``https://only-bucket.s3.us-west-1.amazonaws.com``\n- ``https://bucket.s3.us-west-1.amazonaws.com/key``\n- ``https://bucket.s3.amazonaws.com/key``\n- ``https://china-bucket.s3.cn-north-1.amazonaws.com.cn/mykey``')
+    grant_delete: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantDeleteParams]] = pydantic.Field(None, description='Grants s3:DeleteObject* permission to an IAM principal for objects in this bucket.')
+    grant_public_access: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantPublicAccessParams]] = pydantic.Field(None, description='Allows unrestricted access to objects from this bucket.\nIMPORTANT: This permission allows anyone to perform actions on S3 objects\nin this bucket, which is useful for when you configure your bucket as a\nwebsite and want everyone to be able to read objects in the bucket without\nneeding to authenticate.\n\nWithout arguments, this method will grant read ("s3:GetObject") access to\nall objects ("*") in the bucket.\n\nThe method returns the ``iam.Grant`` object, which can then be modified\nas needed. For example, you can add a condition that will restrict access only\nto an IPv4 range like this::\n\n   const grant = bucket.grantPublicAccess();\n   grant.resourceStatement!.addCondition(‘IpAddress’, { “aws:SourceIp”: “54.240.143.0/24” });')
+    grant_put: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantPutParams]] = pydantic.Field(None, description='Grants s3:PutObject* and s3:Abort* permissions for this bucket to an IAM principal.\nIf encryption is used, permission to use the key to encrypt the contents\nof written files will also be granted to the same principal.')
+    grant_put_acl: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantPutAclParams]] = pydantic.Field(None, description="Grant the given IAM identity permissions to modify the ACLs of objects in the given Bucket.\nIf your application has the '@aws-cdk/aws-s3:grantWriteWithoutAcl' feature flag set,\ncalling ``grantWrite`` or ``grantReadWrite`` no longer grants permissions to modify the ACLs of the objects;\nin this case, if you need to modify object ACLs, call this method explicitly.")
+    grant_read: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantReadParams]] = pydantic.Field(None, description="Grant read permissions for this bucket and it's contents to an IAM principal (Role/Group/User).\nIf encryption is used, permission to use the key to decrypt the contents\nof the bucket will also be granted to the same principal.")
+    grant_read_write: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantReadWriteParams]] = pydantic.Field(None, description="Grants read/write permissions for this bucket and it's contents to an IAM principal (Role/Group/User).\nIf an encryption key is used, permission to use the key for\nencrypt/decrypt will also be granted.\n\nBefore CDK version 1.85.0, this method granted the ``s3:PutObject*`` permission that included ``s3:PutObjectAcl``,\nwhich could be used to grant read/write object access to IAM principals in other accounts.\nIf you want to get rid of that behavior, update your CDK version to 1.85.0 or later,\nand make sure the ``@aws-cdk/aws-s3:grantWriteWithoutAcl`` feature flag is set to ``true``\nin the ``context`` key of your cdk.json file.\nIf you've already updated, but still need the principal to have permissions to modify the ACLs,\nuse the ``grantPutAcl`` method.")
+    grant_write: typing.Optional[list[models._interface_methods.AwsS3IBucketDefGrantWriteParams]] = pydantic.Field(None, description="Grant write permissions to this bucket to an IAM principal.\nIf encryption is used, permission to use the key to encrypt the contents\nof written files will also be granted to the same principal.\n\nBefore CDK version 1.85.0, this method granted the ``s3:PutObject*`` permission that included ``s3:PutObjectAcl``,\nwhich could be used to grant read/write object access to IAM principals in other accounts.\nIf you want to get rid of that behavior, update your CDK version to 1.85.0 or later,\nand make sure the ``@aws-cdk/aws-s3:grantWriteWithoutAcl`` feature flag is set to ``true``\nin the ``context`` key of your cdk.json file.\nIf you've already updated, but still need the principal to have permissions to modify the ACLs,\nuse the ``grantPutAcl`` method.")
+    on_cloud_trail_event: typing.Optional[list[models._interface_methods.AwsS3IBucketDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event that triggers when something happens to this bucket.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_cloud_trail_put_object: typing.Optional[list[models._interface_methods.AwsS3IBucketDefOnCloudTrailPutObjectParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event that triggers when an object is uploaded to the specified paths (keys) in this bucket using the PutObject API call.\nNote that some tools like ``aws s3 cp`` will automatically use either\nPutObject or the multipart upload API depending on the file size,\nso using ``onCloudTrailWriteObject`` may be preferable.\n\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    on_cloud_trail_write_object: typing.Optional[list[models._interface_methods.AwsS3IBucketDefOnCloudTrailWriteObjectParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event that triggers when an object at the specified paths (keys) in this bucket are written to.\nThis includes\nthe events PutObject, CopyObject, and CompleteMultipartUpload.\n\nNote that some tools like ``aws s3 cp`` will automatically use either\nPutObject or the multipart upload API depending on the file size,\nso using this method may be preferable to ``onCloudTrailPutObject``.\n\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
+    s3_url_for_object: typing.Optional[list[models._interface_methods.AwsS3IBucketDefS3UrlForObjectParams]] = pydantic.Field(None, description='The S3 URL of an S3 object.\nFor example:\n\n- ``s3://onlybucket``\n- ``s3://bucket/key``')
+    transfer_acceleration_url_for_object: typing.Optional[list[models._interface_methods.AwsS3IBucketDefTransferAccelerationUrlForObjectParams]] = pydantic.Field(None, description='The https Transfer Acceleration URL of an S3 object.\nSpecify ``dualStack: true`` at the options\nfor dual-stack endpoint (connect to the bucket over IPv6). For example:\n\n- ``https://bucket.s3-accelerate.amazonaws.com``\n- ``https://bucket.s3-accelerate.amazonaws.com/key``')
+    url_for_object: typing.Optional[list[models._interface_methods.AwsS3IBucketDefUrlForObjectParams]] = pydantic.Field(None, description='The https URL of an S3 object. For example:.\n- ``https://s3.us-west-1.amazonaws.com/onlybucket``\n- ``https://s3.us-west-1.amazonaws.com/bucket/key``\n- ``https://s3.cn-north-1.amazonaws.com.cn/china-bucket/mykey``')
+    virtual_hosted_url_for_object: typing.Optional[list[models._interface_methods.AwsS3IBucketDefVirtualHostedUrlForObjectParams]] = pydantic.Field(None, description='The virtual hosted-style URL of an S3 object. Specify ``regional: false`` at the options for non-regional URL. For example:.\n- ``https://only-bucket.s3.us-west-1.amazonaws.com``\n- ``https://bucket.s3.us-west-1.amazonaws.com/key``\n- ``https://bucket.s3.amazonaws.com/key``\n- ``https://china-bucket.s3.cn-north-1.amazonaws.com.cn/mykey``')
 
 
 class AwsS3IBucketDefAddEventNotificationParams(pydantic.BaseModel):
@@ -5923,7 +5923,7 @@ class AwsS3IBucketDefVirtualHostedUrlForObjectParams(pydantic.BaseModel):
     regional: typing.Optional[bool] = pydantic.Field(None, description='Specifies the URL includes the region. Default: - true\n')
 
 class AwsS3IBucketNotificationDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsS3IBucketNotificationDestinationDefBindParams]] = pydantic.Field(None, description='Registers this resource to receive notifications for the specified bucket.\nThis method will only be called once for each destination/bucket\npair and the result will be cached, so there is no need to implement\nidempotency in each destination.')
+    bind: typing.Optional[list[models._interface_methods.AwsS3IBucketNotificationDestinationDefBindParams]] = pydantic.Field(None, description='Registers this resource to receive notifications for the specified bucket.\nThis method will only be called once for each destination/bucket\npair and the result will be cached, so there is no need to implement\nidempotency in each destination.')
 
 
 class AwsS3IBucketNotificationDestinationDefBindParams(pydantic.BaseModel):
@@ -5931,7 +5931,7 @@ class AwsS3IBucketNotificationDestinationDefBindParams(pydantic.BaseModel):
     bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The bucket object to bind to.')
 
 class AwsS3DeploymentISourceDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsS3DeploymentISourceDefBindParams]] = pydantic.Field(None, description='Binds the source to a bucket deployment.')
+    bind: typing.Optional[list[models._interface_methods.AwsS3DeploymentISourceDefBindParams]] = pydantic.Field(None, description='Binds the source to a bucket deployment.')
 
 
 class AwsS3DeploymentISourceDefBindParams(pydantic.BaseModel):
@@ -5940,8 +5940,8 @@ class AwsS3DeploymentISourceDefBindParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_s3_deployment.SourceConfigDefConfig]] = pydantic.Field(None)
 
 class AwsSagemakerIEndpointDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSagemakerIEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_invoke: typing.Optional[list[AwsSagemakerIEndpointDefGrantInvokeParams]] = pydantic.Field(None, description='Permits an IAM principal to invoke this endpoint.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSagemakerIEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_invoke: typing.Optional[list[models._interface_methods.AwsSagemakerIEndpointDefGrantInvokeParams]] = pydantic.Field(None, description='Permits an IAM principal to invoke this endpoint.')
 
 
 class AwsSagemakerIEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -5952,14 +5952,14 @@ class AwsSagemakerIEndpointDefGrantInvokeParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretDefConfig(pydantic.BaseModel):
-    add_rotation_schedule: typing.Optional[list[AwsSecretsmanagerISecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
-    add_to_resource_policy: typing.Optional[list[AwsSecretsmanagerISecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
-    apply_removal_policy: typing.Optional[list[AwsSecretsmanagerISecretDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    attach: typing.Optional[list[AwsSecretsmanagerISecretDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
+    add_rotation_schedule: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    attach: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
     deny_account_root_delete: typing.Optional[bool] = pydantic.Field(None, description='Denies the ``DeleteSecret`` action to all principals within the current account.')
-    grant_read: typing.Optional[list[AwsSecretsmanagerISecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
-    grant_write: typing.Optional[list[AwsSecretsmanagerISecretDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
-    secret_value_from_json: typing.Optional[list[AwsSecretsmanagerISecretDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
+    grant_read: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
+    secret_value_from_json: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
 
 
 class AwsSecretsmanagerISecretDefAddRotationScheduleParams(pydantic.BaseModel):
@@ -5996,14 +5996,14 @@ class AwsSecretsmanagerISecretDefSecretValueFromJsonParams(pydantic.BaseModel):
 
 
 class AwsSecretsmanagerISecretTargetAttachmentDefConfig(pydantic.BaseModel):
-    add_rotation_schedule: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
-    add_to_resource_policy: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
-    apply_removal_policy: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    attach: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
+    add_rotation_schedule: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    attach: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
     deny_account_root_delete: typing.Optional[bool] = pydantic.Field(None, description='Denies the ``DeleteSecret`` action to all principals within the current account.')
-    grant_read: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
-    grant_write: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
-    secret_value_from_json: typing.Optional[list[AwsSecretsmanagerISecretTargetAttachmentDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
+    grant_read: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
+    secret_value_from_json: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretTargetAttachmentDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
 
 
 class AwsSecretsmanagerISecretTargetAttachmentDefAddRotationScheduleParams(pydantic.BaseModel):
@@ -6038,20 +6038,20 @@ class AwsSecretsmanagerISecretTargetAttachmentDefSecretValueFromJsonParams(pydan
     return_config: typing.Optional[list[models.core.SecretValueDefConfig]] = pydantic.Field(None)
 
 class AwsServicecatalogIPortfolioDefConfig(pydantic.BaseModel):
-    add_product: typing.Optional[list[AwsServicecatalogIPortfolioDefAddProductParams]] = pydantic.Field(None, description='Associate portfolio with the given product.')
-    apply_removal_policy: typing.Optional[list[AwsServicecatalogIPortfolioDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    associate_tag_options: typing.Optional[list[AwsServicecatalogIPortfolioDefAssociateTagOptionsParams]] = pydantic.Field(None, description='Associate Tag Options.\nA TagOption is a key-value pair managed in AWS Service Catalog.\nIt is not an AWS tag, but serves as a template for creating an AWS tag based on the TagOption.')
-    constrain_cloud_formation_parameters: typing.Optional[list[AwsServicecatalogIPortfolioDefConstrainCloudFormationParametersParams]] = pydantic.Field(None, description='Set provisioning rules for the product.')
-    constrain_tag_updates: typing.Optional[list[AwsServicecatalogIPortfolioDefConstrainTagUpdatesParams]] = pydantic.Field(None, description='Add a Resource Update Constraint.')
-    deploy_with_stack_sets: typing.Optional[list[AwsServicecatalogIPortfolioDefDeployWithStackSetsParams]] = pydantic.Field(None, description='Configure deployment options using AWS Cloudformation StackSets.')
-    give_access_to_group: typing.Optional[list[AwsServicecatalogIPortfolioDefGiveAccessToGroupParams]] = pydantic.Field(None, description='Associate portfolio with an IAM Group.')
-    give_access_to_role: typing.Optional[list[AwsServicecatalogIPortfolioDefGiveAccessToRoleParams]] = pydantic.Field(None, description='Associate portfolio with an IAM Role.')
-    give_access_to_user: typing.Optional[list[AwsServicecatalogIPortfolioDefGiveAccessToUserParams]] = pydantic.Field(None, description='Associate portfolio with an IAM User.')
-    notify_on_stack_events: typing.Optional[list[AwsServicecatalogIPortfolioDefNotifyOnStackEventsParams]] = pydantic.Field(None, description='Add notifications for supplied topics on the provisioned product.')
-    set_launch_role: typing.Optional[list[AwsServicecatalogIPortfolioDefSetLaunchRoleParams]] = pydantic.Field(None, description='Force users to assume a certain role when launching a product.\nThis sets the launch role using the role arn which is tied to the account this role exists in.\nThis is useful if you will be provisioning products from the account where this role exists.\nIf you intend to share the portfolio across accounts, use a local launch role.')
-    set_local_launch_role: typing.Optional[list[AwsServicecatalogIPortfolioDefSetLocalLaunchRoleParams]] = pydantic.Field(None, description='Force users to assume a certain role when launching a product.\nThe role name will be referenced by in the local account and must be set explicitly.\nThis is useful when sharing the portfolio with multiple accounts.')
-    set_local_launch_role_name: typing.Optional[list[AwsServicecatalogIPortfolioDefSetLocalLaunchRoleNameParams]] = pydantic.Field(None, description='Force users to assume a certain role when launching a product.\nThe role will be referenced by name in the local account instead of a static role arn.\nA role with this name will automatically be created and assumable by Service Catalog in this account.\nThis is useful when sharing the portfolio with multiple accounts.')
-    share_with_account: typing.Optional[list[AwsServicecatalogIPortfolioDefShareWithAccountParams]] = pydantic.Field(None, description='Initiate a portfolio share with another account.')
+    add_product: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefAddProductParams]] = pydantic.Field(None, description='Associate portfolio with the given product.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    associate_tag_options: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefAssociateTagOptionsParams]] = pydantic.Field(None, description='Associate Tag Options.\nA TagOption is a key-value pair managed in AWS Service Catalog.\nIt is not an AWS tag, but serves as a template for creating an AWS tag based on the TagOption.')
+    constrain_cloud_formation_parameters: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefConstrainCloudFormationParametersParams]] = pydantic.Field(None, description='Set provisioning rules for the product.')
+    constrain_tag_updates: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefConstrainTagUpdatesParams]] = pydantic.Field(None, description='Add a Resource Update Constraint.')
+    deploy_with_stack_sets: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefDeployWithStackSetsParams]] = pydantic.Field(None, description='Configure deployment options using AWS Cloudformation StackSets.')
+    give_access_to_group: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefGiveAccessToGroupParams]] = pydantic.Field(None, description='Associate portfolio with an IAM Group.')
+    give_access_to_role: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefGiveAccessToRoleParams]] = pydantic.Field(None, description='Associate portfolio with an IAM Role.')
+    give_access_to_user: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefGiveAccessToUserParams]] = pydantic.Field(None, description='Associate portfolio with an IAM User.')
+    notify_on_stack_events: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefNotifyOnStackEventsParams]] = pydantic.Field(None, description='Add notifications for supplied topics on the provisioned product.')
+    set_launch_role: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefSetLaunchRoleParams]] = pydantic.Field(None, description='Force users to assume a certain role when launching a product.\nThis sets the launch role using the role arn which is tied to the account this role exists in.\nThis is useful if you will be provisioning products from the account where this role exists.\nIf you intend to share the portfolio across accounts, use a local launch role.')
+    set_local_launch_role: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefSetLocalLaunchRoleParams]] = pydantic.Field(None, description='Force users to assume a certain role when launching a product.\nThe role name will be referenced by in the local account and must be set explicitly.\nThis is useful when sharing the portfolio with multiple accounts.')
+    set_local_launch_role_name: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefSetLocalLaunchRoleNameParams]] = pydantic.Field(None, description='Force users to assume a certain role when launching a product.\nThe role will be referenced by name in the local account instead of a static role arn.\nA role with this name will automatically be created and assumable by Service Catalog in this account.\nThis is useful when sharing the portfolio with multiple accounts.')
+    share_with_account: typing.Optional[list[models._interface_methods.AwsServicecatalogIPortfolioDefShareWithAccountParams]] = pydantic.Field(None, description='Initiate a portfolio share with another account.')
 
 
 class AwsServicecatalogIPortfolioDefAddProductParams(pydantic.BaseModel):
@@ -6125,8 +6125,8 @@ class AwsServicecatalogIPortfolioDefShareWithAccountParams(pydantic.BaseModel):
     share_tag_options: typing.Optional[bool] = pydantic.Field(None, description='Whether to share tagOptions as a part of the portfolio share. Default: - share not specified')
 
 class AwsServicecatalogIProductDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicecatalogIProductDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    associate_tag_options: typing.Optional[list[AwsServicecatalogIProductDefAssociateTagOptionsParams]] = pydantic.Field(None, description='Associate Tag Options.\nA TagOption is a key-value pair managed in AWS Service Catalog.\nIt is not an AWS tag, but serves as a template for creating an AWS tag based on the TagOption.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicecatalogIProductDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    associate_tag_options: typing.Optional[list[models._interface_methods.AwsServicecatalogIProductDefAssociateTagOptionsParams]] = pydantic.Field(None, description='Associate Tag Options.\nA TagOption is a key-value pair managed in AWS Service Catalog.\nIt is not an AWS tag, but serves as a template for creating an AWS tag based on the TagOption.')
 
 
 class AwsServicecatalogIProductDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -6136,92 +6136,92 @@ class AwsServicecatalogIProductDefAssociateTagOptionsParams(pydantic.BaseModel):
     tag_options: models.aws_servicecatalog.TagOptionsDef = pydantic.Field(..., description='-')
 
 class AwsServicediscoveryIHttpNamespaceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicediscoveryIHttpNamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicediscoveryIHttpNamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsServicediscoveryIHttpNamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsServicediscoveryIInstanceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicediscoveryIInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicediscoveryIInstanceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsServicediscoveryIInstanceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsServicediscoveryINamespaceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicediscoveryINamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicediscoveryINamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsServicediscoveryINamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsServicediscoveryIPrivateDnsNamespaceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicediscoveryIPrivateDnsNamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicediscoveryIPrivateDnsNamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsServicediscoveryIPrivateDnsNamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsServicediscoveryIPublicDnsNamespaceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicediscoveryIPublicDnsNamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicediscoveryIPublicDnsNamespaceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsServicediscoveryIPublicDnsNamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsServicediscoveryIServiceDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsServicediscoveryIServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsServicediscoveryIServiceDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsServicediscoveryIServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIConfigurationSetDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSesIConfigurationSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIConfigurationSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIConfigurationSetDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIConfigurationSetEventDestinationDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSesIConfigurationSetEventDestinationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIConfigurationSetEventDestinationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIConfigurationSetEventDestinationDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIDedicatedIpPoolDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSesIDedicatedIpPoolDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIDedicatedIpPoolDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIDedicatedIpPoolDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIEmailIdentityDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSesIEmailIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIEmailIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIEmailIdentityDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIReceiptRuleDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSesIReceiptRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIReceiptRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIReceiptRuleDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIReceiptRuleActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsSesIReceiptRuleActionDefBindParams]] = pydantic.Field(None, description='Returns the receipt rule action specification.')
+    bind: typing.Optional[list[models._interface_methods.AwsSesIReceiptRuleActionDefBindParams]] = pydantic.Field(None, description='Returns the receipt rule action specification.')
 
 
 class AwsSesIReceiptRuleActionDefBindParams(pydantic.BaseModel):
     receipt_rule: typing.Union[models.aws_ses.ReceiptRuleDef] = pydantic.Field(..., description='-')
 
 class AwsSesIReceiptRuleSetDefConfig(pydantic.BaseModel):
-    add_rule: typing.Optional[list[AwsSesIReceiptRuleSetDefAddRuleParams]] = pydantic.Field(None, description='Adds a new receipt rule in this rule set.\nThe new rule is added after\nthe last added rule unless ``after`` is specified.')
-    apply_removal_policy: typing.Optional[list[AwsSesIReceiptRuleSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    add_rule: typing.Optional[list[models._interface_methods.AwsSesIReceiptRuleSetDefAddRuleParams]] = pydantic.Field(None, description='Adds a new receipt rule in this rule set.\nThe new rule is added after\nthe last added rule unless ``after`` is specified.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIReceiptRuleSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIReceiptRuleSetDefAddRuleParams(pydantic.BaseModel):
@@ -6239,35 +6239,35 @@ class AwsSesIReceiptRuleSetDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSesIVdmAttributesDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSesIVdmAttributesDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIVdmAttributesDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSesIVdmAttributesDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSignerISigningProfileDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSignerISigningProfileDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSignerISigningProfileDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsSignerISigningProfileDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSnsITopicDefConfig(pydantic.BaseModel):
-    add_subscription: typing.Optional[list[AwsSnsITopicDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
-    add_to_resource_policy: typing.Optional[list[AwsSnsITopicDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
-    apply_removal_policy: typing.Optional[list[AwsSnsITopicDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    bind_as_notification_rule_target: typing.Optional[list[AwsSnsITopicDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
-    grant_publish: typing.Optional[list[AwsSnsITopicDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
-    metric: typing.Optional[list[AwsSnsITopicDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
-    metric_number_of_messages_published: typing.Optional[list[AwsSnsITopicDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
-    metric_number_of_notifications_delivered: typing.Optional[list[AwsSnsITopicDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
-    metric_number_of_notifications_failed: typing.Optional[list[AwsSnsITopicDefMetricNumberOfNotificationsFailedParams]] = pydantic.Field(None, description='The number of messages that Amazon SNS failed to deliver.\nSum over 5 minutes')
-    metric_number_of_notifications_filtered_out: typing.Optional[list[AwsSnsITopicDefMetricNumberOfNotificationsFilteredOutParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies.\nSum over 5 minutes')
-    metric_number_of_notifications_filtered_out_invalid_attributes: typing.Optional[list[AwsSnsITopicDefMetricNumberOfNotificationsFilteredOutInvalidAttributesParams]] = pydantic.Field(None, description="The number of messages that were rejected by subscription filter policies because the messages' attributes are invalid.\nSum over 5 minutes")
-    metric_number_of_notifications_filtered_out_no_message_attributes: typing.Optional[list[AwsSnsITopicDefMetricNumberOfNotificationsFilteredOutNoMessageAttributesParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies because the messages have no attributes.\nSum over 5 minutes')
-    metric_publish_size: typing.Optional[list[AwsSnsITopicDefMetricPublishSizeParams]] = pydantic.Field(None, description='Metric for the size of messages published through this topic.\nAverage over 5 minutes')
-    metric_sms_month_to_date_spent_usd: typing.Optional[list[AwsSnsITopicDefMetricSmsMonthToDateSpentUsdParams]] = pydantic.Field(None, description='The charges you have accrued since the start of the current calendar month for sending SMS messages.\nMaximum over 5 minutes')
-    metric_sms_success_rate: typing.Optional[list[AwsSnsITopicDefMetricSmsSuccessRateParams]] = pydantic.Field(None, description='The rate of successful SMS message deliveries.\nSum over 5 minutes')
+    add_subscription: typing.Optional[list[models._interface_methods.AwsSnsITopicDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSnsITopicDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSnsITopicDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    bind_as_notification_rule_target: typing.Optional[list[models._interface_methods.AwsSnsITopicDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
+    grant_publish: typing.Optional[list[models._interface_methods.AwsSnsITopicDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
+    metric: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
+    metric_number_of_messages_published: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
+    metric_number_of_notifications_delivered: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
+    metric_number_of_notifications_failed: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfNotificationsFailedParams]] = pydantic.Field(None, description='The number of messages that Amazon SNS failed to deliver.\nSum over 5 minutes')
+    metric_number_of_notifications_filtered_out: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfNotificationsFilteredOutParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies.\nSum over 5 minutes')
+    metric_number_of_notifications_filtered_out_invalid_attributes: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfNotificationsFilteredOutInvalidAttributesParams]] = pydantic.Field(None, description="The number of messages that were rejected by subscription filter policies because the messages' attributes are invalid.\nSum over 5 minutes")
+    metric_number_of_notifications_filtered_out_no_message_attributes: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfNotificationsFilteredOutNoMessageAttributesParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies because the messages have no attributes.\nSum over 5 minutes')
+    metric_publish_size: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricPublishSizeParams]] = pydantic.Field(None, description='Metric for the size of messages published through this topic.\nAverage over 5 minutes')
+    metric_sms_month_to_date_spent_usd: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricSmsMonthToDateSpentUsdParams]] = pydantic.Field(None, description='The charges you have accrued since the start of the current calendar month for sending SMS messages.\nMaximum over 5 minutes')
+    metric_sms_success_rate: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricSmsSuccessRateParams]] = pydantic.Field(None, description='The rate of successful SMS message deliveries.\nSum over 5 minutes')
 
 
 class AwsSnsITopicDefAddSubscriptionParams(pydantic.BaseModel):
@@ -6399,29 +6399,29 @@ class AwsSnsITopicDefMetricSmsSuccessRateParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsSnsITopicSubscriptionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsSnsITopicSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration used to subscribe to an SNS topic.')
+    bind: typing.Optional[list[models._interface_methods.AwsSnsITopicSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration used to subscribe to an SNS topic.')
 
 
 class AwsSnsITopicSubscriptionDefBindParams(pydantic.BaseModel):
     topic: typing.Union[models.aws_sns.TopicBaseDef, models.aws_sns.TopicDef] = pydantic.Field(..., description='topic for which subscription will be configured.')
 
 class AwsSqsIQueueDefConfig(pydantic.BaseModel):
-    add_to_resource_policy: typing.Optional[list[AwsSqsIQueueDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this queue.\nIf this queue was created in this stack (``new Queue``), a queue policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe queue is imported (``Queue.import``), then this is a no-op.')
-    apply_removal_policy: typing.Optional[list[AwsSqsIQueueDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsSqsIQueueDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in queueActions to the identity Principal given on this SQS queue resource.')
-    grant_consume_messages: typing.Optional[list[AwsSqsIQueueDefGrantConsumeMessagesParams]] = pydantic.Field(None, description='Grant permissions to consume messages from a queue.\nThis will grant the following permissions:\n\n- sqs:ChangeMessageVisibility\n- sqs:DeleteMessage\n- sqs:ReceiveMessage\n- sqs:GetQueueAttributes\n- sqs:GetQueueUrl')
-    grant_purge: typing.Optional[list[AwsSqsIQueueDefGrantPurgeParams]] = pydantic.Field(None, description='Grant an IAM principal permissions to purge all messages from the queue.\nThis will grant the following permissions:\n\n- sqs:PurgeQueue\n- sqs:GetQueueAttributes\n- sqs:GetQueueUrl')
-    grant_send_messages: typing.Optional[list[AwsSqsIQueueDefGrantSendMessagesParams]] = pydantic.Field(None, description='Grant access to send messages to a queue to the given identity.\nThis will grant the following permissions:\n\n- sqs:SendMessage\n- sqs:GetQueueAttributes\n- sqs:GetQueueUrl')
-    metric: typing.Optional[list[AwsSqsIQueueDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Queue.')
-    metric_approximate_age_of_oldest_message: typing.Optional[list[AwsSqsIQueueDefMetricApproximateAgeOfOldestMessageParams]] = pydantic.Field(None, description='The approximate age of the oldest non-deleted message in the queue.\nMaximum over 5 minutes')
-    metric_approximate_number_of_messages_delayed: typing.Optional[list[AwsSqsIQueueDefMetricApproximateNumberOfMessagesDelayedParams]] = pydantic.Field(None, description='The number of messages in the queue that are delayed and not available for reading immediately.\nMaximum over 5 minutes')
-    metric_approximate_number_of_messages_not_visible: typing.Optional[list[AwsSqsIQueueDefMetricApproximateNumberOfMessagesNotVisibleParams]] = pydantic.Field(None, description='The number of messages that are in flight.\nMaximum over 5 minutes')
-    metric_approximate_number_of_messages_visible: typing.Optional[list[AwsSqsIQueueDefMetricApproximateNumberOfMessagesVisibleParams]] = pydantic.Field(None, description='The number of messages available for retrieval from the queue.\nMaximum over 5 minutes')
-    metric_number_of_empty_receives: typing.Optional[list[AwsSqsIQueueDefMetricNumberOfEmptyReceivesParams]] = pydantic.Field(None, description='The number of ReceiveMessage API calls that did not return a message.\nSum over 5 minutes')
-    metric_number_of_messages_deleted: typing.Optional[list[AwsSqsIQueueDefMetricNumberOfMessagesDeletedParams]] = pydantic.Field(None, description='The number of messages deleted from the queue.\nSum over 5 minutes')
-    metric_number_of_messages_received: typing.Optional[list[AwsSqsIQueueDefMetricNumberOfMessagesReceivedParams]] = pydantic.Field(None, description='The number of messages returned by calls to the ReceiveMessage action.\nSum over 5 minutes')
-    metric_number_of_messages_sent: typing.Optional[list[AwsSqsIQueueDefMetricNumberOfMessagesSentParams]] = pydantic.Field(None, description='The number of messages added to a queue.\nSum over 5 minutes')
-    metric_sent_message_size: typing.Optional[list[AwsSqsIQueueDefMetricSentMessageSizeParams]] = pydantic.Field(None, description='The size of messages added to a queue.\nAverage over 5 minutes')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this queue.\nIf this queue was created in this stack (``new Queue``), a queue policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe queue is imported (``Queue.import``), then this is a no-op.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in queueActions to the identity Principal given on this SQS queue resource.')
+    grant_consume_messages: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefGrantConsumeMessagesParams]] = pydantic.Field(None, description='Grant permissions to consume messages from a queue.\nThis will grant the following permissions:\n\n- sqs:ChangeMessageVisibility\n- sqs:DeleteMessage\n- sqs:ReceiveMessage\n- sqs:GetQueueAttributes\n- sqs:GetQueueUrl')
+    grant_purge: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefGrantPurgeParams]] = pydantic.Field(None, description='Grant an IAM principal permissions to purge all messages from the queue.\nThis will grant the following permissions:\n\n- sqs:PurgeQueue\n- sqs:GetQueueAttributes\n- sqs:GetQueueUrl')
+    grant_send_messages: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefGrantSendMessagesParams]] = pydantic.Field(None, description='Grant access to send messages to a queue to the given identity.\nThis will grant the following permissions:\n\n- sqs:SendMessage\n- sqs:GetQueueAttributes\n- sqs:GetQueueUrl')
+    metric: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Queue.')
+    metric_approximate_age_of_oldest_message: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricApproximateAgeOfOldestMessageParams]] = pydantic.Field(None, description='The approximate age of the oldest non-deleted message in the queue.\nMaximum over 5 minutes')
+    metric_approximate_number_of_messages_delayed: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricApproximateNumberOfMessagesDelayedParams]] = pydantic.Field(None, description='The number of messages in the queue that are delayed and not available for reading immediately.\nMaximum over 5 minutes')
+    metric_approximate_number_of_messages_not_visible: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricApproximateNumberOfMessagesNotVisibleParams]] = pydantic.Field(None, description='The number of messages that are in flight.\nMaximum over 5 minutes')
+    metric_approximate_number_of_messages_visible: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricApproximateNumberOfMessagesVisibleParams]] = pydantic.Field(None, description='The number of messages available for retrieval from the queue.\nMaximum over 5 minutes')
+    metric_number_of_empty_receives: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricNumberOfEmptyReceivesParams]] = pydantic.Field(None, description='The number of ReceiveMessage API calls that did not return a message.\nSum over 5 minutes')
+    metric_number_of_messages_deleted: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricNumberOfMessagesDeletedParams]] = pydantic.Field(None, description='The number of messages deleted from the queue.\nSum over 5 minutes')
+    metric_number_of_messages_received: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricNumberOfMessagesReceivedParams]] = pydantic.Field(None, description='The number of messages returned by calls to the ReceiveMessage action.\nSum over 5 minutes')
+    metric_number_of_messages_sent: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricNumberOfMessagesSentParams]] = pydantic.Field(None, description='The number of messages added to a queue.\nSum over 5 minutes')
+    metric_sent_message_size: typing.Optional[list[models._interface_methods.AwsSqsIQueueDefMetricSentMessageSizeParams]] = pydantic.Field(None, description='The size of messages added to a queue.\nAverage over 5 minutes')
 
 
 class AwsSqsIQueueDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -6559,9 +6559,9 @@ class AwsSqsIQueueDefMetricSentMessageSizeParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIParameterDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSsmIParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_read: typing.Optional[list[AwsSsmIParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
-    grant_write: typing.Optional[list[AwsSsmIParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
 
 
 class AwsSsmIParameterDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -6576,9 +6576,9 @@ class AwsSsmIParameterDefGrantWriteParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIStringListParameterDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSsmIStringListParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_read: typing.Optional[list[AwsSsmIStringListParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
-    grant_write: typing.Optional[list[AwsSsmIStringListParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
 
 
 class AwsSsmIStringListParameterDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -6593,9 +6593,9 @@ class AwsSsmIStringListParameterDefGrantWriteParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIStringParameterDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsSsmIStringParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_read: typing.Optional[list[AwsSsmIStringParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
-    grant_write: typing.Optional[list[AwsSsmIStringParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
+    grant_write: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
 
 
 class AwsSsmIStringParameterDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -6610,7 +6610,7 @@ class AwsSsmIStringParameterDefGrantWriteParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIActivityDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsStepfunctionsIActivityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsStepfunctionsIActivityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
 
 class AwsStepfunctionsIActivityDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -6619,7 +6619,7 @@ class AwsStepfunctionsIActivityDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 
 class AwsStepfunctionsINextableDefConfig(pydantic.BaseModel):
-    next: typing.Optional[list[AwsStepfunctionsINextableDefNextParams]] = pydantic.Field(None, description='Go to the indicated state after this state.')
+    next: typing.Optional[list[models._interface_methods.AwsStepfunctionsINextableDefNextParams]] = pydantic.Field(None, description='Go to the indicated state after this state.')
 
 
 class AwsStepfunctionsINextableDefNextParams(pydantic.BaseModel):
@@ -6627,21 +6627,21 @@ class AwsStepfunctionsINextableDefNextParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_stepfunctions.ChainDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefConfig(pydantic.BaseModel):
-    apply_removal_policy: typing.Optional[list[AwsStepfunctionsIStateMachineDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant: typing.Optional[list[AwsStepfunctionsIStateMachineDefGrantParams]] = pydantic.Field(None, description='Grant the given identity custom permissions.')
-    grant_execution: typing.Optional[list[AwsStepfunctionsIStateMachineDefGrantExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions for all executions of a state machine.')
-    grant_read: typing.Optional[list[AwsStepfunctionsIStateMachineDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity read permissions for this state machine.')
-    grant_start_execution: typing.Optional[list[AwsStepfunctionsIStateMachineDefGrantStartExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start an execution of this state machine.')
-    grant_start_sync_execution: typing.Optional[list[AwsStepfunctionsIStateMachineDefGrantStartSyncExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start a synchronous execution of this state machine.')
-    grant_task_response: typing.Optional[list[AwsStepfunctionsIStateMachineDefGrantTaskResponseParams]] = pydantic.Field(None, description='Grant the given identity read permissions for this state machine.')
-    metric: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricParams]] = pydantic.Field(None, description="Return the given named metric for this State Machine's executions.")
-    metric_aborted: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricAbortedParams]] = pydantic.Field(None, description='Metric for the number of executions that were aborted.')
-    metric_failed: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of executions that failed.')
-    metric_started: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of executions that were started.')
-    metric_succeeded: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of executions that succeeded.')
-    metric_throttled: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricThrottledParams]] = pydantic.Field(None, description='Metric for the number of executions that were throttled.')
-    metric_time: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricTimeParams]] = pydantic.Field(None, description='Metric for the interval, in milliseconds, between the time the execution starts and the time it closes.')
-    metric_timed_out: typing.Optional[list[AwsStepfunctionsIStateMachineDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of executions that timed out.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefGrantParams]] = pydantic.Field(None, description='Grant the given identity custom permissions.')
+    grant_execution: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefGrantExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions for all executions of a state machine.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity read permissions for this state machine.')
+    grant_start_execution: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefGrantStartExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start an execution of this state machine.')
+    grant_start_sync_execution: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefGrantStartSyncExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start a synchronous execution of this state machine.')
+    grant_task_response: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefGrantTaskResponseParams]] = pydantic.Field(None, description='Grant the given identity read permissions for this state machine.')
+    metric: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricParams]] = pydantic.Field(None, description="Return the given named metric for this State Machine's executions.")
+    metric_aborted: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricAbortedParams]] = pydantic.Field(None, description='Metric for the number of executions that were aborted.')
+    metric_failed: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of executions that failed.')
+    metric_started: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of executions that were started.')
+    metric_succeeded: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of executions that succeeded.')
+    metric_throttled: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricThrottledParams]] = pydantic.Field(None, description='Metric for the number of executions that were throttled.')
+    metric_time: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricTimeParams]] = pydantic.Field(None, description='Metric for the interval, in milliseconds, between the time the execution starts and the time it closes.')
+    metric_timed_out: typing.Optional[list[models._interface_methods.AwsStepfunctionsIStateMachineDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of executions that timed out.')
 
 
 class AwsStepfunctionsIStateMachineDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -6763,14 +6763,14 @@ class AwsStepfunctionsIStateMachineDefMetricTimedOutParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsTasksIContainerDefinitionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsStepfunctionsTasksIContainerDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the ContainerDefinition is used by a SageMaker task.')
+    bind: typing.Optional[list[models._interface_methods.AwsStepfunctionsTasksIContainerDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the ContainerDefinition is used by a SageMaker task.')
 
 
 class AwsStepfunctionsTasksIContainerDefinitionDefBindParams(pydantic.BaseModel):
     task: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class AwsStepfunctionsTasksIEcsLaunchTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsStepfunctionsTasksIEcsLaunchTargetDefBindParams]] = pydantic.Field(None, description='called when the ECS launch target is configured on RunTask.')
+    bind: typing.Optional[list[models._interface_methods.AwsStepfunctionsTasksIEcsLaunchTargetDefBindParams]] = pydantic.Field(None, description='called when the ECS launch target is configured on RunTask.')
 
 
 class AwsStepfunctionsTasksIEcsLaunchTargetDefBindParams(pydantic.BaseModel):
@@ -6787,7 +6787,7 @@ class CxApiIEnvironmentPlaceholderProviderDefConfig(pydantic.BaseModel):
 
 
 class PipelinesICodePipelineActionFactoryDefConfig(pydantic.BaseModel):
-    produce_action: typing.Optional[list[PipelinesICodePipelineActionFactoryDefProduceActionParams]] = pydantic.Field(None, description='Create the desired Action and add it to the pipeline.')
+    produce_action: typing.Optional[list[models._interface_methods.PipelinesICodePipelineActionFactoryDefProduceActionParams]] = pydantic.Field(None, description='Create the desired Action and add it to the pipeline.')
 
 
 class PipelinesICodePipelineActionFactoryDefProduceActionParams(pydantic.BaseModel):
@@ -6808,8 +6808,8 @@ class PipelinesICodePipelineActionFactoryDefProduceActionParams(pydantic.BaseMod
 
 
 class TriggersITriggerDefConfig(pydantic.BaseModel):
-    execute_after: typing.Optional[list[TriggersITriggerDefExecuteAfterParams]] = pydantic.Field(None, description='Adds trigger dependencies.\nExecute this trigger only after these construct\nscopes have been provisioned.')
-    execute_before: typing.Optional[list[TriggersITriggerDefExecuteBeforeParams]] = pydantic.Field(None, description='Adds this trigger as a dependency on other constructs.\nThis means that this\ntrigger will get executed *before* the given construct(s).')
+    execute_after: typing.Optional[list[models._interface_methods.TriggersITriggerDefExecuteAfterParams]] = pydantic.Field(None, description='Adds trigger dependencies.\nExecute this trigger only after these construct\nscopes have been provisioned.')
+    execute_before: typing.Optional[list[models._interface_methods.TriggersITriggerDefExecuteBeforeParams]] = pydantic.Field(None, description='Adds this trigger as a dependency on other constructs.\nThis means that this\ntrigger will get executed *before* the given construct(s).')
 
 
 class TriggersITriggerDefExecuteAfterParams(pydantic.BaseModel):

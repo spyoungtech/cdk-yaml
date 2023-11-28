@@ -30,14 +30,13 @@ class HttpOriginDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HttpOriginDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront_origins.HttpOriginDefConfig] = pydantic.Field(None)
 
 
 class HttpOriginDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HttpOriginDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
+    bind: typing.Optional[list[models.aws_cloudfront_origins.HttpOriginDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
 
 class HttpOriginDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     origin_id: str = pydantic.Field(..., description='The identifier of this Origin, as assigned by the Distribution this Origin has been used added to.')
     ...
 
@@ -66,14 +65,13 @@ class LoadBalancerV2OriginDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LoadBalancerV2OriginDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront_origins.LoadBalancerV2OriginDefConfig] = pydantic.Field(None)
 
 
 class LoadBalancerV2OriginDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LoadBalancerV2OriginDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
+    bind: typing.Optional[list[models.aws_cloudfront_origins.LoadBalancerV2OriginDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
 
 class LoadBalancerV2OriginDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     origin_id: str = pydantic.Field(..., description='The identifier of this Origin, as assigned by the Distribution this Origin has been used added to.')
     ...
 
@@ -91,11 +89,11 @@ class OriginGroupDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OriginGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront_origins.OriginGroupDefConfig] = pydantic.Field(None)
 
 
 class OriginGroupDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[OriginGroupDefBindParams]] = pydantic.Field(None, description='The method called when a given Origin is added (for the first time) to a Distribution.')
+    bind: typing.Optional[list[models.aws_cloudfront_origins.OriginGroupDefBindParams]] = pydantic.Field(None, description='The method called when a given Origin is added (for the first time) to a Distribution.')
 
 class OriginGroupDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -123,14 +121,13 @@ class RestApiOriginDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RestApiOriginDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront_origins.RestApiOriginDefConfig] = pydantic.Field(None)
 
 
 class RestApiOriginDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[RestApiOriginDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
+    bind: typing.Optional[list[models.aws_cloudfront_origins.RestApiOriginDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
 
 class RestApiOriginDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     origin_id: str = pydantic.Field(..., description='The identifier of this Origin, as assigned by the Distribution this Origin has been used added to.')
     ...
 
@@ -154,11 +151,11 @@ class S3OriginDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[S3OriginDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront_origins.S3OriginDefConfig] = pydantic.Field(None)
 
 
 class S3OriginDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3OriginDefBindParams]] = pydantic.Field(None, description='The method called when a given Origin is added (for the first time) to a Distribution.')
+    bind: typing.Optional[list[models.aws_cloudfront_origins.S3OriginDefBindParams]] = pydantic.Field(None, description='The method called when a given Origin is added (for the first time) to a Distribution.')
 
 class S3OriginDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -229,7 +226,7 @@ class OriginGroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OriginGroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront_origins.OriginGroupPropsDefConfig] = pydantic.Field(None)
 
 
 class OriginGroupPropsDefConfig(pydantic.BaseModel):
@@ -278,17 +275,17 @@ class S3OriginPropsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    HttpOrigin: typing.Optional[dict[str, HttpOriginDef]] = pydantic.Field(None)
-    LoadBalancerV2Origin: typing.Optional[dict[str, LoadBalancerV2OriginDef]] = pydantic.Field(None)
-    OriginGroup: typing.Optional[dict[str, OriginGroupDef]] = pydantic.Field(None)
-    RestApiOrigin: typing.Optional[dict[str, RestApiOriginDef]] = pydantic.Field(None)
-    S3Origin: typing.Optional[dict[str, S3OriginDef]] = pydantic.Field(None)
-    HttpOriginProps: typing.Optional[dict[str, HttpOriginPropsDef]] = pydantic.Field(None)
-    LoadBalancerV2OriginProps: typing.Optional[dict[str, LoadBalancerV2OriginPropsDef]] = pydantic.Field(None)
-    OriginGroupProps: typing.Optional[dict[str, OriginGroupPropsDef]] = pydantic.Field(None)
-    RestApiOriginProps: typing.Optional[dict[str, RestApiOriginPropsDef]] = pydantic.Field(None)
-    S3OriginProps: typing.Optional[dict[str, S3OriginPropsDef]] = pydantic.Field(None)
+    HttpOrigin: typing.Optional[dict[str, models.aws_cloudfront_origins.HttpOriginDef]] = pydantic.Field(None)
+    LoadBalancerV2Origin: typing.Optional[dict[str, models.aws_cloudfront_origins.LoadBalancerV2OriginDef]] = pydantic.Field(None)
+    OriginGroup: typing.Optional[dict[str, models.aws_cloudfront_origins.OriginGroupDef]] = pydantic.Field(None)
+    RestApiOrigin: typing.Optional[dict[str, models.aws_cloudfront_origins.RestApiOriginDef]] = pydantic.Field(None)
+    S3Origin: typing.Optional[dict[str, models.aws_cloudfront_origins.S3OriginDef]] = pydantic.Field(None)
+    HttpOriginProps: typing.Optional[dict[str, models.aws_cloudfront_origins.HttpOriginPropsDef]] = pydantic.Field(None)
+    LoadBalancerV2OriginProps: typing.Optional[dict[str, models.aws_cloudfront_origins.LoadBalancerV2OriginPropsDef]] = pydantic.Field(None)
+    OriginGroupProps: typing.Optional[dict[str, models.aws_cloudfront_origins.OriginGroupPropsDef]] = pydantic.Field(None)
+    RestApiOriginProps: typing.Optional[dict[str, models.aws_cloudfront_origins.RestApiOriginPropsDef]] = pydantic.Field(None)
+    S3OriginProps: typing.Optional[dict[str, models.aws_cloudfront_origins.S3OriginPropsDef]] = pydantic.Field(None)
     ...
+
+import models

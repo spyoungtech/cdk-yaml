@@ -62,41 +62,41 @@ class NodejsFunctionDef(BaseConstruct):
     ...
 
 
-    from_function_arn: typing.Optional[NodejsFunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
-    from_function_attributes: typing.Optional[NodejsFunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
-    from_function_name: typing.Optional[NodejsFunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
-    metric_all: typing.Optional[NodejsFunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
-    metric_all_concurrent_executions: typing.Optional[NodejsFunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
-    metric_all_duration: typing.Optional[NodejsFunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
-    metric_all_errors: typing.Optional[NodejsFunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
-    metric_all_invocations: typing.Optional[NodejsFunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
-    metric_all_throttles: typing.Optional[NodejsFunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
-    metric_all_unreserved_concurrent_executions: typing.Optional[NodejsFunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
-    resource_config: typing.Optional[NodejsFunctionDefConfig] = pydantic.Field(None)
+    from_function_arn: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefFromFunctionArnParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its ARN.')
+    from_function_attributes: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Creates a Lambda function object which represents a function not defined within this stack.')
+    from_function_name: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefFromFunctionNameParams] = pydantic.Field(None, description='Import a lambda function into the CDK using its name.')
+    metric_all: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for this Lambda.')
+    metric_all_concurrent_executions: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of concurrent executions across all Lambdas.')
+    metric_all_duration: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllDurationParams] = pydantic.Field(None, description='Metric for the Duration executing all Lambdas.')
+    metric_all_errors: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllErrorsParams] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_all_invocations: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllInvocationsParams] = pydantic.Field(None, description='Metric for the number of invocations of all Lambdas.')
+    metric_all_throttles: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllThrottlesParams] = pydantic.Field(None, description='Metric for the number of throttled invocations of all Lambdas.')
+    metric_all_unreserved_concurrent_executions: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefMetricAllUnreservedConcurrentExecutionsParams] = pydantic.Field(None, description='Metric for the number of unreserved concurrent executions across all Lambdas.')
+    resource_config: typing.Optional[models.aws_lambda_nodejs.NodejsFunctionDefConfig] = pydantic.Field(None)
 
 
 class NodejsFunctionDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[NodejsFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
-    add_environment: typing.Optional[list[NodejsFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
-    add_event_source: typing.Optional[list[NodejsFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
-    add_event_source_mapping: typing.Optional[list[NodejsFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
-    add_function_url: typing.Optional[list[NodejsFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
-    add_layers: typing.Optional[list[NodejsFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
-    add_permission: typing.Optional[list[NodejsFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
-    add_to_role_policy: typing.Optional[list[NodejsFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
+    add_alias: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddAliasParams]] = pydantic.Field(None, description='Defines an alias for this function.\nThe alias will automatically be updated to point to the latest version of\nthe function as it is being updated during a deployment::\n\n   # fn: lambda.Function\n\n\n   fn.add_alias("Live")\n\n   # Is equivalent to\n\n   lambda_.Alias(self, "AliasLive",\n       alias_name="Live",\n       version=fn.current_version\n   )')
+    add_environment: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment variable to this Lambda function.\nIf this is a ref to a Lambda function, this operation results in a no-op.')
+    add_event_source: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source_mapping: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
+    add_function_url: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
+    add_layers: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddLayersParams]] = pydantic.Field(None, description='Adds one or more Lambda Layers to this Lambda function.')
+    add_permission: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
+    add_to_role_policy: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by the instance.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    classify_version_property: typing.Optional[list[NodejsFunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
-    configure_async_invoke: typing.Optional[list[NodejsFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
-    consider_warning_on_invoke_function_permissions: typing.Optional[list[NodejsFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
-    grant_invoke: typing.Optional[list[NodejsFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
-    grant_invoke_composite_principal: typing.Optional[list[NodejsFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
-    grant_invoke_url: typing.Optional[list[NodejsFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
-    invalidate_version_based_on: typing.Optional[list[NodejsFunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
-    metric: typing.Optional[list[NodejsFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
-    metric_duration: typing.Optional[list[NodejsFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
-    metric_errors: typing.Optional[list[NodejsFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
-    metric_invocations: typing.Optional[list[NodejsFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
-    metric_throttles: typing.Optional[list[NodejsFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
+    classify_version_property: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefClassifyVersionPropertyParams]] = pydantic.Field(None, description="Record whether specific properties in the ``AWS::Lambda::Function`` resource should also be associated to the Version resource.\nSee 'currentVersion' section in the module README for more details.")
+    configure_async_invoke: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
+    consider_warning_on_invoke_function_permissions: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefConsiderWarningOnInvokeFunctionPermissionsParams]] = pydantic.Field(None, description='A warning will be added to functions under the following conditions: - permissions that include ``lambda:InvokeFunction`` are added to the unqualified function.\n- function.currentVersion is invoked before or after the permission is created.\n\nThis applies only to permissions on Lambda functions, not versions or aliases.\nThis function is overridden as a noOp for QualifiedFunctionBase.')
+    grant_invoke: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_url: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    invalidate_version_based_on: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefInvalidateVersionBasedOnParams]] = pydantic.Field(None, description='Mix additional information into the hash of the Version object.\nThe Lambda Function construct does its best to automatically create a new\nVersion when anything about the Function changes (its code, its layers,\nany of the other properties).\n\nHowever, you can sometimes source information from places that the CDK cannot\nlook into, like the deploy-time values of SSM parameters. In those cases,\nthe CDK would not force the creation of a new Version object when it actually\nshould.\n\nThis method can be used to invalidate the current Version object. Pass in\nany string into this method, and make sure the string changes when you know\na new Version needs to be created.\n\nThis method may be called more than once.')
+    metric: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Function.')
+    metric_duration: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefMetricDurationParams]] = pydantic.Field(None, description='How long execution of this Lambda takes.\nAverage over 5 minutes')
+    metric_errors: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
+    metric_invocations: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefMetricInvocationsParams]] = pydantic.Field(None, description='How often this Lambda is invoked.\nSum over 5 minutes')
+    metric_throttles: typing.Optional[list[models.aws_lambda_nodejs.NodejsFunctionDefMetricThrottlesParams]] = pydantic.Field(None, description='How often this Lambda is throttled.\nSum over 5 minutes')
     architecture_config: typing.Optional[models.aws_lambda.ArchitectureDefConfig] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     current_version_config: typing.Optional[models.aws_lambda.VersionDefConfig] = pydantic.Field(None)
@@ -505,10 +505,10 @@ class NodejsFunctionPropsDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_lambda_nodejs.ICommandHooks
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    NodejsFunction: typing.Optional[dict[str, NodejsFunctionDef]] = pydantic.Field(None)
-    BundlingOptions: typing.Optional[dict[str, BundlingOptionsDef]] = pydantic.Field(None)
-    NodejsFunctionProps: typing.Optional[dict[str, NodejsFunctionPropsDef]] = pydantic.Field(None)
+    NodejsFunction: typing.Optional[dict[str, models.aws_lambda_nodejs.NodejsFunctionDef]] = pydantic.Field(None)
+    BundlingOptions: typing.Optional[dict[str, models.aws_lambda_nodejs.BundlingOptionsDef]] = pydantic.Field(None)
+    NodejsFunctionProps: typing.Optional[dict[str, models.aws_lambda_nodejs.NodejsFunctionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -16,70 +16,83 @@ class CacheControlDef(BaseClass):
     ...
 
 
-    from_string: typing.Optional[CacheControlDefFromStringParams] = pydantic.Field(None, description='Constructs a custom cache control key from the literal value.')
-    resource_config: typing.Optional[CacheControlDefConfig] = pydantic.Field(None)
+    from_string: typing.Optional[models.aws_s3_deployment.CacheControlDefFromStringParams] = pydantic.Field(None, description='Constructs a custom cache control key from the literal value.')
+    resource_config: typing.Optional[models.aws_s3_deployment.CacheControlDefConfig] = pydantic.Field(None)
 
 
 class CacheControlDefConfig(pydantic.BaseModel):
-    immutable: typing.Optional[list[CacheControlDefImmutableParams]] = pydantic.Field(None, description="Sets 'immutable'.")
-    max_age: typing.Optional[list[CacheControlDefMaxAgeParams]] = pydantic.Field(None, description="Sets 'max-age='.")
-    must_revalidate: typing.Optional[list[CacheControlDefMustRevalidateParams]] = pydantic.Field(None, description="Sets 'must-revalidate'.")
-    must_understand: typing.Optional[list[CacheControlDefMustUnderstandParams]] = pydantic.Field(None, description="Sets 'must-understand'.")
-    no_cache: typing.Optional[list[CacheControlDefNoCacheParams]] = pydantic.Field(None, description="Sets 'no-cache'.")
-    no_store: typing.Optional[list[CacheControlDefNoStoreParams]] = pydantic.Field(None, description="Sets 'no-store'.")
-    no_transform: typing.Optional[list[CacheControlDefNoTransformParams]] = pydantic.Field(None, description="Sets 'no-transform'.")
-    proxy_revalidate: typing.Optional[list[CacheControlDefProxyRevalidateParams]] = pydantic.Field(None, description="Sets 'proxy-revalidate'.")
-    s_max_age: typing.Optional[list[CacheControlDefSMaxAgeParams]] = pydantic.Field(None, description="Sets 's-maxage='.")
-    set_private: typing.Optional[list[CacheControlDefSetPrivateParams]] = pydantic.Field(None, description="Sets 'private'.")
-    set_public: typing.Optional[list[CacheControlDefSetPublicParams]] = pydantic.Field(None, description="Sets 'public'.")
-    stale_if_error: typing.Optional[list[CacheControlDefStaleIfErrorParams]] = pydantic.Field(None, description="Sets 'stale-if-error='.")
-    stale_while_revalidate: typing.Optional[list[CacheControlDefStaleWhileRevalidateParams]] = pydantic.Field(None, description="Sets 'stale-while-revalidate='.")
+    immutable: typing.Optional[list[models.aws_s3_deployment.CacheControlDefImmutableParams]] = pydantic.Field(None, description="Sets 'immutable'.")
+    max_age: typing.Optional[list[models.aws_s3_deployment.CacheControlDefMaxAgeParams]] = pydantic.Field(None, description="Sets 'max-age='.")
+    must_revalidate: typing.Optional[list[models.aws_s3_deployment.CacheControlDefMustRevalidateParams]] = pydantic.Field(None, description="Sets 'must-revalidate'.")
+    must_understand: typing.Optional[list[models.aws_s3_deployment.CacheControlDefMustUnderstandParams]] = pydantic.Field(None, description="Sets 'must-understand'.")
+    no_cache: typing.Optional[list[models.aws_s3_deployment.CacheControlDefNoCacheParams]] = pydantic.Field(None, description="Sets 'no-cache'.")
+    no_store: typing.Optional[list[models.aws_s3_deployment.CacheControlDefNoStoreParams]] = pydantic.Field(None, description="Sets 'no-store'.")
+    no_transform: typing.Optional[list[models.aws_s3_deployment.CacheControlDefNoTransformParams]] = pydantic.Field(None, description="Sets 'no-transform'.")
+    proxy_revalidate: typing.Optional[list[models.aws_s3_deployment.CacheControlDefProxyRevalidateParams]] = pydantic.Field(None, description="Sets 'proxy-revalidate'.")
+    s_max_age: typing.Optional[list[models.aws_s3_deployment.CacheControlDefSMaxAgeParams]] = pydantic.Field(None, description="Sets 's-maxage='.")
+    set_private: typing.Optional[list[models.aws_s3_deployment.CacheControlDefSetPrivateParams]] = pydantic.Field(None, description="Sets 'private'.")
+    set_public: typing.Optional[list[models.aws_s3_deployment.CacheControlDefSetPublicParams]] = pydantic.Field(None, description="Sets 'public'.")
+    stale_if_error: typing.Optional[list[models.aws_s3_deployment.CacheControlDefStaleIfErrorParams]] = pydantic.Field(None, description="Sets 'stale-if-error='.")
+    stale_while_revalidate: typing.Optional[list[models.aws_s3_deployment.CacheControlDefStaleWhileRevalidateParams]] = pydantic.Field(None, description="Sets 'stale-while-revalidate='.")
 
 class CacheControlDefFromStringParams(pydantic.BaseModel):
     s: str = pydantic.Field(..., description='-')
     ...
 
 class CacheControlDefImmutableParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefMaxAgeParams(pydantic.BaseModel):
     t: models.DurationDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefMustRevalidateParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefMustUnderstandParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefNoCacheParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefNoStoreParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefNoTransformParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefProxyRevalidateParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefSMaxAgeParams(pydantic.BaseModel):
     t: models.DurationDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefSetPrivateParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefSetPublicParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefStaleIfErrorParams(pydantic.BaseModel):
     t: models.DurationDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 class CacheControlDefStaleWhileRevalidateParams(pydantic.BaseModel):
     t: models.DurationDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_s3_deployment.CacheControlDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -93,11 +106,11 @@ class SourceDef(BaseClass):
     ...
 
 
-    asset: typing.Optional[SourceDefAssetParams] = pydantic.Field(None, description='Uses a local asset as the deployment source.\nIf the local asset is a .zip archive, make sure you trust the\nproducer of the archive.')
-    bucket: typing.Optional[SourceDefBucketParams] = pydantic.Field(None, description='Uses a .zip file stored in an S3 bucket as the source for the destination bucket contents.\nMake sure you trust the producer of the archive.')
-    data: typing.Optional[SourceDefDataParams] = pydantic.Field(None, description='Deploys an object with the specified string contents into the bucket.\nThe\ncontent can include deploy-time values (such as ``snsTopic.topicArn``) that\nwill get resolved only during deployment.\n\nTo store a JSON object use ``Source.jsonData()``.\nTo store YAML content use ``Source.yamlData()``.')
-    json_data: typing.Optional[SourceDefJsonDataParams] = pydantic.Field(None, description='Deploys an object with the specified JSON object into the bucket.\nThe\nobject can include deploy-time values (such as ``snsTopic.topicArn``) that\nwill get resolved only during deployment.')
-    yaml_data: typing.Optional[SourceDefYamlDataParams] = pydantic.Field(None, description='Deploys an object with the specified JSON object formatted as YAML into the bucket.\nThe object can include deploy-time values (such as ``snsTopic.topicArn``) that\nwill get resolved only during deployment.')
+    asset: typing.Optional[models.aws_s3_deployment.SourceDefAssetParams] = pydantic.Field(None, description='Uses a local asset as the deployment source.\nIf the local asset is a .zip archive, make sure you trust the\nproducer of the archive.')
+    bucket: typing.Optional[models.aws_s3_deployment.SourceDefBucketParams] = pydantic.Field(None, description='Uses a .zip file stored in an S3 bucket as the source for the destination bucket contents.\nMake sure you trust the producer of the archive.')
+    data: typing.Optional[models.aws_s3_deployment.SourceDefDataParams] = pydantic.Field(None, description='Deploys an object with the specified string contents into the bucket.\nThe\ncontent can include deploy-time values (such as ``snsTopic.topicArn``) that\nwill get resolved only during deployment.\n\nTo store a JSON object use ``Source.jsonData()``.\nTo store YAML content use ``Source.yamlData()``.')
+    json_data: typing.Optional[models.aws_s3_deployment.SourceDefJsonDataParams] = pydantic.Field(None, description='Deploys an object with the specified JSON object into the bucket.\nThe\nobject can include deploy-time values (such as ``snsTopic.topicArn``) that\nwill get resolved only during deployment.')
+    yaml_data: typing.Optional[models.aws_s3_deployment.SourceDefYamlDataParams] = pydantic.Field(None, description='Deploys an object with the specified JSON object formatted as YAML into the bucket.\nThe object can include deploy-time values (such as ``snsTopic.topicArn``) that\nwill get resolved only during deployment.')
 
 class SourceDefAssetParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to a local .zip file or a directory.\n')
@@ -112,7 +125,7 @@ class SourceDefAssetParams(pydantic.BaseModel):
     ...
 
 class SourceDefBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='The S3 Bucket.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='The S3 Bucket.\n')
     zip_object_key: str = pydantic.Field(..., description='The S3 object key of the zip file with contents.')
     ...
 
@@ -134,7 +147,7 @@ class SourceDefYamlDataParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_s3_deployment.BucketDeployment
 class BucketDeploymentDef(BaseConstruct):
-    destination_bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.\n')
+    destination_bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.\n')
     sources: typing.Union[typing.Sequence[models.UnsupportedResource], _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The sources from which to deploy the contents of this bucket.\n')
     access_control: typing.Optional[aws_cdk.aws_s3.BucketAccessControl] = pydantic.Field(None, description='System-defined x-amz-acl metadata to be set on all objects in the deployment. Default: - Not set.\n')
     cache_control: typing.Optional[typing.Sequence[models.aws_s3_deployment.CacheControlDef]] = pydantic.Field(None, description='System-defined cache-control metadata to be set on all objects in the deployment. Default: - Not set.\n')
@@ -173,11 +186,11 @@ class BucketDeploymentDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[BucketDeploymentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_deployment.BucketDeploymentDefConfig] = pydantic.Field(None)
 
 
 class BucketDeploymentDefConfig(pydantic.BaseModel):
-    add_source: typing.Optional[list[BucketDeploymentDefAddSourceParams]] = pydantic.Field(None, description='Add an additional source to the bucket deployment.')
+    add_source: typing.Optional[list[models.aws_s3_deployment.BucketDeploymentDefAddSourceParams]] = pydantic.Field(None, description='Add an additional source to the bucket deployment.')
     deployed_bucket_config: typing.Optional[models._interface_methods.AwsS3IBucketDefConfig] = pydantic.Field(None)
 
 class BucketDeploymentDefAddSourceParams(pydantic.BaseModel):
@@ -187,7 +200,7 @@ class BucketDeploymentDefAddSourceParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_s3_deployment.DeployTimeSubstitutedFile
 class DeployTimeSubstitutedFileDef(BaseConstruct):
-    destination_bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.\n')
+    destination_bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.\n')
     source: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description="Path to the user's local file.\n")
     substitutions: typing.Union[typing.Mapping[str, str], _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description="User-defined substitutions to make in the file. Placeholders in the user's local file must be specified with double curly brackets and spaces. For example, if you use the key 'xxxx' in the file, it must be written as: {{ xxxx }} to be recognized by the construct as a substitution.\n")
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Execution role associated with this function. Default: - A role is automatically created')
@@ -199,11 +212,11 @@ class DeployTimeSubstitutedFileDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DeployTimeSubstitutedFileDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_deployment.DeployTimeSubstitutedFileDefConfig] = pydantic.Field(None)
 
 
 class DeployTimeSubstitutedFileDefConfig(pydantic.BaseModel):
-    add_source: typing.Optional[list[DeployTimeSubstitutedFileDefAddSourceParams]] = pydantic.Field(None, description='Add an additional source to the bucket deployment.')
+    add_source: typing.Optional[list[models.aws_s3_deployment.DeployTimeSubstitutedFileDefAddSourceParams]] = pydantic.Field(None, description='Add an additional source to the bucket deployment.')
     bucket_config: typing.Optional[models._interface_methods.AwsS3IBucketDefConfig] = pydantic.Field(None)
     deployed_bucket_config: typing.Optional[models._interface_methods.AwsS3IBucketDefConfig] = pydantic.Field(None)
 
@@ -214,7 +227,7 @@ class DeployTimeSubstitutedFileDefAddSourceParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_s3_deployment.BucketDeploymentProps
 class BucketDeploymentPropsDef(BaseStruct):
-    destination_bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.\n')
+    destination_bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.\n')
     sources: typing.Union[typing.Sequence[models.UnsupportedResource], _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The sources from which to deploy the contents of this bucket.\n')
     access_control: typing.Optional[aws_cdk.aws_s3.BucketAccessControl] = pydantic.Field(None, description='System-defined x-amz-acl metadata to be set on all objects in the deployment. Default: - Not set.\n')
     cache_control: typing.Optional[typing.Sequence[models.aws_s3_deployment.CacheControlDef]] = pydantic.Field(None, description='System-defined cache-control metadata to be set on all objects in the deployment. Default: - Not set.\n')
@@ -253,7 +266,7 @@ class BucketDeploymentPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[BucketDeploymentPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_deployment.BucketDeploymentPropsDefConfig] = pydantic.Field(None)
 
 
 class BucketDeploymentPropsDefConfig(pydantic.BaseModel):
@@ -271,7 +284,7 @@ class DeploymentSourceContextDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DeploymentSourceContextDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_deployment.DeploymentSourceContextDefConfig] = pydantic.Field(None)
 
 
 class DeploymentSourceContextDefConfig(pydantic.BaseModel):
@@ -280,7 +293,7 @@ class DeploymentSourceContextDefConfig(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_s3_deployment.DeployTimeSubstitutedFileProps
 class DeployTimeSubstitutedFilePropsDef(BaseStruct):
-    destination_bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.')
+    destination_bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The S3 bucket to sync the contents of the zip file to.')
     source: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description="Path to the user's local file.\n")
     substitutions: typing.Union[typing.Mapping[str, str], _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description="User-defined substitutions to make in the file. Placeholders in the user's local file must be specified with double curly brackets and spaces. For example, if you use the key 'xxxx' in the file, it must be written as: {{ xxxx }} to be recognized by the construct as a substitution.\n")
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Execution role associated with this function. Default: - A role is automatically created\n\n:exampleMetadata: infused\n\nExample::\n\n    import aws_cdk.aws_iam as iam\n    import aws_cdk.aws_lambda as lambda_\n\n    # my_lambda_function: lambda.Function\n    # destination_bucket: s3.Bucket\n    # role: iam.Role\n\n\n    s3deploy.DeployTimeSubstitutedFile(self, "MyFile",\n        source="my-file.yaml",\n        destination_bucket=destination_bucket,\n        substitutions={\n            "variable_name": my_lambda_function.function_name\n        },\n        role=role\n    )\n')
@@ -292,7 +305,7 @@ class DeployTimeSubstitutedFilePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DeployTimeSubstitutedFilePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_deployment.DeployTimeSubstitutedFilePropsDefConfig] = pydantic.Field(None)
 
 
 class DeployTimeSubstitutedFilePropsDefConfig(pydantic.BaseModel):
@@ -301,7 +314,7 @@ class DeployTimeSubstitutedFilePropsDefConfig(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_s3_deployment.SourceConfig
 class SourceConfigDef(BaseStruct):
-    bucket: typing.Union[models.aws_s3.BucketDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The source bucket to deploy from.\n')
+    bucket: typing.Union[_REQUIRED_INIT_PARAM, models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The source bucket to deploy from.\n')
     zip_object_key: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='An S3 object key in the source bucket that points to a zip file.\n')
     markers: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description='A set of markers to substitute in the source content. Default: - no markers\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n    from aws_cdk import aws_s3_deployment as s3_deployment\n\n    # bucket: s3.Bucket\n    # markers: Any\n\n    source_config = s3_deployment.SourceConfig(\n        bucket=bucket,\n        zip_object_key="zipObjectKey",\n\n        # the properties below are optional\n        markers={\n            "markers_key": markers\n        }\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['bucket', 'zip_object_key', 'markers']
@@ -312,7 +325,7 @@ class SourceConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SourceConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_deployment.SourceConfigDefConfig] = pydantic.Field(None)
 
 
 class SourceConfigDefConfig(pydantic.BaseModel):
@@ -340,16 +353,16 @@ class UserDefinedObjectMetadataDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_s3_deployment.ISource
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CacheControl: typing.Optional[dict[str, CacheControlDef]] = pydantic.Field(None)
-    Source: typing.Optional[dict[str, SourceDef]] = pydantic.Field(None)
-    BucketDeployment: typing.Optional[dict[str, BucketDeploymentDef]] = pydantic.Field(None)
-    DeployTimeSubstitutedFile: typing.Optional[dict[str, DeployTimeSubstitutedFileDef]] = pydantic.Field(None)
-    BucketDeploymentProps: typing.Optional[dict[str, BucketDeploymentPropsDef]] = pydantic.Field(None)
-    DeploymentSourceContext: typing.Optional[dict[str, DeploymentSourceContextDef]] = pydantic.Field(None)
-    DeployTimeSubstitutedFileProps: typing.Optional[dict[str, DeployTimeSubstitutedFilePropsDef]] = pydantic.Field(None)
-    SourceConfig: typing.Optional[dict[str, SourceConfigDef]] = pydantic.Field(None)
-    UserDefinedObjectMetadata: typing.Optional[dict[str, UserDefinedObjectMetadataDef]] = pydantic.Field(None)
+    CacheControl: typing.Optional[dict[str, models.aws_s3_deployment.CacheControlDef]] = pydantic.Field(None)
+    Source: typing.Optional[dict[str, models.aws_s3_deployment.SourceDef]] = pydantic.Field(None)
+    BucketDeployment: typing.Optional[dict[str, models.aws_s3_deployment.BucketDeploymentDef]] = pydantic.Field(None)
+    DeployTimeSubstitutedFile: typing.Optional[dict[str, models.aws_s3_deployment.DeployTimeSubstitutedFileDef]] = pydantic.Field(None)
+    BucketDeploymentProps: typing.Optional[dict[str, models.aws_s3_deployment.BucketDeploymentPropsDef]] = pydantic.Field(None)
+    DeploymentSourceContext: typing.Optional[dict[str, models.aws_s3_deployment.DeploymentSourceContextDef]] = pydantic.Field(None)
+    DeployTimeSubstitutedFileProps: typing.Optional[dict[str, models.aws_s3_deployment.DeployTimeSubstitutedFilePropsDef]] = pydantic.Field(None)
+    SourceConfig: typing.Optional[dict[str, models.aws_s3_deployment.SourceConfigDef]] = pydantic.Field(None)
+    UserDefinedObjectMetadata: typing.Optional[dict[str, models.aws_s3_deployment.UserDefinedObjectMetadataDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -16,14 +16,15 @@ class AcceleratorClassDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AcceleratorClassDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.AcceleratorClassDefConfig] = pydantic.Field(None)
 
 
 class AcceleratorClassDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AcceleratorClassDefOfParams]] = pydantic.Field(None, description='Custom AcceleratorType.')
+    of: typing.Optional[list[models.aws_stepfunctions_tasks.AcceleratorClassDefOfParams]] = pydantic.Field(None, description='Custom AcceleratorType.')
 
 class AcceleratorClassDefOfParams(pydantic.BaseModel):
     version: str = pydantic.Field(..., description='- Elastic Inference accelerator generation.')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.AcceleratorClassDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -38,15 +39,16 @@ class AcceleratorTypeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AcceleratorTypeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.AcceleratorTypeDefConfig] = pydantic.Field(None)
 
 
 class AcceleratorTypeDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[AcceleratorTypeDefOfParams]] = pydantic.Field(None, description='AcceleratorType.\nThis class takes a combination of a class and size.')
+    of: typing.Optional[list[models.aws_stepfunctions_tasks.AcceleratorTypeDefOfParams]] = pydantic.Field(None, description='AcceleratorType.\nThis class takes a combination of a class and size.')
 
 class AcceleratorTypeDefOfParams(pydantic.BaseModel):
     accelerator_class: models.aws_stepfunctions_tasks.AcceleratorClassDef = pydantic.Field(..., description='-\n')
     instance_size: aws_cdk.aws_ec2.InstanceSize = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.AcceleratorTypeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -69,8 +71,10 @@ class ContainerDefinitionDef(BaseClass):
     environment_variables: typing.Optional[models.aws_stepfunctions.TaskInputDef] = pydantic.Field(None, description='The environment variables to set in the Docker container. Default: - No variables\n')
     image: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDef] = pydantic.Field(None, description='The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored. Default: - None\n')
     mode: typing.Optional[aws_cdk.aws_stepfunctions_tasks.Mode] = pydantic.Field(None, description='Defines how many models the container hosts. Default: - Mode.SINGLE_MODEL\n')
-    model_package_name: typing.Optional[str] = pydantic.Field(None, description='The name or Amazon Resource Name (ARN) of the model package to use to create the model. Default: - None\n')
-    model_s3_location: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDef] = pydantic.Field(None, description='The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms, but not if you use your own algorithms. Default: - None')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_package_name_: typing.Optional[str] = pydantic.Field(None, description='The name or Amazon Resource Name (ARN) of the model package to use to create the model. Default: - None\n', alias='model_package_name')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_s3_location_: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDef] = pydantic.Field(None, description='The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms, but not if you use your own algorithms. Default: - None', alias='model_s3_location')
     _init_params: typing.ClassVar[list[str]] = ['container_host_name', 'environment_variables', 'image', 'mode', 'model_package_name', 'model_s3_location']
     _method_names: typing.ClassVar[list[str]] = ['bind']
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -79,11 +83,11 @@ class ContainerDefinitionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ContainerDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.ContainerDefinitionDefConfig] = pydantic.Field(None)
 
 
 class ContainerDefinitionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ContainerDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the ContainerDefinition type configured on Sagemaker Task.')
+    bind: typing.Optional[list[models.aws_stepfunctions_tasks.ContainerDefinitionDefBindParams]] = pydantic.Field(None, description='Called when the ContainerDefinition type configured on Sagemaker Task.')
 
 class ContainerDefinitionDefBindParams(pydantic.BaseModel):
     task: models.UnsupportedResource = pydantic.Field(..., description='-')
@@ -100,15 +104,15 @@ class DockerImageDef(BaseClass):
     ...
 
 
-    from_asset: typing.Optional[DockerImageDefFromAssetParams] = pydantic.Field(None, description='Reference a Docker image that is provided as an Asset in the current app.')
-    from_ecr_repository: typing.Optional[DockerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference a Docker image stored in an ECR repository.')
-    from_json_expression: typing.Optional[DockerImageDefFromJsonExpressionParams] = pydantic.Field(None, description="Reference a Docker image which URI is obtained from the task's input.")
-    from_registry: typing.Optional[DockerImageDefFromRegistryParams] = pydantic.Field(None, description="Reference a Docker image by it's URI.\nWhen referencing ECR images, prefer using ``inEcr``.")
-    resource_config: typing.Optional[DockerImageDefConfig] = pydantic.Field(None)
+    from_asset: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDefFromAssetParams] = pydantic.Field(None, description='Reference a Docker image that is provided as an Asset in the current app.')
+    from_ecr_repository: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDefFromEcrRepositoryParams] = pydantic.Field(None, description='Reference a Docker image stored in an ECR repository.')
+    from_json_expression: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDefFromJsonExpressionParams] = pydantic.Field(None, description="Reference a Docker image which URI is obtained from the task's input.")
+    from_registry: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDefFromRegistryParams] = pydantic.Field(None, description="Reference a Docker image by it's URI.\nWhen referencing ECR images, prefer using ``inEcr``.")
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDefConfig] = pydantic.Field(None)
 
 
 class DockerImageDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[DockerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a SageMaker task.')
+    bind: typing.Optional[list[models.aws_stepfunctions_tasks.DockerImageDefBindParams]] = pydantic.Field(None, description='Called when the image is used by a SageMaker task.')
 
 class DockerImageDefBindParams(pydantic.BaseModel):
     task: models.UnsupportedResource = pydantic.Field(..., description='-')
@@ -161,28 +165,29 @@ class DynamoAttributeValueDef(BaseClass):
     ...
 
 
-    from_binary: typing.Optional[DynamoAttributeValueDefFromBinaryParams] = pydantic.Field(None, description='Sets an attribute of type Binary.\nFor example:  "B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"')
-    from_binary_set: typing.Optional[DynamoAttributeValueDefFromBinarySetParams] = pydantic.Field(None, description='Sets an attribute of type Binary Set.\nFor example:  "BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]')
-    from_boolean: typing.Optional[DynamoAttributeValueDefFromBooleanParams] = pydantic.Field(None, description='Sets an attribute of type Boolean.\nFor example:  "BOOL": true')
-    from_list: typing.Optional[DynamoAttributeValueDefFromListParams] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N", "3.14159"}]')
-    from_map: typing.Optional[DynamoAttributeValueDefFromMapParams] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
-    from_null: typing.Optional[DynamoAttributeValueDefFromNullParams] = pydantic.Field(None, description='Sets an attribute of type Null.\nFor example:  "NULL": true')
-    from_number: typing.Optional[DynamoAttributeValueDefFromNumberParams] = pydantic.Field(None, description='Sets a literal number.\nFor example: 1234\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
-    from_number_set: typing.Optional[DynamoAttributeValueDefFromNumberSetParams] = pydantic.Field(None, description='Sets an attribute of type Number Set.\nFor example:  "NS": ["42.2", "-19", "7.5", "3.14"]\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
-    from_string: typing.Optional[DynamoAttributeValueDefFromStringParams] = pydantic.Field(None, description='Sets an attribute of type String.\nFor example:  "S": "Hello"\nStrings may be literal values or as JsonPath. Example values:\n\n- ``DynamoAttributeValue.fromString(\'someValue\')``\n- ``DynamoAttributeValue.fromString(JsonPath.stringAt(\'$.bar\'))``')
-    from_string_set: typing.Optional[DynamoAttributeValueDefFromStringSetParams] = pydantic.Field(None, description='Sets an attribute of type String Set.\nFor example:  "SS": ["Giraffe", "Hippo" ,"Zebra"]')
-    resource_config: typing.Optional[DynamoAttributeValueDefConfig] = pydantic.Field(None)
+    from_binary: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromBinaryParams] = pydantic.Field(None, description='Sets an attribute of type Binary.\nFor example:  "B": "dGhpcyB0ZXh0IGlzIGJhc2U2NC1lbmNvZGVk"')
+    from_binary_set: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromBinarySetParams] = pydantic.Field(None, description='Sets an attribute of type Binary Set.\nFor example:  "BS": ["U3Vubnk=", "UmFpbnk=", "U25vd3k="]')
+    from_boolean: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromBooleanParams] = pydantic.Field(None, description='Sets an attribute of type Boolean.\nFor example:  "BOOL": true')
+    from_list: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromListParams] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"N", "3.14159"}]')
+    from_map: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromMapParams] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
+    from_null: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromNullParams] = pydantic.Field(None, description='Sets an attribute of type Null.\nFor example:  "NULL": true')
+    from_number: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromNumberParams] = pydantic.Field(None, description='Sets a literal number.\nFor example: 1234\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
+    from_number_set: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromNumberSetParams] = pydantic.Field(None, description='Sets an attribute of type Number Set.\nFor example:  "NS": ["42.2", "-19", "7.5", "3.14"]\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.')
+    from_string: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromStringParams] = pydantic.Field(None, description='Sets an attribute of type String.\nFor example:  "S": "Hello"\nStrings may be literal values or as JsonPath. Example values:\n\n- ``DynamoAttributeValue.fromString(\'someValue\')``\n- ``DynamoAttributeValue.fromString(JsonPath.stringAt(\'$.bar\'))``')
+    from_string_set: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefFromStringSetParams] = pydantic.Field(None, description='Sets an attribute of type String Set.\nFor example:  "SS": ["Giraffe", "Hippo" ,"Zebra"]')
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig] = pydantic.Field(None)
 
 
 class DynamoAttributeValueDefConfig(pydantic.BaseModel):
-    boolean_from_json_path: typing.Optional[list[DynamoAttributeValueDefBooleanFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type Boolean from state input through Json path.\nFor example:  "BOOL": true')
-    list_from_json_path: typing.Optional[list[DynamoAttributeValueDefListFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"S", "Veggies"}]')
-    map_from_json_path: typing.Optional[list[DynamoAttributeValueDefMapFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
-    number_from_string: typing.Optional[list[DynamoAttributeValueDefNumberFromStringParams]] = pydantic.Field(None, description='Sets an attribute of type Number.\nFor example:  "N": "123.45"\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.\n\nNumbers may be expressed as literal strings or as JsonPath')
-    number_set_from_strings: typing.Optional[list[DynamoAttributeValueDefNumberSetFromStringsParams]] = pydantic.Field(None, description='Sets an attribute of type Number Set.\nFor example:  "NS": ["42.2", "-19", "7.5", "3.14"]\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.\n\nNumbers may be expressed as literal strings or as JsonPath')
+    boolean_from_json_path: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefBooleanFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type Boolean from state input through Json path.\nFor example:  "BOOL": true')
+    list_from_json_path: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefListFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type List.\nFor example:  "L": [ {"S": "Cookies"} , {"S": "Coffee"}, {"S", "Veggies"}]')
+    map_from_json_path: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefMapFromJsonPathParams]] = pydantic.Field(None, description='Sets an attribute of type Map.\nFor example:  "M": {"Name": {"S": "Joe"}, "Age": {"N": "35"}}')
+    number_from_string: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefNumberFromStringParams]] = pydantic.Field(None, description='Sets an attribute of type Number.\nFor example:  "N": "123.45"\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.\n\nNumbers may be expressed as literal strings or as JsonPath')
+    number_set_from_strings: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefNumberSetFromStringsParams]] = pydantic.Field(None, description='Sets an attribute of type Number Set.\nFor example:  "NS": ["42.2", "-19", "7.5", "3.14"]\nNumbers are sent across the network to DynamoDB as strings,\nto maximize compatibility across languages and libraries.\nHowever, DynamoDB treats them as number type attributes for mathematical operations.\n\nNumbers may be expressed as literal strings or as JsonPath')
 
 class DynamoAttributeValueDefBooleanFromJsonPathParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='Json path that specifies state input to be used.')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefFromBinaryParams(pydantic.BaseModel):
@@ -227,18 +232,22 @@ class DynamoAttributeValueDefFromStringSetParams(pydantic.BaseModel):
 
 class DynamoAttributeValueDefListFromJsonPathParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='Json path that specifies state input to be used.')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefMapFromJsonPathParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='Json path that specifies state input to be used.')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefNumberFromStringParams(pydantic.BaseModel):
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoAttributeValueDefNumberSetFromStringsParams(pydantic.BaseModel):
     value: typing.Sequence[str] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoAttributeValueDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -252,19 +261,21 @@ class DynamoProjectionExpressionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DynamoProjectionExpressionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoProjectionExpressionDefConfig] = pydantic.Field(None)
 
 
 class DynamoProjectionExpressionDefConfig(pydantic.BaseModel):
-    at_index: typing.Optional[list[DynamoProjectionExpressionDefAtIndexParams]] = pydantic.Field(None, description='Adds the array literal access for passed index.')
-    with_attribute: typing.Optional[list[DynamoProjectionExpressionDefWithAttributeParams]] = pydantic.Field(None, description='Adds the passed attribute to the chain.')
+    at_index: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoProjectionExpressionDefAtIndexParams]] = pydantic.Field(None, description='Adds the array literal access for passed index.')
+    with_attribute: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoProjectionExpressionDefWithAttributeParams]] = pydantic.Field(None, description='Adds the passed attribute to the chain.')
 
 class DynamoProjectionExpressionDefAtIndexParams(pydantic.BaseModel):
     index: typing.Union[int, float] = pydantic.Field(..., description='array index.')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoProjectionExpressionDefConfig]] = pydantic.Field(None)
     ...
 
 class DynamoProjectionExpressionDefWithAttributeParams(pydantic.BaseModel):
     attr: str = pydantic.Field(..., description='Attribute name.')
+    return_config: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoProjectionExpressionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -280,14 +291,13 @@ class EcsEc2LaunchTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcsEc2LaunchTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EcsEc2LaunchTargetDefConfig] = pydantic.Field(None)
 
 
 class EcsEc2LaunchTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcsEc2LaunchTargetDefBindParams]] = pydantic.Field(None, description='Called when the EC2 launch type is configured on RunTask.')
+    bind: typing.Optional[list[models.aws_stepfunctions_tasks.EcsEc2LaunchTargetDefBindParams]] = pydantic.Field(None, description='Called when the EC2 launch type is configured on RunTask.')
 
 class EcsEc2LaunchTargetDefBindParams(pydantic.BaseModel):
-    _task: models.aws_stepfunctions_tasks.EcsRunTaskDef = pydantic.Field(..., description='-\n')
     task_definition: typing.Union[models.aws_ecs.Ec2TaskDefinitionDef, models.aws_ecs.ExternalTaskDefinitionDef, models.aws_ecs.FargateTaskDefinitionDef, models.aws_ecs.TaskDefinitionDef] = pydantic.Field(..., description='Task definition to run Docker containers in Amazon ECS.\n')
     cluster: typing.Optional[typing.Union[models.aws_ecs.ClusterDef]] = pydantic.Field(None, description='A regional grouping of one or more container instances on which you can run tasks and services. Default: - No cluster')
     ...
@@ -304,14 +314,13 @@ class EcsFargateLaunchTargetDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcsFargateLaunchTargetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EcsFargateLaunchTargetDefConfig] = pydantic.Field(None)
 
 
 class EcsFargateLaunchTargetDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcsFargateLaunchTargetDefBindParams]] = pydantic.Field(None, description='Called when the Fargate launch type configured on RunTask.')
+    bind: typing.Optional[list[models.aws_stepfunctions_tasks.EcsFargateLaunchTargetDefBindParams]] = pydantic.Field(None, description='Called when the Fargate launch type configured on RunTask.')
 
 class EcsFargateLaunchTargetDefBindParams(pydantic.BaseModel):
-    _task: models.aws_stepfunctions_tasks.EcsRunTaskDef = pydantic.Field(..., description='-\n')
     task_definition: typing.Union[models.aws_ecs.Ec2TaskDefinitionDef, models.aws_ecs.ExternalTaskDefinitionDef, models.aws_ecs.FargateTaskDefinitionDef, models.aws_ecs.TaskDefinitionDef] = pydantic.Field(..., description='Task definition to run Docker containers in Amazon ECS.\n')
     cluster: typing.Optional[typing.Union[models.aws_ecs.ClusterDef]] = pydantic.Field(None, description='A regional grouping of one or more container instances on which you can run tasks and services. Default: - No cluster')
     ...
@@ -327,8 +336,8 @@ class EksClusterInputDef(BaseClass):
     ...
 
 
-    from_cluster: typing.Optional[EksClusterInputDefFromClusterParams] = pydantic.Field(None, description='Specify an existing EKS Cluster as the name for this Cluster.')
-    from_task_input: typing.Optional[EksClusterInputDefFromTaskInputParams] = pydantic.Field(None, description='Specify a Task Input as the name for this Cluster.')
+    from_cluster: typing.Optional[models.aws_stepfunctions_tasks.EksClusterInputDefFromClusterParams] = pydantic.Field(None, description='Specify an existing EKS Cluster as the name for this Cluster.')
+    from_task_input: typing.Optional[models.aws_stepfunctions_tasks.EksClusterInputDefFromTaskInputParams] = pydantic.Field(None, description='Specify a Task Input as the name for this Cluster.')
 
 class EksClusterInputDefFromClusterParams(pydantic.BaseModel):
     cluster: typing.Union[models.aws_eks.ClusterDef, models.aws_eks.FargateClusterDef] = pydantic.Field(..., description='-')
@@ -362,13 +371,13 @@ class S3LocationDef(BaseClass):
     ...
 
 
-    from_bucket: typing.Optional[S3LocationDefFromBucketParams] = pydantic.Field(None, description='An ``IS3Location`` built with a determined bucket and key prefix.')
-    from_json_expression: typing.Optional[S3LocationDefFromJsonExpressionParams] = pydantic.Field(None, description='An ``IS3Location`` determined fully by a JSON Path from the task input.\nDue to the dynamic nature of those locations, the IAM grants that will be set by ``grantRead`` and ``grantWrite``\napply to the ``*`` resource.')
-    resource_config: typing.Optional[S3LocationDefConfig] = pydantic.Field(None)
+    from_bucket: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDefFromBucketParams] = pydantic.Field(None, description='An ``IS3Location`` built with a determined bucket and key prefix.')
+    from_json_expression: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDefFromJsonExpressionParams] = pydantic.Field(None, description='An ``IS3Location`` determined fully by a JSON Path from the task input.\nDue to the dynamic nature of those locations, the IAM grants that will be set by ``grantRead`` and ``grantWrite``\napply to the ``*`` resource.')
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDefConfig] = pydantic.Field(None)
 
 
 class S3LocationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[S3LocationDefBindParams]] = pydantic.Field(None, description='Called when the S3Location is bound to a StepFunctions task.')
+    bind: typing.Optional[list[models.aws_stepfunctions_tasks.S3LocationDefBindParams]] = pydantic.Field(None, description='Called when the S3Location is bound to a StepFunctions task.')
 
 class S3LocationDefBindParams(pydantic.BaseModel):
     task: models.UnsupportedResource = pydantic.Field(..., description='-\n')
@@ -377,7 +386,7 @@ class S3LocationDefBindParams(pydantic.BaseModel):
     ...
 
 class S3LocationDefFromBucketParams(pydantic.BaseModel):
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='is the bucket where the objects are to be stored.\n')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='is the bucket where the objects are to be stored.\n')
     key_prefix: str = pydantic.Field(..., description='is the key prefix used by the location.')
     ...
 
@@ -396,8 +405,8 @@ class VirtualClusterInputDef(BaseClass):
     ...
 
 
-    from_task_input: typing.Optional[VirtualClusterInputDefFromTaskInputParams] = pydantic.Field(None, description='Input for a virtualClusterId from a Task Input.')
-    from_virtual_cluster_id: typing.Optional[VirtualClusterInputDefFromVirtualClusterIdParams] = pydantic.Field(None, description='Input for virtualClusterId from a literal string.')
+    from_task_input: typing.Optional[models.aws_stepfunctions_tasks.VirtualClusterInputDefFromTaskInputParams] = pydantic.Field(None, description='Input for a virtualClusterId from a Task Input.')
+    from_virtual_cluster_id: typing.Optional[models.aws_stepfunctions_tasks.VirtualClusterInputDefFromVirtualClusterIdParams] = pydantic.Field(None, description='Input for virtualClusterId from a literal string.')
 
 class VirtualClusterInputDefFromTaskInputParams(pydantic.BaseModel):
     task_input: models.aws_stepfunctions.TaskInputDef = pydantic.Field(..., description='-')
@@ -431,29 +440,29 @@ class AthenaGetQueryExecutionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AthenaGetQueryExecutionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefConfig] = pydantic.Field(None)
 
 
 class AthenaGetQueryExecutionDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[AthenaGetQueryExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[AthenaGetQueryExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[AthenaGetQueryExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[AthenaGetQueryExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[AthenaGetQueryExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[AthenaGetQueryExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[AthenaGetQueryExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[AthenaGetQueryExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[AthenaGetQueryExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[AthenaGetQueryExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[AthenaGetQueryExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[AthenaGetQueryExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[AthenaGetQueryExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[AthenaGetQueryExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[AthenaGetQueryExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[AthenaGetQueryExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[AthenaGetQueryExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[AthenaGetQueryExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[AthenaGetQueryExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class AthenaGetQueryExecutionDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -651,29 +660,29 @@ class AthenaGetQueryResultsDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AthenaGetQueryResultsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefConfig] = pydantic.Field(None)
 
 
 class AthenaGetQueryResultsDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[AthenaGetQueryResultsDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[AthenaGetQueryResultsDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[AthenaGetQueryResultsDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[AthenaGetQueryResultsDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[AthenaGetQueryResultsDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[AthenaGetQueryResultsDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[AthenaGetQueryResultsDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[AthenaGetQueryResultsDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[AthenaGetQueryResultsDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[AthenaGetQueryResultsDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[AthenaGetQueryResultsDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[AthenaGetQueryResultsDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[AthenaGetQueryResultsDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[AthenaGetQueryResultsDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[AthenaGetQueryResultsDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[AthenaGetQueryResultsDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[AthenaGetQueryResultsDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[AthenaGetQueryResultsDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[AthenaGetQueryResultsDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaGetQueryResultsDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class AthenaGetQueryResultsDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -874,29 +883,29 @@ class AthenaStartQueryExecutionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AthenaStartQueryExecutionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefConfig] = pydantic.Field(None)
 
 
 class AthenaStartQueryExecutionDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[AthenaStartQueryExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[AthenaStartQueryExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[AthenaStartQueryExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[AthenaStartQueryExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[AthenaStartQueryExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[AthenaStartQueryExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[AthenaStartQueryExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[AthenaStartQueryExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[AthenaStartQueryExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[AthenaStartQueryExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[AthenaStartQueryExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[AthenaStartQueryExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[AthenaStartQueryExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[AthenaStartQueryExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[AthenaStartQueryExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[AthenaStartQueryExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[AthenaStartQueryExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[AthenaStartQueryExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[AthenaStartQueryExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class AthenaStartQueryExecutionDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -1092,29 +1101,29 @@ class AthenaStopQueryExecutionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AthenaStopQueryExecutionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefConfig] = pydantic.Field(None)
 
 
 class AthenaStopQueryExecutionDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[AthenaStopQueryExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[AthenaStopQueryExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[AthenaStopQueryExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[AthenaStopQueryExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[AthenaStopQueryExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[AthenaStopQueryExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[AthenaStopQueryExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[AthenaStopQueryExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[AthenaStopQueryExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[AthenaStopQueryExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[AthenaStopQueryExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[AthenaStopQueryExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[AthenaStopQueryExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[AthenaStopQueryExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[AthenaStopQueryExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[AthenaStopQueryExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[AthenaStopQueryExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[AthenaStopQueryExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[AthenaStopQueryExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class AthenaStopQueryExecutionDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -1318,29 +1327,29 @@ class BatchSubmitJobDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[BatchSubmitJobDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.BatchSubmitJobDefConfig] = pydantic.Field(None)
 
 
 class BatchSubmitJobDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[BatchSubmitJobDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[BatchSubmitJobDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[BatchSubmitJobDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[BatchSubmitJobDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[BatchSubmitJobDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[BatchSubmitJobDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[BatchSubmitJobDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[BatchSubmitJobDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[BatchSubmitJobDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[BatchSubmitJobDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[BatchSubmitJobDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[BatchSubmitJobDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[BatchSubmitJobDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[BatchSubmitJobDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[BatchSubmitJobDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[BatchSubmitJobDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[BatchSubmitJobDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[BatchSubmitJobDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[BatchSubmitJobDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.BatchSubmitJobDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class BatchSubmitJobDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -1544,29 +1553,29 @@ class CallApiGatewayHttpApiEndpointDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CallApiGatewayHttpApiEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefConfig] = pydantic.Field(None)
 
 
 class CallApiGatewayHttpApiEndpointDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[CallApiGatewayHttpApiEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[CallApiGatewayHttpApiEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[CallApiGatewayHttpApiEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[CallApiGatewayHttpApiEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[CallApiGatewayHttpApiEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[CallApiGatewayHttpApiEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[CallApiGatewayHttpApiEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[CallApiGatewayHttpApiEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[CallApiGatewayHttpApiEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[CallApiGatewayHttpApiEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class CallApiGatewayHttpApiEndpointDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -1769,29 +1778,29 @@ class CallApiGatewayRestApiEndpointDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CallApiGatewayRestApiEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefConfig] = pydantic.Field(None)
 
 
 class CallApiGatewayRestApiEndpointDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[CallApiGatewayRestApiEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[CallApiGatewayRestApiEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[CallApiGatewayRestApiEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[CallApiGatewayRestApiEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[CallApiGatewayRestApiEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[CallApiGatewayRestApiEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[CallApiGatewayRestApiEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[CallApiGatewayRestApiEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[CallApiGatewayRestApiEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[CallApiGatewayRestApiEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class CallApiGatewayRestApiEndpointDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -1992,29 +2001,29 @@ class CallAwsServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CallAwsServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CallAwsServiceDefConfig] = pydantic.Field(None)
 
 
 class CallAwsServiceDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[CallAwsServiceDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[CallAwsServiceDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[CallAwsServiceDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[CallAwsServiceDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[CallAwsServiceDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[CallAwsServiceDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[CallAwsServiceDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[CallAwsServiceDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[CallAwsServiceDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[CallAwsServiceDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[CallAwsServiceDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[CallAwsServiceDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[CallAwsServiceDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[CallAwsServiceDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[CallAwsServiceDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[CallAwsServiceDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[CallAwsServiceDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[CallAwsServiceDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[CallAwsServiceDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.CallAwsServiceDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class CallAwsServiceDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -2211,29 +2220,29 @@ class CodeBuildStartBuildDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CodeBuildStartBuildDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefConfig] = pydantic.Field(None)
 
 
 class CodeBuildStartBuildDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[CodeBuildStartBuildDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[CodeBuildStartBuildDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[CodeBuildStartBuildDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[CodeBuildStartBuildDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[CodeBuildStartBuildDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[CodeBuildStartBuildDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[CodeBuildStartBuildDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[CodeBuildStartBuildDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[CodeBuildStartBuildDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[CodeBuildStartBuildDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[CodeBuildStartBuildDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[CodeBuildStartBuildDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[CodeBuildStartBuildDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[CodeBuildStartBuildDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[CodeBuildStartBuildDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[CodeBuildStartBuildDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[CodeBuildStartBuildDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[CodeBuildStartBuildDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[CodeBuildStartBuildDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.CodeBuildStartBuildDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class CodeBuildStartBuildDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -2436,29 +2445,29 @@ class DynamoDeleteItemDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoDeleteItemDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoDeleteItemDefConfig] = pydantic.Field(None)
 
 
 class DynamoDeleteItemDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[DynamoDeleteItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[DynamoDeleteItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[DynamoDeleteItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[DynamoDeleteItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[DynamoDeleteItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[DynamoDeleteItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[DynamoDeleteItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[DynamoDeleteItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[DynamoDeleteItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[DynamoDeleteItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[DynamoDeleteItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[DynamoDeleteItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[DynamoDeleteItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[DynamoDeleteItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[DynamoDeleteItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[DynamoDeleteItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[DynamoDeleteItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[DynamoDeleteItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[DynamoDeleteItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoDeleteItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class DynamoDeleteItemDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -2659,29 +2668,29 @@ class DynamoGetItemDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoGetItemDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoGetItemDefConfig] = pydantic.Field(None)
 
 
 class DynamoGetItemDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[DynamoGetItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[DynamoGetItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[DynamoGetItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[DynamoGetItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[DynamoGetItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[DynamoGetItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[DynamoGetItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[DynamoGetItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[DynamoGetItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[DynamoGetItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[DynamoGetItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[DynamoGetItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[DynamoGetItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[DynamoGetItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[DynamoGetItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[DynamoGetItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[DynamoGetItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[DynamoGetItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[DynamoGetItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoGetItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class DynamoGetItemDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -2884,29 +2893,29 @@ class DynamoPutItemDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoPutItemDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoPutItemDefConfig] = pydantic.Field(None)
 
 
 class DynamoPutItemDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[DynamoPutItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[DynamoPutItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[DynamoPutItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[DynamoPutItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[DynamoPutItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[DynamoPutItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[DynamoPutItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[DynamoPutItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[DynamoPutItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[DynamoPutItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[DynamoPutItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[DynamoPutItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[DynamoPutItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[DynamoPutItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[DynamoPutItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[DynamoPutItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[DynamoPutItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[DynamoPutItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[DynamoPutItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoPutItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class DynamoPutItemDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -3110,29 +3119,29 @@ class DynamoUpdateItemDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoUpdateItemDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoUpdateItemDefConfig] = pydantic.Field(None)
 
 
 class DynamoUpdateItemDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[DynamoUpdateItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[DynamoUpdateItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[DynamoUpdateItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[DynamoUpdateItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[DynamoUpdateItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[DynamoUpdateItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[DynamoUpdateItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[DynamoUpdateItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[DynamoUpdateItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[DynamoUpdateItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[DynamoUpdateItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[DynamoUpdateItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[DynamoUpdateItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[DynamoUpdateItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[DynamoUpdateItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[DynamoUpdateItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[DynamoUpdateItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[DynamoUpdateItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[DynamoUpdateItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.DynamoUpdateItemDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class DynamoUpdateItemDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -3336,29 +3345,29 @@ class EcsRunTaskDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[EcsRunTaskDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EcsRunTaskDefConfig] = pydantic.Field(None)
 
 
 class EcsRunTaskDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EcsRunTaskDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EcsRunTaskDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EcsRunTaskDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EcsRunTaskDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EcsRunTaskDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EcsRunTaskDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EcsRunTaskDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EcsRunTaskDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EcsRunTaskDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EcsRunTaskDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EcsRunTaskDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EcsRunTaskDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EcsRunTaskDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EcsRunTaskDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EcsRunTaskDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EcsRunTaskDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EcsRunTaskDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EcsRunTaskDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EcsRunTaskDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EcsRunTaskDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class EcsRunTaskDefAddCatchParams(pydantic.BaseModel):
@@ -3559,29 +3568,29 @@ class EksCallDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EksCallDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EksCallDefConfig] = pydantic.Field(None)
 
 
 class EksCallDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EksCallDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EksCallDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EksCallDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EksCallDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EksCallDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EksCallDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EksCallDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EksCallDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EksCallDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EksCallDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EksCallDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EksCallDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EksCallDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EksCallDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EksCallDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EksCallDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EksCallDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EksCallDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EksCallDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EksCallDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EksCallDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -3782,29 +3791,29 @@ class EmrAddStepDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrAddStepDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrAddStepDefConfig] = pydantic.Field(None)
 
 
 class EmrAddStepDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrAddStepDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrAddStepDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrAddStepDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrAddStepDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrAddStepDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrAddStepDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrAddStepDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrAddStepDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrAddStepDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrAddStepDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrAddStepDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrAddStepDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrAddStepDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrAddStepDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrAddStepDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrAddStepDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrAddStepDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrAddStepDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrAddStepDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrAddStepDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrAddStepDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -4001,29 +4010,29 @@ class EmrCancelStepDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrCancelStepDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrCancelStepDefConfig] = pydantic.Field(None)
 
 
 class EmrCancelStepDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrCancelStepDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrCancelStepDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrCancelStepDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrCancelStepDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrCancelStepDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrCancelStepDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrCancelStepDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrCancelStepDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrCancelStepDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrCancelStepDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrCancelStepDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrCancelStepDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrCancelStepDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrCancelStepDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrCancelStepDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrCancelStepDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrCancelStepDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrCancelStepDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrCancelStepDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCancelStepDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrCancelStepDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -4222,29 +4231,29 @@ class EmrContainersCreateVirtualClusterDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrContainersCreateVirtualClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefConfig] = pydantic.Field(None)
 
 
 class EmrContainersCreateVirtualClusterDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrContainersCreateVirtualClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrContainersCreateVirtualClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrContainersCreateVirtualClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrContainersCreateVirtualClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrContainersCreateVirtualClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrContainersCreateVirtualClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrContainersCreateVirtualClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrContainersCreateVirtualClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrContainersCreateVirtualClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrContainersCreateVirtualClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrContainersCreateVirtualClusterDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -4440,29 +4449,29 @@ class EmrContainersDeleteVirtualClusterDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrContainersDeleteVirtualClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefConfig] = pydantic.Field(None)
 
 
 class EmrContainersDeleteVirtualClusterDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrContainersDeleteVirtualClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrContainersDeleteVirtualClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrContainersDeleteVirtualClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrContainersDeleteVirtualClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrContainersDeleteVirtualClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrContainersDeleteVirtualClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrContainersDeleteVirtualClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrContainersDeleteVirtualClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrContainersDeleteVirtualClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrContainersDeleteVirtualClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrContainersDeleteVirtualClusterDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -4665,29 +4674,29 @@ class EmrContainersStartJobRunDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrContainersStartJobRunDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefConfig] = pydantic.Field(None)
 
 
 class EmrContainersStartJobRunDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrContainersStartJobRunDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrContainersStartJobRunDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrContainersStartJobRunDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrContainersStartJobRunDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrContainersStartJobRunDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrContainersStartJobRunDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrContainersStartJobRunDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrContainersStartJobRunDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrContainersStartJobRunDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrContainersStartJobRunDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrContainersStartJobRunDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrContainersStartJobRunDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrContainersStartJobRunDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrContainersStartJobRunDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrContainersStartJobRunDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrContainersStartJobRunDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrContainersStartJobRunDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrContainersStartJobRunDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrContainersStartJobRunDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrContainersStartJobRunDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
 
 class EmrContainersStartJobRunDefAddCatchParams(pydantic.BaseModel):
@@ -4902,62 +4911,62 @@ class EmrCreateClusterDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrCreateClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrCreateClusterDefConfig] = pydantic.Field(None)
 
 
 class EmrCreateClusterDefConfig(pydantic.BaseModel):
-    ApplicationConfigProperty: typing.Optional[list[EmrCreateClusterDefApplicationconfigpropertyParams]] = pydantic.Field(None, description='')
-    AutoScalingPolicyProperty: typing.Optional[list[EmrCreateClusterDefAutoscalingpolicypropertyParams]] = pydantic.Field(None, description='')
-    BootstrapActionConfigProperty: typing.Optional[list[EmrCreateClusterDefBootstrapactionconfigpropertyParams]] = pydantic.Field(None, description='')
-    CloudWatchAlarmComparisonOperator: typing.Optional[list[EmrCreateClusterDefCloudwatchalarmcomparisonoperatorParams]] = pydantic.Field(None, description='CloudWatch Alarm Comparison Operators.')
-    CloudWatchAlarmDefinitionProperty: typing.Optional[list[EmrCreateClusterDefCloudwatchalarmdefinitionpropertyParams]] = pydantic.Field(None, description='')
-    CloudWatchAlarmStatistic: typing.Optional[list[EmrCreateClusterDefCloudwatchalarmstatisticParams]] = pydantic.Field(None, description='CloudWatch Alarm Statistics.')
-    CloudWatchAlarmUnit: typing.Optional[list[EmrCreateClusterDefCloudwatchalarmunitParams]] = pydantic.Field(None, description='CloudWatch Alarm Units.')
-    ConfigurationProperty: typing.Optional[list[EmrCreateClusterDefConfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EbsBlockDeviceConfigProperty: typing.Optional[list[EmrCreateClusterDefEbsblockdeviceconfigpropertyParams]] = pydantic.Field(None, description='')
-    EbsBlockDeviceVolumeType: typing.Optional[list[EmrCreateClusterDefEbsblockdevicevolumetypeParams]] = pydantic.Field(None, description='EBS Volume Types.')
-    EbsConfigurationProperty: typing.Optional[list[EmrCreateClusterDefEbsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EmrClusterScaleDownBehavior: typing.Optional[list[EmrCreateClusterDefEmrclusterscaledownbehaviorParams]] = pydantic.Field(None, description='The Cluster ScaleDownBehavior specifies the way that individual Amazon EC2 instances terminate when an automatic scale-in activity occurs or an instance group is resized.\n:see: https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#EMR-RunJobFlow-request-ScaleDownBehavior')
-    InstanceFleetConfigProperty: typing.Optional[list[EmrCreateClusterDefInstancefleetconfigpropertyParams]] = pydantic.Field(None, description='')
-    InstanceFleetProvisioningSpecificationsProperty: typing.Optional[list[EmrCreateClusterDefInstancefleetprovisioningspecificationspropertyParams]] = pydantic.Field(None, description='')
-    InstanceGroupConfigProperty: typing.Optional[list[EmrCreateClusterDefInstancegroupconfigpropertyParams]] = pydantic.Field(None, description='')
-    InstanceMarket: typing.Optional[list[EmrCreateClusterDefInstancemarketParams]] = pydantic.Field(None, description='EC2 Instance Market.')
-    InstanceRoleType: typing.Optional[list[EmrCreateClusterDefInstanceroletypeParams]] = pydantic.Field(None, description='Instance Role Types.')
-    InstanceTypeConfigProperty: typing.Optional[list[EmrCreateClusterDefInstancetypeconfigpropertyParams]] = pydantic.Field(None, description='')
-    InstancesConfigProperty: typing.Optional[list[EmrCreateClusterDefInstancesconfigpropertyParams]] = pydantic.Field(None, description='')
-    KerberosAttributesProperty: typing.Optional[list[EmrCreateClusterDefKerberosattributespropertyParams]] = pydantic.Field(None, description='')
-    MetricDimensionProperty: typing.Optional[list[EmrCreateClusterDefMetricdimensionpropertyParams]] = pydantic.Field(None, description='')
-    PlacementTypeProperty: typing.Optional[list[EmrCreateClusterDefPlacementtypepropertyParams]] = pydantic.Field(None, description='')
-    ScalingActionProperty: typing.Optional[list[EmrCreateClusterDefScalingactionpropertyParams]] = pydantic.Field(None, description='')
-    ScalingAdjustmentType: typing.Optional[list[EmrCreateClusterDefScalingadjustmenttypeParams]] = pydantic.Field(None, description='AutoScaling Adjustment Type.')
-    ScalingConstraintsProperty: typing.Optional[list[EmrCreateClusterDefScalingconstraintspropertyParams]] = pydantic.Field(None, description='')
-    ScalingRuleProperty: typing.Optional[list[EmrCreateClusterDefScalingrulepropertyParams]] = pydantic.Field(None, description='')
-    ScalingTriggerProperty: typing.Optional[list[EmrCreateClusterDefScalingtriggerpropertyParams]] = pydantic.Field(None, description='')
-    ScriptBootstrapActionConfigProperty: typing.Optional[list[EmrCreateClusterDefScriptbootstrapactionconfigpropertyParams]] = pydantic.Field(None, description='')
-    SimpleScalingPolicyConfigurationProperty: typing.Optional[list[EmrCreateClusterDefSimplescalingpolicyconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    SpotAllocationStrategy: typing.Optional[list[EmrCreateClusterDefSpotallocationstrategyParams]] = pydantic.Field(None, description='Spot Allocation Strategies.\nSpecifies the strategy to use in launching Spot Instance fleets. For example, "capacity-optimized" launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.\n\n:see: https://docs.aws.amazon.com/emr/latest/APIReference/API_SpotProvisioningSpecification.html')
-    SpotProvisioningSpecificationProperty: typing.Optional[list[EmrCreateClusterDefSpotprovisioningspecificationpropertyParams]] = pydantic.Field(None, description='')
-    SpotTimeoutAction: typing.Optional[list[EmrCreateClusterDefSpottimeoutactionParams]] = pydantic.Field(None, description='Spot Timeout Actions.')
-    VolumeSpecificationProperty: typing.Optional[list[EmrCreateClusterDefVolumespecificationpropertyParams]] = pydantic.Field(None, description='')
-    add_catch: typing.Optional[list[EmrCreateClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrCreateClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrCreateClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrCreateClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrCreateClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrCreateClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrCreateClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrCreateClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrCreateClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrCreateClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrCreateClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrCreateClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrCreateClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrCreateClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrCreateClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrCreateClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrCreateClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrCreateClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrCreateClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    ApplicationConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefApplicationconfigpropertyParams]] = pydantic.Field(None, description='')
+    AutoScalingPolicyProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefAutoscalingpolicypropertyParams]] = pydantic.Field(None, description='')
+    BootstrapActionConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefBootstrapactionconfigpropertyParams]] = pydantic.Field(None, description='')
+    CloudWatchAlarmComparisonOperator: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefCloudwatchalarmcomparisonoperatorParams]] = pydantic.Field(None, description='CloudWatch Alarm Comparison Operators.')
+    CloudWatchAlarmDefinitionProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefCloudwatchalarmdefinitionpropertyParams]] = pydantic.Field(None, description='')
+    CloudWatchAlarmStatistic: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefCloudwatchalarmstatisticParams]] = pydantic.Field(None, description='CloudWatch Alarm Statistics.')
+    CloudWatchAlarmUnit: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefCloudwatchalarmunitParams]] = pydantic.Field(None, description='CloudWatch Alarm Units.')
+    ConfigurationProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefConfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EbsBlockDeviceConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefEbsblockdeviceconfigpropertyParams]] = pydantic.Field(None, description='')
+    EbsBlockDeviceVolumeType: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefEbsblockdevicevolumetypeParams]] = pydantic.Field(None, description='EBS Volume Types.')
+    EbsConfigurationProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefEbsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EmrClusterScaleDownBehavior: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefEmrclusterscaledownbehaviorParams]] = pydantic.Field(None, description='The Cluster ScaleDownBehavior specifies the way that individual Amazon EC2 instances terminate when an automatic scale-in activity occurs or an instance group is resized.\n:see: https://docs.aws.amazon.com/emr/latest/APIReference/API_RunJobFlow.html#EMR-RunJobFlow-request-ScaleDownBehavior')
+    InstanceFleetConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstancefleetconfigpropertyParams]] = pydantic.Field(None, description='')
+    InstanceFleetProvisioningSpecificationsProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstancefleetprovisioningspecificationspropertyParams]] = pydantic.Field(None, description='')
+    InstanceGroupConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstancegroupconfigpropertyParams]] = pydantic.Field(None, description='')
+    InstanceMarket: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstancemarketParams]] = pydantic.Field(None, description='EC2 Instance Market.')
+    InstanceRoleType: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstanceroletypeParams]] = pydantic.Field(None, description='Instance Role Types.')
+    InstanceTypeConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstancetypeconfigpropertyParams]] = pydantic.Field(None, description='')
+    InstancesConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefInstancesconfigpropertyParams]] = pydantic.Field(None, description='')
+    KerberosAttributesProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefKerberosattributespropertyParams]] = pydantic.Field(None, description='')
+    MetricDimensionProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricdimensionpropertyParams]] = pydantic.Field(None, description='')
+    PlacementTypeProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefPlacementtypepropertyParams]] = pydantic.Field(None, description='')
+    ScalingActionProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefScalingactionpropertyParams]] = pydantic.Field(None, description='')
+    ScalingAdjustmentType: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefScalingadjustmenttypeParams]] = pydantic.Field(None, description='AutoScaling Adjustment Type.')
+    ScalingConstraintsProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefScalingconstraintspropertyParams]] = pydantic.Field(None, description='')
+    ScalingRuleProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefScalingrulepropertyParams]] = pydantic.Field(None, description='')
+    ScalingTriggerProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefScalingtriggerpropertyParams]] = pydantic.Field(None, description='')
+    ScriptBootstrapActionConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefScriptbootstrapactionconfigpropertyParams]] = pydantic.Field(None, description='')
+    SimpleScalingPolicyConfigurationProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefSimplescalingpolicyconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    SpotAllocationStrategy: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefSpotallocationstrategyParams]] = pydantic.Field(None, description='Spot Allocation Strategies.\nSpecifies the strategy to use in launching Spot Instance fleets. For example, "capacity-optimized" launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.\n\n:see: https://docs.aws.amazon.com/emr/latest/APIReference/API_SpotProvisioningSpecification.html')
+    SpotProvisioningSpecificationProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefSpotprovisioningspecificationpropertyParams]] = pydantic.Field(None, description='')
+    SpotTimeoutAction: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefSpottimeoutactionParams]] = pydantic.Field(None, description='Spot Timeout Actions.')
+    VolumeSpecificationProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefVolumespecificationpropertyParams]] = pydantic.Field(None, description='')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrCreateClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
     auto_scaling_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
     cluster_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
     service_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
@@ -5420,29 +5429,29 @@ class EmrModifyInstanceFleetByNameDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrModifyInstanceFleetByNameDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefConfig] = pydantic.Field(None)
 
 
 class EmrModifyInstanceFleetByNameDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrModifyInstanceFleetByNameDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrModifyInstanceFleetByNameDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrModifyInstanceFleetByNameDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrModifyInstanceFleetByNameDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrModifyInstanceFleetByNameDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrModifyInstanceFleetByNameDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrModifyInstanceFleetByNameDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrModifyInstanceFleetByNameDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrModifyInstanceFleetByNameDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrModifyInstanceFleetByNameDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrModifyInstanceFleetByNameDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -5640,32 +5649,32 @@ class EmrModifyInstanceGroupByNameDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrModifyInstanceGroupByNameDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefConfig] = pydantic.Field(None)
 
 
 class EmrModifyInstanceGroupByNameDefConfig(pydantic.BaseModel):
-    InstanceGroupModifyConfigProperty: typing.Optional[list[EmrModifyInstanceGroupByNameDefInstancegroupmodifyconfigpropertyParams]] = pydantic.Field(None, description='')
-    InstanceResizePolicyProperty: typing.Optional[list[EmrModifyInstanceGroupByNameDefInstanceresizepolicypropertyParams]] = pydantic.Field(None, description='')
-    ShrinkPolicyProperty: typing.Optional[list[EmrModifyInstanceGroupByNameDefShrinkpolicypropertyParams]] = pydantic.Field(None, description='')
-    add_catch: typing.Optional[list[EmrModifyInstanceGroupByNameDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrModifyInstanceGroupByNameDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrModifyInstanceGroupByNameDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrModifyInstanceGroupByNameDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrModifyInstanceGroupByNameDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrModifyInstanceGroupByNameDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrModifyInstanceGroupByNameDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrModifyInstanceGroupByNameDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrModifyInstanceGroupByNameDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrModifyInstanceGroupByNameDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    InstanceGroupModifyConfigProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefInstancegroupmodifyconfigpropertyParams]] = pydantic.Field(None, description='')
+    InstanceResizePolicyProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefInstanceresizepolicypropertyParams]] = pydantic.Field(None, description='')
+    ShrinkPolicyProperty: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefShrinkpolicypropertyParams]] = pydantic.Field(None, description='')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrModifyInstanceGroupByNameDefInstancegroupmodifyconfigpropertyParams(pydantic.BaseModel):
     configurations: typing.Optional[typing.Sequence[typing.Union[models.aws_stepfunctions_tasks.EmrCreateCluster_ConfigurationPropertyDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='')
@@ -5880,29 +5889,29 @@ class EmrSetClusterTerminationProtectionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrSetClusterTerminationProtectionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefConfig] = pydantic.Field(None)
 
 
 class EmrSetClusterTerminationProtectionDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrSetClusterTerminationProtectionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrSetClusterTerminationProtectionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrSetClusterTerminationProtectionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrSetClusterTerminationProtectionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrSetClusterTerminationProtectionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrSetClusterTerminationProtectionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrSetClusterTerminationProtectionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrSetClusterTerminationProtectionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrSetClusterTerminationProtectionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrSetClusterTerminationProtectionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrSetClusterTerminationProtectionDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -6098,29 +6107,29 @@ class EmrTerminateClusterDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EmrTerminateClusterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrTerminateClusterDefConfig] = pydantic.Field(None)
 
 
 class EmrTerminateClusterDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EmrTerminateClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EmrTerminateClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EmrTerminateClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EmrTerminateClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EmrTerminateClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EmrTerminateClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EmrTerminateClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EmrTerminateClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EmrTerminateClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EmrTerminateClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EmrTerminateClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EmrTerminateClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EmrTerminateClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EmrTerminateClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EmrTerminateClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EmrTerminateClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EmrTerminateClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EmrTerminateClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EmrTerminateClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EmrTerminateClusterDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EmrTerminateClusterDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -6317,29 +6326,29 @@ class EvaluateExpressionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EvaluateExpressionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EvaluateExpressionDefConfig] = pydantic.Field(None)
 
 
 class EvaluateExpressionDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EvaluateExpressionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EvaluateExpressionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EvaluateExpressionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EvaluateExpressionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EvaluateExpressionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EvaluateExpressionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EvaluateExpressionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EvaluateExpressionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EvaluateExpressionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EvaluateExpressionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EvaluateExpressionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EvaluateExpressionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EvaluateExpressionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EvaluateExpressionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EvaluateExpressionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EvaluateExpressionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EvaluateExpressionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EvaluateExpressionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EvaluateExpressionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EvaluateExpressionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EvaluateExpressionDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -6535,29 +6544,29 @@ class EventBridgePutEventsDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EventBridgePutEventsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EventBridgePutEventsDefConfig] = pydantic.Field(None)
 
 
 class EventBridgePutEventsDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[EventBridgePutEventsDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[EventBridgePutEventsDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[EventBridgePutEventsDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[EventBridgePutEventsDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[EventBridgePutEventsDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[EventBridgePutEventsDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[EventBridgePutEventsDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[EventBridgePutEventsDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[EventBridgePutEventsDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[EventBridgePutEventsDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[EventBridgePutEventsDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[EventBridgePutEventsDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[EventBridgePutEventsDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[EventBridgePutEventsDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[EventBridgePutEventsDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[EventBridgePutEventsDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[EventBridgePutEventsDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[EventBridgePutEventsDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[EventBridgePutEventsDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.EventBridgePutEventsDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class EventBridgePutEventsDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -6753,29 +6762,29 @@ class GlueDataBrewStartJobRunDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[GlueDataBrewStartJobRunDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefConfig] = pydantic.Field(None)
 
 
 class GlueDataBrewStartJobRunDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[GlueDataBrewStartJobRunDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[GlueDataBrewStartJobRunDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[GlueDataBrewStartJobRunDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[GlueDataBrewStartJobRunDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[GlueDataBrewStartJobRunDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[GlueDataBrewStartJobRunDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[GlueDataBrewStartJobRunDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[GlueDataBrewStartJobRunDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[GlueDataBrewStartJobRunDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[GlueDataBrewStartJobRunDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[GlueDataBrewStartJobRunDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[GlueDataBrewStartJobRunDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[GlueDataBrewStartJobRunDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[GlueDataBrewStartJobRunDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[GlueDataBrewStartJobRunDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[GlueDataBrewStartJobRunDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[GlueDataBrewStartJobRunDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[GlueDataBrewStartJobRunDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[GlueDataBrewStartJobRunDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class GlueDataBrewStartJobRunDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -6974,29 +6983,29 @@ class GlueStartJobRunDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[GlueStartJobRunDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.GlueStartJobRunDefConfig] = pydantic.Field(None)
 
 
 class GlueStartJobRunDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[GlueStartJobRunDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[GlueStartJobRunDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[GlueStartJobRunDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[GlueStartJobRunDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[GlueStartJobRunDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[GlueStartJobRunDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[GlueStartJobRunDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[GlueStartJobRunDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[GlueStartJobRunDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[GlueStartJobRunDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[GlueStartJobRunDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[GlueStartJobRunDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[GlueStartJobRunDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[GlueStartJobRunDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[GlueStartJobRunDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[GlueStartJobRunDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[GlueStartJobRunDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[GlueStartJobRunDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[GlueStartJobRunDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.GlueStartJobRunDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class GlueStartJobRunDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -7198,29 +7207,29 @@ class LambdaInvokeDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaInvokeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.LambdaInvokeDefConfig] = pydantic.Field(None)
 
 
 class LambdaInvokeDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[LambdaInvokeDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[LambdaInvokeDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[LambdaInvokeDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[LambdaInvokeDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[LambdaInvokeDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[LambdaInvokeDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[LambdaInvokeDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[LambdaInvokeDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[LambdaInvokeDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[LambdaInvokeDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[LambdaInvokeDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[LambdaInvokeDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[LambdaInvokeDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[LambdaInvokeDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[LambdaInvokeDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[LambdaInvokeDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[LambdaInvokeDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[LambdaInvokeDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[LambdaInvokeDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.LambdaInvokeDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class LambdaInvokeDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -7418,29 +7427,29 @@ class SageMakerCreateEndpointDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SageMakerCreateEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefConfig] = pydantic.Field(None)
 
 
 class SageMakerCreateEndpointDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SageMakerCreateEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SageMakerCreateEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SageMakerCreateEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[SageMakerCreateEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SageMakerCreateEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SageMakerCreateEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SageMakerCreateEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SageMakerCreateEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SageMakerCreateEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SageMakerCreateEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SageMakerCreateEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SageMakerCreateEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SageMakerCreateEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SageMakerCreateEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SageMakerCreateEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SageMakerCreateEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SageMakerCreateEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SageMakerCreateEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SageMakerCreateEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class SageMakerCreateEndpointDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -7639,29 +7648,29 @@ class SageMakerCreateEndpointConfigDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SageMakerCreateEndpointConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefConfig] = pydantic.Field(None)
 
 
 class SageMakerCreateEndpointConfigDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SageMakerCreateEndpointConfigDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SageMakerCreateEndpointConfigDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SageMakerCreateEndpointConfigDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[SageMakerCreateEndpointConfigDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SageMakerCreateEndpointConfigDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SageMakerCreateEndpointConfigDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SageMakerCreateEndpointConfigDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SageMakerCreateEndpointConfigDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SageMakerCreateEndpointConfigDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SageMakerCreateEndpointConfigDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class SageMakerCreateEndpointConfigDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -7836,26 +7845,27 @@ class SageMakerCreateEndpointConfigDefPrefixStatesParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.SageMakerCreateModel
 class SageMakerCreateModelDef(BaseConstruct, ConnectableMixin):
-    model_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the new model.\n')
-    primary_container: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.ContainerDefinitionDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The definition of the primary docker image containing inference code, associated artifacts, and custom environment map that the inference code uses when the model is deployed for predictions.\n')
-    containers: typing.Optional[typing.Sequence[typing.Union[models.aws_stepfunctions_tasks.ContainerDefinitionDef]]] = pydantic.Field(None, description='Specifies the containers in the inference pipeline. Default: - None\n')
-    enable_network_isolation: typing.Optional[bool] = pydantic.Field(None, description='Isolates the model container. No inbound or outbound network calls can be made to or from the model container. Default: false\n')
-    role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='An execution role that you can pass in a CreateModel API request. Default: - a role will be created.\n')
-    subnet_selection: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The subnets of the VPC to which the hosted model is connected (Note this parameter is only used when VPC is provided). Default: - Private Subnets are selected\n')
-    tags: typing.Optional[models.aws_stepfunctions.TaskInputDef] = pydantic.Field(None, description='Tags to be applied to the model. Default: - No tags\n')
-    vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC that is accessible by the hosted model. Default: - None\n')
-    comment: typing.Optional[str] = pydantic.Field(None, description='An optional description for this state. Default: - No comment\n')
-    credentials: typing.Union[models.aws_stepfunctions.CredentialsDef, dict[str, typing.Any], None] = pydantic.Field(None, description="Credentials for an IAM Role that the State Machine assumes for executing the task. This enables cross-account resource invocations. Default: - None (Task is executed using the State Machine's execution role)\n")
-    heartbeat: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the heartbeat. Default: - None\n')
-    heartbeat_timeout: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the heartbeat. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n')
-    input_path: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: - The entire task input (JSON path '$')\n")
-    integration_pattern: typing.Optional[aws_cdk.aws_stepfunctions.IntegrationPattern] = pydantic.Field(None, description='AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: - ``IntegrationPattern.REQUEST_RESPONSE`` for most tasks. ``IntegrationPattern.RUN_JOB`` for the following exceptions: ``BatchSubmitJob``, ``EmrAddStep``, ``EmrCreateCluster``, ``EmrTerminationCluster``, and ``EmrContainersStartJobRun``.\n')
-    output_path: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select select a portion of the state output to pass to the next state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: - The entire JSON node determined by the state input, the task result, and resultPath is passed to the next state (JSON path '$')\n")
-    result_path: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to indicate where to inject the state's output. May also be the special value JsonPath.DISCARD, which will cause the state's input to become its output. Default: - Replaces the entire input with the result (JSON path '$')\n")
-    result_selector: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description="The JSON that will replace the state's raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state's raw result. Default: - None\n")
-    state_name: typing.Optional[str] = pydantic.Field(None, description='Optional name for this state. Default: - The construct ID will be used as state name\n')
-    task_timeout: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the task. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n')
-    timeout: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the task. Default: - None')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the new model.\n', alias='model_name')
+    primary_container_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.ContainerDefinitionDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The definition of the primary docker image containing inference code, associated artifacts, and custom environment map that the inference code uses when the model is deployed for predictions.\n', alias='primary_container')
+    containers_: typing.Optional[typing.Sequence[typing.Union[models.aws_stepfunctions_tasks.ContainerDefinitionDef]]] = pydantic.Field(None, description='Specifies the containers in the inference pipeline. Default: - None\n', alias='containers')
+    enable_network_isolation_: typing.Optional[bool] = pydantic.Field(None, description='Isolates the model container. No inbound or outbound network calls can be made to or from the model container. Default: false\n', alias='enable_network_isolation')
+    role_: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='An execution role that you can pass in a CreateModel API request. Default: - a role will be created.\n', alias='role')
+    subnet_selection_: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The subnets of the VPC to which the hosted model is connected (Note this parameter is only used when VPC is provided). Default: - Private Subnets are selected\n', alias='subnet_selection')
+    tags_: typing.Optional[models.aws_stepfunctions.TaskInputDef] = pydantic.Field(None, description='Tags to be applied to the model. Default: - No tags\n', alias='tags')
+    vpc_: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC that is accessible by the hosted model. Default: - None\n', alias='vpc')
+    comment_: typing.Optional[str] = pydantic.Field(None, description='An optional description for this state. Default: - No comment\n', alias='comment')
+    credentials_: typing.Union[models.aws_stepfunctions.CredentialsDef, dict[str, typing.Any], None] = pydantic.Field(None, description="Credentials for an IAM Role that the State Machine assumes for executing the task. This enables cross-account resource invocations. Default: - None (Task is executed using the State Machine's execution role)\n", alias='credentials')
+    heartbeat_: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the heartbeat. Default: - None\n', alias='heartbeat')
+    heartbeat_timeout_: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the heartbeat. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n', alias='heartbeat_timeout')
+    input_path_: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: - The entire task input (JSON path '$')\n", alias='input_path')
+    integration_pattern_: typing.Optional[aws_cdk.aws_stepfunctions.IntegrationPattern] = pydantic.Field(None, description='AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: - ``IntegrationPattern.REQUEST_RESPONSE`` for most tasks. ``IntegrationPattern.RUN_JOB`` for the following exceptions: ``BatchSubmitJob``, ``EmrAddStep``, ``EmrCreateCluster``, ``EmrTerminationCluster``, and ``EmrContainersStartJobRun``.\n', alias='integration_pattern')
+    output_path_: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select select a portion of the state output to pass to the next state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: - The entire JSON node determined by the state input, the task result, and resultPath is passed to the next state (JSON path '$')\n", alias='output_path')
+    result_path_: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to indicate where to inject the state's output. May also be the special value JsonPath.DISCARD, which will cause the state's input to become its output. Default: - Replaces the entire input with the result (JSON path '$')\n", alias='result_path')
+    result_selector_: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description="The JSON that will replace the state's raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state's raw result. Default: - None\n", alias='result_selector')
+    state_name_: typing.Optional[str] = pydantic.Field(None, description='Optional name for this state. Default: - The construct ID will be used as state name\n', alias='state_name')
+    task_timeout_: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the task. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n', alias='task_timeout')
+    timeout_: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the task. Default: - None', alias='timeout')
     _init_params: typing.ClassVar[list[str]] = ['model_name', 'primary_container', 'containers', 'enable_network_isolation', 'role', 'subnet_selection', 'tags', 'vpc', 'comment', 'credentials', 'heartbeat', 'heartbeat_timeout', 'input_path', 'integration_pattern', 'output_path', 'result_path', 'result_selector', 'state_name', 'task_timeout', 'timeout']
     _method_names: typing.ClassVar[list[str]] = ['add_catch', 'add_prefix', 'add_retry', 'add_security_group', 'bind_to_graph', 'metric', 'metric_failed', 'metric_heartbeat_timed_out', 'metric_run_time', 'metric_schedule_time', 'metric_scheduled', 'metric_started', 'metric_succeeded', 'metric_time', 'metric_timed_out', 'next']
     _classmethod_names: typing.ClassVar[list[str]] = ['filter_nextables', 'find_reachable_end_states', 'find_reachable_states', 'prefix_states']
@@ -7864,30 +7874,30 @@ class SageMakerCreateModelDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[SageMakerCreateModelDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerCreateModelDefConfig] = pydantic.Field(None)
 
 
 class SageMakerCreateModelDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SageMakerCreateModelDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SageMakerCreateModelDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SageMakerCreateModelDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    add_security_group: typing.Optional[list[SageMakerCreateModelDefAddSecurityGroupParams]] = pydantic.Field(None, description='Add the security group to all instances via the launch configuration security groups array.')
-    bind_to_graph: typing.Optional[list[SageMakerCreateModelDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SageMakerCreateModelDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SageMakerCreateModelDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SageMakerCreateModelDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SageMakerCreateModelDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SageMakerCreateModelDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SageMakerCreateModelDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SageMakerCreateModelDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SageMakerCreateModelDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SageMakerCreateModelDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SageMakerCreateModelDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SageMakerCreateModelDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SageMakerCreateModelDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SageMakerCreateModelDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SageMakerCreateModelDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SageMakerCreateModelDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    add_security_group: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefAddSecurityGroupParams]] = pydantic.Field(None, description='Add the security group to all instances via the launch configuration security groups array.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateModelDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
@@ -8101,30 +8111,30 @@ class SageMakerCreateTrainingJobDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[SageMakerCreateTrainingJobDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefConfig] = pydantic.Field(None)
 
 
 class SageMakerCreateTrainingJobDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SageMakerCreateTrainingJobDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SageMakerCreateTrainingJobDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SageMakerCreateTrainingJobDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    add_security_group: typing.Optional[list[SageMakerCreateTrainingJobDefAddSecurityGroupParams]] = pydantic.Field(None, description='Add the security group to all instances via the launch configuration security groups array.')
-    bind_to_graph: typing.Optional[list[SageMakerCreateTrainingJobDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SageMakerCreateTrainingJobDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SageMakerCreateTrainingJobDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SageMakerCreateTrainingJobDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SageMakerCreateTrainingJobDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SageMakerCreateTrainingJobDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SageMakerCreateTrainingJobDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SageMakerCreateTrainingJobDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SageMakerCreateTrainingJobDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SageMakerCreateTrainingJobDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SageMakerCreateTrainingJobDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SageMakerCreateTrainingJobDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SageMakerCreateTrainingJobDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SageMakerCreateTrainingJobDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SageMakerCreateTrainingJobDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SageMakerCreateTrainingJobDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    add_security_group: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefAddSecurityGroupParams]] = pydantic.Field(None, description='Add the security group to all instances via the launch configuration security groups array.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
@@ -8306,30 +8316,32 @@ class SageMakerCreateTrainingJobDefPrefixStatesParams(pydantic.BaseModel):
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.SageMakerCreateTransformJob
 class SageMakerCreateTransformJobDef(BaseConstruct):
-    model_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Name of the model that you want to use for the transform job.\n')
-    transform_input: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformInputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='Dataset to be transformed and the Amazon S3 location where it is stored.\n')
-    transform_job_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Transform Job Name.\n')
-    transform_output: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformOutputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='S3 location where you want Amazon SageMaker to save the results from the transform job.\n')
-    batch_strategy: typing.Optional[aws_cdk.aws_stepfunctions_tasks.BatchStrategy] = pydantic.Field(None, description='Number of records to include in a mini-batch for an HTTP inference request. Default: - No batch strategy\n')
-    environment: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Environment variables to set in the Docker container. Default: - No environment variables\n')
-    max_concurrent_transforms: typing.Union[int, float, None] = pydantic.Field(None, description='Maximum number of parallel requests that can be sent to each instance in a transform job. Default: - Amazon SageMaker checks the optional execution-parameters to determine the settings for your chosen algorithm. If the execution-parameters endpoint is not enabled, the default value is 1.\n')
-    max_payload: typing.Optional[models.SizeDef] = pydantic.Field(None, description='Maximum allowed size of the payload, in MB. Default: 6\n')
-    model_client_options: typing.Union[models.aws_stepfunctions_tasks.ModelClientOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configures the timeout and maximum number of retries for processing a transform job invocation. Default: - 0 retries and 60 seconds of timeout\n')
-    role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role for the Transform Job. Default: - A role is created with ``AmazonSageMakerFullAccess`` managed policy\n')
-    tags: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Tags to be applied to the train job. Default: - No tags\n')
-    transform_resources: typing.Union[models.aws_stepfunctions_tasks.TransformResourcesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='ML compute instances for the transform job. Default: - 1 instance of type M4.XLarge\n')
-    comment: typing.Optional[str] = pydantic.Field(None, description='An optional description for this state. Default: - No comment\n')
-    credentials: typing.Union[models.aws_stepfunctions.CredentialsDef, dict[str, typing.Any], None] = pydantic.Field(None, description="Credentials for an IAM Role that the State Machine assumes for executing the task. This enables cross-account resource invocations. Default: - None (Task is executed using the State Machine's execution role)\n")
-    heartbeat: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the heartbeat. Default: - None\n')
-    heartbeat_timeout: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the heartbeat. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n')
-    input_path: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: - The entire task input (JSON path '$')\n")
-    integration_pattern: typing.Optional[aws_cdk.aws_stepfunctions.IntegrationPattern] = pydantic.Field(None, description='AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: - ``IntegrationPattern.REQUEST_RESPONSE`` for most tasks. ``IntegrationPattern.RUN_JOB`` for the following exceptions: ``BatchSubmitJob``, ``EmrAddStep``, ``EmrCreateCluster``, ``EmrTerminationCluster``, and ``EmrContainersStartJobRun``.\n')
-    output_path: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select select a portion of the state output to pass to the next state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: - The entire JSON node determined by the state input, the task result, and resultPath is passed to the next state (JSON path '$')\n")
-    result_path: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to indicate where to inject the state's output. May also be the special value JsonPath.DISCARD, which will cause the state's input to become its output. Default: - Replaces the entire input with the result (JSON path '$')\n")
-    result_selector: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description="The JSON that will replace the state's raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state's raw result. Default: - None\n")
-    state_name: typing.Optional[str] = pydantic.Field(None, description='Optional name for this state. Default: - The construct ID will be used as state name\n')
-    task_timeout: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the task. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n')
-    timeout: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the task. Default: - None')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Name of the model that you want to use for the transform job.\n', alias='model_name')
+    transform_input_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformInputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='Dataset to be transformed and the Amazon S3 location where it is stored.\n', alias='transform_input')
+    transform_job_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Transform Job Name.\n', alias='transform_job_name')
+    transform_output_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformOutputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='S3 location where you want Amazon SageMaker to save the results from the transform job.\n', alias='transform_output')
+    batch_strategy_: typing.Optional[aws_cdk.aws_stepfunctions_tasks.BatchStrategy] = pydantic.Field(None, description='Number of records to include in a mini-batch for an HTTP inference request. Default: - No batch strategy\n', alias='batch_strategy')
+    environment_: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Environment variables to set in the Docker container. Default: - No environment variables\n', alias='environment')
+    max_concurrent_transforms_: typing.Union[int, float, None] = pydantic.Field(None, description='Maximum number of parallel requests that can be sent to each instance in a transform job. Default: - Amazon SageMaker checks the optional execution-parameters to determine the settings for your chosen algorithm. If the execution-parameters endpoint is not enabled, the default value is 1.\n', alias='max_concurrent_transforms')
+    max_payload_: typing.Optional[models.SizeDef] = pydantic.Field(None, description='Maximum allowed size of the payload, in MB. Default: 6\n', alias='max_payload')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_client_options_: typing.Union[models.aws_stepfunctions_tasks.ModelClientOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configures the timeout and maximum number of retries for processing a transform job invocation. Default: - 0 retries and 60 seconds of timeout\n', alias='model_client_options')
+    role_: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role for the Transform Job. Default: - A role is created with ``AmazonSageMakerFullAccess`` managed policy\n', alias='role')
+    tags_: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Tags to be applied to the train job. Default: - No tags\n', alias='tags')
+    transform_resources_: typing.Union[models.aws_stepfunctions_tasks.TransformResourcesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='ML compute instances for the transform job. Default: - 1 instance of type M4.XLarge\n', alias='transform_resources')
+    comment_: typing.Optional[str] = pydantic.Field(None, description='An optional description for this state. Default: - No comment\n', alias='comment')
+    credentials_: typing.Union[models.aws_stepfunctions.CredentialsDef, dict[str, typing.Any], None] = pydantic.Field(None, description="Credentials for an IAM Role that the State Machine assumes for executing the task. This enables cross-account resource invocations. Default: - None (Task is executed using the State Machine's execution role)\n", alias='credentials')
+    heartbeat_: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the heartbeat. Default: - None\n', alias='heartbeat')
+    heartbeat_timeout_: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the heartbeat. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n', alias='heartbeat_timeout')
+    input_path_: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select part of the state to be the input to this state. May also be the special value JsonPath.DISCARD, which will cause the effective input to be the empty object {}. Default: - The entire task input (JSON path '$')\n", alias='input_path')
+    integration_pattern_: typing.Optional[aws_cdk.aws_stepfunctions.IntegrationPattern] = pydantic.Field(None, description='AWS Step Functions integrates with services directly in the Amazon States Language. You can control these AWS services using service integration patterns Default: - ``IntegrationPattern.REQUEST_RESPONSE`` for most tasks. ``IntegrationPattern.RUN_JOB`` for the following exceptions: ``BatchSubmitJob``, ``EmrAddStep``, ``EmrCreateCluster``, ``EmrTerminationCluster``, and ``EmrContainersStartJobRun``.\n', alias='integration_pattern')
+    output_path_: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to select select a portion of the state output to pass to the next state. May also be the special value JsonPath.DISCARD, which will cause the effective output to be the empty object {}. Default: - The entire JSON node determined by the state input, the task result, and resultPath is passed to the next state (JSON path '$')\n", alias='output_path')
+    result_path_: typing.Optional[str] = pydantic.Field(None, description="JSONPath expression to indicate where to inject the state's output. May also be the special value JsonPath.DISCARD, which will cause the state's input to become its output. Default: - Replaces the entire input with the result (JSON path '$')\n", alias='result_path')
+    result_selector_: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description="The JSON that will replace the state's raw result and become the effective result before ResultPath is applied. You can use ResultSelector to create a payload with values that are static or selected from the state's raw result. Default: - None\n", alias='result_selector')
+    state_name_: typing.Optional[str] = pydantic.Field(None, description='Optional name for this state. Default: - The construct ID will be used as state name\n', alias='state_name')
+    task_timeout_: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the task. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n', alias='task_timeout')
+    timeout_: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the task. Default: - None', alias='timeout')
     _init_params: typing.ClassVar[list[str]] = ['model_name', 'transform_input', 'transform_job_name', 'transform_output', 'batch_strategy', 'environment', 'max_concurrent_transforms', 'max_payload', 'model_client_options', 'role', 'tags', 'transform_resources', 'comment', 'credentials', 'heartbeat', 'heartbeat_timeout', 'input_path', 'integration_pattern', 'output_path', 'result_path', 'result_selector', 'state_name', 'task_timeout', 'timeout']
     _method_names: typing.ClassVar[list[str]] = ['add_catch', 'add_prefix', 'add_retry', 'bind_to_graph', 'metric', 'metric_failed', 'metric_heartbeat_timed_out', 'metric_run_time', 'metric_schedule_time', 'metric_scheduled', 'metric_started', 'metric_succeeded', 'metric_time', 'metric_timed_out', 'next']
     _classmethod_names: typing.ClassVar[list[str]] = ['filter_nextables', 'find_reachable_end_states', 'find_reachable_states', 'prefix_states']
@@ -8338,29 +8350,29 @@ class SageMakerCreateTransformJobDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SageMakerCreateTransformJobDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefConfig] = pydantic.Field(None)
 
 
 class SageMakerCreateTransformJobDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SageMakerCreateTransformJobDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SageMakerCreateTransformJobDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SageMakerCreateTransformJobDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[SageMakerCreateTransformJobDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SageMakerCreateTransformJobDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SageMakerCreateTransformJobDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SageMakerCreateTransformJobDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SageMakerCreateTransformJobDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SageMakerCreateTransformJobDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SageMakerCreateTransformJobDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SageMakerCreateTransformJobDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SageMakerCreateTransformJobDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SageMakerCreateTransformJobDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SageMakerCreateTransformJobDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SageMakerCreateTransformJobDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SageMakerCreateTransformJobDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SageMakerCreateTransformJobDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SageMakerCreateTransformJobDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SageMakerCreateTransformJobDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
 class SageMakerCreateTransformJobDefAddCatchParams(pydantic.BaseModel):
@@ -8558,29 +8570,29 @@ class SageMakerUpdateEndpointDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SageMakerUpdateEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefConfig] = pydantic.Field(None)
 
 
 class SageMakerUpdateEndpointDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SageMakerUpdateEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SageMakerUpdateEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SageMakerUpdateEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[SageMakerUpdateEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SageMakerUpdateEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SageMakerUpdateEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SageMakerUpdateEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SageMakerUpdateEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SageMakerUpdateEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SageMakerUpdateEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SageMakerUpdateEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SageMakerUpdateEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SageMakerUpdateEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SageMakerUpdateEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SageMakerUpdateEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SageMakerUpdateEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SageMakerUpdateEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SageMakerUpdateEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SageMakerUpdateEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class SageMakerUpdateEndpointDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -8782,29 +8794,29 @@ class SnsPublishDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SnsPublishDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SnsPublishDefConfig] = pydantic.Field(None)
 
 
 class SnsPublishDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SnsPublishDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SnsPublishDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SnsPublishDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[SnsPublishDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SnsPublishDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SnsPublishDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SnsPublishDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SnsPublishDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SnsPublishDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SnsPublishDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SnsPublishDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SnsPublishDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SnsPublishDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SnsPublishDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SnsPublishDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SnsPublishDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SnsPublishDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SnsPublishDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SnsPublishDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SnsPublishDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class SnsPublishDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -9004,29 +9016,29 @@ class SqsSendMessageDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SqsSendMessageDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SqsSendMessageDefConfig] = pydantic.Field(None)
 
 
 class SqsSendMessageDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[SqsSendMessageDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[SqsSendMessageDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[SqsSendMessageDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[SqsSendMessageDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SqsSendMessageDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SqsSendMessageDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SqsSendMessageDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[SqsSendMessageDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[SqsSendMessageDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[SqsSendMessageDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[SqsSendMessageDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[SqsSendMessageDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[SqsSendMessageDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[SqsSendMessageDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[SqsSendMessageDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[SqsSendMessageDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[SqsSendMessageDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[SqsSendMessageDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[SqsSendMessageDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.SqsSendMessageDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class SqsSendMessageDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -9223,29 +9235,29 @@ class StepFunctionsInvokeActivityDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsInvokeActivityDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsInvokeActivityDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[StepFunctionsInvokeActivityDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[StepFunctionsInvokeActivityDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[StepFunctionsInvokeActivityDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[StepFunctionsInvokeActivityDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[StepFunctionsInvokeActivityDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[StepFunctionsInvokeActivityDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[StepFunctionsInvokeActivityDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[StepFunctionsInvokeActivityDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[StepFunctionsInvokeActivityDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[StepFunctionsInvokeActivityDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[StepFunctionsInvokeActivityDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[StepFunctionsInvokeActivityDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[StepFunctionsInvokeActivityDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[StepFunctionsInvokeActivityDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[StepFunctionsInvokeActivityDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[StepFunctionsInvokeActivityDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[StepFunctionsInvokeActivityDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[StepFunctionsInvokeActivityDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[StepFunctionsInvokeActivityDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class StepFunctionsInvokeActivityDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -9444,29 +9456,29 @@ class StepFunctionsStartExecutionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsStartExecutionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsStartExecutionDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[StepFunctionsStartExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[StepFunctionsStartExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[StepFunctionsStartExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[StepFunctionsStartExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[StepFunctionsStartExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[StepFunctionsStartExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[StepFunctionsStartExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[StepFunctionsStartExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[StepFunctionsStartExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[StepFunctionsStartExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[StepFunctionsStartExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[StepFunctionsStartExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[StepFunctionsStartExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[StepFunctionsStartExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[StepFunctionsStartExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[StepFunctionsStartExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[StepFunctionsStartExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[StepFunctionsStartExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[StepFunctionsStartExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class StepFunctionsStartExecutionDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
@@ -9903,7 +9915,7 @@ class CallApiGatewayHttpApiEndpointPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CallApiGatewayHttpApiEndpointPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointPropsDefConfig] = pydantic.Field(None)
 
 
 class CallApiGatewayHttpApiEndpointPropsDefConfig(pydantic.BaseModel):
@@ -9940,7 +9952,7 @@ class CallApiGatewayRestApiEndpointPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CallApiGatewayRestApiEndpointPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointPropsDefConfig] = pydantic.Field(None)
 
 
 class CallApiGatewayRestApiEndpointPropsDefConfig(pydantic.BaseModel):
@@ -10020,7 +10032,7 @@ class CodeBuildStartBuildPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CodeBuildStartBuildPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CodeBuildStartBuildPropsDefConfig] = pydantic.Field(None)
 
 
 class CodeBuildStartBuildPropsDefConfig(pydantic.BaseModel):
@@ -10041,7 +10053,7 @@ class CommonEcsRunTaskPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CommonEcsRunTaskPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.CommonEcsRunTaskPropsDefConfig] = pydantic.Field(None)
 
 
 class CommonEcsRunTaskPropsDefConfig(pydantic.BaseModel):
@@ -10068,8 +10080,10 @@ class ContainerDefinitionOptionsDef(BaseStruct):
     environment_variables: typing.Optional[models.aws_stepfunctions.TaskInputDef] = pydantic.Field(None, description='The environment variables to set in the Docker container. Default: - No variables\n')
     image: typing.Optional[models.aws_stepfunctions_tasks.DockerImageDef] = pydantic.Field(None, description='The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored. Default: - None\n')
     mode: typing.Optional[aws_cdk.aws_stepfunctions_tasks.Mode] = pydantic.Field(None, description='Defines how many models the container hosts. Default: - Mode.SINGLE_MODEL\n')
-    model_package_name: typing.Optional[str] = pydantic.Field(None, description='The name or Amazon Resource Name (ARN) of the model package to use to create the model. Default: - None\n')
-    model_s3_location: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDef] = pydantic.Field(None, description='The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms, but not if you use your own algorithms. Default: - None\n\n:see: https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ContainerDefinition.html\n:exampleMetadata: infused\n\nExample::\n\n    tasks.SageMakerCreateModel(self, "Sagemaker",\n        model_name="MyModel",\n        primary_container=tasks.ContainerDefinition(\n            image=tasks.DockerImage.from_json_expression(sfn.JsonPath.string_at("$.Model.imageName")),\n            mode=tasks.Mode.SINGLE_MODEL,\n            model_s3_location=tasks.S3Location.from_json_expression("$.TrainingJob.ModelArtifacts.S3ModelArtifacts")\n        )\n    )\n')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_package_name_: typing.Optional[str] = pydantic.Field(None, description='The name or Amazon Resource Name (ARN) of the model package to use to create the model. Default: - None\n', alias='model_package_name')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_s3_location_: typing.Optional[models.aws_stepfunctions_tasks.S3LocationDef] = pydantic.Field(None, description='The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms, but not if you use your own algorithms. Default: - None\n\n:see: https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ContainerDefinition.html\n:exampleMetadata: infused\n\nExample::\n\n    tasks.SageMakerCreateModel(self, "Sagemaker",\n        model_name="MyModel",\n        primary_container=tasks.ContainerDefinition(\n            image=tasks.DockerImage.from_json_expression(sfn.JsonPath.string_at("$.Model.imageName")),\n            mode=tasks.Mode.SINGLE_MODEL,\n            model_s3_location=tasks.S3Location.from_json_expression("$.TrainingJob.ModelArtifacts.S3ModelArtifacts")\n        )\n    )\n', alias='model_s3_location')
     _init_params: typing.ClassVar[list[str]] = ['container_host_name', 'environment_variables', 'image', 'mode', 'model_package_name', 'model_s3_location']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -10096,7 +10110,7 @@ class ContainerOverrideDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ContainerOverrideDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.ContainerOverrideDefConfig] = pydantic.Field(None)
 
 
 class ContainerOverrideDefConfig(pydantic.BaseModel):
@@ -10177,7 +10191,7 @@ class DynamoDeleteItemPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoDeleteItemPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoDeleteItemPropsDefConfig] = pydantic.Field(None)
 
 
 class DynamoDeleteItemPropsDefConfig(pydantic.BaseModel):
@@ -10212,7 +10226,7 @@ class DynamoGetItemPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoGetItemPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoGetItemPropsDefConfig] = pydantic.Field(None)
 
 
 class DynamoGetItemPropsDefConfig(pydantic.BaseModel):
@@ -10249,7 +10263,7 @@ class DynamoPutItemPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoPutItemPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoPutItemPropsDefConfig] = pydantic.Field(None)
 
 
 class DynamoPutItemPropsDefConfig(pydantic.BaseModel):
@@ -10287,7 +10301,7 @@ class DynamoUpdateItemPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DynamoUpdateItemPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.DynamoUpdateItemPropsDefConfig] = pydantic.Field(None)
 
 
 class DynamoUpdateItemPropsDefConfig(pydantic.BaseModel):
@@ -10365,7 +10379,7 @@ class EcsRunTaskPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsRunTaskPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EcsRunTaskPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsRunTaskPropsDefConfig(pydantic.BaseModel):
@@ -10400,7 +10414,7 @@ class EksCallPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EksCallPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EksCallPropsDefConfig] = pydantic.Field(None)
 
 
 class EksCallPropsDefConfig(pydantic.BaseModel):
@@ -10610,7 +10624,7 @@ class EmrCreateCluster_CloudWatchAlarmDefinitionPropertyDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EmrCreateCluster_CloudWatchAlarmDefinitionPropertyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrCreateCluster_CloudWatchAlarmDefinitionPropertyDefConfig] = pydantic.Field(None)
 
 
 class EmrCreateCluster_CloudWatchAlarmDefinitionPropertyDefConfig(pydantic.BaseModel):
@@ -10917,7 +10931,7 @@ class EmrCreateCluster_VolumeSpecificationPropertyDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EmrCreateCluster_VolumeSpecificationPropertyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.EmrCreateCluster_VolumeSpecificationPropertyDefConfig] = pydantic.Field(None)
 
 
 class EmrCreateCluster_VolumeSpecificationPropertyDefConfig(pydantic.BaseModel):
@@ -11308,7 +11322,7 @@ class LambdaInvokePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaInvokePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.LambdaInvokePropsDefConfig] = pydantic.Field(None)
 
 
 class LambdaInvokePropsDefConfig(pydantic.BaseModel):
@@ -11327,7 +11341,7 @@ class LaunchTargetBindOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LaunchTargetBindOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.LaunchTargetBindOptionsDefConfig] = pydantic.Field(None)
 
 
 class LaunchTargetBindOptionsDefConfig(pydantic.BaseModel):
@@ -11378,7 +11392,7 @@ class ModelClientOptionsDef(BaseStruct):
 
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.Monitoring
 class MonitoringDef(BaseStruct):
-    log_bucket: typing.Optional[models.aws_s3.BucketDef] = pydantic.Field(None, description='Amazon S3 Bucket for monitoring log publishing. You can configure your jobs to send log information to Amazon S3. Default: - if ``logging`` is manually set to ``true`` and a ``logBucket`` is not provided, a ``logBucket`` will be automatically generated`.\n')
+    log_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description='Amazon S3 Bucket for monitoring log publishing. You can configure your jobs to send log information to Amazon S3. Default: - if ``logging`` is manually set to ``true`` and a ``logBucket`` is not provided, a ``logBucket`` will be automatically generated`.\n')
     logging: typing.Optional[bool] = pydantic.Field(None, description='Enable logging for this job. If set to true, will automatically create a Cloudwatch Log Group and S3 bucket. This will be set to ``true`` implicitly if values are provided for ``logGroup`` or ``logBucket``. Default: true - true if values are provided for ``logGroup`` or ``logBucket``, false otherwise\n')
     log_group: typing.Optional[typing.Union[models.aws_logs.LogGroupDef]] = pydantic.Field(None, description='A log group for CloudWatch monitoring. You can configure your jobs to send log information to CloudWatch Logs. Default: - if ``logging`` is manually set to ``true`` and a ``logGroup`` is not provided, a ``logGroup`` will be automatically generated`.\n')
     log_stream_name_prefix: typing.Optional[str] = pydantic.Field(None, description='A log stream name prefix for Cloudwatch monitoring. Default: - Log streams created in this log group have no default prefix\n')
@@ -11410,11 +11424,12 @@ class OutputDataConfigDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.ProductionVariant
 class ProductionVariantDef(BaseStruct):
     instance_type: typing.Union[models.aws_ec2.InstanceTypeDef, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The ML compute instance type.\n')
-    model_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the model that you want to host. This is the name that you specified when creating the model.\n')
-    variant_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the production variant.\n')
-    accelerator_type: typing.Optional[models.aws_stepfunctions_tasks.AcceleratorTypeDef] = pydantic.Field(None, description='The size of the Elastic Inference (EI) instance to use for the production variant. Default: - None\n')
-    initial_instance_count: typing.Union[int, float, None] = pydantic.Field(None, description='Number of instances to launch initially. Default: - 1\n')
-    initial_variant_weight: typing.Union[int, float, None] = pydantic.Field(None, description='Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. Default: - 1.0\n\n:see: https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProductionVariant.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_ec2 as ec2\n    from aws_cdk import aws_stepfunctions_tasks as stepfunctions_tasks\n\n    # accelerator_type: stepfunctions_tasks.AcceleratorType\n    # instance_type: ec2.InstanceType\n\n    production_variant = stepfunctions_tasks.ProductionVariant(\n        instance_type=instance_type,\n        model_name="modelName",\n        variant_name="variantName",\n\n        # the properties below are optional\n        accelerator_type=accelerator_type,\n        initial_instance_count=123,\n        initial_variant_weight=123\n    )\n')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the model that you want to host. This is the name that you specified when creating the model.\n', alias='model_name')
+    variant_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the production variant.\n', alias='variant_name')
+    accelerator_type_: typing.Optional[models.aws_stepfunctions_tasks.AcceleratorTypeDef] = pydantic.Field(None, description='The size of the Elastic Inference (EI) instance to use for the production variant. Default: - None\n', alias='accelerator_type')
+    initial_instance_count_: typing.Union[int, float, None] = pydantic.Field(None, description='Number of instances to launch initially. Default: - 1\n', alias='initial_instance_count')
+    initial_variant_weight_: typing.Union[int, float, None] = pydantic.Field(None, description='Determines initial traffic distribution among all of the models that you specify in the endpoint configuration. Default: - 1.0\n\n:see: https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_ProductionVariant.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_ec2 as ec2\n    from aws_cdk import aws_stepfunctions_tasks as stepfunctions_tasks\n\n    # accelerator_type: stepfunctions_tasks.AcceleratorType\n    # instance_type: ec2.InstanceType\n\n    production_variant = stepfunctions_tasks.ProductionVariant(\n        instance_type=instance_type,\n        model_name="modelName",\n        variant_name="variantName",\n\n        # the properties below are optional\n        accelerator_type=accelerator_type,\n        initial_instance_count=123,\n        initial_variant_weight=123\n    )\n', alias='initial_variant_weight')
     _init_params: typing.ClassVar[list[str]] = ['instance_type', 'model_name', 'variant_name', 'accelerator_type', 'initial_instance_count', 'initial_variant_weight']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -11423,7 +11438,7 @@ class ProductionVariantDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ProductionVariantDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.ProductionVariantDefConfig] = pydantic.Field(None)
 
 
 class ProductionVariantDefConfig(pydantic.BaseModel):
@@ -11458,7 +11473,7 @@ class ResourceConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ResourceConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.ResourceConfigDefConfig] = pydantic.Field(None)
 
 
 class ResourceConfigDefConfig(pydantic.BaseModel):
@@ -11592,14 +11607,15 @@ class SageMakerCreateModelPropsDef(BaseStruct):
     state_name: typing.Optional[str] = pydantic.Field(None, description='Optional name for this state. Default: - The construct ID will be used as state name\n')
     task_timeout: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the task. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n')
     timeout: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the task. Default: - None\n')
-    model_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the new model.\n')
-    primary_container: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.ContainerDefinitionDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The definition of the primary docker image containing inference code, associated artifacts, and custom environment map that the inference code uses when the model is deployed for predictions.\n')
-    containers: typing.Optional[typing.Sequence[typing.Union[models.aws_stepfunctions_tasks.ContainerDefinitionDef]]] = pydantic.Field(None, description='Specifies the containers in the inference pipeline. Default: - None\n')
-    enable_network_isolation: typing.Optional[bool] = pydantic.Field(None, description='Isolates the model container. No inbound or outbound network calls can be made to or from the model container. Default: false\n')
-    role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='An execution role that you can pass in a CreateModel API request. Default: - a role will be created.\n')
-    subnet_selection: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The subnets of the VPC to which the hosted model is connected (Note this parameter is only used when VPC is provided). Default: - Private Subnets are selected\n')
-    tags: typing.Optional[models.aws_stepfunctions.TaskInputDef] = pydantic.Field(None, description='Tags to be applied to the model. Default: - No tags\n')
-    vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC that is accessible by the hosted model. Default: - None\n\n:see: https://docs.aws.amazon.com/step-functions/latest/dg/connect-sagemaker.html\n:exampleMetadata: infused\n\nExample::\n\n    tasks.SageMakerCreateModel(self, "Sagemaker",\n        model_name="MyModel",\n        primary_container=tasks.ContainerDefinition(\n            image=tasks.DockerImage.from_json_expression(sfn.JsonPath.string_at("$.Model.imageName")),\n            mode=tasks.Mode.SINGLE_MODEL,\n            model_s3_location=tasks.S3Location.from_json_expression("$.TrainingJob.ModelArtifacts.S3ModelArtifacts")\n        )\n    )\n')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the new model.\n', alias='model_name')
+    primary_container_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.ContainerDefinitionDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The definition of the primary docker image containing inference code, associated artifacts, and custom environment map that the inference code uses when the model is deployed for predictions.\n', alias='primary_container')
+    containers_: typing.Optional[typing.Sequence[typing.Union[models.aws_stepfunctions_tasks.ContainerDefinitionDef]]] = pydantic.Field(None, description='Specifies the containers in the inference pipeline. Default: - None\n', alias='containers')
+    enable_network_isolation_: typing.Optional[bool] = pydantic.Field(None, description='Isolates the model container. No inbound or outbound network calls can be made to or from the model container. Default: false\n', alias='enable_network_isolation')
+    role_: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='An execution role that you can pass in a CreateModel API request. Default: - a role will be created.\n', alias='role')
+    subnet_selection_: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The subnets of the VPC to which the hosted model is connected (Note this parameter is only used when VPC is provided). Default: - Private Subnets are selected\n', alias='subnet_selection')
+    tags_: typing.Optional[models.aws_stepfunctions.TaskInputDef] = pydantic.Field(None, description='Tags to be applied to the model. Default: - No tags\n', alias='tags')
+    vpc_: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC that is accessible by the hosted model. Default: - None\n\n:see: https://docs.aws.amazon.com/step-functions/latest/dg/connect-sagemaker.html\n:exampleMetadata: infused\n\nExample::\n\n    tasks.SageMakerCreateModel(self, "Sagemaker",\n        model_name="MyModel",\n        primary_container=tasks.ContainerDefinition(\n            image=tasks.DockerImage.from_json_expression(sfn.JsonPath.string_at("$.Model.imageName")),\n            mode=tasks.Mode.SINGLE_MODEL,\n            model_s3_location=tasks.S3Location.from_json_expression("$.TrainingJob.ModelArtifacts.S3ModelArtifacts")\n        )\n    )\n', alias='vpc')
     _init_params: typing.ClassVar[list[str]] = ['comment', 'credentials', 'heartbeat', 'heartbeat_timeout', 'input_path', 'integration_pattern', 'output_path', 'result_path', 'result_selector', 'state_name', 'task_timeout', 'timeout', 'model_name', 'primary_container', 'containers', 'enable_network_isolation', 'role', 'subnet_selection', 'tags', 'vpc']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -11608,7 +11624,7 @@ class SageMakerCreateModelPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SageMakerCreateModelPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SageMakerCreateModelPropsDefConfig] = pydantic.Field(None)
 
 
 class SageMakerCreateModelPropsDefConfig(pydantic.BaseModel):
@@ -11665,18 +11681,20 @@ class SageMakerCreateTransformJobPropsDef(BaseStruct):
     state_name: typing.Optional[str] = pydantic.Field(None, description='Optional name for this state. Default: - The construct ID will be used as state name\n')
     task_timeout: typing.Optional[models.aws_stepfunctions.TimeoutDef] = pydantic.Field(None, description='Timeout for the task. [disable-awslint:duration-prop-type] is needed because all props interface in aws-stepfunctions-tasks extend this interface Default: - None\n')
     timeout: typing.Optional[models.DurationDef] = pydantic.Field(None, description='(deprecated) Timeout for the task. Default: - None\n')
-    model_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Name of the model that you want to use for the transform job.\n')
-    transform_input: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformInputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='Dataset to be transformed and the Amazon S3 location where it is stored.\n')
-    transform_job_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Transform Job Name.\n')
-    transform_output: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformOutputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='S3 location where you want Amazon SageMaker to save the results from the transform job.\n')
-    batch_strategy: typing.Optional[aws_cdk.aws_stepfunctions_tasks.BatchStrategy] = pydantic.Field(None, description='Number of records to include in a mini-batch for an HTTP inference request. Default: - No batch strategy\n')
-    environment: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Environment variables to set in the Docker container. Default: - No environment variables\n')
-    max_concurrent_transforms: typing.Union[int, float, None] = pydantic.Field(None, description='Maximum number of parallel requests that can be sent to each instance in a transform job. Default: - Amazon SageMaker checks the optional execution-parameters to determine the settings for your chosen algorithm. If the execution-parameters endpoint is not enabled, the default value is 1.\n')
-    max_payload: typing.Optional[models.SizeDef] = pydantic.Field(None, description='Maximum allowed size of the payload, in MB. Default: 6\n')
-    model_client_options: typing.Union[models.aws_stepfunctions_tasks.ModelClientOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configures the timeout and maximum number of retries for processing a transform job invocation. Default: - 0 retries and 60 seconds of timeout\n')
-    role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role for the Transform Job. Default: - A role is created with ``AmazonSageMakerFullAccess`` managed policy\n')
-    tags: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Tags to be applied to the train job. Default: - No tags\n')
-    transform_resources: typing.Union[models.aws_stepfunctions_tasks.TransformResourcesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='ML compute instances for the transform job. Default: - 1 instance of type M4.XLarge\n\n:exampleMetadata: infused\n\nExample::\n\n    tasks.SageMakerCreateTransformJob(self, "Batch Inference",\n        transform_job_name="MyTransformJob",\n        model_name="MyModelName",\n        model_client_options=tasks.ModelClientOptions(\n            invocations_max_retries=3,  # default is 0\n            invocations_timeout=Duration.minutes(5)\n        ),\n        transform_input=tasks.TransformInput(\n            transform_data_source=tasks.TransformDataSource(\n                s3_data_source=tasks.TransformS3DataSource(\n                    s3_uri="s3://inputbucket/train",\n                    s3_data_type=tasks.S3DataType.S3_PREFIX\n                )\n            )\n        ),\n        transform_output=tasks.TransformOutput(\n            s3_output_path="s3://outputbucket/TransformJobOutputPath"\n        ),\n        transform_resources=tasks.TransformResources(\n            instance_count=1,\n            instance_type=ec2.InstanceType.of(ec2.InstanceClass.M4, ec2.InstanceSize.XLARGE)\n        )\n    )\n')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Name of the model that you want to use for the transform job.\n', alias='model_name')
+    transform_input_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformInputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='Dataset to be transformed and the Amazon S3 location where it is stored.\n', alias='transform_input')
+    transform_job_name_: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Transform Job Name.\n', alias='transform_job_name')
+    transform_output_: typing.Union[_REQUIRED_INIT_PARAM, models.aws_stepfunctions_tasks.TransformOutputDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='S3 location where you want Amazon SageMaker to save the results from the transform job.\n', alias='transform_output')
+    batch_strategy_: typing.Optional[aws_cdk.aws_stepfunctions_tasks.BatchStrategy] = pydantic.Field(None, description='Number of records to include in a mini-batch for an HTTP inference request. Default: - No batch strategy\n', alias='batch_strategy')
+    environment_: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Environment variables to set in the Docker container. Default: - No environment variables\n', alias='environment')
+    max_concurrent_transforms_: typing.Union[int, float, None] = pydantic.Field(None, description='Maximum number of parallel requests that can be sent to each instance in a transform job. Default: - Amazon SageMaker checks the optional execution-parameters to determine the settings for your chosen algorithm. If the execution-parameters endpoint is not enabled, the default value is 1.\n', alias='max_concurrent_transforms')
+    max_payload_: typing.Optional[models.SizeDef] = pydantic.Field(None, description='Maximum allowed size of the payload, in MB. Default: 6\n', alias='max_payload')
+    model_config = pydantic.ConfigDict(protected_namespaces=())
+    model_client_options_: typing.Union[models.aws_stepfunctions_tasks.ModelClientOptionsDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configures the timeout and maximum number of retries for processing a transform job invocation. Default: - 0 retries and 60 seconds of timeout\n', alias='model_client_options')
+    role_: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='Role for the Transform Job. Default: - A role is created with ``AmazonSageMakerFullAccess`` managed policy\n', alias='role')
+    tags_: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Tags to be applied to the train job. Default: - No tags\n', alias='tags')
+    transform_resources_: typing.Union[models.aws_stepfunctions_tasks.TransformResourcesDef, dict[str, typing.Any], None] = pydantic.Field(None, description='ML compute instances for the transform job. Default: - 1 instance of type M4.XLarge\n\n:exampleMetadata: infused\n\nExample::\n\n    tasks.SageMakerCreateTransformJob(self, "Batch Inference",\n        transform_job_name="MyTransformJob",\n        model_name="MyModelName",\n        model_client_options=tasks.ModelClientOptions(\n            invocations_max_retries=3,  # default is 0\n            invocations_timeout=Duration.minutes(5)\n        ),\n        transform_input=tasks.TransformInput(\n            transform_data_source=tasks.TransformDataSource(\n                s3_data_source=tasks.TransformS3DataSource(\n                    s3_uri="s3://inputbucket/train",\n                    s3_data_type=tasks.S3DataType.S3_PREFIX\n                )\n            )\n        ),\n        transform_output=tasks.TransformOutput(\n            s3_output_path="s3://outputbucket/TransformJobOutputPath"\n        ),\n        transform_resources=tasks.TransformResources(\n            instance_count=1,\n            instance_type=ec2.InstanceType.of(ec2.InstanceClass.M4, ec2.InstanceSize.XLARGE)\n        )\n    )\n', alias='transform_resources')
     _init_params: typing.ClassVar[list[str]] = ['comment', 'credentials', 'heartbeat', 'heartbeat_timeout', 'input_path', 'integration_pattern', 'output_path', 'result_path', 'result_selector', 'state_name', 'task_timeout', 'timeout', 'model_name', 'transform_input', 'transform_job_name', 'transform_output', 'batch_strategy', 'environment', 'max_concurrent_transforms', 'max_payload', 'model_client_options', 'role', 'tags', 'transform_resources']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -11755,7 +11773,7 @@ class SnsPublishPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SnsPublishPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SnsPublishPropsDefConfig] = pydantic.Field(None)
 
 
 class SnsPublishPropsDefConfig(pydantic.BaseModel):
@@ -11804,7 +11822,7 @@ class SqsSendMessagePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SqsSendMessagePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.SqsSendMessagePropsDefConfig] = pydantic.Field(None)
 
 
 class SqsSendMessagePropsDefConfig(pydantic.BaseModel):
@@ -11835,7 +11853,7 @@ class StepFunctionsInvokeActivityPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsInvokeActivityPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityPropsDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsInvokeActivityPropsDefConfig(pydantic.BaseModel):
@@ -11868,7 +11886,7 @@ class StepFunctionsStartExecutionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StepFunctionsStartExecutionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.StepFunctionsStartExecutionPropsDefConfig] = pydantic.Field(None)
 
 
 class StepFunctionsStartExecutionPropsDefConfig(pydantic.BaseModel):
@@ -11960,7 +11978,7 @@ class TransformResourcesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TransformResourcesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.TransformResourcesDefConfig] = pydantic.Field(None)
 
 
 class TransformResourcesDefConfig(pydantic.BaseModel):
@@ -11993,7 +12011,7 @@ class VpcConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[VpcConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions_tasks.VpcConfigDefConfig] = pydantic.Field(None)
 
 
 class VpcConfigDefConfig(pydantic.BaseModel):
@@ -12096,169 +12114,169 @@ class VpcConfigDefConfig(pydantic.BaseModel):
 #  autogenerated from aws_cdk.aws_stepfunctions_tasks.ISageMakerTask
 #  skipping Interface
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AcceleratorClass: typing.Optional[dict[str, AcceleratorClassDef]] = pydantic.Field(None)
-    AcceleratorType: typing.Optional[dict[str, AcceleratorTypeDef]] = pydantic.Field(None)
-    Classification: typing.Optional[dict[str, ClassificationDef]] = pydantic.Field(None)
-    ContainerDefinition: typing.Optional[dict[str, ContainerDefinitionDef]] = pydantic.Field(None)
-    DockerImage: typing.Optional[dict[str, DockerImageDef]] = pydantic.Field(None)
-    DynamoAttributeValue: typing.Optional[dict[str, DynamoAttributeValueDef]] = pydantic.Field(None)
-    DynamoProjectionExpression: typing.Optional[dict[str, DynamoProjectionExpressionDef]] = pydantic.Field(None)
-    EcsEc2LaunchTarget: typing.Optional[dict[str, EcsEc2LaunchTargetDef]] = pydantic.Field(None)
-    EcsFargateLaunchTarget: typing.Optional[dict[str, EcsFargateLaunchTargetDef]] = pydantic.Field(None)
-    EksClusterInput: typing.Optional[dict[str, EksClusterInputDef]] = pydantic.Field(None)
-    ReleaseLabel: typing.Optional[dict[str, ReleaseLabelDef]] = pydantic.Field(None)
-    S3Location: typing.Optional[dict[str, S3LocationDef]] = pydantic.Field(None)
-    VirtualClusterInput: typing.Optional[dict[str, VirtualClusterInputDef]] = pydantic.Field(None)
-    AthenaGetQueryExecution: typing.Optional[dict[str, AthenaGetQueryExecutionDef]] = pydantic.Field(None)
-    AthenaGetQueryResults: typing.Optional[dict[str, AthenaGetQueryResultsDef]] = pydantic.Field(None)
-    AthenaStartQueryExecution: typing.Optional[dict[str, AthenaStartQueryExecutionDef]] = pydantic.Field(None)
-    AthenaStopQueryExecution: typing.Optional[dict[str, AthenaStopQueryExecutionDef]] = pydantic.Field(None)
-    BatchSubmitJob: typing.Optional[dict[str, BatchSubmitJobDef]] = pydantic.Field(None)
-    CallApiGatewayHttpApiEndpoint: typing.Optional[dict[str, CallApiGatewayHttpApiEndpointDef]] = pydantic.Field(None)
-    CallApiGatewayRestApiEndpoint: typing.Optional[dict[str, CallApiGatewayRestApiEndpointDef]] = pydantic.Field(None)
-    CallAwsService: typing.Optional[dict[str, CallAwsServiceDef]] = pydantic.Field(None)
-    CodeBuildStartBuild: typing.Optional[dict[str, CodeBuildStartBuildDef]] = pydantic.Field(None)
-    DynamoDeleteItem: typing.Optional[dict[str, DynamoDeleteItemDef]] = pydantic.Field(None)
-    DynamoGetItem: typing.Optional[dict[str, DynamoGetItemDef]] = pydantic.Field(None)
-    DynamoPutItem: typing.Optional[dict[str, DynamoPutItemDef]] = pydantic.Field(None)
-    DynamoUpdateItem: typing.Optional[dict[str, DynamoUpdateItemDef]] = pydantic.Field(None)
-    EcsRunTask: typing.Optional[dict[str, EcsRunTaskDef]] = pydantic.Field(None)
-    EksCall: typing.Optional[dict[str, EksCallDef]] = pydantic.Field(None)
-    EmrAddStep: typing.Optional[dict[str, EmrAddStepDef]] = pydantic.Field(None)
-    EmrCancelStep: typing.Optional[dict[str, EmrCancelStepDef]] = pydantic.Field(None)
-    EmrContainersCreateVirtualCluster: typing.Optional[dict[str, EmrContainersCreateVirtualClusterDef]] = pydantic.Field(None)
-    EmrContainersDeleteVirtualCluster: typing.Optional[dict[str, EmrContainersDeleteVirtualClusterDef]] = pydantic.Field(None)
-    EmrContainersStartJobRun: typing.Optional[dict[str, EmrContainersStartJobRunDef]] = pydantic.Field(None)
-    EmrCreateCluster: typing.Optional[dict[str, EmrCreateClusterDef]] = pydantic.Field(None)
-    EmrModifyInstanceFleetByName: typing.Optional[dict[str, EmrModifyInstanceFleetByNameDef]] = pydantic.Field(None)
-    EmrModifyInstanceGroupByName: typing.Optional[dict[str, EmrModifyInstanceGroupByNameDef]] = pydantic.Field(None)
-    EmrSetClusterTerminationProtection: typing.Optional[dict[str, EmrSetClusterTerminationProtectionDef]] = pydantic.Field(None)
-    EmrTerminateCluster: typing.Optional[dict[str, EmrTerminateClusterDef]] = pydantic.Field(None)
-    EvaluateExpression: typing.Optional[dict[str, EvaluateExpressionDef]] = pydantic.Field(None)
-    EventBridgePutEvents: typing.Optional[dict[str, EventBridgePutEventsDef]] = pydantic.Field(None)
-    GlueDataBrewStartJobRun: typing.Optional[dict[str, GlueDataBrewStartJobRunDef]] = pydantic.Field(None)
-    GlueStartJobRun: typing.Optional[dict[str, GlueStartJobRunDef]] = pydantic.Field(None)
-    LambdaInvoke: typing.Optional[dict[str, LambdaInvokeDef]] = pydantic.Field(None)
-    SageMakerCreateEndpoint: typing.Optional[dict[str, SageMakerCreateEndpointDef]] = pydantic.Field(None)
-    SageMakerCreateEndpointConfig: typing.Optional[dict[str, SageMakerCreateEndpointConfigDef]] = pydantic.Field(None)
-    SageMakerCreateModel: typing.Optional[dict[str, SageMakerCreateModelDef]] = pydantic.Field(None)
-    SageMakerCreateTrainingJob: typing.Optional[dict[str, SageMakerCreateTrainingJobDef]] = pydantic.Field(None)
-    SageMakerCreateTransformJob: typing.Optional[dict[str, SageMakerCreateTransformJobDef]] = pydantic.Field(None)
-    SageMakerUpdateEndpoint: typing.Optional[dict[str, SageMakerUpdateEndpointDef]] = pydantic.Field(None)
-    SnsPublish: typing.Optional[dict[str, SnsPublishDef]] = pydantic.Field(None)
-    SqsSendMessage: typing.Optional[dict[str, SqsSendMessageDef]] = pydantic.Field(None)
-    StepFunctionsInvokeActivity: typing.Optional[dict[str, StepFunctionsInvokeActivityDef]] = pydantic.Field(None)
-    StepFunctionsStartExecution: typing.Optional[dict[str, StepFunctionsStartExecutionDef]] = pydantic.Field(None)
-    AlgorithmSpecification: typing.Optional[dict[str, AlgorithmSpecificationDef]] = pydantic.Field(None)
-    ApplicationConfiguration: typing.Optional[dict[str, ApplicationConfigurationDef]] = pydantic.Field(None)
-    AthenaGetQueryExecutionProps: typing.Optional[dict[str, AthenaGetQueryExecutionPropsDef]] = pydantic.Field(None)
-    AthenaGetQueryResultsProps: typing.Optional[dict[str, AthenaGetQueryResultsPropsDef]] = pydantic.Field(None)
-    AthenaStartQueryExecutionProps: typing.Optional[dict[str, AthenaStartQueryExecutionPropsDef]] = pydantic.Field(None)
-    AthenaStopQueryExecutionProps: typing.Optional[dict[str, AthenaStopQueryExecutionPropsDef]] = pydantic.Field(None)
-    BatchContainerOverrides: typing.Optional[dict[str, BatchContainerOverridesDef]] = pydantic.Field(None)
-    BatchJobDependency: typing.Optional[dict[str, BatchJobDependencyDef]] = pydantic.Field(None)
-    BatchSubmitJobProps: typing.Optional[dict[str, BatchSubmitJobPropsDef]] = pydantic.Field(None)
-    CallApiGatewayEndpointBaseProps: typing.Optional[dict[str, CallApiGatewayEndpointBasePropsDef]] = pydantic.Field(None)
-    CallApiGatewayHttpApiEndpointProps: typing.Optional[dict[str, CallApiGatewayHttpApiEndpointPropsDef]] = pydantic.Field(None)
-    CallApiGatewayRestApiEndpointProps: typing.Optional[dict[str, CallApiGatewayRestApiEndpointPropsDef]] = pydantic.Field(None)
-    CallAwsServiceProps: typing.Optional[dict[str, CallAwsServicePropsDef]] = pydantic.Field(None)
-    Channel: typing.Optional[dict[str, ChannelDef]] = pydantic.Field(None)
-    CodeBuildStartBuildProps: typing.Optional[dict[str, CodeBuildStartBuildPropsDef]] = pydantic.Field(None)
-    CommonEcsRunTaskProps: typing.Optional[dict[str, CommonEcsRunTaskPropsDef]] = pydantic.Field(None)
-    ContainerDefinitionConfig: typing.Optional[dict[str, ContainerDefinitionConfigDef]] = pydantic.Field(None)
-    ContainerDefinitionOptions: typing.Optional[dict[str, ContainerDefinitionOptionsDef]] = pydantic.Field(None)
-    ContainerOverride: typing.Optional[dict[str, ContainerOverrideDef]] = pydantic.Field(None)
-    ContainerOverrides: typing.Optional[dict[str, ContainerOverridesDef]] = pydantic.Field(None)
-    DataSource: typing.Optional[dict[str, DataSourceDef]] = pydantic.Field(None)
-    DockerImageConfig: typing.Optional[dict[str, DockerImageConfigDef]] = pydantic.Field(None)
-    DynamoDeleteItemProps: typing.Optional[dict[str, DynamoDeleteItemPropsDef]] = pydantic.Field(None)
-    DynamoGetItemProps: typing.Optional[dict[str, DynamoGetItemPropsDef]] = pydantic.Field(None)
-    DynamoPutItemProps: typing.Optional[dict[str, DynamoPutItemPropsDef]] = pydantic.Field(None)
-    DynamoUpdateItemProps: typing.Optional[dict[str, DynamoUpdateItemPropsDef]] = pydantic.Field(None)
-    EcsEc2LaunchTargetOptions: typing.Optional[dict[str, EcsEc2LaunchTargetOptionsDef]] = pydantic.Field(None)
-    EcsFargateLaunchTargetOptions: typing.Optional[dict[str, EcsFargateLaunchTargetOptionsDef]] = pydantic.Field(None)
-    EcsLaunchTargetConfig: typing.Optional[dict[str, EcsLaunchTargetConfigDef]] = pydantic.Field(None)
-    EcsRunTaskProps: typing.Optional[dict[str, EcsRunTaskPropsDef]] = pydantic.Field(None)
-    EksCallProps: typing.Optional[dict[str, EksCallPropsDef]] = pydantic.Field(None)
-    EmrAddStepProps: typing.Optional[dict[str, EmrAddStepPropsDef]] = pydantic.Field(None)
-    EmrCancelStepProps: typing.Optional[dict[str, EmrCancelStepPropsDef]] = pydantic.Field(None)
-    EmrContainersCreateVirtualClusterProps: typing.Optional[dict[str, EmrContainersCreateVirtualClusterPropsDef]] = pydantic.Field(None)
-    EmrContainersDeleteVirtualClusterProps: typing.Optional[dict[str, EmrContainersDeleteVirtualClusterPropsDef]] = pydantic.Field(None)
-    EmrContainersStartJobRunProps: typing.Optional[dict[str, EmrContainersStartJobRunPropsDef]] = pydantic.Field(None)
-    EmrCreateCluster_ApplicationConfigProperty: typing.Optional[dict[str, EmrCreateCluster_ApplicationConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_AutoScalingPolicyProperty: typing.Optional[dict[str, EmrCreateCluster_AutoScalingPolicyPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_BootstrapActionConfigProperty: typing.Optional[dict[str, EmrCreateCluster_BootstrapActionConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_CloudWatchAlarmDefinitionProperty: typing.Optional[dict[str, EmrCreateCluster_CloudWatchAlarmDefinitionPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_ConfigurationProperty: typing.Optional[dict[str, EmrCreateCluster_ConfigurationPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_EbsBlockDeviceConfigProperty: typing.Optional[dict[str, EmrCreateCluster_EbsBlockDeviceConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_EbsConfigurationProperty: typing.Optional[dict[str, EmrCreateCluster_EbsConfigurationPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_InstanceFleetConfigProperty: typing.Optional[dict[str, EmrCreateCluster_InstanceFleetConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_InstanceFleetProvisioningSpecificationsProperty: typing.Optional[dict[str, EmrCreateCluster_InstanceFleetProvisioningSpecificationsPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_InstanceGroupConfigProperty: typing.Optional[dict[str, EmrCreateCluster_InstanceGroupConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_InstancesConfigProperty: typing.Optional[dict[str, EmrCreateCluster_InstancesConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_InstanceTypeConfigProperty: typing.Optional[dict[str, EmrCreateCluster_InstanceTypeConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_KerberosAttributesProperty: typing.Optional[dict[str, EmrCreateCluster_KerberosAttributesPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_MetricDimensionProperty: typing.Optional[dict[str, EmrCreateCluster_MetricDimensionPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_PlacementTypeProperty: typing.Optional[dict[str, EmrCreateCluster_PlacementTypePropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_ScalingActionProperty: typing.Optional[dict[str, EmrCreateCluster_ScalingActionPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_ScalingConstraintsProperty: typing.Optional[dict[str, EmrCreateCluster_ScalingConstraintsPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_ScalingRuleProperty: typing.Optional[dict[str, EmrCreateCluster_ScalingRulePropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_ScalingTriggerProperty: typing.Optional[dict[str, EmrCreateCluster_ScalingTriggerPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_ScriptBootstrapActionConfigProperty: typing.Optional[dict[str, EmrCreateCluster_ScriptBootstrapActionConfigPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_SimpleScalingPolicyConfigurationProperty: typing.Optional[dict[str, EmrCreateCluster_SimpleScalingPolicyConfigurationPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_SpotProvisioningSpecificationProperty: typing.Optional[dict[str, EmrCreateCluster_SpotProvisioningSpecificationPropertyDef]] = pydantic.Field(None)
-    EmrCreateCluster_VolumeSpecificationProperty: typing.Optional[dict[str, EmrCreateCluster_VolumeSpecificationPropertyDef]] = pydantic.Field(None)
-    EmrCreateClusterProps: typing.Optional[dict[str, EmrCreateClusterPropsDef]] = pydantic.Field(None)
-    EmrModifyInstanceFleetByNameProps: typing.Optional[dict[str, EmrModifyInstanceFleetByNamePropsDef]] = pydantic.Field(None)
-    EmrModifyInstanceGroupByName_InstanceGroupModifyConfigProperty: typing.Optional[dict[str, EmrModifyInstanceGroupByName_InstanceGroupModifyConfigPropertyDef]] = pydantic.Field(None)
-    EmrModifyInstanceGroupByName_InstanceResizePolicyProperty: typing.Optional[dict[str, EmrModifyInstanceGroupByName_InstanceResizePolicyPropertyDef]] = pydantic.Field(None)
-    EmrModifyInstanceGroupByName_ShrinkPolicyProperty: typing.Optional[dict[str, EmrModifyInstanceGroupByName_ShrinkPolicyPropertyDef]] = pydantic.Field(None)
-    EmrModifyInstanceGroupByNameProps: typing.Optional[dict[str, EmrModifyInstanceGroupByNamePropsDef]] = pydantic.Field(None)
-    EmrSetClusterTerminationProtectionProps: typing.Optional[dict[str, EmrSetClusterTerminationProtectionPropsDef]] = pydantic.Field(None)
-    EmrTerminateClusterProps: typing.Optional[dict[str, EmrTerminateClusterPropsDef]] = pydantic.Field(None)
-    EncryptionConfiguration: typing.Optional[dict[str, EncryptionConfigurationDef]] = pydantic.Field(None)
-    EvaluateExpressionProps: typing.Optional[dict[str, EvaluateExpressionPropsDef]] = pydantic.Field(None)
-    EventBridgePutEventsEntry: typing.Optional[dict[str, EventBridgePutEventsEntryDef]] = pydantic.Field(None)
-    EventBridgePutEventsProps: typing.Optional[dict[str, EventBridgePutEventsPropsDef]] = pydantic.Field(None)
-    GlueDataBrewStartJobRunProps: typing.Optional[dict[str, GlueDataBrewStartJobRunPropsDef]] = pydantic.Field(None)
-    GlueStartJobRunProps: typing.Optional[dict[str, GlueStartJobRunPropsDef]] = pydantic.Field(None)
-    JobDependency: typing.Optional[dict[str, JobDependencyDef]] = pydantic.Field(None)
-    JobDriver: typing.Optional[dict[str, JobDriverDef]] = pydantic.Field(None)
-    LambdaInvokeProps: typing.Optional[dict[str, LambdaInvokePropsDef]] = pydantic.Field(None)
-    LaunchTargetBindOptions: typing.Optional[dict[str, LaunchTargetBindOptionsDef]] = pydantic.Field(None)
-    MessageAttribute: typing.Optional[dict[str, MessageAttributeDef]] = pydantic.Field(None)
-    MetricDefinition: typing.Optional[dict[str, MetricDefinitionDef]] = pydantic.Field(None)
-    ModelClientOptions: typing.Optional[dict[str, ModelClientOptionsDef]] = pydantic.Field(None)
-    Monitoring: typing.Optional[dict[str, MonitoringDef]] = pydantic.Field(None)
-    OutputDataConfig: typing.Optional[dict[str, OutputDataConfigDef]] = pydantic.Field(None)
-    ProductionVariant: typing.Optional[dict[str, ProductionVariantDef]] = pydantic.Field(None)
-    QueryExecutionContext: typing.Optional[dict[str, QueryExecutionContextDef]] = pydantic.Field(None)
-    ResourceConfig: typing.Optional[dict[str, ResourceConfigDef]] = pydantic.Field(None)
-    ResultConfiguration: typing.Optional[dict[str, ResultConfigurationDef]] = pydantic.Field(None)
-    S3DataSource: typing.Optional[dict[str, S3DataSourceDef]] = pydantic.Field(None)
-    S3LocationBindOptions: typing.Optional[dict[str, S3LocationBindOptionsDef]] = pydantic.Field(None)
-    S3LocationConfig: typing.Optional[dict[str, S3LocationConfigDef]] = pydantic.Field(None)
-    SageMakerCreateEndpointConfigProps: typing.Optional[dict[str, SageMakerCreateEndpointConfigPropsDef]] = pydantic.Field(None)
-    SageMakerCreateEndpointProps: typing.Optional[dict[str, SageMakerCreateEndpointPropsDef]] = pydantic.Field(None)
-    SageMakerCreateModelProps: typing.Optional[dict[str, SageMakerCreateModelPropsDef]] = pydantic.Field(None)
-    SageMakerCreateTrainingJobProps: typing.Optional[dict[str, SageMakerCreateTrainingJobPropsDef]] = pydantic.Field(None)
-    SageMakerCreateTransformJobProps: typing.Optional[dict[str, SageMakerCreateTransformJobPropsDef]] = pydantic.Field(None)
-    SageMakerUpdateEndpointProps: typing.Optional[dict[str, SageMakerUpdateEndpointPropsDef]] = pydantic.Field(None)
-    ShuffleConfig: typing.Optional[dict[str, ShuffleConfigDef]] = pydantic.Field(None)
-    SnsPublishProps: typing.Optional[dict[str, SnsPublishPropsDef]] = pydantic.Field(None)
-    SparkSubmitJobDriver: typing.Optional[dict[str, SparkSubmitJobDriverDef]] = pydantic.Field(None)
-    SqsSendMessageProps: typing.Optional[dict[str, SqsSendMessagePropsDef]] = pydantic.Field(None)
-    StepFunctionsInvokeActivityProps: typing.Optional[dict[str, StepFunctionsInvokeActivityPropsDef]] = pydantic.Field(None)
-    StepFunctionsStartExecutionProps: typing.Optional[dict[str, StepFunctionsStartExecutionPropsDef]] = pydantic.Field(None)
-    StoppingCondition: typing.Optional[dict[str, StoppingConditionDef]] = pydantic.Field(None)
-    TaskEnvironmentVariable: typing.Optional[dict[str, TaskEnvironmentVariableDef]] = pydantic.Field(None)
-    TransformDataSource: typing.Optional[dict[str, TransformDataSourceDef]] = pydantic.Field(None)
-    TransformInput: typing.Optional[dict[str, TransformInputDef]] = pydantic.Field(None)
-    TransformOutput: typing.Optional[dict[str, TransformOutputDef]] = pydantic.Field(None)
-    TransformResources: typing.Optional[dict[str, TransformResourcesDef]] = pydantic.Field(None)
-    TransformS3DataSource: typing.Optional[dict[str, TransformS3DataSourceDef]] = pydantic.Field(None)
-    VpcConfig: typing.Optional[dict[str, VpcConfigDef]] = pydantic.Field(None)
+    AcceleratorClass: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AcceleratorClassDef]] = pydantic.Field(None)
+    AcceleratorType: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AcceleratorTypeDef]] = pydantic.Field(None)
+    Classification: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ClassificationDef]] = pydantic.Field(None)
+    ContainerDefinition: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ContainerDefinitionDef]] = pydantic.Field(None)
+    DockerImage: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DockerImageDef]] = pydantic.Field(None)
+    DynamoAttributeValue: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoAttributeValueDef]] = pydantic.Field(None)
+    DynamoProjectionExpression: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoProjectionExpressionDef]] = pydantic.Field(None)
+    EcsEc2LaunchTarget: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsEc2LaunchTargetDef]] = pydantic.Field(None)
+    EcsFargateLaunchTarget: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsFargateLaunchTargetDef]] = pydantic.Field(None)
+    EksClusterInput: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EksClusterInputDef]] = pydantic.Field(None)
+    ReleaseLabel: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ReleaseLabelDef]] = pydantic.Field(None)
+    S3Location: typing.Optional[dict[str, models.aws_stepfunctions_tasks.S3LocationDef]] = pydantic.Field(None)
+    VirtualClusterInput: typing.Optional[dict[str, models.aws_stepfunctions_tasks.VirtualClusterInputDef]] = pydantic.Field(None)
+    AthenaGetQueryExecution: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef]] = pydantic.Field(None)
+    AthenaGetQueryResults: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef]] = pydantic.Field(None)
+    AthenaStartQueryExecution: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef]] = pydantic.Field(None)
+    AthenaStopQueryExecution: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef]] = pydantic.Field(None)
+    BatchSubmitJob: typing.Optional[dict[str, models.aws_stepfunctions_tasks.BatchSubmitJobDef]] = pydantic.Field(None)
+    CallApiGatewayHttpApiEndpoint: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef]] = pydantic.Field(None)
+    CallApiGatewayRestApiEndpoint: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef]] = pydantic.Field(None)
+    CallAwsService: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallAwsServiceDef]] = pydantic.Field(None)
+    CodeBuildStartBuild: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef]] = pydantic.Field(None)
+    DynamoDeleteItem: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoDeleteItemDef]] = pydantic.Field(None)
+    DynamoGetItem: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoGetItemDef]] = pydantic.Field(None)
+    DynamoPutItem: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoPutItemDef]] = pydantic.Field(None)
+    DynamoUpdateItem: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoUpdateItemDef]] = pydantic.Field(None)
+    EcsRunTask: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsRunTaskDef]] = pydantic.Field(None)
+    EksCall: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EksCallDef]] = pydantic.Field(None)
+    EmrAddStep: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrAddStepDef]] = pydantic.Field(None)
+    EmrCancelStep: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCancelStepDef]] = pydantic.Field(None)
+    EmrContainersCreateVirtualCluster: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef]] = pydantic.Field(None)
+    EmrContainersDeleteVirtualCluster: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef]] = pydantic.Field(None)
+    EmrContainersStartJobRun: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef]] = pydantic.Field(None)
+    EmrCreateCluster: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateClusterDef]] = pydantic.Field(None)
+    EmrModifyInstanceFleetByName: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef]] = pydantic.Field(None)
+    EmrModifyInstanceGroupByName: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef]] = pydantic.Field(None)
+    EmrSetClusterTerminationProtection: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef]] = pydantic.Field(None)
+    EmrTerminateCluster: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrTerminateClusterDef]] = pydantic.Field(None)
+    EvaluateExpression: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EvaluateExpressionDef]] = pydantic.Field(None)
+    EventBridgePutEvents: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EventBridgePutEventsDef]] = pydantic.Field(None)
+    GlueDataBrewStartJobRun: typing.Optional[dict[str, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef]] = pydantic.Field(None)
+    GlueStartJobRun: typing.Optional[dict[str, models.aws_stepfunctions_tasks.GlueStartJobRunDef]] = pydantic.Field(None)
+    LambdaInvoke: typing.Optional[dict[str, models.aws_stepfunctions_tasks.LambdaInvokeDef]] = pydantic.Field(None)
+    SageMakerCreateEndpoint: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef]] = pydantic.Field(None)
+    SageMakerCreateEndpointConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef]] = pydantic.Field(None)
+    SageMakerCreateModel: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateModelDef]] = pydantic.Field(None)
+    SageMakerCreateTrainingJob: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef]] = pydantic.Field(None)
+    SageMakerCreateTransformJob: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef]] = pydantic.Field(None)
+    SageMakerUpdateEndpoint: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef]] = pydantic.Field(None)
+    SnsPublish: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SnsPublishDef]] = pydantic.Field(None)
+    SqsSendMessage: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SqsSendMessageDef]] = pydantic.Field(None)
+    StepFunctionsInvokeActivity: typing.Optional[dict[str, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef]] = pydantic.Field(None)
+    StepFunctionsStartExecution: typing.Optional[dict[str, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef]] = pydantic.Field(None)
+    AlgorithmSpecification: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AlgorithmSpecificationDef]] = pydantic.Field(None)
+    ApplicationConfiguration: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ApplicationConfigurationDef]] = pydantic.Field(None)
+    AthenaGetQueryExecutionProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionPropsDef]] = pydantic.Field(None)
+    AthenaGetQueryResultsProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaGetQueryResultsPropsDef]] = pydantic.Field(None)
+    AthenaStartQueryExecutionProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionPropsDef]] = pydantic.Field(None)
+    AthenaStopQueryExecutionProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionPropsDef]] = pydantic.Field(None)
+    BatchContainerOverrides: typing.Optional[dict[str, models.aws_stepfunctions_tasks.BatchContainerOverridesDef]] = pydantic.Field(None)
+    BatchJobDependency: typing.Optional[dict[str, models.aws_stepfunctions_tasks.BatchJobDependencyDef]] = pydantic.Field(None)
+    BatchSubmitJobProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.BatchSubmitJobPropsDef]] = pydantic.Field(None)
+    CallApiGatewayEndpointBaseProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallApiGatewayEndpointBasePropsDef]] = pydantic.Field(None)
+    CallApiGatewayHttpApiEndpointProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointPropsDef]] = pydantic.Field(None)
+    CallApiGatewayRestApiEndpointProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointPropsDef]] = pydantic.Field(None)
+    CallAwsServiceProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CallAwsServicePropsDef]] = pydantic.Field(None)
+    Channel: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ChannelDef]] = pydantic.Field(None)
+    CodeBuildStartBuildProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CodeBuildStartBuildPropsDef]] = pydantic.Field(None)
+    CommonEcsRunTaskProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.CommonEcsRunTaskPropsDef]] = pydantic.Field(None)
+    ContainerDefinitionConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ContainerDefinitionConfigDef]] = pydantic.Field(None)
+    ContainerDefinitionOptions: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ContainerDefinitionOptionsDef]] = pydantic.Field(None)
+    ContainerOverride: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ContainerOverrideDef]] = pydantic.Field(None)
+    ContainerOverrides: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ContainerOverridesDef]] = pydantic.Field(None)
+    DataSource: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DataSourceDef]] = pydantic.Field(None)
+    DockerImageConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DockerImageConfigDef]] = pydantic.Field(None)
+    DynamoDeleteItemProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoDeleteItemPropsDef]] = pydantic.Field(None)
+    DynamoGetItemProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoGetItemPropsDef]] = pydantic.Field(None)
+    DynamoPutItemProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoPutItemPropsDef]] = pydantic.Field(None)
+    DynamoUpdateItemProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.DynamoUpdateItemPropsDef]] = pydantic.Field(None)
+    EcsEc2LaunchTargetOptions: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsEc2LaunchTargetOptionsDef]] = pydantic.Field(None)
+    EcsFargateLaunchTargetOptions: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsFargateLaunchTargetOptionsDef]] = pydantic.Field(None)
+    EcsLaunchTargetConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsLaunchTargetConfigDef]] = pydantic.Field(None)
+    EcsRunTaskProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EcsRunTaskPropsDef]] = pydantic.Field(None)
+    EksCallProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EksCallPropsDef]] = pydantic.Field(None)
+    EmrAddStepProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrAddStepPropsDef]] = pydantic.Field(None)
+    EmrCancelStepProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCancelStepPropsDef]] = pydantic.Field(None)
+    EmrContainersCreateVirtualClusterProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterPropsDef]] = pydantic.Field(None)
+    EmrContainersDeleteVirtualClusterProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterPropsDef]] = pydantic.Field(None)
+    EmrContainersStartJobRunProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrContainersStartJobRunPropsDef]] = pydantic.Field(None)
+    EmrCreateCluster_ApplicationConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ApplicationConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_AutoScalingPolicyProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_AutoScalingPolicyPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_BootstrapActionConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_BootstrapActionConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_CloudWatchAlarmDefinitionProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_CloudWatchAlarmDefinitionPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_ConfigurationProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ConfigurationPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_EbsBlockDeviceConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_EbsBlockDeviceConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_EbsConfigurationProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_EbsConfigurationPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_InstanceFleetConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_InstanceFleetConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_InstanceFleetProvisioningSpecificationsProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_InstanceFleetProvisioningSpecificationsPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_InstanceGroupConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_InstanceGroupConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_InstancesConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_InstancesConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_InstanceTypeConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_InstanceTypeConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_KerberosAttributesProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_KerberosAttributesPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_MetricDimensionProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_MetricDimensionPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_PlacementTypeProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_PlacementTypePropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_ScalingActionProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ScalingActionPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_ScalingConstraintsProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ScalingConstraintsPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_ScalingRuleProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ScalingRulePropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_ScalingTriggerProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ScalingTriggerPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_ScriptBootstrapActionConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_ScriptBootstrapActionConfigPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_SimpleScalingPolicyConfigurationProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_SimpleScalingPolicyConfigurationPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_SpotProvisioningSpecificationProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_SpotProvisioningSpecificationPropertyDef]] = pydantic.Field(None)
+    EmrCreateCluster_VolumeSpecificationProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateCluster_VolumeSpecificationPropertyDef]] = pydantic.Field(None)
+    EmrCreateClusterProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrCreateClusterPropsDef]] = pydantic.Field(None)
+    EmrModifyInstanceFleetByNameProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNamePropsDef]] = pydantic.Field(None)
+    EmrModifyInstanceGroupByName_InstanceGroupModifyConfigProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByName_InstanceGroupModifyConfigPropertyDef]] = pydantic.Field(None)
+    EmrModifyInstanceGroupByName_InstanceResizePolicyProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByName_InstanceResizePolicyPropertyDef]] = pydantic.Field(None)
+    EmrModifyInstanceGroupByName_ShrinkPolicyProperty: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByName_ShrinkPolicyPropertyDef]] = pydantic.Field(None)
+    EmrModifyInstanceGroupByNameProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNamePropsDef]] = pydantic.Field(None)
+    EmrSetClusterTerminationProtectionProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionPropsDef]] = pydantic.Field(None)
+    EmrTerminateClusterProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EmrTerminateClusterPropsDef]] = pydantic.Field(None)
+    EncryptionConfiguration: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EncryptionConfigurationDef]] = pydantic.Field(None)
+    EvaluateExpressionProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EvaluateExpressionPropsDef]] = pydantic.Field(None)
+    EventBridgePutEventsEntry: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EventBridgePutEventsEntryDef]] = pydantic.Field(None)
+    EventBridgePutEventsProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.EventBridgePutEventsPropsDef]] = pydantic.Field(None)
+    GlueDataBrewStartJobRunProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunPropsDef]] = pydantic.Field(None)
+    GlueStartJobRunProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.GlueStartJobRunPropsDef]] = pydantic.Field(None)
+    JobDependency: typing.Optional[dict[str, models.aws_stepfunctions_tasks.JobDependencyDef]] = pydantic.Field(None)
+    JobDriver: typing.Optional[dict[str, models.aws_stepfunctions_tasks.JobDriverDef]] = pydantic.Field(None)
+    LambdaInvokeProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.LambdaInvokePropsDef]] = pydantic.Field(None)
+    LaunchTargetBindOptions: typing.Optional[dict[str, models.aws_stepfunctions_tasks.LaunchTargetBindOptionsDef]] = pydantic.Field(None)
+    MessageAttribute: typing.Optional[dict[str, models.aws_stepfunctions_tasks.MessageAttributeDef]] = pydantic.Field(None)
+    MetricDefinition: typing.Optional[dict[str, models.aws_stepfunctions_tasks.MetricDefinitionDef]] = pydantic.Field(None)
+    ModelClientOptions: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ModelClientOptionsDef]] = pydantic.Field(None)
+    Monitoring: typing.Optional[dict[str, models.aws_stepfunctions_tasks.MonitoringDef]] = pydantic.Field(None)
+    OutputDataConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.OutputDataConfigDef]] = pydantic.Field(None)
+    ProductionVariant: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ProductionVariantDef]] = pydantic.Field(None)
+    QueryExecutionContext: typing.Optional[dict[str, models.aws_stepfunctions_tasks.QueryExecutionContextDef]] = pydantic.Field(None)
+    ResourceConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ResourceConfigDef]] = pydantic.Field(None)
+    ResultConfiguration: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ResultConfigurationDef]] = pydantic.Field(None)
+    S3DataSource: typing.Optional[dict[str, models.aws_stepfunctions_tasks.S3DataSourceDef]] = pydantic.Field(None)
+    S3LocationBindOptions: typing.Optional[dict[str, models.aws_stepfunctions_tasks.S3LocationBindOptionsDef]] = pydantic.Field(None)
+    S3LocationConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.S3LocationConfigDef]] = pydantic.Field(None)
+    SageMakerCreateEndpointConfigProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigPropsDef]] = pydantic.Field(None)
+    SageMakerCreateEndpointProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateEndpointPropsDef]] = pydantic.Field(None)
+    SageMakerCreateModelProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateModelPropsDef]] = pydantic.Field(None)
+    SageMakerCreateTrainingJobProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobPropsDef]] = pydantic.Field(None)
+    SageMakerCreateTransformJobProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobPropsDef]] = pydantic.Field(None)
+    SageMakerUpdateEndpointProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointPropsDef]] = pydantic.Field(None)
+    ShuffleConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.ShuffleConfigDef]] = pydantic.Field(None)
+    SnsPublishProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SnsPublishPropsDef]] = pydantic.Field(None)
+    SparkSubmitJobDriver: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SparkSubmitJobDriverDef]] = pydantic.Field(None)
+    SqsSendMessageProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.SqsSendMessagePropsDef]] = pydantic.Field(None)
+    StepFunctionsInvokeActivityProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityPropsDef]] = pydantic.Field(None)
+    StepFunctionsStartExecutionProps: typing.Optional[dict[str, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionPropsDef]] = pydantic.Field(None)
+    StoppingCondition: typing.Optional[dict[str, models.aws_stepfunctions_tasks.StoppingConditionDef]] = pydantic.Field(None)
+    TaskEnvironmentVariable: typing.Optional[dict[str, models.aws_stepfunctions_tasks.TaskEnvironmentVariableDef]] = pydantic.Field(None)
+    TransformDataSource: typing.Optional[dict[str, models.aws_stepfunctions_tasks.TransformDataSourceDef]] = pydantic.Field(None)
+    TransformInput: typing.Optional[dict[str, models.aws_stepfunctions_tasks.TransformInputDef]] = pydantic.Field(None)
+    TransformOutput: typing.Optional[dict[str, models.aws_stepfunctions_tasks.TransformOutputDef]] = pydantic.Field(None)
+    TransformResources: typing.Optional[dict[str, models.aws_stepfunctions_tasks.TransformResourcesDef]] = pydantic.Field(None)
+    TransformS3DataSource: typing.Optional[dict[str, models.aws_stepfunctions_tasks.TransformS3DataSourceDef]] = pydantic.Field(None)
+    VpcConfig: typing.Optional[dict[str, models.aws_stepfunctions_tasks.VpcConfigDef]] = pydantic.Field(None)
     ...
+
+import models

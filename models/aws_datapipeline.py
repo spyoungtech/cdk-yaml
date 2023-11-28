@@ -106,32 +106,32 @@ class CfnPipelineDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPipelineDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_datapipeline.CfnPipelineDefConfig] = pydantic.Field(None)
 
 
 class CfnPipelineDefConfig(pydantic.BaseModel):
-    FieldProperty: typing.Optional[list[CfnPipelineDefFieldpropertyParams]] = pydantic.Field(None, description='')
-    ParameterAttributeProperty: typing.Optional[list[CfnPipelineDefParameterattributepropertyParams]] = pydantic.Field(None, description='')
-    ParameterObjectProperty: typing.Optional[list[CfnPipelineDefParameterobjectpropertyParams]] = pydantic.Field(None, description='')
-    ParameterValueProperty: typing.Optional[list[CfnPipelineDefParametervaluepropertyParams]] = pydantic.Field(None, description='')
-    PipelineObjectProperty: typing.Optional[list[CfnPipelineDefPipelineobjectpropertyParams]] = pydantic.Field(None, description='')
-    PipelineTagProperty: typing.Optional[list[CfnPipelineDefPipelinetagpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnPipelineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPipelineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPipelineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPipelineDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPipelineDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPipelineDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPipelineDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    FieldProperty: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefFieldpropertyParams]] = pydantic.Field(None, description='')
+    ParameterAttributeProperty: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefParameterattributepropertyParams]] = pydantic.Field(None, description='')
+    ParameterObjectProperty: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefParameterobjectpropertyParams]] = pydantic.Field(None, description='')
+    ParameterValueProperty: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefParametervaluepropertyParams]] = pydantic.Field(None, description='')
+    PipelineObjectProperty: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefPipelineobjectpropertyParams]] = pydantic.Field(None, description='')
+    PipelineTagProperty: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefPipelinetagpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPipelineDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPipelineDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPipelineDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPipelineDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPipelineDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPipelineDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_datapipeline.CfnPipelineDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPipelineDefFieldpropertyParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='')
@@ -249,15 +249,15 @@ class CfnPipelinePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnPipeline_FieldProperty: typing.Optional[dict[str, CfnPipeline_FieldPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ParameterAttributeProperty: typing.Optional[dict[str, CfnPipeline_ParameterAttributePropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ParameterObjectProperty: typing.Optional[dict[str, CfnPipeline_ParameterObjectPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ParameterValueProperty: typing.Optional[dict[str, CfnPipeline_ParameterValuePropertyDef]] = pydantic.Field(None)
-    CfnPipeline_PipelineObjectProperty: typing.Optional[dict[str, CfnPipeline_PipelineObjectPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_PipelineTagProperty: typing.Optional[dict[str, CfnPipeline_PipelineTagPropertyDef]] = pydantic.Field(None)
-    CfnPipeline: typing.Optional[dict[str, CfnPipelineDef]] = pydantic.Field(None)
-    CfnPipelineProps: typing.Optional[dict[str, CfnPipelinePropsDef]] = pydantic.Field(None)
+    CfnPipeline_FieldProperty: typing.Optional[dict[str, models.aws_datapipeline.CfnPipeline_FieldPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ParameterAttributeProperty: typing.Optional[dict[str, models.aws_datapipeline.CfnPipeline_ParameterAttributePropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ParameterObjectProperty: typing.Optional[dict[str, models.aws_datapipeline.CfnPipeline_ParameterObjectPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ParameterValueProperty: typing.Optional[dict[str, models.aws_datapipeline.CfnPipeline_ParameterValuePropertyDef]] = pydantic.Field(None)
+    CfnPipeline_PipelineObjectProperty: typing.Optional[dict[str, models.aws_datapipeline.CfnPipeline_PipelineObjectPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_PipelineTagProperty: typing.Optional[dict[str, models.aws_datapipeline.CfnPipeline_PipelineTagPropertyDef]] = pydantic.Field(None)
+    CfnPipeline: typing.Optional[dict[str, models.aws_datapipeline.CfnPipelineDef]] = pydantic.Field(None)
+    CfnPipelineProps: typing.Optional[dict[str, models.aws_datapipeline.CfnPipelinePropsDef]] = pydantic.Field(None)
     ...
+
+import models

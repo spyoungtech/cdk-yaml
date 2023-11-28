@@ -16,33 +16,37 @@ class ChainDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ChainDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.ChainDefConfig] = pydantic.Field(None)
 
 
 class ChainDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[ChainDefCustomParams]] = pydantic.Field(None, description='Make a Chain with specific start and end states, and a last-added Chainable.')
-    next: typing.Optional[list[ChainDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    sequence: typing.Optional[list[ChainDefSequenceParams]] = pydantic.Field(None, description='Make a Chain with the start from one chain and the ends from another.')
-    start: typing.Optional[list[ChainDefStartParams]] = pydantic.Field(None, description='Begin a new Chain from one chainable.')
+    custom: typing.Optional[list[models.aws_stepfunctions.ChainDefCustomParams]] = pydantic.Field(None, description='Make a Chain with specific start and end states, and a last-added Chainable.')
+    next: typing.Optional[list[models.aws_stepfunctions.ChainDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    sequence: typing.Optional[list[models.aws_stepfunctions.ChainDefSequenceParams]] = pydantic.Field(None, description='Make a Chain with the start from one chain and the ends from another.')
+    start: typing.Optional[list[models.aws_stepfunctions.ChainDefStartParams]] = pydantic.Field(None, description='Begin a new Chain from one chainable.')
     start_state_config: typing.Optional[models.aws_stepfunctions.StateDefConfig] = pydantic.Field(None)
 
 class ChainDefCustomParams(pydantic.BaseModel):
     start_state: models.aws_stepfunctions.StateDef = pydantic.Field(..., description='-\n')
     end_states: typing.Sequence[typing.Union[models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef]] = pydantic.Field(..., description='-\n')
     last_added: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ChainDefConfig]] = pydantic.Field(None)
     ...
 
 class ChainDefNextParams(pydantic.BaseModel):
     next: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ChainDefConfig]] = pydantic.Field(None)
     ...
 
 class ChainDefSequenceParams(pydantic.BaseModel):
     start: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
     next: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ChainDefConfig]] = pydantic.Field(None)
     ...
 
 class ChainDefStartParams(pydantic.BaseModel):
     state: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ChainDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -57,14 +61,14 @@ class ChainDefinitionBodyDef(BaseClass):
     ...
 
 
-    from_chainable: typing.Optional[ChainDefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
-    from_file: typing.Optional[ChainDefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
-    from_string: typing.Optional[ChainDefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[ChainDefinitionBodyDefConfig] = pydantic.Field(None)
+    from_chainable: typing.Optional[models.aws_stepfunctions.ChainDefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
+    from_file: typing.Optional[models.aws_stepfunctions.ChainDefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
+    from_string: typing.Optional[models.aws_stepfunctions.ChainDefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_stepfunctions.ChainDefinitionBodyDefConfig] = pydantic.Field(None)
 
 
 class ChainDefinitionBodyDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ChainDefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
+    bind: typing.Optional[list[models.aws_stepfunctions.ChainDefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
 
 class ChainDefinitionBodyDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -113,223 +117,259 @@ class ConditionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ConditionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.ConditionDefConfig] = pydantic.Field(None)
 
 
 class ConditionDefConfig(pydantic.BaseModel):
-    and_: typing.Optional[list[ConditionDefAndParams]] = pydantic.Field(None, description='Combine two or more conditions with a logical AND.')
-    boolean_equals: typing.Optional[list[ConditionDefBooleanEqualsParams]] = pydantic.Field(None, description='Matches if a boolean field has the given value.')
-    boolean_equals_json_path: typing.Optional[list[ConditionDefBooleanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a boolean field equals to a value at a given mapping path.')
-    not_: typing.Optional[list[ConditionDefNotParams]] = pydantic.Field(None, description='Negate a condition.')
-    number_equals: typing.Optional[list[ConditionDefNumberEqualsParams]] = pydantic.Field(None, description='Matches if a numeric field has the given value.')
-    number_equals_json_path: typing.Optional[list[ConditionDefNumberEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field has the value in a given mapping path.')
-    number_greater_than: typing.Optional[list[ConditionDefNumberGreaterThanParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than the given value.')
-    number_greater_than_equals: typing.Optional[list[ConditionDefNumberGreaterThanEqualsParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than or equal to the given value.')
-    number_greater_than_equals_json_path: typing.Optional[list[ConditionDefNumberGreaterThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than or equal to the value at a given mapping path.')
-    number_greater_than_json_path: typing.Optional[list[ConditionDefNumberGreaterThanJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than the value at a given mapping path.')
-    number_less_than: typing.Optional[list[ConditionDefNumberLessThanParams]] = pydantic.Field(None, description='Matches if a numeric field is less than the given value.')
-    number_less_than_equals: typing.Optional[list[ConditionDefNumberLessThanEqualsParams]] = pydantic.Field(None, description='Matches if a numeric field is less than or equal to the given value.')
-    number_less_than_equals_json_path: typing.Optional[list[ConditionDefNumberLessThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is less than or equal to the numeric value at given mapping path.')
-    number_less_than_json_path: typing.Optional[list[ConditionDefNumberLessThanJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is less than the value at the given mapping path.')
-    or_: typing.Optional[list[ConditionDefOrParams]] = pydantic.Field(None, description='Combine two or more conditions with a logical OR.')
+    and_: typing.Optional[list[models.aws_stepfunctions.ConditionDefAndParams]] = pydantic.Field(None, description='Combine two or more conditions with a logical AND.')
+    boolean_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefBooleanEqualsParams]] = pydantic.Field(None, description='Matches if a boolean field has the given value.')
+    boolean_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefBooleanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a boolean field equals to a value at a given mapping path.')
+    not_: typing.Optional[list[models.aws_stepfunctions.ConditionDefNotParams]] = pydantic.Field(None, description='Negate a condition.')
+    number_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberEqualsParams]] = pydantic.Field(None, description='Matches if a numeric field has the given value.')
+    number_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field has the value in a given mapping path.')
+    number_greater_than: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberGreaterThanParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than the given value.')
+    number_greater_than_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberGreaterThanEqualsParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than or equal to the given value.')
+    number_greater_than_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberGreaterThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than or equal to the value at a given mapping path.')
+    number_greater_than_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberGreaterThanJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is greater than the value at a given mapping path.')
+    number_less_than: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberLessThanParams]] = pydantic.Field(None, description='Matches if a numeric field is less than the given value.')
+    number_less_than_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberLessThanEqualsParams]] = pydantic.Field(None, description='Matches if a numeric field is less than or equal to the given value.')
+    number_less_than_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberLessThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is less than or equal to the numeric value at given mapping path.')
+    number_less_than_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefNumberLessThanJsonPathParams]] = pydantic.Field(None, description='Matches if a numeric field is less than the value at the given mapping path.')
+    or_: typing.Optional[list[models.aws_stepfunctions.ConditionDefOrParams]] = pydantic.Field(None, description='Combine two or more conditions with a logical OR.')
     render_condition: typing.Optional[bool] = pydantic.Field(None, description='Render Amazon States Language JSON for the condition.')
-    string_equals: typing.Optional[list[ConditionDefStringEqualsParams]] = pydantic.Field(None, description='Matches if a string field has the given value.')
-    string_equals_json_path: typing.Optional[list[ConditionDefStringEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a string field equals to a value at a given mapping path.')
-    string_greater_than: typing.Optional[list[ConditionDefStringGreaterThanParams]] = pydantic.Field(None, description='Matches if a string field sorts after a given value.')
-    string_greater_than_equals: typing.Optional[list[ConditionDefStringGreaterThanEqualsParams]] = pydantic.Field(None, description='Matches if a string field sorts after or equal to a given value.')
-    string_greater_than_equals_json_path: typing.Optional[list[ConditionDefStringGreaterThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts after or equal to value at a given mapping path.')
-    string_greater_than_json_path: typing.Optional[list[ConditionDefStringGreaterThanJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts after a value at a given mapping path.')
-    string_less_than: typing.Optional[list[ConditionDefStringLessThanParams]] = pydantic.Field(None, description='Matches if a string field sorts before a given value.')
-    string_less_than_equals: typing.Optional[list[ConditionDefStringLessThanEqualsParams]] = pydantic.Field(None, description='Matches if a string field sorts equal to or before a given value.')
-    string_less_than_equals_json_path: typing.Optional[list[ConditionDefStringLessThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts equal to or before a given mapping.')
-    string_less_than_json_path: typing.Optional[list[ConditionDefStringLessThanJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts before a given value at a particular mapping.')
-    string_matches: typing.Optional[list[ConditionDefStringMatchesParams]] = pydantic.Field(None, description='Matches if a field matches a string pattern that can contain a wild card (*) e.g: log-*.txt or *LATEST*. No other characters other than "*" have any special meaning - * can be escaped: \\*.')
-    timestamp_equals: typing.Optional[list[ConditionDefTimestampEqualsParams]] = pydantic.Field(None, description='Matches if a timestamp field is the same time as the given timestamp.')
-    timestamp_equals_json_path: typing.Optional[list[ConditionDefTimestampEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is the same time as the timestamp at a given mapping path.')
-    timestamp_greater_than: typing.Optional[list[ConditionDefTimestampGreaterThanParams]] = pydantic.Field(None, description='Matches if a timestamp field is after the given timestamp.')
-    timestamp_greater_than_equals: typing.Optional[list[ConditionDefTimestampGreaterThanEqualsParams]] = pydantic.Field(None, description='Matches if a timestamp field is after or equal to the given timestamp.')
-    timestamp_greater_than_equals_json_path: typing.Optional[list[ConditionDefTimestampGreaterThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is after or equal to the timestamp at a given mapping path.')
-    timestamp_greater_than_json_path: typing.Optional[list[ConditionDefTimestampGreaterThanJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is after the timestamp at a given mapping path.')
-    timestamp_less_than: typing.Optional[list[ConditionDefTimestampLessThanParams]] = pydantic.Field(None, description='Matches if a timestamp field is before the given timestamp.')
-    timestamp_less_than_equals: typing.Optional[list[ConditionDefTimestampLessThanEqualsParams]] = pydantic.Field(None, description='Matches if a timestamp field is before or equal to the given timestamp.')
-    timestamp_less_than_equals_json_path: typing.Optional[list[ConditionDefTimestampLessThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is before or equal to the timestamp at a given mapping path.')
-    timestamp_less_than_json_path: typing.Optional[list[ConditionDefTimestampLessThanJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is before the timestamp at a given mapping path.')
+    string_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringEqualsParams]] = pydantic.Field(None, description='Matches if a string field has the given value.')
+    string_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a string field equals to a value at a given mapping path.')
+    string_greater_than: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringGreaterThanParams]] = pydantic.Field(None, description='Matches if a string field sorts after a given value.')
+    string_greater_than_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringGreaterThanEqualsParams]] = pydantic.Field(None, description='Matches if a string field sorts after or equal to a given value.')
+    string_greater_than_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringGreaterThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts after or equal to value at a given mapping path.')
+    string_greater_than_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringGreaterThanJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts after a value at a given mapping path.')
+    string_less_than: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringLessThanParams]] = pydantic.Field(None, description='Matches if a string field sorts before a given value.')
+    string_less_than_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringLessThanEqualsParams]] = pydantic.Field(None, description='Matches if a string field sorts equal to or before a given value.')
+    string_less_than_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringLessThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts equal to or before a given mapping.')
+    string_less_than_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringLessThanJsonPathParams]] = pydantic.Field(None, description='Matches if a string field sorts before a given value at a particular mapping.')
+    string_matches: typing.Optional[list[models.aws_stepfunctions.ConditionDefStringMatchesParams]] = pydantic.Field(None, description='Matches if a field matches a string pattern that can contain a wild card (*) e.g: log-*.txt or *LATEST*. No other characters other than "*" have any special meaning - * can be escaped: \\*.')
+    timestamp_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampEqualsParams]] = pydantic.Field(None, description='Matches if a timestamp field is the same time as the given timestamp.')
+    timestamp_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is the same time as the timestamp at a given mapping path.')
+    timestamp_greater_than: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampGreaterThanParams]] = pydantic.Field(None, description='Matches if a timestamp field is after the given timestamp.')
+    timestamp_greater_than_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampGreaterThanEqualsParams]] = pydantic.Field(None, description='Matches if a timestamp field is after or equal to the given timestamp.')
+    timestamp_greater_than_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampGreaterThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is after or equal to the timestamp at a given mapping path.')
+    timestamp_greater_than_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampGreaterThanJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is after the timestamp at a given mapping path.')
+    timestamp_less_than: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampLessThanParams]] = pydantic.Field(None, description='Matches if a timestamp field is before the given timestamp.')
+    timestamp_less_than_equals: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampLessThanEqualsParams]] = pydantic.Field(None, description='Matches if a timestamp field is before or equal to the given timestamp.')
+    timestamp_less_than_equals_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampLessThanEqualsJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is before or equal to the timestamp at a given mapping path.')
+    timestamp_less_than_json_path: typing.Optional[list[models.aws_stepfunctions.ConditionDefTimestampLessThanJsonPathParams]] = pydantic.Field(None, description='Matches if a timestamp field is before the timestamp at a given mapping path.')
 
 class ConditionDefAndParams(pydantic.BaseModel):
     conditions: list[models.aws_stepfunctions.ConditionDef] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefBooleanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: bool = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefBooleanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNotParams(pydantic.BaseModel):
     condition: models.aws_stepfunctions.ConditionDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberGreaterThanParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberGreaterThanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberGreaterThanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberGreaterThanJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberLessThanParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberLessThanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: typing.Union[int, float] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberLessThanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefNumberLessThanJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefOrParams(pydantic.BaseModel):
     conditions: list[models.aws_stepfunctions.ConditionDef] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringGreaterThanParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringGreaterThanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringGreaterThanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringGreaterThanJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringLessThanParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringLessThanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringLessThanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringLessThanJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefStringMatchesParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampGreaterThanParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampGreaterThanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampGreaterThanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampGreaterThanJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampLessThanParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampLessThanEqualsParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampLessThanEqualsJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 class ConditionDefTimestampLessThanJsonPathParams(pydantic.BaseModel):
     variable: str = pydantic.Field(..., description='-\n')
     value: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ConditionDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -343,14 +383,14 @@ class DefinitionBodyDef(BaseClass):
     ...
 
 
-    from_chainable: typing.Optional[DefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
-    from_file: typing.Optional[DefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
-    from_string: typing.Optional[DefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[DefinitionBodyDefConfig] = pydantic.Field(None)
+    from_chainable: typing.Optional[models.aws_stepfunctions.DefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
+    from_file: typing.Optional[models.aws_stepfunctions.DefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
+    from_string: typing.Optional[models.aws_stepfunctions.DefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_stepfunctions.DefinitionBodyDefConfig] = pydantic.Field(None)
 
 
 class DefinitionBodyDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[DefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
+    bind: typing.Optional[list[models.aws_stepfunctions.DefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
 
 class DefinitionBodyDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
@@ -411,13 +451,13 @@ class FieldUtilsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FieldUtilsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.FieldUtilsDefConfig] = pydantic.Field(None)
 
 
 class FieldUtilsDefConfig(pydantic.BaseModel):
-    contains_task_token: typing.Optional[list[FieldUtilsDefContainsTaskTokenParams]] = pydantic.Field(None, description='Returns whether the given task structure contains the TaskToken field anywhere.\nThe field is considered included if the field itself or one of its containing\nfields occurs anywhere in the payload.')
-    find_referenced_paths: typing.Optional[list[FieldUtilsDefFindReferencedPathsParams]] = pydantic.Field(None, description='Return all JSON paths used in the given structure.')
-    render_object: typing.Optional[list[FieldUtilsDefRenderObjectParams]] = pydantic.Field(None, description='Render a JSON structure containing fields to the right StepFunctions structure.')
+    contains_task_token: typing.Optional[list[models.aws_stepfunctions.FieldUtilsDefContainsTaskTokenParams]] = pydantic.Field(None, description='Returns whether the given task structure contains the TaskToken field anywhere.\nThe field is considered included if the field itself or one of its containing\nfields occurs anywhere in the payload.')
+    find_referenced_paths: typing.Optional[list[models.aws_stepfunctions.FieldUtilsDefFindReferencedPathsParams]] = pydantic.Field(None, description='Return all JSON paths used in the given structure.')
+    render_object: typing.Optional[list[models.aws_stepfunctions.FieldUtilsDefRenderObjectParams]] = pydantic.Field(None, description='Render a JSON structure containing fields to the right StepFunctions structure.')
 
 class FieldUtilsDefContainsTaskTokenParams(pydantic.BaseModel):
     obj: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description='-')
@@ -451,18 +491,17 @@ class FileDefinitionBodyDef(BaseClass):
     ...
 
 
-    from_chainable: typing.Optional[FileDefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
-    from_file: typing.Optional[FileDefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
-    from_string: typing.Optional[FileDefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[FileDefinitionBodyDefConfig] = pydantic.Field(None)
+    from_chainable: typing.Optional[models.aws_stepfunctions.FileDefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
+    from_file: typing.Optional[models.aws_stepfunctions.FileDefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
+    from_string: typing.Optional[models.aws_stepfunctions.FileDefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_stepfunctions.FileDefinitionBodyDefConfig] = pydantic.Field(None)
 
 
 class FileDefinitionBodyDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[FileDefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
+    bind: typing.Optional[list[models.aws_stepfunctions.FileDefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
 
 class FileDefinitionBodyDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
-    _sfn_principal: typing.Union[models.aws_eks.ServiceAccountDef, models.aws_iam.UnknownPrincipalDef] = pydantic.Field(..., description='-\n')
     comment: typing.Optional[str] = pydantic.Field(None, description='Comment that describes this state machine. Default: - No comment\n')
     definition: typing.Optional[typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef]] = pydantic.Field(None, description='(deprecated) Definition for this state machine.\n')
     definition_body: typing.Optional[models.aws_stepfunctions.DefinitionBodyDef] = pydantic.Field(None, description='Definition for this state machine.\n')
@@ -507,31 +546,31 @@ class JsonPathDef(BaseClass):
     ...
 
 
-    object_at: typing.Optional[JsonPathDefObjectAtParams] = pydantic.Field(None, description='Reference a complete (complex) object in a JSON path location.')
-    string_to_json: typing.Optional[JsonPathDefStringToJsonParams] = pydantic.Field(None, description='Make an intrinsic States.StringToJson expression.\nDuring the execution of the Step Functions state machine, parse the given\nargument as JSON into its object form.\n\nFor example::\n\n   sfn.JsonPath.string_to_json(sfn.JsonPath.string_at("$.someJsonBody"))')
-    resource_config: typing.Optional[JsonPathDefConfig] = pydantic.Field(None)
+    object_at: typing.Optional[models.aws_stepfunctions.JsonPathDefObjectAtParams] = pydantic.Field(None, description='Reference a complete (complex) object in a JSON path location.')
+    string_to_json: typing.Optional[models.aws_stepfunctions.JsonPathDefStringToJsonParams] = pydantic.Field(None, description='Make an intrinsic States.StringToJson expression.\nDuring the execution of the Step Functions state machine, parse the given\nargument as JSON into its object form.\n\nFor example::\n\n   sfn.JsonPath.string_to_json(sfn.JsonPath.string_at("$.someJsonBody"))')
+    resource_config: typing.Optional[models.aws_stepfunctions.JsonPathDefConfig] = pydantic.Field(None)
 
 
 class JsonPathDefConfig(pydantic.BaseModel):
-    array: typing.Optional[list[JsonPathDefArrayParams]] = pydantic.Field(None, description='Make an intrinsic States.Array expression.\nCombine any number of string literals or JsonPath expressions into an array.\n\nUse this function if the value of an array element directly has to come\nfrom a JSON Path expression (either the State object or the Context object).\n\nIf the array contains object literals whose values come from a JSON path\nexpression, you do not need to use this function.')
-    array_contains: typing.Optional[list[JsonPathDefArrayContainsParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayContains expression.\nUse this function to determine if a specific value is present in an array. For example, you can use this function to detect if there was an error in a Map state iteration.')
-    array_get_item: typing.Optional[list[JsonPathDefArrayGetItemParams]] = pydantic.Field(None, description="Make an intrinsic States.ArrayGetItem expression.\nUse this function to get a specified index's value in an array.")
-    array_length: typing.Optional[list[JsonPathDefArrayLengthParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayLength expression.\nUse this function to get the length of an array.')
-    array_partition: typing.Optional[list[JsonPathDefArrayPartitionParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayPartition expression.\nUse this function to partition a large array. You can also use this intrinsic to slice the data and then send the payload in smaller chunks.')
-    array_range: typing.Optional[list[JsonPathDefArrayRangeParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayRange expression.\nUse this function to create a new array containing a specific range of elements. The new array can contain up to 1000 elements.')
-    array_unique: typing.Optional[list[JsonPathDefArrayUniqueParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayUnique expression.\nUse this function to get the length of an array.\nUse this function to remove duplicate values from an array and returns an array containing only unique elements. This function takes an array, which can be unsorted, as its sole argument.')
-    base64_decode: typing.Optional[list[JsonPathDefBase64DecodeParams]] = pydantic.Field(None, description='Make an intrinsic States.Base64Decode expression.\nUse this function to decode data based on MIME Base64 decoding scheme. You can use this function to pass data to other AWS services without using a Lambda function.')
-    base64_encode: typing.Optional[list[JsonPathDefBase64EncodeParams]] = pydantic.Field(None, description='Make an intrinsic States.Base64Encode expression.\nUse this function to encode data based on MIME Base64 encoding scheme. You can use this function to pass data to other AWS services without using an AWS Lambda function.')
-    format: typing.Optional[list[JsonPathDefFormatParams]] = pydantic.Field(None, description='Make an intrinsic States.Format expression.\nThis can be used to embed JSON Path variables inside a format string.\n\nFor example::\n\n   sfn.JsonPath.format("Hello, my name is {}.", sfn.JsonPath.string_at("$.name"))')
-    hash: typing.Optional[list[JsonPathDefHashParams]] = pydantic.Field(None, description='Make an intrinsic States.Hash expression.\nUse this function to calculate the hash value of a given input. You can use this function to pass data to other AWS services without using a Lambda function.')
-    json_merge: typing.Optional[list[JsonPathDefJsonMergeParams]] = pydantic.Field(None, description='Make an intrinsic States.JsonMerge expression.\nUse this function to merge two JSON objects into a single object.')
-    json_to_string: typing.Optional[list[JsonPathDefJsonToStringParams]] = pydantic.Field(None, description='Make an intrinsic States.JsonToString expression.\nDuring the execution of the Step Functions state machine, encode the\ngiven object into a JSON string.\n\nFor example::\n\n   sfn.JsonPath.json_to_string(sfn.JsonPath.object_at("$.someObject"))')
-    list_at: typing.Optional[list[JsonPathDefListAtParams]] = pydantic.Field(None, description='Instead of using a literal string list, get the value from a JSON path.')
-    math_add: typing.Optional[list[JsonPathDefMathAddParams]] = pydantic.Field(None, description='Make an intrinsic States.MathAdd expression.\nUse this function to return the sum of two numbers. For example, you can use this function to increment values inside a loop without invoking a Lambda function.')
-    math_random: typing.Optional[list[JsonPathDefMathRandomParams]] = pydantic.Field(None, description='Make an intrinsic States.MathRandom expression.\nUse this function to return a random number between the specified start and end number. For example, you can use this function to distribute a specific task between two or more resources.')
-    number_at: typing.Optional[list[JsonPathDefNumberAtParams]] = pydantic.Field(None, description='Instead of using a literal number, get the value from a JSON path.')
-    string_at: typing.Optional[list[JsonPathDefStringAtParams]] = pydantic.Field(None, description='Instead of using a literal string, get the value from a JSON path.')
-    string_split: typing.Optional[list[JsonPathDefStringSplitParams]] = pydantic.Field(None, description='Make an intrinsic States.StringSplit expression.\nUse this function to split a string into an array of values. This function takes two arguments.The first argument is a string and the second argument is the delimiting character that the function will use to divide the string.')
+    array: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayParams]] = pydantic.Field(None, description='Make an intrinsic States.Array expression.\nCombine any number of string literals or JsonPath expressions into an array.\n\nUse this function if the value of an array element directly has to come\nfrom a JSON Path expression (either the State object or the Context object).\n\nIf the array contains object literals whose values come from a JSON path\nexpression, you do not need to use this function.')
+    array_contains: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayContainsParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayContains expression.\nUse this function to determine if a specific value is present in an array. For example, you can use this function to detect if there was an error in a Map state iteration.')
+    array_get_item: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayGetItemParams]] = pydantic.Field(None, description="Make an intrinsic States.ArrayGetItem expression.\nUse this function to get a specified index's value in an array.")
+    array_length: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayLengthParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayLength expression.\nUse this function to get the length of an array.')
+    array_partition: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayPartitionParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayPartition expression.\nUse this function to partition a large array. You can also use this intrinsic to slice the data and then send the payload in smaller chunks.')
+    array_range: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayRangeParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayRange expression.\nUse this function to create a new array containing a specific range of elements. The new array can contain up to 1000 elements.')
+    array_unique: typing.Optional[list[models.aws_stepfunctions.JsonPathDefArrayUniqueParams]] = pydantic.Field(None, description='Make an intrinsic States.ArrayUnique expression.\nUse this function to get the length of an array.\nUse this function to remove duplicate values from an array and returns an array containing only unique elements. This function takes an array, which can be unsorted, as its sole argument.')
+    base64_decode: typing.Optional[list[models.aws_stepfunctions.JsonPathDefBase64DecodeParams]] = pydantic.Field(None, description='Make an intrinsic States.Base64Decode expression.\nUse this function to decode data based on MIME Base64 decoding scheme. You can use this function to pass data to other AWS services without using a Lambda function.')
+    base64_encode: typing.Optional[list[models.aws_stepfunctions.JsonPathDefBase64EncodeParams]] = pydantic.Field(None, description='Make an intrinsic States.Base64Encode expression.\nUse this function to encode data based on MIME Base64 encoding scheme. You can use this function to pass data to other AWS services without using an AWS Lambda function.')
+    format: typing.Optional[list[models.aws_stepfunctions.JsonPathDefFormatParams]] = pydantic.Field(None, description='Make an intrinsic States.Format expression.\nThis can be used to embed JSON Path variables inside a format string.\n\nFor example::\n\n   sfn.JsonPath.format("Hello, my name is {}.", sfn.JsonPath.string_at("$.name"))')
+    hash: typing.Optional[list[models.aws_stepfunctions.JsonPathDefHashParams]] = pydantic.Field(None, description='Make an intrinsic States.Hash expression.\nUse this function to calculate the hash value of a given input. You can use this function to pass data to other AWS services without using a Lambda function.')
+    json_merge: typing.Optional[list[models.aws_stepfunctions.JsonPathDefJsonMergeParams]] = pydantic.Field(None, description='Make an intrinsic States.JsonMerge expression.\nUse this function to merge two JSON objects into a single object.')
+    json_to_string: typing.Optional[list[models.aws_stepfunctions.JsonPathDefJsonToStringParams]] = pydantic.Field(None, description='Make an intrinsic States.JsonToString expression.\nDuring the execution of the Step Functions state machine, encode the\ngiven object into a JSON string.\n\nFor example::\n\n   sfn.JsonPath.json_to_string(sfn.JsonPath.object_at("$.someObject"))')
+    list_at: typing.Optional[list[models.aws_stepfunctions.JsonPathDefListAtParams]] = pydantic.Field(None, description='Instead of using a literal string list, get the value from a JSON path.')
+    math_add: typing.Optional[list[models.aws_stepfunctions.JsonPathDefMathAddParams]] = pydantic.Field(None, description='Make an intrinsic States.MathAdd expression.\nUse this function to return the sum of two numbers. For example, you can use this function to increment values inside a loop without invoking a Lambda function.')
+    math_random: typing.Optional[list[models.aws_stepfunctions.JsonPathDefMathRandomParams]] = pydantic.Field(None, description='Make an intrinsic States.MathRandom expression.\nUse this function to return a random number between the specified start and end number. For example, you can use this function to distribute a specific task between two or more resources.')
+    number_at: typing.Optional[list[models.aws_stepfunctions.JsonPathDefNumberAtParams]] = pydantic.Field(None, description='Instead of using a literal number, get the value from a JSON path.')
+    string_at: typing.Optional[list[models.aws_stepfunctions.JsonPathDefStringAtParams]] = pydantic.Field(None, description='Instead of using a literal string, get the value from a JSON path.')
+    string_split: typing.Optional[list[models.aws_stepfunctions.JsonPathDefStringSplitParams]] = pydantic.Field(None, description='Make an intrinsic States.StringSplit expression.\nUse this function to split a string into an array of values. This function takes two arguments.The first argument is a string and the second argument is the delimiting character that the function will use to divide the string.')
     uuid: typing.Optional[bool] = pydantic.Field(None, description='Make an intrinsic States.UUID expression.\nUse this function to return a version 4 universally unique identifier (v4 UUID) generated using random numbers. For example, you can use this function to call other AWS services or resources that need a UUID parameter or insert items in a DynamoDB table.\n\n:see: https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-intrinsic-functions.html')
 
 class JsonPathDefArrayParams(pydantic.BaseModel):
@@ -641,11 +680,11 @@ class ResultDef(BaseClass):
     ...
 
 
-    from_array: typing.Optional[ResultDefFromArrayParams] = pydantic.Field(None, description='The result of the operation is an array.')
-    from_boolean: typing.Optional[ResultDefFromBooleanParams] = pydantic.Field(None, description='The result of the operation is a boolean.')
-    from_number: typing.Optional[ResultDefFromNumberParams] = pydantic.Field(None, description='The result of the operation is a number.')
-    from_object: typing.Optional[ResultDefFromObjectParams] = pydantic.Field(None, description='The result of the operation is an object.')
-    from_string: typing.Optional[ResultDefFromStringParams] = pydantic.Field(None, description='The result of the operation is a string.')
+    from_array: typing.Optional[models.aws_stepfunctions.ResultDefFromArrayParams] = pydantic.Field(None, description='The result of the operation is an array.')
+    from_boolean: typing.Optional[models.aws_stepfunctions.ResultDefFromBooleanParams] = pydantic.Field(None, description='The result of the operation is a boolean.')
+    from_number: typing.Optional[models.aws_stepfunctions.ResultDefFromNumberParams] = pydantic.Field(None, description='The result of the operation is a number.')
+    from_object: typing.Optional[models.aws_stepfunctions.ResultDefFromObjectParams] = pydantic.Field(None, description='The result of the operation is an object.')
+    from_string: typing.Optional[models.aws_stepfunctions.ResultDefFromStringParams] = pydantic.Field(None, description='The result of the operation is a string.')
 
 class ResultDefFromArrayParams(pydantic.BaseModel):
     value: typing.Sequence[typing.Any] = pydantic.Field(..., description='-')
@@ -685,16 +724,16 @@ class StateDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.StateDefConfig] = pydantic.Field(None)
 
 
 class StateDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[StateDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    bind_to_graph: typing.Optional[list[StateDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[StateDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[StateDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[StateDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    prefix_states: typing.Optional[list[StateDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.StateDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.StateDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.StateDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.StateDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.StateDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.StateDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class StateDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -736,13 +775,13 @@ class StateGraphDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StateGraphDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.StateGraphDefConfig] = pydantic.Field(None)
 
 
 class StateGraphDefConfig(pydantic.BaseModel):
-    register_policy_statement: typing.Optional[list[StateGraphDefRegisterPolicyStatementParams]] = pydantic.Field(None, description='Register a Policy Statement used by states in this graph.')
-    register_state: typing.Optional[list[StateGraphDefRegisterStateParams]] = pydantic.Field(None, description='Register a state as part of this graph.\nCalled by State.bindToGraph().')
-    register_super_graph: typing.Optional[list[StateGraphDefRegisterSuperGraphParams]] = pydantic.Field(None, description='Register this graph as a child of the given graph.\nResource changes will be bubbled up to the given graph.')
+    register_policy_statement: typing.Optional[list[models.aws_stepfunctions.StateGraphDefRegisterPolicyStatementParams]] = pydantic.Field(None, description='Register a Policy Statement used by states in this graph.')
+    register_state: typing.Optional[list[models.aws_stepfunctions.StateGraphDefRegisterStateParams]] = pydantic.Field(None, description='Register a state as part of this graph.\nCalled by State.bindToGraph().')
+    register_super_graph: typing.Optional[list[models.aws_stepfunctions.StateGraphDefRegisterSuperGraphParams]] = pydantic.Field(None, description='Register this graph as a child of the given graph.\nResource changes will be bubbled up to the given graph.')
     start_state_config: typing.Optional[models.aws_stepfunctions.StateDefConfig] = pydantic.Field(None)
 
 class StateGraphDefRegisterPolicyStatementParams(pydantic.BaseModel):
@@ -768,12 +807,12 @@ class StateMachineFragmentDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StateMachineFragmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.StateMachineFragmentDefConfig] = pydantic.Field(None)
 
 
 class StateMachineFragmentDefConfig(pydantic.BaseModel):
-    next: typing.Optional[list[StateMachineFragmentDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[StateMachineFragmentDefPrefixStatesParams]] = pydantic.Field(None, description='Prefix the IDs of all states in this state machine fragment.\nUse this to avoid multiple copies of the state machine all having the\nsame state IDs.')
+    next: typing.Optional[list[models.aws_stepfunctions.StateMachineFragmentDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.StateMachineFragmentDefPrefixStatesParams]] = pydantic.Field(None, description='Prefix the IDs of all states in this state machine fragment.\nUse this to avoid multiple copies of the state machine all having the\nsame state IDs.')
     start_state_config: typing.Optional[models.aws_stepfunctions.StateDefConfig] = pydantic.Field(None)
 
 class StateMachineFragmentDefNextParams(pydantic.BaseModel):
@@ -783,6 +822,7 @@ class StateMachineFragmentDefNextParams(pydantic.BaseModel):
 
 class StateMachineFragmentDefPrefixStatesParams(pydantic.BaseModel):
     prefix: typing.Optional[str] = pydantic.Field(None, description='The prefix to add. Will use construct ID by default.')
+    return_config: typing.Optional[list[models.aws_stepfunctions.StateMachineFragmentDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -796,11 +836,11 @@ class StateTransitionMetricDef(BaseClass):
     ...
 
 
-    metric: typing.Optional[StateTransitionMetricDefMetricParams] = pydantic.Field(None, description="Return the given named metric for the service's state transition metrics.")
-    metric_consumed_capacity: typing.Optional[StateTransitionMetricDefMetricConsumedCapacityParams] = pydantic.Field(None, description='Metric for the number of available state transitions per second.')
-    metric_provisioned_bucket_size: typing.Optional[StateTransitionMetricDefMetricProvisionedBucketSizeParams] = pydantic.Field(None, description='Metric for the number of available state transitions.')
-    metric_provisioned_refill_rate: typing.Optional[StateTransitionMetricDefMetricProvisionedRefillRateParams] = pydantic.Field(None, description='Metric for the provisioned steady-state execution rate.')
-    metric_throttled_events: typing.Optional[StateTransitionMetricDefMetricThrottledEventsParams] = pydantic.Field(None, description='Metric for the number of throttled state transitions.')
+    metric: typing.Optional[models.aws_stepfunctions.StateTransitionMetricDefMetricParams] = pydantic.Field(None, description="Return the given named metric for the service's state transition metrics.")
+    metric_consumed_capacity: typing.Optional[models.aws_stepfunctions.StateTransitionMetricDefMetricConsumedCapacityParams] = pydantic.Field(None, description='Metric for the number of available state transitions per second.')
+    metric_provisioned_bucket_size: typing.Optional[models.aws_stepfunctions.StateTransitionMetricDefMetricProvisionedBucketSizeParams] = pydantic.Field(None, description='Metric for the number of available state transitions.')
+    metric_provisioned_refill_rate: typing.Optional[models.aws_stepfunctions.StateTransitionMetricDefMetricProvisionedRefillRateParams] = pydantic.Field(None, description='Metric for the provisioned steady-state execution rate.')
+    metric_throttled_events: typing.Optional[models.aws_stepfunctions.StateTransitionMetricDefMetricThrottledEventsParams] = pydantic.Field(None, description='Metric for the number of throttled state transitions.')
 
 class StateTransitionMetricDefMetricParams(pydantic.BaseModel):
     metric_name: str = pydantic.Field(..., description='-\n')
@@ -870,18 +910,16 @@ class StringDefinitionBodyDef(BaseClass):
     ...
 
 
-    from_chainable: typing.Optional[StringDefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
-    from_file: typing.Optional[StringDefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
-    from_string: typing.Optional[StringDefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[StringDefinitionBodyDefConfig] = pydantic.Field(None)
+    from_chainable: typing.Optional[models.aws_stepfunctions.StringDefinitionBodyDefFromChainableParams] = pydantic.Field(None, description='')
+    from_file: typing.Optional[models.aws_stepfunctions.StringDefinitionBodyDefFromFileParams] = pydantic.Field(None, description='')
+    from_string: typing.Optional[models.aws_stepfunctions.StringDefinitionBodyDefFromStringParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_stepfunctions.StringDefinitionBodyDefConfig] = pydantic.Field(None)
 
 
 class StringDefinitionBodyDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[StringDefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
+    bind: typing.Optional[list[models.aws_stepfunctions.StringDefinitionBodyDefBindParams]] = pydantic.Field(None, description='')
 
 class StringDefinitionBodyDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
-    _sfn_principal: typing.Union[models.aws_eks.ServiceAccountDef, models.aws_iam.UnknownPrincipalDef] = pydantic.Field(..., description='-\n')
     comment: typing.Optional[str] = pydantic.Field(None, description='Comment that describes this state machine. Default: - No comment\n')
     definition: typing.Optional[typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef]] = pydantic.Field(None, description='(deprecated) Definition for this state machine.\n')
     definition_body: typing.Optional[models.aws_stepfunctions.DefinitionBodyDef] = pydantic.Field(None, description='Definition for this state machine.\n')
@@ -926,9 +964,9 @@ class TaskInputDef(BaseClass):
     ...
 
 
-    from_json_path_at: typing.Optional[TaskInputDefFromJsonPathAtParams] = pydantic.Field(None, description='Use a part of the execution data or task context as task input.\nUse this when you want to use a subobject or string from\nthe current state machine execution or the current task context\nas complete payload to a task.')
-    from_object: typing.Optional[TaskInputDefFromObjectParams] = pydantic.Field(None, description='Use an object as task input.\nThis object may contain JSON path fields as object values, if desired.')
-    from_text: typing.Optional[TaskInputDefFromTextParams] = pydantic.Field(None, description='Use a literal string as task input.\nThis might be a JSON-encoded object, or just a text.')
+    from_json_path_at: typing.Optional[models.aws_stepfunctions.TaskInputDefFromJsonPathAtParams] = pydantic.Field(None, description='Use a part of the execution data or task context as task input.\nUse this when you want to use a subobject or string from\nthe current state machine execution or the current task context\nas complete payload to a task.')
+    from_object: typing.Optional[models.aws_stepfunctions.TaskInputDefFromObjectParams] = pydantic.Field(None, description='Use an object as task input.\nThis object may contain JSON path fields as object values, if desired.')
+    from_text: typing.Optional[models.aws_stepfunctions.TaskInputDefFromTextParams] = pydantic.Field(None, description='Use a literal string as task input.\nThis might be a JSON-encoded object, or just a text.')
 
 class TaskInputDefFromJsonPathAtParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
@@ -953,8 +991,8 @@ class TaskRoleDef(BaseClass):
     ...
 
 
-    from_role: typing.Optional[TaskRoleDefFromRoleParams] = pydantic.Field(None, description='Construct a task role based on the provided IAM Role.')
-    from_role_arn_json_path: typing.Optional[TaskRoleDefFromRoleArnJsonPathParams] = pydantic.Field(None, description='Construct a task role retrieved from task inputs using a json expression.')
+    from_role: typing.Optional[models.aws_stepfunctions.TaskRoleDefFromRoleParams] = pydantic.Field(None, description='Construct a task role based on the provided IAM Role.')
+    from_role_arn_json_path: typing.Optional[models.aws_stepfunctions.TaskRoleDefFromRoleArnJsonPathParams] = pydantic.Field(None, description='Construct a task role retrieved from task inputs using a json expression.')
 
 class TaskRoleDefFromRoleParams(pydantic.BaseModel):
     role: typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef] = pydantic.Field(..., description='IAM Role.')
@@ -987,34 +1025,35 @@ class TaskStateBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TaskStateBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.TaskStateBaseDefConfig] = pydantic.Field(None)
 
 
 class TaskStateBaseDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[TaskStateBaseDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[TaskStateBaseDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[TaskStateBaseDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[TaskStateBaseDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[TaskStateBaseDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[TaskStateBaseDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[TaskStateBaseDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    metric: typing.Optional[list[TaskStateBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
-    metric_failed: typing.Optional[list[TaskStateBaseDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[TaskStateBaseDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[TaskStateBaseDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[TaskStateBaseDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[TaskStateBaseDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[TaskStateBaseDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[TaskStateBaseDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[TaskStateBaseDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[TaskStateBaseDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
-    next: typing.Optional[list[TaskStateBaseDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[TaskStateBaseDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    metric: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Task.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the Task starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    next: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class TaskStateBaseDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
     errors: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Errors to recover from by going to the given state. A list of error strings to retry, which can be either predefined errors (for example Errors.NoChoiceMatched) or a self-defined error. Default: All errors\n')
     result_path: typing.Optional[str] = pydantic.Field(None, description='JSONPath expression to indicate where to inject the error data. May also be the special value JsonPath.DISCARD, which will cause the error data to be discarded. Default: $')
+    return_config: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefConfig]] = pydantic.Field(None)
     ...
 
 class TaskStateBaseDefAddPrefixParams(pydantic.BaseModel):
@@ -1028,6 +1067,7 @@ class TaskStateBaseDefAddRetryParams(pydantic.BaseModel):
     jitter_strategy: typing.Optional[aws_cdk.aws_stepfunctions.JitterType] = pydantic.Field(None, description='Introduces a randomization over the retry interval. Default: - No jitter strategy\n')
     max_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='How many times to retry this particular error. May be 0 to disable retry for specific errors (in case you have a catch-all retry policy). Default: 3\n')
     max_delay: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Maximum limit on retry interval growth during exponential backoff. Default: - No max delay')
+    return_config: typing.Optional[list[models.aws_stepfunctions.TaskStateBaseDefConfig]] = pydantic.Field(None)
     ...
 
 class TaskStateBaseDefBindToGraphParams(pydantic.BaseModel):
@@ -1190,19 +1230,21 @@ class TimeoutDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TimeoutDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.TimeoutDefConfig] = pydantic.Field(None)
 
 
 class TimeoutDefConfig(pydantic.BaseModel):
-    at: typing.Optional[list[TimeoutDefAtParams]] = pydantic.Field(None, description='Use a dynamic timeout specified by a path in the state input.\nThe path must select a field whose value is a positive integer.')
-    duration: typing.Optional[list[TimeoutDefDurationParams]] = pydantic.Field(None, description='Use a duration as timeout.')
+    at: typing.Optional[list[models.aws_stepfunctions.TimeoutDefAtParams]] = pydantic.Field(None, description='Use a dynamic timeout specified by a path in the state input.\nThe path must select a field whose value is a positive integer.')
+    duration: typing.Optional[list[models.aws_stepfunctions.TimeoutDefDurationParams]] = pydantic.Field(None, description='Use a duration as timeout.')
 
 class TimeoutDefAtParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.TimeoutDefConfig]] = pydantic.Field(None)
     ...
 
 class TimeoutDefDurationParams(pydantic.BaseModel):
     duration: models.DurationDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.TimeoutDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1216,29 +1258,33 @@ class WaitTimeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[WaitTimeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.WaitTimeDefConfig] = pydantic.Field(None)
 
 
 class WaitTimeDefConfig(pydantic.BaseModel):
-    duration: typing.Optional[list[WaitTimeDefDurationParams]] = pydantic.Field(None, description='Wait a fixed amount of time.')
-    seconds_path: typing.Optional[list[WaitTimeDefSecondsPathParams]] = pydantic.Field(None, description='Wait for a number of seconds stored in the state object.\nExample value: ``$.waitSeconds``')
-    timestamp: typing.Optional[list[WaitTimeDefTimestampParams]] = pydantic.Field(None, description='Wait until the given ISO8601 timestamp.\nExample value: ``2016-03-14T01:59:00Z``')
-    timestamp_path: typing.Optional[list[WaitTimeDefTimestampPathParams]] = pydantic.Field(None, description='Wait until a timestamp found in the state object.\nExample value: ``$.waitTimestamp``')
+    duration: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefDurationParams]] = pydantic.Field(None, description='Wait a fixed amount of time.')
+    seconds_path: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefSecondsPathParams]] = pydantic.Field(None, description='Wait for a number of seconds stored in the state object.\nExample value: ``$.waitSeconds``')
+    timestamp: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefTimestampParams]] = pydantic.Field(None, description='Wait until the given ISO8601 timestamp.\nExample value: ``2016-03-14T01:59:00Z``')
+    timestamp_path: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefTimestampPathParams]] = pydantic.Field(None, description='Wait until a timestamp found in the state object.\nExample value: ``$.waitTimestamp``')
 
 class WaitTimeDefDurationParams(pydantic.BaseModel):
     duration: models.DurationDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefConfig]] = pydantic.Field(None)
     ...
 
 class WaitTimeDefSecondsPathParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefConfig]] = pydantic.Field(None)
     ...
 
 class WaitTimeDefTimestampParams(pydantic.BaseModel):
     timestamp: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefConfig]] = pydantic.Field(None)
     ...
 
 class WaitTimeDefTimestampPathParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.WaitTimeDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1253,24 +1299,24 @@ class ActivityDef(BaseConstruct):
     ...
 
 
-    from_activity_arn: typing.Optional[ActivityDefFromActivityArnParams] = pydantic.Field(None, description='Construct an Activity from an existing Activity ARN.')
-    from_activity_name: typing.Optional[ActivityDefFromActivityNameParams] = pydantic.Field(None, description='Construct an Activity from an existing Activity Name.')
-    resource_config: typing.Optional[ActivityDefConfig] = pydantic.Field(None)
+    from_activity_arn: typing.Optional[models.aws_stepfunctions.ActivityDefFromActivityArnParams] = pydantic.Field(None, description='Construct an Activity from an existing Activity ARN.')
+    from_activity_name: typing.Optional[models.aws_stepfunctions.ActivityDefFromActivityNameParams] = pydantic.Field(None, description='Construct an Activity from an existing Activity Name.')
+    resource_config: typing.Optional[models.aws_stepfunctions.ActivityDefConfig] = pydantic.Field(None)
 
 
 class ActivityDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[ActivityDefGrantParams]] = pydantic.Field(None, description='Grant the given identity permissions on this Activity.')
-    metric: typing.Optional[list[ActivityDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Activity.')
-    metric_failed: typing.Optional[list[ActivityDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
-    metric_heartbeat_timed_out: typing.Optional[list[ActivityDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
-    metric_run_time: typing.Optional[list[ActivityDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity starts and the time it closes.')
-    metric_schedule_time: typing.Optional[list[ActivityDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
-    metric_scheduled: typing.Optional[list[ActivityDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
-    metric_started: typing.Optional[list[ActivityDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
-    metric_succeeded: typing.Optional[list[ActivityDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
-    metric_time: typing.Optional[list[ActivityDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
-    metric_timed_out: typing.Optional[list[ActivityDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
+    grant: typing.Optional[list[models.aws_stepfunctions.ActivityDefGrantParams]] = pydantic.Field(None, description='Grant the given identity permissions on this Activity.')
+    metric: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Activity.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of times this activity fails.')
+    metric_heartbeat_timed_out: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricHeartbeatTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times the heartbeat times out for this activity.')
+    metric_run_time: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricRunTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity starts and the time it closes.')
+    metric_schedule_time: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricScheduleTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, for which the activity stays in the schedule state.')
+    metric_scheduled: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricScheduledParams]] = pydantic.Field(None, description='Metric for the number of times this activity is scheduled.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of times this activity is started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of times this activity succeeds.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricTimeParams]] = pydantic.Field(None, description='The interval, in milliseconds, between the time the activity is scheduled and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions.ActivityDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of times this activity times out.')
 
 class ActivityDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -1430,19 +1476,19 @@ class ChoiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ChoiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.ChoiceDefConfig] = pydantic.Field(None)
 
 
 class ChoiceDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[ChoiceDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    afterwards: typing.Optional[list[ChoiceDefAfterwardsParams]] = pydantic.Field(None, description='Return a Chain that contains all reachable end states from this Choice.\nUse this to combine all possible choice paths back.')
-    bind_to_graph: typing.Optional[list[ChoiceDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[ChoiceDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[ChoiceDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[ChoiceDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    otherwise: typing.Optional[list[ChoiceDefOtherwiseParams]] = pydantic.Field(None, description='If none of the given conditions match, continue execution with the given state.\nIf no conditions match and no otherwise() has been given, an execution\nerror will be raised.')
-    prefix_states: typing.Optional[list[ChoiceDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
-    when: typing.Optional[list[ChoiceDefWhenParams]] = pydantic.Field(None, description='If the given condition matches, continue execution with the given state.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.ChoiceDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    afterwards: typing.Optional[list[models.aws_stepfunctions.ChoiceDefAfterwardsParams]] = pydantic.Field(None, description='Return a Chain that contains all reachable end states from this Choice.\nUse this to combine all possible choice paths back.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.ChoiceDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.ChoiceDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.ChoiceDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.ChoiceDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    otherwise: typing.Optional[list[models.aws_stepfunctions.ChoiceDefOtherwiseParams]] = pydantic.Field(None, description='If none of the given conditions match, continue execution with the given state.\nIf no conditions match and no otherwise() has been given, an execution\nerror will be raised.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.ChoiceDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    when: typing.Optional[list[models.aws_stepfunctions.ChoiceDefWhenParams]] = pydantic.Field(None, description='If the given condition matches, continue execution with the given state.')
 
 class ChoiceDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -1474,6 +1520,7 @@ class ChoiceDefFindReachableStatesParams(pydantic.BaseModel):
 
 class ChoiceDefOtherwiseParams(pydantic.BaseModel):
     def_: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ChoiceDefConfig]] = pydantic.Field(None)
     ...
 
 class ChoiceDefPrefixStatesParams(pydantic.BaseModel):
@@ -1485,6 +1532,7 @@ class ChoiceDefWhenParams(pydantic.BaseModel):
     condition: models.aws_stepfunctions.ConditionDef = pydantic.Field(..., description='-\n')
     next: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
     comment: typing.Optional[str] = pydantic.Field(None, description='An optional description for the choice transition. Default: No comment')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ChoiceDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -1499,17 +1547,17 @@ class CustomStateDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CustomStateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.CustomStateDefConfig] = pydantic.Field(None)
 
 
 class CustomStateDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[CustomStateDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    bind_to_graph: typing.Optional[list[CustomStateDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[CustomStateDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[CustomStateDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[CustomStateDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    next: typing.Optional[list[CustomStateDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[CustomStateDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.CustomStateDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.CustomStateDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.CustomStateDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.CustomStateDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.CustomStateDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    next: typing.Optional[list[models.aws_stepfunctions.CustomStateDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.CustomStateDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class CustomStateDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -1560,16 +1608,16 @@ class FailDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[FailDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.FailDefConfig] = pydantic.Field(None)
 
 
 class FailDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[FailDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    bind_to_graph: typing.Optional[list[FailDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[FailDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[FailDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[FailDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    prefix_states: typing.Optional[list[FailDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.FailDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.FailDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.FailDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.FailDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.FailDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.FailDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class FailDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -1618,25 +1666,26 @@ class MapDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[MapDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.MapDefConfig] = pydantic.Field(None)
 
 
 class MapDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[MapDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[MapDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[MapDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[MapDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[MapDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[MapDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[MapDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    iterator: typing.Optional[list[MapDefIteratorParams]] = pydantic.Field(None, description='Define iterator state machine in Map.')
-    next: typing.Optional[list[MapDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[MapDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions.MapDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.MapDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions.MapDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.MapDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.MapDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.MapDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.MapDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    iterator: typing.Optional[list[models.aws_stepfunctions.MapDefIteratorParams]] = pydantic.Field(None, description='Define iterator state machine in Map.')
+    next: typing.Optional[list[models.aws_stepfunctions.MapDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.MapDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class MapDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
     errors: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Errors to recover from by going to the given state. A list of error strings to retry, which can be either predefined errors (for example Errors.NoChoiceMatched) or a self-defined error. Default: All errors\n')
     result_path: typing.Optional[str] = pydantic.Field(None, description='JSONPath expression to indicate where to inject the error data. May also be the special value JsonPath.DISCARD, which will cause the error data to be discarded. Default: $')
+    return_config: typing.Optional[list[models.aws_stepfunctions.MapDefConfig]] = pydantic.Field(None)
     ...
 
 class MapDefAddPrefixParams(pydantic.BaseModel):
@@ -1650,6 +1699,7 @@ class MapDefAddRetryParams(pydantic.BaseModel):
     jitter_strategy: typing.Optional[aws_cdk.aws_stepfunctions.JitterType] = pydantic.Field(None, description='Introduces a randomization over the retry interval. Default: - No jitter strategy\n')
     max_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='How many times to retry this particular error. May be 0 to disable retry for specific errors (in case you have a catch-all retry policy). Default: 3\n')
     max_delay: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Maximum limit on retry interval growth during exponential backoff. Default: - No max delay')
+    return_config: typing.Optional[list[models.aws_stepfunctions.MapDefConfig]] = pydantic.Field(None)
     ...
 
 class MapDefBindToGraphParams(pydantic.BaseModel):
@@ -1672,6 +1722,7 @@ class MapDefFindReachableStatesParams(pydantic.BaseModel):
 
 class MapDefIteratorParams(pydantic.BaseModel):
     iterator: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_stepfunctions.MapDefConfig]] = pydantic.Field(None)
     ...
 
 class MapDefNextParams(pydantic.BaseModel):
@@ -1701,25 +1752,26 @@ class ParallelDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ParallelDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.ParallelDefConfig] = pydantic.Field(None)
 
 
 class ParallelDefConfig(pydantic.BaseModel):
-    add_catch: typing.Optional[list[ParallelDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
-    add_prefix: typing.Optional[list[ParallelDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    add_retry: typing.Optional[list[ParallelDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
-    bind_to_graph: typing.Optional[list[ParallelDefBindToGraphParams]] = pydantic.Field(None, description='Overwrites State.bindToGraph. Adds branches to the Parallel state here so that any necessary prefixes are appended first.')
-    branch: typing.Optional[list[ParallelDefBranchParams]] = pydantic.Field(None, description='Define one or more branches to run in parallel.')
-    filter_nextables: typing.Optional[list[ParallelDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[ParallelDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[ParallelDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    next: typing.Optional[list[ParallelDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[ParallelDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_catch: typing.Optional[list[models.aws_stepfunctions.ParallelDefAddCatchParams]] = pydantic.Field(None, description='Add a recovery handler for this state.\nWhen a particular error occurs, execution will continue at the error\nhandler instead of failing the state machine execution.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.ParallelDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    add_retry: typing.Optional[list[models.aws_stepfunctions.ParallelDefAddRetryParams]] = pydantic.Field(None, description='Add retry configuration for this state.\nThis controls if and how the execution will be retried if a particular\nerror occurs.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.ParallelDefBindToGraphParams]] = pydantic.Field(None, description='Overwrites State.bindToGraph. Adds branches to the Parallel state here so that any necessary prefixes are appended first.')
+    branch: typing.Optional[list[models.aws_stepfunctions.ParallelDefBranchParams]] = pydantic.Field(None, description='Define one or more branches to run in parallel.')
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.ParallelDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.ParallelDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.ParallelDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    next: typing.Optional[list[models.aws_stepfunctions.ParallelDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.ParallelDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class ParallelDefAddCatchParams(pydantic.BaseModel):
     handler: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
     errors: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Errors to recover from by going to the given state. A list of error strings to retry, which can be either predefined errors (for example Errors.NoChoiceMatched) or a self-defined error. Default: All errors\n')
     result_path: typing.Optional[str] = pydantic.Field(None, description='JSONPath expression to indicate where to inject the error data. May also be the special value JsonPath.DISCARD, which will cause the error data to be discarded. Default: $')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ParallelDefConfig]] = pydantic.Field(None)
     ...
 
 class ParallelDefAddPrefixParams(pydantic.BaseModel):
@@ -1733,6 +1785,7 @@ class ParallelDefAddRetryParams(pydantic.BaseModel):
     jitter_strategy: typing.Optional[aws_cdk.aws_stepfunctions.JitterType] = pydantic.Field(None, description='Introduces a randomization over the retry interval. Default: - No jitter strategy\n')
     max_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='How many times to retry this particular error. May be 0 to disable retry for specific errors (in case you have a catch-all retry policy). Default: 3\n')
     max_delay: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Maximum limit on retry interval growth during exponential backoff. Default: - No max delay')
+    return_config: typing.Optional[list[models.aws_stepfunctions.ParallelDefConfig]] = pydantic.Field(None)
     ...
 
 class ParallelDefBindToGraphParams(pydantic.BaseModel):
@@ -1741,6 +1794,7 @@ class ParallelDefBindToGraphParams(pydantic.BaseModel):
 
 class ParallelDefBranchParams(pydantic.BaseModel):
     branches: list[typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef]] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_stepfunctions.ParallelDefConfig]] = pydantic.Field(None)
     ...
 
 class ParallelDefFilterNextablesParams(pydantic.BaseModel):
@@ -1785,17 +1839,17 @@ class PassDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[PassDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.PassDefConfig] = pydantic.Field(None)
 
 
 class PassDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[PassDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    bind_to_graph: typing.Optional[list[PassDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[PassDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[PassDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[PassDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    next: typing.Optional[list[PassDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[PassDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.PassDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.PassDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.PassDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.PassDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.PassDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    next: typing.Optional[list[models.aws_stepfunctions.PassDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.PassDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class PassDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -1851,28 +1905,28 @@ class StateMachineDef(BaseConstruct):
     ...
 
 
-    from_state_machine_arn: typing.Optional[StateMachineDefFromStateMachineArnParams] = pydantic.Field(None, description='Import a state machine.')
-    from_state_machine_name: typing.Optional[StateMachineDefFromStateMachineNameParams] = pydantic.Field(None, description='Import a state machine via resource name.')
-    resource_config: typing.Optional[StateMachineDefConfig] = pydantic.Field(None)
+    from_state_machine_arn: typing.Optional[models.aws_stepfunctions.StateMachineDefFromStateMachineArnParams] = pydantic.Field(None, description='Import a state machine.')
+    from_state_machine_name: typing.Optional[models.aws_stepfunctions.StateMachineDefFromStateMachineNameParams] = pydantic.Field(None, description='Import a state machine via resource name.')
+    resource_config: typing.Optional[models.aws_stepfunctions.StateMachineDefConfig] = pydantic.Field(None)
 
 
 class StateMachineDefConfig(pydantic.BaseModel):
-    add_to_role_policy: typing.Optional[list[StateMachineDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add the given statement to the role's policy.")
+    add_to_role_policy: typing.Optional[list[models.aws_stepfunctions.StateMachineDefAddToRolePolicyParams]] = pydantic.Field(None, description="Add the given statement to the role's policy.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[StateMachineDefGrantParams]] = pydantic.Field(None, description='Grant the given identity custom permissions.')
-    grant_execution: typing.Optional[list[StateMachineDefGrantExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions on all executions of the state machine.')
-    grant_read: typing.Optional[list[StateMachineDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read results from state machine.')
-    grant_start_execution: typing.Optional[list[StateMachineDefGrantStartExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start an execution of this state machine.')
-    grant_start_sync_execution: typing.Optional[list[StateMachineDefGrantStartSyncExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start a synchronous execution of this state machine.')
-    grant_task_response: typing.Optional[list[StateMachineDefGrantTaskResponseParams]] = pydantic.Field(None, description='Grant the given identity task response permissions on a state machine.')
-    metric: typing.Optional[list[StateMachineDefMetricParams]] = pydantic.Field(None, description="Return the given named metric for this State Machine's executions.")
-    metric_aborted: typing.Optional[list[StateMachineDefMetricAbortedParams]] = pydantic.Field(None, description='Metric for the number of executions that were aborted.')
-    metric_failed: typing.Optional[list[StateMachineDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of executions that failed.')
-    metric_started: typing.Optional[list[StateMachineDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of executions that were started.')
-    metric_succeeded: typing.Optional[list[StateMachineDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of executions that succeeded.')
-    metric_throttled: typing.Optional[list[StateMachineDefMetricThrottledParams]] = pydantic.Field(None, description='Metric for the number of executions that were throttled.')
-    metric_time: typing.Optional[list[StateMachineDefMetricTimeParams]] = pydantic.Field(None, description='Metric for the interval, in milliseconds, between the time the execution starts and the time it closes.')
-    metric_timed_out: typing.Optional[list[StateMachineDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of executions that timed out.')
+    grant: typing.Optional[list[models.aws_stepfunctions.StateMachineDefGrantParams]] = pydantic.Field(None, description='Grant the given identity custom permissions.')
+    grant_execution: typing.Optional[list[models.aws_stepfunctions.StateMachineDefGrantExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions on all executions of the state machine.')
+    grant_read: typing.Optional[list[models.aws_stepfunctions.StateMachineDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read results from state machine.')
+    grant_start_execution: typing.Optional[list[models.aws_stepfunctions.StateMachineDefGrantStartExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start an execution of this state machine.')
+    grant_start_sync_execution: typing.Optional[list[models.aws_stepfunctions.StateMachineDefGrantStartSyncExecutionParams]] = pydantic.Field(None, description='Grant the given identity permissions to start a synchronous execution of this state machine.')
+    grant_task_response: typing.Optional[list[models.aws_stepfunctions.StateMachineDefGrantTaskResponseParams]] = pydantic.Field(None, description='Grant the given identity task response permissions on a state machine.')
+    metric: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricParams]] = pydantic.Field(None, description="Return the given named metric for this State Machine's executions.")
+    metric_aborted: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricAbortedParams]] = pydantic.Field(None, description='Metric for the number of executions that were aborted.')
+    metric_failed: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricFailedParams]] = pydantic.Field(None, description='Metric for the number of executions that failed.')
+    metric_started: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricStartedParams]] = pydantic.Field(None, description='Metric for the number of executions that were started.')
+    metric_succeeded: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricSucceededParams]] = pydantic.Field(None, description='Metric for the number of executions that succeeded.')
+    metric_throttled: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricThrottledParams]] = pydantic.Field(None, description='Metric for the number of executions that were throttled.')
+    metric_time: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricTimeParams]] = pydantic.Field(None, description='Metric for the interval, in milliseconds, between the time the execution starts and the time it closes.')
+    metric_timed_out: typing.Optional[list[models.aws_stepfunctions.StateMachineDefMetricTimedOutParams]] = pydantic.Field(None, description='Metric for the number of executions that timed out.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
@@ -2040,16 +2094,16 @@ class SucceedDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SucceedDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.SucceedDefConfig] = pydantic.Field(None)
 
 
 class SucceedDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[SucceedDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    bind_to_graph: typing.Optional[list[SucceedDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[SucceedDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[SucceedDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[SucceedDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    prefix_states: typing.Optional[list[SucceedDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.SucceedDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.SucceedDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.SucceedDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.SucceedDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.SucceedDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.SucceedDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class SucceedDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -2092,17 +2146,17 @@ class WaitDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[WaitDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.WaitDefConfig] = pydantic.Field(None)
 
 
 class WaitDefConfig(pydantic.BaseModel):
-    add_prefix: typing.Optional[list[WaitDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
-    bind_to_graph: typing.Optional[list[WaitDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
-    filter_nextables: typing.Optional[list[WaitDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
-    find_reachable_end_states: typing.Optional[list[WaitDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
-    find_reachable_states: typing.Optional[list[WaitDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
-    next: typing.Optional[list[WaitDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
-    prefix_states: typing.Optional[list[WaitDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
+    add_prefix: typing.Optional[list[models.aws_stepfunctions.WaitDefAddPrefixParams]] = pydantic.Field(None, description='Add a prefix to the stateId of this state.')
+    bind_to_graph: typing.Optional[list[models.aws_stepfunctions.WaitDefBindToGraphParams]] = pydantic.Field(None, description="Register this state as part of the given graph.\nDon't call this. It will be called automatically when you work\nwith states normally.")
+    filter_nextables: typing.Optional[list[models.aws_stepfunctions.WaitDefFilterNextablesParams]] = pydantic.Field(None, description='Return only the states that allow chaining from an array of states.')
+    find_reachable_end_states: typing.Optional[list[models.aws_stepfunctions.WaitDefFindReachableEndStatesParams]] = pydantic.Field(None, description='Find the set of end states states reachable through transitions from the given start state.')
+    find_reachable_states: typing.Optional[list[models.aws_stepfunctions.WaitDefFindReachableStatesParams]] = pydantic.Field(None, description="Find the set of states reachable through transitions from the given start state.\nThis does not retrieve states from within sub-graphs, such as states within a Parallel state's branch.")
+    next: typing.Optional[list[models.aws_stepfunctions.WaitDefNextParams]] = pydantic.Field(None, description='Continue normal execution with the given state.')
+    prefix_states: typing.Optional[list[models.aws_stepfunctions.WaitDefPrefixStatesParams]] = pydantic.Field(None, description='Add a prefix to the stateId of all States found in a construct tree.')
 
 class WaitDefAddPrefixParams(pydantic.BaseModel):
     x: str = pydantic.Field(..., description='-')
@@ -2420,7 +2474,7 @@ class LogOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LogOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.LogOptionsDefConfig] = pydantic.Field(None)
 
 
 class LogOptionsDefConfig(pydantic.BaseModel):
@@ -2677,27 +2731,27 @@ class CfnActivityDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnActivityDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.CfnActivityDefConfig] = pydantic.Field(None)
 
 
 class CfnActivityDefConfig(pydantic.BaseModel):
-    TagsEntryProperty: typing.Optional[list[CfnActivityDefTagsentrypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnActivityDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnActivityDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnActivityDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnActivityDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnActivityDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnActivityDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnActivityDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    TagsEntryProperty: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefTagsentrypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnActivityDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnActivityDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnActivityDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnActivityDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnActivityDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnActivityDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_stepfunctions.CfnActivityDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnActivityDefTagsentrypropertyParams(pydantic.BaseModel):
@@ -2790,32 +2844,32 @@ class CfnStateMachineDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStateMachineDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.CfnStateMachineDefConfig] = pydantic.Field(None)
 
 
 class CfnStateMachineDefConfig(pydantic.BaseModel):
-    CloudWatchLogsLogGroupProperty: typing.Optional[list[CfnStateMachineDefCloudwatchlogsloggrouppropertyParams]] = pydantic.Field(None, description='')
-    LogDestinationProperty: typing.Optional[list[CfnStateMachineDefLogdestinationpropertyParams]] = pydantic.Field(None, description='')
-    LoggingConfigurationProperty: typing.Optional[list[CfnStateMachineDefLoggingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    S3LocationProperty: typing.Optional[list[CfnStateMachineDefS3LocationpropertyParams]] = pydantic.Field(None, description='')
-    TagsEntryProperty: typing.Optional[list[CfnStateMachineDefTagsentrypropertyParams]] = pydantic.Field(None, description='')
-    TracingConfigurationProperty: typing.Optional[list[CfnStateMachineDefTracingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnStateMachineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStateMachineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStateMachineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStateMachineDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStateMachineDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStateMachineDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStateMachineDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CloudWatchLogsLogGroupProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefCloudwatchlogsloggrouppropertyParams]] = pydantic.Field(None, description='')
+    LogDestinationProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefLogdestinationpropertyParams]] = pydantic.Field(None, description='')
+    LoggingConfigurationProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefLoggingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    S3LocationProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefS3LocationpropertyParams]] = pydantic.Field(None, description='')
+    TagsEntryProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefTagsentrypropertyParams]] = pydantic.Field(None, description='')
+    TracingConfigurationProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefTracingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStateMachineDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStateMachineDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStateMachineDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStateMachineDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStateMachineDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStateMachineDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnStateMachineDefCloudwatchlogsloggrouppropertyParams(pydantic.BaseModel):
@@ -2926,28 +2980,28 @@ class CfnStateMachineAliasDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStateMachineAliasDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.CfnStateMachineAliasDefConfig] = pydantic.Field(None)
 
 
 class CfnStateMachineAliasDefConfig(pydantic.BaseModel):
-    DeploymentPreferenceProperty: typing.Optional[list[CfnStateMachineAliasDefDeploymentpreferencepropertyParams]] = pydantic.Field(None, description='')
-    RoutingConfigurationVersionProperty: typing.Optional[list[CfnStateMachineAliasDefRoutingconfigurationversionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnStateMachineAliasDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStateMachineAliasDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStateMachineAliasDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStateMachineAliasDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStateMachineAliasDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStateMachineAliasDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStateMachineAliasDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DeploymentPreferenceProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefDeploymentpreferencepropertyParams]] = pydantic.Field(None, description='')
+    RoutingConfigurationVersionProperty: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefRoutingconfigurationversionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStateMachineAliasDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStateMachineAliasDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStateMachineAliasDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStateMachineAliasDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStateMachineAliasDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStateMachineAliasDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineAliasDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnStateMachineAliasDefDeploymentpreferencepropertyParams(pydantic.BaseModel):
     state_machine_version_arn: str = pydantic.Field(..., description='')
@@ -3040,26 +3094,26 @@ class CfnStateMachineVersionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStateMachineVersionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_stepfunctions.CfnStateMachineVersionDefConfig] = pydantic.Field(None)
 
 
 class CfnStateMachineVersionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnStateMachineVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStateMachineVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStateMachineVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStateMachineVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStateMachineVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStateMachineVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStateMachineVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStateMachineVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStateMachineVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStateMachineVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStateMachineVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStateMachineVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStateMachineVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_stepfunctions.CfnStateMachineVersionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnStateMachineVersionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3193,75 +3247,75 @@ class CfnStateMachineVersionPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Chain: typing.Optional[dict[str, ChainDef]] = pydantic.Field(None)
-    ChainDefinitionBody: typing.Optional[dict[str, ChainDefinitionBodyDef]] = pydantic.Field(None)
-    Condition: typing.Optional[dict[str, ConditionDef]] = pydantic.Field(None)
-    DefinitionBody: typing.Optional[dict[str, DefinitionBodyDef]] = pydantic.Field(None)
-    Errors: typing.Optional[dict[str, ErrorsDef]] = pydantic.Field(None)
-    FieldUtils: typing.Optional[dict[str, FieldUtilsDef]] = pydantic.Field(None)
-    FileDefinitionBody: typing.Optional[dict[str, FileDefinitionBodyDef]] = pydantic.Field(None)
-    JsonPath: typing.Optional[dict[str, JsonPathDef]] = pydantic.Field(None)
-    Result: typing.Optional[dict[str, ResultDef]] = pydantic.Field(None)
-    State: typing.Optional[dict[str, StateDef]] = pydantic.Field(None)
-    StateGraph: typing.Optional[dict[str, StateGraphDef]] = pydantic.Field(None)
-    StateMachineFragment: typing.Optional[dict[str, StateMachineFragmentDef]] = pydantic.Field(None)
-    StateTransitionMetric: typing.Optional[dict[str, StateTransitionMetricDef]] = pydantic.Field(None)
-    StringDefinitionBody: typing.Optional[dict[str, StringDefinitionBodyDef]] = pydantic.Field(None)
-    TaskInput: typing.Optional[dict[str, TaskInputDef]] = pydantic.Field(None)
-    TaskRole: typing.Optional[dict[str, TaskRoleDef]] = pydantic.Field(None)
-    TaskStateBase: typing.Optional[dict[str, TaskStateBaseDef]] = pydantic.Field(None)
-    Timeout: typing.Optional[dict[str, TimeoutDef]] = pydantic.Field(None)
-    WaitTime: typing.Optional[dict[str, WaitTimeDef]] = pydantic.Field(None)
-    Activity: typing.Optional[dict[str, ActivityDef]] = pydantic.Field(None)
-    Choice: typing.Optional[dict[str, ChoiceDef]] = pydantic.Field(None)
-    CustomState: typing.Optional[dict[str, CustomStateDef]] = pydantic.Field(None)
-    Fail: typing.Optional[dict[str, FailDef]] = pydantic.Field(None)
-    Map: typing.Optional[dict[str, MapDef]] = pydantic.Field(None)
-    Parallel: typing.Optional[dict[str, ParallelDef]] = pydantic.Field(None)
-    Pass: typing.Optional[dict[str, PassDef]] = pydantic.Field(None)
-    StateMachine: typing.Optional[dict[str, StateMachineDef]] = pydantic.Field(None)
-    Succeed: typing.Optional[dict[str, SucceedDef]] = pydantic.Field(None)
-    Wait: typing.Optional[dict[str, WaitDef]] = pydantic.Field(None)
-    ActivityProps: typing.Optional[dict[str, ActivityPropsDef]] = pydantic.Field(None)
-    AfterwardsOptions: typing.Optional[dict[str, AfterwardsOptionsDef]] = pydantic.Field(None)
-    CatchProps: typing.Optional[dict[str, CatchPropsDef]] = pydantic.Field(None)
-    CfnActivity_TagsEntryProperty: typing.Optional[dict[str, CfnActivity_TagsEntryPropertyDef]] = pydantic.Field(None)
-    CfnStateMachine_CloudWatchLogsLogGroupProperty: typing.Optional[dict[str, CfnStateMachine_CloudWatchLogsLogGroupPropertyDef]] = pydantic.Field(None)
-    CfnStateMachine_LogDestinationProperty: typing.Optional[dict[str, CfnStateMachine_LogDestinationPropertyDef]] = pydantic.Field(None)
-    CfnStateMachine_LoggingConfigurationProperty: typing.Optional[dict[str, CfnStateMachine_LoggingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnStateMachine_S3LocationProperty: typing.Optional[dict[str, CfnStateMachine_S3LocationPropertyDef]] = pydantic.Field(None)
-    CfnStateMachine_TagsEntryProperty: typing.Optional[dict[str, CfnStateMachine_TagsEntryPropertyDef]] = pydantic.Field(None)
-    CfnStateMachine_TracingConfigurationProperty: typing.Optional[dict[str, CfnStateMachine_TracingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnStateMachineAlias_DeploymentPreferenceProperty: typing.Optional[dict[str, CfnStateMachineAlias_DeploymentPreferencePropertyDef]] = pydantic.Field(None)
-    CfnStateMachineAlias_RoutingConfigurationVersionProperty: typing.Optional[dict[str, CfnStateMachineAlias_RoutingConfigurationVersionPropertyDef]] = pydantic.Field(None)
-    ChoiceProps: typing.Optional[dict[str, ChoicePropsDef]] = pydantic.Field(None)
-    ChoiceTransitionOptions: typing.Optional[dict[str, ChoiceTransitionOptionsDef]] = pydantic.Field(None)
-    Credentials: typing.Optional[dict[str, CredentialsDef]] = pydantic.Field(None)
-    CustomStateProps: typing.Optional[dict[str, CustomStatePropsDef]] = pydantic.Field(None)
-    DefinitionConfig: typing.Optional[dict[str, DefinitionConfigDef]] = pydantic.Field(None)
-    FailProps: typing.Optional[dict[str, FailPropsDef]] = pydantic.Field(None)
-    FindStateOptions: typing.Optional[dict[str, FindStateOptionsDef]] = pydantic.Field(None)
-    LogOptions: typing.Optional[dict[str, LogOptionsDef]] = pydantic.Field(None)
-    MapProps: typing.Optional[dict[str, MapPropsDef]] = pydantic.Field(None)
-    ParallelProps: typing.Optional[dict[str, ParallelPropsDef]] = pydantic.Field(None)
-    PassProps: typing.Optional[dict[str, PassPropsDef]] = pydantic.Field(None)
-    RetryProps: typing.Optional[dict[str, RetryPropsDef]] = pydantic.Field(None)
-    SingleStateOptions: typing.Optional[dict[str, SingleStateOptionsDef]] = pydantic.Field(None)
-    StateMachineProps: typing.Optional[dict[str, StateMachinePropsDef]] = pydantic.Field(None)
-    StateProps: typing.Optional[dict[str, StatePropsDef]] = pydantic.Field(None)
-    SucceedProps: typing.Optional[dict[str, SucceedPropsDef]] = pydantic.Field(None)
-    TaskMetricsConfig: typing.Optional[dict[str, TaskMetricsConfigDef]] = pydantic.Field(None)
-    TaskStateBaseProps: typing.Optional[dict[str, TaskStateBasePropsDef]] = pydantic.Field(None)
-    WaitProps: typing.Optional[dict[str, WaitPropsDef]] = pydantic.Field(None)
-    CfnActivity: typing.Optional[dict[str, CfnActivityDef]] = pydantic.Field(None)
-    CfnStateMachine: typing.Optional[dict[str, CfnStateMachineDef]] = pydantic.Field(None)
-    CfnStateMachineAlias: typing.Optional[dict[str, CfnStateMachineAliasDef]] = pydantic.Field(None)
-    CfnStateMachineVersion: typing.Optional[dict[str, CfnStateMachineVersionDef]] = pydantic.Field(None)
-    CfnActivityProps: typing.Optional[dict[str, CfnActivityPropsDef]] = pydantic.Field(None)
-    CfnStateMachineAliasProps: typing.Optional[dict[str, CfnStateMachineAliasPropsDef]] = pydantic.Field(None)
-    CfnStateMachineProps: typing.Optional[dict[str, CfnStateMachinePropsDef]] = pydantic.Field(None)
-    CfnStateMachineVersionProps: typing.Optional[dict[str, CfnStateMachineVersionPropsDef]] = pydantic.Field(None)
+    Chain: typing.Optional[dict[str, models.aws_stepfunctions.ChainDef]] = pydantic.Field(None)
+    ChainDefinitionBody: typing.Optional[dict[str, models.aws_stepfunctions.ChainDefinitionBodyDef]] = pydantic.Field(None)
+    Condition: typing.Optional[dict[str, models.aws_stepfunctions.ConditionDef]] = pydantic.Field(None)
+    DefinitionBody: typing.Optional[dict[str, models.aws_stepfunctions.DefinitionBodyDef]] = pydantic.Field(None)
+    Errors: typing.Optional[dict[str, models.aws_stepfunctions.ErrorsDef]] = pydantic.Field(None)
+    FieldUtils: typing.Optional[dict[str, models.aws_stepfunctions.FieldUtilsDef]] = pydantic.Field(None)
+    FileDefinitionBody: typing.Optional[dict[str, models.aws_stepfunctions.FileDefinitionBodyDef]] = pydantic.Field(None)
+    JsonPath: typing.Optional[dict[str, models.aws_stepfunctions.JsonPathDef]] = pydantic.Field(None)
+    Result: typing.Optional[dict[str, models.aws_stepfunctions.ResultDef]] = pydantic.Field(None)
+    State: typing.Optional[dict[str, models.aws_stepfunctions.StateDef]] = pydantic.Field(None)
+    StateGraph: typing.Optional[dict[str, models.aws_stepfunctions.StateGraphDef]] = pydantic.Field(None)
+    StateMachineFragment: typing.Optional[dict[str, models.aws_stepfunctions.StateMachineFragmentDef]] = pydantic.Field(None)
+    StateTransitionMetric: typing.Optional[dict[str, models.aws_stepfunctions.StateTransitionMetricDef]] = pydantic.Field(None)
+    StringDefinitionBody: typing.Optional[dict[str, models.aws_stepfunctions.StringDefinitionBodyDef]] = pydantic.Field(None)
+    TaskInput: typing.Optional[dict[str, models.aws_stepfunctions.TaskInputDef]] = pydantic.Field(None)
+    TaskRole: typing.Optional[dict[str, models.aws_stepfunctions.TaskRoleDef]] = pydantic.Field(None)
+    TaskStateBase: typing.Optional[dict[str, models.aws_stepfunctions.TaskStateBaseDef]] = pydantic.Field(None)
+    Timeout: typing.Optional[dict[str, models.aws_stepfunctions.TimeoutDef]] = pydantic.Field(None)
+    WaitTime: typing.Optional[dict[str, models.aws_stepfunctions.WaitTimeDef]] = pydantic.Field(None)
+    Activity: typing.Optional[dict[str, models.aws_stepfunctions.ActivityDef]] = pydantic.Field(None)
+    Choice: typing.Optional[dict[str, models.aws_stepfunctions.ChoiceDef]] = pydantic.Field(None)
+    CustomState: typing.Optional[dict[str, models.aws_stepfunctions.CustomStateDef]] = pydantic.Field(None)
+    Fail: typing.Optional[dict[str, models.aws_stepfunctions.FailDef]] = pydantic.Field(None)
+    Map: typing.Optional[dict[str, models.aws_stepfunctions.MapDef]] = pydantic.Field(None)
+    Parallel: typing.Optional[dict[str, models.aws_stepfunctions.ParallelDef]] = pydantic.Field(None)
+    Pass: typing.Optional[dict[str, models.aws_stepfunctions.PassDef]] = pydantic.Field(None)
+    StateMachine: typing.Optional[dict[str, models.aws_stepfunctions.StateMachineDef]] = pydantic.Field(None)
+    Succeed: typing.Optional[dict[str, models.aws_stepfunctions.SucceedDef]] = pydantic.Field(None)
+    Wait: typing.Optional[dict[str, models.aws_stepfunctions.WaitDef]] = pydantic.Field(None)
+    ActivityProps: typing.Optional[dict[str, models.aws_stepfunctions.ActivityPropsDef]] = pydantic.Field(None)
+    AfterwardsOptions: typing.Optional[dict[str, models.aws_stepfunctions.AfterwardsOptionsDef]] = pydantic.Field(None)
+    CatchProps: typing.Optional[dict[str, models.aws_stepfunctions.CatchPropsDef]] = pydantic.Field(None)
+    CfnActivity_TagsEntryProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnActivity_TagsEntryPropertyDef]] = pydantic.Field(None)
+    CfnStateMachine_CloudWatchLogsLogGroupProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachine_CloudWatchLogsLogGroupPropertyDef]] = pydantic.Field(None)
+    CfnStateMachine_LogDestinationProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachine_LogDestinationPropertyDef]] = pydantic.Field(None)
+    CfnStateMachine_LoggingConfigurationProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachine_LoggingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnStateMachine_S3LocationProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachine_S3LocationPropertyDef]] = pydantic.Field(None)
+    CfnStateMachine_TagsEntryProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachine_TagsEntryPropertyDef]] = pydantic.Field(None)
+    CfnStateMachine_TracingConfigurationProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachine_TracingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnStateMachineAlias_DeploymentPreferenceProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineAlias_DeploymentPreferencePropertyDef]] = pydantic.Field(None)
+    CfnStateMachineAlias_RoutingConfigurationVersionProperty: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineAlias_RoutingConfigurationVersionPropertyDef]] = pydantic.Field(None)
+    ChoiceProps: typing.Optional[dict[str, models.aws_stepfunctions.ChoicePropsDef]] = pydantic.Field(None)
+    ChoiceTransitionOptions: typing.Optional[dict[str, models.aws_stepfunctions.ChoiceTransitionOptionsDef]] = pydantic.Field(None)
+    Credentials: typing.Optional[dict[str, models.aws_stepfunctions.CredentialsDef]] = pydantic.Field(None)
+    CustomStateProps: typing.Optional[dict[str, models.aws_stepfunctions.CustomStatePropsDef]] = pydantic.Field(None)
+    DefinitionConfig: typing.Optional[dict[str, models.aws_stepfunctions.DefinitionConfigDef]] = pydantic.Field(None)
+    FailProps: typing.Optional[dict[str, models.aws_stepfunctions.FailPropsDef]] = pydantic.Field(None)
+    FindStateOptions: typing.Optional[dict[str, models.aws_stepfunctions.FindStateOptionsDef]] = pydantic.Field(None)
+    LogOptions: typing.Optional[dict[str, models.aws_stepfunctions.LogOptionsDef]] = pydantic.Field(None)
+    MapProps: typing.Optional[dict[str, models.aws_stepfunctions.MapPropsDef]] = pydantic.Field(None)
+    ParallelProps: typing.Optional[dict[str, models.aws_stepfunctions.ParallelPropsDef]] = pydantic.Field(None)
+    PassProps: typing.Optional[dict[str, models.aws_stepfunctions.PassPropsDef]] = pydantic.Field(None)
+    RetryProps: typing.Optional[dict[str, models.aws_stepfunctions.RetryPropsDef]] = pydantic.Field(None)
+    SingleStateOptions: typing.Optional[dict[str, models.aws_stepfunctions.SingleStateOptionsDef]] = pydantic.Field(None)
+    StateMachineProps: typing.Optional[dict[str, models.aws_stepfunctions.StateMachinePropsDef]] = pydantic.Field(None)
+    StateProps: typing.Optional[dict[str, models.aws_stepfunctions.StatePropsDef]] = pydantic.Field(None)
+    SucceedProps: typing.Optional[dict[str, models.aws_stepfunctions.SucceedPropsDef]] = pydantic.Field(None)
+    TaskMetricsConfig: typing.Optional[dict[str, models.aws_stepfunctions.TaskMetricsConfigDef]] = pydantic.Field(None)
+    TaskStateBaseProps: typing.Optional[dict[str, models.aws_stepfunctions.TaskStateBasePropsDef]] = pydantic.Field(None)
+    WaitProps: typing.Optional[dict[str, models.aws_stepfunctions.WaitPropsDef]] = pydantic.Field(None)
+    CfnActivity: typing.Optional[dict[str, models.aws_stepfunctions.CfnActivityDef]] = pydantic.Field(None)
+    CfnStateMachine: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineDef]] = pydantic.Field(None)
+    CfnStateMachineAlias: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineAliasDef]] = pydantic.Field(None)
+    CfnStateMachineVersion: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineVersionDef]] = pydantic.Field(None)
+    CfnActivityProps: typing.Optional[dict[str, models.aws_stepfunctions.CfnActivityPropsDef]] = pydantic.Field(None)
+    CfnStateMachineAliasProps: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineAliasPropsDef]] = pydantic.Field(None)
+    CfnStateMachineProps: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachinePropsDef]] = pydantic.Field(None)
+    CfnStateMachineVersionProps: typing.Optional[dict[str, models.aws_stepfunctions.CfnStateMachineVersionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

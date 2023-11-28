@@ -16,12 +16,12 @@ class ActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.ActionDefConfig] = pydantic.Field(None)
 
 
 class ActionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
-    on_state_change: typing.Optional[list[ActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
+    bind: typing.Optional[list[models.aws_codepipeline.ActionDefBindParams]] = pydantic.Field(None, description='The callback invoked when this Action is added to a Pipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline.ActionDefOnStateChangeParams]] = pydantic.Field(None, description='Creates an Event that will be triggered whenever the state of this Action changes.')
 
 class ActionDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -56,15 +56,15 @@ class ArtifactDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ArtifactDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.ArtifactDefConfig] = pydantic.Field(None)
 
 
 class ArtifactDefConfig(pydantic.BaseModel):
-    artifact: typing.Optional[list[ArtifactDefArtifactParams]] = pydantic.Field(None, description='A static factory method used to create instances of the Artifact class.\nMainly meant to be used from ``decdk``.')
-    at_path: typing.Optional[list[ArtifactDefAtPathParams]] = pydantic.Field(None, description='Returns an ArtifactPath for a file within this artifact.\nCfnOutput is in the form "::"')
-    get_metadata: typing.Optional[list[ArtifactDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve the metadata stored in this artifact under the given key.\nIf there is no metadata stored under the given key,\nnull will be returned.')
-    get_param: typing.Optional[list[ArtifactDefGetParamParams]] = pydantic.Field(None, description='Returns a token for a value inside a JSON file within this artifact.')
-    set_metadata: typing.Optional[list[ArtifactDefSetMetadataParams]] = pydantic.Field(None, description='Add arbitrary extra payload to the artifact under a given key.\nThis can be used by CodePipeline actions to communicate data between themselves.\nIf metadata was already present under the given key,\nit will be overwritten with the new value.')
+    artifact: typing.Optional[list[models.aws_codepipeline.ArtifactDefArtifactParams]] = pydantic.Field(None, description='A static factory method used to create instances of the Artifact class.\nMainly meant to be used from ``decdk``.')
+    at_path: typing.Optional[list[models.aws_codepipeline.ArtifactDefAtPathParams]] = pydantic.Field(None, description='Returns an ArtifactPath for a file within this artifact.\nCfnOutput is in the form "::"')
+    get_metadata: typing.Optional[list[models.aws_codepipeline.ArtifactDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve the metadata stored in this artifact under the given key.\nIf there is no metadata stored under the given key,\nnull will be returned.')
+    get_param: typing.Optional[list[models.aws_codepipeline.ArtifactDefGetParamParams]] = pydantic.Field(None, description='Returns a token for a value inside a JSON file within this artifact.')
+    set_metadata: typing.Optional[list[models.aws_codepipeline.ArtifactDefSetMetadataParams]] = pydantic.Field(None, description='Add arbitrary extra payload to the artifact under a given key.\nThis can be used by CodePipeline actions to communicate data between themselves.\nIf metadata was already present under the given key,\nit will be overwritten with the new value.')
 
 class ArtifactDefArtifactParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='the (required) name of the Artifact.')
@@ -103,11 +103,11 @@ class ArtifactPathDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ArtifactPathDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.ArtifactPathDefConfig] = pydantic.Field(None)
 
 
 class ArtifactPathDefConfig(pydantic.BaseModel):
-    artifact_path: typing.Optional[list[ArtifactPathDefArtifactPathParams]] = pydantic.Field(None, description='')
+    artifact_path: typing.Optional[list[models.aws_codepipeline.ArtifactPathDefArtifactPathParams]] = pydantic.Field(None, description='')
     artifact_config: typing.Optional[models.aws_codepipeline.ArtifactDefConfig] = pydantic.Field(None)
 
 class ArtifactPathDefArtifactPathParams(pydantic.BaseModel):
@@ -167,23 +167,23 @@ class PipelineDef(BaseConstruct):
     ...
 
 
-    from_pipeline_arn: typing.Optional[PipelineDefFromPipelineArnParams] = pydantic.Field(None, description='Import a pipeline into this app.')
-    resource_config: typing.Optional[PipelineDefConfig] = pydantic.Field(None)
+    from_pipeline_arn: typing.Optional[models.aws_codepipeline.PipelineDefFromPipelineArnParams] = pydantic.Field(None, description='Import a pipeline into this app.')
+    resource_config: typing.Optional[models.aws_codepipeline.PipelineDefConfig] = pydantic.Field(None)
 
 
 class PipelineDefConfig(pydantic.BaseModel):
-    add_stage: typing.Optional[list[PipelineDefAddStageParams]] = pydantic.Field(None, description='Creates a new Stage, and adds it to this Pipeline.')
-    add_to_role_policy: typing.Optional[list[PipelineDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the pipeline role.')
+    add_stage: typing.Optional[list[models.aws_codepipeline.PipelineDefAddStageParams]] = pydantic.Field(None, description='Creates a new Stage, and adds it to this Pipeline.')
+    add_to_role_policy: typing.Optional[list[models.aws_codepipeline.PipelineDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the pipeline role.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_source: typing.Optional[list[PipelineDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
-    notify_on: typing.Optional[list[PipelineDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule triggered when the pipeline events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnExecutionStateChange``, ``notifyOnAnyStageStateChange``,\n``notifyOnAnyActionStateChange`` and ``notifyOnAnyManualApprovalStateChange``\nto define rules for these specific event emitted.')
-    notify_on_any_action_state_change: typing.Optional[list[PipelineDefNotifyOnAnyActionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Action execution" events emitted from this pipeline.')
-    notify_on_any_manual_approval_state_change: typing.Optional[list[PipelineDefNotifyOnAnyManualApprovalStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Manual approval" events emitted from this pipeline.')
-    notify_on_any_stage_state_change: typing.Optional[list[PipelineDefNotifyOnAnyStageStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Stage execution" events emitted from this pipeline.')
-    notify_on_execution_state_change: typing.Optional[list[PipelineDefNotifyOnExecutionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Pipeline execution" events emitted from this pipeline.')
-    on_event: typing.Optional[list[PipelineDefOnEventParams]] = pydantic.Field(None, description='Defines an event rule triggered by this CodePipeline.')
-    on_state_change: typing.Optional[list[PipelineDefOnStateChangeParams]] = pydantic.Field(None, description='Defines an event rule triggered by the "CodePipeline Pipeline Execution State Change" event emitted from this pipeline.')
-    stage: typing.Optional[list[PipelineDefStageParams]] = pydantic.Field(None, description="Access one of the pipeline's stages by stage name.")
+    bind_as_notification_rule_source: typing.Optional[list[models.aws_codepipeline.PipelineDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
+    notify_on: typing.Optional[list[models.aws_codepipeline.PipelineDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule triggered when the pipeline events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnExecutionStateChange``, ``notifyOnAnyStageStateChange``,\n``notifyOnAnyActionStateChange`` and ``notifyOnAnyManualApprovalStateChange``\nto define rules for these specific event emitted.')
+    notify_on_any_action_state_change: typing.Optional[list[models.aws_codepipeline.PipelineDefNotifyOnAnyActionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Action execution" events emitted from this pipeline.')
+    notify_on_any_manual_approval_state_change: typing.Optional[list[models.aws_codepipeline.PipelineDefNotifyOnAnyManualApprovalStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Manual approval" events emitted from this pipeline.')
+    notify_on_any_stage_state_change: typing.Optional[list[models.aws_codepipeline.PipelineDefNotifyOnAnyStageStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Stage execution" events emitted from this pipeline.')
+    notify_on_execution_state_change: typing.Optional[list[models.aws_codepipeline.PipelineDefNotifyOnExecutionStateChangeParams]] = pydantic.Field(None, description='Define an notification rule triggered by the set of the "Pipeline execution" events emitted from this pipeline.')
+    on_event: typing.Optional[list[models.aws_codepipeline.PipelineDefOnEventParams]] = pydantic.Field(None, description='Defines an event rule triggered by this CodePipeline.')
+    on_state_change: typing.Optional[list[models.aws_codepipeline.PipelineDefOnStateChangeParams]] = pydantic.Field(None, description='Defines an event rule triggered by the "CodePipeline Pipeline Execution State Change" event emitted from this pipeline.')
+    stage: typing.Optional[list[models.aws_codepipeline.PipelineDefStageParams]] = pydantic.Field(None, description="Access one of the pipeline's stages by stage name.")
     artifact_bucket_config: typing.Optional[models._interface_methods.AwsS3IBucketDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
 
@@ -205,7 +205,6 @@ class PipelineDefApplyRemovalPolicyParams(pydantic.BaseModel):
     ...
 
 class PipelineDefBindAsNotificationRuleSourceParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class PipelineDefFromPipelineArnParams(pydantic.BaseModel):
@@ -314,7 +313,7 @@ class ActionBindOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ActionBindOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.ActionBindOptionsDefConfig] = pydantic.Field(None)
 
 
 class ActionBindOptionsDefConfig(pydantic.BaseModel):
@@ -629,7 +628,7 @@ class CrossRegionSupportDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CrossRegionSupportDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.CrossRegionSupportDefConfig] = pydantic.Field(None)
 
 
 class CrossRegionSupportDefConfig(pydantic.BaseModel):
@@ -792,29 +791,29 @@ class CfnCustomActionTypeDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCustomActionTypeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.CfnCustomActionTypeDefConfig] = pydantic.Field(None)
 
 
 class CfnCustomActionTypeDefConfig(pydantic.BaseModel):
-    ArtifactDetailsProperty: typing.Optional[list[CfnCustomActionTypeDefArtifactdetailspropertyParams]] = pydantic.Field(None, description='')
-    ConfigurationPropertiesProperty: typing.Optional[list[CfnCustomActionTypeDefConfigurationpropertiespropertyParams]] = pydantic.Field(None, description='')
-    SettingsProperty: typing.Optional[list[CfnCustomActionTypeDefSettingspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCustomActionTypeDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCustomActionTypeDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCustomActionTypeDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCustomActionTypeDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCustomActionTypeDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCustomActionTypeDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCustomActionTypeDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ArtifactDetailsProperty: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefArtifactdetailspropertyParams]] = pydantic.Field(None, description='')
+    ConfigurationPropertiesProperty: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefConfigurationpropertiespropertyParams]] = pydantic.Field(None, description='')
+    SettingsProperty: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefSettingspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCustomActionTypeDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCustomActionTypeDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCustomActionTypeDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCustomActionTypeDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCustomActionTypeDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCustomActionTypeDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codepipeline.CfnCustomActionTypeDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCustomActionTypeDefArtifactdetailspropertyParams(pydantic.BaseModel):
@@ -922,36 +921,36 @@ class CfnPipelineDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPipelineDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.CfnPipelineDefConfig] = pydantic.Field(None)
 
 
 class CfnPipelineDefConfig(pydantic.BaseModel):
-    ActionDeclarationProperty: typing.Optional[list[CfnPipelineDefActiondeclarationpropertyParams]] = pydantic.Field(None, description='')
-    ActionTypeIdProperty: typing.Optional[list[CfnPipelineDefActiontypeidpropertyParams]] = pydantic.Field(None, description='')
-    ArtifactStoreMapProperty: typing.Optional[list[CfnPipelineDefArtifactstoremappropertyParams]] = pydantic.Field(None, description='')
-    ArtifactStoreProperty: typing.Optional[list[CfnPipelineDefArtifactstorepropertyParams]] = pydantic.Field(None, description='')
-    BlockerDeclarationProperty: typing.Optional[list[CfnPipelineDefBlockerdeclarationpropertyParams]] = pydantic.Field(None, description='')
-    EncryptionKeyProperty: typing.Optional[list[CfnPipelineDefEncryptionkeypropertyParams]] = pydantic.Field(None, description='')
-    InputArtifactProperty: typing.Optional[list[CfnPipelineDefInputartifactpropertyParams]] = pydantic.Field(None, description='')
-    OutputArtifactProperty: typing.Optional[list[CfnPipelineDefOutputartifactpropertyParams]] = pydantic.Field(None, description='')
-    StageDeclarationProperty: typing.Optional[list[CfnPipelineDefStagedeclarationpropertyParams]] = pydantic.Field(None, description='')
-    StageTransitionProperty: typing.Optional[list[CfnPipelineDefStagetransitionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnPipelineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPipelineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPipelineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPipelineDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPipelineDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPipelineDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPipelineDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ActionDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefActiondeclarationpropertyParams]] = pydantic.Field(None, description='')
+    ActionTypeIdProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefActiontypeidpropertyParams]] = pydantic.Field(None, description='')
+    ArtifactStoreMapProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefArtifactstoremappropertyParams]] = pydantic.Field(None, description='')
+    ArtifactStoreProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefArtifactstorepropertyParams]] = pydantic.Field(None, description='')
+    BlockerDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefBlockerdeclarationpropertyParams]] = pydantic.Field(None, description='')
+    EncryptionKeyProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefEncryptionkeypropertyParams]] = pydantic.Field(None, description='')
+    InputArtifactProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefInputartifactpropertyParams]] = pydantic.Field(None, description='')
+    OutputArtifactProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefOutputartifactpropertyParams]] = pydantic.Field(None, description='')
+    StageDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefStagedeclarationpropertyParams]] = pydantic.Field(None, description='')
+    StageTransitionProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefStagetransitionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPipelineDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPipelineDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPipelineDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPipelineDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPipelineDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPipelineDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnPipelineDefActiondeclarationpropertyParams(pydantic.BaseModel):
@@ -1096,28 +1095,28 @@ class CfnWebhookDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnWebhookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codepipeline.CfnWebhookDefConfig] = pydantic.Field(None)
 
 
 class CfnWebhookDefConfig(pydantic.BaseModel):
-    WebhookAuthConfigurationProperty: typing.Optional[list[CfnWebhookDefWebhookauthconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    WebhookFilterRuleProperty: typing.Optional[list[CfnWebhookDefWebhookfilterrulepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnWebhookDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnWebhookDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnWebhookDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnWebhookDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnWebhookDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnWebhookDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnWebhookDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    WebhookAuthConfigurationProperty: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefWebhookauthconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    WebhookFilterRuleProperty: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefWebhookfilterrulepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnWebhookDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnWebhookDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnWebhookDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnWebhookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnWebhookDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnWebhookDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codepipeline.CfnWebhookDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnWebhookDefWebhookauthconfigurationpropertyParams(pydantic.BaseModel):
     allowed_ip_range: typing.Optional[str] = pydantic.Field(None, description='')
@@ -1254,48 +1253,48 @@ class CfnWebhookPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Action: typing.Optional[dict[str, ActionDef]] = pydantic.Field(None)
-    Artifact: typing.Optional[dict[str, ArtifactDef]] = pydantic.Field(None)
-    ArtifactPath: typing.Optional[dict[str, ArtifactPathDef]] = pydantic.Field(None)
-    GlobalVariables: typing.Optional[dict[str, GlobalVariablesDef]] = pydantic.Field(None)
-    CustomActionRegistration: typing.Optional[dict[str, CustomActionRegistrationDef]] = pydantic.Field(None)
-    Pipeline: typing.Optional[dict[str, PipelineDef]] = pydantic.Field(None)
-    ActionArtifactBounds: typing.Optional[dict[str, ActionArtifactBoundsDef]] = pydantic.Field(None)
-    ActionBindOptions: typing.Optional[dict[str, ActionBindOptionsDef]] = pydantic.Field(None)
-    ActionConfig: typing.Optional[dict[str, ActionConfigDef]] = pydantic.Field(None)
-    ActionProperties: typing.Optional[dict[str, ActionPropertiesDef]] = pydantic.Field(None)
-    CfnCustomActionType_ArtifactDetailsProperty: typing.Optional[dict[str, CfnCustomActionType_ArtifactDetailsPropertyDef]] = pydantic.Field(None)
-    CfnCustomActionType_ConfigurationPropertiesProperty: typing.Optional[dict[str, CfnCustomActionType_ConfigurationPropertiesPropertyDef]] = pydantic.Field(None)
-    CfnCustomActionType_SettingsProperty: typing.Optional[dict[str, CfnCustomActionType_SettingsPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ActionDeclarationProperty: typing.Optional[dict[str, CfnPipeline_ActionDeclarationPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ActionTypeIdProperty: typing.Optional[dict[str, CfnPipeline_ActionTypeIdPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ArtifactStoreMapProperty: typing.Optional[dict[str, CfnPipeline_ArtifactStoreMapPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_ArtifactStoreProperty: typing.Optional[dict[str, CfnPipeline_ArtifactStorePropertyDef]] = pydantic.Field(None)
-    CfnPipeline_BlockerDeclarationProperty: typing.Optional[dict[str, CfnPipeline_BlockerDeclarationPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_EncryptionKeyProperty: typing.Optional[dict[str, CfnPipeline_EncryptionKeyPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_InputArtifactProperty: typing.Optional[dict[str, CfnPipeline_InputArtifactPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_OutputArtifactProperty: typing.Optional[dict[str, CfnPipeline_OutputArtifactPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_StageDeclarationProperty: typing.Optional[dict[str, CfnPipeline_StageDeclarationPropertyDef]] = pydantic.Field(None)
-    CfnPipeline_StageTransitionProperty: typing.Optional[dict[str, CfnPipeline_StageTransitionPropertyDef]] = pydantic.Field(None)
-    CfnWebhook_WebhookAuthConfigurationProperty: typing.Optional[dict[str, CfnWebhook_WebhookAuthConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnWebhook_WebhookFilterRuleProperty: typing.Optional[dict[str, CfnWebhook_WebhookFilterRulePropertyDef]] = pydantic.Field(None)
-    CommonActionProps: typing.Optional[dict[str, CommonActionPropsDef]] = pydantic.Field(None)
-    CommonAwsActionProps: typing.Optional[dict[str, CommonAwsActionPropsDef]] = pydantic.Field(None)
-    CrossRegionSupport: typing.Optional[dict[str, CrossRegionSupportDef]] = pydantic.Field(None)
-    CustomActionProperty: typing.Optional[dict[str, CustomActionPropertyDef]] = pydantic.Field(None)
-    CustomActionRegistrationProps: typing.Optional[dict[str, CustomActionRegistrationPropsDef]] = pydantic.Field(None)
-    PipelineNotifyOnOptions: typing.Optional[dict[str, PipelineNotifyOnOptionsDef]] = pydantic.Field(None)
-    PipelineProps: typing.Optional[dict[str, PipelinePropsDef]] = pydantic.Field(None)
-    StageOptions: typing.Optional[dict[str, StageOptionsDef]] = pydantic.Field(None)
-    StagePlacement: typing.Optional[dict[str, StagePlacementDef]] = pydantic.Field(None)
-    StageProps: typing.Optional[dict[str, StagePropsDef]] = pydantic.Field(None)
-    CfnCustomActionType: typing.Optional[dict[str, CfnCustomActionTypeDef]] = pydantic.Field(None)
-    CfnPipeline: typing.Optional[dict[str, CfnPipelineDef]] = pydantic.Field(None)
-    CfnWebhook: typing.Optional[dict[str, CfnWebhookDef]] = pydantic.Field(None)
-    CfnCustomActionTypeProps: typing.Optional[dict[str, CfnCustomActionTypePropsDef]] = pydantic.Field(None)
-    CfnPipelineProps: typing.Optional[dict[str, CfnPipelinePropsDef]] = pydantic.Field(None)
-    CfnWebhookProps: typing.Optional[dict[str, CfnWebhookPropsDef]] = pydantic.Field(None)
+    Action: typing.Optional[dict[str, models.aws_codepipeline.ActionDef]] = pydantic.Field(None)
+    Artifact: typing.Optional[dict[str, models.aws_codepipeline.ArtifactDef]] = pydantic.Field(None)
+    ArtifactPath: typing.Optional[dict[str, models.aws_codepipeline.ArtifactPathDef]] = pydantic.Field(None)
+    GlobalVariables: typing.Optional[dict[str, models.aws_codepipeline.GlobalVariablesDef]] = pydantic.Field(None)
+    CustomActionRegistration: typing.Optional[dict[str, models.aws_codepipeline.CustomActionRegistrationDef]] = pydantic.Field(None)
+    Pipeline: typing.Optional[dict[str, models.aws_codepipeline.PipelineDef]] = pydantic.Field(None)
+    ActionArtifactBounds: typing.Optional[dict[str, models.aws_codepipeline.ActionArtifactBoundsDef]] = pydantic.Field(None)
+    ActionBindOptions: typing.Optional[dict[str, models.aws_codepipeline.ActionBindOptionsDef]] = pydantic.Field(None)
+    ActionConfig: typing.Optional[dict[str, models.aws_codepipeline.ActionConfigDef]] = pydantic.Field(None)
+    ActionProperties: typing.Optional[dict[str, models.aws_codepipeline.ActionPropertiesDef]] = pydantic.Field(None)
+    CfnCustomActionType_ArtifactDetailsProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnCustomActionType_ArtifactDetailsPropertyDef]] = pydantic.Field(None)
+    CfnCustomActionType_ConfigurationPropertiesProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnCustomActionType_ConfigurationPropertiesPropertyDef]] = pydantic.Field(None)
+    CfnCustomActionType_SettingsProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnCustomActionType_SettingsPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ActionDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_ActionDeclarationPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ActionTypeIdProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_ActionTypeIdPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ArtifactStoreMapProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_ArtifactStoreMapPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_ArtifactStoreProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_ArtifactStorePropertyDef]] = pydantic.Field(None)
+    CfnPipeline_BlockerDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_BlockerDeclarationPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_EncryptionKeyProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_EncryptionKeyPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_InputArtifactProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_InputArtifactPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_OutputArtifactProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_OutputArtifactPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_StageDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_StageDeclarationPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_StageTransitionProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_StageTransitionPropertyDef]] = pydantic.Field(None)
+    CfnWebhook_WebhookAuthConfigurationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhook_WebhookAuthConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnWebhook_WebhookFilterRuleProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhook_WebhookFilterRulePropertyDef]] = pydantic.Field(None)
+    CommonActionProps: typing.Optional[dict[str, models.aws_codepipeline.CommonActionPropsDef]] = pydantic.Field(None)
+    CommonAwsActionProps: typing.Optional[dict[str, models.aws_codepipeline.CommonAwsActionPropsDef]] = pydantic.Field(None)
+    CrossRegionSupport: typing.Optional[dict[str, models.aws_codepipeline.CrossRegionSupportDef]] = pydantic.Field(None)
+    CustomActionProperty: typing.Optional[dict[str, models.aws_codepipeline.CustomActionPropertyDef]] = pydantic.Field(None)
+    CustomActionRegistrationProps: typing.Optional[dict[str, models.aws_codepipeline.CustomActionRegistrationPropsDef]] = pydantic.Field(None)
+    PipelineNotifyOnOptions: typing.Optional[dict[str, models.aws_codepipeline.PipelineNotifyOnOptionsDef]] = pydantic.Field(None)
+    PipelineProps: typing.Optional[dict[str, models.aws_codepipeline.PipelinePropsDef]] = pydantic.Field(None)
+    StageOptions: typing.Optional[dict[str, models.aws_codepipeline.StageOptionsDef]] = pydantic.Field(None)
+    StagePlacement: typing.Optional[dict[str, models.aws_codepipeline.StagePlacementDef]] = pydantic.Field(None)
+    StageProps: typing.Optional[dict[str, models.aws_codepipeline.StagePropsDef]] = pydantic.Field(None)
+    CfnCustomActionType: typing.Optional[dict[str, models.aws_codepipeline.CfnCustomActionTypeDef]] = pydantic.Field(None)
+    CfnPipeline: typing.Optional[dict[str, models.aws_codepipeline.CfnPipelineDef]] = pydantic.Field(None)
+    CfnWebhook: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhookDef]] = pydantic.Field(None)
+    CfnCustomActionTypeProps: typing.Optional[dict[str, models.aws_codepipeline.CfnCustomActionTypePropsDef]] = pydantic.Field(None)
+    CfnPipelineProps: typing.Optional[dict[str, models.aws_codepipeline.CfnPipelinePropsDef]] = pydantic.Field(None)
+    CfnWebhookProps: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhookPropsDef]] = pydantic.Field(None)
     ...
+
+import models

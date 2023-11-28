@@ -16,13 +16,13 @@ class NodeProxyAgentLayerDef(BaseClass):
     ...
 
 
-    from_layer_version_arn: typing.Optional[NodeProxyAgentLayerDefFromLayerVersionArnParams] = pydantic.Field(None, description='Imports a layer version by ARN.\nAssumes it is compatible with all Lambda runtimes.')
-    from_layer_version_attributes: typing.Optional[NodeProxyAgentLayerDefFromLayerVersionAttributesParams] = pydantic.Field(None, description='Imports a Layer that has been defined externally.')
-    resource_config: typing.Optional[NodeProxyAgentLayerDefConfig] = pydantic.Field(None)
+    from_layer_version_arn: typing.Optional[models.lambda_layer_node_proxy_agent.NodeProxyAgentLayerDefFromLayerVersionArnParams] = pydantic.Field(None, description='Imports a layer version by ARN.\nAssumes it is compatible with all Lambda runtimes.')
+    from_layer_version_attributes: typing.Optional[models.lambda_layer_node_proxy_agent.NodeProxyAgentLayerDefFromLayerVersionAttributesParams] = pydantic.Field(None, description='Imports a Layer that has been defined externally.')
+    resource_config: typing.Optional[models.lambda_layer_node_proxy_agent.NodeProxyAgentLayerDefConfig] = pydantic.Field(None)
 
 
 class NodeProxyAgentLayerDefConfig(pydantic.BaseModel):
-    add_permission: typing.Optional[list[NodeProxyAgentLayerDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
+    add_permission: typing.Optional[list[models.lambda_layer_node_proxy_agent.NodeProxyAgentLayerDefAddPermissionParams]] = pydantic.Field(None, description='Add permission for this layer version to specific entities.\nUsage within\nthe same account where the layer is defined is always allowed and does not\nrequire calling this method. Note that the principal that creates the\nLambda function using the layer (for example, a CloudFormation changeset\nexecution role) also needs to have the ``lambda:GetLayerVersion``\npermission on the layer version.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class NodeProxyAgentLayerDefAddPermissionParams(pydantic.BaseModel):
@@ -49,8 +49,8 @@ class NodeProxyAgentLayerDefFromLayerVersionAttributesParams(pydantic.BaseModel)
     ...
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    NodeProxyAgentLayer: typing.Optional[dict[str, NodeProxyAgentLayerDef]] = pydantic.Field(None)
+    NodeProxyAgentLayer: typing.Optional[dict[str, models.lambda_layer_node_proxy_agent.NodeProxyAgentLayerDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -20,7 +20,7 @@ class InstanceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[InstanceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.InstanceBaseDefConfig] = pydantic.Field(None)
 
 
 class InstanceBaseDefConfig(pydantic.BaseModel):
@@ -46,7 +46,7 @@ class AliasTargetInstanceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AliasTargetInstanceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.AliasTargetInstanceDefConfig] = pydantic.Field(None)
 
 
 class AliasTargetInstanceDefConfig(pydantic.BaseModel):
@@ -72,7 +72,7 @@ class CnameInstanceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[CnameInstanceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.CnameInstanceDefConfig] = pydantic.Field(None)
 
 
 class CnameInstanceDefConfig(pydantic.BaseModel):
@@ -96,13 +96,13 @@ class HttpNamespaceDef(BaseConstruct):
     ...
 
 
-    from_http_namespace_attributes: typing.Optional[HttpNamespaceDefFromHttpNamespaceAttributesParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[HttpNamespaceDefConfig] = pydantic.Field(None)
+    from_http_namespace_attributes: typing.Optional[models.aws_servicediscovery.HttpNamespaceDefFromHttpNamespaceAttributesParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_servicediscovery.HttpNamespaceDefConfig] = pydantic.Field(None)
 
 
 class HttpNamespaceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    create_service: typing.Optional[list[HttpNamespaceDefCreateServiceParams]] = pydantic.Field(None, description='Creates a service within the namespace.')
+    create_service: typing.Optional[list[models.aws_servicediscovery.HttpNamespaceDefCreateServiceParams]] = pydantic.Field(None, description='Creates a service within the namespace.')
 
 class HttpNamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -142,7 +142,7 @@ class IpInstanceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[IpInstanceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.IpInstanceDefConfig] = pydantic.Field(None)
 
 
 class IpInstanceDefConfig(pydantic.BaseModel):
@@ -167,7 +167,7 @@ class NonIpInstanceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[NonIpInstanceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.NonIpInstanceDefConfig] = pydantic.Field(None)
 
 
 class NonIpInstanceDefConfig(pydantic.BaseModel):
@@ -192,13 +192,13 @@ class PrivateDnsNamespaceDef(BaseConstruct):
     ...
 
 
-    from_private_dns_namespace_attributes: typing.Optional[PrivateDnsNamespaceDefFromPrivateDnsNamespaceAttributesParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[PrivateDnsNamespaceDefConfig] = pydantic.Field(None)
+    from_private_dns_namespace_attributes: typing.Optional[models.aws_servicediscovery.PrivateDnsNamespaceDefFromPrivateDnsNamespaceAttributesParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_servicediscovery.PrivateDnsNamespaceDefConfig] = pydantic.Field(None)
 
 
 class PrivateDnsNamespaceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    create_service: typing.Optional[list[PrivateDnsNamespaceDefCreateServiceParams]] = pydantic.Field(None, description='Creates a service within the namespace.')
+    create_service: typing.Optional[list[models.aws_servicediscovery.PrivateDnsNamespaceDefCreateServiceParams]] = pydantic.Field(None, description='Creates a service within the namespace.')
 
 class PrivateDnsNamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -239,13 +239,13 @@ class PublicDnsNamespaceDef(BaseConstruct):
     ...
 
 
-    from_public_dns_namespace_attributes: typing.Optional[PublicDnsNamespaceDefFromPublicDnsNamespaceAttributesParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[PublicDnsNamespaceDefConfig] = pydantic.Field(None)
+    from_public_dns_namespace_attributes: typing.Optional[models.aws_servicediscovery.PublicDnsNamespaceDefFromPublicDnsNamespaceAttributesParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_servicediscovery.PublicDnsNamespaceDefConfig] = pydantic.Field(None)
 
 
 class PublicDnsNamespaceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    create_service: typing.Optional[list[PublicDnsNamespaceDefCreateServiceParams]] = pydantic.Field(None, description='Creates a service within the namespace.')
+    create_service: typing.Optional[list[models.aws_servicediscovery.PublicDnsNamespaceDefCreateServiceParams]] = pydantic.Field(None, description='Creates a service within the namespace.')
 
 class PublicDnsNamespaceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -294,16 +294,16 @@ class ServiceDef(BaseConstruct):
     ...
 
 
-    from_service_attributes: typing.Optional[ServiceDefFromServiceAttributesParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[ServiceDefConfig] = pydantic.Field(None)
+    from_service_attributes: typing.Optional[models.aws_servicediscovery.ServiceDefFromServiceAttributesParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_servicediscovery.ServiceDefConfig] = pydantic.Field(None)
 
 
 class ServiceDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    register_cname_instance: typing.Optional[list[ServiceDefRegisterCnameInstanceParams]] = pydantic.Field(None, description='Registers a resource that is accessible using a CNAME.')
-    register_ip_instance: typing.Optional[list[ServiceDefRegisterIpInstanceParams]] = pydantic.Field(None, description='Registers a resource that is accessible using an IP address.')
-    register_load_balancer: typing.Optional[list[ServiceDefRegisterLoadBalancerParams]] = pydantic.Field(None, description='Registers an ELB as a new instance with unique name instanceId in this service.')
-    register_non_ip_instance: typing.Optional[list[ServiceDefRegisterNonIpInstanceParams]] = pydantic.Field(None, description='Registers a resource that is accessible using values other than an IP address or a domain name (CNAME).')
+    register_cname_instance: typing.Optional[list[models.aws_servicediscovery.ServiceDefRegisterCnameInstanceParams]] = pydantic.Field(None, description='Registers a resource that is accessible using a CNAME.')
+    register_ip_instance: typing.Optional[list[models.aws_servicediscovery.ServiceDefRegisterIpInstanceParams]] = pydantic.Field(None, description='Registers a resource that is accessible using an IP address.')
+    register_load_balancer: typing.Optional[list[models.aws_servicediscovery.ServiceDefRegisterLoadBalancerParams]] = pydantic.Field(None, description='Registers an ELB as a new instance with unique name instanceId in this service.')
+    register_non_ip_instance: typing.Optional[list[models.aws_servicediscovery.ServiceDefRegisterNonIpInstanceParams]] = pydantic.Field(None, description='Registers a resource that is accessible using values other than an IP address or a domain name (CNAME).')
     namespace_config: typing.Optional[models._interface_methods.AwsServicediscoveryINamespaceDefConfig] = pydantic.Field(None)
 
 class ServiceDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -369,7 +369,7 @@ class AliasTargetInstancePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AliasTargetInstancePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.AliasTargetInstancePropsDefConfig] = pydantic.Field(None)
 
 
 class AliasTargetInstancePropsDefConfig(pydantic.BaseModel):
@@ -697,7 +697,7 @@ class IpInstancePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[IpInstancePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.IpInstancePropsDefConfig] = pydantic.Field(None)
 
 
 class IpInstancePropsDefConfig(pydantic.BaseModel):
@@ -731,7 +731,7 @@ class NonIpInstancePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[NonIpInstancePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.NonIpInstancePropsDefConfig] = pydantic.Field(None)
 
 
 class NonIpInstancePropsDefConfig(pydantic.BaseModel):
@@ -766,7 +766,7 @@ class PrivateDnsNamespacePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[PrivateDnsNamespacePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.PrivateDnsNamespacePropsDefConfig] = pydantic.Field(None)
 
 
 class PrivateDnsNamespacePropsDefConfig(pydantic.BaseModel):
@@ -819,7 +819,7 @@ class ServiceAttributesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ServiceAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.ServiceAttributesDefConfig] = pydantic.Field(None)
 
 
 class ServiceAttributesDefConfig(pydantic.BaseModel):
@@ -846,7 +846,7 @@ class ServicePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ServicePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.ServicePropsDefConfig] = pydantic.Field(None)
 
 
 class ServicePropsDefConfig(pydantic.BaseModel):
@@ -899,26 +899,26 @@ class CfnHttpNamespaceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnHttpNamespaceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.CfnHttpNamespaceDefConfig] = pydantic.Field(None)
 
 
 class CfnHttpNamespaceDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnHttpNamespaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnHttpNamespaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnHttpNamespaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnHttpNamespaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnHttpNamespaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnHttpNamespaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnHttpNamespaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnHttpNamespaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnHttpNamespaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnHttpNamespaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnHttpNamespaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnHttpNamespaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnHttpNamespaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_servicediscovery.CfnHttpNamespaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnHttpNamespaceDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -999,26 +999,26 @@ class CfnInstanceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnInstanceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.CfnInstanceDefConfig] = pydantic.Field(None)
 
 
 class CfnInstanceDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnInstanceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnInstanceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnInstanceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnInstanceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnInstanceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnInstanceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnInstanceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnInstanceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnInstanceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnInstanceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnInstanceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnInstanceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnInstanceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_servicediscovery.CfnInstanceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnInstanceDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -1100,29 +1100,29 @@ class CfnPrivateDnsNamespaceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPrivateDnsNamespaceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefConfig] = pydantic.Field(None)
 
 
 class CfnPrivateDnsNamespaceDefConfig(pydantic.BaseModel):
-    PrivateDnsPropertiesMutableProperty: typing.Optional[list[CfnPrivateDnsNamespaceDefPrivatednspropertiesmutablepropertyParams]] = pydantic.Field(None, description='')
-    PropertiesProperty: typing.Optional[list[CfnPrivateDnsNamespaceDefPropertiespropertyParams]] = pydantic.Field(None, description='')
-    SOAProperty: typing.Optional[list[CfnPrivateDnsNamespaceDefSoapropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnPrivateDnsNamespaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPrivateDnsNamespaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPrivateDnsNamespaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPrivateDnsNamespaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPrivateDnsNamespaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPrivateDnsNamespaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPrivateDnsNamespaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    PrivateDnsPropertiesMutableProperty: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefPrivatednspropertiesmutablepropertyParams]] = pydantic.Field(None, description='')
+    PropertiesProperty: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefPropertiespropertyParams]] = pydantic.Field(None, description='')
+    SOAProperty: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefSoapropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPrivateDnsNamespaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPrivateDnsNamespaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPrivateDnsNamespaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPrivateDnsNamespaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPrivateDnsNamespaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPrivateDnsNamespaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_servicediscovery.CfnPrivateDnsNamespaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnPrivateDnsNamespaceDefPrivatednspropertiesmutablepropertyParams(pydantic.BaseModel):
@@ -1216,29 +1216,29 @@ class CfnPublicDnsNamespaceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPublicDnsNamespaceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.CfnPublicDnsNamespaceDefConfig] = pydantic.Field(None)
 
 
 class CfnPublicDnsNamespaceDefConfig(pydantic.BaseModel):
-    PropertiesProperty: typing.Optional[list[CfnPublicDnsNamespaceDefPropertiespropertyParams]] = pydantic.Field(None, description='')
-    PublicDnsPropertiesMutableProperty: typing.Optional[list[CfnPublicDnsNamespaceDefPublicdnspropertiesmutablepropertyParams]] = pydantic.Field(None, description='')
-    SOAProperty: typing.Optional[list[CfnPublicDnsNamespaceDefSoapropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnPublicDnsNamespaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPublicDnsNamespaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPublicDnsNamespaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPublicDnsNamespaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPublicDnsNamespaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPublicDnsNamespaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPublicDnsNamespaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    PropertiesProperty: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefPropertiespropertyParams]] = pydantic.Field(None, description='')
+    PublicDnsPropertiesMutableProperty: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefPublicdnspropertiesmutablepropertyParams]] = pydantic.Field(None, description='')
+    SOAProperty: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefSoapropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPublicDnsNamespaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPublicDnsNamespaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPublicDnsNamespaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPublicDnsNamespaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPublicDnsNamespaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPublicDnsNamespaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_servicediscovery.CfnPublicDnsNamespaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnPublicDnsNamespaceDefPropertiespropertyParams(pydantic.BaseModel):
@@ -1336,30 +1336,30 @@ class CfnServiceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_servicediscovery.CfnServiceDefConfig] = pydantic.Field(None)
 
 
 class CfnServiceDefConfig(pydantic.BaseModel):
-    DnsConfigProperty: typing.Optional[list[CfnServiceDefDnsconfigpropertyParams]] = pydantic.Field(None, description='')
-    DnsRecordProperty: typing.Optional[list[CfnServiceDefDnsrecordpropertyParams]] = pydantic.Field(None, description='')
-    HealthCheckConfigProperty: typing.Optional[list[CfnServiceDefHealthcheckconfigpropertyParams]] = pydantic.Field(None, description='')
-    HealthCheckCustomConfigProperty: typing.Optional[list[CfnServiceDefHealthcheckcustomconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnServiceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnServiceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnServiceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnServiceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnServiceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnServiceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnServiceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DnsConfigProperty: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefDnsconfigpropertyParams]] = pydantic.Field(None, description='')
+    DnsRecordProperty: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefDnsrecordpropertyParams]] = pydantic.Field(None, description='')
+    HealthCheckConfigProperty: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefHealthcheckconfigpropertyParams]] = pydantic.Field(None, description='')
+    HealthCheckCustomConfigProperty: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefHealthcheckcustomconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnServiceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnServiceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnServiceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnServiceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnServiceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnServiceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_servicediscovery.CfnServiceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnServiceDefDnsconfigpropertyParams(pydantic.BaseModel):
@@ -1531,57 +1531,57 @@ class CfnServicePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    InstanceBase: typing.Optional[dict[str, InstanceBaseDef]] = pydantic.Field(None)
-    AliasTargetInstance: typing.Optional[dict[str, AliasTargetInstanceDef]] = pydantic.Field(None)
-    CnameInstance: typing.Optional[dict[str, CnameInstanceDef]] = pydantic.Field(None)
-    HttpNamespace: typing.Optional[dict[str, HttpNamespaceDef]] = pydantic.Field(None)
-    IpInstance: typing.Optional[dict[str, IpInstanceDef]] = pydantic.Field(None)
-    NonIpInstance: typing.Optional[dict[str, NonIpInstanceDef]] = pydantic.Field(None)
-    PrivateDnsNamespace: typing.Optional[dict[str, PrivateDnsNamespaceDef]] = pydantic.Field(None)
-    PublicDnsNamespace: typing.Optional[dict[str, PublicDnsNamespaceDef]] = pydantic.Field(None)
-    Service: typing.Optional[dict[str, ServiceDef]] = pydantic.Field(None)
-    AliasTargetInstanceProps: typing.Optional[dict[str, AliasTargetInstancePropsDef]] = pydantic.Field(None)
-    BaseInstanceProps: typing.Optional[dict[str, BaseInstancePropsDef]] = pydantic.Field(None)
-    BaseNamespaceProps: typing.Optional[dict[str, BaseNamespacePropsDef]] = pydantic.Field(None)
-    BaseServiceProps: typing.Optional[dict[str, BaseServicePropsDef]] = pydantic.Field(None)
-    CfnPrivateDnsNamespace_PrivateDnsPropertiesMutableProperty: typing.Optional[dict[str, CfnPrivateDnsNamespace_PrivateDnsPropertiesMutablePropertyDef]] = pydantic.Field(None)
-    CfnPrivateDnsNamespace_PropertiesProperty: typing.Optional[dict[str, CfnPrivateDnsNamespace_PropertiesPropertyDef]] = pydantic.Field(None)
-    CfnPrivateDnsNamespace_SOAProperty: typing.Optional[dict[str, CfnPrivateDnsNamespace_SOAPropertyDef]] = pydantic.Field(None)
-    CfnPublicDnsNamespace_PropertiesProperty: typing.Optional[dict[str, CfnPublicDnsNamespace_PropertiesPropertyDef]] = pydantic.Field(None)
-    CfnPublicDnsNamespace_PublicDnsPropertiesMutableProperty: typing.Optional[dict[str, CfnPublicDnsNamespace_PublicDnsPropertiesMutablePropertyDef]] = pydantic.Field(None)
-    CfnPublicDnsNamespace_SOAProperty: typing.Optional[dict[str, CfnPublicDnsNamespace_SOAPropertyDef]] = pydantic.Field(None)
-    CfnService_DnsConfigProperty: typing.Optional[dict[str, CfnService_DnsConfigPropertyDef]] = pydantic.Field(None)
-    CfnService_DnsRecordProperty: typing.Optional[dict[str, CfnService_DnsRecordPropertyDef]] = pydantic.Field(None)
-    CfnService_HealthCheckConfigProperty: typing.Optional[dict[str, CfnService_HealthCheckConfigPropertyDef]] = pydantic.Field(None)
-    CfnService_HealthCheckCustomConfigProperty: typing.Optional[dict[str, CfnService_HealthCheckCustomConfigPropertyDef]] = pydantic.Field(None)
-    CnameInstanceBaseProps: typing.Optional[dict[str, CnameInstanceBasePropsDef]] = pydantic.Field(None)
-    CnameInstanceProps: typing.Optional[dict[str, CnameInstancePropsDef]] = pydantic.Field(None)
-    DnsServiceProps: typing.Optional[dict[str, DnsServicePropsDef]] = pydantic.Field(None)
-    HealthCheckConfig: typing.Optional[dict[str, HealthCheckConfigDef]] = pydantic.Field(None)
-    HealthCheckCustomConfig: typing.Optional[dict[str, HealthCheckCustomConfigDef]] = pydantic.Field(None)
-    HttpNamespaceAttributes: typing.Optional[dict[str, HttpNamespaceAttributesDef]] = pydantic.Field(None)
-    HttpNamespaceProps: typing.Optional[dict[str, HttpNamespacePropsDef]] = pydantic.Field(None)
-    IpInstanceBaseProps: typing.Optional[dict[str, IpInstanceBasePropsDef]] = pydantic.Field(None)
-    IpInstanceProps: typing.Optional[dict[str, IpInstancePropsDef]] = pydantic.Field(None)
-    NonIpInstanceBaseProps: typing.Optional[dict[str, NonIpInstanceBasePropsDef]] = pydantic.Field(None)
-    NonIpInstanceProps: typing.Optional[dict[str, NonIpInstancePropsDef]] = pydantic.Field(None)
-    PrivateDnsNamespaceAttributes: typing.Optional[dict[str, PrivateDnsNamespaceAttributesDef]] = pydantic.Field(None)
-    PrivateDnsNamespaceProps: typing.Optional[dict[str, PrivateDnsNamespacePropsDef]] = pydantic.Field(None)
-    PublicDnsNamespaceAttributes: typing.Optional[dict[str, PublicDnsNamespaceAttributesDef]] = pydantic.Field(None)
-    PublicDnsNamespaceProps: typing.Optional[dict[str, PublicDnsNamespacePropsDef]] = pydantic.Field(None)
-    ServiceAttributes: typing.Optional[dict[str, ServiceAttributesDef]] = pydantic.Field(None)
-    ServiceProps: typing.Optional[dict[str, ServicePropsDef]] = pydantic.Field(None)
-    CfnHttpNamespace: typing.Optional[dict[str, CfnHttpNamespaceDef]] = pydantic.Field(None)
-    CfnInstance: typing.Optional[dict[str, CfnInstanceDef]] = pydantic.Field(None)
-    CfnPrivateDnsNamespace: typing.Optional[dict[str, CfnPrivateDnsNamespaceDef]] = pydantic.Field(None)
-    CfnPublicDnsNamespace: typing.Optional[dict[str, CfnPublicDnsNamespaceDef]] = pydantic.Field(None)
-    CfnService: typing.Optional[dict[str, CfnServiceDef]] = pydantic.Field(None)
-    CfnHttpNamespaceProps: typing.Optional[dict[str, CfnHttpNamespacePropsDef]] = pydantic.Field(None)
-    CfnInstanceProps: typing.Optional[dict[str, CfnInstancePropsDef]] = pydantic.Field(None)
-    CfnPrivateDnsNamespaceProps: typing.Optional[dict[str, CfnPrivateDnsNamespacePropsDef]] = pydantic.Field(None)
-    CfnPublicDnsNamespaceProps: typing.Optional[dict[str, CfnPublicDnsNamespacePropsDef]] = pydantic.Field(None)
-    CfnServiceProps: typing.Optional[dict[str, CfnServicePropsDef]] = pydantic.Field(None)
+    InstanceBase: typing.Optional[dict[str, models.aws_servicediscovery.InstanceBaseDef]] = pydantic.Field(None)
+    AliasTargetInstance: typing.Optional[dict[str, models.aws_servicediscovery.AliasTargetInstanceDef]] = pydantic.Field(None)
+    CnameInstance: typing.Optional[dict[str, models.aws_servicediscovery.CnameInstanceDef]] = pydantic.Field(None)
+    HttpNamespace: typing.Optional[dict[str, models.aws_servicediscovery.HttpNamespaceDef]] = pydantic.Field(None)
+    IpInstance: typing.Optional[dict[str, models.aws_servicediscovery.IpInstanceDef]] = pydantic.Field(None)
+    NonIpInstance: typing.Optional[dict[str, models.aws_servicediscovery.NonIpInstanceDef]] = pydantic.Field(None)
+    PrivateDnsNamespace: typing.Optional[dict[str, models.aws_servicediscovery.PrivateDnsNamespaceDef]] = pydantic.Field(None)
+    PublicDnsNamespace: typing.Optional[dict[str, models.aws_servicediscovery.PublicDnsNamespaceDef]] = pydantic.Field(None)
+    Service: typing.Optional[dict[str, models.aws_servicediscovery.ServiceDef]] = pydantic.Field(None)
+    AliasTargetInstanceProps: typing.Optional[dict[str, models.aws_servicediscovery.AliasTargetInstancePropsDef]] = pydantic.Field(None)
+    BaseInstanceProps: typing.Optional[dict[str, models.aws_servicediscovery.BaseInstancePropsDef]] = pydantic.Field(None)
+    BaseNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.BaseNamespacePropsDef]] = pydantic.Field(None)
+    BaseServiceProps: typing.Optional[dict[str, models.aws_servicediscovery.BaseServicePropsDef]] = pydantic.Field(None)
+    CfnPrivateDnsNamespace_PrivateDnsPropertiesMutableProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnPrivateDnsNamespace_PrivateDnsPropertiesMutablePropertyDef]] = pydantic.Field(None)
+    CfnPrivateDnsNamespace_PropertiesProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnPrivateDnsNamespace_PropertiesPropertyDef]] = pydantic.Field(None)
+    CfnPrivateDnsNamespace_SOAProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnPrivateDnsNamespace_SOAPropertyDef]] = pydantic.Field(None)
+    CfnPublicDnsNamespace_PropertiesProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnPublicDnsNamespace_PropertiesPropertyDef]] = pydantic.Field(None)
+    CfnPublicDnsNamespace_PublicDnsPropertiesMutableProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnPublicDnsNamespace_PublicDnsPropertiesMutablePropertyDef]] = pydantic.Field(None)
+    CfnPublicDnsNamespace_SOAProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnPublicDnsNamespace_SOAPropertyDef]] = pydantic.Field(None)
+    CfnService_DnsConfigProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnService_DnsConfigPropertyDef]] = pydantic.Field(None)
+    CfnService_DnsRecordProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnService_DnsRecordPropertyDef]] = pydantic.Field(None)
+    CfnService_HealthCheckConfigProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnService_HealthCheckConfigPropertyDef]] = pydantic.Field(None)
+    CfnService_HealthCheckCustomConfigProperty: typing.Optional[dict[str, models.aws_servicediscovery.CfnService_HealthCheckCustomConfigPropertyDef]] = pydantic.Field(None)
+    CnameInstanceBaseProps: typing.Optional[dict[str, models.aws_servicediscovery.CnameInstanceBasePropsDef]] = pydantic.Field(None)
+    CnameInstanceProps: typing.Optional[dict[str, models.aws_servicediscovery.CnameInstancePropsDef]] = pydantic.Field(None)
+    DnsServiceProps: typing.Optional[dict[str, models.aws_servicediscovery.DnsServicePropsDef]] = pydantic.Field(None)
+    HealthCheckConfig: typing.Optional[dict[str, models.aws_servicediscovery.HealthCheckConfigDef]] = pydantic.Field(None)
+    HealthCheckCustomConfig: typing.Optional[dict[str, models.aws_servicediscovery.HealthCheckCustomConfigDef]] = pydantic.Field(None)
+    HttpNamespaceAttributes: typing.Optional[dict[str, models.aws_servicediscovery.HttpNamespaceAttributesDef]] = pydantic.Field(None)
+    HttpNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.HttpNamespacePropsDef]] = pydantic.Field(None)
+    IpInstanceBaseProps: typing.Optional[dict[str, models.aws_servicediscovery.IpInstanceBasePropsDef]] = pydantic.Field(None)
+    IpInstanceProps: typing.Optional[dict[str, models.aws_servicediscovery.IpInstancePropsDef]] = pydantic.Field(None)
+    NonIpInstanceBaseProps: typing.Optional[dict[str, models.aws_servicediscovery.NonIpInstanceBasePropsDef]] = pydantic.Field(None)
+    NonIpInstanceProps: typing.Optional[dict[str, models.aws_servicediscovery.NonIpInstancePropsDef]] = pydantic.Field(None)
+    PrivateDnsNamespaceAttributes: typing.Optional[dict[str, models.aws_servicediscovery.PrivateDnsNamespaceAttributesDef]] = pydantic.Field(None)
+    PrivateDnsNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.PrivateDnsNamespacePropsDef]] = pydantic.Field(None)
+    PublicDnsNamespaceAttributes: typing.Optional[dict[str, models.aws_servicediscovery.PublicDnsNamespaceAttributesDef]] = pydantic.Field(None)
+    PublicDnsNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.PublicDnsNamespacePropsDef]] = pydantic.Field(None)
+    ServiceAttributes: typing.Optional[dict[str, models.aws_servicediscovery.ServiceAttributesDef]] = pydantic.Field(None)
+    ServiceProps: typing.Optional[dict[str, models.aws_servicediscovery.ServicePropsDef]] = pydantic.Field(None)
+    CfnHttpNamespace: typing.Optional[dict[str, models.aws_servicediscovery.CfnHttpNamespaceDef]] = pydantic.Field(None)
+    CfnInstance: typing.Optional[dict[str, models.aws_servicediscovery.CfnInstanceDef]] = pydantic.Field(None)
+    CfnPrivateDnsNamespace: typing.Optional[dict[str, models.aws_servicediscovery.CfnPrivateDnsNamespaceDef]] = pydantic.Field(None)
+    CfnPublicDnsNamespace: typing.Optional[dict[str, models.aws_servicediscovery.CfnPublicDnsNamespaceDef]] = pydantic.Field(None)
+    CfnService: typing.Optional[dict[str, models.aws_servicediscovery.CfnServiceDef]] = pydantic.Field(None)
+    CfnHttpNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.CfnHttpNamespacePropsDef]] = pydantic.Field(None)
+    CfnInstanceProps: typing.Optional[dict[str, models.aws_servicediscovery.CfnInstancePropsDef]] = pydantic.Field(None)
+    CfnPrivateDnsNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.CfnPrivateDnsNamespacePropsDef]] = pydantic.Field(None)
+    CfnPublicDnsNamespaceProps: typing.Optional[dict[str, models.aws_servicediscovery.CfnPublicDnsNamespacePropsDef]] = pydantic.Field(None)
+    CfnServiceProps: typing.Optional[dict[str, models.aws_servicediscovery.CfnServicePropsDef]] = pydantic.Field(None)
     ...
+
+import models

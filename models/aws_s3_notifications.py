@@ -17,15 +17,14 @@ class LambdaDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_notifications.LambdaDestinationDefConfig] = pydantic.Field(None)
 
 
 class LambdaDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaDestinationDefBindParams]] = pydantic.Field(None, description='Registers this resource to receive notifications for the specified bucket.\nThis method will only be called once for each destination/bucket\npair and the result will be cached, so there is no need to implement\nidempotency in each destination.')
+    bind: typing.Optional[list[models.aws_s3_notifications.LambdaDestinationDefBindParams]] = pydantic.Field(None, description='Registers this resource to receive notifications for the specified bucket.\nThis method will only be called once for each destination/bucket\npair and the result will be cached, so there is no need to implement\nidempotency in each destination.')
 
 class LambdaDestinationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='-')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -40,15 +39,14 @@ class SnsDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SnsDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_notifications.SnsDestinationDefConfig] = pydantic.Field(None)
 
 
 class SnsDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SnsDestinationDefBindParams]] = pydantic.Field(None, description='Registers this resource to receive notifications for the specified bucket.\nThis method will only be called once for each destination/bucket\npair and the result will be cached, so there is no need to implement\nidempotency in each destination.')
+    bind: typing.Optional[list[models.aws_s3_notifications.SnsDestinationDefBindParams]] = pydantic.Field(None, description='Registers this resource to receive notifications for the specified bucket.\nThis method will only be called once for each destination/bucket\npair and the result will be cached, so there is no need to implement\nidempotency in each destination.')
 
 class SnsDestinationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='-')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -63,22 +61,21 @@ class SqsDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqsDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_notifications.SqsDestinationDefConfig] = pydantic.Field(None)
 
 
 class SqsDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SqsDestinationDefBindParams]] = pydantic.Field(None, description='Allows using SQS queues as destinations for bucket notifications.\nUse ``bucket.onEvent(event, queue)`` to subscribe.')
+    bind: typing.Optional[list[models.aws_s3_notifications.SqsDestinationDefBindParams]] = pydantic.Field(None, description='Allows using SQS queues as destinations for bucket notifications.\nUse ``bucket.onEvent(event, queue)`` to subscribe.')
 
 class SqsDestinationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    bucket: models.aws_s3.BucketDef = pydantic.Field(..., description='-')
+    bucket: typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef] = pydantic.Field(..., description='-')
     ...
 
-
-import models
 
 class ModuleModel(pydantic.BaseModel):
-    LambdaDestination: typing.Optional[dict[str, LambdaDestinationDef]] = pydantic.Field(None)
-    SnsDestination: typing.Optional[dict[str, SnsDestinationDef]] = pydantic.Field(None)
-    SqsDestination: typing.Optional[dict[str, SqsDestinationDef]] = pydantic.Field(None)
+    LambdaDestination: typing.Optional[dict[str, models.aws_s3_notifications.LambdaDestinationDef]] = pydantic.Field(None)
+    SnsDestination: typing.Optional[dict[str, models.aws_s3_notifications.SnsDestinationDef]] = pydantic.Field(None)
+    SqsDestination: typing.Optional[dict[str, models.aws_s3_notifications.SqsDestinationDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -25,15 +25,13 @@ class ApiDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApiDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.ApiDestinationDefConfig] = pydantic.Field(None)
 
 
 class ApiDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ApiDestinationDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger API destinations from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.ApiDestinationDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger API destinations from an EventBridge event.')
 
 class ApiDestinationDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -59,16 +57,15 @@ class ApiGatewayDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApiGatewayDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.ApiGatewayDefConfig] = pydantic.Field(None)
 
 
 class ApiGatewayDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[ApiGatewayDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this API Gateway REST APIs as a result from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.ApiGatewayDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this API Gateway REST APIs as a result from an EventBridge event.')
     rest_api_config: typing.Optional[models.aws_apigateway.RestApiDefConfig] = pydantic.Field(None)
 
 class ApiGatewayDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-\n\n:see: https://docs.aws.amazon.com/eventbridge/latest/userguide/resource-based-policies-eventbridge.html#sqs-permissions\n')
     ...
 
 
@@ -88,11 +85,11 @@ class AwsApiDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AwsApiDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.AwsApiDefConfig] = pydantic.Field(None)
 
 
 class AwsApiDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[AwsApiDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this AwsApi as a result from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.AwsApiDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this AwsApi as a result from an EventBridge event.')
 
 class AwsApiDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
@@ -121,15 +118,14 @@ class BatchJobDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[BatchJobDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.BatchJobDefConfig] = pydantic.Field(None)
 
 
 class BatchJobDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[BatchJobDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger queue this batch job as a result from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.BatchJobDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger queue this batch job as a result from an EventBridge event.')
 
 class BatchJobDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -149,15 +145,13 @@ class CloudWatchLogGroupDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CloudWatchLogGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.CloudWatchLogGroupDefConfig] = pydantic.Field(None)
 
 
 class CloudWatchLogGroupDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CloudWatchLogGroupDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to log an event into a CloudWatch LogGroup.')
+    bind: typing.Optional[list[models.aws_events_targets.CloudWatchLogGroupDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to log an event into a CloudWatch LogGroup.')
 
 class CloudWatchLogGroupDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -177,15 +171,13 @@ class CodeBuildProjectDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodeBuildProjectDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.CodeBuildProjectDefConfig] = pydantic.Field(None)
 
 
 class CodeBuildProjectDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodeBuildProjectDefBindParams]] = pydantic.Field(None, description='Allows using build projects as event rule targets.')
+    bind: typing.Optional[list[models.aws_events_targets.CodeBuildProjectDefBindParams]] = pydantic.Field(None, description='Allows using build projects as event rule targets.')
 
 class CodeBuildProjectDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -204,15 +196,13 @@ class CodePipelineDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CodePipelineDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.CodePipelineDefConfig] = pydantic.Field(None)
 
 
 class CodePipelineDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[CodePipelineDefBindParams]] = pydantic.Field(None, description='Returns the rule target specification.\nNOTE: Do not use the various ``inputXxx`` options. They can be set in a call to ``addTarget``.')
+    bind: typing.Optional[list[models.aws_events_targets.CodePipelineDefBindParams]] = pydantic.Field(None, description='Returns the rule target specification.\nNOTE: Do not use the various ``inputXxx`` options. They can be set in a call to ``addTarget``.')
 
 class CodePipelineDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -241,15 +231,13 @@ class EcsTaskDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcsTaskDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.EcsTaskDefConfig] = pydantic.Field(None)
 
 
 class EcsTaskDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EcsTaskDefBindParams]] = pydantic.Field(None, description='Allows using tasks as target of EventBridge events.')
+    bind: typing.Optional[list[models.aws_events_targets.EcsTaskDefBindParams]] = pydantic.Field(None, description='Allows using tasks as target of EventBridge events.')
 
 class EcsTaskDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -266,15 +254,14 @@ class EventBusDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EventBusDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.EventBusDefConfig] = pydantic.Field(None)
 
 
 class EventBusDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EventBusDefBindParams]] = pydantic.Field(None, description='Returns the rule target specification.\nNOTE: Do not use the various ``inputXxx`` options. They can be set in a call to ``addTarget``.')
+    bind: typing.Optional[list[models.aws_events_targets.EventBusDefBindParams]] = pydantic.Field(None, description='Returns the rule target specification.\nNOTE: Do not use the various ``inputXxx`` options. They can be set in a call to ``addTarget``.')
 
 class EventBusDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -290,15 +277,13 @@ class KinesisFirehoseStreamDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[KinesisFirehoseStreamDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.KinesisFirehoseStreamDefConfig] = pydantic.Field(None)
 
 
 class KinesisFirehoseStreamDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[KinesisFirehoseStreamDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this Firehose Stream as a result from a Event Bridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.KinesisFirehoseStreamDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this Firehose Stream as a result from a Event Bridge event.')
 
 class KinesisFirehoseStreamDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -315,15 +300,13 @@ class KinesisStreamDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[KinesisStreamDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.KinesisStreamDefConfig] = pydantic.Field(None)
 
 
 class KinesisStreamDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[KinesisStreamDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this Kinesis Stream as a result from a CloudWatch event.')
+    bind: typing.Optional[list[models.aws_events_targets.KinesisStreamDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this Kinesis Stream as a result from a CloudWatch event.')
 
 class KinesisStreamDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -342,15 +325,14 @@ class LambdaFunctionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaFunctionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.LambdaFunctionDefConfig] = pydantic.Field(None)
 
 
 class LambdaFunctionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaFunctionDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this Lambda as a result from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.LambdaFunctionDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this Lambda as a result from an EventBridge event.')
 
 class LambdaFunctionDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-')
     ...
 
 
@@ -364,12 +346,12 @@ class LogGroupTargetInputDef(BaseClass):
     ...
 
 
-    from_object: typing.Optional[LogGroupTargetInputDefFromObjectParams] = pydantic.Field(None, description='Pass a JSON object to the the log group event target.\nMay contain strings returned by ``EventField.from()`` to substitute in parts of the\nmatched event.')
-    resource_config: typing.Optional[LogGroupTargetInputDefConfig] = pydantic.Field(None)
+    from_object: typing.Optional[models.aws_events_targets.LogGroupTargetInputDefFromObjectParams] = pydantic.Field(None, description='Pass a JSON object to the the log group event target.\nMay contain strings returned by ``EventField.from()`` to substitute in parts of the\nmatched event.')
+    resource_config: typing.Optional[models.aws_events_targets.LogGroupTargetInputDefConfig] = pydantic.Field(None)
 
 
 class LogGroupTargetInputDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LogGroupTargetInputDefBindParams]] = pydantic.Field(None, description='Return the input properties for this input object.')
+    bind: typing.Optional[list[models.aws_events_targets.LogGroupTargetInputDefBindParams]] = pydantic.Field(None, description='Return the input properties for this input object.')
 
 class LogGroupTargetInputDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-')
@@ -397,16 +379,14 @@ class SfnStateMachineDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SfnStateMachineDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.SfnStateMachineDefConfig] = pydantic.Field(None)
 
 
 class SfnStateMachineDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SfnStateMachineDefBindParams]] = pydantic.Field(None, description='Returns a properties that are used in an Rule to trigger this State Machine.')
+    bind: typing.Optional[list[models.aws_events_targets.SfnStateMachineDefBindParams]] = pydantic.Field(None, description='Returns a properties that are used in an Rule to trigger this State Machine.')
     machine_config: typing.Optional[models._interface_methods.AwsStepfunctionsIStateMachineDefConfig] = pydantic.Field(None)
 
 class SfnStateMachineDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-\n\n:see: https://docs.aws.amazon.com/eventbridge/latest/userguide/resource-based-policies-eventbridge.html#sns-permissions\n')
     ...
 
 
@@ -425,16 +405,14 @@ class SnsTopicDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SnsTopicDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.SnsTopicDefConfig] = pydantic.Field(None)
 
 
 class SnsTopicDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SnsTopicDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this SNS topic as a result from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.SnsTopicDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this SNS topic as a result from an EventBridge event.')
     topic_config: typing.Optional[models._interface_methods.AwsSnsITopicDefConfig] = pydantic.Field(None)
 
 class SnsTopicDefBindParams(pydantic.BaseModel):
-    _rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-\n\n:see: https://docs.aws.amazon.com/eventbridge/latest/userguide/resource-based-policies-eventbridge.html#sns-permissions\n')
     ...
 
 
@@ -454,16 +432,15 @@ class SqsQueueDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqsQueueDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.SqsQueueDefConfig] = pydantic.Field(None)
 
 
 class SqsQueueDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SqsQueueDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this SQS queue as a result from an EventBridge event.')
+    bind: typing.Optional[list[models.aws_events_targets.SqsQueueDefBindParams]] = pydantic.Field(None, description='Returns a RuleTarget that can be used to trigger this SQS queue as a result from an EventBridge event.')
     queue_config: typing.Optional[models._interface_methods.AwsSqsIQueueDefConfig] = pydantic.Field(None)
 
 class SqsQueueDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='-\n')
-    _id: typing.Optional[str] = pydantic.Field(None, description='-\n\n:see: https://docs.aws.amazon.com/eventbridge/latest/userguide/resource-based-policies-eventbridge.html#sqs-permissions\n')
     ...
 
 
@@ -640,7 +617,7 @@ class EcsTaskPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsTaskPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_events_targets.EcsTaskPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsTaskPropsDefConfig(pydantic.BaseModel):
@@ -829,44 +806,44 @@ class TaskEnvironmentVariableDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ApiDestination: typing.Optional[dict[str, ApiDestinationDef]] = pydantic.Field(None)
-    ApiGateway: typing.Optional[dict[str, ApiGatewayDef]] = pydantic.Field(None)
-    AwsApi: typing.Optional[dict[str, AwsApiDef]] = pydantic.Field(None)
-    BatchJob: typing.Optional[dict[str, BatchJobDef]] = pydantic.Field(None)
-    CloudWatchLogGroup: typing.Optional[dict[str, CloudWatchLogGroupDef]] = pydantic.Field(None)
-    CodeBuildProject: typing.Optional[dict[str, CodeBuildProjectDef]] = pydantic.Field(None)
-    CodePipeline: typing.Optional[dict[str, CodePipelineDef]] = pydantic.Field(None)
-    EcsTask: typing.Optional[dict[str, EcsTaskDef]] = pydantic.Field(None)
-    EventBus: typing.Optional[dict[str, EventBusDef]] = pydantic.Field(None)
-    KinesisFirehoseStream: typing.Optional[dict[str, KinesisFirehoseStreamDef]] = pydantic.Field(None)
-    KinesisStream: typing.Optional[dict[str, KinesisStreamDef]] = pydantic.Field(None)
-    LambdaFunction: typing.Optional[dict[str, LambdaFunctionDef]] = pydantic.Field(None)
-    LogGroupTargetInput: typing.Optional[dict[str, LogGroupTargetInputDef]] = pydantic.Field(None)
-    SfnStateMachine: typing.Optional[dict[str, SfnStateMachineDef]] = pydantic.Field(None)
-    SnsTopic: typing.Optional[dict[str, SnsTopicDef]] = pydantic.Field(None)
-    SqsQueue: typing.Optional[dict[str, SqsQueueDef]] = pydantic.Field(None)
-    ApiDestinationProps: typing.Optional[dict[str, ApiDestinationPropsDef]] = pydantic.Field(None)
-    ApiGatewayProps: typing.Optional[dict[str, ApiGatewayPropsDef]] = pydantic.Field(None)
-    AwsApiInput: typing.Optional[dict[str, AwsApiInputDef]] = pydantic.Field(None)
-    AwsApiProps: typing.Optional[dict[str, AwsApiPropsDef]] = pydantic.Field(None)
-    BatchJobProps: typing.Optional[dict[str, BatchJobPropsDef]] = pydantic.Field(None)
-    CodeBuildProjectProps: typing.Optional[dict[str, CodeBuildProjectPropsDef]] = pydantic.Field(None)
-    CodePipelineTargetOptions: typing.Optional[dict[str, CodePipelineTargetOptionsDef]] = pydantic.Field(None)
-    ContainerOverride: typing.Optional[dict[str, ContainerOverrideDef]] = pydantic.Field(None)
-    EcsTaskProps: typing.Optional[dict[str, EcsTaskPropsDef]] = pydantic.Field(None)
-    EventBusProps: typing.Optional[dict[str, EventBusPropsDef]] = pydantic.Field(None)
-    KinesisFirehoseStreamProps: typing.Optional[dict[str, KinesisFirehoseStreamPropsDef]] = pydantic.Field(None)
-    KinesisStreamProps: typing.Optional[dict[str, KinesisStreamPropsDef]] = pydantic.Field(None)
-    LambdaFunctionProps: typing.Optional[dict[str, LambdaFunctionPropsDef]] = pydantic.Field(None)
-    LogGroupProps: typing.Optional[dict[str, LogGroupPropsDef]] = pydantic.Field(None)
-    LogGroupTargetInputOptions: typing.Optional[dict[str, LogGroupTargetInputOptionsDef]] = pydantic.Field(None)
-    SfnStateMachineProps: typing.Optional[dict[str, SfnStateMachinePropsDef]] = pydantic.Field(None)
-    SnsTopicProps: typing.Optional[dict[str, SnsTopicPropsDef]] = pydantic.Field(None)
-    SqsQueueProps: typing.Optional[dict[str, SqsQueuePropsDef]] = pydantic.Field(None)
-    Tag: typing.Optional[dict[str, TagDef]] = pydantic.Field(None)
-    TargetBaseProps: typing.Optional[dict[str, TargetBasePropsDef]] = pydantic.Field(None)
-    TaskEnvironmentVariable: typing.Optional[dict[str, TaskEnvironmentVariableDef]] = pydantic.Field(None)
+    ApiDestination: typing.Optional[dict[str, models.aws_events_targets.ApiDestinationDef]] = pydantic.Field(None)
+    ApiGateway: typing.Optional[dict[str, models.aws_events_targets.ApiGatewayDef]] = pydantic.Field(None)
+    AwsApi: typing.Optional[dict[str, models.aws_events_targets.AwsApiDef]] = pydantic.Field(None)
+    BatchJob: typing.Optional[dict[str, models.aws_events_targets.BatchJobDef]] = pydantic.Field(None)
+    CloudWatchLogGroup: typing.Optional[dict[str, models.aws_events_targets.CloudWatchLogGroupDef]] = pydantic.Field(None)
+    CodeBuildProject: typing.Optional[dict[str, models.aws_events_targets.CodeBuildProjectDef]] = pydantic.Field(None)
+    CodePipeline: typing.Optional[dict[str, models.aws_events_targets.CodePipelineDef]] = pydantic.Field(None)
+    EcsTask: typing.Optional[dict[str, models.aws_events_targets.EcsTaskDef]] = pydantic.Field(None)
+    EventBus: typing.Optional[dict[str, models.aws_events_targets.EventBusDef]] = pydantic.Field(None)
+    KinesisFirehoseStream: typing.Optional[dict[str, models.aws_events_targets.KinesisFirehoseStreamDef]] = pydantic.Field(None)
+    KinesisStream: typing.Optional[dict[str, models.aws_events_targets.KinesisStreamDef]] = pydantic.Field(None)
+    LambdaFunction: typing.Optional[dict[str, models.aws_events_targets.LambdaFunctionDef]] = pydantic.Field(None)
+    LogGroupTargetInput: typing.Optional[dict[str, models.aws_events_targets.LogGroupTargetInputDef]] = pydantic.Field(None)
+    SfnStateMachine: typing.Optional[dict[str, models.aws_events_targets.SfnStateMachineDef]] = pydantic.Field(None)
+    SnsTopic: typing.Optional[dict[str, models.aws_events_targets.SnsTopicDef]] = pydantic.Field(None)
+    SqsQueue: typing.Optional[dict[str, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None)
+    ApiDestinationProps: typing.Optional[dict[str, models.aws_events_targets.ApiDestinationPropsDef]] = pydantic.Field(None)
+    ApiGatewayProps: typing.Optional[dict[str, models.aws_events_targets.ApiGatewayPropsDef]] = pydantic.Field(None)
+    AwsApiInput: typing.Optional[dict[str, models.aws_events_targets.AwsApiInputDef]] = pydantic.Field(None)
+    AwsApiProps: typing.Optional[dict[str, models.aws_events_targets.AwsApiPropsDef]] = pydantic.Field(None)
+    BatchJobProps: typing.Optional[dict[str, models.aws_events_targets.BatchJobPropsDef]] = pydantic.Field(None)
+    CodeBuildProjectProps: typing.Optional[dict[str, models.aws_events_targets.CodeBuildProjectPropsDef]] = pydantic.Field(None)
+    CodePipelineTargetOptions: typing.Optional[dict[str, models.aws_events_targets.CodePipelineTargetOptionsDef]] = pydantic.Field(None)
+    ContainerOverride: typing.Optional[dict[str, models.aws_events_targets.ContainerOverrideDef]] = pydantic.Field(None)
+    EcsTaskProps: typing.Optional[dict[str, models.aws_events_targets.EcsTaskPropsDef]] = pydantic.Field(None)
+    EventBusProps: typing.Optional[dict[str, models.aws_events_targets.EventBusPropsDef]] = pydantic.Field(None)
+    KinesisFirehoseStreamProps: typing.Optional[dict[str, models.aws_events_targets.KinesisFirehoseStreamPropsDef]] = pydantic.Field(None)
+    KinesisStreamProps: typing.Optional[dict[str, models.aws_events_targets.KinesisStreamPropsDef]] = pydantic.Field(None)
+    LambdaFunctionProps: typing.Optional[dict[str, models.aws_events_targets.LambdaFunctionPropsDef]] = pydantic.Field(None)
+    LogGroupProps: typing.Optional[dict[str, models.aws_events_targets.LogGroupPropsDef]] = pydantic.Field(None)
+    LogGroupTargetInputOptions: typing.Optional[dict[str, models.aws_events_targets.LogGroupTargetInputOptionsDef]] = pydantic.Field(None)
+    SfnStateMachineProps: typing.Optional[dict[str, models.aws_events_targets.SfnStateMachinePropsDef]] = pydantic.Field(None)
+    SnsTopicProps: typing.Optional[dict[str, models.aws_events_targets.SnsTopicPropsDef]] = pydantic.Field(None)
+    SqsQueueProps: typing.Optional[dict[str, models.aws_events_targets.SqsQueuePropsDef]] = pydantic.Field(None)
+    Tag: typing.Optional[dict[str, models.aws_events_targets.TagDef]] = pydantic.Field(None)
+    TargetBaseProps: typing.Optional[dict[str, models.aws_events_targets.TargetBasePropsDef]] = pydantic.Field(None)
+    TaskEnvironmentVariable: typing.Optional[dict[str, models.aws_events_targets.TaskEnvironmentVariableDef]] = pydantic.Field(None)
     ...
+
+import models

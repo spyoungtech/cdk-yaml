@@ -17,16 +17,17 @@ class FilterDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FilterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.FilterDefConfig] = pydantic.Field(None)
 
 
 class FilterDefConfig(pydantic.BaseModel):
-    filter: typing.Optional[list[FilterDefFilterParams]] = pydantic.Field(None, description='Filter of MessageBody.')
-    policy: typing.Optional[list[FilterDefPolicyParams]] = pydantic.Field(None, description='Policy of MessageBody.')
+    filter: typing.Optional[list[models.aws_sns.FilterDefFilterParams]] = pydantic.Field(None, description='Filter of MessageBody.')
+    policy: typing.Optional[list[models.aws_sns.FilterDefPolicyParams]] = pydantic.Field(None, description='Policy of MessageBody.')
     filter_doc_config: typing.Optional[models.aws_sns.SubscriptionFilterDefConfig] = pydantic.Field(None)
 
 class FilterDefFilterParams(pydantic.BaseModel):
     filter: models.aws_sns.SubscriptionFilterDef = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_sns.FilterDefConfig]] = pydantic.Field(None)
     ...
 
 class FilterDefPolicyParams(pydantic.BaseModel):
@@ -45,12 +46,12 @@ class FilterOrPolicyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FilterOrPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.FilterOrPolicyDefConfig] = pydantic.Field(None)
 
 
 class FilterOrPolicyDefConfig(pydantic.BaseModel):
-    filter: typing.Optional[list[FilterOrPolicyDefFilterParams]] = pydantic.Field(None, description='Filter of MessageBody.')
-    policy: typing.Optional[list[FilterOrPolicyDefPolicyParams]] = pydantic.Field(None, description='Policy of MessageBody.')
+    filter: typing.Optional[list[models.aws_sns.FilterOrPolicyDefFilterParams]] = pydantic.Field(None, description='Filter of MessageBody.')
+    policy: typing.Optional[list[models.aws_sns.FilterOrPolicyDefPolicyParams]] = pydantic.Field(None, description='Policy of MessageBody.')
 
 class FilterOrPolicyDefFilterParams(pydantic.BaseModel):
     filter: models.aws_sns.SubscriptionFilterDef = pydantic.Field(..., description='-')
@@ -74,12 +75,12 @@ class PolicyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[PolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.PolicyDefConfig] = pydantic.Field(None)
 
 
 class PolicyDefConfig(pydantic.BaseModel):
-    filter: typing.Optional[list[PolicyDefFilterParams]] = pydantic.Field(None, description='Filter of MessageBody.')
-    policy: typing.Optional[list[PolicyDefPolicyParams]] = pydantic.Field(None, description='Policy of MessageBody.')
+    filter: typing.Optional[list[models.aws_sns.PolicyDefFilterParams]] = pydantic.Field(None, description='Filter of MessageBody.')
+    policy: typing.Optional[list[models.aws_sns.PolicyDefPolicyParams]] = pydantic.Field(None, description='Policy of MessageBody.')
 
 class PolicyDefFilterParams(pydantic.BaseModel):
     filter: models.aws_sns.SubscriptionFilterDef = pydantic.Field(..., description='-')
@@ -88,6 +89,7 @@ class PolicyDefFilterParams(pydantic.BaseModel):
 
 class PolicyDefPolicyParams(pydantic.BaseModel):
     policy: typing.Mapping[str, models.aws_sns.FilterOrPolicyDef] = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_sns.PolicyDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -102,15 +104,16 @@ class SubscriptionFilterDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SubscriptionFilterDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.SubscriptionFilterDefConfig] = pydantic.Field(None)
 
 
 class SubscriptionFilterDefConfig(pydantic.BaseModel):
-    exists_filter: typing.Optional[list[SubscriptionFilterDefExistsFilterParams]] = pydantic.Field(None, description='Returns a subscription filter for attribute key matching.')
-    numeric_filter: typing.Optional[list[SubscriptionFilterDefNumericFilterParams]] = pydantic.Field(None, description='Returns a subscription filter for a numeric attribute.')
-    string_filter: typing.Optional[list[SubscriptionFilterDefStringFilterParams]] = pydantic.Field(None, description='Returns a subscription filter for a string attribute.')
+    exists_filter: typing.Optional[list[models.aws_sns.SubscriptionFilterDefExistsFilterParams]] = pydantic.Field(None, description='Returns a subscription filter for attribute key matching.')
+    numeric_filter: typing.Optional[list[models.aws_sns.SubscriptionFilterDefNumericFilterParams]] = pydantic.Field(None, description='Returns a subscription filter for a numeric attribute.')
+    string_filter: typing.Optional[list[models.aws_sns.SubscriptionFilterDefStringFilterParams]] = pydantic.Field(None, description='Returns a subscription filter for a string attribute.')
 
 class SubscriptionFilterDefExistsFilterParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_sns.SubscriptionFilterDefConfig]] = pydantic.Field(None)
     ...
 
 class SubscriptionFilterDefNumericFilterParams(pydantic.BaseModel):
@@ -121,12 +124,14 @@ class SubscriptionFilterDefNumericFilterParams(pydantic.BaseModel):
     greater_than_or_equal_to: typing.Union[int, float, None] = pydantic.Field(None, description='Match values that are greater than or equal to the specified value. Default: - None\n')
     less_than: typing.Union[int, float, None] = pydantic.Field(None, description='Match values that are less than the specified value. Default: - None\n')
     less_than_or_equal_to: typing.Union[int, float, None] = pydantic.Field(None, description='Match values that are less than or equal to the specified value. Default: - None')
+    return_config: typing.Optional[list[models.aws_sns.SubscriptionFilterDefConfig]] = pydantic.Field(None)
     ...
 
 class SubscriptionFilterDefStringFilterParams(pydantic.BaseModel):
     allowlist: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Match one or more values. Default: - None\n')
     denylist: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description="Match any value that doesn't include any of the specified values. Default: - None\n")
     match_prefixes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Matches values that begins with the specified prefixes. Default: - None')
+    return_config: typing.Optional[list[models.aws_sns.SubscriptionFilterDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -144,25 +149,25 @@ class TopicBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TopicBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.TopicBaseDefConfig] = pydantic.Field(None)
 
 
 class TopicBaseDefConfig(pydantic.BaseModel):
-    add_subscription: typing.Optional[list[TopicBaseDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
-    add_to_resource_policy: typing.Optional[list[TopicBaseDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
+    add_subscription: typing.Optional[list[models.aws_sns.TopicBaseDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
+    add_to_resource_policy: typing.Optional[list[models.aws_sns.TopicBaseDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_target: typing.Optional[list[TopicBaseDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Represents a notification target That allows SNS topic to associate with this rule target.')
-    grant_publish: typing.Optional[list[TopicBaseDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
-    metric: typing.Optional[list[TopicBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
-    metric_number_of_messages_published: typing.Optional[list[TopicBaseDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
-    metric_number_of_notifications_delivered: typing.Optional[list[TopicBaseDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
-    metric_number_of_notifications_failed: typing.Optional[list[TopicBaseDefMetricNumberOfNotificationsFailedParams]] = pydantic.Field(None, description='The number of messages that Amazon SNS failed to deliver.\nSum over 5 minutes')
-    metric_number_of_notifications_filtered_out: typing.Optional[list[TopicBaseDefMetricNumberOfNotificationsFilteredOutParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies.\nSum over 5 minutes')
-    metric_number_of_notifications_filtered_out_invalid_attributes: typing.Optional[list[TopicBaseDefMetricNumberOfNotificationsFilteredOutInvalidAttributesParams]] = pydantic.Field(None, description="The number of messages that were rejected by subscription filter policies because the messages' attributes are invalid.\nSum over 5 minutes")
-    metric_number_of_notifications_filtered_out_no_message_attributes: typing.Optional[list[TopicBaseDefMetricNumberOfNotificationsFilteredOutNoMessageAttributesParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies because the messages have no attributes.\nSum over 5 minutes')
-    metric_publish_size: typing.Optional[list[TopicBaseDefMetricPublishSizeParams]] = pydantic.Field(None, description='Metric for the size of messages published through this topic.\nAverage over 5 minutes')
-    metric_sms_month_to_date_spent_usd: typing.Optional[list[TopicBaseDefMetricSmsMonthToDateSpentUsdParams]] = pydantic.Field(None, description='The charges you have accrued since the start of the current calendar month for sending SMS messages.\nMaximum over 5 minutes')
-    metric_sms_success_rate: typing.Optional[list[TopicBaseDefMetricSmsSuccessRateParams]] = pydantic.Field(None, description='The rate of successful SMS message deliveries.\nSum over 5 minutes')
+    bind_as_notification_rule_target: typing.Optional[list[models.aws_sns.TopicBaseDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Represents a notification target That allows SNS topic to associate with this rule target.')
+    grant_publish: typing.Optional[list[models.aws_sns.TopicBaseDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
+    metric: typing.Optional[list[models.aws_sns.TopicBaseDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
+    metric_number_of_messages_published: typing.Optional[list[models.aws_sns.TopicBaseDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
+    metric_number_of_notifications_delivered: typing.Optional[list[models.aws_sns.TopicBaseDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
+    metric_number_of_notifications_failed: typing.Optional[list[models.aws_sns.TopicBaseDefMetricNumberOfNotificationsFailedParams]] = pydantic.Field(None, description='The number of messages that Amazon SNS failed to deliver.\nSum over 5 minutes')
+    metric_number_of_notifications_filtered_out: typing.Optional[list[models.aws_sns.TopicBaseDefMetricNumberOfNotificationsFilteredOutParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies.\nSum over 5 minutes')
+    metric_number_of_notifications_filtered_out_invalid_attributes: typing.Optional[list[models.aws_sns.TopicBaseDefMetricNumberOfNotificationsFilteredOutInvalidAttributesParams]] = pydantic.Field(None, description="The number of messages that were rejected by subscription filter policies because the messages' attributes are invalid.\nSum over 5 minutes")
+    metric_number_of_notifications_filtered_out_no_message_attributes: typing.Optional[list[models.aws_sns.TopicBaseDefMetricNumberOfNotificationsFilteredOutNoMessageAttributesParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies because the messages have no attributes.\nSum over 5 minutes')
+    metric_publish_size: typing.Optional[list[models.aws_sns.TopicBaseDefMetricPublishSizeParams]] = pydantic.Field(None, description='Metric for the size of messages published through this topic.\nAverage over 5 minutes')
+    metric_sms_month_to_date_spent_usd: typing.Optional[list[models.aws_sns.TopicBaseDefMetricSmsMonthToDateSpentUsdParams]] = pydantic.Field(None, description='The charges you have accrued since the start of the current calendar month for sending SMS messages.\nMaximum over 5 minutes')
+    metric_sms_success_rate: typing.Optional[list[models.aws_sns.TopicBaseDefMetricSmsSuccessRateParams]] = pydantic.Field(None, description='The rate of successful SMS message deliveries.\nSum over 5 minutes')
 
 class TopicBaseDefAddSubscriptionParams(pydantic.BaseModel):
     topic_subscription: typing.Union[models.aws_sns_subscriptions.EmailSubscriptionDef, models.aws_sns_subscriptions.LambdaSubscriptionDef, models.aws_sns_subscriptions.SmsSubscriptionDef, models.aws_sns_subscriptions.SqsSubscriptionDef, models.aws_sns_subscriptions.UrlSubscriptionDef] = pydantic.Field(..., description='-')
@@ -178,7 +183,6 @@ class TopicBaseDefApplyRemovalPolicyParams(pydantic.BaseModel):
     ...
 
 class TopicBaseDefBindAsNotificationRuleTargetParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class TopicBaseDefGrantPublishParams(pydantic.BaseModel):
@@ -327,7 +331,7 @@ class SubscriptionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[SubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.SubscriptionDefConfig] = pydantic.Field(None)
 
 
 class SubscriptionDefConfig(pydantic.BaseModel):
@@ -353,26 +357,26 @@ class TopicDef(BaseConstruct):
     ...
 
 
-    from_topic_arn: typing.Optional[TopicDefFromTopicArnParams] = pydantic.Field(None, description='Import an existing SNS topic provided an ARN.')
-    resource_config: typing.Optional[TopicDefConfig] = pydantic.Field(None)
+    from_topic_arn: typing.Optional[models.aws_sns.TopicDefFromTopicArnParams] = pydantic.Field(None, description='Import an existing SNS topic provided an ARN.')
+    resource_config: typing.Optional[models.aws_sns.TopicDefConfig] = pydantic.Field(None)
 
 
 class TopicDefConfig(pydantic.BaseModel):
-    add_subscription: typing.Optional[list[TopicDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
-    add_to_resource_policy: typing.Optional[list[TopicDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
+    add_subscription: typing.Optional[list[models.aws_sns.TopicDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
+    add_to_resource_policy: typing.Optional[list[models.aws_sns.TopicDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_target: typing.Optional[list[TopicDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Represents a notification target That allows SNS topic to associate with this rule target.')
-    grant_publish: typing.Optional[list[TopicDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
-    metric: typing.Optional[list[TopicDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
-    metric_number_of_messages_published: typing.Optional[list[TopicDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
-    metric_number_of_notifications_delivered: typing.Optional[list[TopicDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
-    metric_number_of_notifications_failed: typing.Optional[list[TopicDefMetricNumberOfNotificationsFailedParams]] = pydantic.Field(None, description='The number of messages that Amazon SNS failed to deliver.\nSum over 5 minutes')
-    metric_number_of_notifications_filtered_out: typing.Optional[list[TopicDefMetricNumberOfNotificationsFilteredOutParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies.\nSum over 5 minutes')
-    metric_number_of_notifications_filtered_out_invalid_attributes: typing.Optional[list[TopicDefMetricNumberOfNotificationsFilteredOutInvalidAttributesParams]] = pydantic.Field(None, description="The number of messages that were rejected by subscription filter policies because the messages' attributes are invalid.\nSum over 5 minutes")
-    metric_number_of_notifications_filtered_out_no_message_attributes: typing.Optional[list[TopicDefMetricNumberOfNotificationsFilteredOutNoMessageAttributesParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies because the messages have no attributes.\nSum over 5 minutes')
-    metric_publish_size: typing.Optional[list[TopicDefMetricPublishSizeParams]] = pydantic.Field(None, description='Metric for the size of messages published through this topic.\nAverage over 5 minutes')
-    metric_sms_month_to_date_spent_usd: typing.Optional[list[TopicDefMetricSmsMonthToDateSpentUsdParams]] = pydantic.Field(None, description='The charges you have accrued since the start of the current calendar month for sending SMS messages.\nMaximum over 5 minutes')
-    metric_sms_success_rate: typing.Optional[list[TopicDefMetricSmsSuccessRateParams]] = pydantic.Field(None, description='The rate of successful SMS message deliveries.\nSum over 5 minutes')
+    bind_as_notification_rule_target: typing.Optional[list[models.aws_sns.TopicDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Represents a notification target That allows SNS topic to associate with this rule target.')
+    grant_publish: typing.Optional[list[models.aws_sns.TopicDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
+    metric: typing.Optional[list[models.aws_sns.TopicDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
+    metric_number_of_messages_published: typing.Optional[list[models.aws_sns.TopicDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
+    metric_number_of_notifications_delivered: typing.Optional[list[models.aws_sns.TopicDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
+    metric_number_of_notifications_failed: typing.Optional[list[models.aws_sns.TopicDefMetricNumberOfNotificationsFailedParams]] = pydantic.Field(None, description='The number of messages that Amazon SNS failed to deliver.\nSum over 5 minutes')
+    metric_number_of_notifications_filtered_out: typing.Optional[list[models.aws_sns.TopicDefMetricNumberOfNotificationsFilteredOutParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies.\nSum over 5 minutes')
+    metric_number_of_notifications_filtered_out_invalid_attributes: typing.Optional[list[models.aws_sns.TopicDefMetricNumberOfNotificationsFilteredOutInvalidAttributesParams]] = pydantic.Field(None, description="The number of messages that were rejected by subscription filter policies because the messages' attributes are invalid.\nSum over 5 minutes")
+    metric_number_of_notifications_filtered_out_no_message_attributes: typing.Optional[list[models.aws_sns.TopicDefMetricNumberOfNotificationsFilteredOutNoMessageAttributesParams]] = pydantic.Field(None, description='The number of messages that were rejected by subscription filter policies because the messages have no attributes.\nSum over 5 minutes')
+    metric_publish_size: typing.Optional[list[models.aws_sns.TopicDefMetricPublishSizeParams]] = pydantic.Field(None, description='Metric for the size of messages published through this topic.\nAverage over 5 minutes')
+    metric_sms_month_to_date_spent_usd: typing.Optional[list[models.aws_sns.TopicDefMetricSmsMonthToDateSpentUsdParams]] = pydantic.Field(None, description='The charges you have accrued since the start of the current calendar month for sending SMS messages.\nMaximum over 5 minutes')
+    metric_sms_success_rate: typing.Optional[list[models.aws_sns.TopicDefMetricSmsSuccessRateParams]] = pydantic.Field(None, description='The rate of successful SMS message deliveries.\nSum over 5 minutes')
 
 class TopicDefAddSubscriptionParams(pydantic.BaseModel):
     topic_subscription: typing.Union[models.aws_sns_subscriptions.EmailSubscriptionDef, models.aws_sns_subscriptions.LambdaSubscriptionDef, models.aws_sns_subscriptions.SmsSubscriptionDef, models.aws_sns_subscriptions.SqsSubscriptionDef, models.aws_sns_subscriptions.UrlSubscriptionDef] = pydantic.Field(..., description='-')
@@ -388,7 +392,6 @@ class TopicDefApplyRemovalPolicyParams(pydantic.BaseModel):
     ...
 
 class TopicDefBindAsNotificationRuleTargetParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class TopicDefFromTopicArnParams(pydantic.BaseModel):
@@ -536,7 +539,7 @@ class TopicPolicyDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[TopicPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.TopicPolicyDefConfig] = pydantic.Field(None)
 
 
 class TopicPolicyDefConfig(pydantic.BaseModel):
@@ -649,7 +652,7 @@ class SubscriptionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SubscriptionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.SubscriptionPropsDefConfig] = pydantic.Field(None)
 
 
 class SubscriptionPropsDefConfig(pydantic.BaseModel):
@@ -742,26 +745,26 @@ class CfnSubscriptionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.CfnSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class CfnSubscriptionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnSubscriptionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSubscriptionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSubscriptionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSubscriptionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSubscriptionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSubscriptionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSubscriptionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_sns.CfnSubscriptionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSubscriptionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSubscriptionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSubscriptionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_sns.CfnSubscriptionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_sns.CfnSubscriptionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_sns.CfnSubscriptionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSubscriptionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSubscriptionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSubscriptionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_sns.CfnSubscriptionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_sns.CfnSubscriptionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_sns.CfnSubscriptionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnSubscriptionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -849,27 +852,27 @@ class CfnTopicDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnTopicDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.CfnTopicDefConfig] = pydantic.Field(None)
 
 
 class CfnTopicDefConfig(pydantic.BaseModel):
-    SubscriptionProperty: typing.Optional[list[CfnTopicDefSubscriptionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnTopicDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnTopicDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnTopicDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnTopicDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnTopicDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnTopicDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnTopicDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    SubscriptionProperty: typing.Optional[list[models.aws_sns.CfnTopicDefSubscriptionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_sns.CfnTopicDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_sns.CfnTopicDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_sns.CfnTopicDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_sns.CfnTopicDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_sns.CfnTopicDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_sns.CfnTopicDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_sns.CfnTopicDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnTopicDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnTopicDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnTopicDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_sns.CfnTopicDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_sns.CfnTopicDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_sns.CfnTopicDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnTopicDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnTopicDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnTopicDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_sns.CfnTopicDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_sns.CfnTopicDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_sns.CfnTopicDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnTopicDefSubscriptionpropertyParams(pydantic.BaseModel):
@@ -954,26 +957,26 @@ class CfnTopicInlinePolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnTopicInlinePolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.CfnTopicInlinePolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnTopicInlinePolicyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnTopicInlinePolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnTopicInlinePolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnTopicInlinePolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnTopicInlinePolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnTopicInlinePolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnTopicInlinePolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnTopicInlinePolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnTopicInlinePolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnTopicInlinePolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnTopicInlinePolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnTopicInlinePolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnTopicInlinePolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnTopicInlinePolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_sns.CfnTopicInlinePolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnTopicInlinePolicyDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -1052,26 +1055,26 @@ class CfnTopicPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnTopicPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns.CfnTopicPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnTopicPolicyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnTopicPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnTopicPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnTopicPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnTopicPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnTopicPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnTopicPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnTopicPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnTopicPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnTopicPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnTopicPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnTopicPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnTopicPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnTopicPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_sns.CfnTopicPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnTopicPolicyDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -1211,32 +1214,32 @@ class CfnTopicPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Filter: typing.Optional[dict[str, FilterDef]] = pydantic.Field(None)
-    FilterOrPolicy: typing.Optional[dict[str, FilterOrPolicyDef]] = pydantic.Field(None)
-    Policy: typing.Optional[dict[str, PolicyDef]] = pydantic.Field(None)
-    SubscriptionFilter: typing.Optional[dict[str, SubscriptionFilterDef]] = pydantic.Field(None)
-    TopicBase: typing.Optional[dict[str, TopicBaseDef]] = pydantic.Field(None)
-    Subscription: typing.Optional[dict[str, SubscriptionDef]] = pydantic.Field(None)
-    Topic: typing.Optional[dict[str, TopicDef]] = pydantic.Field(None)
-    TopicPolicy: typing.Optional[dict[str, TopicPolicyDef]] = pydantic.Field(None)
-    BetweenCondition: typing.Optional[dict[str, BetweenConditionDef]] = pydantic.Field(None)
-    CfnTopic_SubscriptionProperty: typing.Optional[dict[str, CfnTopic_SubscriptionPropertyDef]] = pydantic.Field(None)
-    NumericConditions: typing.Optional[dict[str, NumericConditionsDef]] = pydantic.Field(None)
-    StringConditions: typing.Optional[dict[str, StringConditionsDef]] = pydantic.Field(None)
-    SubscriptionOptions: typing.Optional[dict[str, SubscriptionOptionsDef]] = pydantic.Field(None)
-    SubscriptionProps: typing.Optional[dict[str, SubscriptionPropsDef]] = pydantic.Field(None)
-    TopicPolicyProps: typing.Optional[dict[str, TopicPolicyPropsDef]] = pydantic.Field(None)
-    TopicProps: typing.Optional[dict[str, TopicPropsDef]] = pydantic.Field(None)
-    TopicSubscriptionConfig: typing.Optional[dict[str, TopicSubscriptionConfigDef]] = pydantic.Field(None)
-    CfnSubscription: typing.Optional[dict[str, CfnSubscriptionDef]] = pydantic.Field(None)
-    CfnTopic: typing.Optional[dict[str, CfnTopicDef]] = pydantic.Field(None)
-    CfnTopicInlinePolicy: typing.Optional[dict[str, CfnTopicInlinePolicyDef]] = pydantic.Field(None)
-    CfnTopicPolicy: typing.Optional[dict[str, CfnTopicPolicyDef]] = pydantic.Field(None)
-    CfnSubscriptionProps: typing.Optional[dict[str, CfnSubscriptionPropsDef]] = pydantic.Field(None)
-    CfnTopicInlinePolicyProps: typing.Optional[dict[str, CfnTopicInlinePolicyPropsDef]] = pydantic.Field(None)
-    CfnTopicPolicyProps: typing.Optional[dict[str, CfnTopicPolicyPropsDef]] = pydantic.Field(None)
-    CfnTopicProps: typing.Optional[dict[str, CfnTopicPropsDef]] = pydantic.Field(None)
+    Filter: typing.Optional[dict[str, models.aws_sns.FilterDef]] = pydantic.Field(None)
+    FilterOrPolicy: typing.Optional[dict[str, models.aws_sns.FilterOrPolicyDef]] = pydantic.Field(None)
+    Policy: typing.Optional[dict[str, models.aws_sns.PolicyDef]] = pydantic.Field(None)
+    SubscriptionFilter: typing.Optional[dict[str, models.aws_sns.SubscriptionFilterDef]] = pydantic.Field(None)
+    TopicBase: typing.Optional[dict[str, models.aws_sns.TopicBaseDef]] = pydantic.Field(None)
+    Subscription: typing.Optional[dict[str, models.aws_sns.SubscriptionDef]] = pydantic.Field(None)
+    Topic: typing.Optional[dict[str, models.aws_sns.TopicDef]] = pydantic.Field(None)
+    TopicPolicy: typing.Optional[dict[str, models.aws_sns.TopicPolicyDef]] = pydantic.Field(None)
+    BetweenCondition: typing.Optional[dict[str, models.aws_sns.BetweenConditionDef]] = pydantic.Field(None)
+    CfnTopic_SubscriptionProperty: typing.Optional[dict[str, models.aws_sns.CfnTopic_SubscriptionPropertyDef]] = pydantic.Field(None)
+    NumericConditions: typing.Optional[dict[str, models.aws_sns.NumericConditionsDef]] = pydantic.Field(None)
+    StringConditions: typing.Optional[dict[str, models.aws_sns.StringConditionsDef]] = pydantic.Field(None)
+    SubscriptionOptions: typing.Optional[dict[str, models.aws_sns.SubscriptionOptionsDef]] = pydantic.Field(None)
+    SubscriptionProps: typing.Optional[dict[str, models.aws_sns.SubscriptionPropsDef]] = pydantic.Field(None)
+    TopicPolicyProps: typing.Optional[dict[str, models.aws_sns.TopicPolicyPropsDef]] = pydantic.Field(None)
+    TopicProps: typing.Optional[dict[str, models.aws_sns.TopicPropsDef]] = pydantic.Field(None)
+    TopicSubscriptionConfig: typing.Optional[dict[str, models.aws_sns.TopicSubscriptionConfigDef]] = pydantic.Field(None)
+    CfnSubscription: typing.Optional[dict[str, models.aws_sns.CfnSubscriptionDef]] = pydantic.Field(None)
+    CfnTopic: typing.Optional[dict[str, models.aws_sns.CfnTopicDef]] = pydantic.Field(None)
+    CfnTopicInlinePolicy: typing.Optional[dict[str, models.aws_sns.CfnTopicInlinePolicyDef]] = pydantic.Field(None)
+    CfnTopicPolicy: typing.Optional[dict[str, models.aws_sns.CfnTopicPolicyDef]] = pydantic.Field(None)
+    CfnSubscriptionProps: typing.Optional[dict[str, models.aws_sns.CfnSubscriptionPropsDef]] = pydantic.Field(None)
+    CfnTopicInlinePolicyProps: typing.Optional[dict[str, models.aws_sns.CfnTopicInlinePolicyPropsDef]] = pydantic.Field(None)
+    CfnTopicPolicyProps: typing.Optional[dict[str, models.aws_sns.CfnTopicPolicyPropsDef]] = pydantic.Field(None)
+    CfnTopicProps: typing.Optional[dict[str, models.aws_sns.CfnTopicPropsDef]] = pydantic.Field(None)
     ...
+
+import models

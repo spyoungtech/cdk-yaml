@@ -16,25 +16,25 @@ class HostedRotationDef(BaseClass, ConnectableMixin):
     ...
 
 
-    resource_config: typing.Optional[HostedRotationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.HostedRotationDefConfig] = pydantic.Field(None)
 
 
 class HostedRotationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[HostedRotationDefBindParams]] = pydantic.Field(None, description='Binds this hosted rotation to a secret.')
-    maria_db_multi_user: typing.Optional[list[HostedRotationDefMariaDbMultiUserParams]] = pydantic.Field(None, description='MariaDB Multi User.')
-    maria_db_single_user: typing.Optional[list[HostedRotationDefMariaDbSingleUserParams]] = pydantic.Field(None, description='MariaDB Single User.')
-    mongo_db_multi_user: typing.Optional[list[HostedRotationDefMongoDbMultiUserParams]] = pydantic.Field(None, description='MongoDB Multi User.')
-    mongo_db_single_user: typing.Optional[list[HostedRotationDefMongoDbSingleUserParams]] = pydantic.Field(None, description='MongoDB Single User.')
-    mysql_multi_user: typing.Optional[list[HostedRotationDefMysqlMultiUserParams]] = pydantic.Field(None, description='MySQL Multi User.')
-    mysql_single_user: typing.Optional[list[HostedRotationDefMysqlSingleUserParams]] = pydantic.Field(None, description='MySQL Single User.')
-    oracle_multi_user: typing.Optional[list[HostedRotationDefOracleMultiUserParams]] = pydantic.Field(None, description='Oracle Multi User.')
-    oracle_single_user: typing.Optional[list[HostedRotationDefOracleSingleUserParams]] = pydantic.Field(None, description='Oracle Single User.')
-    postgre_sql_multi_user: typing.Optional[list[HostedRotationDefPostgreSqlMultiUserParams]] = pydantic.Field(None, description='PostgreSQL Multi User.')
-    postgre_sql_single_user: typing.Optional[list[HostedRotationDefPostgreSqlSingleUserParams]] = pydantic.Field(None, description='PostgreSQL Single User.')
-    redshift_multi_user: typing.Optional[list[HostedRotationDefRedshiftMultiUserParams]] = pydantic.Field(None, description='Redshift Multi User.')
-    redshift_single_user: typing.Optional[list[HostedRotationDefRedshiftSingleUserParams]] = pydantic.Field(None, description='Redshift Single User.')
-    sql_server_multi_user: typing.Optional[list[HostedRotationDefSqlServerMultiUserParams]] = pydantic.Field(None, description='SQL Server Multi User.')
-    sql_server_single_user: typing.Optional[list[HostedRotationDefSqlServerSingleUserParams]] = pydantic.Field(None, description='SQL Server Single User.')
+    bind: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefBindParams]] = pydantic.Field(None, description='Binds this hosted rotation to a secret.')
+    maria_db_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefMariaDbMultiUserParams]] = pydantic.Field(None, description='MariaDB Multi User.')
+    maria_db_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefMariaDbSingleUserParams]] = pydantic.Field(None, description='MariaDB Single User.')
+    mongo_db_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefMongoDbMultiUserParams]] = pydantic.Field(None, description='MongoDB Multi User.')
+    mongo_db_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefMongoDbSingleUserParams]] = pydantic.Field(None, description='MongoDB Single User.')
+    mysql_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefMysqlMultiUserParams]] = pydantic.Field(None, description='MySQL Multi User.')
+    mysql_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefMysqlSingleUserParams]] = pydantic.Field(None, description='MySQL Single User.')
+    oracle_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefOracleMultiUserParams]] = pydantic.Field(None, description='Oracle Multi User.')
+    oracle_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefOracleSingleUserParams]] = pydantic.Field(None, description='Oracle Single User.')
+    postgre_sql_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefPostgreSqlMultiUserParams]] = pydantic.Field(None, description='PostgreSQL Multi User.')
+    postgre_sql_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefPostgreSqlSingleUserParams]] = pydantic.Field(None, description='PostgreSQL Single User.')
+    redshift_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefRedshiftMultiUserParams]] = pydantic.Field(None, description='Redshift Multi User.')
+    redshift_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefRedshiftSingleUserParams]] = pydantic.Field(None, description='Redshift Single User.')
+    sql_server_multi_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefSqlServerMultiUserParams]] = pydantic.Field(None, description='SQL Server Multi User.')
+    sql_server_single_user: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefSqlServerSingleUserParams]] = pydantic.Field(None, description='SQL Server Single User.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
 
 class HostedRotationDefBindParams(pydantic.BaseModel):
@@ -49,6 +49,7 @@ class HostedRotationDefMariaDbMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefMariaDbSingleUserParams(pydantic.BaseModel):
@@ -57,6 +58,7 @@ class HostedRotationDefMariaDbSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefMongoDbMultiUserParams(pydantic.BaseModel):
@@ -66,6 +68,7 @@ class HostedRotationDefMongoDbMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefMongoDbSingleUserParams(pydantic.BaseModel):
@@ -74,6 +77,7 @@ class HostedRotationDefMongoDbSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefMysqlMultiUserParams(pydantic.BaseModel):
@@ -83,6 +87,7 @@ class HostedRotationDefMysqlMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefMysqlSingleUserParams(pydantic.BaseModel):
@@ -91,6 +96,7 @@ class HostedRotationDefMysqlSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefOracleMultiUserParams(pydantic.BaseModel):
@@ -100,6 +106,7 @@ class HostedRotationDefOracleMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefOracleSingleUserParams(pydantic.BaseModel):
@@ -108,6 +115,7 @@ class HostedRotationDefOracleSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefPostgreSqlMultiUserParams(pydantic.BaseModel):
@@ -117,6 +125,7 @@ class HostedRotationDefPostgreSqlMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefPostgreSqlSingleUserParams(pydantic.BaseModel):
@@ -125,6 +134,7 @@ class HostedRotationDefPostgreSqlSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefRedshiftMultiUserParams(pydantic.BaseModel):
@@ -134,6 +144,7 @@ class HostedRotationDefRedshiftMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefRedshiftSingleUserParams(pydantic.BaseModel):
@@ -142,6 +153,7 @@ class HostedRotationDefRedshiftSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefSqlServerMultiUserParams(pydantic.BaseModel):
@@ -151,6 +163,7 @@ class HostedRotationDefSqlServerMultiUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 class HostedRotationDefSqlServerSingleUserParams(pydantic.BaseModel):
@@ -159,6 +172,7 @@ class HostedRotationDefSqlServerSingleUserParams(pydantic.BaseModel):
     security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the Lambda created to rotate the secret. Default: - a new security group is created\n')
     vpc: typing.Optional[typing.Union[models.aws_ec2.VpcDef]] = pydantic.Field(None, description='The VPC where the Lambda rotation function will run. Default: - the Lambda is not deployed in a VPC\n')
     vpc_subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The type of subnets in the VPC where the Lambda rotation function will run. Default: - the Vpc default strategy if not specified.')
+    return_config: typing.Optional[list[models.aws_secretsmanager.HostedRotationDefConfig]] = pydantic.Field(None)
     ...
 
 
@@ -187,12 +201,12 @@ class SecretRotationApplicationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SecretRotationApplicationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.SecretRotationApplicationDefConfig] = pydantic.Field(None)
 
 
 class SecretRotationApplicationDefConfig(pydantic.BaseModel):
-    application_arn_for_partition: typing.Optional[list[SecretRotationApplicationDefApplicationArnForPartitionParams]] = pydantic.Field(None, description='Returns the application ARN for the current partition.\nCan be used in combination with a ``CfnMapping`` to automatically select the correct ARN based on the current partition.')
-    semantic_version_for_partition: typing.Optional[list[SecretRotationApplicationDefSemanticVersionForPartitionParams]] = pydantic.Field(None, description='The semantic version of the app for the current partition.\nCan be used in combination with a ``CfnMapping`` to automatically select the correct version based on the current partition.')
+    application_arn_for_partition: typing.Optional[list[models.aws_secretsmanager.SecretRotationApplicationDefApplicationArnForPartitionParams]] = pydantic.Field(None, description='Returns the application ARN for the current partition.\nCan be used in combination with a ``CfnMapping`` to automatically select the correct ARN based on the current partition.')
+    semantic_version_for_partition: typing.Optional[list[models.aws_secretsmanager.SecretRotationApplicationDefSemanticVersionForPartitionParams]] = pydantic.Field(None, description='The semantic version of the app for the current partition.\nCan be used in combination with a ``CfnMapping`` to automatically select the correct version based on the current partition.')
 
 class SecretRotationApplicationDefApplicationArnForPartitionParams(pydantic.BaseModel):
     partition: str = pydantic.Field(..., description='-')
@@ -213,9 +227,9 @@ class SecretStringValueBeta1Def(BaseClass):
     ...
 
 
-    from_token: typing.Optional[SecretStringValueBeta1DefFromTokenParams] = pydantic.Field(None, description='(deprecated) Creates a ``SecretValueValueBeta1`` from a string value coming from a Token.\nThe intent is to enable creating secrets from references (e.g., ``Ref``, ``Fn::GetAtt``) from other resources.\nThis might be the direct output of another Construct, or the output of a Custom Resource.\nThis method throws if it determines the input is an unsafe plaintext string.\n\nFor example::\n\n   # Creates a new IAM user, access and secret keys, and stores the secret access key in a Secret.\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret = secretsmanager.Secret(self, "Secret",\n       secret_string_value=access_key.secret_access_key\n   )\n\nThe secret may also be embedded in a string representation of a JSON structure::\n\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret_value = secretsmanager.SecretStringValueBeta1.from_token(JSON.stringify({\n       "username": user.user_name,\n       "database": "foo",\n       "password": access_key.secret_access_key.unsafe_unwrap()\n   }))\n\nNote that the value being a Token does *not* guarantee safety. For example, a Lazy-evaluated string\n(e.g., ``Lazy.string({ produce: () => \'myInsecurePassword\' }))``) is a Token, but as the output is\nultimately a plaintext string, and so insecure.')
-    from_unsafe_plaintext: typing.Optional[SecretStringValueBeta1DefFromUnsafePlaintextParams] = pydantic.Field(None, description='(deprecated) Creates a ``SecretStringValueBeta1`` from a plaintext value.\nThis approach is inherently unsafe, as the secret value may be visible in your source control repository\nand will also appear in plaintext in the resulting CloudFormation template, including in the AWS Console or APIs.\nUsage of this method is discouraged, especially for production workloads.')
-    resource_config: typing.Optional[SecretStringValueBeta1DefConfig] = pydantic.Field(None)
+    from_token: typing.Optional[models.aws_secretsmanager.SecretStringValueBeta1DefFromTokenParams] = pydantic.Field(None, description='(deprecated) Creates a ``SecretValueValueBeta1`` from a string value coming from a Token.\nThe intent is to enable creating secrets from references (e.g., ``Ref``, ``Fn::GetAtt``) from other resources.\nThis might be the direct output of another Construct, or the output of a Custom Resource.\nThis method throws if it determines the input is an unsafe plaintext string.\n\nFor example::\n\n   # Creates a new IAM user, access and secret keys, and stores the secret access key in a Secret.\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret = secretsmanager.Secret(self, "Secret",\n       secret_string_value=access_key.secret_access_key\n   )\n\nThe secret may also be embedded in a string representation of a JSON structure::\n\n   user = iam.User(self, "User")\n   access_key = iam.AccessKey(self, "AccessKey", user=user)\n   secret_value = secretsmanager.SecretStringValueBeta1.from_token(JSON.stringify({\n       "username": user.user_name,\n       "database": "foo",\n       "password": access_key.secret_access_key.unsafe_unwrap()\n   }))\n\nNote that the value being a Token does *not* guarantee safety. For example, a Lazy-evaluated string\n(e.g., ``Lazy.string({ produce: () => \'myInsecurePassword\' }))``) is a Token, but as the output is\nultimately a plaintext string, and so insecure.')
+    from_unsafe_plaintext: typing.Optional[models.aws_secretsmanager.SecretStringValueBeta1DefFromUnsafePlaintextParams] = pydantic.Field(None, description='(deprecated) Creates a ``SecretStringValueBeta1`` from a plaintext value.\nThis approach is inherently unsafe, as the secret value may be visible in your source control repository\nand will also appear in plaintext in the resulting CloudFormation template, including in the AWS Console or APIs.\nUsage of this method is discouraged, especially for production workloads.')
+    resource_config: typing.Optional[models.aws_secretsmanager.SecretStringValueBeta1DefConfig] = pydantic.Field(None)
 
 
 class SecretStringValueBeta1DefConfig(pydantic.BaseModel):
@@ -241,7 +255,7 @@ class ResourcePolicyDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ResourcePolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.ResourcePolicyDefConfig] = pydantic.Field(None)
 
 
 class ResourcePolicyDefConfig(pydantic.BaseModel):
@@ -268,7 +282,7 @@ class RotationScheduleDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[RotationScheduleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.RotationScheduleDefConfig] = pydantic.Field(None)
 
 
 class RotationScheduleDefConfig(pydantic.BaseModel):
@@ -298,23 +312,23 @@ class SecretDef(BaseConstruct):
     ...
 
 
-    from_secret_attributes: typing.Optional[SecretDefFromSecretAttributesParams] = pydantic.Field(None, description='Import an existing secret into the Stack.')
-    from_secret_complete_arn: typing.Optional[SecretDefFromSecretCompleteArnParams] = pydantic.Field(None, description='Imports a secret by complete ARN.\nThe complete ARN is the ARN with the Secrets Manager-supplied suffix.')
-    from_secret_name_v2: typing.Optional[SecretDefFromSecretNameV2Params] = pydantic.Field(None, description='Imports a secret by secret name.\nA secret with this name must exist in the same account & region.\nReplaces the deprecated ``fromSecretName``.\nPlease note this method returns ISecret that only contains partial ARN and could lead to AccessDeniedException\nwhen you pass the partial ARN to CLI or SDK to get the secret value. If your secret name ends with a hyphen and\n6 characters, you should always use fromSecretCompleteArn() to avoid potential AccessDeniedException.')
-    from_secret_partial_arn: typing.Optional[SecretDefFromSecretPartialArnParams] = pydantic.Field(None, description='Imports a secret by partial ARN.\nThe partial ARN is the ARN without the Secrets Manager-supplied suffix.')
-    resource_config: typing.Optional[SecretDefConfig] = pydantic.Field(None)
+    from_secret_attributes: typing.Optional[models.aws_secretsmanager.SecretDefFromSecretAttributesParams] = pydantic.Field(None, description='Import an existing secret into the Stack.')
+    from_secret_complete_arn: typing.Optional[models.aws_secretsmanager.SecretDefFromSecretCompleteArnParams] = pydantic.Field(None, description='Imports a secret by complete ARN.\nThe complete ARN is the ARN with the Secrets Manager-supplied suffix.')
+    from_secret_name_v2: typing.Optional[models.aws_secretsmanager.SecretDefFromSecretNameV2Params] = pydantic.Field(None, description='Imports a secret by secret name.\nA secret with this name must exist in the same account & region.\nReplaces the deprecated ``fromSecretName``.\nPlease note this method returns ISecret that only contains partial ARN and could lead to AccessDeniedException\nwhen you pass the partial ARN to CLI or SDK to get the secret value. If your secret name ends with a hyphen and\n6 characters, you should always use fromSecretCompleteArn() to avoid potential AccessDeniedException.')
+    from_secret_partial_arn: typing.Optional[models.aws_secretsmanager.SecretDefFromSecretPartialArnParams] = pydantic.Field(None, description='Imports a secret by partial ARN.\nThe partial ARN is the ARN without the Secrets Manager-supplied suffix.')
+    resource_config: typing.Optional[models.aws_secretsmanager.SecretDefConfig] = pydantic.Field(None)
 
 
 class SecretDefConfig(pydantic.BaseModel):
-    add_replica_region: typing.Optional[list[SecretDefAddReplicaRegionParams]] = pydantic.Field(None, description='Adds a replica region for the secret.')
-    add_rotation_schedule: typing.Optional[list[SecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
-    add_to_resource_policy: typing.Optional[list[SecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
+    add_replica_region: typing.Optional[list[models.aws_secretsmanager.SecretDefAddReplicaRegionParams]] = pydantic.Field(None, description='Adds a replica region for the secret.')
+    add_rotation_schedule: typing.Optional[list[models.aws_secretsmanager.SecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
+    add_to_resource_policy: typing.Optional[list[models.aws_secretsmanager.SecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    attach: typing.Optional[list[SecretDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
+    attach: typing.Optional[list[models.aws_secretsmanager.SecretDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
     deny_account_root_delete: typing.Optional[bool] = pydantic.Field(None, description='Denies the ``DeleteSecret`` action to all principals within the current account.')
-    grant_read: typing.Optional[list[SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
-    grant_write: typing.Optional[list[SecretDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
-    secret_value_from_json: typing.Optional[list[SecretDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
+    grant_read: typing.Optional[list[models.aws_secretsmanager.SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
+    grant_write: typing.Optional[list[models.aws_secretsmanager.SecretDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
+    secret_value_from_json: typing.Optional[list[models.aws_secretsmanager.SecretDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
     secret_value_config: typing.Optional[models.core.SecretValueDefConfig] = pydantic.Field(None)
 
 class SecretDefAddReplicaRegionParams(pydantic.BaseModel):
@@ -422,19 +436,19 @@ class SecretTargetAttachmentDef(BaseConstruct):
     ...
 
 
-    from_secret_target_attachment_secret_arn: typing.Optional[SecretTargetAttachmentDefFromSecretTargetAttachmentSecretArnParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[SecretTargetAttachmentDefConfig] = pydantic.Field(None)
+    from_secret_target_attachment_secret_arn: typing.Optional[models.aws_secretsmanager.SecretTargetAttachmentDefFromSecretTargetAttachmentSecretArnParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_secretsmanager.SecretTargetAttachmentDefConfig] = pydantic.Field(None)
 
 
 class SecretTargetAttachmentDefConfig(pydantic.BaseModel):
-    add_rotation_schedule: typing.Optional[list[SecretTargetAttachmentDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
-    add_to_resource_policy: typing.Optional[list[SecretTargetAttachmentDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Forward any additions to the resource policy to the original secret.\nThis is required because a secret can only have a single resource policy.\nIf we do not forward policy additions, a new policy resource is created using the secret attachment ARN.\nThis ends up being rejected by CloudFormation.')
+    add_rotation_schedule: typing.Optional[list[models.aws_secretsmanager.SecretTargetAttachmentDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
+    add_to_resource_policy: typing.Optional[list[models.aws_secretsmanager.SecretTargetAttachmentDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Forward any additions to the resource policy to the original secret.\nThis is required because a secret can only have a single resource policy.\nIf we do not forward policy additions, a new policy resource is created using the secret attachment ARN.\nThis ends up being rejected by CloudFormation.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    attach: typing.Optional[list[SecretTargetAttachmentDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
+    attach: typing.Optional[list[models.aws_secretsmanager.SecretTargetAttachmentDefAttachParams]] = pydantic.Field(None, description='Attach a target to this secret.')
     deny_account_root_delete: typing.Optional[bool] = pydantic.Field(None, description='Denies the ``DeleteSecret`` action to all principals within the current account.')
-    grant_read: typing.Optional[list[SecretTargetAttachmentDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
-    grant_write: typing.Optional[list[SecretTargetAttachmentDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
-    secret_value_from_json: typing.Optional[list[SecretTargetAttachmentDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
+    grant_read: typing.Optional[list[models.aws_secretsmanager.SecretTargetAttachmentDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret value to some role.')
+    grant_write: typing.Optional[list[models.aws_secretsmanager.SecretTargetAttachmentDefGrantWriteParams]] = pydantic.Field(None, description='Grants writing and updating the secret value to some role.')
+    secret_value_from_json: typing.Optional[list[models.aws_secretsmanager.SecretTargetAttachmentDefSecretValueFromJsonParams]] = pydantic.Field(None, description="Interpret the secret as a JSON object and return a field's value from it as a ``SecretValue``.")
     secret_value_config: typing.Optional[models.core.SecretValueDefConfig] = pydantic.Field(None)
 
 class SecretTargetAttachmentDefAddRotationScheduleParams(pydantic.BaseModel):
@@ -585,7 +599,7 @@ class MultiUserHostedRotationOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MultiUserHostedRotationOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.MultiUserHostedRotationOptionsDefConfig] = pydantic.Field(None)
 
 
 class MultiUserHostedRotationOptionsDefConfig(pydantic.BaseModel):
@@ -617,7 +631,7 @@ class ResourcePolicyPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ResourcePolicyPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.ResourcePolicyPropsDefConfig] = pydantic.Field(None)
 
 
 class ResourcePolicyPropsDefConfig(pydantic.BaseModel):
@@ -655,7 +669,7 @@ class RotationSchedulePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[RotationSchedulePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.RotationSchedulePropsDefConfig] = pydantic.Field(None)
 
 
 class RotationSchedulePropsDefConfig(pydantic.BaseModel):
@@ -746,7 +760,7 @@ class SecretRotationPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SecretRotationPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.SecretRotationPropsDefConfig] = pydantic.Field(None)
 
 
 class SecretRotationPropsDefConfig(pydantic.BaseModel):
@@ -789,7 +803,7 @@ class SecretTargetAttachmentPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[SecretTargetAttachmentPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.SecretTargetAttachmentPropsDefConfig] = pydantic.Field(None)
 
 
 class SecretTargetAttachmentPropsDefConfig(pydantic.BaseModel):
@@ -838,26 +852,26 @@ class CfnResourcePolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnResourcePolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.CfnResourcePolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnResourcePolicyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnResourcePolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnResourcePolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnResourcePolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnResourcePolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnResourcePolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnResourcePolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnResourcePolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnResourcePolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnResourcePolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnResourcePolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnResourcePolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnResourcePolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnResourcePolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_secretsmanager.CfnResourcePolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnResourcePolicyDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -939,28 +953,28 @@ class CfnRotationScheduleDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRotationScheduleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.CfnRotationScheduleDefConfig] = pydantic.Field(None)
 
 
 class CfnRotationScheduleDefConfig(pydantic.BaseModel):
-    HostedRotationLambdaProperty: typing.Optional[list[CfnRotationScheduleDefHostedrotationlambdapropertyParams]] = pydantic.Field(None, description='')
-    RotationRulesProperty: typing.Optional[list[CfnRotationScheduleDefRotationrulespropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnRotationScheduleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRotationScheduleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRotationScheduleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRotationScheduleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRotationScheduleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRotationScheduleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRotationScheduleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    HostedRotationLambdaProperty: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefHostedrotationlambdapropertyParams]] = pydantic.Field(None, description='')
+    RotationRulesProperty: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefRotationrulespropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRotationScheduleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRotationScheduleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRotationScheduleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRotationScheduleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRotationScheduleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRotationScheduleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_secretsmanager.CfnRotationScheduleDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnRotationScheduleDefHostedrotationlambdapropertyParams(pydantic.BaseModel):
     rotation_type: str = pydantic.Field(..., description='')
@@ -1064,28 +1078,28 @@ class CfnSecretDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSecretDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.CfnSecretDefConfig] = pydantic.Field(None)
 
 
 class CfnSecretDefConfig(pydantic.BaseModel):
-    GenerateSecretStringProperty: typing.Optional[list[CfnSecretDefGeneratesecretstringpropertyParams]] = pydantic.Field(None, description='')
-    ReplicaRegionProperty: typing.Optional[list[CfnSecretDefReplicaregionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnSecretDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSecretDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSecretDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSecretDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSecretDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSecretDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSecretDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    GenerateSecretStringProperty: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefGeneratesecretstringpropertyParams]] = pydantic.Field(None, description='')
+    ReplicaRegionProperty: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefReplicaregionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSecretDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSecretDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSecretDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSecretDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSecretDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSecretDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_secretsmanager.CfnSecretDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnSecretDefGeneratesecretstringpropertyParams(pydantic.BaseModel):
@@ -1184,26 +1198,26 @@ class CfnSecretTargetAttachmentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSecretTargetAttachmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_secretsmanager.CfnSecretTargetAttachmentDefConfig] = pydantic.Field(None)
 
 
 class CfnSecretTargetAttachmentDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnSecretTargetAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSecretTargetAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSecretTargetAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSecretTargetAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSecretTargetAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSecretTargetAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSecretTargetAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSecretTargetAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSecretTargetAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSecretTargetAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSecretTargetAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSecretTargetAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSecretTargetAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_secretsmanager.CfnSecretTargetAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnSecretTargetAttachmentDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -1336,42 +1350,42 @@ class CfnSecretTargetAttachmentPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    HostedRotation: typing.Optional[dict[str, HostedRotationDef]] = pydantic.Field(None)
-    HostedRotationType: typing.Optional[dict[str, HostedRotationTypeDef]] = pydantic.Field(None)
-    SecretRotationApplication: typing.Optional[dict[str, SecretRotationApplicationDef]] = pydantic.Field(None)
-    SecretStringValueBeta1: typing.Optional[dict[str, SecretStringValueBeta1Def]] = pydantic.Field(None)
-    ResourcePolicy: typing.Optional[dict[str, ResourcePolicyDef]] = pydantic.Field(None)
-    RotationSchedule: typing.Optional[dict[str, RotationScheduleDef]] = pydantic.Field(None)
-    Secret: typing.Optional[dict[str, SecretDef]] = pydantic.Field(None)
-    SecretRotation: typing.Optional[dict[str, SecretRotationDef]] = pydantic.Field(None)
-    SecretTargetAttachment: typing.Optional[dict[str, SecretTargetAttachmentDef]] = pydantic.Field(None)
-    AttachedSecretOptions: typing.Optional[dict[str, AttachedSecretOptionsDef]] = pydantic.Field(None)
-    CfnRotationSchedule_HostedRotationLambdaProperty: typing.Optional[dict[str, CfnRotationSchedule_HostedRotationLambdaPropertyDef]] = pydantic.Field(None)
-    CfnRotationSchedule_RotationRulesProperty: typing.Optional[dict[str, CfnRotationSchedule_RotationRulesPropertyDef]] = pydantic.Field(None)
-    CfnSecret_GenerateSecretStringProperty: typing.Optional[dict[str, CfnSecret_GenerateSecretStringPropertyDef]] = pydantic.Field(None)
-    CfnSecret_ReplicaRegionProperty: typing.Optional[dict[str, CfnSecret_ReplicaRegionPropertyDef]] = pydantic.Field(None)
-    MultiUserHostedRotationOptions: typing.Optional[dict[str, MultiUserHostedRotationOptionsDef]] = pydantic.Field(None)
-    ReplicaRegion: typing.Optional[dict[str, ReplicaRegionDef]] = pydantic.Field(None)
-    ResourcePolicyProps: typing.Optional[dict[str, ResourcePolicyPropsDef]] = pydantic.Field(None)
-    RotationScheduleOptions: typing.Optional[dict[str, RotationScheduleOptionsDef]] = pydantic.Field(None)
-    RotationScheduleProps: typing.Optional[dict[str, RotationSchedulePropsDef]] = pydantic.Field(None)
-    SecretAttachmentTargetProps: typing.Optional[dict[str, SecretAttachmentTargetPropsDef]] = pydantic.Field(None)
-    SecretAttributes: typing.Optional[dict[str, SecretAttributesDef]] = pydantic.Field(None)
-    SecretProps: typing.Optional[dict[str, SecretPropsDef]] = pydantic.Field(None)
-    SecretRotationApplicationOptions: typing.Optional[dict[str, SecretRotationApplicationOptionsDef]] = pydantic.Field(None)
-    SecretRotationProps: typing.Optional[dict[str, SecretRotationPropsDef]] = pydantic.Field(None)
-    SecretStringGenerator: typing.Optional[dict[str, SecretStringGeneratorDef]] = pydantic.Field(None)
-    SecretTargetAttachmentProps: typing.Optional[dict[str, SecretTargetAttachmentPropsDef]] = pydantic.Field(None)
-    SingleUserHostedRotationOptions: typing.Optional[dict[str, SingleUserHostedRotationOptionsDef]] = pydantic.Field(None)
-    CfnResourcePolicy: typing.Optional[dict[str, CfnResourcePolicyDef]] = pydantic.Field(None)
-    CfnRotationSchedule: typing.Optional[dict[str, CfnRotationScheduleDef]] = pydantic.Field(None)
-    CfnSecret: typing.Optional[dict[str, CfnSecretDef]] = pydantic.Field(None)
-    CfnSecretTargetAttachment: typing.Optional[dict[str, CfnSecretTargetAttachmentDef]] = pydantic.Field(None)
-    CfnResourcePolicyProps: typing.Optional[dict[str, CfnResourcePolicyPropsDef]] = pydantic.Field(None)
-    CfnRotationScheduleProps: typing.Optional[dict[str, CfnRotationSchedulePropsDef]] = pydantic.Field(None)
-    CfnSecretProps: typing.Optional[dict[str, CfnSecretPropsDef]] = pydantic.Field(None)
-    CfnSecretTargetAttachmentProps: typing.Optional[dict[str, CfnSecretTargetAttachmentPropsDef]] = pydantic.Field(None)
+    HostedRotation: typing.Optional[dict[str, models.aws_secretsmanager.HostedRotationDef]] = pydantic.Field(None)
+    HostedRotationType: typing.Optional[dict[str, models.aws_secretsmanager.HostedRotationTypeDef]] = pydantic.Field(None)
+    SecretRotationApplication: typing.Optional[dict[str, models.aws_secretsmanager.SecretRotationApplicationDef]] = pydantic.Field(None)
+    SecretStringValueBeta1: typing.Optional[dict[str, models.aws_secretsmanager.SecretStringValueBeta1Def]] = pydantic.Field(None)
+    ResourcePolicy: typing.Optional[dict[str, models.aws_secretsmanager.ResourcePolicyDef]] = pydantic.Field(None)
+    RotationSchedule: typing.Optional[dict[str, models.aws_secretsmanager.RotationScheduleDef]] = pydantic.Field(None)
+    Secret: typing.Optional[dict[str, models.aws_secretsmanager.SecretDef]] = pydantic.Field(None)
+    SecretRotation: typing.Optional[dict[str, models.aws_secretsmanager.SecretRotationDef]] = pydantic.Field(None)
+    SecretTargetAttachment: typing.Optional[dict[str, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(None)
+    AttachedSecretOptions: typing.Optional[dict[str, models.aws_secretsmanager.AttachedSecretOptionsDef]] = pydantic.Field(None)
+    CfnRotationSchedule_HostedRotationLambdaProperty: typing.Optional[dict[str, models.aws_secretsmanager.CfnRotationSchedule_HostedRotationLambdaPropertyDef]] = pydantic.Field(None)
+    CfnRotationSchedule_RotationRulesProperty: typing.Optional[dict[str, models.aws_secretsmanager.CfnRotationSchedule_RotationRulesPropertyDef]] = pydantic.Field(None)
+    CfnSecret_GenerateSecretStringProperty: typing.Optional[dict[str, models.aws_secretsmanager.CfnSecret_GenerateSecretStringPropertyDef]] = pydantic.Field(None)
+    CfnSecret_ReplicaRegionProperty: typing.Optional[dict[str, models.aws_secretsmanager.CfnSecret_ReplicaRegionPropertyDef]] = pydantic.Field(None)
+    MultiUserHostedRotationOptions: typing.Optional[dict[str, models.aws_secretsmanager.MultiUserHostedRotationOptionsDef]] = pydantic.Field(None)
+    ReplicaRegion: typing.Optional[dict[str, models.aws_secretsmanager.ReplicaRegionDef]] = pydantic.Field(None)
+    ResourcePolicyProps: typing.Optional[dict[str, models.aws_secretsmanager.ResourcePolicyPropsDef]] = pydantic.Field(None)
+    RotationScheduleOptions: typing.Optional[dict[str, models.aws_secretsmanager.RotationScheduleOptionsDef]] = pydantic.Field(None)
+    RotationScheduleProps: typing.Optional[dict[str, models.aws_secretsmanager.RotationSchedulePropsDef]] = pydantic.Field(None)
+    SecretAttachmentTargetProps: typing.Optional[dict[str, models.aws_secretsmanager.SecretAttachmentTargetPropsDef]] = pydantic.Field(None)
+    SecretAttributes: typing.Optional[dict[str, models.aws_secretsmanager.SecretAttributesDef]] = pydantic.Field(None)
+    SecretProps: typing.Optional[dict[str, models.aws_secretsmanager.SecretPropsDef]] = pydantic.Field(None)
+    SecretRotationApplicationOptions: typing.Optional[dict[str, models.aws_secretsmanager.SecretRotationApplicationOptionsDef]] = pydantic.Field(None)
+    SecretRotationProps: typing.Optional[dict[str, models.aws_secretsmanager.SecretRotationPropsDef]] = pydantic.Field(None)
+    SecretStringGenerator: typing.Optional[dict[str, models.aws_secretsmanager.SecretStringGeneratorDef]] = pydantic.Field(None)
+    SecretTargetAttachmentProps: typing.Optional[dict[str, models.aws_secretsmanager.SecretTargetAttachmentPropsDef]] = pydantic.Field(None)
+    SingleUserHostedRotationOptions: typing.Optional[dict[str, models.aws_secretsmanager.SingleUserHostedRotationOptionsDef]] = pydantic.Field(None)
+    CfnResourcePolicy: typing.Optional[dict[str, models.aws_secretsmanager.CfnResourcePolicyDef]] = pydantic.Field(None)
+    CfnRotationSchedule: typing.Optional[dict[str, models.aws_secretsmanager.CfnRotationScheduleDef]] = pydantic.Field(None)
+    CfnSecret: typing.Optional[dict[str, models.aws_secretsmanager.CfnSecretDef]] = pydantic.Field(None)
+    CfnSecretTargetAttachment: typing.Optional[dict[str, models.aws_secretsmanager.CfnSecretTargetAttachmentDef]] = pydantic.Field(None)
+    CfnResourcePolicyProps: typing.Optional[dict[str, models.aws_secretsmanager.CfnResourcePolicyPropsDef]] = pydantic.Field(None)
+    CfnRotationScheduleProps: typing.Optional[dict[str, models.aws_secretsmanager.CfnRotationSchedulePropsDef]] = pydantic.Field(None)
+    CfnSecretProps: typing.Optional[dict[str, models.aws_secretsmanager.CfnSecretPropsDef]] = pydantic.Field(None)
+    CfnSecretTargetAttachmentProps: typing.Optional[dict[str, models.aws_secretsmanager.CfnSecretTargetAttachmentPropsDef]] = pydantic.Field(None)
     ...
+
+import models

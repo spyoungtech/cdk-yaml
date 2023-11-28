@@ -128,33 +128,33 @@ class CfnExperimentTemplateDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnExperimentTemplateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_fis.CfnExperimentTemplateDefConfig] = pydantic.Field(None)
 
 
 class CfnExperimentTemplateDefConfig(pydantic.BaseModel):
-    CloudWatchLogsConfigurationProperty: typing.Optional[list[CfnExperimentTemplateDefCloudwatchlogsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ExperimentTemplateActionProperty: typing.Optional[list[CfnExperimentTemplateDefExperimenttemplateactionpropertyParams]] = pydantic.Field(None, description='')
-    ExperimentTemplateLogConfigurationProperty: typing.Optional[list[CfnExperimentTemplateDefExperimenttemplatelogconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ExperimentTemplateStopConditionProperty: typing.Optional[list[CfnExperimentTemplateDefExperimenttemplatestopconditionpropertyParams]] = pydantic.Field(None, description='')
-    ExperimentTemplateTargetFilterProperty: typing.Optional[list[CfnExperimentTemplateDefExperimenttemplatetargetfilterpropertyParams]] = pydantic.Field(None, description='')
-    ExperimentTemplateTargetProperty: typing.Optional[list[CfnExperimentTemplateDefExperimenttemplatetargetpropertyParams]] = pydantic.Field(None, description='')
-    S3ConfigurationProperty: typing.Optional[list[CfnExperimentTemplateDefS3ConfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnExperimentTemplateDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnExperimentTemplateDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnExperimentTemplateDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnExperimentTemplateDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnExperimentTemplateDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnExperimentTemplateDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnExperimentTemplateDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CloudWatchLogsConfigurationProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefCloudwatchlogsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ExperimentTemplateActionProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefExperimenttemplateactionpropertyParams]] = pydantic.Field(None, description='')
+    ExperimentTemplateLogConfigurationProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefExperimenttemplatelogconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ExperimentTemplateStopConditionProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefExperimenttemplatestopconditionpropertyParams]] = pydantic.Field(None, description='')
+    ExperimentTemplateTargetFilterProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefExperimenttemplatetargetfilterpropertyParams]] = pydantic.Field(None, description='')
+    ExperimentTemplateTargetProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefExperimenttemplatetargetpropertyParams]] = pydantic.Field(None, description='')
+    S3ConfigurationProperty: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefS3ConfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnExperimentTemplateDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnExperimentTemplateDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnExperimentTemplateDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnExperimentTemplateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnExperimentTemplateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnExperimentTemplateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_fis.CfnExperimentTemplateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnExperimentTemplateDefCloudwatchlogsconfigurationpropertyParams(pydantic.BaseModel):
@@ -283,16 +283,16 @@ class CfnExperimentTemplatePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnExperimentTemplate_CloudWatchLogsConfigurationProperty: typing.Optional[dict[str, CfnExperimentTemplate_CloudWatchLogsConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate_ExperimentTemplateActionProperty: typing.Optional[dict[str, CfnExperimentTemplate_ExperimentTemplateActionPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate_ExperimentTemplateLogConfigurationProperty: typing.Optional[dict[str, CfnExperimentTemplate_ExperimentTemplateLogConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate_ExperimentTemplateStopConditionProperty: typing.Optional[dict[str, CfnExperimentTemplate_ExperimentTemplateStopConditionPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate_ExperimentTemplateTargetFilterProperty: typing.Optional[dict[str, CfnExperimentTemplate_ExperimentTemplateTargetFilterPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate_ExperimentTemplateTargetProperty: typing.Optional[dict[str, CfnExperimentTemplate_ExperimentTemplateTargetPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate_S3ConfigurationProperty: typing.Optional[dict[str, CfnExperimentTemplate_S3ConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnExperimentTemplate: typing.Optional[dict[str, CfnExperimentTemplateDef]] = pydantic.Field(None)
-    CfnExperimentTemplateProps: typing.Optional[dict[str, CfnExperimentTemplatePropsDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_CloudWatchLogsConfigurationProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_CloudWatchLogsConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_ExperimentTemplateActionProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_ExperimentTemplateActionPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_ExperimentTemplateLogConfigurationProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_ExperimentTemplateLogConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_ExperimentTemplateStopConditionProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_ExperimentTemplateStopConditionPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_ExperimentTemplateTargetFilterProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_ExperimentTemplateTargetFilterPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_ExperimentTemplateTargetProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_ExperimentTemplateTargetPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate_S3ConfigurationProperty: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplate_S3ConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnExperimentTemplate: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplateDef]] = pydantic.Field(None)
+    CfnExperimentTemplateProps: typing.Optional[dict[str, models.aws_fis.CfnExperimentTemplatePropsDef]] = pydantic.Field(None)
     ...
+
+import models

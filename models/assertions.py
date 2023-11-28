@@ -16,20 +16,20 @@ class AnnotationsDef(BaseClass):
     ...
 
 
-    from_stack: typing.Optional[AnnotationsDefFromStackParams] = pydantic.Field(None, description='Base your assertions on the messages returned by a synthesized CDK ``Stack``.')
-    resource_config: typing.Optional[AnnotationsDefConfig] = pydantic.Field(None)
+    from_stack: typing.Optional[models.assertions.AnnotationsDefFromStackParams] = pydantic.Field(None, description='Base your assertions on the messages returned by a synthesized CDK ``Stack``.')
+    resource_config: typing.Optional[models.assertions.AnnotationsDefConfig] = pydantic.Field(None)
 
 
 class AnnotationsDefConfig(pydantic.BaseModel):
-    find_error: typing.Optional[list[AnnotationsDefFindErrorParams]] = pydantic.Field(None, description='Get the set of matching errors of a given construct path and message.')
-    find_info: typing.Optional[list[AnnotationsDefFindInfoParams]] = pydantic.Field(None, description='Get the set of matching infos of a given construct path and message.')
-    find_warning: typing.Optional[list[AnnotationsDefFindWarningParams]] = pydantic.Field(None, description='Get the set of matching warning of a given construct path and message.')
-    has_error: typing.Optional[list[AnnotationsDefHasErrorParams]] = pydantic.Field(None, description='Assert that an error with the given message exists in the synthesized CDK ``Stack``.')
-    has_info: typing.Optional[list[AnnotationsDefHasInfoParams]] = pydantic.Field(None, description='Assert that an info with the given message exists in the synthesized CDK ``Stack``.')
-    has_no_error: typing.Optional[list[AnnotationsDefHasNoErrorParams]] = pydantic.Field(None, description='Assert that an error with the given message does not exist in the synthesized CDK ``Stack``.')
-    has_no_info: typing.Optional[list[AnnotationsDefHasNoInfoParams]] = pydantic.Field(None, description='Assert that an info with the given message does not exist in the synthesized CDK ``Stack``.')
-    has_no_warning: typing.Optional[list[AnnotationsDefHasNoWarningParams]] = pydantic.Field(None, description='Assert that an warning with the given message does not exist in the synthesized CDK ``Stack``.')
-    has_warning: typing.Optional[list[AnnotationsDefHasWarningParams]] = pydantic.Field(None, description='Assert that an warning with the given message exists in the synthesized CDK ``Stack``.')
+    find_error: typing.Optional[list[models.assertions.AnnotationsDefFindErrorParams]] = pydantic.Field(None, description='Get the set of matching errors of a given construct path and message.')
+    find_info: typing.Optional[list[models.assertions.AnnotationsDefFindInfoParams]] = pydantic.Field(None, description='Get the set of matching infos of a given construct path and message.')
+    find_warning: typing.Optional[list[models.assertions.AnnotationsDefFindWarningParams]] = pydantic.Field(None, description='Get the set of matching warning of a given construct path and message.')
+    has_error: typing.Optional[list[models.assertions.AnnotationsDefHasErrorParams]] = pydantic.Field(None, description='Assert that an error with the given message exists in the synthesized CDK ``Stack``.')
+    has_info: typing.Optional[list[models.assertions.AnnotationsDefHasInfoParams]] = pydantic.Field(None, description='Assert that an info with the given message exists in the synthesized CDK ``Stack``.')
+    has_no_error: typing.Optional[list[models.assertions.AnnotationsDefHasNoErrorParams]] = pydantic.Field(None, description='Assert that an error with the given message does not exist in the synthesized CDK ``Stack``.')
+    has_no_info: typing.Optional[list[models.assertions.AnnotationsDefHasNoInfoParams]] = pydantic.Field(None, description='Assert that an info with the given message does not exist in the synthesized CDK ``Stack``.')
+    has_no_warning: typing.Optional[list[models.assertions.AnnotationsDefHasNoWarningParams]] = pydantic.Field(None, description='Assert that an warning with the given message does not exist in the synthesized CDK ``Stack``.')
+    has_warning: typing.Optional[list[models.assertions.AnnotationsDefHasWarningParams]] = pydantic.Field(None, description='Assert that an warning with the given message exists in the synthesized CDK ``Stack``.')
 
 class AnnotationsDefFindErrorParams(pydantic.BaseModel):
     construct_path: str = pydantic.Field(..., description="the construct path to the error. Provide ``'*'`` to match all errors in the template.\n")
@@ -92,12 +92,12 @@ class CaptureDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CaptureDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.assertions.CaptureDefConfig] = pydantic.Field(None)
 
 
 class CaptureDefConfig(pydantic.BaseModel):
     next: typing.Optional[bool] = pydantic.Field(None, description='When multiple results are captured, move the iterator to the next result.\n:return: true if another capture is present, false otherwise')
-    test: typing.Optional[list[CaptureDefTestParams]] = pydantic.Field(None, description='Test whether a target matches the provided pattern.\nEvery Matcher must implement this method.\nThis method will be invoked by the assertions framework. Do not call this method directly.')
+    test: typing.Optional[list[models.assertions.CaptureDefTestParams]] = pydantic.Field(None, description='Test whether a target matches the provided pattern.\nEvery Matcher must implement this method.\nThis method will be invoked by the assertions framework. Do not call this method directly.')
 
 class CaptureDefTestParams(pydantic.BaseModel):
     actual: typing.Any = pydantic.Field(..., description='-')
@@ -115,20 +115,20 @@ class MatchDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MatchDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.assertions.MatchDefConfig] = pydantic.Field(None)
 
 
 class MatchDefConfig(pydantic.BaseModel):
-    absent: typing.Optional[list[MatchDefAbsentParams]] = pydantic.Field(None, description="Use this matcher in the place of a field's value, if the field must not be present.")
-    any_value: typing.Optional[list[MatchDefAnyValueParams]] = pydantic.Field(None, description='Matches any non-null value at the target.')
-    array_equals: typing.Optional[list[MatchDefArrayEqualsParams]] = pydantic.Field(None, description='Matches the specified pattern with the array found in the same relative path of the target.\nThe set of elements (or matchers) must match exactly and in order.')
-    array_with: typing.Optional[list[MatchDefArrayWithParams]] = pydantic.Field(None, description='Matches the specified pattern with the array found in the same relative path of the target.\nThe set of elements (or matchers) must be in the same order as would be found.')
-    exact: typing.Optional[list[MatchDefExactParams]] = pydantic.Field(None, description='Deep exact matching of the specified pattern to the target.')
-    not_: typing.Optional[list[MatchDefNotParams]] = pydantic.Field(None, description='Matches any target which does NOT follow the specified pattern.')
-    object_equals: typing.Optional[list[MatchDefObjectEqualsParams]] = pydantic.Field(None, description='Matches the specified pattern to an object found in the same relative path of the target.\nThe keys and their values (or matchers) must match exactly with the target.')
-    object_like: typing.Optional[list[MatchDefObjectLikeParams]] = pydantic.Field(None, description='Matches the specified pattern to an object found in the same relative path of the target.\nThe keys and their values (or matchers) must be present in the target but the target can be a superset.')
-    serialized_json: typing.Optional[list[MatchDefSerializedJsonParams]] = pydantic.Field(None, description='Matches any string-encoded JSON and applies the specified pattern after parsing it.')
-    string_like_regexp: typing.Optional[list[MatchDefStringLikeRegexpParams]] = pydantic.Field(None, description='Matches targets according to a regular expression.')
+    absent: typing.Optional[list[models.assertions.MatchDefAbsentParams]] = pydantic.Field(None, description="Use this matcher in the place of a field's value, if the field must not be present.")
+    any_value: typing.Optional[list[models.assertions.MatchDefAnyValueParams]] = pydantic.Field(None, description='Matches any non-null value at the target.')
+    array_equals: typing.Optional[list[models.assertions.MatchDefArrayEqualsParams]] = pydantic.Field(None, description='Matches the specified pattern with the array found in the same relative path of the target.\nThe set of elements (or matchers) must match exactly and in order.')
+    array_with: typing.Optional[list[models.assertions.MatchDefArrayWithParams]] = pydantic.Field(None, description='Matches the specified pattern with the array found in the same relative path of the target.\nThe set of elements (or matchers) must be in the same order as would be found.')
+    exact: typing.Optional[list[models.assertions.MatchDefExactParams]] = pydantic.Field(None, description='Deep exact matching of the specified pattern to the target.')
+    not_: typing.Optional[list[models.assertions.MatchDefNotParams]] = pydantic.Field(None, description='Matches any target which does NOT follow the specified pattern.')
+    object_equals: typing.Optional[list[models.assertions.MatchDefObjectEqualsParams]] = pydantic.Field(None, description='Matches the specified pattern to an object found in the same relative path of the target.\nThe keys and their values (or matchers) must match exactly with the target.')
+    object_like: typing.Optional[list[models.assertions.MatchDefObjectLikeParams]] = pydantic.Field(None, description='Matches the specified pattern to an object found in the same relative path of the target.\nThe keys and their values (or matchers) must be present in the target but the target can be a superset.')
+    serialized_json: typing.Optional[list[models.assertions.MatchDefSerializedJsonParams]] = pydantic.Field(None, description='Matches any string-encoded JSON and applies the specified pattern after parsing it.')
+    string_like_regexp: typing.Optional[list[models.assertions.MatchDefStringLikeRegexpParams]] = pydantic.Field(None, description='Matches targets according to a regular expression.')
 
 class MatchDefAbsentParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.assertions.MatcherDefConfig]] = pydantic.Field(None)
@@ -189,11 +189,11 @@ class MatcherDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MatcherDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.assertions.MatcherDefConfig] = pydantic.Field(None)
 
 
 class MatcherDefConfig(pydantic.BaseModel):
-    test: typing.Optional[list[MatcherDefTestParams]] = pydantic.Field(None, description='Test whether a target matches the provided pattern.\nEvery Matcher must implement this method.\nThis method will be invoked by the assertions framework. Do not call this method directly.')
+    test: typing.Optional[list[models.assertions.MatcherDefTestParams]] = pydantic.Field(None, description='Test whether a target matches the provided pattern.\nEvery Matcher must implement this method.\nThis method will be invoked by the assertions framework. Do not call this method directly.')
 
 class MatcherDefTestParams(pydantic.BaseModel):
     actual: typing.Any = pydantic.Field(..., description='the target to match.\n')
@@ -212,16 +212,16 @@ class MatchResultDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[MatchResultDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.assertions.MatchResultDefConfig] = pydantic.Field(None)
 
 
 class MatchResultDefConfig(pydantic.BaseModel):
-    compose: typing.Optional[list[MatchResultDefComposeParams]] = pydantic.Field(None, description='Compose the results of a previous match as a subtree.')
-    finished: typing.Optional[list[MatchResultDefFinishedParams]] = pydantic.Field(None, description='Prepare the result to be analyzed.\nThis API *must* be called prior to analyzing these results.')
+    compose: typing.Optional[list[models.assertions.MatchResultDefComposeParams]] = pydantic.Field(None, description='Compose the results of a previous match as a subtree.')
+    finished: typing.Optional[list[models.assertions.MatchResultDefFinishedParams]] = pydantic.Field(None, description='Prepare the result to be analyzed.\nThis API *must* be called prior to analyzing these results.')
     has_failed: typing.Optional[bool] = pydantic.Field(None, description='Does the result contain any failures.\nIf not, the result is a success')
-    push: typing.Optional[list[MatchResultDefPushParams]] = pydantic.Field(None, description='(deprecated) DEPRECATED.')
-    record_capture: typing.Optional[list[MatchResultDefRecordCaptureParams]] = pydantic.Field(None, description='Record a capture against in this match result.')
-    record_failure: typing.Optional[list[MatchResultDefRecordFailureParams]] = pydantic.Field(None, description='Record a new failure into this result at a specific path.')
+    push: typing.Optional[list[models.assertions.MatchResultDefPushParams]] = pydantic.Field(None, description='(deprecated) DEPRECATED.')
+    record_capture: typing.Optional[list[models.assertions.MatchResultDefRecordCaptureParams]] = pydantic.Field(None, description='Record a capture against in this match result.')
+    record_failure: typing.Optional[list[models.assertions.MatchResultDefRecordFailureParams]] = pydantic.Field(None, description='Record a new failure into this result at a specific path.')
     render_mismatch: typing.Optional[bool] = pydantic.Field(None, description='Do a deep render of the match result, showing the structure mismatches in context.')
 
 class MatchResultDefComposeParams(pydantic.BaseModel):
@@ -265,29 +265,29 @@ class TemplateDef(BaseClass):
     ...
 
 
-    from_json: typing.Optional[TemplateDefFromJsonParams] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as an in-memory JSON object.')
-    from_stack: typing.Optional[TemplateDefFromStackParams] = pydantic.Field(None, description='Base your assertions on the CloudFormation template synthesized by a CDK ``Stack``.')
-    from_string: typing.Optional[TemplateDefFromStringParams] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as a JSON string.')
-    resource_config: typing.Optional[TemplateDefConfig] = pydantic.Field(None)
+    from_json: typing.Optional[models.assertions.TemplateDefFromJsonParams] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as an in-memory JSON object.')
+    from_stack: typing.Optional[models.assertions.TemplateDefFromStackParams] = pydantic.Field(None, description='Base your assertions on the CloudFormation template synthesized by a CDK ``Stack``.')
+    from_string: typing.Optional[models.assertions.TemplateDefFromStringParams] = pydantic.Field(None, description='Base your assertions from an existing CloudFormation template formatted as a JSON string.')
+    resource_config: typing.Optional[models.assertions.TemplateDefConfig] = pydantic.Field(None)
 
 
 class TemplateDefConfig(pydantic.BaseModel):
-    all_resources: typing.Optional[list[TemplateDefAllResourcesParams]] = pydantic.Field(None, description='Assert that all resources of the given type contain the given definition in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
-    all_resources_properties: typing.Optional[list[TemplateDefAllResourcesPropertiesParams]] = pydantic.Field(None, description='Assert that all resources of the given type contain the given properties CloudFormation template.\nBy default, performs partial matching on the ``Properties`` key of the resource, via the\n``Match.objectLike()``. To configure different behavior, use other matchers in the ``Match`` class.')
-    find_conditions: typing.Optional[list[TemplateDefFindConditionsParams]] = pydantic.Field(None, description='Get the set of matching Conditions that match the given properties in the CloudFormation template.')
-    find_mappings: typing.Optional[list[TemplateDefFindMappingsParams]] = pydantic.Field(None, description='Get the set of matching Mappings that match the given properties in the CloudFormation template.')
-    find_outputs: typing.Optional[list[TemplateDefFindOutputsParams]] = pydantic.Field(None, description='Get the set of matching Outputs that match the given properties in the CloudFormation template.')
-    find_parameters: typing.Optional[list[TemplateDefFindParametersParams]] = pydantic.Field(None, description='Get the set of matching Parameters that match the given properties in the CloudFormation template.')
-    find_resources: typing.Optional[list[TemplateDefFindResourcesParams]] = pydantic.Field(None, description='Get the set of matching resources of a given type and properties in the CloudFormation template.')
-    has_condition: typing.Optional[list[TemplateDefHasConditionParams]] = pydantic.Field(None, description='Assert that a Condition with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
-    has_mapping: typing.Optional[list[TemplateDefHasMappingParams]] = pydantic.Field(None, description='Assert that a Mapping with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
-    has_output: typing.Optional[list[TemplateDefHasOutputParams]] = pydantic.Field(None, description='Assert that an Output with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
-    has_parameter: typing.Optional[list[TemplateDefHasParameterParams]] = pydantic.Field(None, description='Assert that a Parameter with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the parameter, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
-    has_resource: typing.Optional[list[TemplateDefHasResourceParams]] = pydantic.Field(None, description='Assert that a resource of the given type and given definition exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
-    has_resource_properties: typing.Optional[list[TemplateDefHasResourcePropertiesParams]] = pydantic.Field(None, description='Assert that a resource of the given type and properties exists in the CloudFormation template.\nBy default, performs partial matching on the ``Properties`` key of the resource, via the\n``Match.objectLike()``. To configure different behavior, use other matchers in the ``Match`` class.')
-    resource_count_is: typing.Optional[list[TemplateDefResourceCountIsParams]] = pydantic.Field(None, description='Assert that the given number of resources of the given type exist in the template.')
-    resource_properties_count_is: typing.Optional[list[TemplateDefResourcePropertiesCountIsParams]] = pydantic.Field(None, description='Assert that the given number of resources of the given type and properties exists in the CloudFormation template.')
-    template_matches: typing.Optional[list[TemplateDefTemplateMatchesParams]] = pydantic.Field(None, description='Assert that the CloudFormation template matches the given value.')
+    all_resources: typing.Optional[list[models.assertions.TemplateDefAllResourcesParams]] = pydantic.Field(None, description='Assert that all resources of the given type contain the given definition in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
+    all_resources_properties: typing.Optional[list[models.assertions.TemplateDefAllResourcesPropertiesParams]] = pydantic.Field(None, description='Assert that all resources of the given type contain the given properties CloudFormation template.\nBy default, performs partial matching on the ``Properties`` key of the resource, via the\n``Match.objectLike()``. To configure different behavior, use other matchers in the ``Match`` class.')
+    find_conditions: typing.Optional[list[models.assertions.TemplateDefFindConditionsParams]] = pydantic.Field(None, description='Get the set of matching Conditions that match the given properties in the CloudFormation template.')
+    find_mappings: typing.Optional[list[models.assertions.TemplateDefFindMappingsParams]] = pydantic.Field(None, description='Get the set of matching Mappings that match the given properties in the CloudFormation template.')
+    find_outputs: typing.Optional[list[models.assertions.TemplateDefFindOutputsParams]] = pydantic.Field(None, description='Get the set of matching Outputs that match the given properties in the CloudFormation template.')
+    find_parameters: typing.Optional[list[models.assertions.TemplateDefFindParametersParams]] = pydantic.Field(None, description='Get the set of matching Parameters that match the given properties in the CloudFormation template.')
+    find_resources: typing.Optional[list[models.assertions.TemplateDefFindResourcesParams]] = pydantic.Field(None, description='Get the set of matching resources of a given type and properties in the CloudFormation template.')
+    has_condition: typing.Optional[list[models.assertions.TemplateDefHasConditionParams]] = pydantic.Field(None, description='Assert that a Condition with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
+    has_mapping: typing.Optional[list[models.assertions.TemplateDefHasMappingParams]] = pydantic.Field(None, description='Assert that a Mapping with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
+    has_output: typing.Optional[list[models.assertions.TemplateDefHasOutputParams]] = pydantic.Field(None, description='Assert that an Output with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
+    has_parameter: typing.Optional[list[models.assertions.TemplateDefHasParameterParams]] = pydantic.Field(None, description='Assert that a Parameter with the given properties exists in the CloudFormation template.\nBy default, performs partial matching on the parameter, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
+    has_resource: typing.Optional[list[models.assertions.TemplateDefHasResourceParams]] = pydantic.Field(None, description='Assert that a resource of the given type and given definition exists in the CloudFormation template.\nBy default, performs partial matching on the resource, via the ``Match.objectLike()``.\nTo configure different behavior, use other matchers in the ``Match`` class.')
+    has_resource_properties: typing.Optional[list[models.assertions.TemplateDefHasResourcePropertiesParams]] = pydantic.Field(None, description='Assert that a resource of the given type and properties exists in the CloudFormation template.\nBy default, performs partial matching on the ``Properties`` key of the resource, via the\n``Match.objectLike()``. To configure different behavior, use other matchers in the ``Match`` class.')
+    resource_count_is: typing.Optional[list[models.assertions.TemplateDefResourceCountIsParams]] = pydantic.Field(None, description='Assert that the given number of resources of the given type exist in the template.')
+    resource_properties_count_is: typing.Optional[list[models.assertions.TemplateDefResourcePropertiesCountIsParams]] = pydantic.Field(None, description='Assert that the given number of resources of the given type and properties exists in the CloudFormation template.')
+    template_matches: typing.Optional[list[models.assertions.TemplateDefTemplateMatchesParams]] = pydantic.Field(None, description='Assert that the CloudFormation template matches the given value.')
 
 class TemplateDefAllResourcesParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='the resource type; ex: ``AWS::S3::Bucket``\n')
@@ -428,16 +428,16 @@ class TemplateParsingOptionsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Annotations: typing.Optional[dict[str, AnnotationsDef]] = pydantic.Field(None)
-    Capture: typing.Optional[dict[str, CaptureDef]] = pydantic.Field(None)
-    Match: typing.Optional[dict[str, MatchDef]] = pydantic.Field(None)
-    Matcher: typing.Optional[dict[str, MatcherDef]] = pydantic.Field(None)
-    MatchResult: typing.Optional[dict[str, MatchResultDef]] = pydantic.Field(None)
-    Template: typing.Optional[dict[str, TemplateDef]] = pydantic.Field(None)
-    MatchCapture: typing.Optional[dict[str, MatchCaptureDef]] = pydantic.Field(None)
-    MatchFailure: typing.Optional[dict[str, MatchFailureDef]] = pydantic.Field(None)
-    TemplateParsingOptions: typing.Optional[dict[str, TemplateParsingOptionsDef]] = pydantic.Field(None)
+    Annotations: typing.Optional[dict[str, models.assertions.AnnotationsDef]] = pydantic.Field(None)
+    Capture: typing.Optional[dict[str, models.assertions.CaptureDef]] = pydantic.Field(None)
+    Match: typing.Optional[dict[str, models.assertions.MatchDef]] = pydantic.Field(None)
+    Matcher: typing.Optional[dict[str, models.assertions.MatcherDef]] = pydantic.Field(None)
+    MatchResult: typing.Optional[dict[str, models.assertions.MatchResultDef]] = pydantic.Field(None)
+    Template: typing.Optional[dict[str, models.assertions.TemplateDef]] = pydantic.Field(None)
+    MatchCapture: typing.Optional[dict[str, models.assertions.MatchCaptureDef]] = pydantic.Field(None)
+    MatchFailure: typing.Optional[dict[str, models.assertions.MatchFailureDef]] = pydantic.Field(None)
+    TemplateParsingOptions: typing.Optional[dict[str, models.assertions.TemplateParsingOptionsDef]] = pydantic.Field(None)
     ...
+
+import models

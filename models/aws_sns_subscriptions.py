@@ -21,14 +21,13 @@ class EmailSubscriptionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EmailSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns_subscriptions.EmailSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class EmailSubscriptionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EmailSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for an email address to subscribe to an SNS topic.')
+    bind: typing.Optional[list[models.aws_sns_subscriptions.EmailSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for an email address to subscribe to an SNS topic.')
 
 class EmailSubscriptionDefBindParams(pydantic.BaseModel):
-    _topic: typing.Union[models.aws_sns.TopicBaseDef, models.aws_sns.TopicDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -46,11 +45,11 @@ class LambdaSubscriptionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns_subscriptions.LambdaSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class LambdaSubscriptionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for a Lambda function to subscribe to an SNS topic.')
+    bind: typing.Optional[list[models.aws_sns_subscriptions.LambdaSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for a Lambda function to subscribe to an SNS topic.')
 
 class LambdaSubscriptionDefBindParams(pydantic.BaseModel):
     topic: typing.Union[models.aws_sns.TopicBaseDef, models.aws_sns.TopicDef] = pydantic.Field(..., description='-')
@@ -71,14 +70,13 @@ class SmsSubscriptionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SmsSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns_subscriptions.SmsSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class SmsSubscriptionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SmsSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration used to subscribe to an SNS topic.')
+    bind: typing.Optional[list[models.aws_sns_subscriptions.SmsSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration used to subscribe to an SNS topic.')
 
 class SmsSubscriptionDefBindParams(pydantic.BaseModel):
-    _topic: typing.Union[models.aws_sns.TopicBaseDef, models.aws_sns.TopicDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -97,11 +95,11 @@ class SqsSubscriptionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqsSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns_subscriptions.SqsSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class SqsSubscriptionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SqsSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for an SQS queue to subscribe to an SNS topic.')
+    bind: typing.Optional[list[models.aws_sns_subscriptions.SqsSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for an SQS queue to subscribe to an SNS topic.')
 
 class SqsSubscriptionDefBindParams(pydantic.BaseModel):
     topic: typing.Union[models.aws_sns.TopicBaseDef, models.aws_sns.TopicDef] = pydantic.Field(..., description='-')
@@ -124,14 +122,13 @@ class UrlSubscriptionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[UrlSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_sns_subscriptions.UrlSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class UrlSubscriptionDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[UrlSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for a URL to subscribe to an SNS topic.')
+    bind: typing.Optional[list[models.aws_sns_subscriptions.UrlSubscriptionDefBindParams]] = pydantic.Field(None, description='Returns a configuration for a URL to subscribe to an SNS topic.')
 
 class UrlSubscriptionDefBindParams(pydantic.BaseModel):
-    _topic: typing.Union[models.aws_sns.TopicBaseDef, models.aws_sns.TopicDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -229,18 +226,18 @@ class UrlSubscriptionPropsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    EmailSubscription: typing.Optional[dict[str, EmailSubscriptionDef]] = pydantic.Field(None)
-    LambdaSubscription: typing.Optional[dict[str, LambdaSubscriptionDef]] = pydantic.Field(None)
-    SmsSubscription: typing.Optional[dict[str, SmsSubscriptionDef]] = pydantic.Field(None)
-    SqsSubscription: typing.Optional[dict[str, SqsSubscriptionDef]] = pydantic.Field(None)
-    UrlSubscription: typing.Optional[dict[str, UrlSubscriptionDef]] = pydantic.Field(None)
-    EmailSubscriptionProps: typing.Optional[dict[str, EmailSubscriptionPropsDef]] = pydantic.Field(None)
-    LambdaSubscriptionProps: typing.Optional[dict[str, LambdaSubscriptionPropsDef]] = pydantic.Field(None)
-    SmsSubscriptionProps: typing.Optional[dict[str, SmsSubscriptionPropsDef]] = pydantic.Field(None)
-    SqsSubscriptionProps: typing.Optional[dict[str, SqsSubscriptionPropsDef]] = pydantic.Field(None)
-    SubscriptionProps: typing.Optional[dict[str, SubscriptionPropsDef]] = pydantic.Field(None)
-    UrlSubscriptionProps: typing.Optional[dict[str, UrlSubscriptionPropsDef]] = pydantic.Field(None)
+    EmailSubscription: typing.Optional[dict[str, models.aws_sns_subscriptions.EmailSubscriptionDef]] = pydantic.Field(None)
+    LambdaSubscription: typing.Optional[dict[str, models.aws_sns_subscriptions.LambdaSubscriptionDef]] = pydantic.Field(None)
+    SmsSubscription: typing.Optional[dict[str, models.aws_sns_subscriptions.SmsSubscriptionDef]] = pydantic.Field(None)
+    SqsSubscription: typing.Optional[dict[str, models.aws_sns_subscriptions.SqsSubscriptionDef]] = pydantic.Field(None)
+    UrlSubscription: typing.Optional[dict[str, models.aws_sns_subscriptions.UrlSubscriptionDef]] = pydantic.Field(None)
+    EmailSubscriptionProps: typing.Optional[dict[str, models.aws_sns_subscriptions.EmailSubscriptionPropsDef]] = pydantic.Field(None)
+    LambdaSubscriptionProps: typing.Optional[dict[str, models.aws_sns_subscriptions.LambdaSubscriptionPropsDef]] = pydantic.Field(None)
+    SmsSubscriptionProps: typing.Optional[dict[str, models.aws_sns_subscriptions.SmsSubscriptionPropsDef]] = pydantic.Field(None)
+    SqsSubscriptionProps: typing.Optional[dict[str, models.aws_sns_subscriptions.SqsSubscriptionPropsDef]] = pydantic.Field(None)
+    SubscriptionProps: typing.Optional[dict[str, models.aws_sns_subscriptions.SubscriptionPropsDef]] = pydantic.Field(None)
+    UrlSubscriptionProps: typing.Optional[dict[str, models.aws_sns_subscriptions.UrlSubscriptionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

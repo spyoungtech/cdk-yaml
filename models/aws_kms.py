@@ -18,16 +18,16 @@ class ViaServicePrincipalDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ViaServicePrincipalDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_kms.ViaServicePrincipalDefConfig] = pydantic.Field(None)
 
 
 class ViaServicePrincipalDefConfig(pydantic.BaseModel):
-    add_to_assume_role_policy: typing.Optional[list[ViaServicePrincipalDefAddToAssumeRolePolicyParams]] = pydantic.Field(None, description='Add the principal to the AssumeRolePolicyDocument.\nAdd the statements to the AssumeRolePolicyDocument necessary to give this principal\npermissions to assume the given role.')
-    add_to_policy: typing.Optional[list[ViaServicePrincipalDefAddToPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
-    add_to_principal_policy: typing.Optional[list[ViaServicePrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    add_to_assume_role_policy: typing.Optional[list[models.aws_kms.ViaServicePrincipalDefAddToAssumeRolePolicyParams]] = pydantic.Field(None, description='Add the principal to the AssumeRolePolicyDocument.\nAdd the statements to the AssumeRolePolicyDocument necessary to give this principal\npermissions to assume the given role.')
+    add_to_policy: typing.Optional[list[models.aws_kms.ViaServicePrincipalDefAddToPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
+    add_to_principal_policy: typing.Optional[list[models.aws_kms.ViaServicePrincipalDefAddToPrincipalPolicyParams]] = pydantic.Field(None, description='Add to the policy of this principal.')
     dedupe_string: typing.Optional[bool] = pydantic.Field(None, description='Return whether or not this principal is equal to the given principal.')
-    with_conditions: typing.Optional[list[ViaServicePrincipalDefWithConditionsParams]] = pydantic.Field(None, description='Returns a new PrincipalWithConditions using this principal as the base, with the passed conditions added.\nWhen there is a value for the same operator and key in both the principal and the\nconditions parameter, the value from the conditions parameter will be used.')
-    with_session_tags: typing.Optional[list[ViaServicePrincipalDefWithSessionTagsParams]] = pydantic.Field(None, description='Returns a new principal using this principal as the base, with session tags enabled.\n:return: a new SessionTagsPrincipal object.')
+    with_conditions: typing.Optional[list[models.aws_kms.ViaServicePrincipalDefWithConditionsParams]] = pydantic.Field(None, description='Returns a new PrincipalWithConditions using this principal as the base, with the passed conditions added.\nWhen there is a value for the same operator and key in both the principal and the\nconditions parameter, the value from the conditions parameter will be used.')
+    with_session_tags: typing.Optional[list[models.aws_kms.ViaServicePrincipalDefWithSessionTagsParams]] = pydantic.Field(None, description='Returns a new principal using this principal as the base, with session tags enabled.\n:return: a new SessionTagsPrincipal object.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
 
 class ViaServicePrincipalDefAddToAssumeRolePolicyParams(pydantic.BaseModel):
@@ -39,7 +39,6 @@ class ViaServicePrincipalDefAddToPolicyParams(pydantic.BaseModel):
     ...
 
 class ViaServicePrincipalDefAddToPrincipalPolicyParams(pydantic.BaseModel):
-    _statement: models.aws_iam.PolicyStatementDef = pydantic.Field(..., description='-')
     ...
 
 class ViaServicePrincipalDefWithConditionsParams(pydantic.BaseModel):
@@ -65,25 +64,26 @@ class AliasDef(BaseConstruct):
     ...
 
 
-    from_alias_attributes: typing.Optional[AliasDefFromAliasAttributesParams] = pydantic.Field(None, description='Import an existing KMS Alias defined outside the CDK app.')
-    from_alias_name: typing.Optional[AliasDefFromAliasNameParams] = pydantic.Field(None, description="Import an existing KMS Alias defined outside the CDK app, by the alias name.\nThis method should be used\ninstead of 'fromAliasAttributes' when the underlying KMS Key ARN is not available.\nThis Alias will not have a direct reference to the KMS Key, so addAlias and grant* methods are not supported.")
-    resource_config: typing.Optional[AliasDefConfig] = pydantic.Field(None)
+    from_alias_attributes: typing.Optional[models.aws_kms.AliasDefFromAliasAttributesParams] = pydantic.Field(None, description='Import an existing KMS Alias defined outside the CDK app.')
+    from_alias_name: typing.Optional[models.aws_kms.AliasDefFromAliasNameParams] = pydantic.Field(None, description="Import an existing KMS Alias defined outside the CDK app, by the alias name.\nThis method should be used\ninstead of 'fromAliasAttributes' when the underlying KMS Key ARN is not available.\nThis Alias will not have a direct reference to the KMS Key, so addAlias and grant* methods are not supported.")
+    resource_config: typing.Optional[models.aws_kms.AliasDefConfig] = pydantic.Field(None)
 
 
 class AliasDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[AliasDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
-    add_to_resource_policy: typing.Optional[list[AliasDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
+    add_alias: typing.Optional[list[models.aws_kms.AliasDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
+    add_to_resource_policy: typing.Optional[list[models.aws_kms.AliasDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[AliasDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this key to the given principal.')
-    grant_decrypt: typing.Optional[list[AliasDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
-    grant_encrypt: typing.Optional[list[AliasDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
-    grant_encrypt_decrypt: typing.Optional[list[AliasDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
-    grant_generate_mac: typing.Optional[list[AliasDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
-    grant_verify_mac: typing.Optional[list[AliasDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
+    grant: typing.Optional[list[models.aws_kms.AliasDefGrantParams]] = pydantic.Field(None, description='Grant the indicated permissions on this key to the given principal.')
+    grant_decrypt: typing.Optional[list[models.aws_kms.AliasDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
+    grant_encrypt: typing.Optional[list[models.aws_kms.AliasDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
+    grant_encrypt_decrypt: typing.Optional[list[models.aws_kms.AliasDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
+    grant_generate_mac: typing.Optional[list[models.aws_kms.AliasDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
+    grant_verify_mac: typing.Optional[list[models.aws_kms.AliasDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
     alias_target_key_config: typing.Optional[models._interface_methods.AwsKmsIKeyDefConfig] = pydantic.Field(None)
 
 class AliasDefAddAliasParams(pydantic.BaseModel):
     alias: str = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_kms.AliasDefConfig]] = pydantic.Field(None)
     ...
 
 class AliasDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -160,23 +160,23 @@ class KeyDef(BaseConstruct):
     ...
 
 
-    from_cfn_key: typing.Optional[KeyDefFromCfnKeyParams] = pydantic.Field(None, description='Create a mutable ``IKey`` based on a low-level ``CfnKey``.\nThis is most useful when combined with the cloudformation-include module.\nThis method is different than ``fromKeyArn()`` because the ``IKey``\nreturned from this method is mutable;\nmeaning, calling any mutating methods on it,\nlike ``IKey.addToResourcePolicy()``,\nwill actually be reflected in the resulting template,\nas opposed to the object returned from ``fromKeyArn()``,\non which calling those methods would have no effect.')
-    from_key_arn: typing.Optional[KeyDefFromKeyArnParams] = pydantic.Field(None, description='Import an externally defined KMS Key using its ARN.')
-    from_lookup: typing.Optional[KeyDefFromLookupParams] = pydantic.Field(None, description="Import an existing Key by querying the AWS environment this stack is deployed to.\nThis function only needs to be used to use Keys not defined in your CDK\napplication. If you are looking to share a Key between stacks, you can\npass the ``Key`` object between stacks and use it as normal. In addition,\nit's not necessary to use this method if an interface accepts an ``IKey``.\nIn this case, ``Alias.fromAliasName()`` can be used which returns an alias\nthat extends ``IKey``.\n\nCalling this method will lead to a lookup when the CDK CLI is executed.\nYou can therefore not use any values that will only be available at\nCloudFormation execution time (i.e., Tokens).\n\nThe Key information will be cached in ``cdk.context.json`` and the same Key\nwill be used on future runs. To refresh the lookup, you will have to\nevict the value from the cache using the ``cdk context`` command. See\nhttps://docs.aws.amazon.com/cdk/latest/guide/context.html for more information.")
-    resource_config: typing.Optional[KeyDefConfig] = pydantic.Field(None)
+    from_cfn_key: typing.Optional[models.aws_kms.KeyDefFromCfnKeyParams] = pydantic.Field(None, description='Create a mutable ``IKey`` based on a low-level ``CfnKey``.\nThis is most useful when combined with the cloudformation-include module.\nThis method is different than ``fromKeyArn()`` because the ``IKey``\nreturned from this method is mutable;\nmeaning, calling any mutating methods on it,\nlike ``IKey.addToResourcePolicy()``,\nwill actually be reflected in the resulting template,\nas opposed to the object returned from ``fromKeyArn()``,\non which calling those methods would have no effect.')
+    from_key_arn: typing.Optional[models.aws_kms.KeyDefFromKeyArnParams] = pydantic.Field(None, description='Import an externally defined KMS Key using its ARN.')
+    from_lookup: typing.Optional[models.aws_kms.KeyDefFromLookupParams] = pydantic.Field(None, description="Import an existing Key by querying the AWS environment this stack is deployed to.\nThis function only needs to be used to use Keys not defined in your CDK\napplication. If you are looking to share a Key between stacks, you can\npass the ``Key`` object between stacks and use it as normal. In addition,\nit's not necessary to use this method if an interface accepts an ``IKey``.\nIn this case, ``Alias.fromAliasName()`` can be used which returns an alias\nthat extends ``IKey``.\n\nCalling this method will lead to a lookup when the CDK CLI is executed.\nYou can therefore not use any values that will only be available at\nCloudFormation execution time (i.e., Tokens).\n\nThe Key information will be cached in ``cdk.context.json`` and the same Key\nwill be used on future runs. To refresh the lookup, you will have to\nevict the value from the cache using the ``cdk context`` command. See\nhttps://docs.aws.amazon.com/cdk/latest/guide/context.html for more information.")
+    resource_config: typing.Optional[models.aws_kms.KeyDefConfig] = pydantic.Field(None)
 
 
 class KeyDefConfig(pydantic.BaseModel):
-    add_alias: typing.Optional[list[KeyDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
-    add_to_resource_policy: typing.Optional[list[KeyDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
+    add_alias: typing.Optional[list[models.aws_kms.KeyDefAddAliasParams]] = pydantic.Field(None, description='Defines a new alias for the key.')
+    add_to_resource_policy: typing.Optional[list[models.aws_kms.KeyDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the KMS key resource policy.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[KeyDefGrantParams]] = pydantic.Field(None, description="Grant the indicated permissions on this key to the given principal.\nThis modifies both the principal's policy as well as the resource policy,\nsince the default CloudFormation setup for KMS keys is that the policy\nmust not be empty and so default grants won't work.")
-    grant_admin: typing.Optional[list[KeyDefGrantAdminParams]] = pydantic.Field(None, description='Grant admins permissions using this key to the given principal.\nKey administrators have permissions to manage the key (e.g., change permissions, revoke), but do not have permissions\nto use the key in cryptographic operations (e.g., encrypt, decrypt).')
-    grant_decrypt: typing.Optional[list[KeyDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
-    grant_encrypt: typing.Optional[list[KeyDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
-    grant_encrypt_decrypt: typing.Optional[list[KeyDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
-    grant_generate_mac: typing.Optional[list[KeyDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
-    grant_verify_mac: typing.Optional[list[KeyDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
+    grant: typing.Optional[list[models.aws_kms.KeyDefGrantParams]] = pydantic.Field(None, description="Grant the indicated permissions on this key to the given principal.\nThis modifies both the principal's policy as well as the resource policy,\nsince the default CloudFormation setup for KMS keys is that the policy\nmust not be empty and so default grants won't work.")
+    grant_admin: typing.Optional[list[models.aws_kms.KeyDefGrantAdminParams]] = pydantic.Field(None, description='Grant admins permissions using this key to the given principal.\nKey administrators have permissions to manage the key (e.g., change permissions, revoke), but do not have permissions\nto use the key in cryptographic operations (e.g., encrypt, decrypt).')
+    grant_decrypt: typing.Optional[list[models.aws_kms.KeyDefGrantDecryptParams]] = pydantic.Field(None, description='Grant decryption permissions using this key to the given principal.')
+    grant_encrypt: typing.Optional[list[models.aws_kms.KeyDefGrantEncryptParams]] = pydantic.Field(None, description='Grant encryption permissions using this key to the given principal.')
+    grant_encrypt_decrypt: typing.Optional[list[models.aws_kms.KeyDefGrantEncryptDecryptParams]] = pydantic.Field(None, description='Grant encryption and decryption permissions using this key to the given principal.')
+    grant_generate_mac: typing.Optional[list[models.aws_kms.KeyDefGrantGenerateMacParams]] = pydantic.Field(None, description='Grant permissions to generating MACs to the given principal.')
+    grant_verify_mac: typing.Optional[list[models.aws_kms.KeyDefGrantVerifyMacParams]] = pydantic.Field(None, description='Grant permissions to verifying MACs to the given principal.')
 
 class KeyDefAddAliasParams(pydantic.BaseModel):
     alias_name: str = pydantic.Field(..., description='-')
@@ -333,26 +333,26 @@ class CfnAliasDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAliasDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_kms.CfnAliasDefConfig] = pydantic.Field(None)
 
 
 class CfnAliasDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnAliasDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAliasDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAliasDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAliasDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAliasDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAliasDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAliasDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_kms.CfnAliasDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_kms.CfnAliasDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_kms.CfnAliasDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_kms.CfnAliasDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_kms.CfnAliasDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_kms.CfnAliasDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_kms.CfnAliasDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAliasDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAliasDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAliasDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_kms.CfnAliasDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_kms.CfnAliasDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_kms.CfnAliasDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAliasDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAliasDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAliasDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_kms.CfnAliasDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_kms.CfnAliasDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_kms.CfnAliasDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAliasDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -440,26 +440,26 @@ class CfnKeyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnKeyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_kms.CfnKeyDefConfig] = pydantic.Field(None)
 
 
 class CfnKeyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_kms.CfnKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_kms.CfnKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_kms.CfnKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_kms.CfnKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_kms.CfnKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_kms.CfnKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_kms.CfnKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_kms.CfnKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_kms.CfnKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_kms.CfnKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_kms.CfnKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_kms.CfnKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_kms.CfnKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnKeyDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -543,26 +543,26 @@ class CfnReplicaKeyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnReplicaKeyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_kms.CfnReplicaKeyDefConfig] = pydantic.Field(None)
 
 
 class CfnReplicaKeyDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnReplicaKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnReplicaKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnReplicaKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnReplicaKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnReplicaKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnReplicaKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnReplicaKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnReplicaKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnReplicaKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnReplicaKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnReplicaKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnReplicaKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnReplicaKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_kms.CfnReplicaKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnReplicaKeyDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -685,20 +685,20 @@ class CfnReplicaKeyPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ViaServicePrincipal: typing.Optional[dict[str, ViaServicePrincipalDef]] = pydantic.Field(None)
-    Alias: typing.Optional[dict[str, AliasDef]] = pydantic.Field(None)
-    Key: typing.Optional[dict[str, KeyDef]] = pydantic.Field(None)
-    AliasAttributes: typing.Optional[dict[str, AliasAttributesDef]] = pydantic.Field(None)
-    AliasProps: typing.Optional[dict[str, AliasPropsDef]] = pydantic.Field(None)
-    KeyLookupOptions: typing.Optional[dict[str, KeyLookupOptionsDef]] = pydantic.Field(None)
-    KeyProps: typing.Optional[dict[str, KeyPropsDef]] = pydantic.Field(None)
-    CfnAlias: typing.Optional[dict[str, CfnAliasDef]] = pydantic.Field(None)
-    CfnKey: typing.Optional[dict[str, CfnKeyDef]] = pydantic.Field(None)
-    CfnReplicaKey: typing.Optional[dict[str, CfnReplicaKeyDef]] = pydantic.Field(None)
-    CfnAliasProps: typing.Optional[dict[str, CfnAliasPropsDef]] = pydantic.Field(None)
-    CfnKeyProps: typing.Optional[dict[str, CfnKeyPropsDef]] = pydantic.Field(None)
-    CfnReplicaKeyProps: typing.Optional[dict[str, CfnReplicaKeyPropsDef]] = pydantic.Field(None)
+    ViaServicePrincipal: typing.Optional[dict[str, models.aws_kms.ViaServicePrincipalDef]] = pydantic.Field(None)
+    Alias: typing.Optional[dict[str, models.aws_kms.AliasDef]] = pydantic.Field(None)
+    Key: typing.Optional[dict[str, models.aws_kms.KeyDef]] = pydantic.Field(None)
+    AliasAttributes: typing.Optional[dict[str, models.aws_kms.AliasAttributesDef]] = pydantic.Field(None)
+    AliasProps: typing.Optional[dict[str, models.aws_kms.AliasPropsDef]] = pydantic.Field(None)
+    KeyLookupOptions: typing.Optional[dict[str, models.aws_kms.KeyLookupOptionsDef]] = pydantic.Field(None)
+    KeyProps: typing.Optional[dict[str, models.aws_kms.KeyPropsDef]] = pydantic.Field(None)
+    CfnAlias: typing.Optional[dict[str, models.aws_kms.CfnAliasDef]] = pydantic.Field(None)
+    CfnKey: typing.Optional[dict[str, models.aws_kms.CfnKeyDef]] = pydantic.Field(None)
+    CfnReplicaKey: typing.Optional[dict[str, models.aws_kms.CfnReplicaKeyDef]] = pydantic.Field(None)
+    CfnAliasProps: typing.Optional[dict[str, models.aws_kms.CfnAliasPropsDef]] = pydantic.Field(None)
+    CfnKeyProps: typing.Optional[dict[str, models.aws_kms.CfnKeyPropsDef]] = pydantic.Field(None)
+    CfnReplicaKeyProps: typing.Optional[dict[str, models.aws_kms.CfnReplicaKeyPropsDef]] = pydantic.Field(None)
     ...
+
+import models

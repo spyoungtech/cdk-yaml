@@ -16,9 +16,9 @@ class CertificateValidationDef(BaseClass):
     ...
 
 
-    from_dns: typing.Optional[CertificateValidationDefFromDnsParams] = pydantic.Field(None, description='Validate the certificate with DNS.\nIMPORTANT: If ``hostedZone`` is not specified, DNS records must be added\nmanually and the stack will not complete creating until the records are\nadded.')
-    from_dns_multi_zone: typing.Optional[CertificateValidationDefFromDnsMultiZoneParams] = pydantic.Field(None, description='Validate the certificate with automatically created DNS records in multiple Amazon Route 53 hosted zones.')
-    from_email: typing.Optional[CertificateValidationDefFromEmailParams] = pydantic.Field(None, description='Validate the certificate with Email.\nIMPORTANT: if you are creating a certificate as part of your stack, the stack\nwill not complete creating until you read and follow the instructions in the\nemail that you will receive.\n\nACM will send validation emails to the following addresses:\n\nadmin@domain.com\nadministrator@domain.com\nhostmaster@domain.com\npostmaster@domain.com\nwebmaster@domain.com\n\nFor every domain that you register.')
+    from_dns: typing.Optional[models.aws_certificatemanager.CertificateValidationDefFromDnsParams] = pydantic.Field(None, description='Validate the certificate with DNS.\nIMPORTANT: If ``hostedZone`` is not specified, DNS records must be added\nmanually and the stack will not complete creating until the records are\nadded.')
+    from_dns_multi_zone: typing.Optional[models.aws_certificatemanager.CertificateValidationDefFromDnsMultiZoneParams] = pydantic.Field(None, description='Validate the certificate with automatically created DNS records in multiple Amazon Route 53 hosted zones.')
+    from_email: typing.Optional[models.aws_certificatemanager.CertificateValidationDefFromEmailParams] = pydantic.Field(None, description='Validate the certificate with Email.\nIMPORTANT: if you are creating a certificate as part of your stack, the stack\nwill not complete creating until you read and follow the instructions in the\nemail that you will receive.\n\nACM will send validation emails to the following addresses:\n\nadmin@domain.com\nadministrator@domain.com\nhostmaster@domain.com\npostmaster@domain.com\nwebmaster@domain.com\n\nFor every domain that you register.')
 
 class CertificateValidationDefFromDnsParams(pydantic.BaseModel):
     hosted_zone: typing.Optional[typing.Union[models.aws_route53.HostedZoneDef, models.aws_route53.PrivateHostedZoneDef, models.aws_route53.PublicHostedZoneDef]] = pydantic.Field(None, description='the hosted zone where DNS records must be created.')
@@ -48,13 +48,13 @@ class CertificateDef(BaseConstruct):
     ...
 
 
-    from_certificate_arn: typing.Optional[CertificateDefFromCertificateArnParams] = pydantic.Field(None, description='Import a certificate.')
-    resource_config: typing.Optional[CertificateDefConfig] = pydantic.Field(None)
+    from_certificate_arn: typing.Optional[models.aws_certificatemanager.CertificateDefFromCertificateArnParams] = pydantic.Field(None, description='Import a certificate.')
+    resource_config: typing.Optional[models.aws_certificatemanager.CertificateDefConfig] = pydantic.Field(None)
 
 
 class CertificateDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric_days_to_expiry: typing.Optional[list[CertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
+    metric_days_to_expiry: typing.Optional[list[models.aws_certificatemanager.CertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
 
 class CertificateDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -99,12 +99,12 @@ class DnsValidatedCertificateDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[DnsValidatedCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_certificatemanager.DnsValidatedCertificateDefConfig] = pydantic.Field(None)
 
 
 class DnsValidatedCertificateDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric_days_to_expiry: typing.Optional[list[DnsValidatedCertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='(deprecated) Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
+    metric_days_to_expiry: typing.Optional[list[models.aws_certificatemanager.DnsValidatedCertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='(deprecated) Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class DnsValidatedCertificateDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -137,13 +137,13 @@ class PrivateCertificateDef(BaseConstruct):
     ...
 
 
-    from_certificate_arn: typing.Optional[PrivateCertificateDefFromCertificateArnParams] = pydantic.Field(None, description='Import a certificate.')
-    resource_config: typing.Optional[PrivateCertificateDefConfig] = pydantic.Field(None)
+    from_certificate_arn: typing.Optional[models.aws_certificatemanager.PrivateCertificateDefFromCertificateArnParams] = pydantic.Field(None, description='Import a certificate.')
+    resource_config: typing.Optional[models.aws_certificatemanager.PrivateCertificateDefConfig] = pydantic.Field(None)
 
 
 class PrivateCertificateDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    metric_days_to_expiry: typing.Optional[list[PrivateCertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
+    metric_days_to_expiry: typing.Optional[list[models.aws_certificatemanager.PrivateCertificateDefMetricDaysToExpiryParams]] = pydantic.Field(None, description='Return the DaysToExpiry metric for this AWS Certificate Manager Certificate. By default, this is the minimum value over 1 day.\nThis metric is no longer emitted once the certificate has effectively\nexpired, so alarms configured on this metric should probably treat missing\ndata as "breaching".')
 
 class PrivateCertificateDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -249,7 +249,7 @@ class DnsValidatedCertificatePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[DnsValidatedCertificatePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_certificatemanager.DnsValidatedCertificatePropsDefConfig] = pydantic.Field(None)
 
 
 class DnsValidatedCertificatePropsDefConfig(pydantic.BaseModel):
@@ -269,7 +269,7 @@ class PrivateCertificatePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[PrivateCertificatePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_certificatemanager.PrivateCertificatePropsDefConfig] = pydantic.Field(None)
 
 
 class PrivateCertificatePropsDefConfig(pydantic.BaseModel):
@@ -293,27 +293,27 @@ class CfnAccountDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAccountDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_certificatemanager.CfnAccountDefConfig] = pydantic.Field(None)
 
 
 class CfnAccountDefConfig(pydantic.BaseModel):
-    ExpiryEventsConfigurationProperty: typing.Optional[list[CfnAccountDefExpiryeventsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAccountDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAccountDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAccountDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAccountDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAccountDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAccountDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAccountDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ExpiryEventsConfigurationProperty: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefExpiryeventsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAccountDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAccountDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAccountDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAccountDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAccountDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAccountDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_certificatemanager.CfnAccountDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnAccountDefExpiryeventsconfigurationpropertyParams(pydantic.BaseModel):
     days_before_expiry: typing.Union[int, float, None] = pydantic.Field(None, description='')
@@ -402,27 +402,27 @@ class CfnCertificateDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCertificateDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_certificatemanager.CfnCertificateDefConfig] = pydantic.Field(None)
 
 
 class CfnCertificateDefConfig(pydantic.BaseModel):
-    DomainValidationOptionProperty: typing.Optional[list[CfnCertificateDefDomainvalidationoptionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCertificateDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCertificateDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCertificateDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCertificateDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCertificateDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCertificateDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCertificateDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    DomainValidationOptionProperty: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefDomainvalidationoptionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCertificateDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCertificateDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCertificateDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCertificateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCertificateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCertificateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_certificatemanager.CfnCertificateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCertificateDefDomainvalidationoptionpropertyParams(pydantic.BaseModel):
@@ -529,21 +529,21 @@ class CfnCertificatePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CertificateValidation: typing.Optional[dict[str, CertificateValidationDef]] = pydantic.Field(None)
-    Certificate: typing.Optional[dict[str, CertificateDef]] = pydantic.Field(None)
-    DnsValidatedCertificate: typing.Optional[dict[str, DnsValidatedCertificateDef]] = pydantic.Field(None)
-    PrivateCertificate: typing.Optional[dict[str, PrivateCertificateDef]] = pydantic.Field(None)
-    CertificateProps: typing.Optional[dict[str, CertificatePropsDef]] = pydantic.Field(None)
-    CertificationValidationProps: typing.Optional[dict[str, CertificationValidationPropsDef]] = pydantic.Field(None)
-    CfnAccount_ExpiryEventsConfigurationProperty: typing.Optional[dict[str, CfnAccount_ExpiryEventsConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnCertificate_DomainValidationOptionProperty: typing.Optional[dict[str, CfnCertificate_DomainValidationOptionPropertyDef]] = pydantic.Field(None)
-    DnsValidatedCertificateProps: typing.Optional[dict[str, DnsValidatedCertificatePropsDef]] = pydantic.Field(None)
-    PrivateCertificateProps: typing.Optional[dict[str, PrivateCertificatePropsDef]] = pydantic.Field(None)
-    CfnAccount: typing.Optional[dict[str, CfnAccountDef]] = pydantic.Field(None)
-    CfnCertificate: typing.Optional[dict[str, CfnCertificateDef]] = pydantic.Field(None)
-    CfnAccountProps: typing.Optional[dict[str, CfnAccountPropsDef]] = pydantic.Field(None)
-    CfnCertificateProps: typing.Optional[dict[str, CfnCertificatePropsDef]] = pydantic.Field(None)
+    CertificateValidation: typing.Optional[dict[str, models.aws_certificatemanager.CertificateValidationDef]] = pydantic.Field(None)
+    Certificate: typing.Optional[dict[str, models.aws_certificatemanager.CertificateDef]] = pydantic.Field(None)
+    DnsValidatedCertificate: typing.Optional[dict[str, models.aws_certificatemanager.DnsValidatedCertificateDef]] = pydantic.Field(None)
+    PrivateCertificate: typing.Optional[dict[str, models.aws_certificatemanager.PrivateCertificateDef]] = pydantic.Field(None)
+    CertificateProps: typing.Optional[dict[str, models.aws_certificatemanager.CertificatePropsDef]] = pydantic.Field(None)
+    CertificationValidationProps: typing.Optional[dict[str, models.aws_certificatemanager.CertificationValidationPropsDef]] = pydantic.Field(None)
+    CfnAccount_ExpiryEventsConfigurationProperty: typing.Optional[dict[str, models.aws_certificatemanager.CfnAccount_ExpiryEventsConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnCertificate_DomainValidationOptionProperty: typing.Optional[dict[str, models.aws_certificatemanager.CfnCertificate_DomainValidationOptionPropertyDef]] = pydantic.Field(None)
+    DnsValidatedCertificateProps: typing.Optional[dict[str, models.aws_certificatemanager.DnsValidatedCertificatePropsDef]] = pydantic.Field(None)
+    PrivateCertificateProps: typing.Optional[dict[str, models.aws_certificatemanager.PrivateCertificatePropsDef]] = pydantic.Field(None)
+    CfnAccount: typing.Optional[dict[str, models.aws_certificatemanager.CfnAccountDef]] = pydantic.Field(None)
+    CfnCertificate: typing.Optional[dict[str, models.aws_certificatemanager.CfnCertificateDef]] = pydantic.Field(None)
+    CfnAccountProps: typing.Optional[dict[str, models.aws_certificatemanager.CfnAccountPropsDef]] = pydantic.Field(None)
+    CfnCertificateProps: typing.Optional[dict[str, models.aws_certificatemanager.CfnCertificatePropsDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -18,15 +18,14 @@ class KinesisDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[KinesisDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_logs_destinations.KinesisDestinationDefConfig] = pydantic.Field(None)
 
 
 class KinesisDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[KinesisDestinationDefBindParams]] = pydantic.Field(None, description='Return the properties required to send subscription events to this destination.\nIf necessary, the destination can use the properties of the SubscriptionFilter\nobject itself to configure its permissions to allow the subscription to write\nto it.\n\nThe destination may reconfigure its own permissions in response to this\nfunction call.')
+    bind: typing.Optional[list[models.aws_logs_destinations.KinesisDestinationDefBindParams]] = pydantic.Field(None, description='Return the properties required to send subscription events to this destination.\nIf necessary, the destination can use the properties of the SubscriptionFilter\nobject itself to configure its permissions to allow the subscription to write\nto it.\n\nThe destination may reconfigure its own permissions in response to this\nfunction call.')
 
 class KinesisDestinationDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
-    _source_log_group: typing.Union[models.aws_logs.LogGroupDef] = pydantic.Field(..., description='-')
     ...
 
 
@@ -42,11 +41,11 @@ class LambdaDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_logs_destinations.LambdaDestinationDefConfig] = pydantic.Field(None)
 
 
 class LambdaDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaDestinationDefBindParams]] = pydantic.Field(None, description='Return the properties required to send subscription events to this destination.\nIf necessary, the destination can use the properties of the SubscriptionFilter\nobject itself to configure its permissions to allow the subscription to write\nto it.\n\nThe destination may reconfigure its own permissions in response to this\nfunction call.')
+    bind: typing.Optional[list[models.aws_logs_destinations.LambdaDestinationDefBindParams]] = pydantic.Field(None, description='Return the properties required to send subscription events to this destination.\nIf necessary, the destination can use the properties of the SubscriptionFilter\nobject itself to configure its permissions to allow the subscription to write\nto it.\n\nThe destination may reconfigure its own permissions in response to this\nfunction call.')
 
 class LambdaDestinationDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -80,11 +79,11 @@ class LambdaDestinationOptionsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    KinesisDestination: typing.Optional[dict[str, KinesisDestinationDef]] = pydantic.Field(None)
-    LambdaDestination: typing.Optional[dict[str, LambdaDestinationDef]] = pydantic.Field(None)
-    KinesisDestinationProps: typing.Optional[dict[str, KinesisDestinationPropsDef]] = pydantic.Field(None)
-    LambdaDestinationOptions: typing.Optional[dict[str, LambdaDestinationOptionsDef]] = pydantic.Field(None)
+    KinesisDestination: typing.Optional[dict[str, models.aws_logs_destinations.KinesisDestinationDef]] = pydantic.Field(None)
+    LambdaDestination: typing.Optional[dict[str, models.aws_logs_destinations.LambdaDestinationDef]] = pydantic.Field(None)
+    KinesisDestinationProps: typing.Optional[dict[str, models.aws_logs_destinations.KinesisDestinationPropsDef]] = pydantic.Field(None)
+    LambdaDestinationOptions: typing.Optional[dict[str, models.aws_logs_destinations.LambdaDestinationOptionsDef]] = pydantic.Field(None)
     ...
+
+import models

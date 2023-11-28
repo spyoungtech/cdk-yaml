@@ -18,15 +18,15 @@ class ProfilingGroupDef(BaseConstruct):
     ...
 
 
-    from_profiling_group_arn: typing.Optional[ProfilingGroupDefFromProfilingGroupArnParams] = pydantic.Field(None, description='Import an existing Profiling Group provided an ARN.')
-    from_profiling_group_name: typing.Optional[ProfilingGroupDefFromProfilingGroupNameParams] = pydantic.Field(None, description='Import an existing Profiling Group provided a Profiling Group Name.')
-    resource_config: typing.Optional[ProfilingGroupDefConfig] = pydantic.Field(None)
+    from_profiling_group_arn: typing.Optional[models.aws_codeguruprofiler.ProfilingGroupDefFromProfilingGroupArnParams] = pydantic.Field(None, description='Import an existing Profiling Group provided an ARN.')
+    from_profiling_group_name: typing.Optional[models.aws_codeguruprofiler.ProfilingGroupDefFromProfilingGroupNameParams] = pydantic.Field(None, description='Import an existing Profiling Group provided a Profiling Group Name.')
+    resource_config: typing.Optional[models.aws_codeguruprofiler.ProfilingGroupDefConfig] = pydantic.Field(None)
 
 
 class ProfilingGroupDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_publish: typing.Optional[list[ProfilingGroupDefGrantPublishParams]] = pydantic.Field(None, description='Grant access to publish profiling information to the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:ConfigureAgent\n- codeguru-profiler:PostAgentProfile')
-    grant_read: typing.Optional[list[ProfilingGroupDefGrantReadParams]] = pydantic.Field(None, description='Grant access to read profiling information from the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:GetProfile\n- codeguru-profiler:DescribeProfilingGroup')
+    grant_publish: typing.Optional[list[models.aws_codeguruprofiler.ProfilingGroupDefGrantPublishParams]] = pydantic.Field(None, description='Grant access to publish profiling information to the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:ConfigureAgent\n- codeguru-profiler:PostAgentProfile')
+    grant_read: typing.Optional[list[models.aws_codeguruprofiler.ProfilingGroupDefGrantReadParams]] = pydantic.Field(None, description='Grant access to read profiling information from the Profiling Group to the given identity.\nThis will grant the following permissions:\n\n- codeguru-profiler:GetProfile\n- codeguru-profiler:DescribeProfilingGroup')
 
 class ProfilingGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -117,28 +117,28 @@ class CfnProfilingGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnProfilingGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_codeguruprofiler.CfnProfilingGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnProfilingGroupDefConfig(pydantic.BaseModel):
-    AgentPermissionsProperty: typing.Optional[list[CfnProfilingGroupDefAgentpermissionspropertyParams]] = pydantic.Field(None, description='')
-    ChannelProperty: typing.Optional[list[CfnProfilingGroupDefChannelpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnProfilingGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnProfilingGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnProfilingGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnProfilingGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnProfilingGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnProfilingGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnProfilingGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AgentPermissionsProperty: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAgentpermissionspropertyParams]] = pydantic.Field(None, description='')
+    ChannelProperty: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefChannelpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnProfilingGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnProfilingGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnProfilingGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnProfilingGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnProfilingGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnProfilingGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_codeguruprofiler.CfnProfilingGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnProfilingGroupDefAgentpermissionspropertyParams(pydantic.BaseModel):
@@ -232,13 +232,13 @@ class CfnProfilingGroupPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ProfilingGroup: typing.Optional[dict[str, ProfilingGroupDef]] = pydantic.Field(None)
-    CfnProfilingGroup_AgentPermissionsProperty: typing.Optional[dict[str, CfnProfilingGroup_AgentPermissionsPropertyDef]] = pydantic.Field(None)
-    CfnProfilingGroup_ChannelProperty: typing.Optional[dict[str, CfnProfilingGroup_ChannelPropertyDef]] = pydantic.Field(None)
-    ProfilingGroupProps: typing.Optional[dict[str, ProfilingGroupPropsDef]] = pydantic.Field(None)
-    CfnProfilingGroup: typing.Optional[dict[str, CfnProfilingGroupDef]] = pydantic.Field(None)
-    CfnProfilingGroupProps: typing.Optional[dict[str, CfnProfilingGroupPropsDef]] = pydantic.Field(None)
+    ProfilingGroup: typing.Optional[dict[str, models.aws_codeguruprofiler.ProfilingGroupDef]] = pydantic.Field(None)
+    CfnProfilingGroup_AgentPermissionsProperty: typing.Optional[dict[str, models.aws_codeguruprofiler.CfnProfilingGroup_AgentPermissionsPropertyDef]] = pydantic.Field(None)
+    CfnProfilingGroup_ChannelProperty: typing.Optional[dict[str, models.aws_codeguruprofiler.CfnProfilingGroup_ChannelPropertyDef]] = pydantic.Field(None)
+    ProfilingGroupProps: typing.Optional[dict[str, models.aws_codeguruprofiler.ProfilingGroupPropsDef]] = pydantic.Field(None)
+    CfnProfilingGroup: typing.Optional[dict[str, models.aws_codeguruprofiler.CfnProfilingGroupDef]] = pydantic.Field(None)
+    CfnProfilingGroupProps: typing.Optional[dict[str, models.aws_codeguruprofiler.CfnProfilingGroupPropsDef]] = pydantic.Field(None)
     ...
+
+import models

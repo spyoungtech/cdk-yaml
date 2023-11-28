@@ -25,12 +25,12 @@ class AssetDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[AssetDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_s3_assets.AssetDefConfig] = pydantic.Field(None)
 
 
 class AssetDefConfig(pydantic.BaseModel):
-    add_resource_metadata: typing.Optional[list[AssetDefAddResourceMetadataParams]] = pydantic.Field(None, description='Adds CloudFormation template metadata to the specified resource with information that indicates which resource property is mapped to this local asset.\nThis can be used by tools such as SAM CLI to provide local\nexperience such as local invocation and debugging of Lambda functions.\n\nAsset metadata will only be included if the stack is synthesized with the\n"aws:cdk:enable-asset-metadata" context key defined, which is the default\nbehavior when synthesizing via the CDK Toolkit.')
-    grant_read: typing.Optional[list[AssetDefGrantReadParams]] = pydantic.Field(None, description='Grants read permissions to the principal on the assets bucket.')
+    add_resource_metadata: typing.Optional[list[models.aws_s3_assets.AssetDefAddResourceMetadataParams]] = pydantic.Field(None, description='Adds CloudFormation template metadata to the specified resource with information that indicates which resource property is mapped to this local asset.\nThis can be used by tools such as SAM CLI to provide local\nexperience such as local invocation and debugging of Lambda functions.\n\nAsset metadata will only be included if the stack is synthesized with the\n"aws:cdk:enable-asset-metadata" context key defined, which is the default\nbehavior when synthesizing via the CDK Toolkit.')
+    grant_read: typing.Optional[list[models.aws_s3_assets.AssetDefGrantReadParams]] = pydantic.Field(None, description='Grants read permissions to the principal on the assets bucket.')
     bucket_config: typing.Optional[models._interface_methods.AwsS3IBucketDefConfig] = pydantic.Field(None)
 
 class AssetDefAddResourceMetadataParams(pydantic.BaseModel):
@@ -84,10 +84,10 @@ class AssetPropsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    Asset: typing.Optional[dict[str, AssetDef]] = pydantic.Field(None)
-    AssetOptions: typing.Optional[dict[str, AssetOptionsDef]] = pydantic.Field(None)
-    AssetProps: typing.Optional[dict[str, AssetPropsDef]] = pydantic.Field(None)
+    Asset: typing.Optional[dict[str, models.aws_s3_assets.AssetDef]] = pydantic.Field(None)
+    AssetOptions: typing.Optional[dict[str, models.aws_s3_assets.AssetOptionsDef]] = pydantic.Field(None)
+    AssetProps: typing.Optional[dict[str, models.aws_s3_assets.AssetPropsDef]] = pydantic.Field(None)
     ...
+
+import models

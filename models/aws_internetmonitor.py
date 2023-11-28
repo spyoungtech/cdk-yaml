@@ -85,30 +85,30 @@ class CfnMonitorDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMonitorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_internetmonitor.CfnMonitorDefConfig] = pydantic.Field(None)
 
 
 class CfnMonitorDefConfig(pydantic.BaseModel):
-    HealthEventsConfigProperty: typing.Optional[list[CfnMonitorDefHealtheventsconfigpropertyParams]] = pydantic.Field(None, description='')
-    InternetMeasurementsLogDeliveryProperty: typing.Optional[list[CfnMonitorDefInternetmeasurementslogdeliverypropertyParams]] = pydantic.Field(None, description='')
-    LocalHealthEventsConfigProperty: typing.Optional[list[CfnMonitorDefLocalhealtheventsconfigpropertyParams]] = pydantic.Field(None, description='')
-    S3ConfigProperty: typing.Optional[list[CfnMonitorDefS3ConfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnMonitorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMonitorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMonitorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMonitorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMonitorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMonitorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMonitorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    HealthEventsConfigProperty: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefHealtheventsconfigpropertyParams]] = pydantic.Field(None, description='')
+    InternetMeasurementsLogDeliveryProperty: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefInternetmeasurementslogdeliverypropertyParams]] = pydantic.Field(None, description='')
+    LocalHealthEventsConfigProperty: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefLocalhealtheventsconfigpropertyParams]] = pydantic.Field(None, description='')
+    S3ConfigProperty: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefS3ConfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMonitorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMonitorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMonitorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMonitorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMonitorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMonitorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_internetmonitor.CfnMonitorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnMonitorDefHealtheventsconfigpropertyParams(pydantic.BaseModel):
@@ -221,13 +221,13 @@ class CfnMonitorPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnMonitor_HealthEventsConfigProperty: typing.Optional[dict[str, CfnMonitor_HealthEventsConfigPropertyDef]] = pydantic.Field(None)
-    CfnMonitor_InternetMeasurementsLogDeliveryProperty: typing.Optional[dict[str, CfnMonitor_InternetMeasurementsLogDeliveryPropertyDef]] = pydantic.Field(None)
-    CfnMonitor_LocalHealthEventsConfigProperty: typing.Optional[dict[str, CfnMonitor_LocalHealthEventsConfigPropertyDef]] = pydantic.Field(None)
-    CfnMonitor_S3ConfigProperty: typing.Optional[dict[str, CfnMonitor_S3ConfigPropertyDef]] = pydantic.Field(None)
-    CfnMonitor: typing.Optional[dict[str, CfnMonitorDef]] = pydantic.Field(None)
-    CfnMonitorProps: typing.Optional[dict[str, CfnMonitorPropsDef]] = pydantic.Field(None)
+    CfnMonitor_HealthEventsConfigProperty: typing.Optional[dict[str, models.aws_internetmonitor.CfnMonitor_HealthEventsConfigPropertyDef]] = pydantic.Field(None)
+    CfnMonitor_InternetMeasurementsLogDeliveryProperty: typing.Optional[dict[str, models.aws_internetmonitor.CfnMonitor_InternetMeasurementsLogDeliveryPropertyDef]] = pydantic.Field(None)
+    CfnMonitor_LocalHealthEventsConfigProperty: typing.Optional[dict[str, models.aws_internetmonitor.CfnMonitor_LocalHealthEventsConfigPropertyDef]] = pydantic.Field(None)
+    CfnMonitor_S3ConfigProperty: typing.Optional[dict[str, models.aws_internetmonitor.CfnMonitor_S3ConfigPropertyDef]] = pydantic.Field(None)
+    CfnMonitor: typing.Optional[dict[str, models.aws_internetmonitor.CfnMonitorDef]] = pydantic.Field(None)
+    CfnMonitorProps: typing.Optional[dict[str, models.aws_internetmonitor.CfnMonitorPropsDef]] = pydantic.Field(None)
     ...
+
+import models

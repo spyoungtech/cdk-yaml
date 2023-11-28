@@ -26,17 +26,17 @@ class SlackChannelConfigurationDef(BaseConstruct):
     ...
 
 
-    from_slack_channel_configuration_arn: typing.Optional[SlackChannelConfigurationDefFromSlackChannelConfigurationArnParams] = pydantic.Field(None, description='Import an existing Slack channel configuration provided an ARN.')
-    metric_all: typing.Optional[SlackChannelConfigurationDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for All SlackChannelConfigurations.')
-    resource_config: typing.Optional[SlackChannelConfigurationDefConfig] = pydantic.Field(None)
+    from_slack_channel_configuration_arn: typing.Optional[models.aws_chatbot.SlackChannelConfigurationDefFromSlackChannelConfigurationArnParams] = pydantic.Field(None, description='Import an existing Slack channel configuration provided an ARN.')
+    metric_all: typing.Optional[models.aws_chatbot.SlackChannelConfigurationDefMetricAllParams] = pydantic.Field(None, description='Return the given named metric for All SlackChannelConfigurations.')
+    resource_config: typing.Optional[models.aws_chatbot.SlackChannelConfigurationDefConfig] = pydantic.Field(None)
 
 
 class SlackChannelConfigurationDefConfig(pydantic.BaseModel):
-    add_notification_topic: typing.Optional[list[SlackChannelConfigurationDefAddNotificationTopicParams]] = pydantic.Field(None, description='Adds a SNS topic that deliver notifications to AWS Chatbot.')
-    add_to_role_policy: typing.Optional[list[SlackChannelConfigurationDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds extra permission to iam-role of Slack channel configuration.')
+    add_notification_topic: typing.Optional[list[models.aws_chatbot.SlackChannelConfigurationDefAddNotificationTopicParams]] = pydantic.Field(None, description='Adds a SNS topic that deliver notifications to AWS Chatbot.')
+    add_to_role_policy: typing.Optional[list[models.aws_chatbot.SlackChannelConfigurationDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds extra permission to iam-role of Slack channel configuration.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    bind_as_notification_rule_target: typing.Optional[list[SlackChannelConfigurationDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
-    metric: typing.Optional[list[SlackChannelConfigurationDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this SlackChannelConfiguration.')
+    bind_as_notification_rule_target: typing.Optional[list[models.aws_chatbot.SlackChannelConfigurationDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
+    metric: typing.Optional[list[models.aws_chatbot.SlackChannelConfigurationDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this SlackChannelConfiguration.')
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
 
 class SlackChannelConfigurationDefAddNotificationTopicParams(pydantic.BaseModel):
@@ -52,7 +52,6 @@ class SlackChannelConfigurationDefApplyRemovalPolicyParams(pydantic.BaseModel):
     ...
 
 class SlackChannelConfigurationDefBindAsNotificationRuleTargetParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
     ...
 
 class SlackChannelConfigurationDefFromSlackChannelConfigurationArnParams(pydantic.BaseModel):
@@ -134,26 +133,26 @@ class CfnMicrosoftTeamsChannelConfigurationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMicrosoftTeamsChannelConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefConfig] = pydantic.Field(None)
 
 
 class CfnMicrosoftTeamsChannelConfigurationDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMicrosoftTeamsChannelConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnMicrosoftTeamsChannelConfigurationDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -238,26 +237,26 @@ class CfnSlackChannelConfigurationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSlackChannelConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_chatbot.CfnSlackChannelConfigurationDefConfig] = pydantic.Field(None)
 
 
 class CfnSlackChannelConfigurationDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnSlackChannelConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSlackChannelConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSlackChannelConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSlackChannelConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSlackChannelConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSlackChannelConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSlackChannelConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSlackChannelConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSlackChannelConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSlackChannelConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSlackChannelConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSlackChannelConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSlackChannelConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_chatbot.CfnSlackChannelConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnSlackChannelConfigurationDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -365,13 +364,13 @@ class CfnSlackChannelConfigurationPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    SlackChannelConfiguration: typing.Optional[dict[str, SlackChannelConfigurationDef]] = pydantic.Field(None)
-    SlackChannelConfigurationProps: typing.Optional[dict[str, SlackChannelConfigurationPropsDef]] = pydantic.Field(None)
-    CfnMicrosoftTeamsChannelConfiguration: typing.Optional[dict[str, CfnMicrosoftTeamsChannelConfigurationDef]] = pydantic.Field(None)
-    CfnSlackChannelConfiguration: typing.Optional[dict[str, CfnSlackChannelConfigurationDef]] = pydantic.Field(None)
-    CfnMicrosoftTeamsChannelConfigurationProps: typing.Optional[dict[str, CfnMicrosoftTeamsChannelConfigurationPropsDef]] = pydantic.Field(None)
-    CfnSlackChannelConfigurationProps: typing.Optional[dict[str, CfnSlackChannelConfigurationPropsDef]] = pydantic.Field(None)
+    SlackChannelConfiguration: typing.Optional[dict[str, models.aws_chatbot.SlackChannelConfigurationDef]] = pydantic.Field(None)
+    SlackChannelConfigurationProps: typing.Optional[dict[str, models.aws_chatbot.SlackChannelConfigurationPropsDef]] = pydantic.Field(None)
+    CfnMicrosoftTeamsChannelConfiguration: typing.Optional[dict[str, models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationDef]] = pydantic.Field(None)
+    CfnSlackChannelConfiguration: typing.Optional[dict[str, models.aws_chatbot.CfnSlackChannelConfigurationDef]] = pydantic.Field(None)
+    CfnMicrosoftTeamsChannelConfigurationProps: typing.Optional[dict[str, models.aws_chatbot.CfnMicrosoftTeamsChannelConfigurationPropsDef]] = pydantic.Field(None)
+    CfnSlackChannelConfigurationProps: typing.Optional[dict[str, models.aws_chatbot.CfnSlackChannelConfigurationPropsDef]] = pydantic.Field(None)
     ...
+
+import models

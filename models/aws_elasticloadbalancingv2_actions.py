@@ -25,18 +25,18 @@ class AuthenticateCognitoActionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AuthenticateCognitoActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefConfig] = pydantic.Field(None)
 
 
 class AuthenticateCognitoActionDefConfig(pydantic.BaseModel):
-    authenticate_oidc: typing.Optional[list[AuthenticateCognitoActionDefAuthenticateOidcParams]] = pydantic.Field(None, description='Authenticate using an identity provider (IdP) that is compliant with OpenID Connect (OIDC).')
-    bind: typing.Optional[list[AuthenticateCognitoActionDefBindParams]] = pydantic.Field(None, description='Called when the action is being used in a listener.')
-    fixed_response: typing.Optional[list[AuthenticateCognitoActionDefFixedResponseParams]] = pydantic.Field(None, description='Return a fixed response.')
-    forward: typing.Optional[list[AuthenticateCognitoActionDefForwardParams]] = pydantic.Field(None, description='Forward to one or more Target Groups.')
-    redirect: typing.Optional[list[AuthenticateCognitoActionDefRedirectParams]] = pydantic.Field(None, description='Redirect to a different URI.\nA URI consists of the following components:\nprotocol://hostname:port/path?query. You must modify at least one of the\nfollowing components to avoid a redirect loop: protocol, hostname, port, or\npath. Any components that you do not modify retain their original values.\n\nYou can reuse URI components using the following reserved keywords:\n\n- ``#{protocol}``\n- ``#{host}``\n- ``#{port}``\n- ``#{path}`` (the leading "/" is removed)\n- ``#{query}``\n\nFor example, you can change the path to "/new/#{path}", the hostname to\n"example.#{host}", or the query to "#{query}&value=xyz".')
+    authenticate_oidc: typing.Optional[list[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefAuthenticateOidcParams]] = pydantic.Field(None, description='Authenticate using an identity provider (IdP) that is compliant with OpenID Connect (OIDC).')
+    bind: typing.Optional[list[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefBindParams]] = pydantic.Field(None, description='Called when the action is being used in a listener.')
+    fixed_response: typing.Optional[list[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefFixedResponseParams]] = pydantic.Field(None, description='Return a fixed response.')
+    forward: typing.Optional[list[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefForwardParams]] = pydantic.Field(None, description='Forward to one or more Target Groups.')
+    redirect: typing.Optional[list[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefRedirectParams]] = pydantic.Field(None, description='Redirect to a different URI.\nA URI consists of the following components:\nprotocol://hostname:port/path?query. You must modify at least one of the\nfollowing components to avoid a redirect loop: protocol, hostname, port, or\npath. Any components that you do not modify retain their original values.\n\nYou can reuse URI components using the following reserved keywords:\n\n- ``#{protocol}``\n- ``#{host}``\n- ``#{port}``\n- ``#{path}`` (the leading "/" is removed)\n- ``#{query}``\n\nFor example, you can change the path to "/new/#{path}", the hostname to\n"example.#{host}", or the query to "#{query}&value=xyz".')
     render_actions: typing.Optional[bool] = pydantic.Field(None, description='Render the listener default actions in this chain.')
     render_rule_actions: typing.Optional[bool] = pydantic.Field(None, description='Render the listener rule actions in this chain.')
-    weighted_forward: typing.Optional[list[AuthenticateCognitoActionDefWeightedForwardParams]] = pydantic.Field(None, description='Forward to one or more Target Groups which are weighted differently.')
+    weighted_forward: typing.Optional[list[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDefWeightedForwardParams]] = pydantic.Field(None, description='Forward to one or more Target Groups which are weighted differently.')
 
 class AuthenticateCognitoActionDefAuthenticateOidcParams(pydantic.BaseModel):
     authorization_endpoint: str = pydantic.Field(..., description='The authorization endpoint of the IdP. This must be a full URL, including the HTTPS protocol, the domain, and the path.\n')
@@ -110,7 +110,7 @@ class AuthenticateCognitoActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AuthenticateCognitoActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionPropsDefConfig] = pydantic.Field(None)
 
 
 class AuthenticateCognitoActionPropsDefConfig(pydantic.BaseModel):
@@ -120,9 +120,9 @@ class AuthenticateCognitoActionPropsDefConfig(pydantic.BaseModel):
     user_pool_domain_config: typing.Optional[models._interface_methods.AwsCognitoIUserPoolDomainDefConfig] = pydantic.Field(None)
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AuthenticateCognitoAction: typing.Optional[dict[str, AuthenticateCognitoActionDef]] = pydantic.Field(None)
-    AuthenticateCognitoActionProps: typing.Optional[dict[str, AuthenticateCognitoActionPropsDef]] = pydantic.Field(None)
+    AuthenticateCognitoAction: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionDef]] = pydantic.Field(None)
+    AuthenticateCognitoActionProps: typing.Optional[dict[str, models.aws_elasticloadbalancingv2_actions.AuthenticateCognitoActionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

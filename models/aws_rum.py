@@ -91,30 +91,30 @@ class CfnAppMonitorDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAppMonitorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_rum.CfnAppMonitorDefConfig] = pydantic.Field(None)
 
 
 class CfnAppMonitorDefConfig(pydantic.BaseModel):
-    AppMonitorConfigurationProperty: typing.Optional[list[CfnAppMonitorDefAppmonitorconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    CustomEventsProperty: typing.Optional[list[CfnAppMonitorDefCustomeventspropertyParams]] = pydantic.Field(None, description='')
-    MetricDefinitionProperty: typing.Optional[list[CfnAppMonitorDefMetricdefinitionpropertyParams]] = pydantic.Field(None, description='')
-    MetricDestinationProperty: typing.Optional[list[CfnAppMonitorDefMetricdestinationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAppMonitorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAppMonitorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAppMonitorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAppMonitorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAppMonitorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAppMonitorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAppMonitorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AppMonitorConfigurationProperty: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAppmonitorconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    CustomEventsProperty: typing.Optional[list[models.aws_rum.CfnAppMonitorDefCustomeventspropertyParams]] = pydantic.Field(None, description='')
+    MetricDefinitionProperty: typing.Optional[list[models.aws_rum.CfnAppMonitorDefMetricdefinitionpropertyParams]] = pydantic.Field(None, description='')
+    MetricDestinationProperty: typing.Optional[list[models.aws_rum.CfnAppMonitorDefMetricdestinationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_rum.CfnAppMonitorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAppMonitorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAppMonitorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAppMonitorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_rum.CfnAppMonitorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_rum.CfnAppMonitorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_rum.CfnAppMonitorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAppMonitorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAppMonitorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAppMonitorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_rum.CfnAppMonitorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_rum.CfnAppMonitorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_rum.CfnAppMonitorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnAppMonitorDefAppmonitorconfigurationpropertyParams(pydantic.BaseModel):
@@ -233,13 +233,13 @@ class CfnAppMonitorPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnAppMonitor_AppMonitorConfigurationProperty: typing.Optional[dict[str, CfnAppMonitor_AppMonitorConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnAppMonitor_CustomEventsProperty: typing.Optional[dict[str, CfnAppMonitor_CustomEventsPropertyDef]] = pydantic.Field(None)
-    CfnAppMonitor_MetricDefinitionProperty: typing.Optional[dict[str, CfnAppMonitor_MetricDefinitionPropertyDef]] = pydantic.Field(None)
-    CfnAppMonitor_MetricDestinationProperty: typing.Optional[dict[str, CfnAppMonitor_MetricDestinationPropertyDef]] = pydantic.Field(None)
-    CfnAppMonitor: typing.Optional[dict[str, CfnAppMonitorDef]] = pydantic.Field(None)
-    CfnAppMonitorProps: typing.Optional[dict[str, CfnAppMonitorPropsDef]] = pydantic.Field(None)
+    CfnAppMonitor_AppMonitorConfigurationProperty: typing.Optional[dict[str, models.aws_rum.CfnAppMonitor_AppMonitorConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnAppMonitor_CustomEventsProperty: typing.Optional[dict[str, models.aws_rum.CfnAppMonitor_CustomEventsPropertyDef]] = pydantic.Field(None)
+    CfnAppMonitor_MetricDefinitionProperty: typing.Optional[dict[str, models.aws_rum.CfnAppMonitor_MetricDefinitionPropertyDef]] = pydantic.Field(None)
+    CfnAppMonitor_MetricDestinationProperty: typing.Optional[dict[str, models.aws_rum.CfnAppMonitor_MetricDestinationPropertyDef]] = pydantic.Field(None)
+    CfnAppMonitor: typing.Optional[dict[str, models.aws_rum.CfnAppMonitorDef]] = pydantic.Field(None)
+    CfnAppMonitorProps: typing.Optional[dict[str, models.aws_rum.CfnAppMonitorPropsDef]] = pydantic.Field(None)
     ...
+
+import models

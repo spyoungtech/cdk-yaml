@@ -18,14 +18,13 @@ class FunctionHookDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[FunctionHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling_hooktargets.FunctionHookDefConfig] = pydantic.Field(None)
 
 
 class FunctionHookDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[FunctionHookDefBindParams]] = pydantic.Field(None, description='If the ``IRole`` does not exist in ``options``, will create an ``IRole`` and an SNS Topic and attach both to the lifecycle hook.\nIf the ``IRole`` does exist in ``options``, will only create an SNS Topic and attach it to the lifecycle hook.')
+    bind: typing.Optional[list[models.aws_autoscaling_hooktargets.FunctionHookDefBindParams]] = pydantic.Field(None, description='If the ``IRole`` does not exist in ``options``, will create an ``IRole`` and an SNS Topic and attach both to the lifecycle hook.\nIf the ``IRole`` does exist in ``options``, will only create an SNS Topic and attach it to the lifecycle hook.')
 
 class FunctionHookDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     lifecycle_hook: models.aws_autoscaling.LifecycleHookDef = pydantic.Field(..., description='The lifecycle hook to attach to. [disable-awslint:ref-via-interface]\n')
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The role to use when attaching to the lifecycle hook. [disable-awslint:ref-via-interface] Default: : a role is not created unless the target arn is specified')
     return_config: typing.Optional[list[models.aws_autoscaling.LifecycleHookTargetConfigDefConfig]] = pydantic.Field(None)
@@ -43,14 +42,13 @@ class QueueHookDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[QueueHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling_hooktargets.QueueHookDefConfig] = pydantic.Field(None)
 
 
 class QueueHookDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[QueueHookDefBindParams]] = pydantic.Field(None, description='If an ``IRole`` is found in ``options``, grant it access to send messages.\nOtherwise, create a new ``IRole`` and grant it access to send messages.')
+    bind: typing.Optional[list[models.aws_autoscaling_hooktargets.QueueHookDefBindParams]] = pydantic.Field(None, description='If an ``IRole`` is found in ``options``, grant it access to send messages.\nOtherwise, create a new ``IRole`` and grant it access to send messages.')
 
 class QueueHookDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     lifecycle_hook: models.aws_autoscaling.LifecycleHookDef = pydantic.Field(..., description='The lifecycle hook to attach to. [disable-awslint:ref-via-interface]\n')
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The role to use when attaching to the lifecycle hook. [disable-awslint:ref-via-interface] Default: : a role is not created unless the target arn is specified\n')
     return_config: typing.Optional[list[models.aws_autoscaling.LifecycleHookTargetConfigDefConfig]] = pydantic.Field(None)
@@ -68,24 +66,23 @@ class TopicHookDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[TopicHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling_hooktargets.TopicHookDefConfig] = pydantic.Field(None)
 
 
 class TopicHookDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[TopicHookDefBindParams]] = pydantic.Field(None, description='If an ``IRole`` is found in ``options``, grant it topic publishing permissions.\nOtherwise, create a new ``IRole`` and grant it topic publishing permissions.')
+    bind: typing.Optional[list[models.aws_autoscaling_hooktargets.TopicHookDefBindParams]] = pydantic.Field(None, description='If an ``IRole`` is found in ``options``, grant it topic publishing permissions.\nOtherwise, create a new ``IRole`` and grant it topic publishing permissions.')
 
 class TopicHookDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     lifecycle_hook: models.aws_autoscaling.LifecycleHookDef = pydantic.Field(..., description='The lifecycle hook to attach to. [disable-awslint:ref-via-interface]\n')
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The role to use when attaching to the lifecycle hook. [disable-awslint:ref-via-interface] Default: : a role is not created unless the target arn is specified\n')
     return_config: typing.Optional[list[models.aws_autoscaling.LifecycleHookTargetConfigDefConfig]] = pydantic.Field(None)
     ...
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    FunctionHook: typing.Optional[dict[str, FunctionHookDef]] = pydantic.Field(None)
-    QueueHook: typing.Optional[dict[str, QueueHookDef]] = pydantic.Field(None)
-    TopicHook: typing.Optional[dict[str, TopicHookDef]] = pydantic.Field(None)
+    FunctionHook: typing.Optional[dict[str, models.aws_autoscaling_hooktargets.FunctionHookDef]] = pydantic.Field(None)
+    QueueHook: typing.Optional[dict[str, models.aws_autoscaling_hooktargets.QueueHookDef]] = pydantic.Field(None)
+    TopicHook: typing.Optional[dict[str, models.aws_autoscaling_hooktargets.TopicHookDef]] = pydantic.Field(None)
     ...
+
+import models

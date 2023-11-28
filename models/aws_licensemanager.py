@@ -124,26 +124,26 @@ class CfnGrantDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnGrantDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_licensemanager.CfnGrantDefConfig] = pydantic.Field(None)
 
 
 class CfnGrantDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnGrantDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnGrantDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnGrantDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnGrantDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnGrantDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnGrantDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnGrantDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_licensemanager.CfnGrantDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnGrantDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnGrantDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnGrantDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_licensemanager.CfnGrantDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_licensemanager.CfnGrantDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_licensemanager.CfnGrantDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnGrantDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnGrantDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnGrantDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_licensemanager.CfnGrantDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_licensemanager.CfnGrantDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_licensemanager.CfnGrantDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnGrantDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -231,33 +231,33 @@ class CfnLicenseDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLicenseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_licensemanager.CfnLicenseDefConfig] = pydantic.Field(None)
 
 
 class CfnLicenseDefConfig(pydantic.BaseModel):
-    BorrowConfigurationProperty: typing.Optional[list[CfnLicenseDefBorrowconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ConsumptionConfigurationProperty: typing.Optional[list[CfnLicenseDefConsumptionconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EntitlementProperty: typing.Optional[list[CfnLicenseDefEntitlementpropertyParams]] = pydantic.Field(None, description='')
-    IssuerDataProperty: typing.Optional[list[CfnLicenseDefIssuerdatapropertyParams]] = pydantic.Field(None, description='')
-    MetadataProperty: typing.Optional[list[CfnLicenseDefMetadatapropertyParams]] = pydantic.Field(None, description='')
-    ProvisionalConfigurationProperty: typing.Optional[list[CfnLicenseDefProvisionalconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    ValidityDateFormatProperty: typing.Optional[list[CfnLicenseDefValiditydateformatpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnLicenseDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLicenseDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLicenseDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLicenseDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLicenseDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLicenseDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLicenseDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    BorrowConfigurationProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefBorrowconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ConsumptionConfigurationProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefConsumptionconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EntitlementProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefEntitlementpropertyParams]] = pydantic.Field(None, description='')
+    IssuerDataProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefIssuerdatapropertyParams]] = pydantic.Field(None, description='')
+    MetadataProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefMetadatapropertyParams]] = pydantic.Field(None, description='')
+    ProvisionalConfigurationProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefProvisionalconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    ValidityDateFormatProperty: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefValiditydateformatpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLicenseDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLicenseDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLicenseDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLicenseDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLicenseDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLicenseDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_licensemanager.CfnLicenseDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnLicenseDefBorrowconfigurationpropertyParams(pydantic.BaseModel):
     allow_early_check_in: typing.Union[bool, models.UnsupportedResource] = pydantic.Field(..., description='')
@@ -404,18 +404,18 @@ class CfnLicensePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnLicense_BorrowConfigurationProperty: typing.Optional[dict[str, CfnLicense_BorrowConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnLicense_ConsumptionConfigurationProperty: typing.Optional[dict[str, CfnLicense_ConsumptionConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnLicense_EntitlementProperty: typing.Optional[dict[str, CfnLicense_EntitlementPropertyDef]] = pydantic.Field(None)
-    CfnLicense_IssuerDataProperty: typing.Optional[dict[str, CfnLicense_IssuerDataPropertyDef]] = pydantic.Field(None)
-    CfnLicense_MetadataProperty: typing.Optional[dict[str, CfnLicense_MetadataPropertyDef]] = pydantic.Field(None)
-    CfnLicense_ProvisionalConfigurationProperty: typing.Optional[dict[str, CfnLicense_ProvisionalConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnLicense_ValidityDateFormatProperty: typing.Optional[dict[str, CfnLicense_ValidityDateFormatPropertyDef]] = pydantic.Field(None)
-    CfnGrant: typing.Optional[dict[str, CfnGrantDef]] = pydantic.Field(None)
-    CfnLicense: typing.Optional[dict[str, CfnLicenseDef]] = pydantic.Field(None)
-    CfnGrantProps: typing.Optional[dict[str, CfnGrantPropsDef]] = pydantic.Field(None)
-    CfnLicenseProps: typing.Optional[dict[str, CfnLicensePropsDef]] = pydantic.Field(None)
+    CfnLicense_BorrowConfigurationProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_BorrowConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnLicense_ConsumptionConfigurationProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_ConsumptionConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnLicense_EntitlementProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_EntitlementPropertyDef]] = pydantic.Field(None)
+    CfnLicense_IssuerDataProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_IssuerDataPropertyDef]] = pydantic.Field(None)
+    CfnLicense_MetadataProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_MetadataPropertyDef]] = pydantic.Field(None)
+    CfnLicense_ProvisionalConfigurationProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_ProvisionalConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnLicense_ValidityDateFormatProperty: typing.Optional[dict[str, models.aws_licensemanager.CfnLicense_ValidityDateFormatPropertyDef]] = pydantic.Field(None)
+    CfnGrant: typing.Optional[dict[str, models.aws_licensemanager.CfnGrantDef]] = pydantic.Field(None)
+    CfnLicense: typing.Optional[dict[str, models.aws_licensemanager.CfnLicenseDef]] = pydantic.Field(None)
+    CfnGrantProps: typing.Optional[dict[str, models.aws_licensemanager.CfnGrantPropsDef]] = pydantic.Field(None)
+    CfnLicenseProps: typing.Optional[dict[str, models.aws_licensemanager.CfnLicensePropsDef]] = pydantic.Field(None)
     ...
+
+import models

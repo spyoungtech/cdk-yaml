@@ -28,14 +28,14 @@ class CacheCookieBehaviorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CacheCookieBehaviorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CacheCookieBehaviorDefConfig] = pydantic.Field(None)
 
 
 class CacheCookieBehaviorDefConfig(pydantic.BaseModel):
-    all: typing.Optional[list[CacheCookieBehaviorDefAllParams]] = pydantic.Field(None, description='All cookies in viewer requests are included in the cache key and are automatically included in requests that CloudFront sends to the origin.')
-    allow_list: typing.Optional[list[CacheCookieBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``cookies`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
-    deny_list: typing.Optional[list[CacheCookieBehaviorDefDenyListParams]] = pydantic.Field(None, description='All cookies except the provided ``cookies`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
-    none: typing.Optional[list[CacheCookieBehaviorDefNoneParams]] = pydantic.Field(None, description='Cookies in viewer requests are not included in the cache key and are not automatically included in requests that CloudFront sends to the origin.')
+    all: typing.Optional[list[models.aws_cloudfront.CacheCookieBehaviorDefAllParams]] = pydantic.Field(None, description='All cookies in viewer requests are included in the cache key and are automatically included in requests that CloudFront sends to the origin.')
+    allow_list: typing.Optional[list[models.aws_cloudfront.CacheCookieBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``cookies`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
+    deny_list: typing.Optional[list[models.aws_cloudfront.CacheCookieBehaviorDefDenyListParams]] = pydantic.Field(None, description='All cookies except the provided ``cookies`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
+    none: typing.Optional[list[models.aws_cloudfront.CacheCookieBehaviorDefNoneParams]] = pydantic.Field(None, description='Cookies in viewer requests are not included in the cache key and are not automatically included in requests that CloudFront sends to the origin.')
 
 class CacheCookieBehaviorDefAllParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudfront.CacheCookieBehaviorDefConfig]] = pydantic.Field(None)
@@ -78,12 +78,12 @@ class CacheHeaderBehaviorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CacheHeaderBehaviorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CacheHeaderBehaviorDefConfig] = pydantic.Field(None)
 
 
 class CacheHeaderBehaviorDefConfig(pydantic.BaseModel):
-    allow_list: typing.Optional[list[CacheHeaderBehaviorDefAllowListParams]] = pydantic.Field(None, description='Listed headers are included in the cache key and are automatically included in requests that CloudFront sends to the origin.')
-    none: typing.Optional[list[CacheHeaderBehaviorDefNoneParams]] = pydantic.Field(None, description='HTTP headers are not included in the cache key and are not automatically included in requests that CloudFront sends to the origin.')
+    allow_list: typing.Optional[list[models.aws_cloudfront.CacheHeaderBehaviorDefAllowListParams]] = pydantic.Field(None, description='Listed headers are included in the cache key and are automatically included in requests that CloudFront sends to the origin.')
+    none: typing.Optional[list[models.aws_cloudfront.CacheHeaderBehaviorDefNoneParams]] = pydantic.Field(None, description='HTTP headers are not included in the cache key and are not automatically included in requests that CloudFront sends to the origin.')
 
 class CacheHeaderBehaviorDefAllowListParams(pydantic.BaseModel):
     headers: list[str] = pydantic.Field(...)
@@ -105,14 +105,14 @@ class CacheQueryStringBehaviorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[CacheQueryStringBehaviorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CacheQueryStringBehaviorDefConfig] = pydantic.Field(None)
 
 
 class CacheQueryStringBehaviorDefConfig(pydantic.BaseModel):
-    all: typing.Optional[list[CacheQueryStringBehaviorDefAllParams]] = pydantic.Field(None, description='All query strings in viewer requests are included in the cache key and are automatically included in requests that CloudFront sends to the origin.')
-    allow_list: typing.Optional[list[CacheQueryStringBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``queryStrings`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
-    deny_list: typing.Optional[list[CacheQueryStringBehaviorDefDenyListParams]] = pydantic.Field(None, description='All query strings except the provided ``queryStrings`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
-    none: typing.Optional[list[CacheQueryStringBehaviorDefNoneParams]] = pydantic.Field(None, description='Query strings in viewer requests are not included in the cache key and are not automatically included in requests that CloudFront sends to the origin.')
+    all: typing.Optional[list[models.aws_cloudfront.CacheQueryStringBehaviorDefAllParams]] = pydantic.Field(None, description='All query strings in viewer requests are included in the cache key and are automatically included in requests that CloudFront sends to the origin.')
+    allow_list: typing.Optional[list[models.aws_cloudfront.CacheQueryStringBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``queryStrings`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
+    deny_list: typing.Optional[list[models.aws_cloudfront.CacheQueryStringBehaviorDefDenyListParams]] = pydantic.Field(None, description='All query strings except the provided ``queryStrings`` are included in the cache key and automatically included in requests that CloudFront sends to the origin.')
+    none: typing.Optional[list[models.aws_cloudfront.CacheQueryStringBehaviorDefNoneParams]] = pydantic.Field(None, description='Query strings in viewer requests are not included in the cache key and are not automatically included in requests that CloudFront sends to the origin.')
 
 class CacheQueryStringBehaviorDefAllParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudfront.CacheQueryStringBehaviorDefConfig]] = pydantic.Field(None)
@@ -143,7 +143,7 @@ class EndpointDef(BaseClass):
     ...
 
 
-    from_kinesis_stream: typing.Optional[EndpointDefFromKinesisStreamParams] = pydantic.Field(None, description='Configure a Kinesis Stream Endpoint for Realtime Log Config.')
+    from_kinesis_stream: typing.Optional[models.aws_cloudfront.EndpointDefFromKinesisStreamParams] = pydantic.Field(None, description='Configure a Kinesis Stream Endpoint for Realtime Log Config.')
 
 class EndpointDefFromKinesisStreamParams(pydantic.BaseModel):
     stream: typing.Union[models.aws_kinesis.StreamDef] = pydantic.Field(..., description='-\n')
@@ -161,9 +161,9 @@ class FunctionCodeDef(BaseClass):
     ...
 
 
-    from_file: typing.Optional[FunctionCodeDefFromFileParams] = pydantic.Field(None, description='Code from external file for function.')
-    from_inline: typing.Optional[FunctionCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for function.')
-    resource_config: typing.Optional[FunctionCodeDefConfig] = pydantic.Field(None)
+    from_file: typing.Optional[models.aws_cloudfront.FunctionCodeDefFromFileParams] = pydantic.Field(None, description='Code from external file for function.')
+    from_inline: typing.Optional[models.aws_cloudfront.FunctionCodeDefFromInlineParams] = pydantic.Field(None, description='Inline code for function.')
+    resource_config: typing.Optional[models.aws_cloudfront.FunctionCodeDefConfig] = pydantic.Field(None)
 
 
 class FunctionCodeDefConfig(pydantic.BaseModel):
@@ -188,12 +188,12 @@ class GeoRestrictionDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GeoRestrictionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.GeoRestrictionDefConfig] = pydantic.Field(None)
 
 
 class GeoRestrictionDefConfig(pydantic.BaseModel):
-    allowlist: typing.Optional[list[GeoRestrictionDefAllowlistParams]] = pydantic.Field(None, description='Allow specific countries which you want CloudFront to distribute your content.')
-    denylist: typing.Optional[list[GeoRestrictionDefDenylistParams]] = pydantic.Field(None, description="Deny specific countries which you don't want CloudFront to distribute your content.")
+    allowlist: typing.Optional[list[models.aws_cloudfront.GeoRestrictionDefAllowlistParams]] = pydantic.Field(None, description='Allow specific countries which you want CloudFront to distribute your content.')
+    denylist: typing.Optional[list[models.aws_cloudfront.GeoRestrictionDefDenylistParams]] = pydantic.Field(None, description="Deny specific countries which you don't want CloudFront to distribute your content.")
 
 class GeoRestrictionDefAllowlistParams(pydantic.BaseModel):
     locations: list[str] = pydantic.Field(...)
@@ -224,14 +224,13 @@ class OriginBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OriginBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.OriginBaseDefConfig] = pydantic.Field(None)
 
 
 class OriginBaseDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[OriginBaseDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
+    bind: typing.Optional[list[models.aws_cloudfront.OriginBaseDefBindParams]] = pydantic.Field(None, description='Binds the origin to the associated Distribution.\nCan be used to grant permissions, create dependent resources, etc.')
 
 class OriginBaseDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     origin_id: str = pydantic.Field(..., description='The identifier of this Origin, as assigned by the Distribution this Origin has been used added to.')
     ...
 
@@ -246,14 +245,14 @@ class OriginRequestCookieBehaviorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OriginRequestCookieBehaviorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.OriginRequestCookieBehaviorDefConfig] = pydantic.Field(None)
 
 
 class OriginRequestCookieBehaviorDefConfig(pydantic.BaseModel):
-    all: typing.Optional[list[OriginRequestCookieBehaviorDefAllParams]] = pydantic.Field(None, description='All cookies in viewer requests are included in requests that CloudFront sends to the origin.')
-    allow_list: typing.Optional[list[OriginRequestCookieBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``cookies`` are included in requests that CloudFront sends to the origin.')
-    deny_list: typing.Optional[list[OriginRequestCookieBehaviorDefDenyListParams]] = pydantic.Field(None, description='All cookies except the provided ``cookies`` are included in requests that CloudFront sends to the origin.')
-    none: typing.Optional[list[OriginRequestCookieBehaviorDefNoneParams]] = pydantic.Field(None, description='Cookies in viewer requests are not included in requests that CloudFront sends to the origin.\nAny cookies that are listed in a CachePolicy are still included in origin requests.')
+    all: typing.Optional[list[models.aws_cloudfront.OriginRequestCookieBehaviorDefAllParams]] = pydantic.Field(None, description='All cookies in viewer requests are included in requests that CloudFront sends to the origin.')
+    allow_list: typing.Optional[list[models.aws_cloudfront.OriginRequestCookieBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``cookies`` are included in requests that CloudFront sends to the origin.')
+    deny_list: typing.Optional[list[models.aws_cloudfront.OriginRequestCookieBehaviorDefDenyListParams]] = pydantic.Field(None, description='All cookies except the provided ``cookies`` are included in requests that CloudFront sends to the origin.')
+    none: typing.Optional[list[models.aws_cloudfront.OriginRequestCookieBehaviorDefNoneParams]] = pydantic.Field(None, description='Cookies in viewer requests are not included in requests that CloudFront sends to the origin.\nAny cookies that are listed in a CachePolicy are still included in origin requests.')
 
 class OriginRequestCookieBehaviorDefAllParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudfront.OriginRequestCookieBehaviorDefConfig]] = pydantic.Field(None)
@@ -284,14 +283,14 @@ class OriginRequestHeaderBehaviorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OriginRequestHeaderBehaviorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.OriginRequestHeaderBehaviorDefConfig] = pydantic.Field(None)
 
 
 class OriginRequestHeaderBehaviorDefConfig(pydantic.BaseModel):
-    all: typing.Optional[list[OriginRequestHeaderBehaviorDefAllParams]] = pydantic.Field(None, description='All HTTP headers in viewer requests are included in requests that CloudFront sends to the origin.\nAdditionally, any additional CloudFront headers provided are included; the additional headers are added by CloudFront.')
-    allow_list: typing.Optional[list[OriginRequestHeaderBehaviorDefAllowListParams]] = pydantic.Field(None, description='Listed headers are included in requests that CloudFront sends to the origin.')
-    deny_list: typing.Optional[list[OriginRequestHeaderBehaviorDefDenyListParams]] = pydantic.Field(None, description='All headers except the provided ``headers`` are included in requests that CloudFront sends to the origin.')
-    none: typing.Optional[list[OriginRequestHeaderBehaviorDefNoneParams]] = pydantic.Field(None, description='HTTP headers are not included in requests that CloudFront sends to the origin.\nAny headers that are listed in a CachePolicy are still included in origin requests.')
+    all: typing.Optional[list[models.aws_cloudfront.OriginRequestHeaderBehaviorDefAllParams]] = pydantic.Field(None, description='All HTTP headers in viewer requests are included in requests that CloudFront sends to the origin.\nAdditionally, any additional CloudFront headers provided are included; the additional headers are added by CloudFront.')
+    allow_list: typing.Optional[list[models.aws_cloudfront.OriginRequestHeaderBehaviorDefAllowListParams]] = pydantic.Field(None, description='Listed headers are included in requests that CloudFront sends to the origin.')
+    deny_list: typing.Optional[list[models.aws_cloudfront.OriginRequestHeaderBehaviorDefDenyListParams]] = pydantic.Field(None, description='All headers except the provided ``headers`` are included in requests that CloudFront sends to the origin.')
+    none: typing.Optional[list[models.aws_cloudfront.OriginRequestHeaderBehaviorDefNoneParams]] = pydantic.Field(None, description='HTTP headers are not included in requests that CloudFront sends to the origin.\nAny headers that are listed in a CachePolicy are still included in origin requests.')
 
 class OriginRequestHeaderBehaviorDefAllParams(pydantic.BaseModel):
     cloudfront_headers: list[str] = pydantic.Field(...)
@@ -323,14 +322,14 @@ class OriginRequestQueryStringBehaviorDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OriginRequestQueryStringBehaviorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.OriginRequestQueryStringBehaviorDefConfig] = pydantic.Field(None)
 
 
 class OriginRequestQueryStringBehaviorDefConfig(pydantic.BaseModel):
-    all: typing.Optional[list[OriginRequestQueryStringBehaviorDefAllParams]] = pydantic.Field(None, description='All query strings in viewer requests are included in requests that CloudFront sends to the origin.')
-    allow_list: typing.Optional[list[OriginRequestQueryStringBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``queryStrings`` are included in requests that CloudFront sends to the origin.')
-    deny_list: typing.Optional[list[OriginRequestQueryStringBehaviorDefDenyListParams]] = pydantic.Field(None, description='All query strings except the provided ``queryStrings`` are included in requests that CloudFront sends to the origin.')
-    none: typing.Optional[list[OriginRequestQueryStringBehaviorDefNoneParams]] = pydantic.Field(None, description='Query strings in viewer requests are not included in requests that CloudFront sends to the origin.\nAny query strings that are listed in a CachePolicy are still included in origin requests.')
+    all: typing.Optional[list[models.aws_cloudfront.OriginRequestQueryStringBehaviorDefAllParams]] = pydantic.Field(None, description='All query strings in viewer requests are included in requests that CloudFront sends to the origin.')
+    allow_list: typing.Optional[list[models.aws_cloudfront.OriginRequestQueryStringBehaviorDefAllowListParams]] = pydantic.Field(None, description='Only the provided ``queryStrings`` are included in requests that CloudFront sends to the origin.')
+    deny_list: typing.Optional[list[models.aws_cloudfront.OriginRequestQueryStringBehaviorDefDenyListParams]] = pydantic.Field(None, description='All query strings except the provided ``queryStrings`` are included in requests that CloudFront sends to the origin.')
+    none: typing.Optional[list[models.aws_cloudfront.OriginRequestQueryStringBehaviorDefNoneParams]] = pydantic.Field(None, description='Query strings in viewer requests are not included in requests that CloudFront sends to the origin.\nAny query strings that are listed in a CachePolicy are still included in origin requests.')
 
 class OriginRequestQueryStringBehaviorDefAllParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudfront.OriginRequestQueryStringBehaviorDefConfig]] = pydantic.Field(None)
@@ -361,9 +360,9 @@ class ViewerCertificateDef(BaseClass):
     ...
 
 
-    from_acm_certificate: typing.Optional[ViewerCertificateDefFromAcmCertificateParams] = pydantic.Field(None, description='Generate an AWS Certificate Manager (ACM) viewer certificate configuration.')
-    from_cloud_front_default_certificate: typing.Optional[ViewerCertificateDefFromCloudFrontDefaultCertificateParams] = pydantic.Field(None, description='Generate a viewer certificate configuration using the CloudFront default certificate (e.g. d111111abcdef8.cloudfront.net) and a ``SecurityPolicyProtocol.TLS_V1`` security policy.')
-    from_iam_certificate: typing.Optional[ViewerCertificateDefFromIamCertificateParams] = pydantic.Field(None, description='Generate an IAM viewer certificate configuration.')
+    from_acm_certificate: typing.Optional[models.aws_cloudfront.ViewerCertificateDefFromAcmCertificateParams] = pydantic.Field(None, description='Generate an AWS Certificate Manager (ACM) viewer certificate configuration.')
+    from_cloud_front_default_certificate: typing.Optional[models.aws_cloudfront.ViewerCertificateDefFromCloudFrontDefaultCertificateParams] = pydantic.Field(None, description='Generate a viewer certificate configuration using the CloudFront default certificate (e.g. d111111abcdef8.cloudfront.net) and a ``SecurityPolicyProtocol.TLS_V1`` security policy.')
+    from_iam_certificate: typing.Optional[models.aws_cloudfront.ViewerCertificateDefFromIamCertificateParams] = pydantic.Field(None, description='Generate an IAM viewer certificate configuration.')
 
 class ViewerCertificateDefFromAcmCertificateParams(pydantic.BaseModel):
     certificate: typing.Union[models.aws_certificatemanager.CertificateDef, models.aws_certificatemanager.DnsValidatedCertificateDef, models.aws_certificatemanager.PrivateCertificateDef] = pydantic.Field(..., description='AWS Certificate Manager (ACM) certificate. Your certificate must be located in the us-east-1 (US East (N. Virginia)) region to be accessed by CloudFront\n')
@@ -404,8 +403,8 @@ class CachePolicyDef(BaseConstruct):
     ...
 
 
-    from_cache_policy_id: typing.Optional[CachePolicyDefFromCachePolicyIdParams] = pydantic.Field(None, description='Imports a Cache Policy from its id.')
-    resource_config: typing.Optional[CachePolicyDefConfig] = pydantic.Field(None)
+    from_cache_policy_id: typing.Optional[models.aws_cloudfront.CachePolicyDefFromCachePolicyIdParams] = pydantic.Field(None, description='Imports a Cache Policy from its id.')
+    resource_config: typing.Optional[models.aws_cloudfront.CachePolicyDefConfig] = pydantic.Field(None)
 
 
 class CachePolicyDefConfig(pydantic.BaseModel):
@@ -445,14 +444,14 @@ class CloudFrontWebDistributionDef(BaseConstruct):
     ...
 
 
-    from_distribution_attributes: typing.Optional[CloudFrontWebDistributionDefFromDistributionAttributesParams] = pydantic.Field(None, description='Creates a construct that represents an external (imported) distribution.')
-    resource_config: typing.Optional[CloudFrontWebDistributionDefConfig] = pydantic.Field(None)
+    from_distribution_attributes: typing.Optional[models.aws_cloudfront.CloudFrontWebDistributionDefFromDistributionAttributesParams] = pydantic.Field(None, description='Creates a construct that represents an external (imported) distribution.')
+    resource_config: typing.Optional[models.aws_cloudfront.CloudFrontWebDistributionDefConfig] = pydantic.Field(None)
 
 
 class CloudFrontWebDistributionDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[CloudFrontWebDistributionDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this distribution to an IAM principal's policy.")
-    grant_create_invalidation: typing.Optional[list[CloudFrontWebDistributionDefGrantCreateInvalidationParams]] = pydantic.Field(None, description='Grant to create invalidations for this bucket to an IAM principal (Role/Group/User).')
+    grant: typing.Optional[list[models.aws_cloudfront.CloudFrontWebDistributionDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this distribution to an IAM principal's policy.")
+    grant_create_invalidation: typing.Optional[list[models.aws_cloudfront.CloudFrontWebDistributionDefGrantCreateInvalidationParams]] = pydantic.Field(None, description='Grant to create invalidations for this bucket to an IAM principal (Role/Group/User).')
 
 class CloudFrontWebDistributionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -506,15 +505,15 @@ class DistributionDef(BaseConstruct):
     ...
 
 
-    from_distribution_attributes: typing.Optional[DistributionDefFromDistributionAttributesParams] = pydantic.Field(None, description='Creates a Distribution construct that represents an external (imported) distribution.')
-    resource_config: typing.Optional[DistributionDefConfig] = pydantic.Field(None)
+    from_distribution_attributes: typing.Optional[models.aws_cloudfront.DistributionDefFromDistributionAttributesParams] = pydantic.Field(None, description='Creates a Distribution construct that represents an external (imported) distribution.')
+    resource_config: typing.Optional[models.aws_cloudfront.DistributionDefConfig] = pydantic.Field(None)
 
 
 class DistributionDefConfig(pydantic.BaseModel):
-    add_behavior: typing.Optional[list[DistributionDefAddBehaviorParams]] = pydantic.Field(None, description='Adds a new behavior to this distribution for the given pathPattern.')
+    add_behavior: typing.Optional[list[models.aws_cloudfront.DistributionDefAddBehaviorParams]] = pydantic.Field(None, description='Adds a new behavior to this distribution for the given pathPattern.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[DistributionDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this distribution to an IAM principal's policy.")
-    grant_create_invalidation: typing.Optional[list[DistributionDefGrantCreateInvalidationParams]] = pydantic.Field(None, description='Grant to create invalidations for this bucket to an IAM principal (Role/Group/User).')
+    grant: typing.Optional[list[models.aws_cloudfront.DistributionDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this distribution to an IAM principal's policy.")
+    grant_create_invalidation: typing.Optional[list[models.aws_cloudfront.DistributionDefGrantCreateInvalidationParams]] = pydantic.Field(None, description='Grant to create invalidations for this bucket to an IAM principal (Role/Group/User).')
 
 class DistributionDefAddBehaviorParams(pydantic.BaseModel):
     path_pattern: str = pydantic.Field(..., description="the path pattern (e.g., 'images/*') that specifies which requests to apply the behavior to.\n")
@@ -569,8 +568,8 @@ class FunctionDef(BaseConstruct):
     ...
 
 
-    from_function_attributes: typing.Optional[FunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Imports a function by its name and ARN.')
-    resource_config: typing.Optional[FunctionDefConfig] = pydantic.Field(None)
+    from_function_attributes: typing.Optional[models.aws_cloudfront.FunctionDefFromFunctionAttributesParams] = pydantic.Field(None, description='Imports a function by its name and ARN.')
+    resource_config: typing.Optional[models.aws_cloudfront.FunctionDefConfig] = pydantic.Field(None)
 
 
 class FunctionDefConfig(pydantic.BaseModel):
@@ -601,8 +600,8 @@ class KeyGroupDef(BaseConstruct):
     ...
 
 
-    from_key_group_id: typing.Optional[KeyGroupDefFromKeyGroupIdParams] = pydantic.Field(None, description='Imports a Key Group from its id.')
-    resource_config: typing.Optional[KeyGroupDefConfig] = pydantic.Field(None)
+    from_key_group_id: typing.Optional[models.aws_cloudfront.KeyGroupDefFromKeyGroupIdParams] = pydantic.Field(None, description='Imports a Key Group from its id.')
+    resource_config: typing.Optional[models.aws_cloudfront.KeyGroupDefConfig] = pydantic.Field(None)
 
 
 class KeyGroupDefConfig(pydantic.BaseModel):
@@ -630,9 +629,9 @@ class OriginAccessIdentityDef(BaseConstruct):
     ...
 
 
-    from_origin_access_identity_id: typing.Optional[OriginAccessIdentityDefFromOriginAccessIdentityIdParams] = pydantic.Field(None, description='Creates a OriginAccessIdentity by providing the OriginAccessIdentityId.')
-    from_origin_access_identity_name: typing.Optional[OriginAccessIdentityDefFromOriginAccessIdentityNameParams] = pydantic.Field(None, description='(deprecated) Creates a OriginAccessIdentity by providing the OriginAccessIdentityId.\nIt is misnamed and superseded by the correctly named fromOriginAccessIdentityId.')
-    resource_config: typing.Optional[OriginAccessIdentityDefConfig] = pydantic.Field(None)
+    from_origin_access_identity_id: typing.Optional[models.aws_cloudfront.OriginAccessIdentityDefFromOriginAccessIdentityIdParams] = pydantic.Field(None, description='Creates a OriginAccessIdentity by providing the OriginAccessIdentityId.')
+    from_origin_access_identity_name: typing.Optional[models.aws_cloudfront.OriginAccessIdentityDefFromOriginAccessIdentityNameParams] = pydantic.Field(None, description='(deprecated) Creates a OriginAccessIdentity by providing the OriginAccessIdentityId.\nIt is misnamed and superseded by the correctly named fromOriginAccessIdentityId.')
+    resource_config: typing.Optional[models.aws_cloudfront.OriginAccessIdentityDefConfig] = pydantic.Field(None)
 
 
 class OriginAccessIdentityDefConfig(pydantic.BaseModel):
@@ -671,8 +670,8 @@ class OriginRequestPolicyDef(BaseConstruct):
     ...
 
 
-    from_origin_request_policy_id: typing.Optional[OriginRequestPolicyDefFromOriginRequestPolicyIdParams] = pydantic.Field(None, description='Imports a Origin Request Policy from its id.')
-    resource_config: typing.Optional[OriginRequestPolicyDefConfig] = pydantic.Field(None)
+    from_origin_request_policy_id: typing.Optional[models.aws_cloudfront.OriginRequestPolicyDefFromOriginRequestPolicyIdParams] = pydantic.Field(None, description='Imports a Origin Request Policy from its id.')
+    resource_config: typing.Optional[models.aws_cloudfront.OriginRequestPolicyDefConfig] = pydantic.Field(None)
 
 
 class OriginRequestPolicyDefConfig(pydantic.BaseModel):
@@ -702,8 +701,8 @@ class PublicKeyDef(BaseConstruct):
     ...
 
 
-    from_public_key_id: typing.Optional[PublicKeyDefFromPublicKeyIdParams] = pydantic.Field(None, description='Imports a Public Key from its id.')
-    resource_config: typing.Optional[PublicKeyDefConfig] = pydantic.Field(None)
+    from_public_key_id: typing.Optional[models.aws_cloudfront.PublicKeyDefFromPublicKeyIdParams] = pydantic.Field(None, description='Imports a Public Key from its id.')
+    resource_config: typing.Optional[models.aws_cloudfront.PublicKeyDefConfig] = pydantic.Field(None)
 
 
 class PublicKeyDefConfig(pydantic.BaseModel):
@@ -734,7 +733,7 @@ class RealtimeLogConfigDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[RealtimeLogConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.RealtimeLogConfigDefConfig] = pydantic.Field(None)
 
 
 class RealtimeLogConfigDefConfig(pydantic.BaseModel):
@@ -762,8 +761,8 @@ class ResponseHeadersPolicyDef(BaseConstruct):
     ...
 
 
-    from_response_headers_policy_id: typing.Optional[ResponseHeadersPolicyDefFromResponseHeadersPolicyIdParams] = pydantic.Field(None, description='Import an existing Response Headers Policy from its ID.')
-    resource_config: typing.Optional[ResponseHeadersPolicyDefConfig] = pydantic.Field(None)
+    from_response_headers_policy_id: typing.Optional[models.aws_cloudfront.ResponseHeadersPolicyDefFromResponseHeadersPolicyIdParams] = pydantic.Field(None, description='Import an existing Response Headers Policy from its ID.')
+    resource_config: typing.Optional[models.aws_cloudfront.ResponseHeadersPolicyDefConfig] = pydantic.Field(None)
 
 
 class ResponseHeadersPolicyDefConfig(pydantic.BaseModel):
@@ -2125,7 +2124,7 @@ class EdgeLambdaDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EdgeLambdaDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.EdgeLambdaDefConfig] = pydantic.Field(None)
 
 
 class EdgeLambdaDefConfig(pydantic.BaseModel):
@@ -2202,7 +2201,7 @@ class FunctionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FunctionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.FunctionPropsDefConfig] = pydantic.Field(None)
 
 
 class FunctionPropsDefConfig(pydantic.BaseModel):
@@ -2237,7 +2236,7 @@ class LambdaFunctionAssociationDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LambdaFunctionAssociationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.LambdaFunctionAssociationDefConfig] = pydantic.Field(None)
 
 
 class LambdaFunctionAssociationDefConfig(pydantic.BaseModel):
@@ -2311,7 +2310,7 @@ class OriginFailoverConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OriginFailoverConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.OriginFailoverConfigDefConfig] = pydantic.Field(None)
 
 
 class OriginFailoverConfigDefConfig(pydantic.BaseModel):
@@ -2538,7 +2537,7 @@ class ResponseHeadersStrictTransportSecurityDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ResponseHeadersStrictTransportSecurityDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.ResponseHeadersStrictTransportSecurityDefConfig] = pydantic.Field(None)
 
 
 class ResponseHeadersStrictTransportSecurityDefConfig(pydantic.BaseModel):
@@ -2594,7 +2593,7 @@ class S3OriginConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[S3OriginConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.S3OriginConfigDefConfig] = pydantic.Field(None)
 
 
 class S3OriginConfigDefConfig(pydantic.BaseModel):
@@ -2720,31 +2719,31 @@ class CfnCachePolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCachePolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnCachePolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnCachePolicyDefConfig(pydantic.BaseModel):
-    CachePolicyConfigProperty: typing.Optional[list[CfnCachePolicyDefCachepolicyconfigpropertyParams]] = pydantic.Field(None, description='')
-    CookiesConfigProperty: typing.Optional[list[CfnCachePolicyDefCookiesconfigpropertyParams]] = pydantic.Field(None, description='')
-    HeadersConfigProperty: typing.Optional[list[CfnCachePolicyDefHeadersconfigpropertyParams]] = pydantic.Field(None, description='')
-    ParametersInCacheKeyAndForwardedToOriginProperty: typing.Optional[list[CfnCachePolicyDefParametersincachekeyandforwardedtooriginpropertyParams]] = pydantic.Field(None, description='')
-    QueryStringsConfigProperty: typing.Optional[list[CfnCachePolicyDefQuerystringsconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCachePolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCachePolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCachePolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCachePolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCachePolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCachePolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCachePolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CachePolicyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefCachepolicyconfigpropertyParams]] = pydantic.Field(None, description='')
+    CookiesConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefCookiesconfigpropertyParams]] = pydantic.Field(None, description='')
+    HeadersConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefHeadersconfigpropertyParams]] = pydantic.Field(None, description='')
+    ParametersInCacheKeyAndForwardedToOriginProperty: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefParametersincachekeyandforwardedtooriginpropertyParams]] = pydantic.Field(None, description='')
+    QueryStringsConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefQuerystringsconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCachePolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCachePolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCachePolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCachePolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCachePolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCachePolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnCachePolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnCachePolicyDefCachepolicyconfigpropertyParams(pydantic.BaseModel):
     default_ttl: typing.Union[int, float] = pydantic.Field(..., description='')
@@ -2854,27 +2853,27 @@ class CfnCloudFrontOriginAccessIdentityDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnCloudFrontOriginAccessIdentityDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefConfig] = pydantic.Field(None)
 
 
 class CfnCloudFrontOriginAccessIdentityDefConfig(pydantic.BaseModel):
-    CloudFrontOriginAccessIdentityConfigProperty: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefCloudfrontoriginaccessidentityconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CloudFrontOriginAccessIdentityConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefCloudfrontoriginaccessidentityconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnCloudFrontOriginAccessIdentityDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnCloudFrontOriginAccessIdentityDefCloudfrontoriginaccessidentityconfigpropertyParams(pydantic.BaseModel):
     comment: str = pydantic.Field(..., description='')
@@ -2956,33 +2955,33 @@ class CfnContinuousDeploymentPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnContinuousDeploymentPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnContinuousDeploymentPolicyDefConfig(pydantic.BaseModel):
-    ContinuousDeploymentPolicyConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefContinuousdeploymentpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
-    SessionStickinessConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefSessionstickinessconfigpropertyParams]] = pydantic.Field(None, description='')
-    SingleHeaderConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefSingleheaderconfigpropertyParams]] = pydantic.Field(None, description='')
-    SingleHeaderPolicyConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefSingleheaderpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
-    SingleWeightConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefSingleweightconfigpropertyParams]] = pydantic.Field(None, description='')
-    SingleWeightPolicyConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefSingleweightpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
-    TrafficConfigProperty: typing.Optional[list[CfnContinuousDeploymentPolicyDefTrafficconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnContinuousDeploymentPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ContinuousDeploymentPolicyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefContinuousdeploymentpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
+    SessionStickinessConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefSessionstickinessconfigpropertyParams]] = pydantic.Field(None, description='')
+    SingleHeaderConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefSingleheaderconfigpropertyParams]] = pydantic.Field(None, description='')
+    SingleHeaderPolicyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefSingleheaderpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
+    SingleWeightConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefSingleweightconfigpropertyParams]] = pydantic.Field(None, description='')
+    SingleWeightPolicyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefSingleweightpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
+    TrafficConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefTrafficconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnContinuousDeploymentPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnContinuousDeploymentPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnContinuousDeploymentPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnContinuousDeploymentPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnContinuousDeploymentPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnContinuousDeploymentPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnContinuousDeploymentPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnContinuousDeploymentPolicyDefContinuousdeploymentpolicyconfigpropertyParams(pydantic.BaseModel):
     enabled: typing.Union[bool, models.UnsupportedResource] = pydantic.Field(..., description='')
@@ -3101,51 +3100,51 @@ class CfnDistributionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnDistributionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnDistributionDefConfig] = pydantic.Field(None)
 
 
 class CfnDistributionDefConfig(pydantic.BaseModel):
-    CacheBehaviorProperty: typing.Optional[list[CfnDistributionDefCachebehaviorpropertyParams]] = pydantic.Field(None, description='')
-    CookiesProperty: typing.Optional[list[CfnDistributionDefCookiespropertyParams]] = pydantic.Field(None, description='')
-    CustomErrorResponseProperty: typing.Optional[list[CfnDistributionDefCustomerrorresponsepropertyParams]] = pydantic.Field(None, description='')
-    CustomOriginConfigProperty: typing.Optional[list[CfnDistributionDefCustomoriginconfigpropertyParams]] = pydantic.Field(None, description='')
-    DefaultCacheBehaviorProperty: typing.Optional[list[CfnDistributionDefDefaultcachebehaviorpropertyParams]] = pydantic.Field(None, description='')
-    DistributionConfigProperty: typing.Optional[list[CfnDistributionDefDistributionconfigpropertyParams]] = pydantic.Field(None, description='')
-    ForwardedValuesProperty: typing.Optional[list[CfnDistributionDefForwardedvaluespropertyParams]] = pydantic.Field(None, description='')
-    FunctionAssociationProperty: typing.Optional[list[CfnDistributionDefFunctionassociationpropertyParams]] = pydantic.Field(None, description='')
-    GeoRestrictionProperty: typing.Optional[list[CfnDistributionDefGeorestrictionpropertyParams]] = pydantic.Field(None, description='')
-    LambdaFunctionAssociationProperty: typing.Optional[list[CfnDistributionDefLambdafunctionassociationpropertyParams]] = pydantic.Field(None, description='')
-    LegacyCustomOriginProperty: typing.Optional[list[CfnDistributionDefLegacycustomoriginpropertyParams]] = pydantic.Field(None, description='')
-    LegacyS3OriginProperty: typing.Optional[list[CfnDistributionDefLegacys3OriginpropertyParams]] = pydantic.Field(None, description='')
-    LoggingProperty: typing.Optional[list[CfnDistributionDefLoggingpropertyParams]] = pydantic.Field(None, description='')
-    OriginCustomHeaderProperty: typing.Optional[list[CfnDistributionDefOrigincustomheaderpropertyParams]] = pydantic.Field(None, description='')
-    OriginGroupFailoverCriteriaProperty: typing.Optional[list[CfnDistributionDefOrigingroupfailovercriteriapropertyParams]] = pydantic.Field(None, description='')
-    OriginGroupMemberProperty: typing.Optional[list[CfnDistributionDefOrigingroupmemberpropertyParams]] = pydantic.Field(None, description='')
-    OriginGroupMembersProperty: typing.Optional[list[CfnDistributionDefOrigingroupmemberspropertyParams]] = pydantic.Field(None, description='')
-    OriginGroupProperty: typing.Optional[list[CfnDistributionDefOrigingrouppropertyParams]] = pydantic.Field(None, description='')
-    OriginGroupsProperty: typing.Optional[list[CfnDistributionDefOrigingroupspropertyParams]] = pydantic.Field(None, description='')
-    OriginProperty: typing.Optional[list[CfnDistributionDefOriginpropertyParams]] = pydantic.Field(None, description='')
-    OriginShieldProperty: typing.Optional[list[CfnDistributionDefOriginshieldpropertyParams]] = pydantic.Field(None, description='')
-    RestrictionsProperty: typing.Optional[list[CfnDistributionDefRestrictionspropertyParams]] = pydantic.Field(None, description='')
-    S3OriginConfigProperty: typing.Optional[list[CfnDistributionDefS3OriginconfigpropertyParams]] = pydantic.Field(None, description='')
-    StatusCodesProperty: typing.Optional[list[CfnDistributionDefStatuscodespropertyParams]] = pydantic.Field(None, description='')
-    ViewerCertificateProperty: typing.Optional[list[CfnDistributionDefViewercertificatepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnDistributionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnDistributionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnDistributionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnDistributionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnDistributionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnDistributionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnDistributionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CacheBehaviorProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefCachebehaviorpropertyParams]] = pydantic.Field(None, description='')
+    CookiesProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefCookiespropertyParams]] = pydantic.Field(None, description='')
+    CustomErrorResponseProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefCustomerrorresponsepropertyParams]] = pydantic.Field(None, description='')
+    CustomOriginConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefCustomoriginconfigpropertyParams]] = pydantic.Field(None, description='')
+    DefaultCacheBehaviorProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefDefaultcachebehaviorpropertyParams]] = pydantic.Field(None, description='')
+    DistributionConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefDistributionconfigpropertyParams]] = pydantic.Field(None, description='')
+    ForwardedValuesProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefForwardedvaluespropertyParams]] = pydantic.Field(None, description='')
+    FunctionAssociationProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefFunctionassociationpropertyParams]] = pydantic.Field(None, description='')
+    GeoRestrictionProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefGeorestrictionpropertyParams]] = pydantic.Field(None, description='')
+    LambdaFunctionAssociationProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefLambdafunctionassociationpropertyParams]] = pydantic.Field(None, description='')
+    LegacyCustomOriginProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefLegacycustomoriginpropertyParams]] = pydantic.Field(None, description='')
+    LegacyS3OriginProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefLegacys3OriginpropertyParams]] = pydantic.Field(None, description='')
+    LoggingProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefLoggingpropertyParams]] = pydantic.Field(None, description='')
+    OriginCustomHeaderProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOrigincustomheaderpropertyParams]] = pydantic.Field(None, description='')
+    OriginGroupFailoverCriteriaProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOrigingroupfailovercriteriapropertyParams]] = pydantic.Field(None, description='')
+    OriginGroupMemberProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOrigingroupmemberpropertyParams]] = pydantic.Field(None, description='')
+    OriginGroupMembersProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOrigingroupmemberspropertyParams]] = pydantic.Field(None, description='')
+    OriginGroupProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOrigingrouppropertyParams]] = pydantic.Field(None, description='')
+    OriginGroupsProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOrigingroupspropertyParams]] = pydantic.Field(None, description='')
+    OriginProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOriginpropertyParams]] = pydantic.Field(None, description='')
+    OriginShieldProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOriginshieldpropertyParams]] = pydantic.Field(None, description='')
+    RestrictionsProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefRestrictionspropertyParams]] = pydantic.Field(None, description='')
+    S3OriginConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefS3OriginconfigpropertyParams]] = pydantic.Field(None, description='')
+    StatusCodesProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefStatuscodespropertyParams]] = pydantic.Field(None, description='')
+    ViewerCertificateProperty: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefViewercertificatepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnDistributionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnDistributionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnDistributionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnDistributionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnDistributionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnDistributionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnDistributionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDistributionDefCachebehaviorpropertyParams(pydantic.BaseModel):
@@ -3428,28 +3427,28 @@ class CfnFunctionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnFunctionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnFunctionDefConfig] = pydantic.Field(None)
 
 
 class CfnFunctionDefConfig(pydantic.BaseModel):
-    FunctionConfigProperty: typing.Optional[list[CfnFunctionDefFunctionconfigpropertyParams]] = pydantic.Field(None, description='')
-    FunctionMetadataProperty: typing.Optional[list[CfnFunctionDefFunctionmetadatapropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnFunctionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnFunctionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnFunctionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnFunctionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnFunctionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnFunctionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnFunctionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    FunctionConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefFunctionconfigpropertyParams]] = pydantic.Field(None, description='')
+    FunctionMetadataProperty: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefFunctionmetadatapropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnFunctionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnFunctionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnFunctionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnFunctionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnFunctionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnFunctionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnFunctionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnFunctionDefFunctionconfigpropertyParams(pydantic.BaseModel):
     comment: str = pydantic.Field(..., description='')
@@ -3536,27 +3535,27 @@ class CfnKeyGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnKeyGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnKeyGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnKeyGroupDefConfig(pydantic.BaseModel):
-    KeyGroupConfigProperty: typing.Optional[list[CfnKeyGroupDefKeygroupconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnKeyGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnKeyGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnKeyGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnKeyGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnKeyGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnKeyGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnKeyGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    KeyGroupConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefKeygroupconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnKeyGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnKeyGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnKeyGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnKeyGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnKeyGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnKeyGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnKeyGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnKeyGroupDefKeygroupconfigpropertyParams(pydantic.BaseModel):
     items: typing.Sequence[str] = pydantic.Field(..., description='')
@@ -3641,28 +3640,28 @@ class CfnMonitoringSubscriptionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnMonitoringSubscriptionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnMonitoringSubscriptionDefConfig] = pydantic.Field(None)
 
 
 class CfnMonitoringSubscriptionDefConfig(pydantic.BaseModel):
-    MonitoringSubscriptionProperty: typing.Optional[list[CfnMonitoringSubscriptionDefMonitoringsubscriptionpropertyParams]] = pydantic.Field(None, description='')
-    RealtimeMetricsSubscriptionConfigProperty: typing.Optional[list[CfnMonitoringSubscriptionDefRealtimemetricssubscriptionconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnMonitoringSubscriptionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnMonitoringSubscriptionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnMonitoringSubscriptionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnMonitoringSubscriptionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnMonitoringSubscriptionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnMonitoringSubscriptionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnMonitoringSubscriptionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    MonitoringSubscriptionProperty: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefMonitoringsubscriptionpropertyParams]] = pydantic.Field(None, description='')
+    RealtimeMetricsSubscriptionConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefRealtimemetricssubscriptionconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnMonitoringSubscriptionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnMonitoringSubscriptionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnMonitoringSubscriptionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnMonitoringSubscriptionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnMonitoringSubscriptionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnMonitoringSubscriptionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnMonitoringSubscriptionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnMonitoringSubscriptionDefMonitoringsubscriptionpropertyParams(pydantic.BaseModel):
     realtime_metrics_subscription_config: typing.Union[models.UnsupportedResource, models.aws_cloudfront.CfnMonitoringSubscription_RealtimeMetricsSubscriptionConfigPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
@@ -3748,27 +3747,27 @@ class CfnOriginAccessControlDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnOriginAccessControlDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnOriginAccessControlDefConfig] = pydantic.Field(None)
 
 
 class CfnOriginAccessControlDefConfig(pydantic.BaseModel):
-    OriginAccessControlConfigProperty: typing.Optional[list[CfnOriginAccessControlDefOriginaccesscontrolconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnOriginAccessControlDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnOriginAccessControlDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnOriginAccessControlDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnOriginAccessControlDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnOriginAccessControlDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnOriginAccessControlDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnOriginAccessControlDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    OriginAccessControlConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefOriginaccesscontrolconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnOriginAccessControlDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnOriginAccessControlDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnOriginAccessControlDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnOriginAccessControlDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnOriginAccessControlDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnOriginAccessControlDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnOriginAccessControlDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnOriginAccessControlDefOriginaccesscontrolconfigpropertyParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='')
@@ -3854,30 +3853,30 @@ class CfnOriginRequestPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnOriginRequestPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnOriginRequestPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnOriginRequestPolicyDefConfig(pydantic.BaseModel):
-    CookiesConfigProperty: typing.Optional[list[CfnOriginRequestPolicyDefCookiesconfigpropertyParams]] = pydantic.Field(None, description='')
-    HeadersConfigProperty: typing.Optional[list[CfnOriginRequestPolicyDefHeadersconfigpropertyParams]] = pydantic.Field(None, description='')
-    OriginRequestPolicyConfigProperty: typing.Optional[list[CfnOriginRequestPolicyDefOriginrequestpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
-    QueryStringsConfigProperty: typing.Optional[list[CfnOriginRequestPolicyDefQuerystringsconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnOriginRequestPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnOriginRequestPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnOriginRequestPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnOriginRequestPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnOriginRequestPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnOriginRequestPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnOriginRequestPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CookiesConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefCookiesconfigpropertyParams]] = pydantic.Field(None, description='')
+    HeadersConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefHeadersconfigpropertyParams]] = pydantic.Field(None, description='')
+    OriginRequestPolicyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefOriginrequestpolicyconfigpropertyParams]] = pydantic.Field(None, description='')
+    QueryStringsConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefQuerystringsconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnOriginRequestPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnOriginRequestPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnOriginRequestPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnOriginRequestPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnOriginRequestPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnOriginRequestPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnOriginRequestPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnOriginRequestPolicyDefCookiesconfigpropertyParams(pydantic.BaseModel):
     cookie_behavior: str = pydantic.Field(..., description='')
@@ -3978,27 +3977,27 @@ class CfnPublicKeyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnPublicKeyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnPublicKeyDefConfig] = pydantic.Field(None)
 
 
 class CfnPublicKeyDefConfig(pydantic.BaseModel):
-    PublicKeyConfigProperty: typing.Optional[list[CfnPublicKeyDefPublickeyconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnPublicKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnPublicKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnPublicKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnPublicKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnPublicKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnPublicKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnPublicKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    PublicKeyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefPublickeyconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnPublicKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnPublicKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnPublicKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnPublicKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnPublicKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnPublicKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnPublicKeyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnPublicKeyDefPublickeyconfigpropertyParams(pydantic.BaseModel):
     caller_reference: str = pydantic.Field(..., description='')
@@ -4086,28 +4085,28 @@ class CfnRealtimeLogConfigDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnRealtimeLogConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnRealtimeLogConfigDefConfig] = pydantic.Field(None)
 
 
 class CfnRealtimeLogConfigDefConfig(pydantic.BaseModel):
-    EndPointProperty: typing.Optional[list[CfnRealtimeLogConfigDefEndpointpropertyParams]] = pydantic.Field(None, description='')
-    KinesisStreamConfigProperty: typing.Optional[list[CfnRealtimeLogConfigDefKinesisstreamconfigpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnRealtimeLogConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnRealtimeLogConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnRealtimeLogConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnRealtimeLogConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnRealtimeLogConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnRealtimeLogConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnRealtimeLogConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    EndPointProperty: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefEndpointpropertyParams]] = pydantic.Field(None, description='')
+    KinesisStreamConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefKinesisstreamconfigpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnRealtimeLogConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnRealtimeLogConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnRealtimeLogConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnRealtimeLogConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnRealtimeLogConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnRealtimeLogConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnRealtimeLogConfigDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnRealtimeLogConfigDefEndpointpropertyParams(pydantic.BaseModel):
     kinesis_stream_config: typing.Union[models.UnsupportedResource, models.aws_cloudfront.CfnRealtimeLogConfig_KinesisStreamConfigPropertyDef, dict[str, typing.Any]] = pydantic.Field(..., description='')
@@ -4195,44 +4194,44 @@ class CfnResponseHeadersPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnResponseHeadersPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnResponseHeadersPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnResponseHeadersPolicyDefConfig(pydantic.BaseModel):
-    AccessControlAllowHeadersProperty: typing.Optional[list[CfnResponseHeadersPolicyDefAccesscontrolallowheaderspropertyParams]] = pydantic.Field(None, description='')
-    AccessControlAllowMethodsProperty: typing.Optional[list[CfnResponseHeadersPolicyDefAccesscontrolallowmethodspropertyParams]] = pydantic.Field(None, description='')
-    AccessControlAllowOriginsProperty: typing.Optional[list[CfnResponseHeadersPolicyDefAccesscontrolalloworiginspropertyParams]] = pydantic.Field(None, description='')
-    AccessControlExposeHeadersProperty: typing.Optional[list[CfnResponseHeadersPolicyDefAccesscontrolexposeheaderspropertyParams]] = pydantic.Field(None, description='')
-    ContentSecurityPolicyProperty: typing.Optional[list[CfnResponseHeadersPolicyDefContentsecuritypolicypropertyParams]] = pydantic.Field(None, description='')
-    ContentTypeOptionsProperty: typing.Optional[list[CfnResponseHeadersPolicyDefContenttypeoptionspropertyParams]] = pydantic.Field(None, description='')
-    CorsConfigProperty: typing.Optional[list[CfnResponseHeadersPolicyDefCorsconfigpropertyParams]] = pydantic.Field(None, description='')
-    CustomHeaderProperty: typing.Optional[list[CfnResponseHeadersPolicyDefCustomheaderpropertyParams]] = pydantic.Field(None, description='')
-    CustomHeadersConfigProperty: typing.Optional[list[CfnResponseHeadersPolicyDefCustomheadersconfigpropertyParams]] = pydantic.Field(None, description='')
-    FrameOptionsProperty: typing.Optional[list[CfnResponseHeadersPolicyDefFrameoptionspropertyParams]] = pydantic.Field(None, description='')
-    ReferrerPolicyProperty: typing.Optional[list[CfnResponseHeadersPolicyDefReferrerpolicypropertyParams]] = pydantic.Field(None, description='')
-    RemoveHeaderProperty: typing.Optional[list[CfnResponseHeadersPolicyDefRemoveheaderpropertyParams]] = pydantic.Field(None, description='')
-    RemoveHeadersConfigProperty: typing.Optional[list[CfnResponseHeadersPolicyDefRemoveheadersconfigpropertyParams]] = pydantic.Field(None, description='')
-    ResponseHeadersPolicyConfigProperty: typing.Optional[list[CfnResponseHeadersPolicyDefResponseheaderspolicyconfigpropertyParams]] = pydantic.Field(None, description='')
-    SecurityHeadersConfigProperty: typing.Optional[list[CfnResponseHeadersPolicyDefSecurityheadersconfigpropertyParams]] = pydantic.Field(None, description='')
-    ServerTimingHeadersConfigProperty: typing.Optional[list[CfnResponseHeadersPolicyDefServertimingheadersconfigpropertyParams]] = pydantic.Field(None, description='')
-    StrictTransportSecurityProperty: typing.Optional[list[CfnResponseHeadersPolicyDefStricttransportsecuritypropertyParams]] = pydantic.Field(None, description='')
-    XSSProtectionProperty: typing.Optional[list[CfnResponseHeadersPolicyDefXssprotectionpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnResponseHeadersPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnResponseHeadersPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnResponseHeadersPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnResponseHeadersPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnResponseHeadersPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnResponseHeadersPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnResponseHeadersPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccessControlAllowHeadersProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAccesscontrolallowheaderspropertyParams]] = pydantic.Field(None, description='')
+    AccessControlAllowMethodsProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAccesscontrolallowmethodspropertyParams]] = pydantic.Field(None, description='')
+    AccessControlAllowOriginsProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAccesscontrolalloworiginspropertyParams]] = pydantic.Field(None, description='')
+    AccessControlExposeHeadersProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAccesscontrolexposeheaderspropertyParams]] = pydantic.Field(None, description='')
+    ContentSecurityPolicyProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefContentsecuritypolicypropertyParams]] = pydantic.Field(None, description='')
+    ContentTypeOptionsProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefContenttypeoptionspropertyParams]] = pydantic.Field(None, description='')
+    CorsConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefCorsconfigpropertyParams]] = pydantic.Field(None, description='')
+    CustomHeaderProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefCustomheaderpropertyParams]] = pydantic.Field(None, description='')
+    CustomHeadersConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefCustomheadersconfigpropertyParams]] = pydantic.Field(None, description='')
+    FrameOptionsProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefFrameoptionspropertyParams]] = pydantic.Field(None, description='')
+    ReferrerPolicyProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefReferrerpolicypropertyParams]] = pydantic.Field(None, description='')
+    RemoveHeaderProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefRemoveheaderpropertyParams]] = pydantic.Field(None, description='')
+    RemoveHeadersConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefRemoveheadersconfigpropertyParams]] = pydantic.Field(None, description='')
+    ResponseHeadersPolicyConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefResponseheaderspolicyconfigpropertyParams]] = pydantic.Field(None, description='')
+    SecurityHeadersConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefSecurityheadersconfigpropertyParams]] = pydantic.Field(None, description='')
+    ServerTimingHeadersConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefServertimingheadersconfigpropertyParams]] = pydantic.Field(None, description='')
+    StrictTransportSecurityProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefStricttransportsecuritypropertyParams]] = pydantic.Field(None, description='')
+    XSSProtectionProperty: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefXssprotectionpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnResponseHeadersPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnResponseHeadersPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnResponseHeadersPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnResponseHeadersPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnResponseHeadersPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnResponseHeadersPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnResponseHeadersPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnResponseHeadersPolicyDefAccesscontrolallowheaderspropertyParams(pydantic.BaseModel):
     items: typing.Sequence[str] = pydantic.Field(..., description='')
@@ -4412,30 +4411,30 @@ class CfnStreamingDistributionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnStreamingDistributionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cloudfront.CfnStreamingDistributionDefConfig] = pydantic.Field(None)
 
 
 class CfnStreamingDistributionDefConfig(pydantic.BaseModel):
-    LoggingProperty: typing.Optional[list[CfnStreamingDistributionDefLoggingpropertyParams]] = pydantic.Field(None, description='')
-    S3OriginProperty: typing.Optional[list[CfnStreamingDistributionDefS3OriginpropertyParams]] = pydantic.Field(None, description='')
-    StreamingDistributionConfigProperty: typing.Optional[list[CfnStreamingDistributionDefStreamingdistributionconfigpropertyParams]] = pydantic.Field(None, description='')
-    TrustedSignersProperty: typing.Optional[list[CfnStreamingDistributionDefTrustedsignerspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnStreamingDistributionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnStreamingDistributionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnStreamingDistributionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnStreamingDistributionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnStreamingDistributionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnStreamingDistributionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnStreamingDistributionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    LoggingProperty: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefLoggingpropertyParams]] = pydantic.Field(None, description='')
+    S3OriginProperty: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefS3OriginpropertyParams]] = pydantic.Field(None, description='')
+    StreamingDistributionConfigProperty: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefStreamingdistributionconfigpropertyParams]] = pydantic.Field(None, description='')
+    TrustedSignersProperty: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefTrustedsignerspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnStreamingDistributionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnStreamingDistributionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnStreamingDistributionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnStreamingDistributionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnStreamingDistributionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnStreamingDistributionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cloudfront.CfnStreamingDistributionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnStreamingDistributionDefLoggingpropertyParams(pydantic.BaseModel):
@@ -4708,170 +4707,170 @@ class CfnStreamingDistributionPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AllowedMethods: typing.Optional[dict[str, AllowedMethodsDef]] = pydantic.Field(None)
-    CacheCookieBehavior: typing.Optional[dict[str, CacheCookieBehaviorDef]] = pydantic.Field(None)
-    CachedMethods: typing.Optional[dict[str, CachedMethodsDef]] = pydantic.Field(None)
-    CacheHeaderBehavior: typing.Optional[dict[str, CacheHeaderBehaviorDef]] = pydantic.Field(None)
-    CacheQueryStringBehavior: typing.Optional[dict[str, CacheQueryStringBehaviorDef]] = pydantic.Field(None)
-    Endpoint: typing.Optional[dict[str, EndpointDef]] = pydantic.Field(None)
-    FunctionCode: typing.Optional[dict[str, FunctionCodeDef]] = pydantic.Field(None)
-    GeoRestriction: typing.Optional[dict[str, GeoRestrictionDef]] = pydantic.Field(None)
-    OriginBase: typing.Optional[dict[str, OriginBaseDef]] = pydantic.Field(None)
-    OriginRequestCookieBehavior: typing.Optional[dict[str, OriginRequestCookieBehaviorDef]] = pydantic.Field(None)
-    OriginRequestHeaderBehavior: typing.Optional[dict[str, OriginRequestHeaderBehaviorDef]] = pydantic.Field(None)
-    OriginRequestQueryStringBehavior: typing.Optional[dict[str, OriginRequestQueryStringBehaviorDef]] = pydantic.Field(None)
-    ViewerCertificate: typing.Optional[dict[str, ViewerCertificateDef]] = pydantic.Field(None)
-    CachePolicy: typing.Optional[dict[str, CachePolicyDef]] = pydantic.Field(None)
-    CloudFrontWebDistribution: typing.Optional[dict[str, CloudFrontWebDistributionDef]] = pydantic.Field(None)
-    Distribution: typing.Optional[dict[str, DistributionDef]] = pydantic.Field(None)
-    Function: typing.Optional[dict[str, FunctionDef]] = pydantic.Field(None)
-    KeyGroup: typing.Optional[dict[str, KeyGroupDef]] = pydantic.Field(None)
-    OriginAccessIdentity: typing.Optional[dict[str, OriginAccessIdentityDef]] = pydantic.Field(None)
-    OriginRequestPolicy: typing.Optional[dict[str, OriginRequestPolicyDef]] = pydantic.Field(None)
-    PublicKey: typing.Optional[dict[str, PublicKeyDef]] = pydantic.Field(None)
-    RealtimeLogConfig: typing.Optional[dict[str, RealtimeLogConfigDef]] = pydantic.Field(None)
-    ResponseHeadersPolicy: typing.Optional[dict[str, ResponseHeadersPolicyDef]] = pydantic.Field(None)
-    AddBehaviorOptions: typing.Optional[dict[str, AddBehaviorOptionsDef]] = pydantic.Field(None)
-    Behavior: typing.Optional[dict[str, BehaviorDef]] = pydantic.Field(None)
-    BehaviorOptions: typing.Optional[dict[str, BehaviorOptionsDef]] = pydantic.Field(None)
-    CachePolicyProps: typing.Optional[dict[str, CachePolicyPropsDef]] = pydantic.Field(None)
-    CfnCachePolicy_CachePolicyConfigProperty: typing.Optional[dict[str, CfnCachePolicy_CachePolicyConfigPropertyDef]] = pydantic.Field(None)
-    CfnCachePolicy_CookiesConfigProperty: typing.Optional[dict[str, CfnCachePolicy_CookiesConfigPropertyDef]] = pydantic.Field(None)
-    CfnCachePolicy_HeadersConfigProperty: typing.Optional[dict[str, CfnCachePolicy_HeadersConfigPropertyDef]] = pydantic.Field(None)
-    CfnCachePolicy_ParametersInCacheKeyAndForwardedToOriginProperty: typing.Optional[dict[str, CfnCachePolicy_ParametersInCacheKeyAndForwardedToOriginPropertyDef]] = pydantic.Field(None)
-    CfnCachePolicy_QueryStringsConfigProperty: typing.Optional[dict[str, CfnCachePolicy_QueryStringsConfigPropertyDef]] = pydantic.Field(None)
-    CfnCloudFrontOriginAccessIdentity_CloudFrontOriginAccessIdentityConfigProperty: typing.Optional[dict[str, CfnCloudFrontOriginAccessIdentity_CloudFrontOriginAccessIdentityConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_ContinuousDeploymentPolicyConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_ContinuousDeploymentPolicyConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_SessionStickinessConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_SessionStickinessConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_SingleHeaderConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_SingleHeaderConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_SingleHeaderPolicyConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_SingleHeaderPolicyConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_SingleWeightConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_SingleWeightConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_SingleWeightPolicyConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_SingleWeightPolicyConfigPropertyDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy_TrafficConfigProperty: typing.Optional[dict[str, CfnContinuousDeploymentPolicy_TrafficConfigPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_CacheBehaviorProperty: typing.Optional[dict[str, CfnDistribution_CacheBehaviorPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_CookiesProperty: typing.Optional[dict[str, CfnDistribution_CookiesPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_CustomErrorResponseProperty: typing.Optional[dict[str, CfnDistribution_CustomErrorResponsePropertyDef]] = pydantic.Field(None)
-    CfnDistribution_CustomOriginConfigProperty: typing.Optional[dict[str, CfnDistribution_CustomOriginConfigPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_DefaultCacheBehaviorProperty: typing.Optional[dict[str, CfnDistribution_DefaultCacheBehaviorPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_DistributionConfigProperty: typing.Optional[dict[str, CfnDistribution_DistributionConfigPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_ForwardedValuesProperty: typing.Optional[dict[str, CfnDistribution_ForwardedValuesPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_FunctionAssociationProperty: typing.Optional[dict[str, CfnDistribution_FunctionAssociationPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_GeoRestrictionProperty: typing.Optional[dict[str, CfnDistribution_GeoRestrictionPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_LambdaFunctionAssociationProperty: typing.Optional[dict[str, CfnDistribution_LambdaFunctionAssociationPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_LegacyCustomOriginProperty: typing.Optional[dict[str, CfnDistribution_LegacyCustomOriginPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_LegacyS3OriginProperty: typing.Optional[dict[str, CfnDistribution_LegacyS3OriginPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_LoggingProperty: typing.Optional[dict[str, CfnDistribution_LoggingPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginCustomHeaderProperty: typing.Optional[dict[str, CfnDistribution_OriginCustomHeaderPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginGroupFailoverCriteriaProperty: typing.Optional[dict[str, CfnDistribution_OriginGroupFailoverCriteriaPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginGroupMemberProperty: typing.Optional[dict[str, CfnDistribution_OriginGroupMemberPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginGroupMembersProperty: typing.Optional[dict[str, CfnDistribution_OriginGroupMembersPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginGroupProperty: typing.Optional[dict[str, CfnDistribution_OriginGroupPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginGroupsProperty: typing.Optional[dict[str, CfnDistribution_OriginGroupsPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginProperty: typing.Optional[dict[str, CfnDistribution_OriginPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_OriginShieldProperty: typing.Optional[dict[str, CfnDistribution_OriginShieldPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_RestrictionsProperty: typing.Optional[dict[str, CfnDistribution_RestrictionsPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_S3OriginConfigProperty: typing.Optional[dict[str, CfnDistribution_S3OriginConfigPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_StatusCodesProperty: typing.Optional[dict[str, CfnDistribution_StatusCodesPropertyDef]] = pydantic.Field(None)
-    CfnDistribution_ViewerCertificateProperty: typing.Optional[dict[str, CfnDistribution_ViewerCertificatePropertyDef]] = pydantic.Field(None)
-    CfnFunction_FunctionConfigProperty: typing.Optional[dict[str, CfnFunction_FunctionConfigPropertyDef]] = pydantic.Field(None)
-    CfnFunction_FunctionMetadataProperty: typing.Optional[dict[str, CfnFunction_FunctionMetadataPropertyDef]] = pydantic.Field(None)
-    CfnKeyGroup_KeyGroupConfigProperty: typing.Optional[dict[str, CfnKeyGroup_KeyGroupConfigPropertyDef]] = pydantic.Field(None)
-    CfnMonitoringSubscription_MonitoringSubscriptionProperty: typing.Optional[dict[str, CfnMonitoringSubscription_MonitoringSubscriptionPropertyDef]] = pydantic.Field(None)
-    CfnMonitoringSubscription_RealtimeMetricsSubscriptionConfigProperty: typing.Optional[dict[str, CfnMonitoringSubscription_RealtimeMetricsSubscriptionConfigPropertyDef]] = pydantic.Field(None)
-    CfnOriginAccessControl_OriginAccessControlConfigProperty: typing.Optional[dict[str, CfnOriginAccessControl_OriginAccessControlConfigPropertyDef]] = pydantic.Field(None)
-    CfnOriginRequestPolicy_CookiesConfigProperty: typing.Optional[dict[str, CfnOriginRequestPolicy_CookiesConfigPropertyDef]] = pydantic.Field(None)
-    CfnOriginRequestPolicy_HeadersConfigProperty: typing.Optional[dict[str, CfnOriginRequestPolicy_HeadersConfigPropertyDef]] = pydantic.Field(None)
-    CfnOriginRequestPolicy_OriginRequestPolicyConfigProperty: typing.Optional[dict[str, CfnOriginRequestPolicy_OriginRequestPolicyConfigPropertyDef]] = pydantic.Field(None)
-    CfnOriginRequestPolicy_QueryStringsConfigProperty: typing.Optional[dict[str, CfnOriginRequestPolicy_QueryStringsConfigPropertyDef]] = pydantic.Field(None)
-    CfnPublicKey_PublicKeyConfigProperty: typing.Optional[dict[str, CfnPublicKey_PublicKeyConfigPropertyDef]] = pydantic.Field(None)
-    CfnRealtimeLogConfig_EndPointProperty: typing.Optional[dict[str, CfnRealtimeLogConfig_EndPointPropertyDef]] = pydantic.Field(None)
-    CfnRealtimeLogConfig_KinesisStreamConfigProperty: typing.Optional[dict[str, CfnRealtimeLogConfig_KinesisStreamConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_AccessControlAllowHeadersProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_AccessControlAllowHeadersPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_AccessControlAllowMethodsProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_AccessControlAllowMethodsPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_AccessControlAllowOriginsProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_AccessControlAllowOriginsPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_AccessControlExposeHeadersProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_AccessControlExposeHeadersPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_ContentSecurityPolicyProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_ContentSecurityPolicyPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_ContentTypeOptionsProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_ContentTypeOptionsPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_CorsConfigProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_CorsConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_CustomHeaderProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_CustomHeaderPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_CustomHeadersConfigProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_CustomHeadersConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_FrameOptionsProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_FrameOptionsPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_ReferrerPolicyProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_ReferrerPolicyPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_RemoveHeaderProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_RemoveHeaderPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_RemoveHeadersConfigProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_RemoveHeadersConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_ResponseHeadersPolicyConfigProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_ResponseHeadersPolicyConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_SecurityHeadersConfigProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_SecurityHeadersConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_ServerTimingHeadersConfigProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_ServerTimingHeadersConfigPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_StrictTransportSecurityProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_StrictTransportSecurityPropertyDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy_XSSProtectionProperty: typing.Optional[dict[str, CfnResponseHeadersPolicy_XSSProtectionPropertyDef]] = pydantic.Field(None)
-    CfnStreamingDistribution_LoggingProperty: typing.Optional[dict[str, CfnStreamingDistribution_LoggingPropertyDef]] = pydantic.Field(None)
-    CfnStreamingDistribution_S3OriginProperty: typing.Optional[dict[str, CfnStreamingDistribution_S3OriginPropertyDef]] = pydantic.Field(None)
-    CfnStreamingDistribution_StreamingDistributionConfigProperty: typing.Optional[dict[str, CfnStreamingDistribution_StreamingDistributionConfigPropertyDef]] = pydantic.Field(None)
-    CfnStreamingDistribution_TrustedSignersProperty: typing.Optional[dict[str, CfnStreamingDistribution_TrustedSignersPropertyDef]] = pydantic.Field(None)
-    CloudFrontWebDistributionAttributes: typing.Optional[dict[str, CloudFrontWebDistributionAttributesDef]] = pydantic.Field(None)
-    CloudFrontWebDistributionProps: typing.Optional[dict[str, CloudFrontWebDistributionPropsDef]] = pydantic.Field(None)
-    CustomOriginConfig: typing.Optional[dict[str, CustomOriginConfigDef]] = pydantic.Field(None)
-    DistributionAttributes: typing.Optional[dict[str, DistributionAttributesDef]] = pydantic.Field(None)
-    DistributionProps: typing.Optional[dict[str, DistributionPropsDef]] = pydantic.Field(None)
-    EdgeLambda: typing.Optional[dict[str, EdgeLambdaDef]] = pydantic.Field(None)
-    ErrorResponse: typing.Optional[dict[str, ErrorResponseDef]] = pydantic.Field(None)
-    FileCodeOptions: typing.Optional[dict[str, FileCodeOptionsDef]] = pydantic.Field(None)
-    FunctionAssociation: typing.Optional[dict[str, FunctionAssociationDef]] = pydantic.Field(None)
-    FunctionAttributes: typing.Optional[dict[str, FunctionAttributesDef]] = pydantic.Field(None)
-    FunctionProps: typing.Optional[dict[str, FunctionPropsDef]] = pydantic.Field(None)
-    KeyGroupProps: typing.Optional[dict[str, KeyGroupPropsDef]] = pydantic.Field(None)
-    LambdaFunctionAssociation: typing.Optional[dict[str, LambdaFunctionAssociationDef]] = pydantic.Field(None)
-    LoggingConfiguration: typing.Optional[dict[str, LoggingConfigurationDef]] = pydantic.Field(None)
-    OriginAccessIdentityProps: typing.Optional[dict[str, OriginAccessIdentityPropsDef]] = pydantic.Field(None)
-    OriginBindConfig: typing.Optional[dict[str, OriginBindConfigDef]] = pydantic.Field(None)
-    OriginBindOptions: typing.Optional[dict[str, OriginBindOptionsDef]] = pydantic.Field(None)
-    OriginFailoverConfig: typing.Optional[dict[str, OriginFailoverConfigDef]] = pydantic.Field(None)
-    OriginOptions: typing.Optional[dict[str, OriginOptionsDef]] = pydantic.Field(None)
-    OriginProps: typing.Optional[dict[str, OriginPropsDef]] = pydantic.Field(None)
-    OriginRequestPolicyProps: typing.Optional[dict[str, OriginRequestPolicyPropsDef]] = pydantic.Field(None)
-    PublicKeyProps: typing.Optional[dict[str, PublicKeyPropsDef]] = pydantic.Field(None)
-    RealtimeLogConfigProps: typing.Optional[dict[str, RealtimeLogConfigPropsDef]] = pydantic.Field(None)
-    ResponseCustomHeader: typing.Optional[dict[str, ResponseCustomHeaderDef]] = pydantic.Field(None)
-    ResponseCustomHeadersBehavior: typing.Optional[dict[str, ResponseCustomHeadersBehaviorDef]] = pydantic.Field(None)
-    ResponseHeadersContentSecurityPolicy: typing.Optional[dict[str, ResponseHeadersContentSecurityPolicyDef]] = pydantic.Field(None)
-    ResponseHeadersContentTypeOptions: typing.Optional[dict[str, ResponseHeadersContentTypeOptionsDef]] = pydantic.Field(None)
-    ResponseHeadersCorsBehavior: typing.Optional[dict[str, ResponseHeadersCorsBehaviorDef]] = pydantic.Field(None)
-    ResponseHeadersFrameOptions: typing.Optional[dict[str, ResponseHeadersFrameOptionsDef]] = pydantic.Field(None)
-    ResponseHeadersPolicyProps: typing.Optional[dict[str, ResponseHeadersPolicyPropsDef]] = pydantic.Field(None)
-    ResponseHeadersReferrerPolicy: typing.Optional[dict[str, ResponseHeadersReferrerPolicyDef]] = pydantic.Field(None)
-    ResponseHeadersStrictTransportSecurity: typing.Optional[dict[str, ResponseHeadersStrictTransportSecurityDef]] = pydantic.Field(None)
-    ResponseHeadersXSSProtection: typing.Optional[dict[str, ResponseHeadersXSSProtectionDef]] = pydantic.Field(None)
-    ResponseSecurityHeadersBehavior: typing.Optional[dict[str, ResponseSecurityHeadersBehaviorDef]] = pydantic.Field(None)
-    S3OriginConfig: typing.Optional[dict[str, S3OriginConfigDef]] = pydantic.Field(None)
-    SourceConfiguration: typing.Optional[dict[str, SourceConfigurationDef]] = pydantic.Field(None)
-    ViewerCertificateOptions: typing.Optional[dict[str, ViewerCertificateOptionsDef]] = pydantic.Field(None)
-    CfnCachePolicy: typing.Optional[dict[str, CfnCachePolicyDef]] = pydantic.Field(None)
-    CfnCloudFrontOriginAccessIdentity: typing.Optional[dict[str, CfnCloudFrontOriginAccessIdentityDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicy: typing.Optional[dict[str, CfnContinuousDeploymentPolicyDef]] = pydantic.Field(None)
-    CfnDistribution: typing.Optional[dict[str, CfnDistributionDef]] = pydantic.Field(None)
-    CfnFunction: typing.Optional[dict[str, CfnFunctionDef]] = pydantic.Field(None)
-    CfnKeyGroup: typing.Optional[dict[str, CfnKeyGroupDef]] = pydantic.Field(None)
-    CfnMonitoringSubscription: typing.Optional[dict[str, CfnMonitoringSubscriptionDef]] = pydantic.Field(None)
-    CfnOriginAccessControl: typing.Optional[dict[str, CfnOriginAccessControlDef]] = pydantic.Field(None)
-    CfnOriginRequestPolicy: typing.Optional[dict[str, CfnOriginRequestPolicyDef]] = pydantic.Field(None)
-    CfnPublicKey: typing.Optional[dict[str, CfnPublicKeyDef]] = pydantic.Field(None)
-    CfnRealtimeLogConfig: typing.Optional[dict[str, CfnRealtimeLogConfigDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicy: typing.Optional[dict[str, CfnResponseHeadersPolicyDef]] = pydantic.Field(None)
-    CfnStreamingDistribution: typing.Optional[dict[str, CfnStreamingDistributionDef]] = pydantic.Field(None)
-    CfnCachePolicyProps: typing.Optional[dict[str, CfnCachePolicyPropsDef]] = pydantic.Field(None)
-    CfnCloudFrontOriginAccessIdentityProps: typing.Optional[dict[str, CfnCloudFrontOriginAccessIdentityPropsDef]] = pydantic.Field(None)
-    CfnContinuousDeploymentPolicyProps: typing.Optional[dict[str, CfnContinuousDeploymentPolicyPropsDef]] = pydantic.Field(None)
-    CfnDistributionProps: typing.Optional[dict[str, CfnDistributionPropsDef]] = pydantic.Field(None)
-    CfnFunctionProps: typing.Optional[dict[str, CfnFunctionPropsDef]] = pydantic.Field(None)
-    CfnKeyGroupProps: typing.Optional[dict[str, CfnKeyGroupPropsDef]] = pydantic.Field(None)
-    CfnMonitoringSubscriptionProps: typing.Optional[dict[str, CfnMonitoringSubscriptionPropsDef]] = pydantic.Field(None)
-    CfnOriginAccessControlProps: typing.Optional[dict[str, CfnOriginAccessControlPropsDef]] = pydantic.Field(None)
-    CfnOriginRequestPolicyProps: typing.Optional[dict[str, CfnOriginRequestPolicyPropsDef]] = pydantic.Field(None)
-    CfnPublicKeyProps: typing.Optional[dict[str, CfnPublicKeyPropsDef]] = pydantic.Field(None)
-    CfnRealtimeLogConfigProps: typing.Optional[dict[str, CfnRealtimeLogConfigPropsDef]] = pydantic.Field(None)
-    CfnResponseHeadersPolicyProps: typing.Optional[dict[str, CfnResponseHeadersPolicyPropsDef]] = pydantic.Field(None)
-    CfnStreamingDistributionProps: typing.Optional[dict[str, CfnStreamingDistributionPropsDef]] = pydantic.Field(None)
+    AllowedMethods: typing.Optional[dict[str, models.aws_cloudfront.AllowedMethodsDef]] = pydantic.Field(None)
+    CacheCookieBehavior: typing.Optional[dict[str, models.aws_cloudfront.CacheCookieBehaviorDef]] = pydantic.Field(None)
+    CachedMethods: typing.Optional[dict[str, models.aws_cloudfront.CachedMethodsDef]] = pydantic.Field(None)
+    CacheHeaderBehavior: typing.Optional[dict[str, models.aws_cloudfront.CacheHeaderBehaviorDef]] = pydantic.Field(None)
+    CacheQueryStringBehavior: typing.Optional[dict[str, models.aws_cloudfront.CacheQueryStringBehaviorDef]] = pydantic.Field(None)
+    Endpoint: typing.Optional[dict[str, models.aws_cloudfront.EndpointDef]] = pydantic.Field(None)
+    FunctionCode: typing.Optional[dict[str, models.aws_cloudfront.FunctionCodeDef]] = pydantic.Field(None)
+    GeoRestriction: typing.Optional[dict[str, models.aws_cloudfront.GeoRestrictionDef]] = pydantic.Field(None)
+    OriginBase: typing.Optional[dict[str, models.aws_cloudfront.OriginBaseDef]] = pydantic.Field(None)
+    OriginRequestCookieBehavior: typing.Optional[dict[str, models.aws_cloudfront.OriginRequestCookieBehaviorDef]] = pydantic.Field(None)
+    OriginRequestHeaderBehavior: typing.Optional[dict[str, models.aws_cloudfront.OriginRequestHeaderBehaviorDef]] = pydantic.Field(None)
+    OriginRequestQueryStringBehavior: typing.Optional[dict[str, models.aws_cloudfront.OriginRequestQueryStringBehaviorDef]] = pydantic.Field(None)
+    ViewerCertificate: typing.Optional[dict[str, models.aws_cloudfront.ViewerCertificateDef]] = pydantic.Field(None)
+    CachePolicy: typing.Optional[dict[str, models.aws_cloudfront.CachePolicyDef]] = pydantic.Field(None)
+    CloudFrontWebDistribution: typing.Optional[dict[str, models.aws_cloudfront.CloudFrontWebDistributionDef]] = pydantic.Field(None)
+    Distribution: typing.Optional[dict[str, models.aws_cloudfront.DistributionDef]] = pydantic.Field(None)
+    Function: typing.Optional[dict[str, models.aws_cloudfront.FunctionDef]] = pydantic.Field(None)
+    KeyGroup: typing.Optional[dict[str, models.aws_cloudfront.KeyGroupDef]] = pydantic.Field(None)
+    OriginAccessIdentity: typing.Optional[dict[str, models.aws_cloudfront.OriginAccessIdentityDef]] = pydantic.Field(None)
+    OriginRequestPolicy: typing.Optional[dict[str, models.aws_cloudfront.OriginRequestPolicyDef]] = pydantic.Field(None)
+    PublicKey: typing.Optional[dict[str, models.aws_cloudfront.PublicKeyDef]] = pydantic.Field(None)
+    RealtimeLogConfig: typing.Optional[dict[str, models.aws_cloudfront.RealtimeLogConfigDef]] = pydantic.Field(None)
+    ResponseHeadersPolicy: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersPolicyDef]] = pydantic.Field(None)
+    AddBehaviorOptions: typing.Optional[dict[str, models.aws_cloudfront.AddBehaviorOptionsDef]] = pydantic.Field(None)
+    Behavior: typing.Optional[dict[str, models.aws_cloudfront.BehaviorDef]] = pydantic.Field(None)
+    BehaviorOptions: typing.Optional[dict[str, models.aws_cloudfront.BehaviorOptionsDef]] = pydantic.Field(None)
+    CachePolicyProps: typing.Optional[dict[str, models.aws_cloudfront.CachePolicyPropsDef]] = pydantic.Field(None)
+    CfnCachePolicy_CachePolicyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicy_CachePolicyConfigPropertyDef]] = pydantic.Field(None)
+    CfnCachePolicy_CookiesConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicy_CookiesConfigPropertyDef]] = pydantic.Field(None)
+    CfnCachePolicy_HeadersConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicy_HeadersConfigPropertyDef]] = pydantic.Field(None)
+    CfnCachePolicy_ParametersInCacheKeyAndForwardedToOriginProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicy_ParametersInCacheKeyAndForwardedToOriginPropertyDef]] = pydantic.Field(None)
+    CfnCachePolicy_QueryStringsConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicy_QueryStringsConfigPropertyDef]] = pydantic.Field(None)
+    CfnCloudFrontOriginAccessIdentity_CloudFrontOriginAccessIdentityConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnCloudFrontOriginAccessIdentity_CloudFrontOriginAccessIdentityConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_ContinuousDeploymentPolicyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_ContinuousDeploymentPolicyConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_SessionStickinessConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_SessionStickinessConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_SingleHeaderConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_SingleHeaderConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_SingleHeaderPolicyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_SingleHeaderPolicyConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_SingleWeightConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_SingleWeightConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_SingleWeightPolicyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_SingleWeightPolicyConfigPropertyDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy_TrafficConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicy_TrafficConfigPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_CacheBehaviorProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_CacheBehaviorPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_CookiesProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_CookiesPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_CustomErrorResponseProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_CustomErrorResponsePropertyDef]] = pydantic.Field(None)
+    CfnDistribution_CustomOriginConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_CustomOriginConfigPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_DefaultCacheBehaviorProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_DefaultCacheBehaviorPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_DistributionConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_DistributionConfigPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_ForwardedValuesProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_ForwardedValuesPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_FunctionAssociationProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_FunctionAssociationPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_GeoRestrictionProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_GeoRestrictionPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_LambdaFunctionAssociationProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_LambdaFunctionAssociationPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_LegacyCustomOriginProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_LegacyCustomOriginPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_LegacyS3OriginProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_LegacyS3OriginPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_LoggingProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_LoggingPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginCustomHeaderProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginCustomHeaderPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginGroupFailoverCriteriaProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginGroupFailoverCriteriaPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginGroupMemberProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginGroupMemberPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginGroupMembersProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginGroupMembersPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginGroupProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginGroupPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginGroupsProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginGroupsPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_OriginShieldProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_OriginShieldPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_RestrictionsProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_RestrictionsPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_S3OriginConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_S3OriginConfigPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_StatusCodesProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_StatusCodesPropertyDef]] = pydantic.Field(None)
+    CfnDistribution_ViewerCertificateProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnDistribution_ViewerCertificatePropertyDef]] = pydantic.Field(None)
+    CfnFunction_FunctionConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnFunction_FunctionConfigPropertyDef]] = pydantic.Field(None)
+    CfnFunction_FunctionMetadataProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnFunction_FunctionMetadataPropertyDef]] = pydantic.Field(None)
+    CfnKeyGroup_KeyGroupConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnKeyGroup_KeyGroupConfigPropertyDef]] = pydantic.Field(None)
+    CfnMonitoringSubscription_MonitoringSubscriptionProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnMonitoringSubscription_MonitoringSubscriptionPropertyDef]] = pydantic.Field(None)
+    CfnMonitoringSubscription_RealtimeMetricsSubscriptionConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnMonitoringSubscription_RealtimeMetricsSubscriptionConfigPropertyDef]] = pydantic.Field(None)
+    CfnOriginAccessControl_OriginAccessControlConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginAccessControl_OriginAccessControlConfigPropertyDef]] = pydantic.Field(None)
+    CfnOriginRequestPolicy_CookiesConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginRequestPolicy_CookiesConfigPropertyDef]] = pydantic.Field(None)
+    CfnOriginRequestPolicy_HeadersConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginRequestPolicy_HeadersConfigPropertyDef]] = pydantic.Field(None)
+    CfnOriginRequestPolicy_OriginRequestPolicyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginRequestPolicy_OriginRequestPolicyConfigPropertyDef]] = pydantic.Field(None)
+    CfnOriginRequestPolicy_QueryStringsConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginRequestPolicy_QueryStringsConfigPropertyDef]] = pydantic.Field(None)
+    CfnPublicKey_PublicKeyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnPublicKey_PublicKeyConfigPropertyDef]] = pydantic.Field(None)
+    CfnRealtimeLogConfig_EndPointProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnRealtimeLogConfig_EndPointPropertyDef]] = pydantic.Field(None)
+    CfnRealtimeLogConfig_KinesisStreamConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnRealtimeLogConfig_KinesisStreamConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_AccessControlAllowHeadersProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_AccessControlAllowHeadersPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_AccessControlAllowMethodsProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_AccessControlAllowMethodsPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_AccessControlAllowOriginsProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_AccessControlAllowOriginsPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_AccessControlExposeHeadersProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_AccessControlExposeHeadersPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_ContentSecurityPolicyProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_ContentSecurityPolicyPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_ContentTypeOptionsProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_ContentTypeOptionsPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_CorsConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_CorsConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_CustomHeaderProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_CustomHeaderPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_CustomHeadersConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_CustomHeadersConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_FrameOptionsProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_FrameOptionsPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_ReferrerPolicyProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_ReferrerPolicyPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_RemoveHeaderProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_RemoveHeaderPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_RemoveHeadersConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_RemoveHeadersConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_ResponseHeadersPolicyConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_ResponseHeadersPolicyConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_SecurityHeadersConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_SecurityHeadersConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_ServerTimingHeadersConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_ServerTimingHeadersConfigPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_StrictTransportSecurityProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_StrictTransportSecurityPropertyDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy_XSSProtectionProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicy_XSSProtectionPropertyDef]] = pydantic.Field(None)
+    CfnStreamingDistribution_LoggingProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnStreamingDistribution_LoggingPropertyDef]] = pydantic.Field(None)
+    CfnStreamingDistribution_S3OriginProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnStreamingDistribution_S3OriginPropertyDef]] = pydantic.Field(None)
+    CfnStreamingDistribution_StreamingDistributionConfigProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnStreamingDistribution_StreamingDistributionConfigPropertyDef]] = pydantic.Field(None)
+    CfnStreamingDistribution_TrustedSignersProperty: typing.Optional[dict[str, models.aws_cloudfront.CfnStreamingDistribution_TrustedSignersPropertyDef]] = pydantic.Field(None)
+    CloudFrontWebDistributionAttributes: typing.Optional[dict[str, models.aws_cloudfront.CloudFrontWebDistributionAttributesDef]] = pydantic.Field(None)
+    CloudFrontWebDistributionProps: typing.Optional[dict[str, models.aws_cloudfront.CloudFrontWebDistributionPropsDef]] = pydantic.Field(None)
+    CustomOriginConfig: typing.Optional[dict[str, models.aws_cloudfront.CustomOriginConfigDef]] = pydantic.Field(None)
+    DistributionAttributes: typing.Optional[dict[str, models.aws_cloudfront.DistributionAttributesDef]] = pydantic.Field(None)
+    DistributionProps: typing.Optional[dict[str, models.aws_cloudfront.DistributionPropsDef]] = pydantic.Field(None)
+    EdgeLambda: typing.Optional[dict[str, models.aws_cloudfront.EdgeLambdaDef]] = pydantic.Field(None)
+    ErrorResponse: typing.Optional[dict[str, models.aws_cloudfront.ErrorResponseDef]] = pydantic.Field(None)
+    FileCodeOptions: typing.Optional[dict[str, models.aws_cloudfront.FileCodeOptionsDef]] = pydantic.Field(None)
+    FunctionAssociation: typing.Optional[dict[str, models.aws_cloudfront.FunctionAssociationDef]] = pydantic.Field(None)
+    FunctionAttributes: typing.Optional[dict[str, models.aws_cloudfront.FunctionAttributesDef]] = pydantic.Field(None)
+    FunctionProps: typing.Optional[dict[str, models.aws_cloudfront.FunctionPropsDef]] = pydantic.Field(None)
+    KeyGroupProps: typing.Optional[dict[str, models.aws_cloudfront.KeyGroupPropsDef]] = pydantic.Field(None)
+    LambdaFunctionAssociation: typing.Optional[dict[str, models.aws_cloudfront.LambdaFunctionAssociationDef]] = pydantic.Field(None)
+    LoggingConfiguration: typing.Optional[dict[str, models.aws_cloudfront.LoggingConfigurationDef]] = pydantic.Field(None)
+    OriginAccessIdentityProps: typing.Optional[dict[str, models.aws_cloudfront.OriginAccessIdentityPropsDef]] = pydantic.Field(None)
+    OriginBindConfig: typing.Optional[dict[str, models.aws_cloudfront.OriginBindConfigDef]] = pydantic.Field(None)
+    OriginBindOptions: typing.Optional[dict[str, models.aws_cloudfront.OriginBindOptionsDef]] = pydantic.Field(None)
+    OriginFailoverConfig: typing.Optional[dict[str, models.aws_cloudfront.OriginFailoverConfigDef]] = pydantic.Field(None)
+    OriginOptions: typing.Optional[dict[str, models.aws_cloudfront.OriginOptionsDef]] = pydantic.Field(None)
+    OriginProps: typing.Optional[dict[str, models.aws_cloudfront.OriginPropsDef]] = pydantic.Field(None)
+    OriginRequestPolicyProps: typing.Optional[dict[str, models.aws_cloudfront.OriginRequestPolicyPropsDef]] = pydantic.Field(None)
+    PublicKeyProps: typing.Optional[dict[str, models.aws_cloudfront.PublicKeyPropsDef]] = pydantic.Field(None)
+    RealtimeLogConfigProps: typing.Optional[dict[str, models.aws_cloudfront.RealtimeLogConfigPropsDef]] = pydantic.Field(None)
+    ResponseCustomHeader: typing.Optional[dict[str, models.aws_cloudfront.ResponseCustomHeaderDef]] = pydantic.Field(None)
+    ResponseCustomHeadersBehavior: typing.Optional[dict[str, models.aws_cloudfront.ResponseCustomHeadersBehaviorDef]] = pydantic.Field(None)
+    ResponseHeadersContentSecurityPolicy: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersContentSecurityPolicyDef]] = pydantic.Field(None)
+    ResponseHeadersContentTypeOptions: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersContentTypeOptionsDef]] = pydantic.Field(None)
+    ResponseHeadersCorsBehavior: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersCorsBehaviorDef]] = pydantic.Field(None)
+    ResponseHeadersFrameOptions: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersFrameOptionsDef]] = pydantic.Field(None)
+    ResponseHeadersPolicyProps: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersPolicyPropsDef]] = pydantic.Field(None)
+    ResponseHeadersReferrerPolicy: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersReferrerPolicyDef]] = pydantic.Field(None)
+    ResponseHeadersStrictTransportSecurity: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersStrictTransportSecurityDef]] = pydantic.Field(None)
+    ResponseHeadersXSSProtection: typing.Optional[dict[str, models.aws_cloudfront.ResponseHeadersXSSProtectionDef]] = pydantic.Field(None)
+    ResponseSecurityHeadersBehavior: typing.Optional[dict[str, models.aws_cloudfront.ResponseSecurityHeadersBehaviorDef]] = pydantic.Field(None)
+    S3OriginConfig: typing.Optional[dict[str, models.aws_cloudfront.S3OriginConfigDef]] = pydantic.Field(None)
+    SourceConfiguration: typing.Optional[dict[str, models.aws_cloudfront.SourceConfigurationDef]] = pydantic.Field(None)
+    ViewerCertificateOptions: typing.Optional[dict[str, models.aws_cloudfront.ViewerCertificateOptionsDef]] = pydantic.Field(None)
+    CfnCachePolicy: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicyDef]] = pydantic.Field(None)
+    CfnCloudFrontOriginAccessIdentity: typing.Optional[dict[str, models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicy: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicyDef]] = pydantic.Field(None)
+    CfnDistribution: typing.Optional[dict[str, models.aws_cloudfront.CfnDistributionDef]] = pydantic.Field(None)
+    CfnFunction: typing.Optional[dict[str, models.aws_cloudfront.CfnFunctionDef]] = pydantic.Field(None)
+    CfnKeyGroup: typing.Optional[dict[str, models.aws_cloudfront.CfnKeyGroupDef]] = pydantic.Field(None)
+    CfnMonitoringSubscription: typing.Optional[dict[str, models.aws_cloudfront.CfnMonitoringSubscriptionDef]] = pydantic.Field(None)
+    CfnOriginAccessControl: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginAccessControlDef]] = pydantic.Field(None)
+    CfnOriginRequestPolicy: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginRequestPolicyDef]] = pydantic.Field(None)
+    CfnPublicKey: typing.Optional[dict[str, models.aws_cloudfront.CfnPublicKeyDef]] = pydantic.Field(None)
+    CfnRealtimeLogConfig: typing.Optional[dict[str, models.aws_cloudfront.CfnRealtimeLogConfigDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicy: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicyDef]] = pydantic.Field(None)
+    CfnStreamingDistribution: typing.Optional[dict[str, models.aws_cloudfront.CfnStreamingDistributionDef]] = pydantic.Field(None)
+    CfnCachePolicyProps: typing.Optional[dict[str, models.aws_cloudfront.CfnCachePolicyPropsDef]] = pydantic.Field(None)
+    CfnCloudFrontOriginAccessIdentityProps: typing.Optional[dict[str, models.aws_cloudfront.CfnCloudFrontOriginAccessIdentityPropsDef]] = pydantic.Field(None)
+    CfnContinuousDeploymentPolicyProps: typing.Optional[dict[str, models.aws_cloudfront.CfnContinuousDeploymentPolicyPropsDef]] = pydantic.Field(None)
+    CfnDistributionProps: typing.Optional[dict[str, models.aws_cloudfront.CfnDistributionPropsDef]] = pydantic.Field(None)
+    CfnFunctionProps: typing.Optional[dict[str, models.aws_cloudfront.CfnFunctionPropsDef]] = pydantic.Field(None)
+    CfnKeyGroupProps: typing.Optional[dict[str, models.aws_cloudfront.CfnKeyGroupPropsDef]] = pydantic.Field(None)
+    CfnMonitoringSubscriptionProps: typing.Optional[dict[str, models.aws_cloudfront.CfnMonitoringSubscriptionPropsDef]] = pydantic.Field(None)
+    CfnOriginAccessControlProps: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginAccessControlPropsDef]] = pydantic.Field(None)
+    CfnOriginRequestPolicyProps: typing.Optional[dict[str, models.aws_cloudfront.CfnOriginRequestPolicyPropsDef]] = pydantic.Field(None)
+    CfnPublicKeyProps: typing.Optional[dict[str, models.aws_cloudfront.CfnPublicKeyPropsDef]] = pydantic.Field(None)
+    CfnRealtimeLogConfigProps: typing.Optional[dict[str, models.aws_cloudfront.CfnRealtimeLogConfigPropsDef]] = pydantic.Field(None)
+    CfnResponseHeadersPolicyProps: typing.Optional[dict[str, models.aws_cloudfront.CfnResponseHeadersPolicyPropsDef]] = pydantic.Field(None)
+    CfnStreamingDistributionProps: typing.Optional[dict[str, models.aws_cloudfront.CfnStreamingDistributionPropsDef]] = pydantic.Field(None)
     ...
+
+import models

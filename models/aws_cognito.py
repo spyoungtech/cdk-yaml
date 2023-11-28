@@ -17,11 +17,11 @@ class BooleanAttributeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[BooleanAttributeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.BooleanAttributeDefConfig] = pydantic.Field(None)
 
 
 class BooleanAttributeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[BooleanAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
+    bind: typing.Optional[list[models.aws_cognito.BooleanAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
 
 class BooleanAttributeDefBindParams(pydantic.BaseModel):
     ...
@@ -37,13 +37,13 @@ class ClientAttributesDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ClientAttributesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.ClientAttributesDefConfig] = pydantic.Field(None)
 
 
 class ClientAttributesDefConfig(pydantic.BaseModel):
     attributes: typing.Optional[bool] = pydantic.Field(None, description='The list of attributes represented by this ClientAttributes.')
-    with_custom_attributes: typing.Optional[list[ClientAttributesDefWithCustomAttributesParams]] = pydantic.Field(None, description='Creates a custom ClientAttributes with the specified attributes.')
-    with_standard_attributes: typing.Optional[list[ClientAttributesDefWithStandardAttributesParams]] = pydantic.Field(None, description='Creates a custom ClientAttributes with the specified attributes.')
+    with_custom_attributes: typing.Optional[list[models.aws_cognito.ClientAttributesDefWithCustomAttributesParams]] = pydantic.Field(None, description='Creates a custom ClientAttributes with the specified attributes.')
+    with_standard_attributes: typing.Optional[list[models.aws_cognito.ClientAttributesDefWithStandardAttributesParams]] = pydantic.Field(None, description='Creates a custom ClientAttributes with the specified attributes.')
 
 class ClientAttributesDefWithCustomAttributesParams(pydantic.BaseModel):
     attributes: list[str] = pydantic.Field(...)
@@ -85,11 +85,11 @@ class DateTimeAttributeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[DateTimeAttributeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.DateTimeAttributeDefConfig] = pydantic.Field(None)
 
 
 class DateTimeAttributeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[DateTimeAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
+    bind: typing.Optional[list[models.aws_cognito.DateTimeAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
 
 class DateTimeAttributeDefBindParams(pydantic.BaseModel):
     ...
@@ -108,11 +108,11 @@ class NumberAttributeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NumberAttributeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.NumberAttributeDefConfig] = pydantic.Field(None)
 
 
 class NumberAttributeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[NumberAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
+    bind: typing.Optional[list[models.aws_cognito.NumberAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
 
 class NumberAttributeDefBindParams(pydantic.BaseModel):
     ...
@@ -128,12 +128,12 @@ class OAuthScopeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OAuthScopeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.OAuthScopeDefConfig] = pydantic.Field(None)
 
 
 class OAuthScopeDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[OAuthScopeDefCustomParams]] = pydantic.Field(None, description="Custom scope is one that you define for your own resource server in the Resource Servers.\nThe format is 'resource-server-identifier/scope'.")
-    resource_server: typing.Optional[list[OAuthScopeDefResourceServerParams]] = pydantic.Field(None, description="Adds a custom scope that's tied to a resource server in your stack.")
+    custom: typing.Optional[list[models.aws_cognito.OAuthScopeDefCustomParams]] = pydantic.Field(None, description="Custom scope is one that you define for your own resource server in the Resource Servers.\nThe format is 'resource-server-identifier/scope'.")
+    resource_server: typing.Optional[list[models.aws_cognito.OAuthScopeDefResourceServerParams]] = pydantic.Field(None, description="Adds a custom scope that's tied to a resource server in your stack.")
 
 class OAuthScopeDefCustomParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n\n:see: https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-define-resource-servers.html\n')
@@ -157,11 +157,11 @@ class ProviderAttributeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ProviderAttributeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.ProviderAttributeDefConfig] = pydantic.Field(None)
 
 
 class ProviderAttributeDefConfig(pydantic.BaseModel):
-    other: typing.Optional[list[ProviderAttributeDefOtherParams]] = pydantic.Field(None, description='Use this to specify an attribute from the identity provider that is not pre-defined in the CDK.')
+    other: typing.Optional[list[models.aws_cognito.ProviderAttributeDefOtherParams]] = pydantic.Field(None, description='Use this to specify an attribute from the identity provider that is not pre-defined in the CDK.')
 
 class ProviderAttributeDefOtherParams(pydantic.BaseModel):
     attribute_name: str = pydantic.Field(..., description='the attribute value string as recognized by the provider.')
@@ -196,11 +196,11 @@ class StringAttributeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[StringAttributeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.StringAttributeDefConfig] = pydantic.Field(None)
 
 
 class StringAttributeDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[StringAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
+    bind: typing.Optional[list[models.aws_cognito.StringAttributeDefBindParams]] = pydantic.Field(None, description='Bind this custom attribute type to the values as expected by CloudFormation.')
 
 class StringAttributeDefBindParams(pydantic.BaseModel):
     ...
@@ -216,11 +216,11 @@ class UserPoolClientIdentityProviderDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[UserPoolClientIdentityProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolClientIdentityProviderDefConfig] = pydantic.Field(None)
 
 
 class UserPoolClientIdentityProviderDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[UserPoolClientIdentityProviderDefCustomParams]] = pydantic.Field(None, description='Specify a provider not yet supported by the CDK.')
+    custom: typing.Optional[list[models.aws_cognito.UserPoolClientIdentityProviderDefCustomParams]] = pydantic.Field(None, description='Specify a provider not yet supported by the CDK.')
 
 class UserPoolClientIdentityProviderDefCustomParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='name of the identity provider as recognized by CloudFormation property ``SupportedIdentityProviders``.')
@@ -238,12 +238,12 @@ class UserPoolEmailDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[UserPoolEmailDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolEmailDefConfig] = pydantic.Field(None)
 
 
 class UserPoolEmailDefConfig(pydantic.BaseModel):
-    with_cognito: typing.Optional[list[UserPoolEmailDefWithCognitoParams]] = pydantic.Field(None, description='Send email using Cognito.')
-    with_ses: typing.Optional[list[UserPoolEmailDefWithSesParams]] = pydantic.Field(None, description='Send email using SES.')
+    with_cognito: typing.Optional[list[models.aws_cognito.UserPoolEmailDefWithCognitoParams]] = pydantic.Field(None, description='Send email using Cognito.')
+    with_ses: typing.Optional[list[models.aws_cognito.UserPoolEmailDefWithSesParams]] = pydantic.Field(None, description='Send email using SES.')
 
 class UserPoolEmailDefWithCognitoParams(pydantic.BaseModel):
     reply_to: typing.Optional[str] = pydantic.Field(None, description='-')
@@ -271,7 +271,7 @@ class UserPoolIdentityProviderDef(BaseClass):
     ...
 
 
-    from_provider_name: typing.Optional[UserPoolIdentityProviderDefFromProviderNameParams] = pydantic.Field(None, description='Import an existing UserPoolIdentityProvider.')
+    from_provider_name: typing.Optional[models.aws_cognito.UserPoolIdentityProviderDefFromProviderNameParams] = pydantic.Field(None, description='Import an existing UserPoolIdentityProvider.')
 
 class UserPoolIdentityProviderDefFromProviderNameParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -290,12 +290,12 @@ class UserPoolIdentityProviderSamlMetadataDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderSamlMetadataDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderSamlMetadataDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderSamlMetadataDefConfig(pydantic.BaseModel):
-    file: typing.Optional[list[UserPoolIdentityProviderSamlMetadataDefFileParams]] = pydantic.Field(None, description='Specify SAML metadata via the contents of a file.')
-    url: typing.Optional[list[UserPoolIdentityProviderSamlMetadataDefUrlParams]] = pydantic.Field(None, description='Specify SAML metadata via a URL.')
+    file: typing.Optional[list[models.aws_cognito.UserPoolIdentityProviderSamlMetadataDefFileParams]] = pydantic.Field(None, description='Specify SAML metadata via the contents of a file.')
+    url: typing.Optional[list[models.aws_cognito.UserPoolIdentityProviderSamlMetadataDefUrlParams]] = pydantic.Field(None, description='Specify SAML metadata via a URL.')
 
 class UserPoolIdentityProviderSamlMetadataDefFileParams(pydantic.BaseModel):
     file_content: str = pydantic.Field(..., description='-')
@@ -318,11 +318,11 @@ class UserPoolOperationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[UserPoolOperationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolOperationDefConfig] = pydantic.Field(None)
 
 
 class UserPoolOperationDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[UserPoolOperationDefOfParams]] = pydantic.Field(None, description='A custom user pool operation.')
+    of: typing.Optional[list[models.aws_cognito.UserPoolOperationDefOfParams]] = pydantic.Field(None, description='A custom user pool operation.')
 
 class UserPoolOperationDefOfParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-')
@@ -366,19 +366,19 @@ class UserPoolDef(BaseConstruct):
     ...
 
 
-    from_user_pool_arn: typing.Optional[UserPoolDefFromUserPoolArnParams] = pydantic.Field(None, description='Import an existing user pool based on its ARN.')
-    from_user_pool_id: typing.Optional[UserPoolDefFromUserPoolIdParams] = pydantic.Field(None, description='Import an existing user pool based on its id.')
-    resource_config: typing.Optional[UserPoolDefConfig] = pydantic.Field(None)
+    from_user_pool_arn: typing.Optional[models.aws_cognito.UserPoolDefFromUserPoolArnParams] = pydantic.Field(None, description='Import an existing user pool based on its ARN.')
+    from_user_pool_id: typing.Optional[models.aws_cognito.UserPoolDefFromUserPoolIdParams] = pydantic.Field(None, description='Import an existing user pool based on its id.')
+    resource_config: typing.Optional[models.aws_cognito.UserPoolDefConfig] = pydantic.Field(None)
 
 
 class UserPoolDefConfig(pydantic.BaseModel):
-    add_client: typing.Optional[list[UserPoolDefAddClientParams]] = pydantic.Field(None, description='Add a new app client to this user pool.')
-    add_domain: typing.Optional[list[UserPoolDefAddDomainParams]] = pydantic.Field(None, description='Associate a domain to this user pool.')
-    add_resource_server: typing.Optional[list[UserPoolDefAddResourceServerParams]] = pydantic.Field(None, description='Add a new resource server to this user pool.')
-    add_trigger: typing.Optional[list[UserPoolDefAddTriggerParams]] = pydantic.Field(None, description='Add a lambda trigger to a user pool operation.')
+    add_client: typing.Optional[list[models.aws_cognito.UserPoolDefAddClientParams]] = pydantic.Field(None, description='Add a new app client to this user pool.')
+    add_domain: typing.Optional[list[models.aws_cognito.UserPoolDefAddDomainParams]] = pydantic.Field(None, description='Associate a domain to this user pool.')
+    add_resource_server: typing.Optional[list[models.aws_cognito.UserPoolDefAddResourceServerParams]] = pydantic.Field(None, description='Add a new resource server to this user pool.')
+    add_trigger: typing.Optional[list[models.aws_cognito.UserPoolDefAddTriggerParams]] = pydantic.Field(None, description='Add a lambda trigger to a user pool operation.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant: typing.Optional[list[UserPoolDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this user pool to an IAM principal's policy.")
-    register_identity_provider: typing.Optional[list[UserPoolDefRegisterIdentityProviderParams]] = pydantic.Field(None, description='Register an identity provider with this user pool.')
+    grant: typing.Optional[list[models.aws_cognito.UserPoolDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this user pool to an IAM principal's policy.")
+    register_identity_provider: typing.Optional[list[models.aws_cognito.UserPoolDefRegisterIdentityProviderParams]] = pydantic.Field(None, description='Register an identity provider with this user pool.')
 
 class UserPoolDefAddClientParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
@@ -471,8 +471,8 @@ class UserPoolClientDef(BaseConstruct):
     ...
 
 
-    from_user_pool_client_id: typing.Optional[UserPoolClientDefFromUserPoolClientIdParams] = pydantic.Field(None, description='Import a user pool client given its id.')
-    resource_config: typing.Optional[UserPoolClientDefConfig] = pydantic.Field(None)
+    from_user_pool_client_id: typing.Optional[models.aws_cognito.UserPoolClientDefFromUserPoolClientIdParams] = pydantic.Field(None, description='Import a user pool client given its id.')
+    resource_config: typing.Optional[models.aws_cognito.UserPoolClientDefConfig] = pydantic.Field(None)
 
 
 class UserPoolClientDefConfig(pydantic.BaseModel):
@@ -503,14 +503,14 @@ class UserPoolDomainDef(BaseConstruct):
     ...
 
 
-    from_domain_name: typing.Optional[UserPoolDomainDefFromDomainNameParams] = pydantic.Field(None, description='Import a UserPoolDomain given its domain name.')
-    resource_config: typing.Optional[UserPoolDomainDefConfig] = pydantic.Field(None)
+    from_domain_name: typing.Optional[models.aws_cognito.UserPoolDomainDefFromDomainNameParams] = pydantic.Field(None, description='Import a UserPoolDomain given its domain name.')
+    resource_config: typing.Optional[models.aws_cognito.UserPoolDomainDefConfig] = pydantic.Field(None)
 
 
 class UserPoolDomainDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    base_url: typing.Optional[list[UserPoolDomainDefBaseUrlParams]] = pydantic.Field(None, description='The URL to the hosted UI associated with this domain.')
-    sign_in_url: typing.Optional[list[UserPoolDomainDefSignInUrlParams]] = pydantic.Field(None, description='The URL to the sign in page in this domain using a specific UserPoolClient.')
+    base_url: typing.Optional[list[models.aws_cognito.UserPoolDomainDefBaseUrlParams]] = pydantic.Field(None, description='The URL to the hosted UI associated with this domain.')
+    sign_in_url: typing.Optional[list[models.aws_cognito.UserPoolDomainDefSignInUrlParams]] = pydantic.Field(None, description='The URL to the sign in page in this domain using a specific UserPoolClient.')
 
 class UserPoolDomainDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
@@ -549,7 +549,7 @@ class UserPoolIdentityProviderAmazonDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderAmazonDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderAmazonDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderAmazonDefConfig(pydantic.BaseModel):
@@ -577,7 +577,7 @@ class UserPoolIdentityProviderAppleDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderAppleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderAppleDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderAppleDefConfig(pydantic.BaseModel):
@@ -604,7 +604,7 @@ class UserPoolIdentityProviderFacebookDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderFacebookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderFacebookDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderFacebookDefConfig(pydantic.BaseModel):
@@ -631,7 +631,7 @@ class UserPoolIdentityProviderGoogleDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderGoogleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderGoogleDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderGoogleDefConfig(pydantic.BaseModel):
@@ -662,7 +662,7 @@ class UserPoolIdentityProviderOidcDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderOidcDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderOidcDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderOidcDefConfig(pydantic.BaseModel):
@@ -689,7 +689,7 @@ class UserPoolIdentityProviderSamlDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderSamlDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderSamlDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderSamlDefConfig(pydantic.BaseModel):
@@ -714,8 +714,8 @@ class UserPoolResourceServerDef(BaseConstruct):
     ...
 
 
-    from_user_pool_resource_server_id: typing.Optional[UserPoolResourceServerDefFromUserPoolResourceServerIdParams] = pydantic.Field(None, description='Import a user pool resource client given its id.')
-    resource_config: typing.Optional[UserPoolResourceServerDefConfig] = pydantic.Field(None)
+    from_user_pool_resource_server_id: typing.Optional[models.aws_cognito.UserPoolResourceServerDefFromUserPoolResourceServerIdParams] = pydantic.Field(None, description='Import a user pool resource client given its id.')
+    resource_config: typing.Optional[models.aws_cognito.UserPoolResourceServerDefConfig] = pydantic.Field(None)
 
 
 class UserPoolResourceServerDefConfig(pydantic.BaseModel):
@@ -1457,7 +1457,7 @@ class CustomDomainOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[CustomDomainOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CustomDomainOptionsDefConfig] = pydantic.Field(None)
 
 
 class CustomDomainOptionsDefConfig(pydantic.BaseModel):
@@ -1828,7 +1828,7 @@ class UserPoolClientPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolClientPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolClientPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolClientPropsDefConfig(pydantic.BaseModel):
@@ -1862,7 +1862,7 @@ class UserPoolDomainPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolDomainPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolDomainPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolDomainPropsDefConfig(pydantic.BaseModel):
@@ -1884,7 +1884,7 @@ class UserPoolIdentityProviderAmazonPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderAmazonPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderAmazonPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderAmazonPropsDefConfig(pydantic.BaseModel):
@@ -1908,7 +1908,7 @@ class UserPoolIdentityProviderApplePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderApplePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderApplePropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderApplePropsDefConfig(pydantic.BaseModel):
@@ -1931,7 +1931,7 @@ class UserPoolIdentityProviderFacebookPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderFacebookPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderFacebookPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderFacebookPropsDefConfig(pydantic.BaseModel):
@@ -1954,7 +1954,7 @@ class UserPoolIdentityProviderGooglePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderGooglePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderGooglePropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderGooglePropsDefConfig(pydantic.BaseModel):
@@ -1981,7 +1981,7 @@ class UserPoolIdentityProviderOidcPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderOidcPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderOidcPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderOidcPropsDefConfig(pydantic.BaseModel):
@@ -2000,7 +2000,7 @@ class UserPoolIdentityProviderPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderPropsDefConfig(pydantic.BaseModel):
@@ -2023,7 +2023,7 @@ class UserPoolIdentityProviderSamlPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolIdentityProviderSamlPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolIdentityProviderSamlPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolIdentityProviderSamlPropsDefConfig(pydantic.BaseModel):
@@ -2098,7 +2098,7 @@ class UserPoolResourceServerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[UserPoolResourceServerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.UserPoolResourceServerPropsDefConfig] = pydantic.Field(None)
 
 
 class UserPoolResourceServerPropsDefConfig(pydantic.BaseModel):
@@ -2220,29 +2220,29 @@ class CfnIdentityPoolDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnIdentityPoolDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnIdentityPoolDefConfig] = pydantic.Field(None)
 
 
 class CfnIdentityPoolDefConfig(pydantic.BaseModel):
-    CognitoIdentityProviderProperty: typing.Optional[list[CfnIdentityPoolDefCognitoidentityproviderpropertyParams]] = pydantic.Field(None, description='')
-    CognitoStreamsProperty: typing.Optional[list[CfnIdentityPoolDefCognitostreamspropertyParams]] = pydantic.Field(None, description='')
-    PushSyncProperty: typing.Optional[list[CfnIdentityPoolDefPushsyncpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnIdentityPoolDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnIdentityPoolDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnIdentityPoolDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnIdentityPoolDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnIdentityPoolDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnIdentityPoolDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnIdentityPoolDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CognitoIdentityProviderProperty: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefCognitoidentityproviderpropertyParams]] = pydantic.Field(None, description='')
+    CognitoStreamsProperty: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefCognitostreamspropertyParams]] = pydantic.Field(None, description='')
+    PushSyncProperty: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefPushsyncpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnIdentityPoolDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnIdentityPoolDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnIdentityPoolDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnIdentityPoolDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnIdentityPoolDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnIdentityPoolDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnIdentityPoolDefCognitoidentityproviderpropertyParams(pydantic.BaseModel):
     client_id: typing.Optional[str] = pydantic.Field(None, description='')
@@ -2340,26 +2340,26 @@ class CfnIdentityPoolPrincipalTagDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnIdentityPoolPrincipalTagDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnIdentityPoolPrincipalTagDefConfig] = pydantic.Field(None)
 
 
 class CfnIdentityPoolPrincipalTagDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnIdentityPoolPrincipalTagDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnIdentityPoolPrincipalTagDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnIdentityPoolPrincipalTagDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnIdentityPoolPrincipalTagDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnIdentityPoolPrincipalTagDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnIdentityPoolPrincipalTagDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnIdentityPoolPrincipalTagDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolPrincipalTagDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnIdentityPoolPrincipalTagDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -2439,29 +2439,29 @@ class CfnIdentityPoolRoleAttachmentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnIdentityPoolRoleAttachmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefConfig] = pydantic.Field(None)
 
 
 class CfnIdentityPoolRoleAttachmentDefConfig(pydantic.BaseModel):
-    MappingRuleProperty: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefMappingrulepropertyParams]] = pydantic.Field(None, description='')
-    RoleMappingProperty: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefRolemappingpropertyParams]] = pydantic.Field(None, description='')
-    RulesConfigurationTypeProperty: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefRulesconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    MappingRuleProperty: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefMappingrulepropertyParams]] = pydantic.Field(None, description='')
+    RoleMappingProperty: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefRolemappingpropertyParams]] = pydantic.Field(None, description='')
+    RulesConfigurationTypeProperty: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefRulesconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnIdentityPoolRoleAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnIdentityPoolRoleAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnIdentityPoolRoleAttachmentDefMappingrulepropertyParams(pydantic.BaseModel):
     claim: str = pydantic.Field(..., description='')
@@ -2558,28 +2558,28 @@ class CfnLogDeliveryConfigurationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLogDeliveryConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnLogDeliveryConfigurationDefConfig] = pydantic.Field(None)
 
 
 class CfnLogDeliveryConfigurationDefConfig(pydantic.BaseModel):
-    CloudWatchLogsConfigurationProperty: typing.Optional[list[CfnLogDeliveryConfigurationDefCloudwatchlogsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    LogConfigurationProperty: typing.Optional[list[CfnLogDeliveryConfigurationDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnLogDeliveryConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLogDeliveryConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLogDeliveryConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLogDeliveryConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLogDeliveryConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLogDeliveryConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLogDeliveryConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CloudWatchLogsConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefCloudwatchlogsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    LogConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLogDeliveryConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLogDeliveryConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLogDeliveryConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLogDeliveryConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLogDeliveryConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLogDeliveryConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnLogDeliveryConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnLogDeliveryConfigurationDefCloudwatchlogsconfigurationpropertyParams(pydantic.BaseModel):
     log_group_arn: typing.Optional[str] = pydantic.Field(None, description='')
@@ -2690,45 +2690,45 @@ class CfnUserPoolDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolDefConfig(pydantic.BaseModel):
-    AccountRecoverySettingProperty: typing.Optional[list[CfnUserPoolDefAccountrecoverysettingpropertyParams]] = pydantic.Field(None, description='')
-    AdminCreateUserConfigProperty: typing.Optional[list[CfnUserPoolDefAdmincreateuserconfigpropertyParams]] = pydantic.Field(None, description='')
-    CustomEmailSenderProperty: typing.Optional[list[CfnUserPoolDefCustomemailsenderpropertyParams]] = pydantic.Field(None, description='')
-    CustomSMSSenderProperty: typing.Optional[list[CfnUserPoolDefCustomsmssenderpropertyParams]] = pydantic.Field(None, description='')
-    DeviceConfigurationProperty: typing.Optional[list[CfnUserPoolDefDeviceconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EmailConfigurationProperty: typing.Optional[list[CfnUserPoolDefEmailconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    InviteMessageTemplateProperty: typing.Optional[list[CfnUserPoolDefInvitemessagetemplatepropertyParams]] = pydantic.Field(None, description='')
-    LambdaConfigProperty: typing.Optional[list[CfnUserPoolDefLambdaconfigpropertyParams]] = pydantic.Field(None, description='')
-    NumberAttributeConstraintsProperty: typing.Optional[list[CfnUserPoolDefNumberattributeconstraintspropertyParams]] = pydantic.Field(None, description='')
-    PasswordPolicyProperty: typing.Optional[list[CfnUserPoolDefPasswordpolicypropertyParams]] = pydantic.Field(None, description='')
-    PoliciesProperty: typing.Optional[list[CfnUserPoolDefPoliciespropertyParams]] = pydantic.Field(None, description='')
-    RecoveryOptionProperty: typing.Optional[list[CfnUserPoolDefRecoveryoptionpropertyParams]] = pydantic.Field(None, description='')
-    SchemaAttributeProperty: typing.Optional[list[CfnUserPoolDefSchemaattributepropertyParams]] = pydantic.Field(None, description='')
-    SmsConfigurationProperty: typing.Optional[list[CfnUserPoolDefSmsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    StringAttributeConstraintsProperty: typing.Optional[list[CfnUserPoolDefStringattributeconstraintspropertyParams]] = pydantic.Field(None, description='')
-    UserAttributeUpdateSettingsProperty: typing.Optional[list[CfnUserPoolDefUserattributeupdatesettingspropertyParams]] = pydantic.Field(None, description='')
-    UserPoolAddOnsProperty: typing.Optional[list[CfnUserPoolDefUserpooladdonspropertyParams]] = pydantic.Field(None, description='')
-    UsernameConfigurationProperty: typing.Optional[list[CfnUserPoolDefUsernameconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    VerificationMessageTemplateProperty: typing.Optional[list[CfnUserPoolDefVerificationmessagetemplatepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUserPoolDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccountRecoverySettingProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAccountrecoverysettingpropertyParams]] = pydantic.Field(None, description='')
+    AdminCreateUserConfigProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAdmincreateuserconfigpropertyParams]] = pydantic.Field(None, description='')
+    CustomEmailSenderProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefCustomemailsenderpropertyParams]] = pydantic.Field(None, description='')
+    CustomSMSSenderProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefCustomsmssenderpropertyParams]] = pydantic.Field(None, description='')
+    DeviceConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefDeviceconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EmailConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefEmailconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    InviteMessageTemplateProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefInvitemessagetemplatepropertyParams]] = pydantic.Field(None, description='')
+    LambdaConfigProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefLambdaconfigpropertyParams]] = pydantic.Field(None, description='')
+    NumberAttributeConstraintsProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefNumberattributeconstraintspropertyParams]] = pydantic.Field(None, description='')
+    PasswordPolicyProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefPasswordpolicypropertyParams]] = pydantic.Field(None, description='')
+    PoliciesProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefPoliciespropertyParams]] = pydantic.Field(None, description='')
+    RecoveryOptionProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefRecoveryoptionpropertyParams]] = pydantic.Field(None, description='')
+    SchemaAttributeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefSchemaattributepropertyParams]] = pydantic.Field(None, description='')
+    SmsConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefSmsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    StringAttributeConstraintsProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefStringattributeconstraintspropertyParams]] = pydantic.Field(None, description='')
+    UserAttributeUpdateSettingsProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefUserattributeupdatesettingspropertyParams]] = pydantic.Field(None, description='')
+    UserPoolAddOnsProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefUserpooladdonspropertyParams]] = pydantic.Field(None, description='')
+    UsernameConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefUsernameconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    VerificationMessageTemplateProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDefVerificationmessagetemplatepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnUserPoolDefAccountrecoverysettingpropertyParams(pydantic.BaseModel):
@@ -2948,28 +2948,28 @@ class CfnUserPoolClientDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolClientDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolClientDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolClientDefConfig(pydantic.BaseModel):
-    AnalyticsConfigurationProperty: typing.Optional[list[CfnUserPoolClientDefAnalyticsconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    TokenValidityUnitsProperty: typing.Optional[list[CfnUserPoolClientDefTokenvalidityunitspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUserPoolClientDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolClientDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolClientDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolClientDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolClientDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolClientDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolClientDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AnalyticsConfigurationProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAnalyticsconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    TokenValidityUnitsProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefTokenvalidityunitspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolClientDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolClientDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolClientDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolClientDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolClientDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolClientDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolClientDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolClientDefAnalyticsconfigurationpropertyParams(pydantic.BaseModel):
     application_arn: typing.Optional[str] = pydantic.Field(None, description='')
@@ -3063,27 +3063,27 @@ class CfnUserPoolDomainDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolDomainDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolDomainDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolDomainDefConfig(pydantic.BaseModel):
-    CustomDomainConfigTypeProperty: typing.Optional[list[CfnUserPoolDomainDefCustomdomainconfigtypepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUserPoolDomainDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolDomainDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolDomainDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolDomainDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolDomainDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolDomainDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolDomainDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CustomDomainConfigTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefCustomdomainconfigtypepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolDomainDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolDomainDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolDomainDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolDomainDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolDomainDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolDomainDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolDomainDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolDomainDefCustomdomainconfigtypepropertyParams(pydantic.BaseModel):
     certificate_arn: typing.Optional[str] = pydantic.Field(None, description='')
@@ -3169,26 +3169,26 @@ class CfnUserPoolGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolGroupDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnUserPoolGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolGroupDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3271,26 +3271,26 @@ class CfnUserPoolIdentityProviderDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolIdentityProviderDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolIdentityProviderDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolIdentityProviderDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnUserPoolIdentityProviderDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolIdentityProviderDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolIdentityProviderDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolIdentityProviderDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolIdentityProviderDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolIdentityProviderDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolIdentityProviderDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolIdentityProviderDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolIdentityProviderDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolIdentityProviderDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolIdentityProviderDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolIdentityProviderDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolIdentityProviderDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolIdentityProviderDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolIdentityProviderDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3371,27 +3371,27 @@ class CfnUserPoolResourceServerDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolResourceServerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolResourceServerDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolResourceServerDefConfig(pydantic.BaseModel):
-    ResourceServerScopeTypeProperty: typing.Optional[list[CfnUserPoolResourceServerDefResourceserverscopetypepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUserPoolResourceServerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolResourceServerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolResourceServerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolResourceServerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolResourceServerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolResourceServerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolResourceServerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ResourceServerScopeTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefResourceserverscopetypepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolResourceServerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolResourceServerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolResourceServerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolResourceServerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolResourceServerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolResourceServerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolResourceServerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolResourceServerDefResourceserverscopetypepropertyParams(pydantic.BaseModel):
     scope_description: str = pydantic.Field(..., description='')
@@ -3478,34 +3478,34 @@ class CfnUserPoolRiskConfigurationAttachmentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolRiskConfigurationAttachmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolRiskConfigurationAttachmentDefConfig(pydantic.BaseModel):
-    AccountTakeoverActionTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoveractiontypepropertyParams]] = pydantic.Field(None, description='')
-    AccountTakeoverActionsTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoveractionstypepropertyParams]] = pydantic.Field(None, description='')
-    AccountTakeoverRiskConfigurationTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoverriskconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
-    CompromisedCredentialsActionsTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefCompromisedcredentialsactionstypepropertyParams]] = pydantic.Field(None, description='')
-    CompromisedCredentialsRiskConfigurationTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefCompromisedcredentialsriskconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
-    NotifyConfigurationTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefNotifyconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
-    NotifyEmailTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefNotifyemailtypepropertyParams]] = pydantic.Field(None, description='')
-    RiskExceptionConfigurationTypeProperty: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefRiskexceptionconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AccountTakeoverActionTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoveractiontypepropertyParams]] = pydantic.Field(None, description='')
+    AccountTakeoverActionsTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoveractionstypepropertyParams]] = pydantic.Field(None, description='')
+    AccountTakeoverRiskConfigurationTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoverriskconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
+    CompromisedCredentialsActionsTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefCompromisedcredentialsactionstypepropertyParams]] = pydantic.Field(None, description='')
+    CompromisedCredentialsRiskConfigurationTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefCompromisedcredentialsriskconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
+    NotifyConfigurationTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefNotifyconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
+    NotifyEmailTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefNotifyemailtypepropertyParams]] = pydantic.Field(None, description='')
+    RiskExceptionConfigurationTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefRiskexceptionconfigurationtypepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolRiskConfigurationAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolRiskConfigurationAttachmentDefAccounttakeoveractiontypepropertyParams(pydantic.BaseModel):
     event_action: str = pydantic.Field(..., description='')
@@ -3630,26 +3630,26 @@ class CfnUserPoolUICustomizationAttachmentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolUICustomizationAttachmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolUICustomizationAttachmentDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolUICustomizationAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUICustomizationAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolUICustomizationAttachmentDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -3734,27 +3734,27 @@ class CfnUserPoolUserDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolUserDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolUserDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolUserDefConfig(pydantic.BaseModel):
-    AttributeTypeProperty: typing.Optional[list[CfnUserPoolUserDefAttributetypepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnUserPoolUserDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolUserDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolUserDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolUserDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolUserDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolUserDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolUserDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AttributeTypeProperty: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAttributetypepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolUserDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolUserDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolUserDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolUserDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolUserDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolUserDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUserDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolUserDefAttributetypepropertyParams(pydantic.BaseModel):
     name: typing.Optional[str] = pydantic.Field(None, description='')
@@ -3839,26 +3839,26 @@ class CfnUserPoolUserToGroupAttachmentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnUserPoolUserToGroupAttachmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefConfig] = pydantic.Field(None)
 
 
 class CfnUserPoolUserToGroupAttachmentDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnUserPoolUserToGroupAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_cognito.CfnUserPoolUserToGroupAttachmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnUserPoolUserToGroupAttachmentDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -4196,142 +4196,142 @@ class CfnUserPoolUserToGroupAttachmentPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    BooleanAttribute: typing.Optional[dict[str, BooleanAttributeDef]] = pydantic.Field(None)
-    ClientAttributes: typing.Optional[dict[str, ClientAttributesDef]] = pydantic.Field(None)
-    DateTimeAttribute: typing.Optional[dict[str, DateTimeAttributeDef]] = pydantic.Field(None)
-    NumberAttribute: typing.Optional[dict[str, NumberAttributeDef]] = pydantic.Field(None)
-    OAuthScope: typing.Optional[dict[str, OAuthScopeDef]] = pydantic.Field(None)
-    ProviderAttribute: typing.Optional[dict[str, ProviderAttributeDef]] = pydantic.Field(None)
-    ResourceServerScope: typing.Optional[dict[str, ResourceServerScopeDef]] = pydantic.Field(None)
-    StringAttribute: typing.Optional[dict[str, StringAttributeDef]] = pydantic.Field(None)
-    UserPoolClientIdentityProvider: typing.Optional[dict[str, UserPoolClientIdentityProviderDef]] = pydantic.Field(None)
-    UserPoolEmail: typing.Optional[dict[str, UserPoolEmailDef]] = pydantic.Field(None)
-    UserPoolIdentityProvider: typing.Optional[dict[str, UserPoolIdentityProviderDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderSamlMetadata: typing.Optional[dict[str, UserPoolIdentityProviderSamlMetadataDef]] = pydantic.Field(None)
-    UserPoolOperation: typing.Optional[dict[str, UserPoolOperationDef]] = pydantic.Field(None)
-    UserPool: typing.Optional[dict[str, UserPoolDef]] = pydantic.Field(None)
-    UserPoolClient: typing.Optional[dict[str, UserPoolClientDef]] = pydantic.Field(None)
-    UserPoolDomain: typing.Optional[dict[str, UserPoolDomainDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderAmazon: typing.Optional[dict[str, UserPoolIdentityProviderAmazonDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderApple: typing.Optional[dict[str, UserPoolIdentityProviderAppleDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderFacebook: typing.Optional[dict[str, UserPoolIdentityProviderFacebookDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderGoogle: typing.Optional[dict[str, UserPoolIdentityProviderGoogleDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderOidc: typing.Optional[dict[str, UserPoolIdentityProviderOidcDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderSaml: typing.Optional[dict[str, UserPoolIdentityProviderSamlDef]] = pydantic.Field(None)
-    UserPoolResourceServer: typing.Optional[dict[str, UserPoolResourceServerDef]] = pydantic.Field(None)
-    AttributeMapping: typing.Optional[dict[str, AttributeMappingDef]] = pydantic.Field(None)
-    AuthFlow: typing.Optional[dict[str, AuthFlowDef]] = pydantic.Field(None)
-    AutoVerifiedAttrs: typing.Optional[dict[str, AutoVerifiedAttrsDef]] = pydantic.Field(None)
-    BaseUrlOptions: typing.Optional[dict[str, BaseUrlOptionsDef]] = pydantic.Field(None)
-    CfnIdentityPool_CognitoIdentityProviderProperty: typing.Optional[dict[str, CfnIdentityPool_CognitoIdentityProviderPropertyDef]] = pydantic.Field(None)
-    CfnIdentityPool_CognitoStreamsProperty: typing.Optional[dict[str, CfnIdentityPool_CognitoStreamsPropertyDef]] = pydantic.Field(None)
-    CfnIdentityPool_PushSyncProperty: typing.Optional[dict[str, CfnIdentityPool_PushSyncPropertyDef]] = pydantic.Field(None)
-    CfnIdentityPoolRoleAttachment_MappingRuleProperty: typing.Optional[dict[str, CfnIdentityPoolRoleAttachment_MappingRulePropertyDef]] = pydantic.Field(None)
-    CfnIdentityPoolRoleAttachment_RoleMappingProperty: typing.Optional[dict[str, CfnIdentityPoolRoleAttachment_RoleMappingPropertyDef]] = pydantic.Field(None)
-    CfnIdentityPoolRoleAttachment_RulesConfigurationTypeProperty: typing.Optional[dict[str, CfnIdentityPoolRoleAttachment_RulesConfigurationTypePropertyDef]] = pydantic.Field(None)
-    CfnLogDeliveryConfiguration_CloudWatchLogsConfigurationProperty: typing.Optional[dict[str, CfnLogDeliveryConfiguration_CloudWatchLogsConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnLogDeliveryConfiguration_LogConfigurationProperty: typing.Optional[dict[str, CfnLogDeliveryConfiguration_LogConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_AccountRecoverySettingProperty: typing.Optional[dict[str, CfnUserPool_AccountRecoverySettingPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_AdminCreateUserConfigProperty: typing.Optional[dict[str, CfnUserPool_AdminCreateUserConfigPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_CustomEmailSenderProperty: typing.Optional[dict[str, CfnUserPool_CustomEmailSenderPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_CustomSMSSenderProperty: typing.Optional[dict[str, CfnUserPool_CustomSMSSenderPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_DeviceConfigurationProperty: typing.Optional[dict[str, CfnUserPool_DeviceConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_EmailConfigurationProperty: typing.Optional[dict[str, CfnUserPool_EmailConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_InviteMessageTemplateProperty: typing.Optional[dict[str, CfnUserPool_InviteMessageTemplatePropertyDef]] = pydantic.Field(None)
-    CfnUserPool_LambdaConfigProperty: typing.Optional[dict[str, CfnUserPool_LambdaConfigPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_NumberAttributeConstraintsProperty: typing.Optional[dict[str, CfnUserPool_NumberAttributeConstraintsPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_PasswordPolicyProperty: typing.Optional[dict[str, CfnUserPool_PasswordPolicyPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_PoliciesProperty: typing.Optional[dict[str, CfnUserPool_PoliciesPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_RecoveryOptionProperty: typing.Optional[dict[str, CfnUserPool_RecoveryOptionPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_SchemaAttributeProperty: typing.Optional[dict[str, CfnUserPool_SchemaAttributePropertyDef]] = pydantic.Field(None)
-    CfnUserPool_SmsConfigurationProperty: typing.Optional[dict[str, CfnUserPool_SmsConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_StringAttributeConstraintsProperty: typing.Optional[dict[str, CfnUserPool_StringAttributeConstraintsPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_UserAttributeUpdateSettingsProperty: typing.Optional[dict[str, CfnUserPool_UserAttributeUpdateSettingsPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_UsernameConfigurationProperty: typing.Optional[dict[str, CfnUserPool_UsernameConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_UserPoolAddOnsProperty: typing.Optional[dict[str, CfnUserPool_UserPoolAddOnsPropertyDef]] = pydantic.Field(None)
-    CfnUserPool_VerificationMessageTemplateProperty: typing.Optional[dict[str, CfnUserPool_VerificationMessageTemplatePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolClient_AnalyticsConfigurationProperty: typing.Optional[dict[str, CfnUserPoolClient_AnalyticsConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnUserPoolClient_TokenValidityUnitsProperty: typing.Optional[dict[str, CfnUserPoolClient_TokenValidityUnitsPropertyDef]] = pydantic.Field(None)
-    CfnUserPoolDomain_CustomDomainConfigTypeProperty: typing.Optional[dict[str, CfnUserPoolDomain_CustomDomainConfigTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolResourceServer_ResourceServerScopeTypeProperty: typing.Optional[dict[str, CfnUserPoolResourceServer_ResourceServerScopeTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionsTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionsTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_AccountTakeoverRiskConfigurationTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_AccountTakeoverRiskConfigurationTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsActionsTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsActionsTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsRiskConfigurationTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsRiskConfigurationTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_NotifyConfigurationTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_NotifyConfigurationTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_NotifyEmailTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_NotifyEmailTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment_RiskExceptionConfigurationTypeProperty: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachment_RiskExceptionConfigurationTypePropertyDef]] = pydantic.Field(None)
-    CfnUserPoolUser_AttributeTypeProperty: typing.Optional[dict[str, CfnUserPoolUser_AttributeTypePropertyDef]] = pydantic.Field(None)
-    CognitoDomainOptions: typing.Optional[dict[str, CognitoDomainOptionsDef]] = pydantic.Field(None)
-    CustomAttributeConfig: typing.Optional[dict[str, CustomAttributeConfigDef]] = pydantic.Field(None)
-    CustomAttributeProps: typing.Optional[dict[str, CustomAttributePropsDef]] = pydantic.Field(None)
-    CustomDomainOptions: typing.Optional[dict[str, CustomDomainOptionsDef]] = pydantic.Field(None)
-    DeviceTracking: typing.Optional[dict[str, DeviceTrackingDef]] = pydantic.Field(None)
-    EmailSettings: typing.Optional[dict[str, EmailSettingsDef]] = pydantic.Field(None)
-    KeepOriginalAttrs: typing.Optional[dict[str, KeepOriginalAttrsDef]] = pydantic.Field(None)
-    MfaSecondFactor: typing.Optional[dict[str, MfaSecondFactorDef]] = pydantic.Field(None)
-    NumberAttributeConstraints: typing.Optional[dict[str, NumberAttributeConstraintsDef]] = pydantic.Field(None)
-    NumberAttributeProps: typing.Optional[dict[str, NumberAttributePropsDef]] = pydantic.Field(None)
-    OAuthFlows: typing.Optional[dict[str, OAuthFlowsDef]] = pydantic.Field(None)
-    OAuthSettings: typing.Optional[dict[str, OAuthSettingsDef]] = pydantic.Field(None)
-    OidcEndpoints: typing.Optional[dict[str, OidcEndpointsDef]] = pydantic.Field(None)
-    PasswordPolicy: typing.Optional[dict[str, PasswordPolicyDef]] = pydantic.Field(None)
-    ResourceServerScopeProps: typing.Optional[dict[str, ResourceServerScopePropsDef]] = pydantic.Field(None)
-    SignInAliases: typing.Optional[dict[str, SignInAliasesDef]] = pydantic.Field(None)
-    SignInUrlOptions: typing.Optional[dict[str, SignInUrlOptionsDef]] = pydantic.Field(None)
-    StandardAttribute: typing.Optional[dict[str, StandardAttributeDef]] = pydantic.Field(None)
-    StandardAttributes: typing.Optional[dict[str, StandardAttributesDef]] = pydantic.Field(None)
-    StandardAttributesMask: typing.Optional[dict[str, StandardAttributesMaskDef]] = pydantic.Field(None)
-    StringAttributeConstraints: typing.Optional[dict[str, StringAttributeConstraintsDef]] = pydantic.Field(None)
-    StringAttributeProps: typing.Optional[dict[str, StringAttributePropsDef]] = pydantic.Field(None)
-    UserInvitationConfig: typing.Optional[dict[str, UserInvitationConfigDef]] = pydantic.Field(None)
-    UserPoolClientOptions: typing.Optional[dict[str, UserPoolClientOptionsDef]] = pydantic.Field(None)
-    UserPoolClientProps: typing.Optional[dict[str, UserPoolClientPropsDef]] = pydantic.Field(None)
-    UserPoolDomainOptions: typing.Optional[dict[str, UserPoolDomainOptionsDef]] = pydantic.Field(None)
-    UserPoolDomainProps: typing.Optional[dict[str, UserPoolDomainPropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderAmazonProps: typing.Optional[dict[str, UserPoolIdentityProviderAmazonPropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderAppleProps: typing.Optional[dict[str, UserPoolIdentityProviderApplePropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderFacebookProps: typing.Optional[dict[str, UserPoolIdentityProviderFacebookPropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderGoogleProps: typing.Optional[dict[str, UserPoolIdentityProviderGooglePropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderOidcProps: typing.Optional[dict[str, UserPoolIdentityProviderOidcPropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderProps: typing.Optional[dict[str, UserPoolIdentityProviderPropsDef]] = pydantic.Field(None)
-    UserPoolIdentityProviderSamlProps: typing.Optional[dict[str, UserPoolIdentityProviderSamlPropsDef]] = pydantic.Field(None)
-    UserPoolProps: typing.Optional[dict[str, UserPoolPropsDef]] = pydantic.Field(None)
-    UserPoolResourceServerOptions: typing.Optional[dict[str, UserPoolResourceServerOptionsDef]] = pydantic.Field(None)
-    UserPoolResourceServerProps: typing.Optional[dict[str, UserPoolResourceServerPropsDef]] = pydantic.Field(None)
-    UserPoolSESOptions: typing.Optional[dict[str, UserPoolSESOptionsDef]] = pydantic.Field(None)
-    UserPoolTriggers: typing.Optional[dict[str, UserPoolTriggersDef]] = pydantic.Field(None)
-    UserVerificationConfig: typing.Optional[dict[str, UserVerificationConfigDef]] = pydantic.Field(None)
-    CfnIdentityPool: typing.Optional[dict[str, CfnIdentityPoolDef]] = pydantic.Field(None)
-    CfnIdentityPoolPrincipalTag: typing.Optional[dict[str, CfnIdentityPoolPrincipalTagDef]] = pydantic.Field(None)
-    CfnIdentityPoolRoleAttachment: typing.Optional[dict[str, CfnIdentityPoolRoleAttachmentDef]] = pydantic.Field(None)
-    CfnLogDeliveryConfiguration: typing.Optional[dict[str, CfnLogDeliveryConfigurationDef]] = pydantic.Field(None)
-    CfnUserPool: typing.Optional[dict[str, CfnUserPoolDef]] = pydantic.Field(None)
-    CfnUserPoolClient: typing.Optional[dict[str, CfnUserPoolClientDef]] = pydantic.Field(None)
-    CfnUserPoolDomain: typing.Optional[dict[str, CfnUserPoolDomainDef]] = pydantic.Field(None)
-    CfnUserPoolGroup: typing.Optional[dict[str, CfnUserPoolGroupDef]] = pydantic.Field(None)
-    CfnUserPoolIdentityProvider: typing.Optional[dict[str, CfnUserPoolIdentityProviderDef]] = pydantic.Field(None)
-    CfnUserPoolResourceServer: typing.Optional[dict[str, CfnUserPoolResourceServerDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachment: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachmentDef]] = pydantic.Field(None)
-    CfnUserPoolUICustomizationAttachment: typing.Optional[dict[str, CfnUserPoolUICustomizationAttachmentDef]] = pydantic.Field(None)
-    CfnUserPoolUser: typing.Optional[dict[str, CfnUserPoolUserDef]] = pydantic.Field(None)
-    CfnUserPoolUserToGroupAttachment: typing.Optional[dict[str, CfnUserPoolUserToGroupAttachmentDef]] = pydantic.Field(None)
-    CfnIdentityPoolPrincipalTagProps: typing.Optional[dict[str, CfnIdentityPoolPrincipalTagPropsDef]] = pydantic.Field(None)
-    CfnIdentityPoolProps: typing.Optional[dict[str, CfnIdentityPoolPropsDef]] = pydantic.Field(None)
-    CfnIdentityPoolRoleAttachmentProps: typing.Optional[dict[str, CfnIdentityPoolRoleAttachmentPropsDef]] = pydantic.Field(None)
-    CfnLogDeliveryConfigurationProps: typing.Optional[dict[str, CfnLogDeliveryConfigurationPropsDef]] = pydantic.Field(None)
-    CfnUserPoolClientProps: typing.Optional[dict[str, CfnUserPoolClientPropsDef]] = pydantic.Field(None)
-    CfnUserPoolDomainProps: typing.Optional[dict[str, CfnUserPoolDomainPropsDef]] = pydantic.Field(None)
-    CfnUserPoolGroupProps: typing.Optional[dict[str, CfnUserPoolGroupPropsDef]] = pydantic.Field(None)
-    CfnUserPoolIdentityProviderProps: typing.Optional[dict[str, CfnUserPoolIdentityProviderPropsDef]] = pydantic.Field(None)
-    CfnUserPoolProps: typing.Optional[dict[str, CfnUserPoolPropsDef]] = pydantic.Field(None)
-    CfnUserPoolResourceServerProps: typing.Optional[dict[str, CfnUserPoolResourceServerPropsDef]] = pydantic.Field(None)
-    CfnUserPoolRiskConfigurationAttachmentProps: typing.Optional[dict[str, CfnUserPoolRiskConfigurationAttachmentPropsDef]] = pydantic.Field(None)
-    CfnUserPoolUICustomizationAttachmentProps: typing.Optional[dict[str, CfnUserPoolUICustomizationAttachmentPropsDef]] = pydantic.Field(None)
-    CfnUserPoolUserProps: typing.Optional[dict[str, CfnUserPoolUserPropsDef]] = pydantic.Field(None)
-    CfnUserPoolUserToGroupAttachmentProps: typing.Optional[dict[str, CfnUserPoolUserToGroupAttachmentPropsDef]] = pydantic.Field(None)
+    BooleanAttribute: typing.Optional[dict[str, models.aws_cognito.BooleanAttributeDef]] = pydantic.Field(None)
+    ClientAttributes: typing.Optional[dict[str, models.aws_cognito.ClientAttributesDef]] = pydantic.Field(None)
+    DateTimeAttribute: typing.Optional[dict[str, models.aws_cognito.DateTimeAttributeDef]] = pydantic.Field(None)
+    NumberAttribute: typing.Optional[dict[str, models.aws_cognito.NumberAttributeDef]] = pydantic.Field(None)
+    OAuthScope: typing.Optional[dict[str, models.aws_cognito.OAuthScopeDef]] = pydantic.Field(None)
+    ProviderAttribute: typing.Optional[dict[str, models.aws_cognito.ProviderAttributeDef]] = pydantic.Field(None)
+    ResourceServerScope: typing.Optional[dict[str, models.aws_cognito.ResourceServerScopeDef]] = pydantic.Field(None)
+    StringAttribute: typing.Optional[dict[str, models.aws_cognito.StringAttributeDef]] = pydantic.Field(None)
+    UserPoolClientIdentityProvider: typing.Optional[dict[str, models.aws_cognito.UserPoolClientIdentityProviderDef]] = pydantic.Field(None)
+    UserPoolEmail: typing.Optional[dict[str, models.aws_cognito.UserPoolEmailDef]] = pydantic.Field(None)
+    UserPoolIdentityProvider: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderSamlMetadata: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderSamlMetadataDef]] = pydantic.Field(None)
+    UserPoolOperation: typing.Optional[dict[str, models.aws_cognito.UserPoolOperationDef]] = pydantic.Field(None)
+    UserPool: typing.Optional[dict[str, models.aws_cognito.UserPoolDef]] = pydantic.Field(None)
+    UserPoolClient: typing.Optional[dict[str, models.aws_cognito.UserPoolClientDef]] = pydantic.Field(None)
+    UserPoolDomain: typing.Optional[dict[str, models.aws_cognito.UserPoolDomainDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderAmazon: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderAmazonDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderApple: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderAppleDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderFacebook: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderFacebookDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderGoogle: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderGoogleDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderOidc: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderOidcDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderSaml: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderSamlDef]] = pydantic.Field(None)
+    UserPoolResourceServer: typing.Optional[dict[str, models.aws_cognito.UserPoolResourceServerDef]] = pydantic.Field(None)
+    AttributeMapping: typing.Optional[dict[str, models.aws_cognito.AttributeMappingDef]] = pydantic.Field(None)
+    AuthFlow: typing.Optional[dict[str, models.aws_cognito.AuthFlowDef]] = pydantic.Field(None)
+    AutoVerifiedAttrs: typing.Optional[dict[str, models.aws_cognito.AutoVerifiedAttrsDef]] = pydantic.Field(None)
+    BaseUrlOptions: typing.Optional[dict[str, models.aws_cognito.BaseUrlOptionsDef]] = pydantic.Field(None)
+    CfnIdentityPool_CognitoIdentityProviderProperty: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPool_CognitoIdentityProviderPropertyDef]] = pydantic.Field(None)
+    CfnIdentityPool_CognitoStreamsProperty: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPool_CognitoStreamsPropertyDef]] = pydantic.Field(None)
+    CfnIdentityPool_PushSyncProperty: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPool_PushSyncPropertyDef]] = pydantic.Field(None)
+    CfnIdentityPoolRoleAttachment_MappingRuleProperty: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolRoleAttachment_MappingRulePropertyDef]] = pydantic.Field(None)
+    CfnIdentityPoolRoleAttachment_RoleMappingProperty: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolRoleAttachment_RoleMappingPropertyDef]] = pydantic.Field(None)
+    CfnIdentityPoolRoleAttachment_RulesConfigurationTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolRoleAttachment_RulesConfigurationTypePropertyDef]] = pydantic.Field(None)
+    CfnLogDeliveryConfiguration_CloudWatchLogsConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnLogDeliveryConfiguration_CloudWatchLogsConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnLogDeliveryConfiguration_LogConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnLogDeliveryConfiguration_LogConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_AccountRecoverySettingProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_AccountRecoverySettingPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_AdminCreateUserConfigProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_AdminCreateUserConfigPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_CustomEmailSenderProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_CustomEmailSenderPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_CustomSMSSenderProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_CustomSMSSenderPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_DeviceConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_DeviceConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_EmailConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_EmailConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_InviteMessageTemplateProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_InviteMessageTemplatePropertyDef]] = pydantic.Field(None)
+    CfnUserPool_LambdaConfigProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_LambdaConfigPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_NumberAttributeConstraintsProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_NumberAttributeConstraintsPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_PasswordPolicyProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_PasswordPolicyPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_PoliciesProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_PoliciesPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_RecoveryOptionProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_RecoveryOptionPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_SchemaAttributeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_SchemaAttributePropertyDef]] = pydantic.Field(None)
+    CfnUserPool_SmsConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_SmsConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_StringAttributeConstraintsProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_StringAttributeConstraintsPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_UserAttributeUpdateSettingsProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_UserAttributeUpdateSettingsPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_UsernameConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_UsernameConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_UserPoolAddOnsProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_UserPoolAddOnsPropertyDef]] = pydantic.Field(None)
+    CfnUserPool_VerificationMessageTemplateProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPool_VerificationMessageTemplatePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolClient_AnalyticsConfigurationProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolClient_AnalyticsConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnUserPoolClient_TokenValidityUnitsProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolClient_TokenValidityUnitsPropertyDef]] = pydantic.Field(None)
+    CfnUserPoolDomain_CustomDomainConfigTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolDomain_CustomDomainConfigTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolResourceServer_ResourceServerScopeTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolResourceServer_ResourceServerScopeTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionsTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionsTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_AccountTakeoverActionTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_AccountTakeoverRiskConfigurationTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_AccountTakeoverRiskConfigurationTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsActionsTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsActionsTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsRiskConfigurationTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_CompromisedCredentialsRiskConfigurationTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_NotifyConfigurationTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_NotifyConfigurationTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_NotifyEmailTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_NotifyEmailTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment_RiskExceptionConfigurationTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachment_RiskExceptionConfigurationTypePropertyDef]] = pydantic.Field(None)
+    CfnUserPoolUser_AttributeTypeProperty: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUser_AttributeTypePropertyDef]] = pydantic.Field(None)
+    CognitoDomainOptions: typing.Optional[dict[str, models.aws_cognito.CognitoDomainOptionsDef]] = pydantic.Field(None)
+    CustomAttributeConfig: typing.Optional[dict[str, models.aws_cognito.CustomAttributeConfigDef]] = pydantic.Field(None)
+    CustomAttributeProps: typing.Optional[dict[str, models.aws_cognito.CustomAttributePropsDef]] = pydantic.Field(None)
+    CustomDomainOptions: typing.Optional[dict[str, models.aws_cognito.CustomDomainOptionsDef]] = pydantic.Field(None)
+    DeviceTracking: typing.Optional[dict[str, models.aws_cognito.DeviceTrackingDef]] = pydantic.Field(None)
+    EmailSettings: typing.Optional[dict[str, models.aws_cognito.EmailSettingsDef]] = pydantic.Field(None)
+    KeepOriginalAttrs: typing.Optional[dict[str, models.aws_cognito.KeepOriginalAttrsDef]] = pydantic.Field(None)
+    MfaSecondFactor: typing.Optional[dict[str, models.aws_cognito.MfaSecondFactorDef]] = pydantic.Field(None)
+    NumberAttributeConstraints: typing.Optional[dict[str, models.aws_cognito.NumberAttributeConstraintsDef]] = pydantic.Field(None)
+    NumberAttributeProps: typing.Optional[dict[str, models.aws_cognito.NumberAttributePropsDef]] = pydantic.Field(None)
+    OAuthFlows: typing.Optional[dict[str, models.aws_cognito.OAuthFlowsDef]] = pydantic.Field(None)
+    OAuthSettings: typing.Optional[dict[str, models.aws_cognito.OAuthSettingsDef]] = pydantic.Field(None)
+    OidcEndpoints: typing.Optional[dict[str, models.aws_cognito.OidcEndpointsDef]] = pydantic.Field(None)
+    PasswordPolicy: typing.Optional[dict[str, models.aws_cognito.PasswordPolicyDef]] = pydantic.Field(None)
+    ResourceServerScopeProps: typing.Optional[dict[str, models.aws_cognito.ResourceServerScopePropsDef]] = pydantic.Field(None)
+    SignInAliases: typing.Optional[dict[str, models.aws_cognito.SignInAliasesDef]] = pydantic.Field(None)
+    SignInUrlOptions: typing.Optional[dict[str, models.aws_cognito.SignInUrlOptionsDef]] = pydantic.Field(None)
+    StandardAttribute: typing.Optional[dict[str, models.aws_cognito.StandardAttributeDef]] = pydantic.Field(None)
+    StandardAttributes: typing.Optional[dict[str, models.aws_cognito.StandardAttributesDef]] = pydantic.Field(None)
+    StandardAttributesMask: typing.Optional[dict[str, models.aws_cognito.StandardAttributesMaskDef]] = pydantic.Field(None)
+    StringAttributeConstraints: typing.Optional[dict[str, models.aws_cognito.StringAttributeConstraintsDef]] = pydantic.Field(None)
+    StringAttributeProps: typing.Optional[dict[str, models.aws_cognito.StringAttributePropsDef]] = pydantic.Field(None)
+    UserInvitationConfig: typing.Optional[dict[str, models.aws_cognito.UserInvitationConfigDef]] = pydantic.Field(None)
+    UserPoolClientOptions: typing.Optional[dict[str, models.aws_cognito.UserPoolClientOptionsDef]] = pydantic.Field(None)
+    UserPoolClientProps: typing.Optional[dict[str, models.aws_cognito.UserPoolClientPropsDef]] = pydantic.Field(None)
+    UserPoolDomainOptions: typing.Optional[dict[str, models.aws_cognito.UserPoolDomainOptionsDef]] = pydantic.Field(None)
+    UserPoolDomainProps: typing.Optional[dict[str, models.aws_cognito.UserPoolDomainPropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderAmazonProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderAmazonPropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderAppleProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderApplePropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderFacebookProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderFacebookPropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderGoogleProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderGooglePropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderOidcProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderOidcPropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderPropsDef]] = pydantic.Field(None)
+    UserPoolIdentityProviderSamlProps: typing.Optional[dict[str, models.aws_cognito.UserPoolIdentityProviderSamlPropsDef]] = pydantic.Field(None)
+    UserPoolProps: typing.Optional[dict[str, models.aws_cognito.UserPoolPropsDef]] = pydantic.Field(None)
+    UserPoolResourceServerOptions: typing.Optional[dict[str, models.aws_cognito.UserPoolResourceServerOptionsDef]] = pydantic.Field(None)
+    UserPoolResourceServerProps: typing.Optional[dict[str, models.aws_cognito.UserPoolResourceServerPropsDef]] = pydantic.Field(None)
+    UserPoolSESOptions: typing.Optional[dict[str, models.aws_cognito.UserPoolSESOptionsDef]] = pydantic.Field(None)
+    UserPoolTriggers: typing.Optional[dict[str, models.aws_cognito.UserPoolTriggersDef]] = pydantic.Field(None)
+    UserVerificationConfig: typing.Optional[dict[str, models.aws_cognito.UserVerificationConfigDef]] = pydantic.Field(None)
+    CfnIdentityPool: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolDef]] = pydantic.Field(None)
+    CfnIdentityPoolPrincipalTag: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolPrincipalTagDef]] = pydantic.Field(None)
+    CfnIdentityPoolRoleAttachment: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolRoleAttachmentDef]] = pydantic.Field(None)
+    CfnLogDeliveryConfiguration: typing.Optional[dict[str, models.aws_cognito.CfnLogDeliveryConfigurationDef]] = pydantic.Field(None)
+    CfnUserPool: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolDef]] = pydantic.Field(None)
+    CfnUserPoolClient: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolClientDef]] = pydantic.Field(None)
+    CfnUserPoolDomain: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolDomainDef]] = pydantic.Field(None)
+    CfnUserPoolGroup: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolGroupDef]] = pydantic.Field(None)
+    CfnUserPoolIdentityProvider: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolIdentityProviderDef]] = pydantic.Field(None)
+    CfnUserPoolResourceServer: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolResourceServerDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachment: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentDef]] = pydantic.Field(None)
+    CfnUserPoolUICustomizationAttachment: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUICustomizationAttachmentDef]] = pydantic.Field(None)
+    CfnUserPoolUser: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUserDef]] = pydantic.Field(None)
+    CfnUserPoolUserToGroupAttachment: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUserToGroupAttachmentDef]] = pydantic.Field(None)
+    CfnIdentityPoolPrincipalTagProps: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolPrincipalTagPropsDef]] = pydantic.Field(None)
+    CfnIdentityPoolProps: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolPropsDef]] = pydantic.Field(None)
+    CfnIdentityPoolRoleAttachmentProps: typing.Optional[dict[str, models.aws_cognito.CfnIdentityPoolRoleAttachmentPropsDef]] = pydantic.Field(None)
+    CfnLogDeliveryConfigurationProps: typing.Optional[dict[str, models.aws_cognito.CfnLogDeliveryConfigurationPropsDef]] = pydantic.Field(None)
+    CfnUserPoolClientProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolClientPropsDef]] = pydantic.Field(None)
+    CfnUserPoolDomainProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolDomainPropsDef]] = pydantic.Field(None)
+    CfnUserPoolGroupProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolGroupPropsDef]] = pydantic.Field(None)
+    CfnUserPoolIdentityProviderProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolIdentityProviderPropsDef]] = pydantic.Field(None)
+    CfnUserPoolProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolPropsDef]] = pydantic.Field(None)
+    CfnUserPoolResourceServerProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolResourceServerPropsDef]] = pydantic.Field(None)
+    CfnUserPoolRiskConfigurationAttachmentProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolRiskConfigurationAttachmentPropsDef]] = pydantic.Field(None)
+    CfnUserPoolUICustomizationAttachmentProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUICustomizationAttachmentPropsDef]] = pydantic.Field(None)
+    CfnUserPoolUserProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUserPropsDef]] = pydantic.Field(None)
+    CfnUserPoolUserToGroupAttachmentProps: typing.Optional[dict[str, models.aws_cognito.CfnUserPoolUserToGroupAttachmentPropsDef]] = pydantic.Field(None)
     ...
+
+import models

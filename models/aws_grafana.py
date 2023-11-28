@@ -123,32 +123,32 @@ class CfnWorkspaceDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnWorkspaceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_grafana.CfnWorkspaceDefConfig] = pydantic.Field(None)
 
 
 class CfnWorkspaceDefConfig(pydantic.BaseModel):
-    AssertionAttributesProperty: typing.Optional[list[CfnWorkspaceDefAssertionattributespropertyParams]] = pydantic.Field(None, description='')
-    IdpMetadataProperty: typing.Optional[list[CfnWorkspaceDefIdpmetadatapropertyParams]] = pydantic.Field(None, description='')
-    NetworkAccessControlProperty: typing.Optional[list[CfnWorkspaceDefNetworkaccesscontrolpropertyParams]] = pydantic.Field(None, description='')
-    RoleValuesProperty: typing.Optional[list[CfnWorkspaceDefRolevaluespropertyParams]] = pydantic.Field(None, description='')
-    SamlConfigurationProperty: typing.Optional[list[CfnWorkspaceDefSamlconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    VpcConfigurationProperty: typing.Optional[list[CfnWorkspaceDefVpcconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnWorkspaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnWorkspaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnWorkspaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnWorkspaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnWorkspaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnWorkspaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnWorkspaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AssertionAttributesProperty: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAssertionattributespropertyParams]] = pydantic.Field(None, description='')
+    IdpMetadataProperty: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefIdpmetadatapropertyParams]] = pydantic.Field(None, description='')
+    NetworkAccessControlProperty: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefNetworkaccesscontrolpropertyParams]] = pydantic.Field(None, description='')
+    RoleValuesProperty: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefRolevaluespropertyParams]] = pydantic.Field(None, description='')
+    SamlConfigurationProperty: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefSamlconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    VpcConfigurationProperty: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefVpcconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnWorkspaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnWorkspaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnWorkspaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnWorkspaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnWorkspaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnWorkspaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_grafana.CfnWorkspaceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnWorkspaceDefAssertionattributespropertyParams(pydantic.BaseModel):
     email: typing.Optional[str] = pydantic.Field(None, description='')
@@ -280,15 +280,15 @@ class CfnWorkspacePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    CfnWorkspace_AssertionAttributesProperty: typing.Optional[dict[str, CfnWorkspace_AssertionAttributesPropertyDef]] = pydantic.Field(None)
-    CfnWorkspace_IdpMetadataProperty: typing.Optional[dict[str, CfnWorkspace_IdpMetadataPropertyDef]] = pydantic.Field(None)
-    CfnWorkspace_NetworkAccessControlProperty: typing.Optional[dict[str, CfnWorkspace_NetworkAccessControlPropertyDef]] = pydantic.Field(None)
-    CfnWorkspace_RoleValuesProperty: typing.Optional[dict[str, CfnWorkspace_RoleValuesPropertyDef]] = pydantic.Field(None)
-    CfnWorkspace_SamlConfigurationProperty: typing.Optional[dict[str, CfnWorkspace_SamlConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnWorkspace_VpcConfigurationProperty: typing.Optional[dict[str, CfnWorkspace_VpcConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnWorkspace: typing.Optional[dict[str, CfnWorkspaceDef]] = pydantic.Field(None)
-    CfnWorkspaceProps: typing.Optional[dict[str, CfnWorkspacePropsDef]] = pydantic.Field(None)
+    CfnWorkspace_AssertionAttributesProperty: typing.Optional[dict[str, models.aws_grafana.CfnWorkspace_AssertionAttributesPropertyDef]] = pydantic.Field(None)
+    CfnWorkspace_IdpMetadataProperty: typing.Optional[dict[str, models.aws_grafana.CfnWorkspace_IdpMetadataPropertyDef]] = pydantic.Field(None)
+    CfnWorkspace_NetworkAccessControlProperty: typing.Optional[dict[str, models.aws_grafana.CfnWorkspace_NetworkAccessControlPropertyDef]] = pydantic.Field(None)
+    CfnWorkspace_RoleValuesProperty: typing.Optional[dict[str, models.aws_grafana.CfnWorkspace_RoleValuesPropertyDef]] = pydantic.Field(None)
+    CfnWorkspace_SamlConfigurationProperty: typing.Optional[dict[str, models.aws_grafana.CfnWorkspace_SamlConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnWorkspace_VpcConfigurationProperty: typing.Optional[dict[str, models.aws_grafana.CfnWorkspace_VpcConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnWorkspace: typing.Optional[dict[str, models.aws_grafana.CfnWorkspaceDef]] = pydantic.Field(None)
+    CfnWorkspaceProps: typing.Optional[dict[str, models.aws_grafana.CfnWorkspacePropsDef]] = pydantic.Field(None)
     ...
+
+import models

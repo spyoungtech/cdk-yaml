@@ -20,7 +20,7 @@ class RawEndpointDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RawEndpointDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator.RawEndpointDefConfig] = pydantic.Field(None)
 
 
 class RawEndpointDefConfig(pydantic.BaseModel):
@@ -39,12 +39,12 @@ class AcceleratorDef(BaseConstruct):
     ...
 
 
-    from_accelerator_attributes: typing.Optional[AcceleratorDefFromAcceleratorAttributesParams] = pydantic.Field(None, description='import from attributes.')
-    resource_config: typing.Optional[AcceleratorDefConfig] = pydantic.Field(None)
+    from_accelerator_attributes: typing.Optional[models.aws_globalaccelerator.AcceleratorDefFromAcceleratorAttributesParams] = pydantic.Field(None, description='import from attributes.')
+    resource_config: typing.Optional[models.aws_globalaccelerator.AcceleratorDefConfig] = pydantic.Field(None)
 
 
 class AcceleratorDefConfig(pydantic.BaseModel):
-    add_listener: typing.Optional[list[AcceleratorDefAddListenerParams]] = pydantic.Field(None, description='Add a listener to the accelerator.')
+    add_listener: typing.Optional[list[models.aws_globalaccelerator.AcceleratorDefAddListenerParams]] = pydantic.Field(None, description='Add a listener to the accelerator.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class AcceleratorDefAddListenerParams(pydantic.BaseModel):
@@ -89,14 +89,14 @@ class EndpointGroupDef(BaseConstruct):
     ...
 
 
-    from_endpoint_group_arn: typing.Optional[EndpointGroupDefFromEndpointGroupArnParams] = pydantic.Field(None, description='import from ARN.')
-    resource_config: typing.Optional[EndpointGroupDefConfig] = pydantic.Field(None)
+    from_endpoint_group_arn: typing.Optional[models.aws_globalaccelerator.EndpointGroupDefFromEndpointGroupArnParams] = pydantic.Field(None, description='import from ARN.')
+    resource_config: typing.Optional[models.aws_globalaccelerator.EndpointGroupDefConfig] = pydantic.Field(None)
 
 
 class EndpointGroupDefConfig(pydantic.BaseModel):
-    add_endpoint: typing.Optional[list[EndpointGroupDefAddEndpointParams]] = pydantic.Field(None, description='Add an endpoint.')
+    add_endpoint: typing.Optional[list[models.aws_globalaccelerator.EndpointGroupDefAddEndpointParams]] = pydantic.Field(None, description='Add an endpoint.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    connections_peer: typing.Optional[list[EndpointGroupDefConnectionsPeerParams]] = pydantic.Field(None, description="Return an object that represents the Accelerator's Security Group.\nUses a Custom Resource to look up the Security Group that Accelerator\ncreates at deploy time. Requires your VPC ID to perform the lookup.\n\nThe Security Group will only be created if you enable **Client IP\nPreservation** on any of the endpoints.\n\nYou cannot manipulate the rules inside this security group, but you can\nuse this security group as a Peer in Connections rules on other\nconstructs.")
+    connections_peer: typing.Optional[list[models.aws_globalaccelerator.EndpointGroupDefConnectionsPeerParams]] = pydantic.Field(None, description="Return an object that represents the Accelerator's Security Group.\nUses a Custom Resource to look up the Security Group that Accelerator\ncreates at deploy time. Requires your VPC ID to perform the lookup.\n\nThe Security Group will only be created if you enable **Client IP\nPreservation** on any of the endpoints.\n\nYou cannot manipulate the rules inside this security group, but you can\nuse this security group as a Peer in Connections rules on other\nconstructs.")
 
 class EndpointGroupDefAddEndpointParams(pydantic.BaseModel):
     endpoint: typing.Union[models.aws_globalaccelerator.RawEndpointDef, models.aws_globalaccelerator_endpoints.ApplicationLoadBalancerEndpointDef, models.aws_globalaccelerator_endpoints.CfnEipEndpointDef, models.aws_globalaccelerator_endpoints.InstanceEndpointDef, models.aws_globalaccelerator_endpoints.NetworkLoadBalancerEndpointDef] = pydantic.Field(..., description='-')
@@ -133,12 +133,12 @@ class ListenerDef(BaseConstruct):
     ...
 
 
-    from_listener_arn: typing.Optional[ListenerDefFromListenerArnParams] = pydantic.Field(None, description='import from ARN.')
-    resource_config: typing.Optional[ListenerDefConfig] = pydantic.Field(None)
+    from_listener_arn: typing.Optional[models.aws_globalaccelerator.ListenerDefFromListenerArnParams] = pydantic.Field(None, description='import from ARN.')
+    resource_config: typing.Optional[models.aws_globalaccelerator.ListenerDefConfig] = pydantic.Field(None)
 
 
 class ListenerDefConfig(pydantic.BaseModel):
-    add_endpoint_group: typing.Optional[list[ListenerDefAddEndpointGroupParams]] = pydantic.Field(None, description='Add a new endpoint group to this listener.')
+    add_endpoint_group: typing.Optional[list[models.aws_globalaccelerator.ListenerDefAddEndpointGroupParams]] = pydantic.Field(None, description='Add a new endpoint group to this listener.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class ListenerDefAddEndpointGroupParams(pydantic.BaseModel):
@@ -314,7 +314,7 @@ class ListenerPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ListenerPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator.ListenerPropsDefConfig] = pydantic.Field(None)
 
 
 class ListenerPropsDefConfig(pydantic.BaseModel):
@@ -401,26 +401,26 @@ class CfnAcceleratorDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAcceleratorDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator.CfnAcceleratorDefConfig] = pydantic.Field(None)
 
 
 class CfnAcceleratorDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnAcceleratorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAcceleratorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAcceleratorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAcceleratorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAcceleratorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAcceleratorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAcceleratorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAcceleratorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAcceleratorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAcceleratorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAcceleratorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAcceleratorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAcceleratorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnAcceleratorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnAcceleratorDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -508,28 +508,28 @@ class CfnEndpointGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnEndpointGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator.CfnEndpointGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnEndpointGroupDefConfig(pydantic.BaseModel):
-    EndpointConfigurationProperty: typing.Optional[list[CfnEndpointGroupDefEndpointconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    PortOverrideProperty: typing.Optional[list[CfnEndpointGroupDefPortoverridepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnEndpointGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnEndpointGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnEndpointGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnEndpointGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnEndpointGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnEndpointGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnEndpointGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    EndpointConfigurationProperty: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefEndpointconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    PortOverrideProperty: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefPortoverridepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnEndpointGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnEndpointGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnEndpointGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnEndpointGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnEndpointGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnEndpointGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnEndpointGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnEndpointGroupDefEndpointconfigurationpropertyParams(pydantic.BaseModel):
     endpoint_id: str = pydantic.Field(..., description='')
@@ -621,27 +621,27 @@ class CfnListenerDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnListenerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_globalaccelerator.CfnListenerDefConfig] = pydantic.Field(None)
 
 
 class CfnListenerDefConfig(pydantic.BaseModel):
-    PortRangeProperty: typing.Optional[list[CfnListenerDefPortrangepropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnListenerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnListenerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnListenerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnListenerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnListenerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnListenerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnListenerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    PortRangeProperty: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefPortrangepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnListenerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnListenerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnListenerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnListenerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnListenerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnListenerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_globalaccelerator.CfnListenerDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnListenerDefPortrangepropertyParams(pydantic.BaseModel):
     from_port: typing.Union[int, float] = pydantic.Field(..., description='')
@@ -768,29 +768,29 @@ class CfnListenerPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    RawEndpoint: typing.Optional[dict[str, RawEndpointDef]] = pydantic.Field(None)
-    Accelerator: typing.Optional[dict[str, AcceleratorDef]] = pydantic.Field(None)
-    EndpointGroup: typing.Optional[dict[str, EndpointGroupDef]] = pydantic.Field(None)
-    Listener: typing.Optional[dict[str, ListenerDef]] = pydantic.Field(None)
-    AcceleratorAttributes: typing.Optional[dict[str, AcceleratorAttributesDef]] = pydantic.Field(None)
-    AcceleratorProps: typing.Optional[dict[str, AcceleratorPropsDef]] = pydantic.Field(None)
-    CfnEndpointGroup_EndpointConfigurationProperty: typing.Optional[dict[str, CfnEndpointGroup_EndpointConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnEndpointGroup_PortOverrideProperty: typing.Optional[dict[str, CfnEndpointGroup_PortOverridePropertyDef]] = pydantic.Field(None)
-    CfnListener_PortRangeProperty: typing.Optional[dict[str, CfnListener_PortRangePropertyDef]] = pydantic.Field(None)
-    EndpointGroupOptions: typing.Optional[dict[str, EndpointGroupOptionsDef]] = pydantic.Field(None)
-    EndpointGroupProps: typing.Optional[dict[str, EndpointGroupPropsDef]] = pydantic.Field(None)
-    ListenerOptions: typing.Optional[dict[str, ListenerOptionsDef]] = pydantic.Field(None)
-    ListenerProps: typing.Optional[dict[str, ListenerPropsDef]] = pydantic.Field(None)
-    PortOverride: typing.Optional[dict[str, PortOverrideDef]] = pydantic.Field(None)
-    PortRange: typing.Optional[dict[str, PortRangeDef]] = pydantic.Field(None)
-    RawEndpointProps: typing.Optional[dict[str, RawEndpointPropsDef]] = pydantic.Field(None)
-    CfnAccelerator: typing.Optional[dict[str, CfnAcceleratorDef]] = pydantic.Field(None)
-    CfnEndpointGroup: typing.Optional[dict[str, CfnEndpointGroupDef]] = pydantic.Field(None)
-    CfnListener: typing.Optional[dict[str, CfnListenerDef]] = pydantic.Field(None)
-    CfnAcceleratorProps: typing.Optional[dict[str, CfnAcceleratorPropsDef]] = pydantic.Field(None)
-    CfnEndpointGroupProps: typing.Optional[dict[str, CfnEndpointGroupPropsDef]] = pydantic.Field(None)
-    CfnListenerProps: typing.Optional[dict[str, CfnListenerPropsDef]] = pydantic.Field(None)
+    RawEndpoint: typing.Optional[dict[str, models.aws_globalaccelerator.RawEndpointDef]] = pydantic.Field(None)
+    Accelerator: typing.Optional[dict[str, models.aws_globalaccelerator.AcceleratorDef]] = pydantic.Field(None)
+    EndpointGroup: typing.Optional[dict[str, models.aws_globalaccelerator.EndpointGroupDef]] = pydantic.Field(None)
+    Listener: typing.Optional[dict[str, models.aws_globalaccelerator.ListenerDef]] = pydantic.Field(None)
+    AcceleratorAttributes: typing.Optional[dict[str, models.aws_globalaccelerator.AcceleratorAttributesDef]] = pydantic.Field(None)
+    AcceleratorProps: typing.Optional[dict[str, models.aws_globalaccelerator.AcceleratorPropsDef]] = pydantic.Field(None)
+    CfnEndpointGroup_EndpointConfigurationProperty: typing.Optional[dict[str, models.aws_globalaccelerator.CfnEndpointGroup_EndpointConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnEndpointGroup_PortOverrideProperty: typing.Optional[dict[str, models.aws_globalaccelerator.CfnEndpointGroup_PortOverridePropertyDef]] = pydantic.Field(None)
+    CfnListener_PortRangeProperty: typing.Optional[dict[str, models.aws_globalaccelerator.CfnListener_PortRangePropertyDef]] = pydantic.Field(None)
+    EndpointGroupOptions: typing.Optional[dict[str, models.aws_globalaccelerator.EndpointGroupOptionsDef]] = pydantic.Field(None)
+    EndpointGroupProps: typing.Optional[dict[str, models.aws_globalaccelerator.EndpointGroupPropsDef]] = pydantic.Field(None)
+    ListenerOptions: typing.Optional[dict[str, models.aws_globalaccelerator.ListenerOptionsDef]] = pydantic.Field(None)
+    ListenerProps: typing.Optional[dict[str, models.aws_globalaccelerator.ListenerPropsDef]] = pydantic.Field(None)
+    PortOverride: typing.Optional[dict[str, models.aws_globalaccelerator.PortOverrideDef]] = pydantic.Field(None)
+    PortRange: typing.Optional[dict[str, models.aws_globalaccelerator.PortRangeDef]] = pydantic.Field(None)
+    RawEndpointProps: typing.Optional[dict[str, models.aws_globalaccelerator.RawEndpointPropsDef]] = pydantic.Field(None)
+    CfnAccelerator: typing.Optional[dict[str, models.aws_globalaccelerator.CfnAcceleratorDef]] = pydantic.Field(None)
+    CfnEndpointGroup: typing.Optional[dict[str, models.aws_globalaccelerator.CfnEndpointGroupDef]] = pydantic.Field(None)
+    CfnListener: typing.Optional[dict[str, models.aws_globalaccelerator.CfnListenerDef]] = pydantic.Field(None)
+    CfnAcceleratorProps: typing.Optional[dict[str, models.aws_globalaccelerator.CfnAcceleratorPropsDef]] = pydantic.Field(None)
+    CfnEndpointGroupProps: typing.Optional[dict[str, models.aws_globalaccelerator.CfnEndpointGroupPropsDef]] = pydantic.Field(None)
+    CfnListenerProps: typing.Optional[dict[str, models.aws_globalaccelerator.CfnListenerPropsDef]] = pydantic.Field(None)
     ...
+
+import models

@@ -17,14 +17,13 @@ class EventBridgeDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EventBridgeDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_destinations.EventBridgeDestinationDefConfig] = pydantic.Field(None)
 
 
 class EventBridgeDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[EventBridgeDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
+    bind: typing.Optional[list[models.aws_lambda_destinations.EventBridgeDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
 
 class EventBridgeDestinationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     fn: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-\n')
     type: aws_cdk.aws_lambda.DestinationType = pydantic.Field(..., description='The destination type.')
     ...
@@ -42,11 +41,11 @@ class LambdaDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[LambdaDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_destinations.LambdaDestinationDefConfig] = pydantic.Field(None)
 
 
 class LambdaDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[LambdaDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
+    bind: typing.Optional[list[models.aws_lambda_destinations.LambdaDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
 
 class LambdaDestinationDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
@@ -66,14 +65,13 @@ class SnsDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SnsDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_destinations.SnsDestinationDefConfig] = pydantic.Field(None)
 
 
 class SnsDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SnsDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
+    bind: typing.Optional[list[models.aws_lambda_destinations.SnsDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
 
 class SnsDestinationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     fn: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-\n')
     type: aws_cdk.aws_lambda.DestinationType = pydantic.Field(..., description='The destination type.')
     ...
@@ -90,14 +88,13 @@ class SqsDestinationDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SqsDestinationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_lambda_destinations.SqsDestinationDefConfig] = pydantic.Field(None)
 
 
 class SqsDestinationDefConfig(pydantic.BaseModel):
-    bind: typing.Optional[list[SqsDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
+    bind: typing.Optional[list[models.aws_lambda_destinations.SqsDestinationDefBindParams]] = pydantic.Field(None, description='Returns a destination configuration.')
 
 class SqsDestinationDefBindParams(pydantic.BaseModel):
-    _scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     fn: typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef] = pydantic.Field(..., description='-\n')
     type: aws_cdk.aws_lambda.DestinationType = pydantic.Field(..., description='The destination type.')
     ...
@@ -116,12 +113,12 @@ class LambdaDestinationOptionsDef(BaseStruct):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    EventBridgeDestination: typing.Optional[dict[str, EventBridgeDestinationDef]] = pydantic.Field(None)
-    LambdaDestination: typing.Optional[dict[str, LambdaDestinationDef]] = pydantic.Field(None)
-    SnsDestination: typing.Optional[dict[str, SnsDestinationDef]] = pydantic.Field(None)
-    SqsDestination: typing.Optional[dict[str, SqsDestinationDef]] = pydantic.Field(None)
-    LambdaDestinationOptions: typing.Optional[dict[str, LambdaDestinationOptionsDef]] = pydantic.Field(None)
+    EventBridgeDestination: typing.Optional[dict[str, models.aws_lambda_destinations.EventBridgeDestinationDef]] = pydantic.Field(None)
+    LambdaDestination: typing.Optional[dict[str, models.aws_lambda_destinations.LambdaDestinationDef]] = pydantic.Field(None)
+    SnsDestination: typing.Optional[dict[str, models.aws_lambda_destinations.SnsDestinationDef]] = pydantic.Field(None)
+    SqsDestination: typing.Optional[dict[str, models.aws_lambda_destinations.SqsDestinationDef]] = pydantic.Field(None)
+    LambdaDestinationOptions: typing.Optional[dict[str, models.aws_lambda_destinations.LambdaDestinationOptionsDef]] = pydantic.Field(None)
     ...
+
+import models

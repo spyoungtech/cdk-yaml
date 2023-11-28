@@ -46,7 +46,7 @@ class ApplicationLoadBalancedServiceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApplicationLoadBalancedServiceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationLoadBalancedServiceBaseDefConfig] = pydantic.Field(None)
 
 
 class ApplicationLoadBalancedServiceBaseDefConfig(pydantic.BaseModel):
@@ -78,7 +78,7 @@ class ApplicationMultipleTargetGroupsServiceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ApplicationMultipleTargetGroupsServiceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationMultipleTargetGroupsServiceBaseDefConfig] = pydantic.Field(None)
 
 
 class ApplicationMultipleTargetGroupsServiceBaseDefConfig(pydantic.BaseModel):
@@ -118,7 +118,7 @@ class NetworkLoadBalancedServiceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NetworkLoadBalancedServiceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkLoadBalancedServiceBaseDefConfig] = pydantic.Field(None)
 
 
 class NetworkLoadBalancedServiceBaseDefConfig(pydantic.BaseModel):
@@ -150,7 +150,7 @@ class NetworkMultipleTargetGroupsServiceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[NetworkMultipleTargetGroupsServiceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkMultipleTargetGroupsServiceBaseDefConfig] = pydantic.Field(None)
 
 
 class NetworkMultipleTargetGroupsServiceBaseDefConfig(pydantic.BaseModel):
@@ -194,7 +194,7 @@ class QueueProcessingServiceBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[QueueProcessingServiceBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.QueueProcessingServiceBaseDefConfig] = pydantic.Field(None)
 
 
 class QueueProcessingServiceBaseDefConfig(pydantic.BaseModel):
@@ -222,7 +222,7 @@ class ScheduledTaskBaseDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ScheduledTaskBaseDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledTaskBaseDefConfig] = pydantic.Field(None)
 
 
 class ScheduledTaskBaseDefConfig(pydantic.BaseModel):
@@ -276,7 +276,7 @@ class ApplicationLoadBalancedEc2ServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ApplicationLoadBalancedEc2ServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationLoadBalancedEc2ServiceDefConfig] = pydantic.Field(None)
 
 
 class ApplicationLoadBalancedEc2ServiceDefConfig(pydantic.BaseModel):
@@ -336,7 +336,7 @@ class ApplicationLoadBalancedFargateServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ApplicationLoadBalancedFargateServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationLoadBalancedFargateServiceDefConfig] = pydantic.Field(None)
 
 
 class ApplicationLoadBalancedFargateServiceDefConfig(pydantic.BaseModel):
@@ -376,7 +376,7 @@ class ApplicationMultipleTargetGroupsEc2ServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ApplicationMultipleTargetGroupsEc2ServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationMultipleTargetGroupsEc2ServiceDefConfig] = pydantic.Field(None)
 
 
 class ApplicationMultipleTargetGroupsEc2ServiceDefConfig(pydantic.BaseModel):
@@ -416,7 +416,7 @@ class ApplicationMultipleTargetGroupsFargateServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ApplicationMultipleTargetGroupsFargateServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationMultipleTargetGroupsFargateServiceDefConfig] = pydantic.Field(None)
 
 
 class ApplicationMultipleTargetGroupsFargateServiceDefConfig(pydantic.BaseModel):
@@ -465,7 +465,7 @@ class NetworkLoadBalancedEc2ServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[NetworkLoadBalancedEc2ServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkLoadBalancedEc2ServiceDefConfig] = pydantic.Field(None)
 
 
 class NetworkLoadBalancedEc2ServiceDefConfig(pydantic.BaseModel):
@@ -515,7 +515,7 @@ class NetworkLoadBalancedFargateServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[NetworkLoadBalancedFargateServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkLoadBalancedFargateServiceDefConfig] = pydantic.Field(None)
 
 
 class NetworkLoadBalancedFargateServiceDefConfig(pydantic.BaseModel):
@@ -555,7 +555,7 @@ class NetworkMultipleTargetGroupsEc2ServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[NetworkMultipleTargetGroupsEc2ServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkMultipleTargetGroupsEc2ServiceDefConfig] = pydantic.Field(None)
 
 
 class NetworkMultipleTargetGroupsEc2ServiceDefConfig(pydantic.BaseModel):
@@ -595,7 +595,7 @@ class NetworkMultipleTargetGroupsFargateServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[NetworkMultipleTargetGroupsFargateServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkMultipleTargetGroupsFargateServiceDefConfig] = pydantic.Field(None)
 
 
 class NetworkMultipleTargetGroupsFargateServiceDefConfig(pydantic.BaseModel):
@@ -649,7 +649,7 @@ class QueueProcessingEc2ServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[QueueProcessingEc2ServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.QueueProcessingEc2ServiceDefConfig] = pydantic.Field(None)
 
 
 class QueueProcessingEc2ServiceDefConfig(pydantic.BaseModel):
@@ -704,7 +704,7 @@ class QueueProcessingFargateServiceDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[QueueProcessingFargateServiceDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.QueueProcessingFargateServiceDefConfig] = pydantic.Field(None)
 
 
 class QueueProcessingFargateServiceDefConfig(pydantic.BaseModel):
@@ -736,7 +736,7 @@ class ScheduledEc2TaskDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledEc2TaskDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledEc2TaskDefConfig] = pydantic.Field(None)
 
 
 class ScheduledEc2TaskDefConfig(pydantic.BaseModel):
@@ -773,7 +773,7 @@ class ScheduledFargateTaskDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledFargateTaskDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledFargateTaskDefConfig] = pydantic.Field(None)
 
 
 class ScheduledFargateTaskDefConfig(pydantic.BaseModel):
@@ -963,7 +963,7 @@ class ApplicationLoadBalancedTaskImageOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ApplicationLoadBalancedTaskImageOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationLoadBalancedTaskImageOptionsDefConfig] = pydantic.Field(None)
 
 
 class ApplicationLoadBalancedTaskImageOptionsDefConfig(pydantic.BaseModel):
@@ -991,7 +991,7 @@ class ApplicationLoadBalancedTaskImagePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ApplicationLoadBalancedTaskImagePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ApplicationLoadBalancedTaskImagePropsDefConfig] = pydantic.Field(None)
 
 
 class ApplicationLoadBalancedTaskImagePropsDefConfig(pydantic.BaseModel):
@@ -1282,7 +1282,7 @@ class NetworkLoadBalancedTaskImageOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[NetworkLoadBalancedTaskImageOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkLoadBalancedTaskImageOptionsDefConfig] = pydantic.Field(None)
 
 
 class NetworkLoadBalancedTaskImageOptionsDefConfig(pydantic.BaseModel):
@@ -1310,7 +1310,7 @@ class NetworkLoadBalancedTaskImagePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[NetworkLoadBalancedTaskImagePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.NetworkLoadBalancedTaskImagePropsDefConfig] = pydantic.Field(None)
 
 
 class NetworkLoadBalancedTaskImagePropsDefConfig(pydantic.BaseModel):
@@ -1474,7 +1474,7 @@ class QueueProcessingEc2ServicePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[QueueProcessingEc2ServicePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.QueueProcessingEc2ServicePropsDefConfig] = pydantic.Field(None)
 
 
 class QueueProcessingEc2ServicePropsDefConfig(pydantic.BaseModel):
@@ -1526,7 +1526,7 @@ class QueueProcessingFargateServicePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[QueueProcessingFargateServicePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.QueueProcessingFargateServicePropsDefConfig] = pydantic.Field(None)
 
 
 class QueueProcessingFargateServicePropsDefConfig(pydantic.BaseModel):
@@ -1568,7 +1568,7 @@ class QueueProcessingServiceBasePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[QueueProcessingServiceBasePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.QueueProcessingServiceBasePropsDefConfig] = pydantic.Field(None)
 
 
 class QueueProcessingServiceBasePropsDefConfig(pydantic.BaseModel):
@@ -1586,7 +1586,7 @@ class ScheduledEc2TaskDefinitionOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledEc2TaskDefinitionOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledEc2TaskDefinitionOptionsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledEc2TaskDefinitionOptionsDefConfig(pydantic.BaseModel):
@@ -1611,7 +1611,7 @@ class ScheduledEc2TaskImageOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledEc2TaskImageOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledEc2TaskImageOptionsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledEc2TaskImageOptionsDefConfig(pydantic.BaseModel):
@@ -1640,7 +1640,7 @@ class ScheduledEc2TaskPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledEc2TaskPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledEc2TaskPropsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledEc2TaskPropsDefConfig(pydantic.BaseModel):
@@ -1658,7 +1658,7 @@ class ScheduledFargateTaskDefinitionOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledFargateTaskDefinitionOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledFargateTaskDefinitionOptionsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledFargateTaskDefinitionOptionsDefConfig(pydantic.BaseModel):
@@ -1685,7 +1685,7 @@ class ScheduledFargateTaskImageOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledFargateTaskImageOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledFargateTaskImageOptionsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledFargateTaskImageOptionsDefConfig(pydantic.BaseModel):
@@ -1719,7 +1719,7 @@ class ScheduledFargateTaskPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledFargateTaskPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledFargateTaskPropsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledFargateTaskPropsDefConfig(pydantic.BaseModel):
@@ -1746,7 +1746,7 @@ class ScheduledTaskBasePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledTaskBasePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledTaskBasePropsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledTaskBasePropsDefConfig(pydantic.BaseModel):
@@ -1768,7 +1768,7 @@ class ScheduledTaskImagePropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledTaskImagePropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_ecs_patterns.ScheduledTaskImagePropsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledTaskImagePropsDefConfig(pydantic.BaseModel):
@@ -1781,59 +1781,59 @@ class ScheduledTaskImagePropsDefConfig(pydantic.BaseModel):
 #  autogenerated from aws_cdk.aws_ecs_patterns.NetworkLoadBalancedServiceRecordType
 # skipping emum
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    ApplicationLoadBalancedServiceBase: typing.Optional[dict[str, ApplicationLoadBalancedServiceBaseDef]] = pydantic.Field(None)
-    ApplicationMultipleTargetGroupsServiceBase: typing.Optional[dict[str, ApplicationMultipleTargetGroupsServiceBaseDef]] = pydantic.Field(None)
-    NetworkLoadBalancedServiceBase: typing.Optional[dict[str, NetworkLoadBalancedServiceBaseDef]] = pydantic.Field(None)
-    NetworkMultipleTargetGroupsServiceBase: typing.Optional[dict[str, NetworkMultipleTargetGroupsServiceBaseDef]] = pydantic.Field(None)
-    QueueProcessingServiceBase: typing.Optional[dict[str, QueueProcessingServiceBaseDef]] = pydantic.Field(None)
-    ScheduledTaskBase: typing.Optional[dict[str, ScheduledTaskBaseDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedEc2Service: typing.Optional[dict[str, ApplicationLoadBalancedEc2ServiceDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedFargateService: typing.Optional[dict[str, ApplicationLoadBalancedFargateServiceDef]] = pydantic.Field(None)
-    ApplicationMultipleTargetGroupsEc2Service: typing.Optional[dict[str, ApplicationMultipleTargetGroupsEc2ServiceDef]] = pydantic.Field(None)
-    ApplicationMultipleTargetGroupsFargateService: typing.Optional[dict[str, ApplicationMultipleTargetGroupsFargateServiceDef]] = pydantic.Field(None)
-    NetworkLoadBalancedEc2Service: typing.Optional[dict[str, NetworkLoadBalancedEc2ServiceDef]] = pydantic.Field(None)
-    NetworkLoadBalancedFargateService: typing.Optional[dict[str, NetworkLoadBalancedFargateServiceDef]] = pydantic.Field(None)
-    NetworkMultipleTargetGroupsEc2Service: typing.Optional[dict[str, NetworkMultipleTargetGroupsEc2ServiceDef]] = pydantic.Field(None)
-    NetworkMultipleTargetGroupsFargateService: typing.Optional[dict[str, NetworkMultipleTargetGroupsFargateServiceDef]] = pydantic.Field(None)
-    QueueProcessingEc2Service: typing.Optional[dict[str, QueueProcessingEc2ServiceDef]] = pydantic.Field(None)
-    QueueProcessingFargateService: typing.Optional[dict[str, QueueProcessingFargateServiceDef]] = pydantic.Field(None)
-    ScheduledEc2Task: typing.Optional[dict[str, ScheduledEc2TaskDef]] = pydantic.Field(None)
-    ScheduledFargateTask: typing.Optional[dict[str, ScheduledFargateTaskDef]] = pydantic.Field(None)
-    ApplicationListenerProps: typing.Optional[dict[str, ApplicationListenerPropsDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedEc2ServiceProps: typing.Optional[dict[str, ApplicationLoadBalancedEc2ServicePropsDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedFargateServiceProps: typing.Optional[dict[str, ApplicationLoadBalancedFargateServicePropsDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedServiceBaseProps: typing.Optional[dict[str, ApplicationLoadBalancedServiceBasePropsDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedTaskImageOptions: typing.Optional[dict[str, ApplicationLoadBalancedTaskImageOptionsDef]] = pydantic.Field(None)
-    ApplicationLoadBalancedTaskImageProps: typing.Optional[dict[str, ApplicationLoadBalancedTaskImagePropsDef]] = pydantic.Field(None)
-    ApplicationLoadBalancerProps: typing.Optional[dict[str, ApplicationLoadBalancerPropsDef]] = pydantic.Field(None)
-    ApplicationMultipleTargetGroupsEc2ServiceProps: typing.Optional[dict[str, ApplicationMultipleTargetGroupsEc2ServicePropsDef]] = pydantic.Field(None)
-    ApplicationMultipleTargetGroupsFargateServiceProps: typing.Optional[dict[str, ApplicationMultipleTargetGroupsFargateServicePropsDef]] = pydantic.Field(None)
-    ApplicationMultipleTargetGroupsServiceBaseProps: typing.Optional[dict[str, ApplicationMultipleTargetGroupsServiceBasePropsDef]] = pydantic.Field(None)
-    ApplicationTargetProps: typing.Optional[dict[str, ApplicationTargetPropsDef]] = pydantic.Field(None)
-    FargateServiceBaseProps: typing.Optional[dict[str, FargateServiceBasePropsDef]] = pydantic.Field(None)
-    NetworkListenerProps: typing.Optional[dict[str, NetworkListenerPropsDef]] = pydantic.Field(None)
-    NetworkLoadBalancedEc2ServiceProps: typing.Optional[dict[str, NetworkLoadBalancedEc2ServicePropsDef]] = pydantic.Field(None)
-    NetworkLoadBalancedFargateServiceProps: typing.Optional[dict[str, NetworkLoadBalancedFargateServicePropsDef]] = pydantic.Field(None)
-    NetworkLoadBalancedServiceBaseProps: typing.Optional[dict[str, NetworkLoadBalancedServiceBasePropsDef]] = pydantic.Field(None)
-    NetworkLoadBalancedTaskImageOptions: typing.Optional[dict[str, NetworkLoadBalancedTaskImageOptionsDef]] = pydantic.Field(None)
-    NetworkLoadBalancedTaskImageProps: typing.Optional[dict[str, NetworkLoadBalancedTaskImagePropsDef]] = pydantic.Field(None)
-    NetworkLoadBalancerProps: typing.Optional[dict[str, NetworkLoadBalancerPropsDef]] = pydantic.Field(None)
-    NetworkMultipleTargetGroupsEc2ServiceProps: typing.Optional[dict[str, NetworkMultipleTargetGroupsEc2ServicePropsDef]] = pydantic.Field(None)
-    NetworkMultipleTargetGroupsFargateServiceProps: typing.Optional[dict[str, NetworkMultipleTargetGroupsFargateServicePropsDef]] = pydantic.Field(None)
-    NetworkMultipleTargetGroupsServiceBaseProps: typing.Optional[dict[str, NetworkMultipleTargetGroupsServiceBasePropsDef]] = pydantic.Field(None)
-    NetworkTargetProps: typing.Optional[dict[str, NetworkTargetPropsDef]] = pydantic.Field(None)
-    QueueProcessingEc2ServiceProps: typing.Optional[dict[str, QueueProcessingEc2ServicePropsDef]] = pydantic.Field(None)
-    QueueProcessingFargateServiceProps: typing.Optional[dict[str, QueueProcessingFargateServicePropsDef]] = pydantic.Field(None)
-    QueueProcessingServiceBaseProps: typing.Optional[dict[str, QueueProcessingServiceBasePropsDef]] = pydantic.Field(None)
-    ScheduledEc2TaskDefinitionOptions: typing.Optional[dict[str, ScheduledEc2TaskDefinitionOptionsDef]] = pydantic.Field(None)
-    ScheduledEc2TaskImageOptions: typing.Optional[dict[str, ScheduledEc2TaskImageOptionsDef]] = pydantic.Field(None)
-    ScheduledEc2TaskProps: typing.Optional[dict[str, ScheduledEc2TaskPropsDef]] = pydantic.Field(None)
-    ScheduledFargateTaskDefinitionOptions: typing.Optional[dict[str, ScheduledFargateTaskDefinitionOptionsDef]] = pydantic.Field(None)
-    ScheduledFargateTaskImageOptions: typing.Optional[dict[str, ScheduledFargateTaskImageOptionsDef]] = pydantic.Field(None)
-    ScheduledFargateTaskProps: typing.Optional[dict[str, ScheduledFargateTaskPropsDef]] = pydantic.Field(None)
-    ScheduledTaskBaseProps: typing.Optional[dict[str, ScheduledTaskBasePropsDef]] = pydantic.Field(None)
-    ScheduledTaskImageProps: typing.Optional[dict[str, ScheduledTaskImagePropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedServiceBase: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedServiceBaseDef]] = pydantic.Field(None)
+    ApplicationMultipleTargetGroupsServiceBase: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationMultipleTargetGroupsServiceBaseDef]] = pydantic.Field(None)
+    NetworkLoadBalancedServiceBase: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedServiceBaseDef]] = pydantic.Field(None)
+    NetworkMultipleTargetGroupsServiceBase: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkMultipleTargetGroupsServiceBaseDef]] = pydantic.Field(None)
+    QueueProcessingServiceBase: typing.Optional[dict[str, models.aws_ecs_patterns.QueueProcessingServiceBaseDef]] = pydantic.Field(None)
+    ScheduledTaskBase: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledTaskBaseDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedEc2Service: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedEc2ServiceDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedFargateService: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedFargateServiceDef]] = pydantic.Field(None)
+    ApplicationMultipleTargetGroupsEc2Service: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationMultipleTargetGroupsEc2ServiceDef]] = pydantic.Field(None)
+    ApplicationMultipleTargetGroupsFargateService: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationMultipleTargetGroupsFargateServiceDef]] = pydantic.Field(None)
+    NetworkLoadBalancedEc2Service: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedEc2ServiceDef]] = pydantic.Field(None)
+    NetworkLoadBalancedFargateService: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedFargateServiceDef]] = pydantic.Field(None)
+    NetworkMultipleTargetGroupsEc2Service: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkMultipleTargetGroupsEc2ServiceDef]] = pydantic.Field(None)
+    NetworkMultipleTargetGroupsFargateService: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkMultipleTargetGroupsFargateServiceDef]] = pydantic.Field(None)
+    QueueProcessingEc2Service: typing.Optional[dict[str, models.aws_ecs_patterns.QueueProcessingEc2ServiceDef]] = pydantic.Field(None)
+    QueueProcessingFargateService: typing.Optional[dict[str, models.aws_ecs_patterns.QueueProcessingFargateServiceDef]] = pydantic.Field(None)
+    ScheduledEc2Task: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledEc2TaskDef]] = pydantic.Field(None)
+    ScheduledFargateTask: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledFargateTaskDef]] = pydantic.Field(None)
+    ApplicationListenerProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationListenerPropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedEc2ServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedEc2ServicePropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedFargateServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedFargateServicePropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedServiceBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedServiceBasePropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedTaskImageOptions: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedTaskImageOptionsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancedTaskImageProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancedTaskImagePropsDef]] = pydantic.Field(None)
+    ApplicationLoadBalancerProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationLoadBalancerPropsDef]] = pydantic.Field(None)
+    ApplicationMultipleTargetGroupsEc2ServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationMultipleTargetGroupsEc2ServicePropsDef]] = pydantic.Field(None)
+    ApplicationMultipleTargetGroupsFargateServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationMultipleTargetGroupsFargateServicePropsDef]] = pydantic.Field(None)
+    ApplicationMultipleTargetGroupsServiceBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationMultipleTargetGroupsServiceBasePropsDef]] = pydantic.Field(None)
+    ApplicationTargetProps: typing.Optional[dict[str, models.aws_ecs_patterns.ApplicationTargetPropsDef]] = pydantic.Field(None)
+    FargateServiceBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.FargateServiceBasePropsDef]] = pydantic.Field(None)
+    NetworkListenerProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkListenerPropsDef]] = pydantic.Field(None)
+    NetworkLoadBalancedEc2ServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedEc2ServicePropsDef]] = pydantic.Field(None)
+    NetworkLoadBalancedFargateServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedFargateServicePropsDef]] = pydantic.Field(None)
+    NetworkLoadBalancedServiceBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedServiceBasePropsDef]] = pydantic.Field(None)
+    NetworkLoadBalancedTaskImageOptions: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedTaskImageOptionsDef]] = pydantic.Field(None)
+    NetworkLoadBalancedTaskImageProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancedTaskImagePropsDef]] = pydantic.Field(None)
+    NetworkLoadBalancerProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkLoadBalancerPropsDef]] = pydantic.Field(None)
+    NetworkMultipleTargetGroupsEc2ServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkMultipleTargetGroupsEc2ServicePropsDef]] = pydantic.Field(None)
+    NetworkMultipleTargetGroupsFargateServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkMultipleTargetGroupsFargateServicePropsDef]] = pydantic.Field(None)
+    NetworkMultipleTargetGroupsServiceBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkMultipleTargetGroupsServiceBasePropsDef]] = pydantic.Field(None)
+    NetworkTargetProps: typing.Optional[dict[str, models.aws_ecs_patterns.NetworkTargetPropsDef]] = pydantic.Field(None)
+    QueueProcessingEc2ServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.QueueProcessingEc2ServicePropsDef]] = pydantic.Field(None)
+    QueueProcessingFargateServiceProps: typing.Optional[dict[str, models.aws_ecs_patterns.QueueProcessingFargateServicePropsDef]] = pydantic.Field(None)
+    QueueProcessingServiceBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.QueueProcessingServiceBasePropsDef]] = pydantic.Field(None)
+    ScheduledEc2TaskDefinitionOptions: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledEc2TaskDefinitionOptionsDef]] = pydantic.Field(None)
+    ScheduledEc2TaskImageOptions: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledEc2TaskImageOptionsDef]] = pydantic.Field(None)
+    ScheduledEc2TaskProps: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledEc2TaskPropsDef]] = pydantic.Field(None)
+    ScheduledFargateTaskDefinitionOptions: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledFargateTaskDefinitionOptionsDef]] = pydantic.Field(None)
+    ScheduledFargateTaskImageOptions: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledFargateTaskImageOptionsDef]] = pydantic.Field(None)
+    ScheduledFargateTaskProps: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledFargateTaskPropsDef]] = pydantic.Field(None)
+    ScheduledTaskBaseProps: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledTaskBasePropsDef]] = pydantic.Field(None)
+    ScheduledTaskImageProps: typing.Optional[dict[str, models.aws_ecs_patterns.ScheduledTaskImagePropsDef]] = pydantic.Field(None)
     ...
+
+import models

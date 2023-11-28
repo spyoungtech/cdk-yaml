@@ -19,12 +19,12 @@ class EcsVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EcsVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsVolumeDefConfig] = pydantic.Field(None)
 
 
 class EcsVolumeDefConfig(pydantic.BaseModel):
-    efs: typing.Optional[list[EcsVolumeDefEfsParams]] = pydantic.Field(None, description='Creates a Volume that uses an AWS Elastic File System (EFS);\nthis volume can grow and shrink as needed')
-    host: typing.Optional[list[EcsVolumeDefHostParams]] = pydantic.Field(None, description='Creates a Host volume.\nThis volume will persist on the host at the specified ``hostPath``.\nIf the ``hostPath`` is not specified, Docker will choose the host path. In this case,\nthe data may not persist after the containers that use it stop running.')
+    efs: typing.Optional[list[models.aws_batch.EcsVolumeDefEfsParams]] = pydantic.Field(None, description='Creates a Volume that uses an AWS Elastic File System (EFS);\nthis volume can grow and shrink as needed')
+    host: typing.Optional[list[models.aws_batch.EcsVolumeDefHostParams]] = pydantic.Field(None, description='Creates a Host volume.\nThis volume will persist on the host at the specified ``hostPath``.\nIf the ``hostPath`` is not specified, Docker will choose the host path. In this case,\nthe data may not persist after the containers that use it stop running.')
 
 class EcsVolumeDefEfsParams(pydantic.BaseModel):
     file_system: typing.Union[models.aws_efs.FileSystemDef] = pydantic.Field(..., description='The EFS File System that supports this volume.\n')
@@ -67,12 +67,12 @@ class EfsVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EfsVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EfsVolumeDefConfig] = pydantic.Field(None)
 
 
 class EfsVolumeDefConfig(pydantic.BaseModel):
-    efs: typing.Optional[list[EfsVolumeDefEfsParams]] = pydantic.Field(None, description='Creates a Volume that uses an AWS Elastic File System (EFS);\nthis volume can grow and shrink as needed')
-    host: typing.Optional[list[EfsVolumeDefHostParams]] = pydantic.Field(None, description='Creates a Host volume.\nThis volume will persist on the host at the specified ``hostPath``.\nIf the ``hostPath`` is not specified, Docker will choose the host path. In this case,\nthe data may not persist after the containers that use it stop running.')
+    efs: typing.Optional[list[models.aws_batch.EfsVolumeDefEfsParams]] = pydantic.Field(None, description='Creates a Volume that uses an AWS Elastic File System (EFS);\nthis volume can grow and shrink as needed')
+    host: typing.Optional[list[models.aws_batch.EfsVolumeDefHostParams]] = pydantic.Field(None, description='Creates a Host volume.\nThis volume will persist on the host at the specified ``hostPath``.\nIf the ``hostPath`` is not specified, Docker will choose the host path. In this case,\nthe data may not persist after the containers that use it stop running.')
     file_system_config: typing.Optional[models._interface_methods.AwsEfsIFileSystemDefConfig] = pydantic.Field(None)
 
 class EfsVolumeDefEfsParams(pydantic.BaseModel):
@@ -110,13 +110,13 @@ class EksVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EksVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EksVolumeDefConfig] = pydantic.Field(None)
 
 
 class EksVolumeDefConfig(pydantic.BaseModel):
-    empty_dir: typing.Optional[list[EksVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
-    host_path: typing.Optional[list[EksVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
-    secret: typing.Optional[list[EksVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
+    empty_dir: typing.Optional[list[models.aws_batch.EksVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
+    host_path: typing.Optional[list[models.aws_batch.EksVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
+    secret: typing.Optional[list[models.aws_batch.EksVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
 
 class EksVolumeDefEmptyDirParams(pydantic.BaseModel):
     medium: typing.Optional[aws_cdk.aws_batch.EmptyDirMediumType] = pydantic.Field(None, description='The storage type to use for this Volume. Default: ``EmptyDirMediumType.DISK``\n')
@@ -160,13 +160,13 @@ class EmptyDirVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[EmptyDirVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EmptyDirVolumeDefConfig] = pydantic.Field(None)
 
 
 class EmptyDirVolumeDefConfig(pydantic.BaseModel):
-    empty_dir: typing.Optional[list[EmptyDirVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
-    host_path: typing.Optional[list[EmptyDirVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
-    secret: typing.Optional[list[EmptyDirVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
+    empty_dir: typing.Optional[list[models.aws_batch.EmptyDirVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
+    host_path: typing.Optional[list[models.aws_batch.EmptyDirVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
+    secret: typing.Optional[list[models.aws_batch.EmptyDirVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
 
 class EmptyDirVolumeDefEmptyDirParams(pydantic.BaseModel):
     medium: typing.Optional[aws_cdk.aws_batch.EmptyDirMediumType] = pydantic.Field(None, description='The storage type to use for this Volume. Default: ``EmptyDirMediumType.DISK``\n')
@@ -209,13 +209,13 @@ class HostPathVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HostPathVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.HostPathVolumeDefConfig] = pydantic.Field(None)
 
 
 class HostPathVolumeDefConfig(pydantic.BaseModel):
-    empty_dir: typing.Optional[list[HostPathVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
-    host_path: typing.Optional[list[HostPathVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
-    secret: typing.Optional[list[HostPathVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
+    empty_dir: typing.Optional[list[models.aws_batch.HostPathVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
+    host_path: typing.Optional[list[models.aws_batch.HostPathVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
+    secret: typing.Optional[list[models.aws_batch.HostPathVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
 
 class HostPathVolumeDefEmptyDirParams(pydantic.BaseModel):
     medium: typing.Optional[aws_cdk.aws_batch.EmptyDirMediumType] = pydantic.Field(None, description='The storage type to use for this Volume. Default: ``EmptyDirMediumType.DISK``\n')
@@ -258,12 +258,12 @@ class HostVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HostVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.HostVolumeDefConfig] = pydantic.Field(None)
 
 
 class HostVolumeDefConfig(pydantic.BaseModel):
-    efs: typing.Optional[list[HostVolumeDefEfsParams]] = pydantic.Field(None, description='Creates a Volume that uses an AWS Elastic File System (EFS);\nthis volume can grow and shrink as needed')
-    host: typing.Optional[list[HostVolumeDefHostParams]] = pydantic.Field(None, description='Creates a Host volume.\nThis volume will persist on the host at the specified ``hostPath``.\nIf the ``hostPath`` is not specified, Docker will choose the host path. In this case,\nthe data may not persist after the containers that use it stop running.')
+    efs: typing.Optional[list[models.aws_batch.HostVolumeDefEfsParams]] = pydantic.Field(None, description='Creates a Volume that uses an AWS Elastic File System (EFS);\nthis volume can grow and shrink as needed')
+    host: typing.Optional[list[models.aws_batch.HostVolumeDefHostParams]] = pydantic.Field(None, description='Creates a Host volume.\nThis volume will persist on the host at the specified ``hostPath``.\nIf the ``hostPath`` is not specified, Docker will choose the host path. In this case,\nthe data may not persist after the containers that use it stop running.')
 
 class HostVolumeDefEfsParams(pydantic.BaseModel):
     file_system: typing.Union[models.aws_efs.FileSystemDef] = pydantic.Field(..., description='The EFS File System that supports this volume.\n')
@@ -297,12 +297,12 @@ class OptimalInstanceTypeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[OptimalInstanceTypeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.OptimalInstanceTypeDefConfig] = pydantic.Field(None)
 
 
 class OptimalInstanceTypeDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[OptimalInstanceTypeDefOfParams]] = pydantic.Field(None, description='Instance type for EC2 instances.\nThis class takes a combination of a class and size.\n\nBe aware that not all combinations of class and size are available, and not all\nclasses are available in all regions.')
-    same_instance_class_as: typing.Optional[list[OptimalInstanceTypeDefSameInstanceClassAsParams]] = pydantic.Field(None, description='')
+    of: typing.Optional[list[models.aws_batch.OptimalInstanceTypeDefOfParams]] = pydantic.Field(None, description='Instance type for EC2 instances.\nThis class takes a combination of a class and size.\n\nBe aware that not all combinations of class and size are available, and not all\nclasses are available in all regions.')
+    same_instance_class_as: typing.Optional[list[models.aws_batch.OptimalInstanceTypeDefSameInstanceClassAsParams]] = pydantic.Field(None, description='')
 
 class OptimalInstanceTypeDefOfParams(pydantic.BaseModel):
     instance_class: aws_cdk.aws_ec2.InstanceClass = pydantic.Field(..., description='-\n')
@@ -325,11 +325,11 @@ class ReasonDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ReasonDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.ReasonDefConfig] = pydantic.Field(None)
 
 
 class ReasonDefConfig(pydantic.BaseModel):
-    custom: typing.Optional[list[ReasonDefCustomParams]] = pydantic.Field(None, description='A custom Reason that can match on multiple conditions.\nNote that all specified conditions must be met for this reason to match.')
+    custom: typing.Optional[list[models.aws_batch.ReasonDefCustomParams]] = pydantic.Field(None, description='A custom Reason that can match on multiple conditions.\nNote that all specified conditions must be met for this reason to match.')
 
 class ReasonDefCustomParams(pydantic.BaseModel):
     on_exit_code: typing.Optional[str] = pydantic.Field(None, description="A glob string that will match on the job exit code. For example, ``'40*'`` will match 400, 404, 40123456789012 Default: - will not match on the exit code\n")
@@ -351,11 +351,11 @@ class RetryStrategyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[RetryStrategyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.RetryStrategyDefConfig] = pydantic.Field(None)
 
 
 class RetryStrategyDefConfig(pydantic.BaseModel):
-    of: typing.Optional[list[RetryStrategyDefOfParams]] = pydantic.Field(None, description='Create a new RetryStrategy.')
+    of: typing.Optional[list[models.aws_batch.RetryStrategyDefOfParams]] = pydantic.Field(None, description='Create a new RetryStrategy.')
     on_config: typing.Optional[models.aws_batch.ReasonDefConfig] = pydantic.Field(None)
 
 class RetryStrategyDefOfParams(pydantic.BaseModel):
@@ -375,14 +375,14 @@ class SecretDef(BaseClass):
     ...
 
 
-    from_secrets_manager: typing.Optional[SecretDefFromSecretsManagerParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
-    from_secrets_manager_version: typing.Optional[SecretDefFromSecretsManagerVersionParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
-    from_ssm_parameter: typing.Optional[SecretDefFromSsmParameterParams] = pydantic.Field(None, description='Creates an environment variable value from a parameter stored in AWS Systems Manager Parameter Store.')
-    resource_config: typing.Optional[SecretDefConfig] = pydantic.Field(None)
+    from_secrets_manager: typing.Optional[models.aws_batch.SecretDefFromSecretsManagerParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
+    from_secrets_manager_version: typing.Optional[models.aws_batch.SecretDefFromSecretsManagerVersionParams] = pydantic.Field(None, description='Creates a environment variable value from a secret stored in AWS Secrets Manager.')
+    from_ssm_parameter: typing.Optional[models.aws_batch.SecretDefFromSsmParameterParams] = pydantic.Field(None, description='Creates an environment variable value from a parameter stored in AWS Systems Manager Parameter Store.')
+    resource_config: typing.Optional[models.aws_batch.SecretDefConfig] = pydantic.Field(None)
 
 
 class SecretDefConfig(pydantic.BaseModel):
-    grant_read: typing.Optional[list[SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret to a principal.')
+    grant_read: typing.Optional[list[models.aws_batch.SecretDefGrantReadParams]] = pydantic.Field(None, description='Grants reading the secret to a principal.')
 
 class SecretDefFromSecretsManagerParams(pydantic.BaseModel):
     secret: typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef] = pydantic.Field(..., description='the secret stored in AWS Secrets Manager.\n')
@@ -420,13 +420,13 @@ class SecretPathVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SecretPathVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.SecretPathVolumeDefConfig] = pydantic.Field(None)
 
 
 class SecretPathVolumeDefConfig(pydantic.BaseModel):
-    empty_dir: typing.Optional[list[SecretPathVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
-    host_path: typing.Optional[list[SecretPathVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
-    secret: typing.Optional[list[SecretPathVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
+    empty_dir: typing.Optional[list[models.aws_batch.SecretPathVolumeDefEmptyDirParams]] = pydantic.Field(None, description='Creates a Kubernetes EmptyDir volume.')
+    host_path: typing.Optional[list[models.aws_batch.SecretPathVolumeDefHostPathParams]] = pydantic.Field(None, description='Creates a Kubernetes HostPath volume.')
+    secret: typing.Optional[list[models.aws_batch.SecretPathVolumeDefSecretParams]] = pydantic.Field(None, description='Creates a Kubernetes Secret volume.')
 
 class SecretPathVolumeDefEmptyDirParams(pydantic.BaseModel):
     medium: typing.Optional[aws_cdk.aws_batch.EmptyDirMediumType] = pydantic.Field(None, description='The storage type to use for this Volume. Default: ``EmptyDirMediumType.DISK``\n')
@@ -481,12 +481,12 @@ class EcsEc2ContainerDefinitionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EcsEc2ContainerDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsEc2ContainerDefinitionDefConfig] = pydantic.Field(None)
 
 
 class EcsEc2ContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_ulimit: typing.Optional[list[EcsEc2ContainerDefinitionDefAddUlimitParams]] = pydantic.Field(None, description='Add a ulimit to this container.')
-    add_volume: typing.Optional[list[EcsEc2ContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+    add_ulimit: typing.Optional[list[models.aws_batch.EcsEc2ContainerDefinitionDefAddUlimitParams]] = pydantic.Field(None, description='Add a ulimit to this container.')
+    add_volume: typing.Optional[list[models.aws_batch.EcsEc2ContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
     execution_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
     image_config: typing.Optional[models.aws_ecs.ContainerImageDefConfig] = pydantic.Field(None)
     memory_config: typing.Optional[models.core.SizeDefConfig] = pydantic.Field(None)
@@ -528,11 +528,11 @@ class EcsFargateContainerDefinitionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EcsFargateContainerDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsFargateContainerDefinitionDefConfig] = pydantic.Field(None)
 
 
 class EcsFargateContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_volume: typing.Optional[list[EcsFargateContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+    add_volume: typing.Optional[list[models.aws_batch.EcsFargateContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
     execution_role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
     image_config: typing.Optional[models.aws_ecs.ContainerImageDefConfig] = pydantic.Field(None)
     memory_config: typing.Optional[models.core.SizeDefConfig] = pydantic.Field(None)
@@ -560,14 +560,14 @@ class EcsJobDefinitionDef(BaseConstruct):
     ...
 
 
-    from_job_definition_arn: typing.Optional[EcsJobDefinitionDefFromJobDefinitionArnParams] = pydantic.Field(None, description='Import a JobDefinition by its arn.')
-    resource_config: typing.Optional[EcsJobDefinitionDefConfig] = pydantic.Field(None)
+    from_job_definition_arn: typing.Optional[models.aws_batch.EcsJobDefinitionDefFromJobDefinitionArnParams] = pydantic.Field(None, description='Import a JobDefinition by its arn.')
+    resource_config: typing.Optional[models.aws_batch.EcsJobDefinitionDefConfig] = pydantic.Field(None)
 
 
 class EcsJobDefinitionDefConfig(pydantic.BaseModel):
-    add_retry_strategy: typing.Optional[list[EcsJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    add_retry_strategy: typing.Optional[list[models.aws_batch.EcsJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    grant_submit_job: typing.Optional[list[EcsJobDefinitionDefGrantSubmitJobParams]] = pydantic.Field(None, description='Grants the ``batch:submitJob`` permission to the identity on both this job definition and the ``queue``.')
+    grant_submit_job: typing.Optional[list[models.aws_batch.EcsJobDefinitionDefGrantSubmitJobParams]] = pydantic.Field(None, description='Grants the ``batch:submitJob`` permission to the identity on both this job definition and the ``queue``.')
     container_config: typing.Optional[models._interface_methods.AwsBatchIEcsContainerDefinitionDefConfig] = pydantic.Field(None)
 
 class EcsJobDefinitionDefAddRetryStrategyParams(pydantic.BaseModel):
@@ -617,11 +617,11 @@ class EksContainerDefinitionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[EksContainerDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EksContainerDefinitionDefConfig] = pydantic.Field(None)
 
 
 class EksContainerDefinitionDefConfig(pydantic.BaseModel):
-    add_volume: typing.Optional[list[EksContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Mount a Volume to this container.\nAutomatically added to the Pod.')
+    add_volume: typing.Optional[list[models.aws_batch.EksContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Mount a Volume to this container.\nAutomatically added to the Pod.')
     image_config: typing.Optional[models.aws_ecs.ContainerImageDefConfig] = pydantic.Field(None)
 
 class EksContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
@@ -649,12 +649,12 @@ class EksJobDefinitionDef(BaseConstruct):
     ...
 
 
-    from_eks_job_definition_arn: typing.Optional[EksJobDefinitionDefFromEksJobDefinitionArnParams] = pydantic.Field(None, description='Import an EksJobDefinition by its arn.')
-    resource_config: typing.Optional[EksJobDefinitionDefConfig] = pydantic.Field(None)
+    from_eks_job_definition_arn: typing.Optional[models.aws_batch.EksJobDefinitionDefFromEksJobDefinitionArnParams] = pydantic.Field(None, description='Import an EksJobDefinition by its arn.')
+    resource_config: typing.Optional[models.aws_batch.EksJobDefinitionDefConfig] = pydantic.Field(None)
 
 
 class EksJobDefinitionDefConfig(pydantic.BaseModel):
-    add_retry_strategy: typing.Optional[list[EksJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    add_retry_strategy: typing.Optional[list[models.aws_batch.EksJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     container_config: typing.Optional[models.aws_batch.EksContainerDefinitionDefConfig] = pydantic.Field(None)
 
@@ -687,12 +687,12 @@ class FairshareSchedulingPolicyDef(BaseConstruct):
     ...
 
 
-    from_fairshare_scheduling_policy_arn: typing.Optional[FairshareSchedulingPolicyDefFromFairshareSchedulingPolicyArnParams] = pydantic.Field(None, description='Reference an exisiting Scheduling Policy by its ARN.')
-    resource_config: typing.Optional[FairshareSchedulingPolicyDefConfig] = pydantic.Field(None)
+    from_fairshare_scheduling_policy_arn: typing.Optional[models.aws_batch.FairshareSchedulingPolicyDefFromFairshareSchedulingPolicyArnParams] = pydantic.Field(None, description='Reference an exisiting Scheduling Policy by its ARN.')
+    resource_config: typing.Optional[models.aws_batch.FairshareSchedulingPolicyDefConfig] = pydantic.Field(None)
 
 
 class FairshareSchedulingPolicyDefConfig(pydantic.BaseModel):
-    add_share: typing.Optional[list[FairshareSchedulingPolicyDefAddShareParams]] = pydantic.Field(None, description='Add a share this to this Fairshare SchedulingPolicy.')
+    add_share: typing.Optional[list[models.aws_batch.FairshareSchedulingPolicyDefAddShareParams]] = pydantic.Field(None, description='Add a share this to this Fairshare SchedulingPolicy.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class FairshareSchedulingPolicyDefAddShareParams(pydantic.BaseModel):
@@ -733,8 +733,8 @@ class FargateComputeEnvironmentDef(BaseConstruct):
     ...
 
 
-    from_fargate_compute_environment_arn: typing.Optional[FargateComputeEnvironmentDefFromFargateComputeEnvironmentArnParams] = pydantic.Field(None, description='Reference an existing FargateComputeEnvironment by its arn.')
-    resource_config: typing.Optional[FargateComputeEnvironmentDefConfig] = pydantic.Field(None)
+    from_fargate_compute_environment_arn: typing.Optional[models.aws_batch.FargateComputeEnvironmentDefFromFargateComputeEnvironmentArnParams] = pydantic.Field(None, description='Reference an existing FargateComputeEnvironment by its arn.')
+    resource_config: typing.Optional[models.aws_batch.FargateComputeEnvironmentDefConfig] = pydantic.Field(None)
 
 
 class FargateComputeEnvironmentDefConfig(pydantic.BaseModel):
@@ -768,12 +768,12 @@ class JobQueueDef(BaseConstruct):
     ...
 
 
-    from_job_queue_arn: typing.Optional[JobQueueDefFromJobQueueArnParams] = pydantic.Field(None, description='refer to an existing JobQueue by its arn.')
-    resource_config: typing.Optional[JobQueueDefConfig] = pydantic.Field(None)
+    from_job_queue_arn: typing.Optional[models.aws_batch.JobQueueDefFromJobQueueArnParams] = pydantic.Field(None, description='refer to an existing JobQueue by its arn.')
+    resource_config: typing.Optional[models.aws_batch.JobQueueDefConfig] = pydantic.Field(None)
 
 
 class JobQueueDefConfig(pydantic.BaseModel):
-    add_compute_environment: typing.Optional[list[JobQueueDefAddComputeEnvironmentParams]] = pydantic.Field(None, description='Add a ``ComputeEnvironment`` to this Queue.\nThe Queue will prefer lower-order ``ComputeEnvironment``s.')
+    add_compute_environment: typing.Optional[list[models.aws_batch.JobQueueDefAddComputeEnvironmentParams]] = pydantic.Field(None, description='Add a ``ComputeEnvironment`` to this Queue.\nThe Queue will prefer lower-order ``ComputeEnvironment``s.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
 
 class JobQueueDefAddComputeEnvironmentParams(pydantic.BaseModel):
@@ -806,13 +806,13 @@ class LinuxParametersDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[LinuxParametersDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.LinuxParametersDefConfig] = pydantic.Field(None)
 
 
 class LinuxParametersDefConfig(pydantic.BaseModel):
-    add_devices: typing.Optional[list[LinuxParametersDefAddDevicesParams]] = pydantic.Field(None, description='Adds one or more host devices to a container.')
-    add_tmpfs: typing.Optional[list[LinuxParametersDefAddTmpfsParams]] = pydantic.Field(None, description='Specifies the container path, mount options, and size (in MiB) of the tmpfs mount for a container.\nOnly works with EC2 launch type.')
-    render_linux_parameters: typing.Optional[list[LinuxParametersDefRenderLinuxParametersParams]] = pydantic.Field(None, description="Renders the Linux parameters to the Batch version of this resource, which does not have 'capabilities' and requires tmpfs.containerPath to be defined.")
+    add_devices: typing.Optional[list[models.aws_batch.LinuxParametersDefAddDevicesParams]] = pydantic.Field(None, description='Adds one or more host devices to a container.')
+    add_tmpfs: typing.Optional[list[models.aws_batch.LinuxParametersDefAddTmpfsParams]] = pydantic.Field(None, description='Specifies the container path, mount options, and size (in MiB) of the tmpfs mount for a container.\nOnly works with EC2 launch type.')
+    render_linux_parameters: typing.Optional[list[models.aws_batch.LinuxParametersDefRenderLinuxParametersParams]] = pydantic.Field(None, description="Renders the Linux parameters to the Batch version of this resource, which does not have 'capabilities' and requires tmpfs.containerPath to be defined.")
 
 class LinuxParametersDefAddDevicesParams(pydantic.BaseModel):
     device: list[models.aws_batch.DeviceDef] = pydantic.Field(...)
@@ -859,13 +859,13 @@ class ManagedEc2EcsComputeEnvironmentDef(BaseConstruct):
     ...
 
 
-    from_managed_ec2_ecs_compute_environment_arn: typing.Optional[ManagedEc2EcsComputeEnvironmentDefFromManagedEc2EcsComputeEnvironmentArnParams] = pydantic.Field(None, description='refer to an existing ComputeEnvironment by its arn.')
-    resource_config: typing.Optional[ManagedEc2EcsComputeEnvironmentDefConfig] = pydantic.Field(None)
+    from_managed_ec2_ecs_compute_environment_arn: typing.Optional[models.aws_batch.ManagedEc2EcsComputeEnvironmentDefFromManagedEc2EcsComputeEnvironmentArnParams] = pydantic.Field(None, description='refer to an existing ComputeEnvironment by its arn.')
+    resource_config: typing.Optional[models.aws_batch.ManagedEc2EcsComputeEnvironmentDefConfig] = pydantic.Field(None)
 
 
 class ManagedEc2EcsComputeEnvironmentDefConfig(pydantic.BaseModel):
-    add_instance_class: typing.Optional[list[ManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
-    add_instance_type: typing.Optional[list[ManagedEc2EcsComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
+    add_instance_class: typing.Optional[list[models.aws_batch.ManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
+    add_instance_type: typing.Optional[list[models.aws_batch.ManagedEc2EcsComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
@@ -923,12 +923,12 @@ class ManagedEc2EksComputeEnvironmentDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ManagedEc2EksComputeEnvironmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.ManagedEc2EksComputeEnvironmentDefConfig] = pydantic.Field(None)
 
 
 class ManagedEc2EksComputeEnvironmentDefConfig(pydantic.BaseModel):
-    add_instance_class: typing.Optional[list[ManagedEc2EksComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
-    add_instance_type: typing.Optional[list[ManagedEc2EksComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
+    add_instance_class: typing.Optional[list[models.aws_batch.ManagedEc2EksComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
+    add_instance_type: typing.Optional[list[models.aws_batch.ManagedEc2EksComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     eks_cluster_config: typing.Optional[models._interface_methods.AwsEksIClusterDefConfig] = pydantic.Field(None)
@@ -967,13 +967,13 @@ class MultiNodeJobDefinitionDef(BaseConstruct):
     ...
 
 
-    from_job_definition_arn: typing.Optional[MultiNodeJobDefinitionDefFromJobDefinitionArnParams] = pydantic.Field(None, description='refer to an existing JobDefinition by its arn.')
-    resource_config: typing.Optional[MultiNodeJobDefinitionDefConfig] = pydantic.Field(None)
+    from_job_definition_arn: typing.Optional[models.aws_batch.MultiNodeJobDefinitionDefFromJobDefinitionArnParams] = pydantic.Field(None, description='refer to an existing JobDefinition by its arn.')
+    resource_config: typing.Optional[models.aws_batch.MultiNodeJobDefinitionDefConfig] = pydantic.Field(None)
 
 
 class MultiNodeJobDefinitionDefConfig(pydantic.BaseModel):
-    add_container: typing.Optional[list[MultiNodeJobDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Add a container to this multinode job.')
-    add_retry_strategy: typing.Optional[list[MultiNodeJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    add_container: typing.Optional[list[models.aws_batch.MultiNodeJobDefinitionDefAddContainerParams]] = pydantic.Field(None, description='Add a container to this multinode job.')
+    add_retry_strategy: typing.Optional[list[models.aws_batch.MultiNodeJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     instance_type_config: typing.Optional[models.aws_ec2.InstanceTypeDefConfig] = pydantic.Field(None)
 
@@ -1012,8 +1012,8 @@ class UnmanagedComputeEnvironmentDef(BaseConstruct):
     ...
 
 
-    from_unmanaged_compute_environment_arn: typing.Optional[UnmanagedComputeEnvironmentDefFromUnmanagedComputeEnvironmentArnParams] = pydantic.Field(None, description='Import an UnmanagedComputeEnvironment by its arn.')
-    resource_config: typing.Optional[UnmanagedComputeEnvironmentDefConfig] = pydantic.Field(None)
+    from_unmanaged_compute_environment_arn: typing.Optional[models.aws_batch.UnmanagedComputeEnvironmentDefFromUnmanagedComputeEnvironmentArnParams] = pydantic.Field(None, description='Import an UnmanagedComputeEnvironment by its arn.')
+    resource_config: typing.Optional[models.aws_batch.UnmanagedComputeEnvironmentDefConfig] = pydantic.Field(None)
 
 
 class UnmanagedComputeEnvironmentDefConfig(pydantic.BaseModel):
@@ -1763,7 +1763,7 @@ class EcsContainerDefinitionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsContainerDefinitionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsContainerDefinitionPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsContainerDefinitionPropsDefConfig(pydantic.BaseModel):
@@ -1797,7 +1797,7 @@ class EcsEc2ContainerDefinitionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsEc2ContainerDefinitionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsEc2ContainerDefinitionPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsEc2ContainerDefinitionPropsDefConfig(pydantic.BaseModel):
@@ -1831,7 +1831,7 @@ class EcsFargateContainerDefinitionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsFargateContainerDefinitionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsFargateContainerDefinitionPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsFargateContainerDefinitionPropsDefConfig(pydantic.BaseModel):
@@ -1857,7 +1857,7 @@ class EcsJobDefinitionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EcsJobDefinitionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EcsJobDefinitionPropsDefConfig] = pydantic.Field(None)
 
 
 class EcsJobDefinitionPropsDefConfig(pydantic.BaseModel):
@@ -1912,7 +1912,7 @@ class EfsVolumeOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EfsVolumeOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EfsVolumeOptionsDefConfig] = pydantic.Field(None)
 
 
 class EfsVolumeOptionsDefConfig(pydantic.BaseModel):
@@ -1946,7 +1946,7 @@ class EksContainerDefinitionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EksContainerDefinitionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EksContainerDefinitionPropsDefConfig] = pydantic.Field(None)
 
 
 class EksContainerDefinitionPropsDefConfig(pydantic.BaseModel):
@@ -1973,7 +1973,7 @@ class EksJobDefinitionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[EksJobDefinitionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.EksJobDefinitionPropsDefConfig] = pydantic.Field(None)
 
 
 class EksJobDefinitionPropsDefConfig(pydantic.BaseModel):
@@ -2064,7 +2064,7 @@ class FargateComputeEnvironmentPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[FargateComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.FargateComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
 
 
 class FargateComputeEnvironmentPropsDefConfig(pydantic.BaseModel):
@@ -2176,7 +2176,7 @@ class ManagedComputeEnvironmentPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ManagedComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.ManagedComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
 
 
 class ManagedComputeEnvironmentPropsDefConfig(pydantic.BaseModel):
@@ -2216,7 +2216,7 @@ class ManagedEc2EcsComputeEnvironmentPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ManagedEc2EcsComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.ManagedEc2EcsComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
 
 
 class ManagedEc2EcsComputeEnvironmentPropsDefConfig(pydantic.BaseModel):
@@ -2257,7 +2257,7 @@ class ManagedEc2EksComputeEnvironmentPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ManagedEc2EksComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.ManagedEc2EksComputeEnvironmentPropsDefConfig] = pydantic.Field(None)
 
 
 class ManagedEc2EksComputeEnvironmentPropsDefConfig(pydantic.BaseModel):
@@ -2278,7 +2278,7 @@ class MultiNodeContainerDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MultiNodeContainerDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.MultiNodeContainerDefConfig] = pydantic.Field(None)
 
 
 class MultiNodeContainerDefConfig(pydantic.BaseModel):
@@ -2319,7 +2319,7 @@ class OrderedComputeEnvironmentDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[OrderedComputeEnvironmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.OrderedComputeEnvironmentDefConfig] = pydantic.Field(None)
 
 
 class OrderedComputeEnvironmentDefConfig(pydantic.BaseModel):
@@ -2384,7 +2384,7 @@ class TmpfsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TmpfsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.TmpfsDefConfig] = pydantic.Field(None)
 
 
 class TmpfsDefConfig(pydantic.BaseModel):
@@ -2514,31 +2514,31 @@ class CfnComputeEnvironmentDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnComputeEnvironmentDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.CfnComputeEnvironmentDefConfig] = pydantic.Field(None)
 
 
 class CfnComputeEnvironmentDefConfig(pydantic.BaseModel):
-    ComputeResourcesProperty: typing.Optional[list[CfnComputeEnvironmentDefComputeresourcespropertyParams]] = pydantic.Field(None, description='')
-    Ec2ConfigurationObjectProperty: typing.Optional[list[CfnComputeEnvironmentDefEc2ConfigurationobjectpropertyParams]] = pydantic.Field(None, description='')
-    EksConfigurationProperty: typing.Optional[list[CfnComputeEnvironmentDefEksconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    LaunchTemplateSpecificationProperty: typing.Optional[list[CfnComputeEnvironmentDefLaunchtemplatespecificationpropertyParams]] = pydantic.Field(None, description='')
-    UpdatePolicyProperty: typing.Optional[list[CfnComputeEnvironmentDefUpdatepolicypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnComputeEnvironmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnComputeEnvironmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnComputeEnvironmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnComputeEnvironmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnComputeEnvironmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnComputeEnvironmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnComputeEnvironmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ComputeResourcesProperty: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefComputeresourcespropertyParams]] = pydantic.Field(None, description='')
+    Ec2ConfigurationObjectProperty: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefEc2ConfigurationobjectpropertyParams]] = pydantic.Field(None, description='')
+    EksConfigurationProperty: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefEksconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    LaunchTemplateSpecificationProperty: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefLaunchtemplatespecificationpropertyParams]] = pydantic.Field(None, description='')
+    UpdatePolicyProperty: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefUpdatepolicypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnComputeEnvironmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnComputeEnvironmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnComputeEnvironmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnComputeEnvironmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnComputeEnvironmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnComputeEnvironmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_batch.CfnComputeEnvironmentDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnComputeEnvironmentDefComputeresourcespropertyParams(pydantic.BaseModel):
@@ -2671,61 +2671,61 @@ class CfnJobDefinitionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnJobDefinitionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.CfnJobDefinitionDefConfig] = pydantic.Field(None)
 
 
 class CfnJobDefinitionDefConfig(pydantic.BaseModel):
-    AuthorizationConfigProperty: typing.Optional[list[CfnJobDefinitionDefAuthorizationconfigpropertyParams]] = pydantic.Field(None, description='')
-    ContainerPropertiesProperty: typing.Optional[list[CfnJobDefinitionDefContainerpropertiespropertyParams]] = pydantic.Field(None, description='')
-    DeviceProperty: typing.Optional[list[CfnJobDefinitionDefDevicepropertyParams]] = pydantic.Field(None, description='')
-    EfsVolumeConfigurationProperty: typing.Optional[list[CfnJobDefinitionDefEfsvolumeconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    EksContainerEnvironmentVariableProperty: typing.Optional[list[CfnJobDefinitionDefEkscontainerenvironmentvariablepropertyParams]] = pydantic.Field(None, description='')
-    EksContainerProperty: typing.Optional[list[CfnJobDefinitionDefEkscontainerpropertyParams]] = pydantic.Field(None, description='')
-    EksContainerVolumeMountProperty: typing.Optional[list[CfnJobDefinitionDefEkscontainervolumemountpropertyParams]] = pydantic.Field(None, description='')
-    EksPropertiesProperty: typing.Optional[list[CfnJobDefinitionDefEkspropertiespropertyParams]] = pydantic.Field(None, description='')
-    EksSecretProperty: typing.Optional[list[CfnJobDefinitionDefEkssecretpropertyParams]] = pydantic.Field(None, description='')
-    EksVolumeProperty: typing.Optional[list[CfnJobDefinitionDefEksvolumepropertyParams]] = pydantic.Field(None, description='')
-    EmptyDirProperty: typing.Optional[list[CfnJobDefinitionDefEmptydirpropertyParams]] = pydantic.Field(None, description='')
-    EnvironmentProperty: typing.Optional[list[CfnJobDefinitionDefEnvironmentpropertyParams]] = pydantic.Field(None, description='')
-    EphemeralStorageProperty: typing.Optional[list[CfnJobDefinitionDefEphemeralstoragepropertyParams]] = pydantic.Field(None, description='')
-    EvaluateOnExitProperty: typing.Optional[list[CfnJobDefinitionDefEvaluateonexitpropertyParams]] = pydantic.Field(None, description='')
-    FargatePlatformConfigurationProperty: typing.Optional[list[CfnJobDefinitionDefFargateplatformconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    HostPathProperty: typing.Optional[list[CfnJobDefinitionDefHostpathpropertyParams]] = pydantic.Field(None, description='')
-    LinuxParametersProperty: typing.Optional[list[CfnJobDefinitionDefLinuxparameterspropertyParams]] = pydantic.Field(None, description='')
-    LogConfigurationProperty: typing.Optional[list[CfnJobDefinitionDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    MetadataProperty: typing.Optional[list[CfnJobDefinitionDefMetadatapropertyParams]] = pydantic.Field(None, description='')
-    MountPointsProperty: typing.Optional[list[CfnJobDefinitionDefMountpointspropertyParams]] = pydantic.Field(None, description='')
-    NetworkConfigurationProperty: typing.Optional[list[CfnJobDefinitionDefNetworkconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    NodePropertiesProperty: typing.Optional[list[CfnJobDefinitionDefNodepropertiespropertyParams]] = pydantic.Field(None, description='')
-    NodeRangePropertyProperty: typing.Optional[list[CfnJobDefinitionDefNoderangepropertypropertyParams]] = pydantic.Field(None, description='')
-    PodPropertiesProperty: typing.Optional[list[CfnJobDefinitionDefPodpropertiespropertyParams]] = pydantic.Field(None, description='')
-    ResourceRequirementProperty: typing.Optional[list[CfnJobDefinitionDefResourcerequirementpropertyParams]] = pydantic.Field(None, description='')
-    ResourcesProperty: typing.Optional[list[CfnJobDefinitionDefResourcespropertyParams]] = pydantic.Field(None, description='')
-    RetryStrategyProperty: typing.Optional[list[CfnJobDefinitionDefRetrystrategypropertyParams]] = pydantic.Field(None, description='')
-    RuntimePlatformProperty: typing.Optional[list[CfnJobDefinitionDefRuntimeplatformpropertyParams]] = pydantic.Field(None, description='')
-    SecretProperty: typing.Optional[list[CfnJobDefinitionDefSecretpropertyParams]] = pydantic.Field(None, description='')
-    SecurityContextProperty: typing.Optional[list[CfnJobDefinitionDefSecuritycontextpropertyParams]] = pydantic.Field(None, description='')
-    TimeoutProperty: typing.Optional[list[CfnJobDefinitionDefTimeoutpropertyParams]] = pydantic.Field(None, description='')
-    TmpfsProperty: typing.Optional[list[CfnJobDefinitionDefTmpfspropertyParams]] = pydantic.Field(None, description='')
-    UlimitProperty: typing.Optional[list[CfnJobDefinitionDefUlimitpropertyParams]] = pydantic.Field(None, description='')
-    VolumesHostProperty: typing.Optional[list[CfnJobDefinitionDefVolumeshostpropertyParams]] = pydantic.Field(None, description='')
-    VolumesProperty: typing.Optional[list[CfnJobDefinitionDefVolumespropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnJobDefinitionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnJobDefinitionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnJobDefinitionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnJobDefinitionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnJobDefinitionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnJobDefinitionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnJobDefinitionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AuthorizationConfigProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAuthorizationconfigpropertyParams]] = pydantic.Field(None, description='')
+    ContainerPropertiesProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefContainerpropertiespropertyParams]] = pydantic.Field(None, description='')
+    DeviceProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefDevicepropertyParams]] = pydantic.Field(None, description='')
+    EfsVolumeConfigurationProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEfsvolumeconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    EksContainerEnvironmentVariableProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEkscontainerenvironmentvariablepropertyParams]] = pydantic.Field(None, description='')
+    EksContainerProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEkscontainerpropertyParams]] = pydantic.Field(None, description='')
+    EksContainerVolumeMountProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEkscontainervolumemountpropertyParams]] = pydantic.Field(None, description='')
+    EksPropertiesProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEkspropertiespropertyParams]] = pydantic.Field(None, description='')
+    EksSecretProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEkssecretpropertyParams]] = pydantic.Field(None, description='')
+    EksVolumeProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEksvolumepropertyParams]] = pydantic.Field(None, description='')
+    EmptyDirProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEmptydirpropertyParams]] = pydantic.Field(None, description='')
+    EnvironmentProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEnvironmentpropertyParams]] = pydantic.Field(None, description='')
+    EphemeralStorageProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEphemeralstoragepropertyParams]] = pydantic.Field(None, description='')
+    EvaluateOnExitProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefEvaluateonexitpropertyParams]] = pydantic.Field(None, description='')
+    FargatePlatformConfigurationProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefFargateplatformconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    HostPathProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefHostpathpropertyParams]] = pydantic.Field(None, description='')
+    LinuxParametersProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefLinuxparameterspropertyParams]] = pydantic.Field(None, description='')
+    LogConfigurationProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefLogconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    MetadataProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefMetadatapropertyParams]] = pydantic.Field(None, description='')
+    MountPointsProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefMountpointspropertyParams]] = pydantic.Field(None, description='')
+    NetworkConfigurationProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefNetworkconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    NodePropertiesProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefNodepropertiespropertyParams]] = pydantic.Field(None, description='')
+    NodeRangePropertyProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefNoderangepropertypropertyParams]] = pydantic.Field(None, description='')
+    PodPropertiesProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefPodpropertiespropertyParams]] = pydantic.Field(None, description='')
+    ResourceRequirementProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefResourcerequirementpropertyParams]] = pydantic.Field(None, description='')
+    ResourcesProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefResourcespropertyParams]] = pydantic.Field(None, description='')
+    RetryStrategyProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefRetrystrategypropertyParams]] = pydantic.Field(None, description='')
+    RuntimePlatformProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefRuntimeplatformpropertyParams]] = pydantic.Field(None, description='')
+    SecretProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefSecretpropertyParams]] = pydantic.Field(None, description='')
+    SecurityContextProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefSecuritycontextpropertyParams]] = pydantic.Field(None, description='')
+    TimeoutProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefTimeoutpropertyParams]] = pydantic.Field(None, description='')
+    TmpfsProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefTmpfspropertyParams]] = pydantic.Field(None, description='')
+    UlimitProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefUlimitpropertyParams]] = pydantic.Field(None, description='')
+    VolumesHostProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefVolumeshostpropertyParams]] = pydantic.Field(None, description='')
+    VolumesProperty: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefVolumespropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnJobDefinitionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnJobDefinitionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnJobDefinitionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnJobDefinitionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnJobDefinitionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnJobDefinitionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_batch.CfnJobDefinitionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnJobDefinitionDefAuthorizationconfigpropertyParams(pydantic.BaseModel):
@@ -3029,27 +3029,27 @@ class CfnJobQueueDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnJobQueueDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.CfnJobQueueDefConfig] = pydantic.Field(None)
 
 
 class CfnJobQueueDefConfig(pydantic.BaseModel):
-    ComputeEnvironmentOrderProperty: typing.Optional[list[CfnJobQueueDefComputeenvironmentorderpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnJobQueueDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnJobQueueDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnJobQueueDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnJobQueueDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnJobQueueDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnJobQueueDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnJobQueueDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    ComputeEnvironmentOrderProperty: typing.Optional[list[models.aws_batch.CfnJobQueueDefComputeenvironmentorderpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_batch.CfnJobQueueDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnJobQueueDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnJobQueueDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnJobQueueDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_batch.CfnJobQueueDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_batch.CfnJobQueueDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_batch.CfnJobQueueDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnJobQueueDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnJobQueueDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnJobQueueDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_batch.CfnJobQueueDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_batch.CfnJobQueueDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_batch.CfnJobQueueDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnJobQueueDefComputeenvironmentorderpropertyParams(pydantic.BaseModel):
@@ -3135,28 +3135,28 @@ class CfnSchedulingPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnSchedulingPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_batch.CfnSchedulingPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnSchedulingPolicyDefConfig(pydantic.BaseModel):
-    FairsharePolicyProperty: typing.Optional[list[CfnSchedulingPolicyDefFairsharepolicypropertyParams]] = pydantic.Field(None, description='')
-    ShareAttributesProperty: typing.Optional[list[CfnSchedulingPolicyDefShareattributespropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnSchedulingPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnSchedulingPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnSchedulingPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnSchedulingPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnSchedulingPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnSchedulingPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnSchedulingPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    FairsharePolicyProperty: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefFairsharepolicypropertyParams]] = pydantic.Field(None, description='')
+    ShareAttributesProperty: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefShareattributespropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnSchedulingPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnSchedulingPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnSchedulingPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnSchedulingPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnSchedulingPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnSchedulingPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_batch.CfnSchedulingPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnSchedulingPolicyDefFairsharepolicypropertyParams(pydantic.BaseModel):
@@ -3314,116 +3314,116 @@ class CfnSchedulingPolicyPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    EcsVolume: typing.Optional[dict[str, EcsVolumeDef]] = pydantic.Field(None)
-    EfsVolume: typing.Optional[dict[str, EfsVolumeDef]] = pydantic.Field(None)
-    EksVolume: typing.Optional[dict[str, EksVolumeDef]] = pydantic.Field(None)
-    EmptyDirVolume: typing.Optional[dict[str, EmptyDirVolumeDef]] = pydantic.Field(None)
-    HostPathVolume: typing.Optional[dict[str, HostPathVolumeDef]] = pydantic.Field(None)
-    HostVolume: typing.Optional[dict[str, HostVolumeDef]] = pydantic.Field(None)
-    OptimalInstanceType: typing.Optional[dict[str, OptimalInstanceTypeDef]] = pydantic.Field(None)
-    Reason: typing.Optional[dict[str, ReasonDef]] = pydantic.Field(None)
-    RetryStrategy: typing.Optional[dict[str, RetryStrategyDef]] = pydantic.Field(None)
-    Secret: typing.Optional[dict[str, SecretDef]] = pydantic.Field(None)
-    SecretPathVolume: typing.Optional[dict[str, SecretPathVolumeDef]] = pydantic.Field(None)
-    EcsEc2ContainerDefinition: typing.Optional[dict[str, EcsEc2ContainerDefinitionDef]] = pydantic.Field(None)
-    EcsFargateContainerDefinition: typing.Optional[dict[str, EcsFargateContainerDefinitionDef]] = pydantic.Field(None)
-    EcsJobDefinition: typing.Optional[dict[str, EcsJobDefinitionDef]] = pydantic.Field(None)
-    EksContainerDefinition: typing.Optional[dict[str, EksContainerDefinitionDef]] = pydantic.Field(None)
-    EksJobDefinition: typing.Optional[dict[str, EksJobDefinitionDef]] = pydantic.Field(None)
-    FairshareSchedulingPolicy: typing.Optional[dict[str, FairshareSchedulingPolicyDef]] = pydantic.Field(None)
-    FargateComputeEnvironment: typing.Optional[dict[str, FargateComputeEnvironmentDef]] = pydantic.Field(None)
-    JobQueue: typing.Optional[dict[str, JobQueueDef]] = pydantic.Field(None)
-    LinuxParameters: typing.Optional[dict[str, LinuxParametersDef]] = pydantic.Field(None)
-    ManagedEc2EcsComputeEnvironment: typing.Optional[dict[str, ManagedEc2EcsComputeEnvironmentDef]] = pydantic.Field(None)
-    ManagedEc2EksComputeEnvironment: typing.Optional[dict[str, ManagedEc2EksComputeEnvironmentDef]] = pydantic.Field(None)
-    MultiNodeJobDefinition: typing.Optional[dict[str, MultiNodeJobDefinitionDef]] = pydantic.Field(None)
-    UnmanagedComputeEnvironment: typing.Optional[dict[str, UnmanagedComputeEnvironmentDef]] = pydantic.Field(None)
-    CfnComputeEnvironment_ComputeResourcesProperty: typing.Optional[dict[str, CfnComputeEnvironment_ComputeResourcesPropertyDef]] = pydantic.Field(None)
-    CfnComputeEnvironment_Ec2ConfigurationObjectProperty: typing.Optional[dict[str, CfnComputeEnvironment_Ec2ConfigurationObjectPropertyDef]] = pydantic.Field(None)
-    CfnComputeEnvironment_EksConfigurationProperty: typing.Optional[dict[str, CfnComputeEnvironment_EksConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnComputeEnvironment_LaunchTemplateSpecificationProperty: typing.Optional[dict[str, CfnComputeEnvironment_LaunchTemplateSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnComputeEnvironment_UpdatePolicyProperty: typing.Optional[dict[str, CfnComputeEnvironment_UpdatePolicyPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_AuthorizationConfigProperty: typing.Optional[dict[str, CfnJobDefinition_AuthorizationConfigPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_ContainerPropertiesProperty: typing.Optional[dict[str, CfnJobDefinition_ContainerPropertiesPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_DeviceProperty: typing.Optional[dict[str, CfnJobDefinition_DevicePropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EfsVolumeConfigurationProperty: typing.Optional[dict[str, CfnJobDefinition_EfsVolumeConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EksContainerEnvironmentVariableProperty: typing.Optional[dict[str, CfnJobDefinition_EksContainerEnvironmentVariablePropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EksContainerProperty: typing.Optional[dict[str, CfnJobDefinition_EksContainerPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EksContainerVolumeMountProperty: typing.Optional[dict[str, CfnJobDefinition_EksContainerVolumeMountPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EksPropertiesProperty: typing.Optional[dict[str, CfnJobDefinition_EksPropertiesPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EksSecretProperty: typing.Optional[dict[str, CfnJobDefinition_EksSecretPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EksVolumeProperty: typing.Optional[dict[str, CfnJobDefinition_EksVolumePropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EmptyDirProperty: typing.Optional[dict[str, CfnJobDefinition_EmptyDirPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EnvironmentProperty: typing.Optional[dict[str, CfnJobDefinition_EnvironmentPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EphemeralStorageProperty: typing.Optional[dict[str, CfnJobDefinition_EphemeralStoragePropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_EvaluateOnExitProperty: typing.Optional[dict[str, CfnJobDefinition_EvaluateOnExitPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_FargatePlatformConfigurationProperty: typing.Optional[dict[str, CfnJobDefinition_FargatePlatformConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_HostPathProperty: typing.Optional[dict[str, CfnJobDefinition_HostPathPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_LinuxParametersProperty: typing.Optional[dict[str, CfnJobDefinition_LinuxParametersPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_LogConfigurationProperty: typing.Optional[dict[str, CfnJobDefinition_LogConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_MetadataProperty: typing.Optional[dict[str, CfnJobDefinition_MetadataPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_MountPointsProperty: typing.Optional[dict[str, CfnJobDefinition_MountPointsPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_NetworkConfigurationProperty: typing.Optional[dict[str, CfnJobDefinition_NetworkConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_NodePropertiesProperty: typing.Optional[dict[str, CfnJobDefinition_NodePropertiesPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_NodeRangePropertyProperty: typing.Optional[dict[str, CfnJobDefinition_NodeRangePropertyPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_PodPropertiesProperty: typing.Optional[dict[str, CfnJobDefinition_PodPropertiesPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_ResourceRequirementProperty: typing.Optional[dict[str, CfnJobDefinition_ResourceRequirementPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_ResourcesProperty: typing.Optional[dict[str, CfnJobDefinition_ResourcesPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_RetryStrategyProperty: typing.Optional[dict[str, CfnJobDefinition_RetryStrategyPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_RuntimePlatformProperty: typing.Optional[dict[str, CfnJobDefinition_RuntimePlatformPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_SecretProperty: typing.Optional[dict[str, CfnJobDefinition_SecretPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_SecurityContextProperty: typing.Optional[dict[str, CfnJobDefinition_SecurityContextPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_TimeoutProperty: typing.Optional[dict[str, CfnJobDefinition_TimeoutPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_TmpfsProperty: typing.Optional[dict[str, CfnJobDefinition_TmpfsPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_UlimitProperty: typing.Optional[dict[str, CfnJobDefinition_UlimitPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_VolumesHostProperty: typing.Optional[dict[str, CfnJobDefinition_VolumesHostPropertyDef]] = pydantic.Field(None)
-    CfnJobDefinition_VolumesProperty: typing.Optional[dict[str, CfnJobDefinition_VolumesPropertyDef]] = pydantic.Field(None)
-    CfnJobQueue_ComputeEnvironmentOrderProperty: typing.Optional[dict[str, CfnJobQueue_ComputeEnvironmentOrderPropertyDef]] = pydantic.Field(None)
-    CfnSchedulingPolicy_FairsharePolicyProperty: typing.Optional[dict[str, CfnSchedulingPolicy_FairsharePolicyPropertyDef]] = pydantic.Field(None)
-    CfnSchedulingPolicy_ShareAttributesProperty: typing.Optional[dict[str, CfnSchedulingPolicy_ShareAttributesPropertyDef]] = pydantic.Field(None)
-    ComputeEnvironmentProps: typing.Optional[dict[str, ComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    CustomReason: typing.Optional[dict[str, CustomReasonDef]] = pydantic.Field(None)
-    Device: typing.Optional[dict[str, DeviceDef]] = pydantic.Field(None)
-    EcsContainerDefinitionProps: typing.Optional[dict[str, EcsContainerDefinitionPropsDef]] = pydantic.Field(None)
-    EcsEc2ContainerDefinitionProps: typing.Optional[dict[str, EcsEc2ContainerDefinitionPropsDef]] = pydantic.Field(None)
-    EcsFargateContainerDefinitionProps: typing.Optional[dict[str, EcsFargateContainerDefinitionPropsDef]] = pydantic.Field(None)
-    EcsJobDefinitionProps: typing.Optional[dict[str, EcsJobDefinitionPropsDef]] = pydantic.Field(None)
-    EcsMachineImage: typing.Optional[dict[str, EcsMachineImageDef]] = pydantic.Field(None)
-    EcsVolumeOptions: typing.Optional[dict[str, EcsVolumeOptionsDef]] = pydantic.Field(None)
-    EfsVolumeOptions: typing.Optional[dict[str, EfsVolumeOptionsDef]] = pydantic.Field(None)
-    EksContainerDefinitionProps: typing.Optional[dict[str, EksContainerDefinitionPropsDef]] = pydantic.Field(None)
-    EksJobDefinitionProps: typing.Optional[dict[str, EksJobDefinitionPropsDef]] = pydantic.Field(None)
-    EksMachineImage: typing.Optional[dict[str, EksMachineImageDef]] = pydantic.Field(None)
-    EksVolumeOptions: typing.Optional[dict[str, EksVolumeOptionsDef]] = pydantic.Field(None)
-    EmptyDirVolumeOptions: typing.Optional[dict[str, EmptyDirVolumeOptionsDef]] = pydantic.Field(None)
-    FairshareSchedulingPolicyProps: typing.Optional[dict[str, FairshareSchedulingPolicyPropsDef]] = pydantic.Field(None)
-    FargateComputeEnvironmentProps: typing.Optional[dict[str, FargateComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    HostPathVolumeOptions: typing.Optional[dict[str, HostPathVolumeOptionsDef]] = pydantic.Field(None)
-    HostVolumeOptions: typing.Optional[dict[str, HostVolumeOptionsDef]] = pydantic.Field(None)
-    JobDefinitionProps: typing.Optional[dict[str, JobDefinitionPropsDef]] = pydantic.Field(None)
-    JobQueueProps: typing.Optional[dict[str, JobQueuePropsDef]] = pydantic.Field(None)
-    LinuxParametersProps: typing.Optional[dict[str, LinuxParametersPropsDef]] = pydantic.Field(None)
-    ManagedComputeEnvironmentProps: typing.Optional[dict[str, ManagedComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    ManagedEc2EcsComputeEnvironmentProps: typing.Optional[dict[str, ManagedEc2EcsComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    ManagedEc2EksComputeEnvironmentProps: typing.Optional[dict[str, ManagedEc2EksComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    MultiNodeContainer: typing.Optional[dict[str, MultiNodeContainerDef]] = pydantic.Field(None)
-    MultiNodeJobDefinitionProps: typing.Optional[dict[str, MultiNodeJobDefinitionPropsDef]] = pydantic.Field(None)
-    OrderedComputeEnvironment: typing.Optional[dict[str, OrderedComputeEnvironmentDef]] = pydantic.Field(None)
-    SecretPathVolumeOptions: typing.Optional[dict[str, SecretPathVolumeOptionsDef]] = pydantic.Field(None)
-    SecretVersionInfo: typing.Optional[dict[str, SecretVersionInfoDef]] = pydantic.Field(None)
-    Share: typing.Optional[dict[str, ShareDef]] = pydantic.Field(None)
-    Tmpfs: typing.Optional[dict[str, TmpfsDef]] = pydantic.Field(None)
-    Ulimit: typing.Optional[dict[str, UlimitDef]] = pydantic.Field(None)
-    UnmanagedComputeEnvironmentProps: typing.Optional[dict[str, UnmanagedComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    CfnComputeEnvironment: typing.Optional[dict[str, CfnComputeEnvironmentDef]] = pydantic.Field(None)
-    CfnJobDefinition: typing.Optional[dict[str, CfnJobDefinitionDef]] = pydantic.Field(None)
-    CfnJobQueue: typing.Optional[dict[str, CfnJobQueueDef]] = pydantic.Field(None)
-    CfnSchedulingPolicy: typing.Optional[dict[str, CfnSchedulingPolicyDef]] = pydantic.Field(None)
-    CfnComputeEnvironmentProps: typing.Optional[dict[str, CfnComputeEnvironmentPropsDef]] = pydantic.Field(None)
-    CfnJobDefinitionProps: typing.Optional[dict[str, CfnJobDefinitionPropsDef]] = pydantic.Field(None)
-    CfnJobQueueProps: typing.Optional[dict[str, CfnJobQueuePropsDef]] = pydantic.Field(None)
-    CfnSchedulingPolicyProps: typing.Optional[dict[str, CfnSchedulingPolicyPropsDef]] = pydantic.Field(None)
+    EcsVolume: typing.Optional[dict[str, models.aws_batch.EcsVolumeDef]] = pydantic.Field(None)
+    EfsVolume: typing.Optional[dict[str, models.aws_batch.EfsVolumeDef]] = pydantic.Field(None)
+    EksVolume: typing.Optional[dict[str, models.aws_batch.EksVolumeDef]] = pydantic.Field(None)
+    EmptyDirVolume: typing.Optional[dict[str, models.aws_batch.EmptyDirVolumeDef]] = pydantic.Field(None)
+    HostPathVolume: typing.Optional[dict[str, models.aws_batch.HostPathVolumeDef]] = pydantic.Field(None)
+    HostVolume: typing.Optional[dict[str, models.aws_batch.HostVolumeDef]] = pydantic.Field(None)
+    OptimalInstanceType: typing.Optional[dict[str, models.aws_batch.OptimalInstanceTypeDef]] = pydantic.Field(None)
+    Reason: typing.Optional[dict[str, models.aws_batch.ReasonDef]] = pydantic.Field(None)
+    RetryStrategy: typing.Optional[dict[str, models.aws_batch.RetryStrategyDef]] = pydantic.Field(None)
+    Secret: typing.Optional[dict[str, models.aws_batch.SecretDef]] = pydantic.Field(None)
+    SecretPathVolume: typing.Optional[dict[str, models.aws_batch.SecretPathVolumeDef]] = pydantic.Field(None)
+    EcsEc2ContainerDefinition: typing.Optional[dict[str, models.aws_batch.EcsEc2ContainerDefinitionDef]] = pydantic.Field(None)
+    EcsFargateContainerDefinition: typing.Optional[dict[str, models.aws_batch.EcsFargateContainerDefinitionDef]] = pydantic.Field(None)
+    EcsJobDefinition: typing.Optional[dict[str, models.aws_batch.EcsJobDefinitionDef]] = pydantic.Field(None)
+    EksContainerDefinition: typing.Optional[dict[str, models.aws_batch.EksContainerDefinitionDef]] = pydantic.Field(None)
+    EksJobDefinition: typing.Optional[dict[str, models.aws_batch.EksJobDefinitionDef]] = pydantic.Field(None)
+    FairshareSchedulingPolicy: typing.Optional[dict[str, models.aws_batch.FairshareSchedulingPolicyDef]] = pydantic.Field(None)
+    FargateComputeEnvironment: typing.Optional[dict[str, models.aws_batch.FargateComputeEnvironmentDef]] = pydantic.Field(None)
+    JobQueue: typing.Optional[dict[str, models.aws_batch.JobQueueDef]] = pydantic.Field(None)
+    LinuxParameters: typing.Optional[dict[str, models.aws_batch.LinuxParametersDef]] = pydantic.Field(None)
+    ManagedEc2EcsComputeEnvironment: typing.Optional[dict[str, models.aws_batch.ManagedEc2EcsComputeEnvironmentDef]] = pydantic.Field(None)
+    ManagedEc2EksComputeEnvironment: typing.Optional[dict[str, models.aws_batch.ManagedEc2EksComputeEnvironmentDef]] = pydantic.Field(None)
+    MultiNodeJobDefinition: typing.Optional[dict[str, models.aws_batch.MultiNodeJobDefinitionDef]] = pydantic.Field(None)
+    UnmanagedComputeEnvironment: typing.Optional[dict[str, models.aws_batch.UnmanagedComputeEnvironmentDef]] = pydantic.Field(None)
+    CfnComputeEnvironment_ComputeResourcesProperty: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironment_ComputeResourcesPropertyDef]] = pydantic.Field(None)
+    CfnComputeEnvironment_Ec2ConfigurationObjectProperty: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironment_Ec2ConfigurationObjectPropertyDef]] = pydantic.Field(None)
+    CfnComputeEnvironment_EksConfigurationProperty: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironment_EksConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnComputeEnvironment_LaunchTemplateSpecificationProperty: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironment_LaunchTemplateSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnComputeEnvironment_UpdatePolicyProperty: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironment_UpdatePolicyPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_AuthorizationConfigProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_AuthorizationConfigPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_ContainerPropertiesProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_ContainerPropertiesPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_DeviceProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_DevicePropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EfsVolumeConfigurationProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EfsVolumeConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EksContainerEnvironmentVariableProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EksContainerEnvironmentVariablePropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EksContainerProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EksContainerPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EksContainerVolumeMountProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EksContainerVolumeMountPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EksPropertiesProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EksPropertiesPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EksSecretProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EksSecretPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EksVolumeProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EksVolumePropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EmptyDirProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EmptyDirPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EnvironmentProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EnvironmentPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EphemeralStorageProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EphemeralStoragePropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_EvaluateOnExitProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_EvaluateOnExitPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_FargatePlatformConfigurationProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_FargatePlatformConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_HostPathProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_HostPathPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_LinuxParametersProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_LinuxParametersPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_LogConfigurationProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_LogConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_MetadataProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_MetadataPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_MountPointsProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_MountPointsPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_NetworkConfigurationProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_NetworkConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_NodePropertiesProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_NodePropertiesPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_NodeRangePropertyProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_NodeRangePropertyPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_PodPropertiesProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_PodPropertiesPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_ResourceRequirementProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_ResourceRequirementPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_ResourcesProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_ResourcesPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_RetryStrategyProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_RetryStrategyPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_RuntimePlatformProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_RuntimePlatformPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_SecretProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_SecretPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_SecurityContextProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_SecurityContextPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_TimeoutProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_TimeoutPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_TmpfsProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_TmpfsPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_UlimitProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_UlimitPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_VolumesHostProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_VolumesHostPropertyDef]] = pydantic.Field(None)
+    CfnJobDefinition_VolumesProperty: typing.Optional[dict[str, models.aws_batch.CfnJobDefinition_VolumesPropertyDef]] = pydantic.Field(None)
+    CfnJobQueue_ComputeEnvironmentOrderProperty: typing.Optional[dict[str, models.aws_batch.CfnJobQueue_ComputeEnvironmentOrderPropertyDef]] = pydantic.Field(None)
+    CfnSchedulingPolicy_FairsharePolicyProperty: typing.Optional[dict[str, models.aws_batch.CfnSchedulingPolicy_FairsharePolicyPropertyDef]] = pydantic.Field(None)
+    CfnSchedulingPolicy_ShareAttributesProperty: typing.Optional[dict[str, models.aws_batch.CfnSchedulingPolicy_ShareAttributesPropertyDef]] = pydantic.Field(None)
+    ComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.ComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    CustomReason: typing.Optional[dict[str, models.aws_batch.CustomReasonDef]] = pydantic.Field(None)
+    Device: typing.Optional[dict[str, models.aws_batch.DeviceDef]] = pydantic.Field(None)
+    EcsContainerDefinitionProps: typing.Optional[dict[str, models.aws_batch.EcsContainerDefinitionPropsDef]] = pydantic.Field(None)
+    EcsEc2ContainerDefinitionProps: typing.Optional[dict[str, models.aws_batch.EcsEc2ContainerDefinitionPropsDef]] = pydantic.Field(None)
+    EcsFargateContainerDefinitionProps: typing.Optional[dict[str, models.aws_batch.EcsFargateContainerDefinitionPropsDef]] = pydantic.Field(None)
+    EcsJobDefinitionProps: typing.Optional[dict[str, models.aws_batch.EcsJobDefinitionPropsDef]] = pydantic.Field(None)
+    EcsMachineImage: typing.Optional[dict[str, models.aws_batch.EcsMachineImageDef]] = pydantic.Field(None)
+    EcsVolumeOptions: typing.Optional[dict[str, models.aws_batch.EcsVolumeOptionsDef]] = pydantic.Field(None)
+    EfsVolumeOptions: typing.Optional[dict[str, models.aws_batch.EfsVolumeOptionsDef]] = pydantic.Field(None)
+    EksContainerDefinitionProps: typing.Optional[dict[str, models.aws_batch.EksContainerDefinitionPropsDef]] = pydantic.Field(None)
+    EksJobDefinitionProps: typing.Optional[dict[str, models.aws_batch.EksJobDefinitionPropsDef]] = pydantic.Field(None)
+    EksMachineImage: typing.Optional[dict[str, models.aws_batch.EksMachineImageDef]] = pydantic.Field(None)
+    EksVolumeOptions: typing.Optional[dict[str, models.aws_batch.EksVolumeOptionsDef]] = pydantic.Field(None)
+    EmptyDirVolumeOptions: typing.Optional[dict[str, models.aws_batch.EmptyDirVolumeOptionsDef]] = pydantic.Field(None)
+    FairshareSchedulingPolicyProps: typing.Optional[dict[str, models.aws_batch.FairshareSchedulingPolicyPropsDef]] = pydantic.Field(None)
+    FargateComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.FargateComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    HostPathVolumeOptions: typing.Optional[dict[str, models.aws_batch.HostPathVolumeOptionsDef]] = pydantic.Field(None)
+    HostVolumeOptions: typing.Optional[dict[str, models.aws_batch.HostVolumeOptionsDef]] = pydantic.Field(None)
+    JobDefinitionProps: typing.Optional[dict[str, models.aws_batch.JobDefinitionPropsDef]] = pydantic.Field(None)
+    JobQueueProps: typing.Optional[dict[str, models.aws_batch.JobQueuePropsDef]] = pydantic.Field(None)
+    LinuxParametersProps: typing.Optional[dict[str, models.aws_batch.LinuxParametersPropsDef]] = pydantic.Field(None)
+    ManagedComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.ManagedComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    ManagedEc2EcsComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.ManagedEc2EcsComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    ManagedEc2EksComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.ManagedEc2EksComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    MultiNodeContainer: typing.Optional[dict[str, models.aws_batch.MultiNodeContainerDef]] = pydantic.Field(None)
+    MultiNodeJobDefinitionProps: typing.Optional[dict[str, models.aws_batch.MultiNodeJobDefinitionPropsDef]] = pydantic.Field(None)
+    OrderedComputeEnvironment: typing.Optional[dict[str, models.aws_batch.OrderedComputeEnvironmentDef]] = pydantic.Field(None)
+    SecretPathVolumeOptions: typing.Optional[dict[str, models.aws_batch.SecretPathVolumeOptionsDef]] = pydantic.Field(None)
+    SecretVersionInfo: typing.Optional[dict[str, models.aws_batch.SecretVersionInfoDef]] = pydantic.Field(None)
+    Share: typing.Optional[dict[str, models.aws_batch.ShareDef]] = pydantic.Field(None)
+    Tmpfs: typing.Optional[dict[str, models.aws_batch.TmpfsDef]] = pydantic.Field(None)
+    Ulimit: typing.Optional[dict[str, models.aws_batch.UlimitDef]] = pydantic.Field(None)
+    UnmanagedComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.UnmanagedComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    CfnComputeEnvironment: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironmentDef]] = pydantic.Field(None)
+    CfnJobDefinition: typing.Optional[dict[str, models.aws_batch.CfnJobDefinitionDef]] = pydantic.Field(None)
+    CfnJobQueue: typing.Optional[dict[str, models.aws_batch.CfnJobQueueDef]] = pydantic.Field(None)
+    CfnSchedulingPolicy: typing.Optional[dict[str, models.aws_batch.CfnSchedulingPolicyDef]] = pydantic.Field(None)
+    CfnComputeEnvironmentProps: typing.Optional[dict[str, models.aws_batch.CfnComputeEnvironmentPropsDef]] = pydantic.Field(None)
+    CfnJobDefinitionProps: typing.Optional[dict[str, models.aws_batch.CfnJobDefinitionPropsDef]] = pydantic.Field(None)
+    CfnJobQueueProps: typing.Optional[dict[str, models.aws_batch.CfnJobQueuePropsDef]] = pydantic.Field(None)
+    CfnSchedulingPolicyProps: typing.Optional[dict[str, models.aws_batch.CfnSchedulingPolicyPropsDef]] = pydantic.Field(None)
     ...
+
+import models

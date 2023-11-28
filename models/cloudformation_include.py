@@ -18,7 +18,7 @@ class IncludedNestedStackDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[IncludedNestedStackDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.cloudformation_include.IncludedNestedStackDefConfig] = pydantic.Field(None)
 
 
 class IncludedNestedStackDefConfig(pydantic.BaseModel):
@@ -41,20 +41,20 @@ class CfnIncludeDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnIncludeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.cloudformation_include.CfnIncludeDefConfig] = pydantic.Field(None)
 
 
 class CfnIncludeDefConfig(pydantic.BaseModel):
-    get_condition: typing.Optional[list[CfnIncludeDefGetConditionParams]] = pydantic.Field(None, description="Returns the CfnCondition object from the 'Conditions' section of the CloudFormation template with the given name.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Condition with the given name is not present in the template,\nthrows an exception.")
-    get_hook: typing.Optional[list[CfnIncludeDefGetHookParams]] = pydantic.Field(None, description="Returns the CfnHook object from the 'Hooks' section of the included CloudFormation template with the given logical ID.\nAny modifications performed on the returned object will be reflected in the resulting CDK template.\n\nIf a Hook with the given logical ID is not present in the template,\nan exception will be thrown.")
-    get_mapping: typing.Optional[list[CfnIncludeDefGetMappingParams]] = pydantic.Field(None, description="Returns the CfnMapping object from the 'Mappings' section of the included template.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Mapping with the given name is not present in the template,\nan exception will be thrown.")
-    get_nested_stack: typing.Optional[list[CfnIncludeDefGetNestedStackParams]] = pydantic.Field(None, description='Returns a loaded NestedStack with name logicalId.\nFor a nested stack to be returned by this method,\nit must be specified either in the ``CfnIncludeProps.loadNestedStacks`` property,\nor through the ``loadNestedStack`` method.')
-    get_output: typing.Optional[list[CfnIncludeDefGetOutputParams]] = pydantic.Field(None, description="Returns the CfnOutput object from the 'Outputs' section of the included template.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf an Output with the given name is not present in the template,\nthrows an exception.")
-    get_parameter: typing.Optional[list[CfnIncludeDefGetParameterParams]] = pydantic.Field(None, description="Returns the CfnParameter object from the 'Parameters' section of the included template.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Parameter with the given name is not present in the template,\nthrows an exception.")
-    get_resource: typing.Optional[list[CfnIncludeDefGetResourceParams]] = pydantic.Field(None, description="Returns the low-level CfnResource from the template with the given logical ID.\nAny modifications performed on that resource will be reflected in the resulting CDK template.\n\nThe returned object will be of the proper underlying class;\nyou can always cast it to the correct type in your code::\n\n   // assume the template contains an AWS::S3::Bucket with logical ID 'Bucket'\n   const cfnBucket = cfnTemplate.getResource('Bucket') as s3.CfnBucket;\n   // cfnBucket is of type s3.CfnBucket\n\nIf the template does not contain a resource with the given logical ID,\nan exception will be thrown.")
-    get_rule: typing.Optional[list[CfnIncludeDefGetRuleParams]] = pydantic.Field(None, description="Returns the CfnRule object from the 'Rules' section of the CloudFormation template with the given name.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Rule with the given name is not present in the template,\nan exception will be thrown.")
-    load_nested_stack: typing.Optional[list[CfnIncludeDefLoadNestedStackParams]] = pydantic.Field(None, description='Includes a template for a child stack inside of this parent template.\nA child with this logical ID must exist in the template,\nand be of type AWS::CloudFormation::Stack.\nThis is equivalent to specifying the value in the ``CfnIncludeProps.loadNestedStacks``\nproperty on object construction.')
-    override_logical_id: typing.Optional[list[CfnIncludeDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    get_condition: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetConditionParams]] = pydantic.Field(None, description="Returns the CfnCondition object from the 'Conditions' section of the CloudFormation template with the given name.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Condition with the given name is not present in the template,\nthrows an exception.")
+    get_hook: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetHookParams]] = pydantic.Field(None, description="Returns the CfnHook object from the 'Hooks' section of the included CloudFormation template with the given logical ID.\nAny modifications performed on the returned object will be reflected in the resulting CDK template.\n\nIf a Hook with the given logical ID is not present in the template,\nan exception will be thrown.")
+    get_mapping: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetMappingParams]] = pydantic.Field(None, description="Returns the CfnMapping object from the 'Mappings' section of the included template.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Mapping with the given name is not present in the template,\nan exception will be thrown.")
+    get_nested_stack: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetNestedStackParams]] = pydantic.Field(None, description='Returns a loaded NestedStack with name logicalId.\nFor a nested stack to be returned by this method,\nit must be specified either in the ``CfnIncludeProps.loadNestedStacks`` property,\nor through the ``loadNestedStack`` method.')
+    get_output: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetOutputParams]] = pydantic.Field(None, description="Returns the CfnOutput object from the 'Outputs' section of the included template.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf an Output with the given name is not present in the template,\nthrows an exception.")
+    get_parameter: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetParameterParams]] = pydantic.Field(None, description="Returns the CfnParameter object from the 'Parameters' section of the included template.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Parameter with the given name is not present in the template,\nthrows an exception.")
+    get_resource: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetResourceParams]] = pydantic.Field(None, description="Returns the low-level CfnResource from the template with the given logical ID.\nAny modifications performed on that resource will be reflected in the resulting CDK template.\n\nThe returned object will be of the proper underlying class;\nyou can always cast it to the correct type in your code::\n\n   // assume the template contains an AWS::S3::Bucket with logical ID 'Bucket'\n   const cfnBucket = cfnTemplate.getResource('Bucket') as s3.CfnBucket;\n   // cfnBucket is of type s3.CfnBucket\n\nIf the template does not contain a resource with the given logical ID,\nan exception will be thrown.")
+    get_rule: typing.Optional[list[models.cloudformation_include.CfnIncludeDefGetRuleParams]] = pydantic.Field(None, description="Returns the CfnRule object from the 'Rules' section of the CloudFormation template with the given name.\nAny modifications performed on that object will be reflected in the resulting CDK template.\n\nIf a Rule with the given name is not present in the template,\nan exception will be thrown.")
+    load_nested_stack: typing.Optional[list[models.cloudformation_include.CfnIncludeDefLoadNestedStackParams]] = pydantic.Field(None, description='Includes a template for a child stack inside of this parent template.\nA child with this logical ID must exist in the template,\nand be of type AWS::CloudFormation::Stack.\nThis is equivalent to specifying the value in the ``CfnIncludeProps.loadNestedStacks``\nproperty on object construction.')
+    override_logical_id: typing.Optional[list[models.cloudformation_include.CfnIncludeDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
 
 class CfnIncludeDefGetConditionParams(pydantic.BaseModel):
     condition_name: str = pydantic.Field(..., description='the name of the Condition in the CloudFormation template file.')
@@ -128,10 +128,10 @@ class CfnIncludePropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    IncludedNestedStack: typing.Optional[dict[str, IncludedNestedStackDef]] = pydantic.Field(None)
-    CfnInclude: typing.Optional[dict[str, CfnIncludeDef]] = pydantic.Field(None)
-    CfnIncludeProps: typing.Optional[dict[str, CfnIncludePropsDef]] = pydantic.Field(None)
+    IncludedNestedStack: typing.Optional[dict[str, models.cloudformation_include.IncludedNestedStackDef]] = pydantic.Field(None)
+    CfnInclude: typing.Optional[dict[str, models.cloudformation_include.CfnIncludeDef]] = pydantic.Field(None)
+    CfnIncludeProps: typing.Optional[dict[str, models.cloudformation_include.CfnIncludePropsDef]] = pydantic.Field(None)
     ...
+
+import models

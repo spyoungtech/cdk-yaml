@@ -16,11 +16,11 @@ class AutoScalingGroupRequireImdsv2AspectDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[AutoScalingGroupRequireImdsv2AspectDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.AutoScalingGroupRequireImdsv2AspectDefConfig] = pydantic.Field(None)
 
 
 class AutoScalingGroupRequireImdsv2AspectDefConfig(pydantic.BaseModel):
-    visit: typing.Optional[list[AutoScalingGroupRequireImdsv2AspectDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
+    visit: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupRequireImdsv2AspectDefVisitParams]] = pydantic.Field(None, description='All aspects can visit an IConstruct.')
 
 class AutoScalingGroupRequireImdsv2AspectDefVisitParams(pydantic.BaseModel):
     node: models.AnyResource = pydantic.Field(..., description='-')
@@ -39,14 +39,14 @@ class BlockDeviceVolumeDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[BlockDeviceVolumeDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.BlockDeviceVolumeDefConfig] = pydantic.Field(None)
 
 
 class BlockDeviceVolumeDefConfig(pydantic.BaseModel):
-    ebs: typing.Optional[list[BlockDeviceVolumeDefEbsParams]] = pydantic.Field(None, description='Creates a new Elastic Block Storage device.')
-    ebs_from_snapshot: typing.Optional[list[BlockDeviceVolumeDefEbsFromSnapshotParams]] = pydantic.Field(None, description='Creates a new Elastic Block Storage device from an existing snapshot.')
-    ephemeral: typing.Optional[list[BlockDeviceVolumeDefEphemeralParams]] = pydantic.Field(None, description='Creates a virtual, ephemeral device.\nThe name will be in the form ephemeral{volumeIndex}.')
-    no_device: typing.Optional[list[BlockDeviceVolumeDefNoDeviceParams]] = pydantic.Field(None, description='Supresses a volume mapping.')
+    ebs: typing.Optional[list[models.aws_autoscaling.BlockDeviceVolumeDefEbsParams]] = pydantic.Field(None, description='Creates a new Elastic Block Storage device.')
+    ebs_from_snapshot: typing.Optional[list[models.aws_autoscaling.BlockDeviceVolumeDefEbsFromSnapshotParams]] = pydantic.Field(None, description='Creates a new Elastic Block Storage device from an existing snapshot.')
+    ephemeral: typing.Optional[list[models.aws_autoscaling.BlockDeviceVolumeDefEphemeralParams]] = pydantic.Field(None, description='Creates a virtual, ephemeral device.\nThe name will be in the form ephemeral{volumeIndex}.')
+    no_device: typing.Optional[list[models.aws_autoscaling.BlockDeviceVolumeDefNoDeviceParams]] = pydantic.Field(None, description='Supresses a volume mapping.')
 
 class BlockDeviceVolumeDefEbsParams(pydantic.BaseModel):
     volume_size: typing.Union[int, float] = pydantic.Field(..., description='The volume size, in Gibibytes (GiB).\n')
@@ -102,11 +102,11 @@ class GroupMetricsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[GroupMetricsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.GroupMetricsDefConfig] = pydantic.Field(None)
 
 
 class GroupMetricsDefConfig(pydantic.BaseModel):
-    all: typing.Optional[list[GroupMetricsDefAllParams]] = pydantic.Field(None, description='Report all group metrics.')
+    all: typing.Optional[list[models.aws_autoscaling.GroupMetricsDefAllParams]] = pydantic.Field(None, description='Report all group metrics.')
 
 class GroupMetricsDefAllParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_autoscaling.GroupMetricsDefConfig]] = pydantic.Field(None)
@@ -123,12 +123,12 @@ class HealthCheckDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[HealthCheckDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.HealthCheckDefConfig] = pydantic.Field(None)
 
 
 class HealthCheckDefConfig(pydantic.BaseModel):
-    ec2: typing.Optional[list[HealthCheckDefEc2Params]] = pydantic.Field(None, description='Use EC2 for health checks.')
-    elb: typing.Optional[list[HealthCheckDefElbParams]] = pydantic.Field(None, description='Use ELB for health checks.\nIt considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks.')
+    ec2: typing.Optional[list[models.aws_autoscaling.HealthCheckDefEc2Params]] = pydantic.Field(None, description='Use EC2 for health checks.')
+    elb: typing.Optional[list[models.aws_autoscaling.HealthCheckDefElbParams]] = pydantic.Field(None, description='Use ELB for health checks.\nIt considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks.')
 
 class HealthCheckDefEc2Params(pydantic.BaseModel):
     grace: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specified the time Auto Scaling waits before checking the health status of an EC2 instance that has come into service. Default: Duration.seconds(0)')
@@ -164,12 +164,12 @@ class ScheduleDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[ScheduleDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.ScheduleDefConfig] = pydantic.Field(None)
 
 
 class ScheduleDefConfig(pydantic.BaseModel):
-    cron: typing.Optional[list[ScheduleDefCronParams]] = pydantic.Field(None, description='Create a schedule from a set of cron fields.')
-    expression: typing.Optional[list[ScheduleDefExpressionParams]] = pydantic.Field(None, description='Construct a schedule from a literal schedule expression.')
+    cron: typing.Optional[list[models.aws_autoscaling.ScheduleDefCronParams]] = pydantic.Field(None, description='Create a schedule from a set of cron fields.')
+    expression: typing.Optional[list[models.aws_autoscaling.ScheduleDefExpressionParams]] = pydantic.Field(None, description='Construct a schedule from a literal schedule expression.')
 
 class ScheduleDefCronParams(pydantic.BaseModel):
     day: typing.Optional[str] = pydantic.Field(None, description='The day of the month to run this rule at. Default: - Every day of the month\n')
@@ -196,14 +196,14 @@ class SignalsDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[SignalsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.SignalsDefConfig] = pydantic.Field(None)
 
 
 class SignalsDefConfig(pydantic.BaseModel):
-    render_creation_policy: typing.Optional[list[SignalsDefRenderCreationPolicyParams]] = pydantic.Field(None, description="Render the ASG's CreationPolicy.")
-    wait_for_all: typing.Optional[list[SignalsDefWaitForAllParams]] = pydantic.Field(None, description='Wait for the desiredCapacity of the AutoScalingGroup amount of signals to have been received.\nIf no desiredCapacity has been configured, wait for minCapacity signals intead.\n\nThis number is used during initial creation and during replacing updates.\nDuring rolling updates, all updated instances must send a signal.')
-    wait_for_count: typing.Optional[list[SignalsDefWaitForCountParams]] = pydantic.Field(None, description='Wait for a specific amount of signals to have been received.\nYou should send one signal per instance, so this represents the number of\ninstances to wait for.\n\nThis number is used during initial creation and during replacing updates.\nDuring rolling updates, all updated instances must send a signal.')
-    wait_for_min_capacity: typing.Optional[list[SignalsDefWaitForMinCapacityParams]] = pydantic.Field(None, description='Wait for the minCapacity of the AutoScalingGroup amount of signals to have been received.\nThis number is used during initial creation and during replacing updates.\nDuring rolling updates, all updated instances must send a signal.')
+    render_creation_policy: typing.Optional[list[models.aws_autoscaling.SignalsDefRenderCreationPolicyParams]] = pydantic.Field(None, description="Render the ASG's CreationPolicy.")
+    wait_for_all: typing.Optional[list[models.aws_autoscaling.SignalsDefWaitForAllParams]] = pydantic.Field(None, description='Wait for the desiredCapacity of the AutoScalingGroup amount of signals to have been received.\nIf no desiredCapacity has been configured, wait for minCapacity signals intead.\n\nThis number is used during initial creation and during replacing updates.\nDuring rolling updates, all updated instances must send a signal.')
+    wait_for_count: typing.Optional[list[models.aws_autoscaling.SignalsDefWaitForCountParams]] = pydantic.Field(None, description='Wait for a specific amount of signals to have been received.\nYou should send one signal per instance, so this represents the number of\ninstances to wait for.\n\nThis number is used during initial creation and during replacing updates.\nDuring rolling updates, all updated instances must send a signal.')
+    wait_for_min_capacity: typing.Optional[list[models.aws_autoscaling.SignalsDefWaitForMinCapacityParams]] = pydantic.Field(None, description='Wait for the minCapacity of the AutoScalingGroup amount of signals to have been received.\nThis number is used during initial creation and during replacing updates.\nDuring rolling updates, all updated instances must send a signal.')
 
 class SignalsDefRenderCreationPolicyParams(pydantic.BaseModel):
     desired_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The desiredCapacity of the ASG. Default: - desired capacity not configured\n')
@@ -240,12 +240,12 @@ class UpdatePolicyDef(BaseClass):
     ...
 
 
-    resource_config: typing.Optional[UpdatePolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.UpdatePolicyDefConfig] = pydantic.Field(None)
 
 
 class UpdatePolicyDefConfig(pydantic.BaseModel):
-    replacing_update: typing.Optional[list[UpdatePolicyDefReplacingUpdateParams]] = pydantic.Field(None, description='Create a new AutoScalingGroup and switch over to it.')
-    rolling_update: typing.Optional[list[UpdatePolicyDefRollingUpdateParams]] = pydantic.Field(None, description='Replace the instances in the AutoScalingGroup one by one, or in batches.')
+    replacing_update: typing.Optional[list[models.aws_autoscaling.UpdatePolicyDefReplacingUpdateParams]] = pydantic.Field(None, description='Create a new AutoScalingGroup and switch over to it.')
+    rolling_update: typing.Optional[list[models.aws_autoscaling.UpdatePolicyDefRollingUpdateParams]] = pydantic.Field(None, description='Replace the instances in the AutoScalingGroup one by one, or in batches.')
 
 class UpdatePolicyDefReplacingUpdateParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_autoscaling.UpdatePolicyDefConfig]] = pydantic.Field(None)
@@ -307,30 +307,30 @@ class AutoScalingGroupDef(BaseConstruct, ConnectableMixin):
     ...
 
 
-    from_auto_scaling_group_name: typing.Optional[AutoScalingGroupDefFromAutoScalingGroupNameParams] = pydantic.Field(None, description='')
-    resource_config: typing.Optional[AutoScalingGroupDefConfig] = pydantic.Field(None)
+    from_auto_scaling_group_name: typing.Optional[models.aws_autoscaling.AutoScalingGroupDefFromAutoScalingGroupNameParams] = pydantic.Field(None, description='')
+    resource_config: typing.Optional[models.aws_autoscaling.AutoScalingGroupDefConfig] = pydantic.Field(None)
 
 
 class AutoScalingGroupDefConfig(pydantic.BaseModel):
-    add_lifecycle_hook: typing.Optional[list[AutoScalingGroupDefAddLifecycleHookParams]] = pydantic.Field(None, description='Send a message to either an SQS queue or SNS topic when instances launch or terminate.')
-    add_security_group: typing.Optional[list[AutoScalingGroupDefAddSecurityGroupParams]] = pydantic.Field(None, description='Add the security group to all instances via the launch template security groups array.')
-    add_to_role_policy: typing.Optional[list[AutoScalingGroupDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by instances of this fleet.')
-    add_user_data: typing.Optional[list[AutoScalingGroupDefAddUserDataParams]] = pydantic.Field(None, description="Add command to the startup script of fleet instances.\nThe command must be in the scripting language supported by the fleet's OS (i.e. Linux/Windows).\nDoes nothing for imported ASGs.")
-    add_warm_pool: typing.Optional[list[AutoScalingGroupDefAddWarmPoolParams]] = pydantic.Field(None, description='Add a pool of pre-initialized EC2 instances that sits alongside an Auto Scaling group.')
-    apply_cloud_formation_init: typing.Optional[list[AutoScalingGroupDefApplyCloudFormationInitParams]] = pydantic.Field(None, description="Use a CloudFormation Init configuration at instance startup.\nThis does the following:\n\n- Attaches the CloudFormation Init metadata to the AutoScalingGroup resource.\n- Add commands to the UserData to run ``cfn-init`` and ``cfn-signal``.\n- Update the instance's CreationPolicy to wait for ``cfn-init`` to finish\n  before reporting success.")
+    add_lifecycle_hook: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAddLifecycleHookParams]] = pydantic.Field(None, description='Send a message to either an SQS queue or SNS topic when instances launch or terminate.')
+    add_security_group: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAddSecurityGroupParams]] = pydantic.Field(None, description='Add the security group to all instances via the launch template security groups array.')
+    add_to_role_policy: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM role assumed by instances of this fleet.')
+    add_user_data: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAddUserDataParams]] = pydantic.Field(None, description="Add command to the startup script of fleet instances.\nThe command must be in the scripting language supported by the fleet's OS (i.e. Linux/Windows).\nDoes nothing for imported ASGs.")
+    add_warm_pool: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAddWarmPoolParams]] = pydantic.Field(None, description='Add a pool of pre-initialized EC2 instances that sits alongside an Auto Scaling group.')
+    apply_cloud_formation_init: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefApplyCloudFormationInitParams]] = pydantic.Field(None, description="Use a CloudFormation Init configuration at instance startup.\nThis does the following:\n\n- Attaches the CloudFormation Init metadata to the AutoScalingGroup resource.\n- Add commands to the UserData to run ``cfn-init`` and ``cfn-signal``.\n- Update the instance's CreationPolicy to wait for ``cfn-init`` to finish\n  before reporting success.")
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     are_new_instances_protected_from_scale_in: typing.Optional[bool] = pydantic.Field(None, description='Returns ``true`` if newly-launched instances are protected from scale-in.')
-    attach_to_application_target_group: typing.Optional[list[AutoScalingGroupDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Attach to ELBv2 Application Target Group.')
-    attach_to_classic_lb: typing.Optional[list[AutoScalingGroupDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach to a classic load balancer.')
-    attach_to_network_target_group: typing.Optional[list[AutoScalingGroupDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description='Attach to ELBv2 Application Target Group.')
+    attach_to_application_target_group: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAttachToApplicationTargetGroupParams]] = pydantic.Field(None, description='Attach to ELBv2 Application Target Group.')
+    attach_to_classic_lb: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAttachToClassicLbParams]] = pydantic.Field(None, description='Attach to a classic load balancer.')
+    attach_to_network_target_group: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefAttachToNetworkTargetGroupParams]] = pydantic.Field(None, description='Attach to ELBv2 Application Target Group.')
     protect_new_instances_from_scale_in: typing.Optional[bool] = pydantic.Field(None, description='Ensures newly-launched instances are protected from scale-in.')
-    scale_on_cpu_utilization: typing.Optional[list[AutoScalingGroupDefScaleOnCpuUtilizationParams]] = pydantic.Field(None, description='Scale out or in to achieve a target CPU utilization.')
-    scale_on_incoming_bytes: typing.Optional[list[AutoScalingGroupDefScaleOnIncomingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network ingress rate.')
-    scale_on_metric: typing.Optional[list[AutoScalingGroupDefScaleOnMetricParams]] = pydantic.Field(None, description='Scale out or in, in response to a metric.')
-    scale_on_outgoing_bytes: typing.Optional[list[AutoScalingGroupDefScaleOnOutgoingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network egress rate.')
-    scale_on_request_count: typing.Optional[list[AutoScalingGroupDefScaleOnRequestCountParams]] = pydantic.Field(None, description='Scale out or in to achieve a target request handling rate.\nThe AutoScalingGroup must have been attached to an Application Load Balancer\nin order to be able to call this.')
-    scale_on_schedule: typing.Optional[list[AutoScalingGroupDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scale out or in based on time.')
-    scale_to_track_metric: typing.Optional[list[AutoScalingGroupDefScaleToTrackMetricParams]] = pydantic.Field(None, description='Scale out or in in order to keep a metric around a target value.')
+    scale_on_cpu_utilization: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleOnCpuUtilizationParams]] = pydantic.Field(None, description='Scale out or in to achieve a target CPU utilization.')
+    scale_on_incoming_bytes: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleOnIncomingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network ingress rate.')
+    scale_on_metric: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleOnMetricParams]] = pydantic.Field(None, description='Scale out or in, in response to a metric.')
+    scale_on_outgoing_bytes: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleOnOutgoingBytesParams]] = pydantic.Field(None, description='Scale out or in to achieve a target network egress rate.')
+    scale_on_request_count: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleOnRequestCountParams]] = pydantic.Field(None, description='Scale out or in to achieve a target request handling rate.\nThe AutoScalingGroup must have been attached to an Application Load Balancer\nin order to be able to call this.')
+    scale_on_schedule: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleOnScheduleParams]] = pydantic.Field(None, description='Scale out or in based on time.')
+    scale_to_track_metric: typing.Optional[list[models.aws_autoscaling.AutoScalingGroupDefScaleToTrackMetricParams]] = pydantic.Field(None, description='Scale out or in in order to keep a metric around a target value.')
     connections_config: typing.Optional[models.aws_ec2.ConnectionsDefConfig] = pydantic.Field(None)
     grant_principal_config: typing.Optional[models._interface_methods.AwsIamIPrincipalDefConfig] = pydantic.Field(None)
     role_config: typing.Optional[models._interface_methods.AwsIamIRoleDefConfig] = pydantic.Field(None)
@@ -484,7 +484,7 @@ class LifecycleHookDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[LifecycleHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.LifecycleHookDefConfig] = pydantic.Field(None)
 
 
 class LifecycleHookDefConfig(pydantic.BaseModel):
@@ -514,7 +514,7 @@ class ScheduledActionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.ScheduledActionDefConfig] = pydantic.Field(None)
 
 
 class ScheduledActionDefConfig(pydantic.BaseModel):
@@ -541,11 +541,11 @@ class StepScalingActionDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[StepScalingActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.StepScalingActionDefConfig] = pydantic.Field(None)
 
 
 class StepScalingActionDefConfig(pydantic.BaseModel):
-    add_adjustment: typing.Optional[list[StepScalingActionDefAddAdjustmentParams]] = pydantic.Field(None, description='Add an adjusment interval to the ScalingAction.')
+    add_adjustment: typing.Optional[list[models.aws_autoscaling.StepScalingActionDefAddAdjustmentParams]] = pydantic.Field(None, description='Add an adjusment interval to the ScalingAction.')
 
 class StepScalingActionDefAddAdjustmentParams(pydantic.BaseModel):
     adjustment: typing.Union[int, float] = pydantic.Field(..., description='What number to adjust the capacity with. The number is interpeted as an added capacity, a new fixed capacity or an added percentage depending on the AdjustmentType value of the StepScalingPolicy. Can be positive or negative.\n')
@@ -610,7 +610,7 @@ class WarmPoolDef(BaseConstruct):
     ...
 
 
-    resource_config: typing.Optional[WarmPoolDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.WarmPoolDefConfig] = pydantic.Field(None)
 
 
 class WarmPoolDefConfig(pydantic.BaseModel):
@@ -699,7 +699,7 @@ class AutoScalingGroupPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[AutoScalingGroupPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.AutoScalingGroupPropsDefConfig] = pydantic.Field(None)
 
 
 class AutoScalingGroupPropsDefConfig(pydantic.BaseModel):
@@ -1589,7 +1589,7 @@ class ElbHealthCheckOptionsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ElbHealthCheckOptionsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.ElbHealthCheckOptionsDefConfig] = pydantic.Field(None)
 
 
 class ElbHealthCheckOptionsDefConfig(pydantic.BaseModel):
@@ -1627,7 +1627,7 @@ class LaunchTemplateOverridesDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LaunchTemplateOverridesDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.LaunchTemplateOverridesDefConfig] = pydantic.Field(None)
 
 
 class LaunchTemplateOverridesDefConfig(pydantic.BaseModel):
@@ -1652,7 +1652,7 @@ class LifecycleHookPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LifecycleHookPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.LifecycleHookPropsDefConfig] = pydantic.Field(None)
 
 
 class LifecycleHookPropsDefConfig(pydantic.BaseModel):
@@ -1671,7 +1671,7 @@ class LifecycleHookTargetConfigDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[LifecycleHookTargetConfigDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.LifecycleHookTargetConfigDefConfig] = pydantic.Field(None)
 
 
 class LifecycleHookTargetConfigDefConfig(pydantic.BaseModel):
@@ -1708,7 +1708,7 @@ class MixedInstancesPolicyDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[MixedInstancesPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.MixedInstancesPolicyDefConfig] = pydantic.Field(None)
 
 
 class MixedInstancesPolicyDefConfig(pydantic.BaseModel):
@@ -1743,7 +1743,7 @@ class NotificationConfigurationDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[NotificationConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.NotificationConfigurationDefConfig] = pydantic.Field(None)
 
 
 class NotificationConfigurationDefConfig(pydantic.BaseModel):
@@ -1831,7 +1831,7 @@ class ScheduledActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[ScheduledActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.ScheduledActionPropsDefConfig] = pydantic.Field(None)
 
 
 class ScheduledActionPropsDefConfig(pydantic.BaseModel):
@@ -1869,7 +1869,7 @@ class StepScalingActionPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StepScalingActionPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.StepScalingActionPropsDefConfig] = pydantic.Field(None)
 
 
 class StepScalingActionPropsDefConfig(pydantic.BaseModel):
@@ -1895,7 +1895,7 @@ class StepScalingPolicyPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[StepScalingPolicyPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.StepScalingPolicyPropsDefConfig] = pydantic.Field(None)
 
 
 class StepScalingPolicyPropsDefConfig(pydantic.BaseModel):
@@ -1920,7 +1920,7 @@ class TargetTrackingScalingPolicyPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[TargetTrackingScalingPolicyPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.TargetTrackingScalingPolicyPropsDefConfig] = pydantic.Field(None)
 
 
 class TargetTrackingScalingPolicyPropsDefConfig(pydantic.BaseModel):
@@ -1958,7 +1958,7 @@ class WarmPoolPropsDef(BaseStruct):
     ...
 
 
-    resource_config: typing.Optional[WarmPoolPropsDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.WarmPoolPropsDefConfig] = pydantic.Field(None)
 
 
 class WarmPoolPropsDefConfig(pydantic.BaseModel):
@@ -2052,45 +2052,45 @@ class CfnAutoScalingGroupDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnAutoScalingGroupDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.CfnAutoScalingGroupDefConfig] = pydantic.Field(None)
 
 
 class CfnAutoScalingGroupDefConfig(pydantic.BaseModel):
-    AcceleratorCountRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefAcceleratorcountrequestpropertyParams]] = pydantic.Field(None, description='')
-    AcceleratorTotalMemoryMiBRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefAcceleratortotalmemorymibrequestpropertyParams]] = pydantic.Field(None, description='')
-    BaselineEbsBandwidthMbpsRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefBaselineebsbandwidthmbpsrequestpropertyParams]] = pydantic.Field(None, description='')
-    InstanceRequirementsProperty: typing.Optional[list[CfnAutoScalingGroupDefInstancerequirementspropertyParams]] = pydantic.Field(None, description='')
-    InstancesDistributionProperty: typing.Optional[list[CfnAutoScalingGroupDefInstancesdistributionpropertyParams]] = pydantic.Field(None, description='')
-    LaunchTemplateOverridesProperty: typing.Optional[list[CfnAutoScalingGroupDefLaunchtemplateoverridespropertyParams]] = pydantic.Field(None, description='')
-    LaunchTemplateProperty: typing.Optional[list[CfnAutoScalingGroupDefLaunchtemplatepropertyParams]] = pydantic.Field(None, description='')
-    LaunchTemplateSpecificationProperty: typing.Optional[list[CfnAutoScalingGroupDefLaunchtemplatespecificationpropertyParams]] = pydantic.Field(None, description='')
-    LifecycleHookSpecificationProperty: typing.Optional[list[CfnAutoScalingGroupDefLifecyclehookspecificationpropertyParams]] = pydantic.Field(None, description='')
-    MemoryGiBPerVCpuRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefMemorygibpervcpurequestpropertyParams]] = pydantic.Field(None, description='')
-    MemoryMiBRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefMemorymibrequestpropertyParams]] = pydantic.Field(None, description='')
-    MetricsCollectionProperty: typing.Optional[list[CfnAutoScalingGroupDefMetricscollectionpropertyParams]] = pydantic.Field(None, description='')
-    MixedInstancesPolicyProperty: typing.Optional[list[CfnAutoScalingGroupDefMixedinstancespolicypropertyParams]] = pydantic.Field(None, description='')
-    NetworkBandwidthGbpsRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefNetworkbandwidthgbpsrequestpropertyParams]] = pydantic.Field(None, description='')
-    NetworkInterfaceCountRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefNetworkinterfacecountrequestpropertyParams]] = pydantic.Field(None, description='')
-    NotificationConfigurationProperty: typing.Optional[list[CfnAutoScalingGroupDefNotificationconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    TagPropertyProperty: typing.Optional[list[CfnAutoScalingGroupDefTagpropertypropertyParams]] = pydantic.Field(None, description='')
-    TotalLocalStorageGBRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefTotallocalstoragegbrequestpropertyParams]] = pydantic.Field(None, description='')
-    VCpuCountRequestProperty: typing.Optional[list[CfnAutoScalingGroupDefVcpucountrequestpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnAutoScalingGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnAutoScalingGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnAutoScalingGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnAutoScalingGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnAutoScalingGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnAutoScalingGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnAutoScalingGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    AcceleratorCountRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAcceleratorcountrequestpropertyParams]] = pydantic.Field(None, description='')
+    AcceleratorTotalMemoryMiBRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAcceleratortotalmemorymibrequestpropertyParams]] = pydantic.Field(None, description='')
+    BaselineEbsBandwidthMbpsRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefBaselineebsbandwidthmbpsrequestpropertyParams]] = pydantic.Field(None, description='')
+    InstanceRequirementsProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefInstancerequirementspropertyParams]] = pydantic.Field(None, description='')
+    InstancesDistributionProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefInstancesdistributionpropertyParams]] = pydantic.Field(None, description='')
+    LaunchTemplateOverridesProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefLaunchtemplateoverridespropertyParams]] = pydantic.Field(None, description='')
+    LaunchTemplateProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefLaunchtemplatepropertyParams]] = pydantic.Field(None, description='')
+    LaunchTemplateSpecificationProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefLaunchtemplatespecificationpropertyParams]] = pydantic.Field(None, description='')
+    LifecycleHookSpecificationProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefLifecyclehookspecificationpropertyParams]] = pydantic.Field(None, description='')
+    MemoryGiBPerVCpuRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefMemorygibpervcpurequestpropertyParams]] = pydantic.Field(None, description='')
+    MemoryMiBRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefMemorymibrequestpropertyParams]] = pydantic.Field(None, description='')
+    MetricsCollectionProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefMetricscollectionpropertyParams]] = pydantic.Field(None, description='')
+    MixedInstancesPolicyProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefMixedinstancespolicypropertyParams]] = pydantic.Field(None, description='')
+    NetworkBandwidthGbpsRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefNetworkbandwidthgbpsrequestpropertyParams]] = pydantic.Field(None, description='')
+    NetworkInterfaceCountRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefNetworkinterfacecountrequestpropertyParams]] = pydantic.Field(None, description='')
+    NotificationConfigurationProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefNotificationconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    TagPropertyProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefTagpropertypropertyParams]] = pydantic.Field(None, description='')
+    TotalLocalStorageGBRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefTotallocalstoragegbrequestpropertyParams]] = pydantic.Field(None, description='')
+    VCpuCountRequestProperty: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefVcpucountrequestpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnAutoScalingGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnAutoScalingGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnAutoScalingGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnAutoScalingGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnAutoScalingGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnAutoScalingGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_autoscaling.CfnAutoScalingGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     tags_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnAutoScalingGroupDefAcceleratorcountrequestpropertyParams(pydantic.BaseModel):
@@ -2316,29 +2316,29 @@ class CfnLaunchConfigurationDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLaunchConfigurationDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.CfnLaunchConfigurationDefConfig] = pydantic.Field(None)
 
 
 class CfnLaunchConfigurationDefConfig(pydantic.BaseModel):
-    BlockDeviceMappingProperty: typing.Optional[list[CfnLaunchConfigurationDefBlockdevicemappingpropertyParams]] = pydantic.Field(None, description='')
-    BlockDeviceProperty: typing.Optional[list[CfnLaunchConfigurationDefBlockdevicepropertyParams]] = pydantic.Field(None, description='')
-    MetadataOptionsProperty: typing.Optional[list[CfnLaunchConfigurationDefMetadataoptionspropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnLaunchConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLaunchConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLaunchConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLaunchConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLaunchConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLaunchConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLaunchConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    BlockDeviceMappingProperty: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefBlockdevicemappingpropertyParams]] = pydantic.Field(None, description='')
+    BlockDeviceProperty: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefBlockdevicepropertyParams]] = pydantic.Field(None, description='')
+    MetadataOptionsProperty: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefMetadataoptionspropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLaunchConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLaunchConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLaunchConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLaunchConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLaunchConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLaunchConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_autoscaling.CfnLaunchConfigurationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnLaunchConfigurationDefBlockdevicemappingpropertyParams(pydantic.BaseModel):
     device_name: str = pydantic.Field(..., description='')
@@ -2446,26 +2446,26 @@ class CfnLifecycleHookDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnLifecycleHookDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.CfnLifecycleHookDefConfig] = pydantic.Field(None)
 
 
 class CfnLifecycleHookDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnLifecycleHookDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnLifecycleHookDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnLifecycleHookDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnLifecycleHookDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnLifecycleHookDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnLifecycleHookDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnLifecycleHookDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnLifecycleHookDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnLifecycleHookDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnLifecycleHookDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnLifecycleHookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnLifecycleHookDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnLifecycleHookDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_autoscaling.CfnLifecycleHookDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnLifecycleHookDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -2553,42 +2553,42 @@ class CfnScalingPolicyDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnScalingPolicyDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.CfnScalingPolicyDefConfig] = pydantic.Field(None)
 
 
 class CfnScalingPolicyDefConfig(pydantic.BaseModel):
-    CustomizedMetricSpecificationProperty: typing.Optional[list[CfnScalingPolicyDefCustomizedmetricspecificationpropertyParams]] = pydantic.Field(None, description='')
-    MetricDataQueryProperty: typing.Optional[list[CfnScalingPolicyDefMetricdataquerypropertyParams]] = pydantic.Field(None, description='')
-    MetricDimensionProperty: typing.Optional[list[CfnScalingPolicyDefMetricdimensionpropertyParams]] = pydantic.Field(None, description='')
-    MetricProperty: typing.Optional[list[CfnScalingPolicyDefMetricpropertyParams]] = pydantic.Field(None, description='')
-    MetricStatProperty: typing.Optional[list[CfnScalingPolicyDefMetricstatpropertyParams]] = pydantic.Field(None, description='')
-    PredefinedMetricSpecificationProperty: typing.Optional[list[CfnScalingPolicyDefPredefinedmetricspecificationpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingConfigurationProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingCustomizedCapacityMetricProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingcustomizedcapacitymetricpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingCustomizedLoadMetricProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingcustomizedloadmetricpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingCustomizedScalingMetricProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingcustomizedscalingmetricpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingMetricSpecificationProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingmetricspecificationpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingPredefinedLoadMetricProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingpredefinedloadmetricpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingPredefinedMetricPairProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingpredefinedmetricpairpropertyParams]] = pydantic.Field(None, description='')
-    PredictiveScalingPredefinedScalingMetricProperty: typing.Optional[list[CfnScalingPolicyDefPredictivescalingpredefinedscalingmetricpropertyParams]] = pydantic.Field(None, description='')
-    StepAdjustmentProperty: typing.Optional[list[CfnScalingPolicyDefStepadjustmentpropertyParams]] = pydantic.Field(None, description='')
-    TargetTrackingConfigurationProperty: typing.Optional[list[CfnScalingPolicyDefTargettrackingconfigurationpropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnScalingPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnScalingPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnScalingPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnScalingPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnScalingPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnScalingPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnScalingPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    CustomizedMetricSpecificationProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefCustomizedmetricspecificationpropertyParams]] = pydantic.Field(None, description='')
+    MetricDataQueryProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefMetricdataquerypropertyParams]] = pydantic.Field(None, description='')
+    MetricDimensionProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefMetricdimensionpropertyParams]] = pydantic.Field(None, description='')
+    MetricProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefMetricpropertyParams]] = pydantic.Field(None, description='')
+    MetricStatProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefMetricstatpropertyParams]] = pydantic.Field(None, description='')
+    PredefinedMetricSpecificationProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredefinedmetricspecificationpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingConfigurationProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingCustomizedCapacityMetricProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingcustomizedcapacitymetricpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingCustomizedLoadMetricProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingcustomizedloadmetricpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingCustomizedScalingMetricProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingcustomizedscalingmetricpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingMetricSpecificationProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingmetricspecificationpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingPredefinedLoadMetricProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingpredefinedloadmetricpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingPredefinedMetricPairProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingpredefinedmetricpairpropertyParams]] = pydantic.Field(None, description='')
+    PredictiveScalingPredefinedScalingMetricProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefPredictivescalingpredefinedscalingmetricpropertyParams]] = pydantic.Field(None, description='')
+    StepAdjustmentProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefStepadjustmentpropertyParams]] = pydantic.Field(None, description='')
+    TargetTrackingConfigurationProperty: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefTargettrackingconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnScalingPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnScalingPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnScalingPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnScalingPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnScalingPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnScalingPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_autoscaling.CfnScalingPolicyDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnScalingPolicyDefCustomizedmetricspecificationpropertyParams(pydantic.BaseModel):
     metric_name: str = pydantic.Field(..., description='')
@@ -2769,26 +2769,26 @@ class CfnScheduledActionDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnScheduledActionDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.CfnScheduledActionDefConfig] = pydantic.Field(None)
 
 
 class CfnScheduledActionDefConfig(pydantic.BaseModel):
-    add_deletion_override: typing.Optional[list[CfnScheduledActionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnScheduledActionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnScheduledActionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnScheduledActionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnScheduledActionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnScheduledActionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnScheduledActionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    add_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnScheduledActionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnScheduledActionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnScheduledActionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnScheduledActionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnScheduledActionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnScheduledActionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_autoscaling.CfnScheduledActionDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnScheduledActionDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -2870,27 +2870,27 @@ class CfnWarmPoolDef(BaseCfnResource):
     ...
 
 
-    resource_config: typing.Optional[CfnWarmPoolDefConfig] = pydantic.Field(None)
+    resource_config: typing.Optional[models.aws_autoscaling.CfnWarmPoolDefConfig] = pydantic.Field(None)
 
 
 class CfnWarmPoolDefConfig(pydantic.BaseModel):
-    InstanceReusePolicyProperty: typing.Optional[list[CfnWarmPoolDefInstancereusepolicypropertyParams]] = pydantic.Field(None, description='')
-    add_deletion_override: typing.Optional[list[CfnWarmPoolDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
-    add_dependency: typing.Optional[list[CfnWarmPoolDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
-    add_depends_on: typing.Optional[list[CfnWarmPoolDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
-    add_metadata: typing.Optional[list[CfnWarmPoolDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
-    add_override: typing.Optional[list[CfnWarmPoolDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
-    add_property_deletion_override: typing.Optional[list[CfnWarmPoolDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
-    add_property_override: typing.Optional[list[CfnWarmPoolDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    InstanceReusePolicyProperty: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefInstancereusepolicypropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
-    get_att: typing.Optional[list[CfnWarmPoolDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
-    get_metadata: typing.Optional[list[CfnWarmPoolDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
-    inspect: typing.Optional[list[CfnWarmPoolDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    get_att: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
     obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
     obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
-    override_logical_id: typing.Optional[list[CfnWarmPoolDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
-    remove_dependency: typing.Optional[list[CfnWarmPoolDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
-    replace_dependency: typing.Optional[list[CfnWarmPoolDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    override_logical_id: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_autoscaling.CfnWarmPoolDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
 
 class CfnWarmPoolDefInstancereusepolicypropertyParams(pydantic.BaseModel):
     reuse_on_scale_in: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='')
@@ -3113,112 +3113,112 @@ class CfnWarmPoolPropsDef(BaseCfnProperty):
 
 
 
-import models
-
 class ModuleModel(pydantic.BaseModel):
-    AutoScalingGroupRequireImdsv2Aspect: typing.Optional[dict[str, AutoScalingGroupRequireImdsv2AspectDef]] = pydantic.Field(None)
-    BlockDeviceVolume: typing.Optional[dict[str, BlockDeviceVolumeDef]] = pydantic.Field(None)
-    GroupMetric: typing.Optional[dict[str, GroupMetricDef]] = pydantic.Field(None)
-    GroupMetrics: typing.Optional[dict[str, GroupMetricsDef]] = pydantic.Field(None)
-    HealthCheck: typing.Optional[dict[str, HealthCheckDef]] = pydantic.Field(None)
-    ScalingEvents: typing.Optional[dict[str, ScalingEventsDef]] = pydantic.Field(None)
-    Schedule: typing.Optional[dict[str, ScheduleDef]] = pydantic.Field(None)
-    Signals: typing.Optional[dict[str, SignalsDef]] = pydantic.Field(None)
-    UpdatePolicy: typing.Optional[dict[str, UpdatePolicyDef]] = pydantic.Field(None)
-    AutoScalingGroup: typing.Optional[dict[str, AutoScalingGroupDef]] = pydantic.Field(None)
-    LifecycleHook: typing.Optional[dict[str, LifecycleHookDef]] = pydantic.Field(None)
-    ScheduledAction: typing.Optional[dict[str, ScheduledActionDef]] = pydantic.Field(None)
-    StepScalingAction: typing.Optional[dict[str, StepScalingActionDef]] = pydantic.Field(None)
-    StepScalingPolicy: typing.Optional[dict[str, StepScalingPolicyDef]] = pydantic.Field(None)
-    TargetTrackingScalingPolicy: typing.Optional[dict[str, TargetTrackingScalingPolicyDef]] = pydantic.Field(None)
-    WarmPool: typing.Optional[dict[str, WarmPoolDef]] = pydantic.Field(None)
-    AdjustmentTier: typing.Optional[dict[str, AdjustmentTierDef]] = pydantic.Field(None)
-    ApplyCloudFormationInitOptions: typing.Optional[dict[str, ApplyCloudFormationInitOptionsDef]] = pydantic.Field(None)
-    AutoScalingGroupProps: typing.Optional[dict[str, AutoScalingGroupPropsDef]] = pydantic.Field(None)
-    BaseTargetTrackingProps: typing.Optional[dict[str, BaseTargetTrackingPropsDef]] = pydantic.Field(None)
-    BasicLifecycleHookProps: typing.Optional[dict[str, BasicLifecycleHookPropsDef]] = pydantic.Field(None)
-    BasicScheduledActionProps: typing.Optional[dict[str, BasicScheduledActionPropsDef]] = pydantic.Field(None)
-    BasicStepScalingPolicyProps: typing.Optional[dict[str, BasicStepScalingPolicyPropsDef]] = pydantic.Field(None)
-    BasicTargetTrackingScalingPolicyProps: typing.Optional[dict[str, BasicTargetTrackingScalingPolicyPropsDef]] = pydantic.Field(None)
-    BindHookTargetOptions: typing.Optional[dict[str, BindHookTargetOptionsDef]] = pydantic.Field(None)
-    BlockDevice: typing.Optional[dict[str, BlockDeviceDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_AcceleratorCountRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_AcceleratorCountRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_AcceleratorTotalMemoryMiBRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_AcceleratorTotalMemoryMiBRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_BaselineEbsBandwidthMbpsRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_BaselineEbsBandwidthMbpsRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_InstanceRequirementsProperty: typing.Optional[dict[str, CfnAutoScalingGroup_InstanceRequirementsPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_InstancesDistributionProperty: typing.Optional[dict[str, CfnAutoScalingGroup_InstancesDistributionPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_LaunchTemplateOverridesProperty: typing.Optional[dict[str, CfnAutoScalingGroup_LaunchTemplateOverridesPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_LaunchTemplateProperty: typing.Optional[dict[str, CfnAutoScalingGroup_LaunchTemplatePropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_LaunchTemplateSpecificationProperty: typing.Optional[dict[str, CfnAutoScalingGroup_LaunchTemplateSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_LifecycleHookSpecificationProperty: typing.Optional[dict[str, CfnAutoScalingGroup_LifecycleHookSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_MemoryGiBPerVCpuRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_MemoryGiBPerVCpuRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_MemoryMiBRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_MemoryMiBRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_MetricsCollectionProperty: typing.Optional[dict[str, CfnAutoScalingGroup_MetricsCollectionPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_MixedInstancesPolicyProperty: typing.Optional[dict[str, CfnAutoScalingGroup_MixedInstancesPolicyPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_NetworkBandwidthGbpsRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_NetworkBandwidthGbpsRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_NetworkInterfaceCountRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_NetworkInterfaceCountRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_NotificationConfigurationProperty: typing.Optional[dict[str, CfnAutoScalingGroup_NotificationConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_TagPropertyProperty: typing.Optional[dict[str, CfnAutoScalingGroup_TagPropertyPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_TotalLocalStorageGBRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_TotalLocalStorageGBRequestPropertyDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup_VCpuCountRequestProperty: typing.Optional[dict[str, CfnAutoScalingGroup_VCpuCountRequestPropertyDef]] = pydantic.Field(None)
-    CfnLaunchConfiguration_BlockDeviceMappingProperty: typing.Optional[dict[str, CfnLaunchConfiguration_BlockDeviceMappingPropertyDef]] = pydantic.Field(None)
-    CfnLaunchConfiguration_BlockDeviceProperty: typing.Optional[dict[str, CfnLaunchConfiguration_BlockDevicePropertyDef]] = pydantic.Field(None)
-    CfnLaunchConfiguration_MetadataOptionsProperty: typing.Optional[dict[str, CfnLaunchConfiguration_MetadataOptionsPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_CustomizedMetricSpecificationProperty: typing.Optional[dict[str, CfnScalingPolicy_CustomizedMetricSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_MetricDataQueryProperty: typing.Optional[dict[str, CfnScalingPolicy_MetricDataQueryPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_MetricDimensionProperty: typing.Optional[dict[str, CfnScalingPolicy_MetricDimensionPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_MetricProperty: typing.Optional[dict[str, CfnScalingPolicy_MetricPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_MetricStatProperty: typing.Optional[dict[str, CfnScalingPolicy_MetricStatPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredefinedMetricSpecificationProperty: typing.Optional[dict[str, CfnScalingPolicy_PredefinedMetricSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingConfigurationProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingCustomizedCapacityMetricProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingCustomizedCapacityMetricPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingCustomizedLoadMetricProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingCustomizedLoadMetricPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingCustomizedScalingMetricProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingCustomizedScalingMetricPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingMetricSpecificationProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingMetricSpecificationPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingPredefinedLoadMetricProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingPredefinedLoadMetricPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingPredefinedMetricPairProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingPredefinedMetricPairPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_PredictiveScalingPredefinedScalingMetricProperty: typing.Optional[dict[str, CfnScalingPolicy_PredictiveScalingPredefinedScalingMetricPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_StepAdjustmentProperty: typing.Optional[dict[str, CfnScalingPolicy_StepAdjustmentPropertyDef]] = pydantic.Field(None)
-    CfnScalingPolicy_TargetTrackingConfigurationProperty: typing.Optional[dict[str, CfnScalingPolicy_TargetTrackingConfigurationPropertyDef]] = pydantic.Field(None)
-    CfnWarmPool_InstanceReusePolicyProperty: typing.Optional[dict[str, CfnWarmPool_InstanceReusePolicyPropertyDef]] = pydantic.Field(None)
-    CommonAutoScalingGroupProps: typing.Optional[dict[str, CommonAutoScalingGroupPropsDef]] = pydantic.Field(None)
-    CpuUtilizationScalingProps: typing.Optional[dict[str, CpuUtilizationScalingPropsDef]] = pydantic.Field(None)
-    CronOptions: typing.Optional[dict[str, CronOptionsDef]] = pydantic.Field(None)
-    EbsDeviceOptions: typing.Optional[dict[str, EbsDeviceOptionsDef]] = pydantic.Field(None)
-    EbsDeviceOptionsBase: typing.Optional[dict[str, EbsDeviceOptionsBaseDef]] = pydantic.Field(None)
-    EbsDeviceProps: typing.Optional[dict[str, EbsDevicePropsDef]] = pydantic.Field(None)
-    EbsDeviceSnapshotOptions: typing.Optional[dict[str, EbsDeviceSnapshotOptionsDef]] = pydantic.Field(None)
-    Ec2HealthCheckOptions: typing.Optional[dict[str, Ec2HealthCheckOptionsDef]] = pydantic.Field(None)
-    ElbHealthCheckOptions: typing.Optional[dict[str, ElbHealthCheckOptionsDef]] = pydantic.Field(None)
-    InstancesDistribution: typing.Optional[dict[str, InstancesDistributionDef]] = pydantic.Field(None)
-    LaunchTemplateOverrides: typing.Optional[dict[str, LaunchTemplateOverridesDef]] = pydantic.Field(None)
-    LifecycleHookProps: typing.Optional[dict[str, LifecycleHookPropsDef]] = pydantic.Field(None)
-    LifecycleHookTargetConfig: typing.Optional[dict[str, LifecycleHookTargetConfigDef]] = pydantic.Field(None)
-    MetricTargetTrackingProps: typing.Optional[dict[str, MetricTargetTrackingPropsDef]] = pydantic.Field(None)
-    MixedInstancesPolicy: typing.Optional[dict[str, MixedInstancesPolicyDef]] = pydantic.Field(None)
-    NetworkUtilizationScalingProps: typing.Optional[dict[str, NetworkUtilizationScalingPropsDef]] = pydantic.Field(None)
-    NotificationConfiguration: typing.Optional[dict[str, NotificationConfigurationDef]] = pydantic.Field(None)
-    RenderSignalsOptions: typing.Optional[dict[str, RenderSignalsOptionsDef]] = pydantic.Field(None)
-    RequestCountScalingProps: typing.Optional[dict[str, RequestCountScalingPropsDef]] = pydantic.Field(None)
-    RollingUpdateOptions: typing.Optional[dict[str, RollingUpdateOptionsDef]] = pydantic.Field(None)
-    ScalingInterval: typing.Optional[dict[str, ScalingIntervalDef]] = pydantic.Field(None)
-    ScheduledActionProps: typing.Optional[dict[str, ScheduledActionPropsDef]] = pydantic.Field(None)
-    SignalsOptions: typing.Optional[dict[str, SignalsOptionsDef]] = pydantic.Field(None)
-    StepScalingActionProps: typing.Optional[dict[str, StepScalingActionPropsDef]] = pydantic.Field(None)
-    StepScalingPolicyProps: typing.Optional[dict[str, StepScalingPolicyPropsDef]] = pydantic.Field(None)
-    TargetTrackingScalingPolicyProps: typing.Optional[dict[str, TargetTrackingScalingPolicyPropsDef]] = pydantic.Field(None)
-    WarmPoolOptions: typing.Optional[dict[str, WarmPoolOptionsDef]] = pydantic.Field(None)
-    WarmPoolProps: typing.Optional[dict[str, WarmPoolPropsDef]] = pydantic.Field(None)
-    CfnAutoScalingGroup: typing.Optional[dict[str, CfnAutoScalingGroupDef]] = pydantic.Field(None)
-    CfnLaunchConfiguration: typing.Optional[dict[str, CfnLaunchConfigurationDef]] = pydantic.Field(None)
-    CfnLifecycleHook: typing.Optional[dict[str, CfnLifecycleHookDef]] = pydantic.Field(None)
-    CfnScalingPolicy: typing.Optional[dict[str, CfnScalingPolicyDef]] = pydantic.Field(None)
-    CfnScheduledAction: typing.Optional[dict[str, CfnScheduledActionDef]] = pydantic.Field(None)
-    CfnWarmPool: typing.Optional[dict[str, CfnWarmPoolDef]] = pydantic.Field(None)
-    CfnAutoScalingGroupProps: typing.Optional[dict[str, CfnAutoScalingGroupPropsDef]] = pydantic.Field(None)
-    CfnLaunchConfigurationProps: typing.Optional[dict[str, CfnLaunchConfigurationPropsDef]] = pydantic.Field(None)
-    CfnLifecycleHookProps: typing.Optional[dict[str, CfnLifecycleHookPropsDef]] = pydantic.Field(None)
-    CfnScalingPolicyProps: typing.Optional[dict[str, CfnScalingPolicyPropsDef]] = pydantic.Field(None)
-    CfnScheduledActionProps: typing.Optional[dict[str, CfnScheduledActionPropsDef]] = pydantic.Field(None)
-    CfnWarmPoolProps: typing.Optional[dict[str, CfnWarmPoolPropsDef]] = pydantic.Field(None)
+    AutoScalingGroupRequireImdsv2Aspect: typing.Optional[dict[str, models.aws_autoscaling.AutoScalingGroupRequireImdsv2AspectDef]] = pydantic.Field(None)
+    BlockDeviceVolume: typing.Optional[dict[str, models.aws_autoscaling.BlockDeviceVolumeDef]] = pydantic.Field(None)
+    GroupMetric: typing.Optional[dict[str, models.aws_autoscaling.GroupMetricDef]] = pydantic.Field(None)
+    GroupMetrics: typing.Optional[dict[str, models.aws_autoscaling.GroupMetricsDef]] = pydantic.Field(None)
+    HealthCheck: typing.Optional[dict[str, models.aws_autoscaling.HealthCheckDef]] = pydantic.Field(None)
+    ScalingEvents: typing.Optional[dict[str, models.aws_autoscaling.ScalingEventsDef]] = pydantic.Field(None)
+    Schedule: typing.Optional[dict[str, models.aws_autoscaling.ScheduleDef]] = pydantic.Field(None)
+    Signals: typing.Optional[dict[str, models.aws_autoscaling.SignalsDef]] = pydantic.Field(None)
+    UpdatePolicy: typing.Optional[dict[str, models.aws_autoscaling.UpdatePolicyDef]] = pydantic.Field(None)
+    AutoScalingGroup: typing.Optional[dict[str, models.aws_autoscaling.AutoScalingGroupDef]] = pydantic.Field(None)
+    LifecycleHook: typing.Optional[dict[str, models.aws_autoscaling.LifecycleHookDef]] = pydantic.Field(None)
+    ScheduledAction: typing.Optional[dict[str, models.aws_autoscaling.ScheduledActionDef]] = pydantic.Field(None)
+    StepScalingAction: typing.Optional[dict[str, models.aws_autoscaling.StepScalingActionDef]] = pydantic.Field(None)
+    StepScalingPolicy: typing.Optional[dict[str, models.aws_autoscaling.StepScalingPolicyDef]] = pydantic.Field(None)
+    TargetTrackingScalingPolicy: typing.Optional[dict[str, models.aws_autoscaling.TargetTrackingScalingPolicyDef]] = pydantic.Field(None)
+    WarmPool: typing.Optional[dict[str, models.aws_autoscaling.WarmPoolDef]] = pydantic.Field(None)
+    AdjustmentTier: typing.Optional[dict[str, models.aws_autoscaling.AdjustmentTierDef]] = pydantic.Field(None)
+    ApplyCloudFormationInitOptions: typing.Optional[dict[str, models.aws_autoscaling.ApplyCloudFormationInitOptionsDef]] = pydantic.Field(None)
+    AutoScalingGroupProps: typing.Optional[dict[str, models.aws_autoscaling.AutoScalingGroupPropsDef]] = pydantic.Field(None)
+    BaseTargetTrackingProps: typing.Optional[dict[str, models.aws_autoscaling.BaseTargetTrackingPropsDef]] = pydantic.Field(None)
+    BasicLifecycleHookProps: typing.Optional[dict[str, models.aws_autoscaling.BasicLifecycleHookPropsDef]] = pydantic.Field(None)
+    BasicScheduledActionProps: typing.Optional[dict[str, models.aws_autoscaling.BasicScheduledActionPropsDef]] = pydantic.Field(None)
+    BasicStepScalingPolicyProps: typing.Optional[dict[str, models.aws_autoscaling.BasicStepScalingPolicyPropsDef]] = pydantic.Field(None)
+    BasicTargetTrackingScalingPolicyProps: typing.Optional[dict[str, models.aws_autoscaling.BasicTargetTrackingScalingPolicyPropsDef]] = pydantic.Field(None)
+    BindHookTargetOptions: typing.Optional[dict[str, models.aws_autoscaling.BindHookTargetOptionsDef]] = pydantic.Field(None)
+    BlockDevice: typing.Optional[dict[str, models.aws_autoscaling.BlockDeviceDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_AcceleratorCountRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_AcceleratorCountRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_AcceleratorTotalMemoryMiBRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_AcceleratorTotalMemoryMiBRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_BaselineEbsBandwidthMbpsRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_BaselineEbsBandwidthMbpsRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_InstanceRequirementsProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_InstanceRequirementsPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_InstancesDistributionProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_InstancesDistributionPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_LaunchTemplateOverridesProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_LaunchTemplateOverridesPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_LaunchTemplateProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_LaunchTemplatePropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_LaunchTemplateSpecificationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_LaunchTemplateSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_LifecycleHookSpecificationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_LifecycleHookSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_MemoryGiBPerVCpuRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_MemoryGiBPerVCpuRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_MemoryMiBRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_MemoryMiBRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_MetricsCollectionProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_MetricsCollectionPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_MixedInstancesPolicyProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_MixedInstancesPolicyPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_NetworkBandwidthGbpsRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_NetworkBandwidthGbpsRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_NetworkInterfaceCountRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_NetworkInterfaceCountRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_NotificationConfigurationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_NotificationConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_TagPropertyProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_TagPropertyPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_TotalLocalStorageGBRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_TotalLocalStorageGBRequestPropertyDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup_VCpuCountRequestProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroup_VCpuCountRequestPropertyDef]] = pydantic.Field(None)
+    CfnLaunchConfiguration_BlockDeviceMappingProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnLaunchConfiguration_BlockDeviceMappingPropertyDef]] = pydantic.Field(None)
+    CfnLaunchConfiguration_BlockDeviceProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnLaunchConfiguration_BlockDevicePropertyDef]] = pydantic.Field(None)
+    CfnLaunchConfiguration_MetadataOptionsProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnLaunchConfiguration_MetadataOptionsPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_CustomizedMetricSpecificationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_CustomizedMetricSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_MetricDataQueryProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_MetricDataQueryPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_MetricDimensionProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_MetricDimensionPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_MetricProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_MetricPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_MetricStatProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_MetricStatPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredefinedMetricSpecificationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredefinedMetricSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingConfigurationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingCustomizedCapacityMetricProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingCustomizedCapacityMetricPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingCustomizedLoadMetricProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingCustomizedLoadMetricPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingCustomizedScalingMetricProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingCustomizedScalingMetricPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingMetricSpecificationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingMetricSpecificationPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingPredefinedLoadMetricProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingPredefinedLoadMetricPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingPredefinedMetricPairProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingPredefinedMetricPairPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_PredictiveScalingPredefinedScalingMetricProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_PredictiveScalingPredefinedScalingMetricPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_StepAdjustmentProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_StepAdjustmentPropertyDef]] = pydantic.Field(None)
+    CfnScalingPolicy_TargetTrackingConfigurationProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicy_TargetTrackingConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnWarmPool_InstanceReusePolicyProperty: typing.Optional[dict[str, models.aws_autoscaling.CfnWarmPool_InstanceReusePolicyPropertyDef]] = pydantic.Field(None)
+    CommonAutoScalingGroupProps: typing.Optional[dict[str, models.aws_autoscaling.CommonAutoScalingGroupPropsDef]] = pydantic.Field(None)
+    CpuUtilizationScalingProps: typing.Optional[dict[str, models.aws_autoscaling.CpuUtilizationScalingPropsDef]] = pydantic.Field(None)
+    CronOptions: typing.Optional[dict[str, models.aws_autoscaling.CronOptionsDef]] = pydantic.Field(None)
+    EbsDeviceOptions: typing.Optional[dict[str, models.aws_autoscaling.EbsDeviceOptionsDef]] = pydantic.Field(None)
+    EbsDeviceOptionsBase: typing.Optional[dict[str, models.aws_autoscaling.EbsDeviceOptionsBaseDef]] = pydantic.Field(None)
+    EbsDeviceProps: typing.Optional[dict[str, models.aws_autoscaling.EbsDevicePropsDef]] = pydantic.Field(None)
+    EbsDeviceSnapshotOptions: typing.Optional[dict[str, models.aws_autoscaling.EbsDeviceSnapshotOptionsDef]] = pydantic.Field(None)
+    Ec2HealthCheckOptions: typing.Optional[dict[str, models.aws_autoscaling.Ec2HealthCheckOptionsDef]] = pydantic.Field(None)
+    ElbHealthCheckOptions: typing.Optional[dict[str, models.aws_autoscaling.ElbHealthCheckOptionsDef]] = pydantic.Field(None)
+    InstancesDistribution: typing.Optional[dict[str, models.aws_autoscaling.InstancesDistributionDef]] = pydantic.Field(None)
+    LaunchTemplateOverrides: typing.Optional[dict[str, models.aws_autoscaling.LaunchTemplateOverridesDef]] = pydantic.Field(None)
+    LifecycleHookProps: typing.Optional[dict[str, models.aws_autoscaling.LifecycleHookPropsDef]] = pydantic.Field(None)
+    LifecycleHookTargetConfig: typing.Optional[dict[str, models.aws_autoscaling.LifecycleHookTargetConfigDef]] = pydantic.Field(None)
+    MetricTargetTrackingProps: typing.Optional[dict[str, models.aws_autoscaling.MetricTargetTrackingPropsDef]] = pydantic.Field(None)
+    MixedInstancesPolicy: typing.Optional[dict[str, models.aws_autoscaling.MixedInstancesPolicyDef]] = pydantic.Field(None)
+    NetworkUtilizationScalingProps: typing.Optional[dict[str, models.aws_autoscaling.NetworkUtilizationScalingPropsDef]] = pydantic.Field(None)
+    NotificationConfiguration: typing.Optional[dict[str, models.aws_autoscaling.NotificationConfigurationDef]] = pydantic.Field(None)
+    RenderSignalsOptions: typing.Optional[dict[str, models.aws_autoscaling.RenderSignalsOptionsDef]] = pydantic.Field(None)
+    RequestCountScalingProps: typing.Optional[dict[str, models.aws_autoscaling.RequestCountScalingPropsDef]] = pydantic.Field(None)
+    RollingUpdateOptions: typing.Optional[dict[str, models.aws_autoscaling.RollingUpdateOptionsDef]] = pydantic.Field(None)
+    ScalingInterval: typing.Optional[dict[str, models.aws_autoscaling.ScalingIntervalDef]] = pydantic.Field(None)
+    ScheduledActionProps: typing.Optional[dict[str, models.aws_autoscaling.ScheduledActionPropsDef]] = pydantic.Field(None)
+    SignalsOptions: typing.Optional[dict[str, models.aws_autoscaling.SignalsOptionsDef]] = pydantic.Field(None)
+    StepScalingActionProps: typing.Optional[dict[str, models.aws_autoscaling.StepScalingActionPropsDef]] = pydantic.Field(None)
+    StepScalingPolicyProps: typing.Optional[dict[str, models.aws_autoscaling.StepScalingPolicyPropsDef]] = pydantic.Field(None)
+    TargetTrackingScalingPolicyProps: typing.Optional[dict[str, models.aws_autoscaling.TargetTrackingScalingPolicyPropsDef]] = pydantic.Field(None)
+    WarmPoolOptions: typing.Optional[dict[str, models.aws_autoscaling.WarmPoolOptionsDef]] = pydantic.Field(None)
+    WarmPoolProps: typing.Optional[dict[str, models.aws_autoscaling.WarmPoolPropsDef]] = pydantic.Field(None)
+    CfnAutoScalingGroup: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroupDef]] = pydantic.Field(None)
+    CfnLaunchConfiguration: typing.Optional[dict[str, models.aws_autoscaling.CfnLaunchConfigurationDef]] = pydantic.Field(None)
+    CfnLifecycleHook: typing.Optional[dict[str, models.aws_autoscaling.CfnLifecycleHookDef]] = pydantic.Field(None)
+    CfnScalingPolicy: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicyDef]] = pydantic.Field(None)
+    CfnScheduledAction: typing.Optional[dict[str, models.aws_autoscaling.CfnScheduledActionDef]] = pydantic.Field(None)
+    CfnWarmPool: typing.Optional[dict[str, models.aws_autoscaling.CfnWarmPoolDef]] = pydantic.Field(None)
+    CfnAutoScalingGroupProps: typing.Optional[dict[str, models.aws_autoscaling.CfnAutoScalingGroupPropsDef]] = pydantic.Field(None)
+    CfnLaunchConfigurationProps: typing.Optional[dict[str, models.aws_autoscaling.CfnLaunchConfigurationPropsDef]] = pydantic.Field(None)
+    CfnLifecycleHookProps: typing.Optional[dict[str, models.aws_autoscaling.CfnLifecycleHookPropsDef]] = pydantic.Field(None)
+    CfnScalingPolicyProps: typing.Optional[dict[str, models.aws_autoscaling.CfnScalingPolicyPropsDef]] = pydantic.Field(None)
+    CfnScheduledActionProps: typing.Optional[dict[str, models.aws_autoscaling.CfnScheduledActionPropsDef]] = pydantic.Field(None)
+    CfnWarmPoolProps: typing.Optional[dict[str, models.aws_autoscaling.CfnWarmPoolPropsDef]] = pydantic.Field(None)
     ...
+
+import models
