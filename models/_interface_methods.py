@@ -35,6 +35,7 @@ class CoreIBoundStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel)
     directory_name: typing.Optional[str] = pydantic.Field(None, description='The directory where the Dockerfile is stored, must be relative to the cloud assembly root. Default: - Exactly one of ``directoryName`` and ``executable`` is required\n')
     docker_build_args: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build args to pass to the ``docker build`` command. Since Docker build arguments are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build args are passed\n')
     docker_build_secrets: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build secrets to pass to the ``docker build`` command. Since Docker build secrets are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build secrets are passed\n')
+    docker_build_ssh: typing.Optional[str] = pydantic.Field(None, description='SSH agent socket or keys to pass to the ``docker buildx`` command. Default: - no ssh arg is passed\n')
     docker_build_target: typing.Optional[str] = pydantic.Field(None, description='Docker target to build to. Only allowed when ``directoryName`` is specified. Default: - no target\n')
     docker_cache_from: typing.Optional[typing.Sequence[typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Cache from options to pass to the ``docker build`` command. Default: - no cache from args are passed\n')
     docker_cache_to: typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Cache to options to pass to the ``docker build`` command. Default: - no cache to args are passed\n')
@@ -109,6 +110,7 @@ class CoreILocalBundlingDefTryBundleParams(pydantic.BaseModel):
     local: typing.Optional[models.UnsupportedResource] = pydantic.Field(None, description='Local bundling provider. The provider implements a method ``tryBundle()`` which should return ``true`` if local bundling was performed. If ``false`` is returned, docker bundling will be done. Default: - bundling will only be performed in a Docker container\n')
     network: typing.Optional[str] = pydantic.Field(None, description='Docker `Networking options <https://docs.docker.com/engine/reference/commandline/run/#connect-a-container-to-a-network---network>`_. Default: - no networking options\n')
     output_type: typing.Optional[aws_cdk.BundlingOutput] = pydantic.Field(None, description='The type of output that this bundling operation is producing. Default: BundlingOutput.AUTO_DISCOVER\n')
+    platform: typing.Optional[str] = pydantic.Field(None, description='Platform to build for. *Requires Docker Buildx*. Specify this property to build images on a specific platform. Default: - no platform specified (the current machine architecture will be used)\n')
     security_opt: typing.Optional[str] = pydantic.Field(None, description='`Security configuration <https://docs.docker.com/engine/reference/run/#security-configuration>`_ when running the docker container. Default: - no security options\n')
     user: typing.Optional[str] = pydantic.Field(None, description='The user to use when running the Docker container. user | user:group | uid | uid:gid | user:gid | uid:group Default: - uid:gid of the current user or 1000:1000 on Windows\n')
     volumes: typing.Optional[typing.Sequence[typing.Union[models.DockerVolumeDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Additional Docker volumes to mount. Default: - no additional volumes are mounted\n')
@@ -180,6 +182,7 @@ class CoreIReusableStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseMod
     directory_name: typing.Optional[str] = pydantic.Field(None, description='The directory where the Dockerfile is stored, must be relative to the cloud assembly root. Default: - Exactly one of ``directoryName`` and ``executable`` is required\n')
     docker_build_args: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build args to pass to the ``docker build`` command. Since Docker build arguments are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build args are passed\n')
     docker_build_secrets: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build secrets to pass to the ``docker build`` command. Since Docker build secrets are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build secrets are passed\n')
+    docker_build_ssh: typing.Optional[str] = pydantic.Field(None, description='SSH agent socket or keys to pass to the ``docker buildx`` command. Default: - no ssh arg is passed\n')
     docker_build_target: typing.Optional[str] = pydantic.Field(None, description='Docker target to build to. Only allowed when ``directoryName`` is specified. Default: - no target\n')
     docker_cache_from: typing.Optional[typing.Sequence[typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Cache from options to pass to the ``docker build`` command. Default: - no cache from args are passed\n')
     docker_cache_to: typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Cache to options to pass to the ``docker build`` command. Default: - no cache to args are passed\n')
@@ -235,6 +238,7 @@ class CoreIStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     directory_name: typing.Optional[str] = pydantic.Field(None, description='The directory where the Dockerfile is stored, must be relative to the cloud assembly root. Default: - Exactly one of ``directoryName`` and ``executable`` is required\n')
     docker_build_args: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build args to pass to the ``docker build`` command. Since Docker build arguments are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build args are passed\n')
     docker_build_secrets: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build secrets to pass to the ``docker build`` command. Since Docker build secrets are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build secrets are passed\n')
+    docker_build_ssh: typing.Optional[str] = pydantic.Field(None, description='SSH agent socket or keys to pass to the ``docker buildx`` command. Default: - no ssh arg is passed\n')
     docker_build_target: typing.Optional[str] = pydantic.Field(None, description='Docker target to build to. Only allowed when ``directoryName`` is specified. Default: - no target\n')
     docker_cache_from: typing.Optional[typing.Sequence[typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Cache from options to pass to the ``docker build`` command. Default: - no cache from args are passed\n')
     docker_cache_to: typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Cache to options to pass to the ``docker build`` command. Default: - no cache to args are passed\n')
@@ -277,7 +281,7 @@ class CoreITokenMapperDefConfig(pydantic.BaseModel):
 
 
 class CoreITokenMapperDefMapTokenParams(pydantic.BaseModel):
-    t: typing.Union[models.CfnDynamicReferenceDef, models.IntrinsicDef, models.JsonNullDef, models.ReferenceDef, models.SecretValueDef, models.CfnConditionDef, models.CfnJsonDef, models.aws_events.EventFieldDef, models.aws_events.MatchDef, models.aws_iam.PolicyDocumentDef, models.custom_resources.PhysicalResourceIdReferenceDef] = pydantic.Field(..., description='-')
+    t: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreITokenResolverDefConfig(pydantic.BaseModel):
     resolve_list: typing.Optional[list[CoreITokenResolverDefResolveListParams]] = pydantic.Field(None, description='Resolve a tokenized list.')
@@ -294,7 +298,7 @@ class CoreITokenResolverDefResolveStringParams(pydantic.BaseModel):
     context: models.UnsupportedResource = pydantic.Field(..., description='-')
 
 class CoreITokenResolverDefResolveTokenParams(pydantic.BaseModel):
-    t: typing.Union[models.CfnDynamicReferenceDef, models.IntrinsicDef, models.JsonNullDef, models.ReferenceDef, models.SecretValueDef, models.CfnConditionDef, models.CfnJsonDef, models.aws_events.EventFieldDef, models.aws_events.MatchDef, models.aws_iam.PolicyDocumentDef, models.custom_resources.PhysicalResourceIdReferenceDef] = pydantic.Field(..., description='-\n')
+    t: models.UnsupportedResource = pydantic.Field(..., description='-\n')
     context: models.UnsupportedResource = pydantic.Field(..., description='-\n')
     post_processor: models.UnsupportedResource = pydantic.Field(..., description='-')
 
@@ -525,7 +529,7 @@ class AwsAppmeshIVirtualGatewayDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIVirtualGatewayDefGrantStreamAggregatedResourcesParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsAppmeshIVirtualNodeDefConfig(pydantic.BaseModel):
@@ -537,7 +541,7 @@ class AwsAppmeshIVirtualNodeDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsAppmeshIVirtualNodeDefGrantStreamAggregatedResourcesParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsAppmeshIVirtualRouterDefConfig(pydantic.BaseModel):
@@ -584,7 +588,7 @@ class AwsAppsyncIGraphqlApiDefConfig(pydantic.BaseModel):
 
 class AwsAppsyncIGraphqlApiDefAddDynamoDbDataSourceParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description="The data source's id.\n")
-    table: typing.Union[models.aws_dynamodb.TableDef] = pydantic.Field(..., description='The DynamoDB table backing this data source.\n')
+    table: typing.Union[models.aws_dynamodb.TableBaseDef, models.aws_dynamodb.TableDef] = pydantic.Field(..., description='The DynamoDB table backing this data source.\n')
     description: typing.Optional[str] = pydantic.Field(None, description='The description of the data source. Default: - No description\n')
     name: typing.Optional[str] = pydantic.Field(None, description='The name of the data source, overrides the id given by cdk. Default: - generated by cdk given the id')
     return_config: typing.Optional[list[models.aws_appsync.DynamoDbDataSourceDefConfig]] = pydantic.Field(None)
@@ -668,6 +672,13 @@ class AwsAppsyncISchemaDefBindParams(pydantic.BaseModel):
 #  aws-cdk-lib.aws_appsync.ISchemaConfig skipped
 
 
+class AwsAppsyncISourceApiAssociationDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsAppsyncISourceApiAssociationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsAppsyncISourceApiAssociationDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
 class AwsAutoscalingIAutoScalingGroupDefConfig(pydantic.BaseModel):
     add_lifecycle_hook: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefAddLifecycleHookParams]] = pydantic.Field(None, description='Send a message to either an SQS queue or SNS topic when instances launch or terminate.')
     add_user_data: typing.Optional[list[AwsAutoscalingIAutoScalingGroupDefAddUserDataParams]] = pydantic.Field(None, description="Add command to the startup script of fleet instances.\nThe command must be in the scripting language supported by the fleet's OS (i.e. Linux/Windows).\nDoes nothing for imported ASGs.")
@@ -722,7 +733,7 @@ class AwsAutoscalingIAutoScalingGroupDefScaleOnIncomingBytesParams(pydantic.Base
 class AwsAutoscalingIAutoScalingGroupDefScaleOnMetricParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
     metric: typing.Union[models.aws_cloudwatch.MathExpressionDef, models.aws_cloudwatch.MetricDef] = pydantic.Field(..., description='Metric to scale on.\n')
-    scaling_steps: typing.Sequence[typing.Union[models.aws_autoscaling.ScalingIntervalDef, dict[str, typing.Any]]] = pydantic.Field(..., description='The intervals for scaling. Maps a range of metric values to a particular scaling behavior.\n')
+    scaling_steps: typing.Sequence[typing.Union[models.aws_autoscaling.ScalingIntervalDef, dict[str, typing.Any]]] = pydantic.Field(..., description='The intervals for scaling. Maps a range of metric values to a particular scaling behavior. Must be between 2 and 40 steps.\n')
     adjustment_type: typing.Optional[aws_cdk.aws_autoscaling.AdjustmentType] = pydantic.Field(None, description="How the adjustment numbers inside 'intervals' are interpreted. Default: ChangeInCapacity\n")
     cooldown: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Grace period after scaling activity. Default: Default cooldown period on your AutoScalingGroup\n')
     estimated_instance_warmup: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Estimated time until a newly launched instance can send metrics to CloudWatch. Default: Same as the cooldown\n')
@@ -798,9 +809,134 @@ class AwsBackupIBackupVaultDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsBackupIBackupVaultDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsBatchIComputeEnvironmentDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsBatchIComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIEcsContainerDefinitionDefConfig(pydantic.BaseModel):
+    add_volume: typing.Optional[list[AwsBatchIEcsContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+
+
+class AwsBatchIEcsContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
+    volume: models.aws_batch.EcsVolumeDef = pydantic.Field(..., description='-')
+
+class AwsBatchIEcsEc2ContainerDefinitionDefConfig(pydantic.BaseModel):
+    add_ulimit: typing.Optional[list[AwsBatchIEcsEc2ContainerDefinitionDefAddUlimitParams]] = pydantic.Field(None, description='Add a ulimit to this container.')
+    add_volume: typing.Optional[list[AwsBatchIEcsEc2ContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+
+
+class AwsBatchIEcsEc2ContainerDefinitionDefAddUlimitParams(pydantic.BaseModel):
+    hard_limit: typing.Union[int, float] = pydantic.Field(..., description='The hard limit for this resource. The container will be terminated if it exceeds this limit.\n')
+    name: aws_cdk.aws_batch.UlimitName = pydantic.Field(..., description='The resource to limit.\n')
+    soft_limit: typing.Union[int, float] = pydantic.Field(..., description='The reservation for this resource. The container will not be terminated if it exceeds this limit.')
+
+class AwsBatchIEcsEc2ContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
+    volume: models.aws_batch.EcsVolumeDef = pydantic.Field(..., description='-')
+
+class AwsBatchIEcsFargateContainerDefinitionDefConfig(pydantic.BaseModel):
+    add_volume: typing.Optional[list[AwsBatchIEcsFargateContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Add a Volume to this container.')
+
+
+class AwsBatchIEcsFargateContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
+    volume: models.aws_batch.EcsVolumeDef = pydantic.Field(..., description='-')
+
+class AwsBatchIEksContainerDefinitionDefConfig(pydantic.BaseModel):
+    add_volume: typing.Optional[list[AwsBatchIEksContainerDefinitionDefAddVolumeParams]] = pydantic.Field(None, description='Mount a Volume to this container.\nAutomatically added to the Pod.')
+
+
+class AwsBatchIEksContainerDefinitionDefAddVolumeParams(pydantic.BaseModel):
+    volume: models.aws_batch.EksVolumeDef = pydantic.Field(..., description='-')
+
+class AwsBatchIEksJobDefinitionDefConfig(pydantic.BaseModel):
+    add_retry_strategy: typing.Optional[list[AwsBatchIEksJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    apply_removal_policy: typing.Optional[list[AwsBatchIEksJobDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIEksJobDefinitionDefAddRetryStrategyParams(pydantic.BaseModel):
+    strategy: models.aws_batch.RetryStrategyDef = pydantic.Field(..., description='-')
+
+class AwsBatchIEksJobDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIFairshareSchedulingPolicyDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsBatchIFairshareSchedulingPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIFairshareSchedulingPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIFargateComputeEnvironmentDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsBatchIFargateComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIFargateComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIJobDefinitionDefConfig(pydantic.BaseModel):
+    add_retry_strategy: typing.Optional[list[AwsBatchIJobDefinitionDefAddRetryStrategyParams]] = pydantic.Field(None, description='Add a RetryStrategy to this JobDefinition.')
+    apply_removal_policy: typing.Optional[list[AwsBatchIJobDefinitionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIJobDefinitionDefAddRetryStrategyParams(pydantic.BaseModel):
+    strategy: models.aws_batch.RetryStrategyDef = pydantic.Field(..., description='-')
+
+class AwsBatchIJobDefinitionDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIJobQueueDefConfig(pydantic.BaseModel):
+    add_compute_environment: typing.Optional[list[AwsBatchIJobQueueDefAddComputeEnvironmentParams]] = pydantic.Field(None, description='Add a ``ComputeEnvironment`` to this Queue.\nThe Queue will prefer lower-order ``ComputeEnvironment``s.')
+    apply_removal_policy: typing.Optional[list[AwsBatchIJobQueueDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIJobQueueDefAddComputeEnvironmentParams(pydantic.BaseModel):
+    compute_environment: typing.Union[models.aws_batch.FargateComputeEnvironmentDef, models.aws_batch.ManagedEc2EcsComputeEnvironmentDef, models.aws_batch.ManagedEc2EksComputeEnvironmentDef, models.aws_batch.UnmanagedComputeEnvironmentDef] = pydantic.Field(..., description='-\n')
+    order: typing.Union[int, float] = pydantic.Field(..., description='-')
+
+class AwsBatchIJobQueueDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIManagedComputeEnvironmentDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsBatchIManagedComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIManagedComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIManagedEc2EcsComputeEnvironmentDefConfig(pydantic.BaseModel):
+    add_instance_class: typing.Optional[list[AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams]] = pydantic.Field(None, description='Add an instance class to this compute environment.')
+    add_instance_type: typing.Optional[list[AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceTypeParams]] = pydantic.Field(None, description='Add an instance type to this compute environment.')
+    apply_removal_policy: typing.Optional[list[AwsBatchIManagedEc2EcsComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceClassParams(pydantic.BaseModel):
+    instance_class: aws_cdk.aws_ec2.InstanceClass = pydantic.Field(..., description='-')
+
+class AwsBatchIManagedEc2EcsComputeEnvironmentDefAddInstanceTypeParams(pydantic.BaseModel):
+    instance_type: models.aws_ec2.InstanceTypeDef = pydantic.Field(..., description='-')
+
+class AwsBatchIManagedEc2EcsComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchISchedulingPolicyDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsBatchISchedulingPolicyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchISchedulingPolicyDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsBatchIUnmanagedComputeEnvironmentDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsBatchIUnmanagedComputeEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsBatchIUnmanagedComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCertificatemanagerICertificateDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsCertificatemanagerICertificateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
@@ -861,12 +997,12 @@ class AwsCloudfrontIDistributionDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCloudfrontIDistributionDefGrantParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCloudfrontIDistributionDefGrantCreateInvalidationParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCloudfrontIFunctionDefConfig(pydantic.BaseModel):
@@ -906,6 +1042,13 @@ class AwsCloudfrontIPublicKeyDefConfig(pydantic.BaseModel):
 
 class AwsCloudfrontIPublicKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsCloudfrontIRealtimeLogConfigDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsCloudfrontIRealtimeLogConfigDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsCloudfrontIRealtimeLogConfigDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 #  aws-cdk-lib.aws_cloudfront.IResponseHeadersPolicy skipped
 
 
@@ -929,6 +1072,8 @@ class AwsCloudwatchIAlarmRuleDefConfig(pydantic.BaseModel):
     render_alarm_rule: typing.Optional[bool] = pydantic.Field(None, description='serialized representation of Alarm Rule to be used when building the Composite Alarm resource.')
 
 #  aws-cdk-lib.aws_cloudwatch.IMetric skipped
+
+#  aws-cdk-lib.aws_cloudwatch.IVariable skipped
 
 
 class AwsCloudwatchIWidgetDefConfig(pydantic.BaseModel):
@@ -1164,7 +1309,7 @@ class AwsCodebuildIReportGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodebuildIReportGroupDefGrantWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodebuildISourceDefConfig(pydantic.BaseModel):
@@ -1208,20 +1353,20 @@ class AwsCodecommitIRepositoryDefBindAsNotificationRuleSourceParams(pydantic.Bas
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
 
 class AwsCodecommitIRepositoryDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodecommitIRepositoryDefGrantPullParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodecommitIRepositoryDefGrantPullPushParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodecommitIRepositoryDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodecommitIRepositoryDefNotifyOnParams(pydantic.BaseModel):
@@ -1431,11 +1576,11 @@ class AwsCodeguruprofilerIProfilingGroupDefApplyRemovalPolicyParams(pydantic.Bas
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodeguruprofilerIProfilingGroupDefGrantPublishParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='Principal to grant publish rights to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant publish rights to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodeguruprofilerIProfilingGroupDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='Principal to grant read rights to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant read rights to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsCodepipelineIActionDefConfig(pydantic.BaseModel):
@@ -1603,7 +1748,7 @@ class AwsCognitoIUserPoolDefConfig(pydantic.BaseModel):
 class AwsCognitoIUserPoolDefAddClientParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
     access_token_validity: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Validity of the access token. Values between 5 minutes and 1 day are valid. The duration can not be longer than the refresh token validity. Default: Duration.minutes(60)\n')
-    auth_flows: typing.Union[models.aws_cognito.AuthFlowDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The set of OAuth authentication flows to enable on the client. Default: - all auth flows disabled\n')
+    auth_flows: typing.Union[models.aws_cognito.AuthFlowDef, dict[str, typing.Any], None] = pydantic.Field(None, description="The set of OAuth authentication flows to enable on the client. Default: - If you don't specify a value, your user client supports ALLOW_REFRESH_TOKEN_AUTH, ALLOW_USER_SRP_AUTH, and ALLOW_CUSTOM_AUTH.\n")
     auth_session_validity: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Cognito creates a session token for each API request in an authentication flow. AuthSessionValidity is the duration, in minutes, of that session token. see defaults in ``AuthSessionValidity``. Valid duration is from 3 to 15 minutes. Default: - Duration.minutes(3)\n')
     disable_o_auth: typing.Optional[bool] = pydantic.Field(None, description='Turns off all OAuth interactions for this client. Default: false\n')
     enable_token_revocation: typing.Optional[bool] = pydantic.Field(None, description='Enable token revocation for this client. Default: true for new user pool clients\n')
@@ -1635,7 +1780,7 @@ class AwsCognitoIUserPoolDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCognitoIUserPoolDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
@@ -1773,37 +1918,37 @@ class AwsDynamodbITableDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsDynamodbITableDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal (no-op if undefined).\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantFullAccessParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal to grant access to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantReadDataParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal to grant access to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantReadWriteDataParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal to grant access to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantStreamParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal (no-op if undefined).\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantStreamReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal to grant access to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantTableListStreamsParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal (no-op if undefined).')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefGrantWriteDataParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal to grant access to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsDynamodbITableDefMetricParams(pydantic.BaseModel):
@@ -1896,6 +2041,164 @@ class AwsDynamodbITableDefMetricThrottledRequestsForOperationsParams(pydantic.Ba
     unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
 
 class AwsDynamodbITableDefMetricUserErrorsParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsDynamodbITableV2DefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[AwsDynamodbITableV2DefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
+    grant_full_access: typing.Optional[list[AwsDynamodbITableV2DefGrantFullAccessParams]] = pydantic.Field(None, description='Permits all DynamoDB operations ("dynamodb:*") to an IAM principal.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_read_data: typing.Optional[list[AwsDynamodbITableV2DefGrantReadDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data read operations from this table: BatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_read_write_data: typing.Optional[list[AwsDynamodbITableV2DefGrantReadWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal to all data read/write operations to this table.\nBatchGetItem, GetRecords, GetShardIterator, Query, GetItem, Scan,\nBatchWriteItem, PutItem, UpdateItem, DeleteItem\n\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    grant_stream: typing.Optional[list[AwsDynamodbITableV2DefGrantStreamParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this table's stream to an IAM principal's policy.\nIf ``encryptionKey`` is present, appropriate grants to the key needs to be added\nseparately using the ``table.encryptionKey.grant*`` methods.")
+    grant_stream_read: typing.Optional[list[AwsDynamodbITableV2DefGrantStreamReadParams]] = pydantic.Field(None, description="Permits an IAM principal all stream data read operations for this table's stream: DescribeStream, GetRecords, GetShardIterator, ListStreams.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.")
+    grant_table_list_streams: typing.Optional[list[AwsDynamodbITableV2DefGrantTableListStreamsParams]] = pydantic.Field(None, description='Permits an IAM Principal to list streams attached to current dynamodb table.')
+    grant_write_data: typing.Optional[list[AwsDynamodbITableV2DefGrantWriteDataParams]] = pydantic.Field(None, description='Permits an IAM principal all data write operations to this table: BatchWriteItem, PutItem, UpdateItem, DeleteItem.\nAppropriate grants will also be added to the customer-managed KMS key\nif one was configured.')
+    metric: typing.Optional[list[AwsDynamodbITableV2DefMetricParams]] = pydantic.Field(None, description='Metric for the number of Errors executing all Lambdas.')
+    metric_conditional_check_failed_requests: typing.Optional[list[AwsDynamodbITableV2DefMetricConditionalCheckFailedRequestsParams]] = pydantic.Field(None, description='Metric for the conditional check failed requests.')
+    metric_consumed_read_capacity_units: typing.Optional[list[AwsDynamodbITableV2DefMetricConsumedReadCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed read capacity units.')
+    metric_consumed_write_capacity_units: typing.Optional[list[AwsDynamodbITableV2DefMetricConsumedWriteCapacityUnitsParams]] = pydantic.Field(None, description='Metric for the consumed write capacity units.')
+    metric_successful_request_latency: typing.Optional[list[AwsDynamodbITableV2DefMetricSuccessfulRequestLatencyParams]] = pydantic.Field(None, description='Metric for the successful request latency.')
+    metric_system_errors_for_operations: typing.Optional[list[AwsDynamodbITableV2DefMetricSystemErrorsForOperationsParams]] = pydantic.Field(None, description='Metric for the system errors this table.')
+    metric_throttled_requests: typing.Optional[list[AwsDynamodbITableV2DefMetricThrottledRequestsParams]] = pydantic.Field(None, description='(deprecated) Metric for throttled requests.')
+    metric_throttled_requests_for_operations: typing.Optional[list[AwsDynamodbITableV2DefMetricThrottledRequestsForOperationsParams]] = pydantic.Field(None, description='Metric for throttled requests.')
+    metric_user_errors: typing.Optional[list[AwsDynamodbITableV2DefMetricUserErrorsParams]] = pydantic.Field(None, description='Metric for the user errors.')
+
+
+class AwsDynamodbITableV2DefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsDynamodbITableV2DefGrantParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).\n')
+    actions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantFullAccessParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantReadDataParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantReadWriteDataParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantStreamParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).\n')
+    actions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantStreamReadParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantTableListStreamsParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefGrantWriteDataParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricConditionalCheckFailedRequestsParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricConsumedReadCapacityUnitsParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricConsumedWriteCapacityUnitsParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricSuccessfulRequestLatencyParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricSystemErrorsForOperationsParams(pydantic.BaseModel):
+    operations: typing.Optional[typing.Sequence[aws_cdk.aws_dynamodb.Operation]] = pydantic.Field(None, description='The operations to apply the metric to. Default: - All operations available by DynamoDB tables will be considered.\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+
+class AwsDynamodbITableV2DefMetricThrottledRequestsParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:deprecated: use ``metricThrottledRequestsForOperations``\n\n:stability: deprecated\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsDynamodbITableV2DefMetricThrottledRequestsForOperationsParams(pydantic.BaseModel):
+    operations: typing.Optional[typing.Sequence[aws_cdk.aws_dynamodb.Operation]] = pydantic.Field(None, description='The operations to apply the metric to. Default: - All operations available by DynamoDB tables will be considered.\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream')
+
+class AwsDynamodbITableV2DefMetricUserErrorsParams(pydantic.BaseModel):
     account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
     color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
     dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
@@ -2091,23 +2394,23 @@ class AwsEc2IVolumeDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEc2IVolumeDefGrantAttachVolumeParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.\n')
     instances: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.BastionHostLinuxDef, models.aws_ec2.InstanceDef]]] = pydantic.Field(None, description='the instances to which permission is being granted to attach this volume to. If not specified, then permission is granted to attach to all instances in this account.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEc2IVolumeDefGrantAttachVolumeByResourceTagParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.\n')
     constructs: typing.Sequence[models.constructs.ConstructDef] = pydantic.Field(..., description='The list of constructs that will have the generated resource tag applied to them.\n')
     tag_key_suffix: typing.Optional[str] = pydantic.Field(None, description='A suffix to use on the generated Tag key in place of the generated hash value. Defaults to a hash calculated from this volume and list of constructs. (DEPRECATED)')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEc2IVolumeDefGrantDetachVolumeParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.\n')
     instances: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.BastionHostLinuxDef, models.aws_ec2.InstanceDef]]] = pydantic.Field(None, description='the instances to which permission is being granted to detach this volume from. If not specified, then permission is granted to detach from all instances in this account.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEc2IVolumeDefGrantDetachVolumeByResourceTagParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.\n')
     constructs: typing.Sequence[models.constructs.ConstructDef] = pydantic.Field(..., description='The list of constructs that will have the generated resource tag applied to them.\n')
     tag_key_suffix: typing.Optional[str] = pydantic.Field(None, description='A suffix to use on the generated Tag key in place of the generated hash value. Defaults to a hash calculated from this volume and list of constructs. (DEPRECATED)')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
@@ -2279,7 +2582,8 @@ class AwsEcrIRepositoryDefConfig(pydantic.BaseModel):
     grant: typing.Optional[list[AwsEcrIRepositoryDefGrantParams]] = pydantic.Field(None, description='Grant the given principal identity permissions to perform the actions on this repository.')
     grant_pull: typing.Optional[list[AwsEcrIRepositoryDefGrantPullParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull images in this repository.')
     grant_pull_push: typing.Optional[list[AwsEcrIRepositoryDefGrantPullPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to pull and push images to this repository.')
-    grant_read: typing.Optional[list[AwsEcrIRepositoryDefGrantReadParams]] = pydantic.Field(None, description='Gran tthe given identity permissions to read images in this repository.')
+    grant_push: typing.Optional[list[AwsEcrIRepositoryDefGrantPushParams]] = pydantic.Field(None, description='Grant the given identity permissions to push images in this repository.')
+    grant_read: typing.Optional[list[AwsEcrIRepositoryDefGrantReadParams]] = pydantic.Field(None, description='Grant the given identity permissions to read images in this repository.')
     on_cloud_trail_event: typing.Optional[list[AwsEcrIRepositoryDefOnCloudTrailEventParams]] = pydantic.Field(None, description='Define a CloudWatch event that triggers when something happens to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
     on_cloud_trail_image_pushed: typing.Optional[list[AwsEcrIRepositoryDefOnCloudTrailImagePushedParams]] = pydantic.Field(None, description='Defines an AWS CloudWatch event rule that can trigger a target when an image is pushed to this repository.\nRequires that there exists at least one CloudTrail Trail in your account\nthat captures the event. This method will not create the Trail.')
     on_event: typing.Optional[list[AwsEcrIRepositoryDefOnEventParams]] = pydantic.Field(None, description='Defines a CloudWatch event rule which triggers for repository events.\nUse\n``rule.addEventPattern(pattern)`` to specify a filter.')
@@ -2296,20 +2600,24 @@ class AwsEcrIRepositoryDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEcrIRepositoryDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEcrIRepositoryDefGrantPullParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEcrIRepositoryDefGrantPullPushParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsEcrIRepositoryDefGrantPushParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEcrIRepositoryDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEcrIRepositoryDefOnCloudTrailEventParams(pydantic.BaseModel):
@@ -2462,6 +2770,9 @@ class AwsEfsIFileSystemDefConfig(pydantic.BaseModel):
     add_to_resource_policy: typing.Optional[list[AwsEfsIFileSystemDefAddToResourcePolicyParams]] = pydantic.Field(None, description="Add a statement to the resource's resource policy.")
     apply_removal_policy: typing.Optional[list[AwsEfsIFileSystemDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     grant: typing.Optional[list[AwsEfsIFileSystemDefGrantParams]] = pydantic.Field(None, description='Grant the actions defined in actions to the given grantee on this File System resource.')
+    grant_read: typing.Optional[list[AwsEfsIFileSystemDefGrantReadParams]] = pydantic.Field(None, description='Grant read permissions for this file system to an IAM principal.')
+    grant_read_write: typing.Optional[list[AwsEfsIFileSystemDefGrantReadWriteParams]] = pydantic.Field(None, description='Grant read and write permissions for this file system to an IAM principal.')
+    grant_root_access: typing.Optional[list[AwsEfsIFileSystemDefGrantRootAccessParams]] = pydantic.Field(None, description='As root user, grant read and write permissions for this file system to an IAM principal.')
 
 
 class AwsEfsIFileSystemDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -2471,8 +2782,20 @@ class AwsEfsIFileSystemDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsEfsIFileSystemDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsEfsIFileSystemDefGrantReadParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant read to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsEfsIFileSystemDefGrantReadWriteParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant read and write to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsEfsIFileSystemDefGrantRootAccessParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant root access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEksIClusterDefConfig(pydantic.BaseModel):
@@ -2591,7 +2914,7 @@ class AwsElasticloadbalancingv2IApplicationListenerDefApplyRemovalPolicyParams(p
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationListenerDefRegisterConnectableParams(pydantic.BaseModel):
-    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef] = pydantic.Field(..., description='-\n')
+    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_synthetics.CanaryDef] = pydantic.Field(..., description='-\n')
     port_range: models.aws_ec2.PortDef = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerDefConfig(pydantic.BaseModel):
@@ -2912,7 +3235,7 @@ class AwsElasticloadbalancingv2IApplicationTargetGroupDefAddTargetParams(pydanti
     targets: list[typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ecs.BaseServiceDef, models.aws_ecs.Ec2ServiceDef, models.aws_ecs.ExternalServiceDef, models.aws_ecs.FargateServiceDef, models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDef, models.aws_elasticloadbalancingv2_targets.InstanceTargetDef, models.aws_elasticloadbalancingv2_targets.IpTargetDef, models.aws_elasticloadbalancingv2_targets.LambdaTargetDef]] = pydantic.Field(...)
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterConnectableParams(pydantic.BaseModel):
-    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef] = pydantic.Field(..., description='-\n')
+    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_synthetics.CanaryDef] = pydantic.Field(..., description='-\n')
     port_range: typing.Optional[models.aws_ec2.PortDef] = pydantic.Field(None, description='-')
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterListenerParams(pydantic.BaseModel):
@@ -3285,44 +3608,44 @@ class AwsElasticsearchIDomainDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 class AwsElasticsearchIDomainDefGrantIndexReadParams(pydantic.BaseModel):
     index: str = pydantic.Field(..., description='The index to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantIndexReadWriteParams(pydantic.BaseModel):
     index: str = pydantic.Field(..., description='The index to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantIndexWriteParams(pydantic.BaseModel):
     index: str = pydantic.Field(..., description='The index to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantPathReadParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantPathReadWriteParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantPathWriteParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantReadParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantReadWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefGrantWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n\n:deprecated: use opensearchservice module instead\n\n:stability: deprecated\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsElasticsearchIDomainDefMetricParams(pydantic.BaseModel):
@@ -3534,7 +3857,7 @@ class AwsEventsIEventBusDefArchiveParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_events.ArchiveDefConfig]] = pydantic.Field(None)
 
 class AwsEventsIEventBusDefGrantPutEventsToParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal (no-op if undefined).')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal (no-op if undefined).')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsEventsIRuleDefConfig(pydantic.BaseModel):
@@ -3644,6 +3967,13 @@ class AwsIamIIdentityDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 class AwsIamIIdentityDefAttachInlinePolicyParams(pydantic.BaseModel):
     policy: models.aws_iam.PolicyDef = pydantic.Field(..., description='The policy resource to attach to this principal [disable-awslint:ref-via-interface].')
+
+class AwsIamIInstanceProfileDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsIamIInstanceProfileDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsIamIInstanceProfileDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 #  aws-cdk-lib.aws_iam.IManagedPolicy skipped
 
 
@@ -3776,20 +4106,20 @@ class AwsKinesisIStreamDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsKinesisIStreamDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKinesisIStreamDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKinesisIStreamDefGrantReadWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKinesisIStreamDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKinesisIStreamDefMetricParams(pydantic.BaseModel):
@@ -4037,28 +4367,28 @@ class AwsKmsIAliasDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsKmsIAliasDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIAliasDefGrantDecryptParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIAliasDefGrantEncryptParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIAliasDefGrantEncryptDecryptParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIAliasDefGrantGenerateMacParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIAliasDefGrantVerifyMacParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefConfig(pydantic.BaseModel):
@@ -4085,32 +4415,32 @@ class AwsKmsIKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsKmsIKeyDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefGrantDecryptParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefGrantEncryptParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefGrantEncryptDecryptParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefGrantGenerateMacParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsKmsIKeyDefGrantVerifyMacParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIAliasDefConfig(pydantic.BaseModel):
-    add_event_source: typing.Optional[list[AwsLambdaIAliasDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the @aws-cdk/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from '@aws-cdk/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source: typing.Optional[list[AwsLambdaIAliasDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
     add_event_source_mapping: typing.Optional[list[AwsLambdaIAliasDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
     add_function_url: typing.Optional[list[AwsLambdaIAliasDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
     add_permission: typing.Optional[list[AwsLambdaIAliasDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
@@ -4118,6 +4448,7 @@ class AwsLambdaIAliasDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsLambdaIAliasDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     configure_async_invoke: typing.Optional[list[AwsLambdaIAliasDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
     grant_invoke: typing.Optional[list[AwsLambdaIAliasDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[AwsLambdaIAliasDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
     grant_invoke_url: typing.Optional[list[AwsLambdaIAliasDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
     metric: typing.Optional[list[AwsLambdaIAliasDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
     metric_duration: typing.Optional[list[AwsLambdaIAliasDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
@@ -4182,11 +4513,14 @@ class AwsLambdaIAliasDefConfigureAsyncInvokeParams(pydantic.BaseModel):
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Minimum: 0 Maximum: 2 Default: 2')
 
 class AwsLambdaIAliasDefGrantInvokeParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
+class AwsLambdaIAliasDefGrantInvokeCompositePrincipalParams(pydantic.BaseModel):
+    composite_principal: models.aws_iam.CompositePrincipalDef = pydantic.Field(..., description='-')
+
 class AwsLambdaIAliasDefGrantInvokeUrlParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIAliasDefMetricParams(pydantic.BaseModel):
@@ -4284,7 +4618,7 @@ class AwsLambdaIEventSourceMappingDefApplyRemovalPolicyParams(pydantic.BaseModel
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsLambdaIFunctionDefConfig(pydantic.BaseModel):
-    add_event_source: typing.Optional[list[AwsLambdaIFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the @aws-cdk/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from '@aws-cdk/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source: typing.Optional[list[AwsLambdaIFunctionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
     add_event_source_mapping: typing.Optional[list[AwsLambdaIFunctionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
     add_function_url: typing.Optional[list[AwsLambdaIFunctionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
     add_permission: typing.Optional[list[AwsLambdaIFunctionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
@@ -4292,6 +4626,7 @@ class AwsLambdaIFunctionDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsLambdaIFunctionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     configure_async_invoke: typing.Optional[list[AwsLambdaIFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
     grant_invoke: typing.Optional[list[AwsLambdaIFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[AwsLambdaIFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
     grant_invoke_url: typing.Optional[list[AwsLambdaIFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
     metric: typing.Optional[list[AwsLambdaIFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
     metric_duration: typing.Optional[list[AwsLambdaIFunctionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
@@ -4356,11 +4691,14 @@ class AwsLambdaIFunctionDefConfigureAsyncInvokeParams(pydantic.BaseModel):
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Minimum: 0 Maximum: 2 Default: 2')
 
 class AwsLambdaIFunctionDefGrantInvokeParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
+class AwsLambdaIFunctionDefGrantInvokeCompositePrincipalParams(pydantic.BaseModel):
+    composite_principal: models.aws_iam.CompositePrincipalDef = pydantic.Field(..., description='-')
+
 class AwsLambdaIFunctionDefGrantInvokeUrlParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIFunctionDefMetricParams(pydantic.BaseModel):
@@ -4428,7 +4766,7 @@ class AwsLambdaIFunctionUrlDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsLambdaIFunctionUrlDefGrantInvokeUrlParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaILayerVersionDefConfig(pydantic.BaseModel):
@@ -4466,7 +4804,7 @@ class AwsLambdaIScalableFunctionAttributeDefScaleOnUtilizationParams(pydantic.Ba
 
 class AwsLambdaIVersionDefConfig(pydantic.BaseModel):
     add_alias: typing.Optional[list[AwsLambdaIVersionDefAddAliasParams]] = pydantic.Field(None, description='(deprecated) Defines an alias for this version.')
-    add_event_source: typing.Optional[list[AwsLambdaIVersionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the @aws-cdk/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from '@aws-cdk/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
+    add_event_source: typing.Optional[list[AwsLambdaIVersionDefAddEventSourceParams]] = pydantic.Field(None, description="Adds an event source to this function.\nEvent sources are implemented in the aws-cdk-lib/aws-lambda-event-sources module.\n\nThe following example adds an SQS Queue as an event source::\n\n   import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';\n   myFunction.addEventSource(new SqsEventSource(myQueue));")
     add_event_source_mapping: typing.Optional[list[AwsLambdaIVersionDefAddEventSourceMappingParams]] = pydantic.Field(None, description='Adds an event source that maps to this AWS Lambda function.')
     add_function_url: typing.Optional[list[AwsLambdaIVersionDefAddFunctionUrlParams]] = pydantic.Field(None, description='Adds a url to this lambda function.')
     add_permission: typing.Optional[list[AwsLambdaIVersionDefAddPermissionParams]] = pydantic.Field(None, description='Adds a permission to the Lambda resource policy.')
@@ -4474,6 +4812,7 @@ class AwsLambdaIVersionDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsLambdaIVersionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     configure_async_invoke: typing.Optional[list[AwsLambdaIVersionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
     grant_invoke: typing.Optional[list[AwsLambdaIVersionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
+    grant_invoke_composite_principal: typing.Optional[list[AwsLambdaIVersionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
     grant_invoke_url: typing.Optional[list[AwsLambdaIVersionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
     metric: typing.Optional[list[AwsLambdaIVersionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
     metric_duration: typing.Optional[list[AwsLambdaIVersionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
@@ -4549,11 +4888,14 @@ class AwsLambdaIVersionDefConfigureAsyncInvokeParams(pydantic.BaseModel):
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Minimum: 0 Maximum: 2 Default: 2')
 
 class AwsLambdaIVersionDefGrantInvokeParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
+class AwsLambdaIVersionDefGrantInvokeCompositePrincipalParams(pydantic.BaseModel):
+    composite_principal: models.aws_iam.CompositePrincipalDef = pydantic.Field(..., description='-')
+
 class AwsLambdaIVersionDefGrantInvokeUrlParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIVersionDefMetricParams(pydantic.BaseModel):
@@ -4665,7 +5007,8 @@ class AwsLogsILogGroupDefAddStreamParams(pydantic.BaseModel):
 class AwsLogsILogGroupDefAddSubscriptionFilterParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='Unique identifier for the construct in its parent.\n')
     destination: typing.Union[models.aws_logs.CrossAccountDestinationDef, models.aws_logs_destinations.KinesisDestinationDef, models.aws_logs_destinations.LambdaDestinationDef] = pydantic.Field(..., description='The destination to send the filtered events to. For example, a Kinesis stream or a Lambda function.\n')
-    filter_pattern: typing.Union[models.aws_logs.JsonPatternDef, models.aws_logs.SpaceDelimitedTextPatternDef] = pydantic.Field(..., description='Log events matching this pattern will be sent to the destination.')
+    filter_pattern: typing.Union[models.aws_logs.JsonPatternDef, models.aws_logs.SpaceDelimitedTextPatternDef] = pydantic.Field(..., description='Log events matching this pattern will be sent to the destination.\n')
+    filter_name: typing.Optional[str] = pydantic.Field(None, description='The name of the subscription filter. Default: Automatically generated')
     return_config: typing.Optional[list[models.aws_logs.SubscriptionFilterDefConfig]] = pydantic.Field(None)
 
 class AwsLogsILogGroupDefAddToResourcePolicyParams(pydantic.BaseModel):
@@ -4681,16 +5024,16 @@ class AwsLogsILogGroupDefExtractMetricParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
 
 class AwsLogsILogGroupDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLogsILogGroupDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLogsILogGroupDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLogsILogStreamDefConfig(pydantic.BaseModel):
@@ -4742,44 +5085,44 @@ class AwsOpensearchserviceIDomainDefApplyRemovalPolicyParams(pydantic.BaseModel)
 
 class AwsOpensearchserviceIDomainDefGrantIndexReadParams(pydantic.BaseModel):
     index: str = pydantic.Field(..., description='The index to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantIndexReadWriteParams(pydantic.BaseModel):
     index: str = pydantic.Field(..., description='The index to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantIndexWriteParams(pydantic.BaseModel):
     index: str = pydantic.Field(..., description='The index to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantPathReadParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantPathReadWriteParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantPathWriteParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path to grant permissions for.\n')
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantReadParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantReadWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefGrantWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsOpensearchserviceIDomainDefMetricParams(pydantic.BaseModel):
@@ -5235,7 +5578,7 @@ class AwsRdsIDatabaseInstanceDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRdsIDatabaseInstanceDefGrantConnectParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the Principal to grant the permissions to.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the Principal to grant the permissions to.\n')
     db_user: typing.Optional[str] = pydantic.Field(None, description='the name of the database user to allow connecting as to the db instance.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
@@ -5335,7 +5678,7 @@ class AwsRdsIDatabaseProxyDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRdsIDatabaseProxyDefGrantConnectParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the Principal to grant the permissions to.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the Principal to grant the permissions to.\n')
     db_user: typing.Optional[str] = pydantic.Field(None, description='the name of the database user to allow connecting as to the proxy.\n\n:default:\n\n- if the Proxy had been provided a single Secret value,\nthe user will be taken from that Secret\n')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 #  aws-cdk-lib.aws_rds.IEngine skipped
@@ -5392,7 +5735,7 @@ class AwsRdsIServerlessClusterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsRdsIServerlessClusterDefGrantDataApiAccessParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal to grant access to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRdsISubnetGroupDefConfig(pydantic.BaseModel):
@@ -5412,24 +5755,39 @@ class AwsRoute53IAliasRecordTargetDefBindParams(pydantic.BaseModel):
 
 class AwsRoute53IHostedZoneDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsRoute53IHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_delegation: typing.Optional[list[AwsRoute53IHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
 
 
 class AwsRoute53IHostedZoneDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
+class AwsRoute53IHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsRoute53IPrivateHostedZoneDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsRoute53IPrivateHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_delegation: typing.Optional[list[AwsRoute53IPrivateHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
 
 
 class AwsRoute53IPrivateHostedZoneDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
+class AwsRoute53IPrivateHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsRoute53IPublicHostedZoneDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsRoute53IPublicHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_delegation: typing.Optional[list[AwsRoute53IPublicHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
 
 
 class AwsRoute53IPublicHostedZoneDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsRoute53IPublicHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRoute53IRecordSetDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[AwsRoute53IRecordSetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
@@ -5485,7 +5843,7 @@ class AwsS3IBucketDefArnForObjectsParams(pydantic.BaseModel):
     key_pattern: str = pydantic.Field(..., description='-')
 
 class AwsS3IBucketDefGrantDeleteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
@@ -5495,27 +5853,27 @@ class AwsS3IBucketDefGrantPublicAccessParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantPutParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantPutAclParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     objects_key_pattern: typing.Optional[str] = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantReadParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantReadWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantWriteParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').\n")
     allowed_action_patterns: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Restrict the permissions to certain list of action patterns.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
@@ -5581,6 +5939,18 @@ class AwsS3DeploymentISourceDefBindParams(pydantic.BaseModel):
     handler_role: typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef] = pydantic.Field(..., description='The role for the handler.')
     return_config: typing.Optional[list[models.aws_s3_deployment.SourceConfigDefConfig]] = pydantic.Field(None)
 
+class AwsSagemakerIEndpointDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[AwsSagemakerIEndpointDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_invoke: typing.Optional[list[AwsSagemakerIEndpointDefGrantInvokeParams]] = pydantic.Field(None, description='Permits an IAM principal to invoke this endpoint.')
+
+
+class AwsSagemakerIEndpointDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsSagemakerIEndpointDefGrantInvokeParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsSecretsmanagerISecretDefConfig(pydantic.BaseModel):
     add_rotation_schedule: typing.Optional[list[AwsSecretsmanagerISecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
     add_to_resource_policy: typing.Optional[list[AwsSecretsmanagerISecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
@@ -5594,9 +5964,9 @@ class AwsSecretsmanagerISecretDefConfig(pydantic.BaseModel):
 
 class AwsSecretsmanagerISecretDefAddRotationScheduleParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. A value of zero will disable automatic rotation - ``Duration.days(0)``. Default: Duration.days(30)\n')
+    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. The maximum value is 1000 days. A value of zero (``Duration.days(0)``) will not create RotationRules. Default: Duration.days(30)\n')
     hosted_rotation: typing.Optional[models.aws_secretsmanager.HostedRotationDef] = pydantic.Field(None, description='Hosted rotation. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified\n')
-    rotate_immediately_on_update: typing.Optional[bool] = pydantic.Field(None, description='Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window. Default: - secret is rotated immediately\n')
+    rotate_immediately_on_update: typing.Optional[bool] = pydantic.Field(None, description='Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window. Default: true\n')
     rotation_lambda: typing.Optional[typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef]] = pydantic.Field(None, description='A Lambda function that can rotate the secret. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified')
     return_config: typing.Optional[list[models.aws_secretsmanager.RotationScheduleDefConfig]] = pydantic.Field(None)
 
@@ -5611,12 +5981,12 @@ class AwsSecretsmanagerISecretDefAttachParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.\n')
     version_stages: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='the version stages the grant is limited to. If not specified, no restriction on the version stages is applied.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretDefSecretValueFromJsonParams(pydantic.BaseModel):
@@ -5638,9 +6008,9 @@ class AwsSecretsmanagerISecretTargetAttachmentDefConfig(pydantic.BaseModel):
 
 class AwsSecretsmanagerISecretTargetAttachmentDefAddRotationScheduleParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. A value of zero will disable automatic rotation - ``Duration.days(0)``. Default: Duration.days(30)\n')
+    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. The maximum value is 1000 days. A value of zero (``Duration.days(0)``) will not create RotationRules. Default: Duration.days(30)\n')
     hosted_rotation: typing.Optional[models.aws_secretsmanager.HostedRotationDef] = pydantic.Field(None, description='Hosted rotation. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified\n')
-    rotate_immediately_on_update: typing.Optional[bool] = pydantic.Field(None, description='Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window. Default: - secret is rotated immediately\n')
+    rotate_immediately_on_update: typing.Optional[bool] = pydantic.Field(None, description='Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window. Default: true\n')
     rotation_lambda: typing.Optional[typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef]] = pydantic.Field(None, description='A Lambda function that can rotate the secret. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified')
     return_config: typing.Optional[list[models.aws_secretsmanager.RotationScheduleDefConfig]] = pydantic.Field(None)
 
@@ -5655,12 +6025,12 @@ class AwsSecretsmanagerISecretTargetAttachmentDefAttachParams(pydantic.BaseModel
     return_config: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretTargetAttachmentDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.\n')
     version_stages: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='the version stages the grant is limited to. If not specified, no restriction on the version stages is applied.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretTargetAttachmentDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the principal being granted permission.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal being granted permission.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSecretsmanagerISecretTargetAttachmentDefSecretValueFromJsonParams(pydantic.BaseModel):
@@ -5914,7 +6284,7 @@ class AwsSnsITopicDefBindAsNotificationRuleTargetParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
 
 class AwsSnsITopicDefGrantPublishParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='-')
+    identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSnsITopicDefMetricParams(pydantic.BaseModel):
@@ -6061,20 +6431,20 @@ class AwsSqsIQueueDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSqsIQueueDefGrantParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='Principal to grant right to.\n')
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant right to.\n')
     queue_actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSqsIQueueDefGrantConsumeMessagesParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='Principal to grant consume rights to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant consume rights to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSqsIQueueDefGrantPurgeParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='Principal to grant send rights to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant send rights to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSqsIQueueDefGrantSendMessagesParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='Principal to grant send rights to.')
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant send rights to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSqsIQueueDefMetricParams(pydantic.BaseModel):
@@ -6198,11 +6568,11 @@ class AwsSsmIParameterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSsmIParameterDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the role to be granted read-only access to the parameter.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the role to be granted read-only access to the parameter.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIParameterDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the role to be granted write access to the parameter.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the role to be granted write access to the parameter.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIStringListParameterDefConfig(pydantic.BaseModel):
@@ -6215,11 +6585,11 @@ class AwsSsmIStringListParameterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSsmIStringListParameterDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the role to be granted read-only access to the parameter.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the role to be granted read-only access to the parameter.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIStringListParameterDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the role to be granted write access to the parameter.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the role to be granted write access to the parameter.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIStringParameterDefConfig(pydantic.BaseModel):
@@ -6232,11 +6602,11 @@ class AwsSsmIStringParameterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsSsmIStringParameterDefGrantReadParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the role to be granted read-only access to the parameter.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the role to be granted read-only access to the parameter.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSsmIStringParameterDefGrantWriteParams(pydantic.BaseModel):
-    grantee: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='the role to be granted write access to the parameter.')
+    grantee: models.AnyResource = pydantic.Field(..., description='the role to be granted write access to the parameter.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIActivityDefConfig(pydantic.BaseModel):
@@ -6278,29 +6648,29 @@ class AwsStepfunctionsIStateMachineDefApplyRemovalPolicyParams(pydantic.BaseMode
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsStepfunctionsIStateMachineDefGrantParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefGrantExecutionParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.\n')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
     actions: list[str] = pydantic.Field(...)
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefGrantReadParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefGrantStartExecutionParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefGrantStartSyncExecutionParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefGrantTaskResponseParams(pydantic.BaseModel):
-    identity: typing.Union[models.aws_appsync.BackedDataSourceDef, models.aws_appsync.DynamoDbDataSourceDef, models.aws_appsync.ElasticsearchDataSourceDef, models.aws_appsync.EventBridgeDataSourceDef, models.aws_appsync.HttpDataSourceDef, models.aws_appsync.LambdaDataSourceDef, models.aws_appsync.OpenSearchDataSourceDef, models.aws_appsync.RdsDataSourceDef, models.aws_backup.BackupSelectionDef, models.aws_codebuild.UntrustedCodeBoundaryPolicyDef, models.aws_ec2.LaunchTemplateDef, models.aws_iam.ManagedPolicyDef, models.aws_iam.PolicyDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.custom_resources.AwsCustomResourceDef] = pydantic.Field(..., description='The principal.')
+    identity: models.AnyResource = pydantic.Field(..., description='The principal.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefMetricParams(pydantic.BaseModel):

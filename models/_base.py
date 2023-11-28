@@ -6,6 +6,12 @@ import pydantic
 
 UnsupportedResource: typing.TypeAlias = typing.Any
 
+class _REQUIRED_INIT_PARAM(pydantic.BaseModel):
+    """Sentinel value"""
+    ...
+
+REQUIRED_INIT_PARAM = _REQUIRED_INIT_PARAM()
+
 class AnyResource(pydantic.BaseModel):
     from_resource_id: str
 
@@ -111,42 +117,68 @@ class BaseConstruct(APIBaseDef):
         assert hasattr(self, '_alternate_constructor_method_names')
         kwargs = self.shallow_dict()
         create_kwargs = {}
+        construct_klass = self.cdk_class
         alternate_constructor_params = []
         init_params = []
 
-        for key in kwargs:
-            if key in self._init_params:
+        method_calls = []
+
+        for key, value in kwargs.items():
+            if key in self._init_params and value is not REQUIRED_INIT_PARAM:
                 init_params.append(key)
             if key in self._alternate_constructor_method_names:
-                alternate_constructor_params.append()
+                alternate_constructor_params.append(key)
+
+            if key in self._method_names:
+                method_calls.append(key)
+
+        if 'from_resource_id' in kwargs and (alternate_constructor_params or init_params):
+            raise ValueError("Invalid arguments. Import from resource ID was specified, but init params or alternate constructors were also provided.")
+
+
         if init_params and alternate_constructor_params:
             raise ValueError("Alternate constructors must be sole configuration element if present")
 
-        if init_params:
+        if 'from_resource_id' in kwargs:
             ...
+            construct = ...
+
+        elif init_params:
+            ...
+            construct = ...
+
         elif alternate_constructor_params:
             assert len(alternate_constructor_params) == 1, 'Only one alternate constructor may be used, but multiple were specified'
             constructor_name = alternate_constructor_params[0]
-
+            constructor_method = getattr(construct_klass, constructor_name)
+            construct = ...
 
         else:
+            # assume that the resource can be created with no arguments...
             ...
+            construct = ...
+
+        for method_name in method_calls:
+            meth = getattr(construct, method_name)
+            params = kwargs[method_name]
+            meth_kwargs = {}
 
 
-        for key, value in kwargs.items():
-            if key in self._init_params:
-                if isinstance(value, APIBaseDef):
-                    value = value.to_cdk_obj()
-                create_kwargs[key] = value
 
+
+    def _configure_resource(self):
+        ...
 
     def _from_init_params(self, id: str, scope: aws_cdk.Stack, **params):
         kwargs = {}
         for key, value in params.items():
             if isinstance(value, APIBaseDef):
                 value = value.to_cdk_obj()
-        cls = self.cdk_class(id, scope, )
-        return
+            elif ...:
+                ...
+            kwargs[key] = value
+        cls = self.cdk_class(id, scope, **kwargs)
+        return cls
 
 
     def _from_alternate_constructor(self, id: str, scope: aws_cdk.Stack, constructor_name: str, constructor_params: typing.Any) -> typing.Any:

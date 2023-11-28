@@ -1,8 +1,8 @@
 import typing
 import pydantic
-from ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource
+from ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM
 from .core import *
-
+from . import core
 from . import alexa_ask
 from . import assertions
 from . import assets
@@ -26,9 +26,9 @@ from . import aws_aps
 from . import aws_athena
 from . import aws_auditmanager
 from . import aws_autoscaling
-from . import aws_autoscalingplans
 from . import aws_autoscaling_common
 from . import aws_autoscaling_hooktargets
+from . import aws_autoscalingplans
 from . import aws_backup
 from . import aws_backupgateway
 from . import aws_batch
@@ -38,9 +38,9 @@ from . import aws_cassandra
 from . import aws_ce
 from . import aws_certificatemanager
 from . import aws_chatbot
+from . import aws_cleanrooms
 from . import aws_cloud9
 from . import aws_cloudformation
-from . import aws_cloudfront
 from . import aws_cloudfront
 from . import aws_cloudfront_origins
 from . import aws_cloudtrail
@@ -94,9 +94,10 @@ from . import aws_elasticsearch
 from . import aws_emr
 from . import aws_emrcontainers
 from . import aws_emrserverless
+from . import aws_entityresolution
 from . import aws_events
-from . import aws_eventschemas
 from . import aws_events_targets
+from . import aws_eventschemas
 from . import aws_evidently
 from . import aws_finspace
 from . import aws_fis
@@ -113,6 +114,7 @@ from . import aws_greengrass
 from . import aws_greengrassv2
 from . import aws_groundstation
 from . import aws_guardduty
+from . import aws_healthimaging
 from . import aws_healthlake
 from . import aws_iam
 from . import aws_identitystore
@@ -163,6 +165,7 @@ from . import aws_mediaconnect
 from . import aws_mediaconvert
 from . import aws_medialive
 from . import aws_mediapackage
+from . import aws_mediapackagev2
 from . import aws_mediastore
 from . import aws_mediatailor
 from . import aws_memorydb
@@ -181,6 +184,7 @@ from . import aws_opsworkscm
 from . import aws_organizations
 from . import aws_osis
 from . import aws_panorama
+from . import aws_pcaconnectorad
 from . import aws_personalize
 from . import aws_pinpoint
 from . import aws_pinpointemail
@@ -200,18 +204,18 @@ from . import aws_resourcegroups
 from . import aws_robomaker
 from . import aws_rolesanywhere
 from . import aws_route53
+from . import aws_route53_patterns
+from . import aws_route53_targets
 from . import aws_route53recoverycontrol
 from . import aws_route53recoveryreadiness
 from . import aws_route53resolver
-from . import aws_route53_patterns
-from . import aws_route53_targets
 from . import aws_rum
 from . import aws_s3
-from . import aws_s3objectlambda
-from . import aws_s3outposts
 from . import aws_s3_assets
 from . import aws_s3_deployment
 from . import aws_s3_notifications
+from . import aws_s3objectlambda
+from . import aws_s3outposts
 from . import aws_sagemaker
 from . import aws_sam
 from . import aws_scheduler
@@ -240,6 +244,7 @@ from . import aws_synthetics
 from . import aws_systemsmanagersap
 from . import aws_timestream
 from . import aws_transfer
+from . import aws_verifiedpermissions
 from . import aws_voiceid
 from . import aws_vpclattice
 from . import aws_waf
@@ -247,9 +252,10 @@ from . import aws_wafregional
 from . import aws_wafv2
 from . import aws_wisdom
 from . import aws_workspaces
+from . import aws_workspacesweb
 from . import aws_xray
-from . import cloudformation_include
 from . import cloud_assembly_schema
+from . import cloudformation_include
 from . import custom_resources
 from . import cx_api
 from . import lambda_layer_awscli
@@ -262,267 +268,270 @@ from . import constructs
 from . import _interface_methods
 from . import _utils
 from . import core
-
-
 for mod in [
-core,
-alexa_ask,
-assertions,
-assets,
-aws_accessanalyzer,
-aws_acmpca,
-aws_amazonmq,
-aws_amplify,
-aws_amplifyuibuilder,
-aws_apigateway,
-aws_apigatewayv2,
-aws_appconfig,
-aws_appflow,
-aws_appintegrations,
-aws_applicationautoscaling,
-aws_applicationinsights,
-aws_appmesh,
-aws_apprunner,
-aws_appstream,
-aws_appsync,
-aws_aps,
-aws_athena,
-aws_auditmanager,
-aws_autoscaling,
-aws_autoscalingplans,
-aws_autoscaling_common,
-aws_autoscaling_hooktargets,
-aws_backup,
-aws_backupgateway,
-aws_batch,
-aws_billingconductor,
-aws_budgets,
-aws_cassandra,
-aws_ce,
-aws_certificatemanager,
-aws_chatbot,
-aws_cloud9,
-aws_cloudformation,
-aws_cloudfront,
-aws_cloudfront,
-aws_cloudfront_origins,
-aws_cloudtrail,
-aws_cloudwatch,
-aws_cloudwatch_actions,
-aws_codebuild,
-aws_codecommit,
-aws_codedeploy,
-aws_codeguruprofiler,
-aws_codegurureviewer,
-aws_codepipeline,
-aws_codepipeline_actions,
-aws_codestar,
-aws_codestarconnections,
-aws_codestarnotifications,
-aws_cognito,
-aws_comprehend,
-aws_config,
-aws_connect,
-aws_connectcampaigns,
-aws_controltower,
-aws_cur,
-aws_customerprofiles,
-aws_databrew,
-aws_datapipeline,
-aws_datasync,
-aws_dax,
-aws_detective,
-aws_devicefarm,
-aws_devopsguru,
-aws_directoryservice,
-aws_dlm,
-aws_dms,
-aws_docdb,
-aws_docdbelastic,
-aws_dynamodb,
-aws_ec2,
-aws_ecr,
-aws_ecr_assets,
-aws_ecs,
-aws_ecs_patterns,
-aws_efs,
-aws_eks,
-aws_elasticache,
-aws_elasticbeanstalk,
-aws_elasticloadbalancing,
-aws_elasticloadbalancingv2,
-aws_elasticloadbalancingv2_actions,
-aws_elasticloadbalancingv2_targets,
-aws_elasticsearch,
-aws_emr,
-aws_emrcontainers,
-aws_emrserverless,
-aws_events,
-aws_eventschemas,
-aws_events_targets,
-aws_evidently,
-aws_finspace,
-aws_fis,
-aws_fms,
-aws_forecast,
-aws_frauddetector,
-aws_fsx,
-aws_gamelift,
-aws_globalaccelerator,
-aws_globalaccelerator_endpoints,
-aws_glue,
-aws_grafana,
-aws_greengrass,
-aws_greengrassv2,
-aws_groundstation,
-aws_guardduty,
-aws_healthlake,
-aws_iam,
-aws_identitystore,
-aws_imagebuilder,
-aws_inspector,
-aws_inspectorv2,
-aws_internetmonitor,
-aws_iot,
-aws_iot1click,
-aws_iotanalytics,
-aws_iotcoredeviceadvisor,
-aws_iotevents,
-aws_iotfleethub,
-aws_iotfleetwise,
-aws_iotsitewise,
-aws_iotthingsgraph,
-aws_iottwinmaker,
-aws_iotwireless,
-aws_ivs,
-aws_ivschat,
-aws_kafkaconnect,
-aws_kendra,
-aws_kendraranking,
-aws_kinesis,
-aws_kinesisanalytics,
-aws_kinesisanalyticsv2,
-aws_kinesisfirehose,
-aws_kinesisvideo,
-aws_kms,
-aws_lakeformation,
-aws_lambda,
-aws_lambda_destinations,
-aws_lambda_event_sources,
-aws_lambda_nodejs,
-aws_lex,
-aws_licensemanager,
-aws_lightsail,
-aws_location,
-aws_logs,
-aws_logs_destinations,
-aws_lookoutequipment,
-aws_lookoutmetrics,
-aws_lookoutvision,
-aws_m2,
-aws_macie,
-aws_managedblockchain,
-aws_mediaconnect,
-aws_mediaconvert,
-aws_medialive,
-aws_mediapackage,
-aws_mediastore,
-aws_mediatailor,
-aws_memorydb,
-aws_msk,
-aws_mwaa,
-aws_neptune,
-aws_networkfirewall,
-aws_networkmanager,
-aws_nimblestudio,
-aws_oam,
-aws_omics,
-aws_opensearchserverless,
-aws_opensearchservice,
-aws_opsworks,
-aws_opsworkscm,
-aws_organizations,
-aws_osis,
-aws_panorama,
-aws_personalize,
-aws_pinpoint,
-aws_pinpointemail,
-aws_pipes,
-aws_proton,
-aws_qldb,
-aws_quicksight,
-aws_ram,
-aws_rds,
-aws_redshift,
-aws_redshiftserverless,
-aws_refactorspaces,
-aws_rekognition,
-aws_resiliencehub,
-aws_resourceexplorer2,
-aws_resourcegroups,
-aws_robomaker,
-aws_rolesanywhere,
-aws_route53,
-aws_route53recoverycontrol,
-aws_route53recoveryreadiness,
-aws_route53resolver,
-aws_route53_patterns,
-aws_route53_targets,
-aws_rum,
-aws_s3,
-aws_s3objectlambda,
-aws_s3outposts,
-aws_s3_assets,
-aws_s3_deployment,
-aws_s3_notifications,
-aws_sagemaker,
-aws_sam,
-aws_scheduler,
-aws_sdb,
-aws_secretsmanager,
-aws_securityhub,
-aws_servicecatalog,
-aws_servicecatalogappregistry,
-aws_servicediscovery,
-aws_ses,
-aws_ses_actions,
-aws_shield,
-aws_signer,
-aws_simspaceweaver,
-aws_sns,
-aws_sns_subscriptions,
-aws_sqs,
-aws_ssm,
-aws_ssmcontacts,
-aws_ssmincidents,
-aws_sso,
-aws_stepfunctions,
-aws_stepfunctions_tasks,
-aws_supportapp,
-aws_synthetics,
-aws_systemsmanagersap,
-aws_timestream,
-aws_transfer,
-aws_voiceid,
-aws_vpclattice,
-aws_waf,
-aws_wafregional,
-aws_wafv2,
-aws_wisdom,
-aws_workspaces,
-aws_xray,
-cloudformation_include,
-cloud_assembly_schema,
-custom_resources,
-cx_api,
-lambda_layer_awscli,
-lambda_layer_kubectl,
-lambda_layer_node_proxy_agent,
-pipelines,
-region_info,
-triggers,
-constructs,
-_interface_methods,
+    core,
+    alexa_ask,
+    assertions,
+    assets,
+    aws_accessanalyzer,
+    aws_acmpca,
+    aws_amazonmq,
+    aws_amplify,
+    aws_amplifyuibuilder,
+    aws_apigateway,
+    aws_apigatewayv2,
+    aws_appconfig,
+    aws_appflow,
+    aws_appintegrations,
+    aws_applicationautoscaling,
+    aws_applicationinsights,
+    aws_appmesh,
+    aws_apprunner,
+    aws_appstream,
+    aws_appsync,
+    aws_aps,
+    aws_athena,
+    aws_auditmanager,
+    aws_autoscaling,
+    aws_autoscaling_common,
+    aws_autoscaling_hooktargets,
+    aws_autoscalingplans,
+    aws_backup,
+    aws_backupgateway,
+    aws_batch,
+    aws_billingconductor,
+    aws_budgets,
+    aws_cassandra,
+    aws_ce,
+    aws_certificatemanager,
+    aws_chatbot,
+    aws_cleanrooms,
+    aws_cloud9,
+    aws_cloudformation,
+    aws_cloudfront,
+    aws_cloudfront_origins,
+    aws_cloudtrail,
+    aws_cloudwatch,
+    aws_cloudwatch_actions,
+    aws_codebuild,
+    aws_codecommit,
+    aws_codedeploy,
+    aws_codeguruprofiler,
+    aws_codegurureviewer,
+    aws_codepipeline,
+    aws_codepipeline_actions,
+    aws_codestar,
+    aws_codestarconnections,
+    aws_codestarnotifications,
+    aws_cognito,
+    aws_comprehend,
+    aws_config,
+    aws_connect,
+    aws_connectcampaigns,
+    aws_controltower,
+    aws_cur,
+    aws_customerprofiles,
+    aws_databrew,
+    aws_datapipeline,
+    aws_datasync,
+    aws_dax,
+    aws_detective,
+    aws_devicefarm,
+    aws_devopsguru,
+    aws_directoryservice,
+    aws_dlm,
+    aws_dms,
+    aws_docdb,
+    aws_docdbelastic,
+    aws_dynamodb,
+    aws_ec2,
+    aws_ecr,
+    aws_ecr_assets,
+    aws_ecs,
+    aws_ecs_patterns,
+    aws_efs,
+    aws_eks,
+    aws_elasticache,
+    aws_elasticbeanstalk,
+    aws_elasticloadbalancing,
+    aws_elasticloadbalancingv2,
+    aws_elasticloadbalancingv2_actions,
+    aws_elasticloadbalancingv2_targets,
+    aws_elasticsearch,
+    aws_emr,
+    aws_emrcontainers,
+    aws_emrserverless,
+    aws_entityresolution,
+    aws_events,
+    aws_events_targets,
+    aws_eventschemas,
+    aws_evidently,
+    aws_finspace,
+    aws_fis,
+    aws_fms,
+    aws_forecast,
+    aws_frauddetector,
+    aws_fsx,
+    aws_gamelift,
+    aws_globalaccelerator,
+    aws_globalaccelerator_endpoints,
+    aws_glue,
+    aws_grafana,
+    aws_greengrass,
+    aws_greengrassv2,
+    aws_groundstation,
+    aws_guardduty,
+    aws_healthimaging,
+    aws_healthlake,
+    aws_iam,
+    aws_identitystore,
+    aws_imagebuilder,
+    aws_inspector,
+    aws_inspectorv2,
+    aws_internetmonitor,
+    aws_iot,
+    aws_iot1click,
+    aws_iotanalytics,
+    aws_iotcoredeviceadvisor,
+    aws_iotevents,
+    aws_iotfleethub,
+    aws_iotfleetwise,
+    aws_iotsitewise,
+    aws_iotthingsgraph,
+    aws_iottwinmaker,
+    aws_iotwireless,
+    aws_ivs,
+    aws_ivschat,
+    aws_kafkaconnect,
+    aws_kendra,
+    aws_kendraranking,
+    aws_kinesis,
+    aws_kinesisanalytics,
+    aws_kinesisanalyticsv2,
+    aws_kinesisfirehose,
+    aws_kinesisvideo,
+    aws_kms,
+    aws_lakeformation,
+    aws_lambda,
+    aws_lambda_destinations,
+    aws_lambda_event_sources,
+    aws_lambda_nodejs,
+    aws_lex,
+    aws_licensemanager,
+    aws_lightsail,
+    aws_location,
+    aws_logs,
+    aws_logs_destinations,
+    aws_lookoutequipment,
+    aws_lookoutmetrics,
+    aws_lookoutvision,
+    aws_m2,
+    aws_macie,
+    aws_managedblockchain,
+    aws_mediaconnect,
+    aws_mediaconvert,
+    aws_medialive,
+    aws_mediapackage,
+    aws_mediapackagev2,
+    aws_mediastore,
+    aws_mediatailor,
+    aws_memorydb,
+    aws_msk,
+    aws_mwaa,
+    aws_neptune,
+    aws_networkfirewall,
+    aws_networkmanager,
+    aws_nimblestudio,
+    aws_oam,
+    aws_omics,
+    aws_opensearchserverless,
+    aws_opensearchservice,
+    aws_opsworks,
+    aws_opsworkscm,
+    aws_organizations,
+    aws_osis,
+    aws_panorama,
+    aws_pcaconnectorad,
+    aws_personalize,
+    aws_pinpoint,
+    aws_pinpointemail,
+    aws_pipes,
+    aws_proton,
+    aws_qldb,
+    aws_quicksight,
+    aws_ram,
+    aws_rds,
+    aws_redshift,
+    aws_redshiftserverless,
+    aws_refactorspaces,
+    aws_rekognition,
+    aws_resiliencehub,
+    aws_resourceexplorer2,
+    aws_resourcegroups,
+    aws_robomaker,
+    aws_rolesanywhere,
+    aws_route53,
+    aws_route53_patterns,
+    aws_route53_targets,
+    aws_route53recoverycontrol,
+    aws_route53recoveryreadiness,
+    aws_route53resolver,
+    aws_rum,
+    aws_s3,
+    aws_s3_assets,
+    aws_s3_deployment,
+    aws_s3_notifications,
+    aws_s3objectlambda,
+    aws_s3outposts,
+    aws_sagemaker,
+    aws_sam,
+    aws_scheduler,
+    aws_sdb,
+    aws_secretsmanager,
+    aws_securityhub,
+    aws_servicecatalog,
+    aws_servicecatalogappregistry,
+    aws_servicediscovery,
+    aws_ses,
+    aws_ses_actions,
+    aws_shield,
+    aws_signer,
+    aws_simspaceweaver,
+    aws_sns,
+    aws_sns_subscriptions,
+    aws_sqs,
+    aws_ssm,
+    aws_ssmcontacts,
+    aws_ssmincidents,
+    aws_sso,
+    aws_stepfunctions,
+    aws_stepfunctions_tasks,
+    aws_supportapp,
+    aws_synthetics,
+    aws_systemsmanagersap,
+    aws_timestream,
+    aws_transfer,
+    aws_verifiedpermissions,
+    aws_voiceid,
+    aws_vpclattice,
+    aws_waf,
+    aws_wafregional,
+    aws_wafv2,
+    aws_wisdom,
+    aws_workspaces,
+    aws_workspacesweb,
+    aws_xray,
+    cloud_assembly_schema,
+    cloudformation_include,
+    custom_resources,
+    cx_api,
+    lambda_layer_awscli,
+    lambda_layer_kubectl,
+    lambda_layer_node_proxy_agent,
+    pipelines,
+    region_info,
+    triggers,
+    constructs,
 ]:
     for name in dir(mod):
         obj = getattr(mod, name)
@@ -532,6 +541,8 @@ _interface_methods,
             except Exception as e:
                 print('f', mod, name, e)
 
+core.ModuleModel.update_forward_refs()
+constructs.ModuleModel.update_forward_refs()
 alexa_ask.ModuleModel.update_forward_refs()
 assertions.ModuleModel.update_forward_refs()
 assets.ModuleModel.update_forward_refs()
@@ -555,9 +566,9 @@ aws_aps.ModuleModel.update_forward_refs()
 aws_athena.ModuleModel.update_forward_refs()
 aws_auditmanager.ModuleModel.update_forward_refs()
 aws_autoscaling.ModuleModel.update_forward_refs()
-aws_autoscalingplans.ModuleModel.update_forward_refs()
 aws_autoscaling_common.ModuleModel.update_forward_refs()
 aws_autoscaling_hooktargets.ModuleModel.update_forward_refs()
+aws_autoscalingplans.ModuleModel.update_forward_refs()
 aws_backup.ModuleModel.update_forward_refs()
 aws_backupgateway.ModuleModel.update_forward_refs()
 aws_batch.ModuleModel.update_forward_refs()
@@ -567,9 +578,9 @@ aws_cassandra.ModuleModel.update_forward_refs()
 aws_ce.ModuleModel.update_forward_refs()
 aws_certificatemanager.ModuleModel.update_forward_refs()
 aws_chatbot.ModuleModel.update_forward_refs()
+aws_cleanrooms.ModuleModel.update_forward_refs()
 aws_cloud9.ModuleModel.update_forward_refs()
 aws_cloudformation.ModuleModel.update_forward_refs()
-aws_cloudfront.ModuleModel.update_forward_refs()
 aws_cloudfront.ModuleModel.update_forward_refs()
 aws_cloudfront_origins.ModuleModel.update_forward_refs()
 aws_cloudtrail.ModuleModel.update_forward_refs()
@@ -623,9 +634,10 @@ aws_elasticsearch.ModuleModel.update_forward_refs()
 aws_emr.ModuleModel.update_forward_refs()
 aws_emrcontainers.ModuleModel.update_forward_refs()
 aws_emrserverless.ModuleModel.update_forward_refs()
+aws_entityresolution.ModuleModel.update_forward_refs()
 aws_events.ModuleModel.update_forward_refs()
-aws_eventschemas.ModuleModel.update_forward_refs()
 aws_events_targets.ModuleModel.update_forward_refs()
+aws_eventschemas.ModuleModel.update_forward_refs()
 aws_evidently.ModuleModel.update_forward_refs()
 aws_finspace.ModuleModel.update_forward_refs()
 aws_fis.ModuleModel.update_forward_refs()
@@ -642,6 +654,7 @@ aws_greengrass.ModuleModel.update_forward_refs()
 aws_greengrassv2.ModuleModel.update_forward_refs()
 aws_groundstation.ModuleModel.update_forward_refs()
 aws_guardduty.ModuleModel.update_forward_refs()
+aws_healthimaging.ModuleModel.update_forward_refs()
 aws_healthlake.ModuleModel.update_forward_refs()
 aws_iam.ModuleModel.update_forward_refs()
 aws_identitystore.ModuleModel.update_forward_refs()
@@ -692,6 +705,7 @@ aws_mediaconnect.ModuleModel.update_forward_refs()
 aws_mediaconvert.ModuleModel.update_forward_refs()
 aws_medialive.ModuleModel.update_forward_refs()
 aws_mediapackage.ModuleModel.update_forward_refs()
+aws_mediapackagev2.ModuleModel.update_forward_refs()
 aws_mediastore.ModuleModel.update_forward_refs()
 aws_mediatailor.ModuleModel.update_forward_refs()
 aws_memorydb.ModuleModel.update_forward_refs()
@@ -710,6 +724,7 @@ aws_opsworkscm.ModuleModel.update_forward_refs()
 aws_organizations.ModuleModel.update_forward_refs()
 aws_osis.ModuleModel.update_forward_refs()
 aws_panorama.ModuleModel.update_forward_refs()
+aws_pcaconnectorad.ModuleModel.update_forward_refs()
 aws_personalize.ModuleModel.update_forward_refs()
 aws_pinpoint.ModuleModel.update_forward_refs()
 aws_pinpointemail.ModuleModel.update_forward_refs()
@@ -729,18 +744,18 @@ aws_resourcegroups.ModuleModel.update_forward_refs()
 aws_robomaker.ModuleModel.update_forward_refs()
 aws_rolesanywhere.ModuleModel.update_forward_refs()
 aws_route53.ModuleModel.update_forward_refs()
+aws_route53_patterns.ModuleModel.update_forward_refs()
+aws_route53_targets.ModuleModel.update_forward_refs()
 aws_route53recoverycontrol.ModuleModel.update_forward_refs()
 aws_route53recoveryreadiness.ModuleModel.update_forward_refs()
 aws_route53resolver.ModuleModel.update_forward_refs()
-aws_route53_patterns.ModuleModel.update_forward_refs()
-aws_route53_targets.ModuleModel.update_forward_refs()
 aws_rum.ModuleModel.update_forward_refs()
 aws_s3.ModuleModel.update_forward_refs()
-aws_s3objectlambda.ModuleModel.update_forward_refs()
-aws_s3outposts.ModuleModel.update_forward_refs()
 aws_s3_assets.ModuleModel.update_forward_refs()
 aws_s3_deployment.ModuleModel.update_forward_refs()
 aws_s3_notifications.ModuleModel.update_forward_refs()
+aws_s3objectlambda.ModuleModel.update_forward_refs()
+aws_s3outposts.ModuleModel.update_forward_refs()
 aws_sagemaker.ModuleModel.update_forward_refs()
 aws_sam.ModuleModel.update_forward_refs()
 aws_scheduler.ModuleModel.update_forward_refs()
@@ -769,6 +784,7 @@ aws_synthetics.ModuleModel.update_forward_refs()
 aws_systemsmanagersap.ModuleModel.update_forward_refs()
 aws_timestream.ModuleModel.update_forward_refs()
 aws_transfer.ModuleModel.update_forward_refs()
+aws_verifiedpermissions.ModuleModel.update_forward_refs()
 aws_voiceid.ModuleModel.update_forward_refs()
 aws_vpclattice.ModuleModel.update_forward_refs()
 aws_waf.ModuleModel.update_forward_refs()
@@ -776,9 +792,10 @@ aws_wafregional.ModuleModel.update_forward_refs()
 aws_wafv2.ModuleModel.update_forward_refs()
 aws_wisdom.ModuleModel.update_forward_refs()
 aws_workspaces.ModuleModel.update_forward_refs()
+aws_workspacesweb.ModuleModel.update_forward_refs()
 aws_xray.ModuleModel.update_forward_refs()
-cloudformation_include.ModuleModel.update_forward_refs()
 cloud_assembly_schema.ModuleModel.update_forward_refs()
+cloudformation_include.ModuleModel.update_forward_refs()
 custom_resources.ModuleModel.update_forward_refs()
 cx_api.ModuleModel.update_forward_refs()
 lambda_layer_awscli.ModuleModel.update_forward_refs()
@@ -787,7 +804,7 @@ lambda_layer_node_proxy_agent.ModuleModel.update_forward_refs()
 pipelines.ModuleModel.update_forward_refs()
 region_info.ModuleModel.update_forward_refs()
 triggers.ModuleModel.update_forward_refs()
-constructs.ModuleModel.update_forward_refs()
+
 
 class MegaModel(pydantic.BaseModel):
     alexa_ask_: typing.Optional[alexa_ask.ModuleModel] = pydantic.Field(None, alias='alexa_ask')
@@ -813,9 +830,9 @@ class MegaModel(pydantic.BaseModel):
     aws_athena_: typing.Optional[aws_athena.ModuleModel] = pydantic.Field(None, alias='aws_athena')
     aws_auditmanager_: typing.Optional[aws_auditmanager.ModuleModel] = pydantic.Field(None, alias='aws_auditmanager')
     aws_autoscaling_: typing.Optional[aws_autoscaling.ModuleModel] = pydantic.Field(None, alias='aws_autoscaling')
-    aws_autoscalingplans_: typing.Optional[aws_autoscalingplans.ModuleModel] = pydantic.Field(None, alias='aws_autoscalingplans')
     aws_autoscaling_common_: typing.Optional[aws_autoscaling_common.ModuleModel] = pydantic.Field(None, alias='aws_autoscaling_common')
     aws_autoscaling_hooktargets_: typing.Optional[aws_autoscaling_hooktargets.ModuleModel] = pydantic.Field(None, alias='aws_autoscaling_hooktargets')
+    aws_autoscalingplans_: typing.Optional[aws_autoscalingplans.ModuleModel] = pydantic.Field(None, alias='aws_autoscalingplans')
     aws_backup_: typing.Optional[aws_backup.ModuleModel] = pydantic.Field(None, alias='aws_backup')
     aws_backupgateway_: typing.Optional[aws_backupgateway.ModuleModel] = pydantic.Field(None, alias='aws_backupgateway')
     aws_batch_: typing.Optional[aws_batch.ModuleModel] = pydantic.Field(None, alias='aws_batch')
@@ -825,6 +842,7 @@ class MegaModel(pydantic.BaseModel):
     aws_ce_: typing.Optional[aws_ce.ModuleModel] = pydantic.Field(None, alias='aws_ce')
     aws_certificatemanager_: typing.Optional[aws_certificatemanager.ModuleModel] = pydantic.Field(None, alias='aws_certificatemanager')
     aws_chatbot_: typing.Optional[aws_chatbot.ModuleModel] = pydantic.Field(None, alias='aws_chatbot')
+    aws_cleanrooms_: typing.Optional[aws_cleanrooms.ModuleModel] = pydantic.Field(None, alias='aws_cleanrooms')
     aws_cloud9_: typing.Optional[aws_cloud9.ModuleModel] = pydantic.Field(None, alias='aws_cloud9')
     aws_cloudformation_: typing.Optional[aws_cloudformation.ModuleModel] = pydantic.Field(None, alias='aws_cloudformation')
     aws_cloudfront_: typing.Optional[aws_cloudfront.ModuleModel] = pydantic.Field(None, alias='aws_cloudfront')
@@ -880,9 +898,10 @@ class MegaModel(pydantic.BaseModel):
     aws_emr_: typing.Optional[aws_emr.ModuleModel] = pydantic.Field(None, alias='aws_emr')
     aws_emrcontainers_: typing.Optional[aws_emrcontainers.ModuleModel] = pydantic.Field(None, alias='aws_emrcontainers')
     aws_emrserverless_: typing.Optional[aws_emrserverless.ModuleModel] = pydantic.Field(None, alias='aws_emrserverless')
+    aws_entityresolution_: typing.Optional[aws_entityresolution.ModuleModel] = pydantic.Field(None, alias='aws_entityresolution')
     aws_events_: typing.Optional[aws_events.ModuleModel] = pydantic.Field(None, alias='aws_events')
-    aws_eventschemas_: typing.Optional[aws_eventschemas.ModuleModel] = pydantic.Field(None, alias='aws_eventschemas')
     aws_events_targets_: typing.Optional[aws_events_targets.ModuleModel] = pydantic.Field(None, alias='aws_events_targets')
+    aws_eventschemas_: typing.Optional[aws_eventschemas.ModuleModel] = pydantic.Field(None, alias='aws_eventschemas')
     aws_evidently_: typing.Optional[aws_evidently.ModuleModel] = pydantic.Field(None, alias='aws_evidently')
     aws_finspace_: typing.Optional[aws_finspace.ModuleModel] = pydantic.Field(None, alias='aws_finspace')
     aws_fis_: typing.Optional[aws_fis.ModuleModel] = pydantic.Field(None, alias='aws_fis')
@@ -899,6 +918,7 @@ class MegaModel(pydantic.BaseModel):
     aws_greengrassv2_: typing.Optional[aws_greengrassv2.ModuleModel] = pydantic.Field(None, alias='aws_greengrassv2')
     aws_groundstation_: typing.Optional[aws_groundstation.ModuleModel] = pydantic.Field(None, alias='aws_groundstation')
     aws_guardduty_: typing.Optional[aws_guardduty.ModuleModel] = pydantic.Field(None, alias='aws_guardduty')
+    aws_healthimaging_: typing.Optional[aws_healthimaging.ModuleModel] = pydantic.Field(None, alias='aws_healthimaging')
     aws_healthlake_: typing.Optional[aws_healthlake.ModuleModel] = pydantic.Field(None, alias='aws_healthlake')
     aws_iam_: typing.Optional[aws_iam.ModuleModel] = pydantic.Field(None, alias='aws_iam')
     aws_identitystore_: typing.Optional[aws_identitystore.ModuleModel] = pydantic.Field(None, alias='aws_identitystore')
@@ -949,6 +969,7 @@ class MegaModel(pydantic.BaseModel):
     aws_mediaconvert_: typing.Optional[aws_mediaconvert.ModuleModel] = pydantic.Field(None, alias='aws_mediaconvert')
     aws_medialive_: typing.Optional[aws_medialive.ModuleModel] = pydantic.Field(None, alias='aws_medialive')
     aws_mediapackage_: typing.Optional[aws_mediapackage.ModuleModel] = pydantic.Field(None, alias='aws_mediapackage')
+    aws_mediapackagev2_: typing.Optional[aws_mediapackagev2.ModuleModel] = pydantic.Field(None, alias='aws_mediapackagev2')
     aws_mediastore_: typing.Optional[aws_mediastore.ModuleModel] = pydantic.Field(None, alias='aws_mediastore')
     aws_mediatailor_: typing.Optional[aws_mediatailor.ModuleModel] = pydantic.Field(None, alias='aws_mediatailor')
     aws_memorydb_: typing.Optional[aws_memorydb.ModuleModel] = pydantic.Field(None, alias='aws_memorydb')
@@ -967,6 +988,7 @@ class MegaModel(pydantic.BaseModel):
     aws_organizations_: typing.Optional[aws_organizations.ModuleModel] = pydantic.Field(None, alias='aws_organizations')
     aws_osis_: typing.Optional[aws_osis.ModuleModel] = pydantic.Field(None, alias='aws_osis')
     aws_panorama_: typing.Optional[aws_panorama.ModuleModel] = pydantic.Field(None, alias='aws_panorama')
+    aws_pcaconnectorad_: typing.Optional[aws_pcaconnectorad.ModuleModel] = pydantic.Field(None, alias='aws_pcaconnectorad')
     aws_personalize_: typing.Optional[aws_personalize.ModuleModel] = pydantic.Field(None, alias='aws_personalize')
     aws_pinpoint_: typing.Optional[aws_pinpoint.ModuleModel] = pydantic.Field(None, alias='aws_pinpoint')
     aws_pinpointemail_: typing.Optional[aws_pinpointemail.ModuleModel] = pydantic.Field(None, alias='aws_pinpointemail')
@@ -986,18 +1008,18 @@ class MegaModel(pydantic.BaseModel):
     aws_robomaker_: typing.Optional[aws_robomaker.ModuleModel] = pydantic.Field(None, alias='aws_robomaker')
     aws_rolesanywhere_: typing.Optional[aws_rolesanywhere.ModuleModel] = pydantic.Field(None, alias='aws_rolesanywhere')
     aws_route53_: typing.Optional[aws_route53.ModuleModel] = pydantic.Field(None, alias='aws_route53')
+    aws_route53_patterns_: typing.Optional[aws_route53_patterns.ModuleModel] = pydantic.Field(None, alias='aws_route53_patterns')
+    aws_route53_targets_: typing.Optional[aws_route53_targets.ModuleModel] = pydantic.Field(None, alias='aws_route53_targets')
     aws_route53recoverycontrol_: typing.Optional[aws_route53recoverycontrol.ModuleModel] = pydantic.Field(None, alias='aws_route53recoverycontrol')
     aws_route53recoveryreadiness_: typing.Optional[aws_route53recoveryreadiness.ModuleModel] = pydantic.Field(None, alias='aws_route53recoveryreadiness')
     aws_route53resolver_: typing.Optional[aws_route53resolver.ModuleModel] = pydantic.Field(None, alias='aws_route53resolver')
-    aws_route53_patterns_: typing.Optional[aws_route53_patterns.ModuleModel] = pydantic.Field(None, alias='aws_route53_patterns')
-    aws_route53_targets_: typing.Optional[aws_route53_targets.ModuleModel] = pydantic.Field(None, alias='aws_route53_targets')
     aws_rum_: typing.Optional[aws_rum.ModuleModel] = pydantic.Field(None, alias='aws_rum')
     aws_s3_: typing.Optional[aws_s3.ModuleModel] = pydantic.Field(None, alias='aws_s3')
-    aws_s3objectlambda_: typing.Optional[aws_s3objectlambda.ModuleModel] = pydantic.Field(None, alias='aws_s3objectlambda')
-    aws_s3outposts_: typing.Optional[aws_s3outposts.ModuleModel] = pydantic.Field(None, alias='aws_s3outposts')
     aws_s3_assets_: typing.Optional[aws_s3_assets.ModuleModel] = pydantic.Field(None, alias='aws_s3_assets')
     aws_s3_deployment_: typing.Optional[aws_s3_deployment.ModuleModel] = pydantic.Field(None, alias='aws_s3_deployment')
     aws_s3_notifications_: typing.Optional[aws_s3_notifications.ModuleModel] = pydantic.Field(None, alias='aws_s3_notifications')
+    aws_s3objectlambda_: typing.Optional[aws_s3objectlambda.ModuleModel] = pydantic.Field(None, alias='aws_s3objectlambda')
+    aws_s3outposts_: typing.Optional[aws_s3outposts.ModuleModel] = pydantic.Field(None, alias='aws_s3outposts')
     aws_sagemaker_: typing.Optional[aws_sagemaker.ModuleModel] = pydantic.Field(None, alias='aws_sagemaker')
     aws_sam_: typing.Optional[aws_sam.ModuleModel] = pydantic.Field(None, alias='aws_sam')
     aws_scheduler_: typing.Optional[aws_scheduler.ModuleModel] = pydantic.Field(None, alias='aws_scheduler')
@@ -1026,6 +1048,7 @@ class MegaModel(pydantic.BaseModel):
     aws_systemsmanagersap_: typing.Optional[aws_systemsmanagersap.ModuleModel] = pydantic.Field(None, alias='aws_systemsmanagersap')
     aws_timestream_: typing.Optional[aws_timestream.ModuleModel] = pydantic.Field(None, alias='aws_timestream')
     aws_transfer_: typing.Optional[aws_transfer.ModuleModel] = pydantic.Field(None, alias='aws_transfer')
+    aws_verifiedpermissions_: typing.Optional[aws_verifiedpermissions.ModuleModel] = pydantic.Field(None, alias='aws_verifiedpermissions')
     aws_voiceid_: typing.Optional[aws_voiceid.ModuleModel] = pydantic.Field(None, alias='aws_voiceid')
     aws_vpclattice_: typing.Optional[aws_vpclattice.ModuleModel] = pydantic.Field(None, alias='aws_vpclattice')
     aws_waf_: typing.Optional[aws_waf.ModuleModel] = pydantic.Field(None, alias='aws_waf')
@@ -1033,9 +1056,10 @@ class MegaModel(pydantic.BaseModel):
     aws_wafv2_: typing.Optional[aws_wafv2.ModuleModel] = pydantic.Field(None, alias='aws_wafv2')
     aws_wisdom_: typing.Optional[aws_wisdom.ModuleModel] = pydantic.Field(None, alias='aws_wisdom')
     aws_workspaces_: typing.Optional[aws_workspaces.ModuleModel] = pydantic.Field(None, alias='aws_workspaces')
+    aws_workspacesweb_: typing.Optional[aws_workspacesweb.ModuleModel] = pydantic.Field(None, alias='aws_workspacesweb')
     aws_xray_: typing.Optional[aws_xray.ModuleModel] = pydantic.Field(None, alias='aws_xray')
-    cloudformation_include_: typing.Optional[cloudformation_include.ModuleModel] = pydantic.Field(None, alias='cloudformation_include')
     cloud_assembly_schema_: typing.Optional[cloud_assembly_schema.ModuleModel] = pydantic.Field(None, alias='cloud_assembly_schema')
+    cloudformation_include_: typing.Optional[cloudformation_include.ModuleModel] = pydantic.Field(None, alias='cloudformation_include')
     custom_resources_: typing.Optional[custom_resources.ModuleModel] = pydantic.Field(None, alias='custom_resources')
     cx_api_: typing.Optional[cx_api.ModuleModel] = pydantic.Field(None, alias='cx_api')
     lambda_layer_awscli_: typing.Optional[lambda_layer_awscli.ModuleModel] = pydantic.Field(None, alias='lambda_layer_awscli')
