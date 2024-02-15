@@ -1,4 +1,5 @@
-import aws_cdk
+from __future__ import annotations
+
 import typing
 from typing import Optional
 
@@ -111,7 +112,7 @@ class BaseConstruct(APIBaseDef):
         assert hasattr(cls, '_cdk_class_fqn')
         return eval(cls._cdk_class_fqn)
 
-    def create_construct(self, id: str, scope: aws_cdk.Stack):
+    def create_construct(self, scope: aws_cdk.Stack):
         assert hasattr(self, '_init_params')
         assert hasattr(self, '_cdk_class_fqn')
         assert hasattr(self, '_alternate_constructor_method_names')
@@ -132,6 +133,7 @@ class BaseConstruct(APIBaseDef):
             if key in self._method_names:
                 method_calls.append(key)
 
+
         if 'from_resource_id' in kwargs and (alternate_constructor_params or init_params):
             raise ValueError("Invalid arguments. Import from resource ID was specified, but init params or alternate constructors were also provided.")
 
@@ -144,26 +146,44 @@ class BaseConstruct(APIBaseDef):
             construct = ...
 
         elif init_params:
-            ...
-            construct = ...
+            init_kwargs = {}
+            for init_key in init_params:
+                v = kwargs[init_key]
+                if isinstance(v, BaseConstruct):
+                    init_value = v.create_construct(scope=scope)
+                elif isinstance(v, APIBaseDef):
+                    raise ValueError()
+                else:
+                    init_value = v
+                init_kwargs[init_key] = init_value
+
+            construct = construct_klass(scope, **init_kwargs)
+
 
         elif alternate_constructor_params:
             assert len(alternate_constructor_params) == 1, 'Only one alternate constructor may be used, but multiple were specified'
             constructor_name = alternate_constructor_params[0]
             constructor_method = getattr(construct_klass, constructor_name)
-            construct = ...
+            method_params = kwargs[constructor_name]
+            if isinstance(method_params, APIBaseDef):
+                ...
+
+
+            construct = constructor_method
 
         else:
             # assume that the resource can be created with no arguments...
-            ...
-            construct = ...
+            construct = construct_klass()
 
-        for method_name in method_calls:
-            meth = getattr(construct, method_name)
-            params = kwargs[method_name]
-            meth_kwargs = {}
+        # XXX: do all configuration after all constructs are created?
+        #
+        # for method_name in method_calls:
+        #     meth = getattr(construct, method_name)
+        #     params = kwargs[method_name]
+        #     meth_kwargs = {}
+        #     ...
 
-
+        return construct
 
 
     def _configure_resource(self):
@@ -206,3 +226,5 @@ class BaseCfnProperty(APIBaseDef):
 
 class BaseMethodParams(APIBaseDef):
     ...
+
+import aws_cdk

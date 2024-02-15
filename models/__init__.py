@@ -266,12 +266,11 @@ from . import region_info
 from . import triggers
 from . import constructs
 from . import _interface_methods
-from . import _utils
 from . import core
 
 
 import sys
-
+_old_limit = sys.getrecursionlimit()
 sys.setrecursionlimit(10000)
 
 class MegaModel(pydantic.BaseModel):
@@ -537,3 +536,5 @@ class MegaModel(pydantic.BaseModel):
     region_info_: typing.Optional[region_info.ModuleModel] = pydantic.Field(None, alias='region_info')
     triggers_: typing.Optional[triggers.ModuleModel] = pydantic.Field(None, alias='triggers')
     constructs_: typing.Optional[constructs.ModuleModel] = pydantic.Field(None, alias='constructs')
+
+sys.setrecursionlimit(_old_limit)

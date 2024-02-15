@@ -1184,58 +1184,16 @@ def write_modules(mods: list[Module], outdir: str) -> None:
         outfile = os.path.join(outdir, mod.namespace) + '.py'
         with open(outfile, 'w', encoding='utf-8') as f:
             f.write(mod_code)
-    utilfile = os.path.join(outdir, '_utils.py')
-    with open(utilfile, 'w', encoding='utf-8') as f:
-        f.write('import models, datetime')
-        f.write('\nfor m in (')
-        for mod in mods:
-            for n, r in mod.all.items():
-                if r.resource_type in ('Enum', 'Interface'):
-                    continue
-                fullname = r.as_python_annotation()
-                if '.experimental.' not in fullname:
-                    f.write(f'{fullname},')
-            paramclasses = _module_param_classes.get(mod.name, '')
-            for classname in paramclasses:
-                if '.experimental.' in classname:
-                    continue
-                f.write(f'{classname},')
-        for c in _module_param_classes['_interface_methods']:
-            f.write(f'{c}, ')
-        f.write('):')
-        f.write('\n    try:')
-        f.write(f'\n        m.update_forward_refs()')
-        f.write('\n    except Exception as e:')
-        f.write('\n        print("f", m, e)')
-        f.write('\n')
     initfile = os.path.join(outdir, '_init.py')
     with open(initfile, 'w') as f:
-        f.write('import typing\nimport pydantic\nfrom ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM\nfrom .core import *\n')
+        f.write('import sys\nimport typing\nimport pydantic\nfrom ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM\nfrom .core import *\n')
         for mod in mods:
             if '.experimental' in mod.namespace:
                 continue
             f.write(f'from . import {mod.namespace}\n')
-        f.write('from . import _interface_methods\nfrom . import _utils\nfrom . import core\n')
-        f.write('for mod in [\n')
-        for mod in mods:
-            if '.experimental' in mod.namespace:
-                continue
-            f.write(f'    {mod.namespace},\n')
-        f.write(']:\n')
-        f.write("    for name in dir(mod):\n")
-        f.write("        obj = getattr(mod, name)\n")
-        f.write("        if hasattr(obj, 'update_forward_refs'):\n")
-        f.write("            try:\n")
-        f.write("                obj.update_forward_refs()\n")
-        f.write("            except Exception as e:\n")
-        f.write("                print('f', mod, name, e)\n")
+        f.write('from . import _interface_methods\nfrom . import core\n\n')
 
-        for mod in mods:
-            if mod.namespace == 'core':
-                continue
-            if '.experimental' in mod.namespace:
-                continue
-            f.write(f'{mod.namespace}.ModuleModel.update_forward_refs()\n')
+        f.write('_old_limit = sys.getrecursionlimit()\nsys.setrecursionlimit(10000)\n\n')
 
         f.write('class MegaModel(pydantic.BaseModel):\n')
         for mod in mods:
@@ -1244,6 +1202,8 @@ def write_modules(mods: list[Module], outdir: str) -> None:
             if mod.namespace == 'core':
                 continue
             f.write(f"    {mod.namespace}_: typing.Optional[{mod.namespace}.ModuleModel] = pydantic.Field(None, alias={mod.namespace!r})\n")
+
+        f.write('\nsys.setrecursionlimit(_old_limit)')
 
 
 
