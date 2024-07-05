@@ -100,6 +100,8 @@ class APIBaseDef(pydantic.BaseModel):
 class BaseConstruct(APIBaseDef):
     _construct_obj: typing.Any = pydantic.PrivateAttr(None)
 
+    id: Optional[str] = pydantic.Field(None)
+
     from_resource_id: Optional[str] = pydantic.Field(None)
 
     def to_cdk_obj(self, *args, **kwargs) -> typing.Any:
@@ -123,6 +125,7 @@ class BaseConstruct(APIBaseDef):
         init_params = []
 
         method_calls = []
+
 
         for key, value in kwargs.items():
             if key in self._init_params and value is not REQUIRED_INIT_PARAM:

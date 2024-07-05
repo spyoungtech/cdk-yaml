@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import abc
+import collections.abc
 import datetime
 import enum
 import importlib
@@ -10,8 +12,8 @@ import typing
 from collections import deque
 
 import aws_cdk
+import constructs
 import pydantic
-
 import cdk_yaml.generated  # noqa
 from cdk_yaml.generated import _generated
 
@@ -42,6 +44,7 @@ MariaDbEngineVersion = enum.Enum(
 )
 
 
+
 class PostgresEngine(pydantic.BaseModel):
     version: PostgresEngineVersion
 
@@ -63,16 +66,116 @@ class Engine(pydantic.BaseModel):
 class TypeNotImplemented(pydantic.BaseModel):
     unsupported_field: typing.Any = None
 
+Architecture = enum.Enum(
+    'Architecture', {'X86_64': 'X86_64', 'ARM64': 'ARM64'}
+)
+
+class CpuArchitecture(pydantic.BaseModel):
+    architecture:  Architecture
+
+
+OSFamily = enum.Enum('OSFamily',
+                                  {name: name for name in dir(aws_cdk.aws_ecs.OperatingSystemFamily) if not name.startswith('_') and name.replace('_', '').isupper()})
+
+class OperatingSystemFamily(pydantic.BaseModel):
+    family: OSFamily
+
+class CertificateValidation(pydantic.BaseModel):
+    notimplemented: None
+
+AllowedMethods = enum.Enum(
+    'AllowedMethods',
+    {name: name for name in dir(aws_cdk.aws_cloudfront.AllowedMethods) if not name.startswith('_') and name.replace('_', '').isupper()}
+)
+
+ResponseHeaderPolicy = enum.Enum(
+    'ResponseHeaderPolicy',
+    {name: name for name in dir(aws_cdk.aws_cloudfront.ResponseHeadersPolicy) if
+     not name.startswith('_') and name.replace('_', '').isupper()}
+)
+
+class ConstructBase(pydantic.BaseModel):
+    nothinghere: bool
 
 _special_cases = {
+    constructs.Construct: ConstructBase,
     aws_cdk.aws_iam.IPrincipal: TypeNotImplemented,
     aws_cdk.Duration: Duration,
     aws_cdk.aws_s3.ReplaceKey: ReplaceKey,
     aws_cdk.aws_rds.IEngine: Engine,
     aws_cdk.aws_rds.IInstanceEngine: Engine,
     aws_cdk.aws_ec2.IGatewayVpcEndpointService: TypeNotImplemented,
-}
+    aws_cdk.aws_ecs.CpuArchitecture: CpuArchitecture,
+    aws_cdk.aws_ecs.OperatingSystemFamily: OperatingSystemFamily,
+    aws_cdk.aws_certificatemanager.CertificateValidation: TypeNotImplemented,
+    aws_cdk.aws_autoscaling.HealthCheck: TypeNotImplemented,
+    aws_cdk.Size: TypeNotImplemented,
+    aws_cdk.aws_servicediscovery.INamespace: TypeNotImplemented,
+    aws_cdk.aws_autoscaling.BlockDeviceVolume: TypeNotImplemented,
+    aws_cdk.aws_ecs.PlacementConstraint: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.CacheCookieBehavior: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.OriginRequestHeaderBehavior: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.CacheQueryStringBehavior: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.GeoRestriction: TypeNotImplemented,
+    aws_cdk.aws_signer.Platform: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.CachedMethods: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.AllowedMethods: AllowedMethods,
+    aws_cdk.aws_lambda.IDestination: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.OriginRequestCookieBehavior: TypeNotImplemented,
+    aws_cdk.aws_lambda.IEventSource: TypeNotImplemented,
+    aws_cdk.aws_lambda.Architecture: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.OriginRequestQueryStringBehavior: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.CacheHeaderBehavior: TypeNotImplemented,
+    aws_cdk.aws_lambda.FileSystem: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.ResponseHeadersPolicy: ResponseHeaderPolicy,
+    aws_cdk.aws_lambda.Function: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.FunctionEventType: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.Function: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.LambdaEdgeEventType: TypeNotImplemented,
+    aws_cdk.aws_cloudfront.IOrigin: TypeNotImplemented,
 
+}
+from collections.abc import Iterable
+import types
+from typing import Any, Dict
+
+def _is_iterable(obj: typing.Any) -> bool:
+    try:
+        iter(obj)
+        return True
+    except TypeError:
+        return False
+
+def flatten_object(nested: Any, sep: str="_", prefix="") -> Dict[str, Any]:
+    """Flattens nested dictionaries and iterables
+
+    The key to a leaf (something is not list-like or a dictionary)
+    is the accessors to that leaf from the root separated by sep
+    prefixed with prefix.
+
+    If flattening results in a duplicate key raises a ValueError.
+
+    For example:
+      flatten_object([{'a': {'b': 'c'}}, [1]],
+                     prefix='nest_') == {'nest_0_a_b': 'c', 'nest_1_0': 1}
+    """
+    ans = {}
+
+    def flatten(x, name=()):
+        if isinstance(x, dict):
+            for k,v in x.items():
+                flatten(v, name + (str(k),))
+        elif isinstance(x, Iterable) and not isinstance(x, (str, bytes)):
+            for i, v in enumerate(x):
+                flatten(v, name + (str(i),))
+        else:
+            key = sep.join(name)
+            if key in ans:
+                raise ValueError(f"Duplicate key {key}")
+            ans[prefix + sep.join(name)] = x
+
+    flatten(nested)
+    return ans
 
 def flatten_annotation(annotation: typing.Any) -> typing.Generator[typing.Any, None, None]:
     """
@@ -91,12 +194,6 @@ def flatten_annotation(annotation: typing.Any) -> typing.Generator[typing.Any, N
             yield from flatten_annotation(arg)
     else:
         yield annotation
-
-
-#
-# _known_node_implementations = {
-#     aws_cdk.aws_rds.IEngine: [aws_cdk.aws_rds.Engine]
-# }
 
 
 class ConstructTree:
@@ -135,6 +232,8 @@ class ConstructTree:
                 child.parents.add(node)
 
     def dependency_order(self) -> list[ConstructNode]:
+        # XXX: doesn't really work.
+        # but probably is not needed anymore
         nodes = list(self.seen)
         # start with nodes that have no dependencies
         ordered = [node for node in nodes if not node.children]
@@ -143,12 +242,13 @@ class ConstructTree:
         while nodes:
             to_add = []
             for node in nodes:
-                if all(child in ordered for child in node.children):
+                if all(child in ordered for child in node.children if child.name != node.name):
                     to_add.append(node)
             if not to_add and nodes:
                 # we still have nodes with unresolved dependencies
                 # but there are no more nodes to add that have all met dependencies -- possible circular/self reference
                 # we're stuck here unless we implement handling for circular/self references.
+                breakpoint()
                 raise NotImplementedError(f'Circular/self reference detected. This is not currently supported.')
             ordered.extend(to_add)
             for node in to_add:
@@ -164,8 +264,9 @@ class ConstructTree:
 
 
 class ConstructNode:
-    def __init__(self, construct):
+    def __init__(self, construct, allowed_names: typing.Union[typing.Literal['__all__'], typing.List[str]] = '__all__'):
         self.construct = construct
+        self._allowed_names: typing.Union[typing.Literal['__all__'], typing.List[str]] = allowed_names
         self._children: set[ConstructNode] = set()
         self._implementations: set[ConstructNode] = set()
         self.parents: set[ConstructNode] = set()  # for now this is just informational, I don't think this is required
@@ -236,7 +337,7 @@ class ConstructNode:
 
     @property
     def name(self) -> str:
-        return self.construct.__name__
+        return self.construct.__qualname__
 
     @property
     def qualname(self) -> str:
@@ -249,7 +350,7 @@ class ConstructNode:
         if self.modname == 'aws_cdk':
             return ''
         if '.' not in self.modname:
-            raise ValueError('something is wrong')
+            raise ValueError('Error in calculating module namespace. This is most likely a bug.')
         return self.modname.split('.', 1)[1]
 
     @property
@@ -263,6 +364,18 @@ class ConstructNode:
             return self._children
 
     def _resolve_forward_ref(self, ref: typing.ForwardRef) -> typing.Any:
+        if '.' in ref.__forward_arg__:
+            parts = ref.__forward_arg__.split('.')[::-1]
+            get_from = self.module
+            while parts:
+                name = parts.pop()
+                obj = getattr(get_from, name, None)
+                if obj is None:
+                    return None
+                get_from = obj
+            logging.debug(f'({self}) resolved forward ref: {ref!r}) to {obj!r}')
+            return obj
+
         obj = getattr(self.module, ref.__forward_arg__, None)
         if obj is None:
             logging.debug(f'({self}) failed to resolve forward ref: {ref!r})')
@@ -300,7 +413,11 @@ class ConstructNode:
     @property
     def parameters(self):
         sig = inspect.signature(self.construct.__init__)
-        return sig.parameters
+        if self._allowed_names == '__all__':
+            return sig.parameters
+        else:
+            assert isinstance(self._allowed_names, list)
+            return {n: p for n,p in sig.parameters.items() if n in self._allowed_names}
 
 
 _annotation_model_map = {}
@@ -328,8 +445,7 @@ class ModelTree:
             else:
                 logging.debug('Failed to resolve ref while cleaning annotation')
         if type(annotation) == str:
-            if not node:
-                raise ValueError('heckkkk')
+            assert node is not None, "Tried to resolve string type reference, but no node was provided"
             resolved = node._resolve_forward_ref(typing.ForwardRef(annotation))
             if resolved:
                 annotation = resolved
@@ -347,7 +463,8 @@ class ModelTree:
                 return self.clean_annotation(annotation, node=_node)
         origin = typing.get_origin(annotation)
         args = typing.get_args(annotation)
-
+        if origin is collections.abc.Sequence:
+            origin = typing.Sequence
         if args:
             new_args = []
             for arg in args:
@@ -368,12 +485,15 @@ class ModelTree:
         for node in self.nodes:
             construct = node.construct
             model_params = {}
+            param_descriptions = {}
             if construct in _special_cases:
                 model = _special_cases[construct]
                 models.append(model)
                 continue
             if construct in self.annotation_model_map:
                 continue
+            if not isinstance(construct, type):
+                breakpoint()
             if issubclass(construct, enum.Enum):
                 self.annotation_model_map[construct] = construct
                 if node.mod_namespace in _generated:
@@ -390,21 +510,90 @@ class ModelTree:
                 continue
 
             for param_name, param in node.parameters.items():
-                if param_name in ('self', 'scope'):
+                if param_name in ('self', 'scope', 'args', 'kwargs'):
                     continue
                 logging.debug(f'({construct!r}) cleaning annotation for param "{param_name}"')
                 annotation = self.clean_annotation(param.annotation, node)
                 default = param.default if param.default != inspect._empty else ...
+                if param_name == 'schema':
+                    param_name = 'schema_'
+                if param_name == 'json':
+                    param_name = 'json_'
+                if param_name == 'construct':
+                    param_name = 'construct_'
+
                 model_params[param_name] = (annotation, default)
 
-            Config = type('Config', (), {'params': model_params, 'cdk_construct': construct})
-            model = pydantic.create_model(node.name, **model_params, __module__=node.model_module, __config__=Config)
-            self.annotation_model_map[construct] = model
+
+
+
+
+            # def _to_construct_or_self(self, param_name, obj: typing.Any, _scope=None):
+            #     logging.debug(f'resolving {obj!r}  {self.Config.params[param_name]}')
+            #     if hasattr(obj, 'to_construct'):
+            #         logging.debug('converting to construct')
+            #         return obj.to_construct(_scope=_scope)
+            #     elif isinstance(obj, list):
+            #         logging.debug('flattening...')
+            #         return [self._to_construct_or_self(param_name, item, _scope=_scope) for item in obj]
+            #     elif isinstance(obj, dict):
+            #         logging.debug('flattening...')
+            #         return {k: self._to_construct_or_self(param_name, v) for k, v in obj.items()}
+            #     else:
+            #         logging.debug(f'skipping {obj!r}')
+            #     return obj
+
+            # def _to_construct(self, _scope=None):
+            #
+            #     config = self.Config
+            #     params = config.params
+            #     construct_klass = config.cdk_construct
+            #     # kwargs = self.dict(exclude_unset=True)
+            #     kwargs = dict(self._iter(
+            #         to_dict=False,
+            #         by_alias=False,
+            #         exclude_unset=True,
+            #         include=None,
+            #         exclude=None,
+            #         exclude_defaults=False,
+            #         exclude_none=False
+            #
+            #     ))
+            #     id = kwargs.pop('id', None)
+            #     if _scope and id in _scope.resources:
+            #         return _scope.resources[id]
+            #     for param_name, value in kwargs.items():
+            #         if hasattr(value, 'dict'):
+            #             if list(value.dict(exclude_unset=True)) == ['id']:
+            #                 kwargs[param_name] = _scope.resources[value.id]
+            #                 continue
+            #         kwargs[param_name] = self._to_construct_or_self(param_name, value, _scope=_scope)
+            #
+            #     if id:
+            #         assert _scope is not None
+            #         return construct_klass(_scope, id, **kwargs)
+            #     else:
+            #         return construct_klass(**kwargs)
+            #
+            #
+            # def _validate_values(cls, values):
+            #     return values
+
+            Config = type('Config', (), {'params': model_params, 'cdk_construct': construct, 'arbitrary_types_allowed': True})
+            # Base = type('Base', (pydantic.BaseModel, abc.ABC), {'Config': Config})
             if node.mod_namespace in _generated:
                 namespace = _generated[node.mod_namespace]
             else:
                 namespace = types.SimpleNamespace()
                 _generated[node.mod_namespace] = namespace
+            try:
+                model = pydantic.create_model(node.name, **model_params, __module__=node.model_module, __config__=Config)
+            except Exception as e:
+                print('model creation failure', e, node)
+                self.annotation_model_map[construct] = TypeNotImplemented
+                setattr(namespace, node.name, TypeNotImplemented)
+                continue
+            self.annotation_model_map[construct] = model
             setattr(namespace, node.name, model)
             models.append(model)
         return models

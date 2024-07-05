@@ -202,6 +202,7 @@ class CfnCapacityReservationDefConfig(pydantic.BaseModel):
     override_logical_id: typing.Optional[list[models.aws_athena.CfnCapacityReservationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
     remove_dependency: typing.Optional[list[models.aws_athena.CfnCapacityReservationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_athena.CfnCapacityReservationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCapacityReservationDefCapacityassignmentconfigurationpropertyParams(pydantic.BaseModel):
     capacity_assignments: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_athena.CfnCapacityReservation_CapacityAssignmentPropertyDef, dict[str, typing.Any]]]] = pydantic.Field(..., description='')

@@ -3,7 +3,7 @@ import time
 if __name__ == '__main__':
     start = time.time()
     print('start', time.time())
-    from models import MegaModel
+    from . import MegaModel
     from contextlib import contextmanager
     import sys
     import argparse

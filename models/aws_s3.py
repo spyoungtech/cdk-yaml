@@ -92,7 +92,7 @@ class BucketBaseDefArnForObjectsParams(pydantic.BaseModel):
 
 class BucketBaseDefGrantDeleteParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
     ...
 
@@ -104,7 +104,7 @@ class BucketBaseDefGrantPublicAccessParams(pydantic.BaseModel):
 
 class BucketBaseDefGrantPutParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
     ...
 
@@ -116,7 +116,7 @@ class BucketBaseDefGrantPutAclParams(pydantic.BaseModel):
 
 class BucketBaseDefGrantReadParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
     ...
 
@@ -136,7 +136,7 @@ class BucketBaseDefGrantWriteParams(pydantic.BaseModel):
 class BucketBaseDefOnCloudTrailEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -147,7 +147,7 @@ class BucketBaseDefOnCloudTrailEventParams(pydantic.BaseModel):
 class BucketBaseDefOnCloudTrailPutObjectParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -158,7 +158,7 @@ class BucketBaseDefOnCloudTrailPutObjectParams(pydantic.BaseModel):
 class BucketBaseDefOnCloudTrailWriteObjectParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -255,12 +255,39 @@ class StorageClassDef(BaseClass):
 
 
 
+#  autogenerated from aws_cdk.aws_s3.TargetObjectKeyFormat
+class TargetObjectKeyFormatDef(BaseClass):
+    _init_params: typing.ClassVar[list[str]] = []
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = ['partitioned_prefix', 'simple_prefix']
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.TargetObjectKeyFormat'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+    resource_config: typing.Optional[models.aws_s3.TargetObjectKeyFormatDefConfig] = pydantic.Field(None)
+
+
+class TargetObjectKeyFormatDefConfig(pydantic.BaseModel):
+    partitioned_prefix: typing.Optional[list[models.aws_s3.TargetObjectKeyFormatDefPartitionedPrefixParams]] = pydantic.Field(None, description='Use partitioned prefix for log objects. If you do not specify the dateSource argument, the default is EventTime.\nThe partitioned prefix format as follow:\n[DestinationPrefix][SourceAccountId]/\u200b[SourceRegion]/\u200b[SourceBucket]/\u200b[YYYY]/\u200b[MM]/\u200b[DD]/\u200b[YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]')
+    simple_prefix: typing.Optional[list[models.aws_s3.TargetObjectKeyFormatDefSimplePrefixParams]] = pydantic.Field(None, description='Use the simple prefix for log objects.\nThe simple prefix format as follow:\n[DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]')
+
+class TargetObjectKeyFormatDefPartitionedPrefixParams(pydantic.BaseModel):
+    date_source: typing.Optional[aws_cdk.aws_s3.PartitionDateSource] = pydantic.Field(None, description='-')
+    return_config: typing.Optional[list[models.aws_s3.TargetObjectKeyFormatDefConfig]] = pydantic.Field(None)
+    ...
+
+class TargetObjectKeyFormatDefSimplePrefixParams(pydantic.BaseModel):
+    return_config: typing.Optional[list[models.aws_s3.TargetObjectKeyFormatDefConfig]] = pydantic.Field(None)
+    ...
+
+
 #  autogenerated from aws_cdk.aws_s3.Bucket
 class BucketDef(BaseConstruct):
     access_control: typing.Optional[aws_cdk.aws_s3.BucketAccessControl] = pydantic.Field(None, description='Specifies a canned ACL that grants predefined permissions to the bucket. Default: BucketAccessControl.PRIVATE\n')
-    auto_delete_objects: typing.Optional[bool] = pydantic.Field(None, description='Whether all objects should be automatically deleted when the bucket is removed from the stack or when the stack is deleted. Requires the ``removalPolicy`` to be set to ``RemovalPolicy.DESTROY``. **Warning** if you have deployed a bucket with ``autoDeleteObjects: true``, switching this to ``false`` in a CDK version *before* ``1.126.0`` will lead to all objects in the bucket being deleted. Be sure to update your bucket resources by deploying with CDK version ``1.126.0`` or later **before** switching this value to ``false``. Default: false\n')
+    auto_delete_objects: typing.Optional[bool] = pydantic.Field(None, description='Whether all objects should be automatically deleted when the bucket is removed from the stack or when the stack is deleted. Requires the ``removalPolicy`` to be set to ``RemovalPolicy.DESTROY``. **Warning** if you have deployed a bucket with ``autoDeleteObjects: true``, switching this to ``false`` in a CDK version *before* ``1.126.0`` will lead to all objects in the bucket being deleted. Be sure to update your bucket resources by deploying with CDK version ``1.126.0`` or later **before** switching this value to ``false``. Setting ``autoDeleteObjects`` to true on a bucket will add ``s3:PutBucketPolicy`` to the bucket policy. This is because during bucket deletion, the custom resource provider needs to update the bucket policy by adding a deny policy for ``s3:PutObject`` to prevent race conditions with external bucket writers. Default: false\n')
     block_public_access: typing.Optional[models.aws_s3.BlockPublicAccessDef] = pydantic.Field(None, description="The block public access configuration of this bucket. Default: - CloudFormation defaults will apply. New buckets and objects don't allow public access, but users can modify bucket policies or object permissions to allow public access\n")
-    bucket_key_enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether Amazon S3 should use its own intermediary key to generate data keys. Only relevant when using KMS for encryption. - If not enabled, every object GET and PUT will cause an API call to KMS (with the attendant cost implications of that). - If enabled, S3 will use its own time-limited key instead. Only relevant, when Encryption is set to ``BucketEncryption.KMS`` or ``BucketEncryption.KMS_MANAGED``. Default: - false\n')
+    bucket_key_enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether Amazon S3 should use its own intermediary key to generate data keys. Only relevant when using KMS for encryption. - If not enabled, every object GET and PUT will cause an API call to KMS (with the attendant cost implications of that). - If enabled, S3 will use its own time-limited key instead. Only relevant, when Encryption is not set to ``BucketEncryption.UNENCRYPTED``. Default: - false\n')
     bucket_name: typing.Optional[str] = pydantic.Field(None, description='Physical name of this bucket. Default: - Assigned by CloudFormation (recommended).\n')
     cors: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.CorsRuleDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The CORS configuration of this bucket. Default: - No CORS configuration.\n')
     encryption: typing.Optional[aws_cdk.aws_s3.BucketEncryption] = pydantic.Field(None, description='The kind of server-side encryption to apply to this bucket. If you choose KMS, you can specify a KMS key via ``encryptionKey``. If encryption key is not specified, a key will automatically be created. Default: - ``KMS`` if ``encryptionKey`` is specified, or ``UNENCRYPTED`` otherwise. But if ``UNENCRYPTED`` is specified, the bucket will be encrypted as ``S3_MANAGED`` automatically.\n')
@@ -280,13 +307,14 @@ class BucketDef(BaseConstruct):
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='Policy to apply when the bucket is removed from this stack. Default: - The bucket will be orphaned.\n')
     server_access_logs_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description='Destination bucket for the server access logs. Default: - If "serverAccessLogsPrefix" undefined - access logs disabled, otherwise - log to current bucket.\n')
     server_access_logs_prefix: typing.Optional[str] = pydantic.Field(None, description='Optional log file prefix to use for the bucket\'s access logs. If defined without "serverAccessLogsBucket", enables access logs to current bucket with this prefix. Default: - No log file prefix\n')
+    target_object_key_format: typing.Optional[models.aws_s3.TargetObjectKeyFormatDef] = pydantic.Field(None, description='Optional key format for log objects. Default: - the default key format is: [DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]\n')
     transfer_acceleration: typing.Optional[bool] = pydantic.Field(None, description='Whether this bucket should have transfer acceleration turned on or not. Default: false\n')
     versioned: typing.Optional[bool] = pydantic.Field(None, description='Whether this bucket should have versioning turned on or not. Default: false (unless object lock is enabled, then true)\n')
     website_error_document: typing.Optional[str] = pydantic.Field(None, description='The name of the error document (e.g. "404.html") for the website. ``websiteIndexDocument`` must also be set if this is set. Default: - No error document.\n')
     website_index_document: typing.Optional[str] = pydantic.Field(None, description='The name of the index document (e.g. "index.html") for the website. Enables static website hosting for this bucket. Default: - No index document.\n')
     website_redirect: typing.Union[models.aws_s3.RedirectTargetDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Specifies the redirect behavior of all requests to a website endpoint of a bucket. If you specify this property, you can\'t specify "websiteIndexDocument", "websiteErrorDocument" nor , "websiteRoutingRules". Default: - No redirection.\n')
     website_routing_rules: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.RoutingRuleDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Rules that define when a redirect is applied and the redirect behavior. Default: - No redirection rules.')
-    _init_params: typing.ClassVar[list[str]] = ['access_control', 'auto_delete_objects', 'block_public_access', 'bucket_key_enabled', 'bucket_name', 'cors', 'encryption', 'encryption_key', 'enforce_ssl', 'event_bridge_enabled', 'intelligent_tiering_configurations', 'inventories', 'lifecycle_rules', 'metrics', 'minimum_tls_version', 'notifications_handler_role', 'object_lock_default_retention', 'object_lock_enabled', 'object_ownership', 'public_read_access', 'removal_policy', 'server_access_logs_bucket', 'server_access_logs_prefix', 'transfer_acceleration', 'versioned', 'website_error_document', 'website_index_document', 'website_redirect', 'website_routing_rules']
+    _init_params: typing.ClassVar[list[str]] = ['access_control', 'auto_delete_objects', 'block_public_access', 'bucket_key_enabled', 'bucket_name', 'cors', 'encryption', 'encryption_key', 'enforce_ssl', 'event_bridge_enabled', 'intelligent_tiering_configurations', 'inventories', 'lifecycle_rules', 'metrics', 'minimum_tls_version', 'notifications_handler_role', 'object_lock_default_retention', 'object_lock_enabled', 'object_ownership', 'public_read_access', 'removal_policy', 'server_access_logs_bucket', 'server_access_logs_prefix', 'target_object_key_format', 'transfer_acceleration', 'versioned', 'website_error_document', 'website_index_document', 'website_redirect', 'website_routing_rules']
     _method_names: typing.ClassVar[list[str]] = ['add_cors_rule', 'add_event_notification', 'add_inventory', 'add_lifecycle_rule', 'add_metric', 'add_object_created_notification', 'add_object_removed_notification', 'add_to_resource_policy', 'apply_removal_policy', 'arn_for_objects', 'enable_event_bridge_notification', 'grant_delete', 'grant_public_access', 'grant_put', 'grant_put_acl', 'grant_read', 'grant_read_write', 'grant_write', 'on_cloud_trail_event', 'on_cloud_trail_put_object', 'on_cloud_trail_write_object', 's3_url_for_object', 'transfer_acceleration_url_for_object', 'url_for_object', 'virtual_hosted_url_for_object']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_bucket_arn', 'from_bucket_attributes', 'from_bucket_name', 'from_cfn_bucket', 'validate_bucket_name']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.Bucket'
@@ -350,7 +378,7 @@ class BucketDefAddInventoryParams(pydantic.BaseModel):
     format: typing.Optional[aws_cdk.aws_s3.InventoryFormat] = pydantic.Field(None, description='The format of the inventory. Default: InventoryFormat.CSV\n')
     frequency: typing.Optional[aws_cdk.aws_s3.InventoryFrequency] = pydantic.Field(None, description='Frequency at which the inventory should be generated. Default: InventoryFrequency.WEEKLY\n')
     include_object_versions: typing.Optional[aws_cdk.aws_s3.InventoryObjectVersion] = pydantic.Field(None, description='If the inventory should contain all the object versions or only the current one. Default: InventoryObjectVersion.ALL\n')
-    inventory_id: typing.Optional[str] = pydantic.Field(None, description='The inventory configuration ID. Default: - generated ID.\n')
+    inventory_id: typing.Optional[str] = pydantic.Field(None, description='The inventory configuration ID. Should be limited to 64 characters and can only contain letters, numbers, periods, dashes, and underscores. Default: - generated ID.\n')
     objects_prefix: typing.Optional[str] = pydantic.Field(None, description='The inventory will only include objects that meet the prefix filter criteria. Default: - No objects prefix\n')
     optional_fields: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='A list of optional fields to be included in the inventory result. Default: - No optional fields.')
     ...
@@ -365,8 +393,8 @@ class BucketDefAddLifecycleRuleParams(pydantic.BaseModel):
     noncurrent_version_expiration: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Time between when a new version of the object is uploaded to the bucket and when old versions of the object expire. For buckets with versioning enabled (or suspended), specifies the time, in days, between when a new version of the object is uploaded to the bucket and when old versions of the object expire. When object versions expire, Amazon S3 permanently deletes them. If you specify a transition and expiration time, the expiration time must be later than the transition time. The underlying configuration is expressed in whole numbers of days. Providing a Duration that does not represent a whole number of days will result in a runtime or deployment error. Default: - No noncurrent version expiration\n')
     noncurrent_versions_to_retain: typing.Union[int, float, None] = pydantic.Field(None, description='Indicates a maximum number of noncurrent versions to retain. If there are this many more noncurrent versions, Amazon S3 permanently deletes them. Default: - No noncurrent versions to retain\n')
     noncurrent_version_transitions: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.NoncurrentVersionTransitionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='One or more transition rules that specify when non-current objects transition to a specified storage class. Only for for buckets with versioning enabled (or suspended). If you specify a transition and expiration time, the expiration time must be later than the transition time.\n')
-    object_size_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the minimum object size in bytes for this rule to apply to. Default: - No rule\n')
-    object_size_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the maximum object size in bytes for this rule to apply to. Default: - No rule\n')
+    object_size_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than this value in bytes. Default: - No rule\n')
+    object_size_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than this value in bytes. Default: - No rule\n')
     prefix: typing.Optional[str] = pydantic.Field(None, description='Object key prefix that identifies one or more objects to which this rule applies. Default: - Rule applies to all objects\n')
     tag_filters: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description='The TagFilter property type specifies tags to use to identify a subset of objects for an Amazon S3 bucket. Default: - Rule applies to all objects\n')
     transitions: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.TransitionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='One or more transition rules that specify when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. Default: - No transition rules')
@@ -435,7 +463,7 @@ class BucketDefFromCfnBucketParams(pydantic.BaseModel):
 
 class BucketDefGrantDeleteParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
     ...
 
@@ -447,7 +475,7 @@ class BucketDefGrantPublicAccessParams(pydantic.BaseModel):
 
 class BucketDefGrantPutParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
     ...
 
@@ -459,7 +487,7 @@ class BucketDefGrantPutAclParams(pydantic.BaseModel):
 
 class BucketDefGrantReadParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
     ...
 
@@ -479,7 +507,7 @@ class BucketDefGrantWriteParams(pydantic.BaseModel):
 class BucketDefOnCloudTrailEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -490,7 +518,7 @@ class BucketDefOnCloudTrailEventParams(pydantic.BaseModel):
 class BucketDefOnCloudTrailPutObjectParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -501,7 +529,7 @@ class BucketDefOnCloudTrailPutObjectParams(pydantic.BaseModel):
 class BucketDefOnCloudTrailWriteObjectParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -523,7 +551,8 @@ class BucketDefUrlForObjectParams(pydantic.BaseModel):
     ...
 
 class BucketDefValidateBucketNameParams(pydantic.BaseModel):
-    physical_name: str = pydantic.Field(..., description='name of the bucket.')
+    physical_name: str = pydantic.Field(..., description='name of the bucket.\n')
+    allow_legacy_bucket_naming: typing.Optional[bool] = pydantic.Field(None, description='allow legacy bucket naming style, default is false.')
     ...
 
 class BucketDefVirtualHostedUrlForObjectParams(pydantic.BaseModel):
@@ -647,9 +676,9 @@ class BucketPolicyPropsDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_s3.BucketProps
 class BucketPropsDef(BaseStruct):
     access_control: typing.Optional[aws_cdk.aws_s3.BucketAccessControl] = pydantic.Field(None, description='Specifies a canned ACL that grants predefined permissions to the bucket. Default: BucketAccessControl.PRIVATE')
-    auto_delete_objects: typing.Optional[bool] = pydantic.Field(None, description='Whether all objects should be automatically deleted when the bucket is removed from the stack or when the stack is deleted. Requires the ``removalPolicy`` to be set to ``RemovalPolicy.DESTROY``. **Warning** if you have deployed a bucket with ``autoDeleteObjects: true``, switching this to ``false`` in a CDK version *before* ``1.126.0`` will lead to all objects in the bucket being deleted. Be sure to update your bucket resources by deploying with CDK version ``1.126.0`` or later **before** switching this value to ``false``. Default: false\n')
+    auto_delete_objects: typing.Optional[bool] = pydantic.Field(None, description='Whether all objects should be automatically deleted when the bucket is removed from the stack or when the stack is deleted. Requires the ``removalPolicy`` to be set to ``RemovalPolicy.DESTROY``. **Warning** if you have deployed a bucket with ``autoDeleteObjects: true``, switching this to ``false`` in a CDK version *before* ``1.126.0`` will lead to all objects in the bucket being deleted. Be sure to update your bucket resources by deploying with CDK version ``1.126.0`` or later **before** switching this value to ``false``. Setting ``autoDeleteObjects`` to true on a bucket will add ``s3:PutBucketPolicy`` to the bucket policy. This is because during bucket deletion, the custom resource provider needs to update the bucket policy by adding a deny policy for ``s3:PutObject`` to prevent race conditions with external bucket writers. Default: false\n')
     block_public_access: typing.Optional[models.aws_s3.BlockPublicAccessDef] = pydantic.Field(None, description="The block public access configuration of this bucket. Default: - CloudFormation defaults will apply. New buckets and objects don't allow public access, but users can modify bucket policies or object permissions to allow public access\n")
-    bucket_key_enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether Amazon S3 should use its own intermediary key to generate data keys. Only relevant when using KMS for encryption. - If not enabled, every object GET and PUT will cause an API call to KMS (with the attendant cost implications of that). - If enabled, S3 will use its own time-limited key instead. Only relevant, when Encryption is set to ``BucketEncryption.KMS`` or ``BucketEncryption.KMS_MANAGED``. Default: - false\n')
+    bucket_key_enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether Amazon S3 should use its own intermediary key to generate data keys. Only relevant when using KMS for encryption. - If not enabled, every object GET and PUT will cause an API call to KMS (with the attendant cost implications of that). - If enabled, S3 will use its own time-limited key instead. Only relevant, when Encryption is not set to ``BucketEncryption.UNENCRYPTED``. Default: - false\n')
     bucket_name: typing.Optional[str] = pydantic.Field(None, description='Physical name of this bucket. Default: - Assigned by CloudFormation (recommended).\n')
     cors: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.CorsRuleDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The CORS configuration of this bucket. Default: - No CORS configuration.\n')
     encryption: typing.Optional[aws_cdk.aws_s3.BucketEncryption] = pydantic.Field(None, description='The kind of server-side encryption to apply to this bucket. If you choose KMS, you can specify a KMS key via ``encryptionKey``. If encryption key is not specified, a key will automatically be created. Default: - ``KMS`` if ``encryptionKey`` is specified, or ``UNENCRYPTED`` otherwise. But if ``UNENCRYPTED`` is specified, the bucket will be encrypted as ``S3_MANAGED`` automatically.\n')
@@ -669,16 +698,44 @@ class BucketPropsDef(BaseStruct):
     removal_policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='Policy to apply when the bucket is removed from this stack. Default: - The bucket will be orphaned.\n')
     server_access_logs_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description='Destination bucket for the server access logs. Default: - If "serverAccessLogsPrefix" undefined - access logs disabled, otherwise - log to current bucket.\n')
     server_access_logs_prefix: typing.Optional[str] = pydantic.Field(None, description='Optional log file prefix to use for the bucket\'s access logs. If defined without "serverAccessLogsBucket", enables access logs to current bucket with this prefix. Default: - No log file prefix\n')
+    target_object_key_format: typing.Optional[models.aws_s3.TargetObjectKeyFormatDef] = pydantic.Field(None, description='Optional key format for log objects. Default: - the default key format is: [DestinationPrefix][YYYY]-[MM]-[DD]-[hh]-[mm]-[ss]-[UniqueString]\n')
     transfer_acceleration: typing.Optional[bool] = pydantic.Field(None, description='Whether this bucket should have transfer acceleration turned on or not. Default: false\n')
     versioned: typing.Optional[bool] = pydantic.Field(None, description='Whether this bucket should have versioning turned on or not. Default: false (unless object lock is enabled, then true)\n')
     website_error_document: typing.Optional[str] = pydantic.Field(None, description='The name of the error document (e.g. "404.html") for the website. ``websiteIndexDocument`` must also be set if this is set. Default: - No error document.\n')
     website_index_document: typing.Optional[str] = pydantic.Field(None, description='The name of the index document (e.g. "index.html") for the website. Enables static website hosting for this bucket. Default: - No index document.\n')
     website_redirect: typing.Union[models.aws_s3.RedirectTargetDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Specifies the redirect behavior of all requests to a website endpoint of a bucket. If you specify this property, you can\'t specify "websiteIndexDocument", "websiteErrorDocument" nor , "websiteRoutingRules". Default: - No redirection.\n')
     website_routing_rules: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.RoutingRuleDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Rules that define when a redirect is applied and the redirect behavior. Default: - No redirection rules.\n\n:exampleMetadata: infused\n\nExample::\n\n    source_bucket = s3.Bucket(self, "MyBucket",\n        versioned=True\n    )\n\n    pipeline = codepipeline.Pipeline(self, "MyPipeline")\n    source_output = codepipeline.Artifact()\n    source_action = codepipeline_actions.S3SourceAction(\n        action_name="S3Source",\n        bucket=source_bucket,\n        bucket_key="path/to/file.zip",\n        output=source_output\n    )\n    pipeline.add_stage(\n        stage_name="Source",\n        actions=[source_action]\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['access_control', 'auto_delete_objects', 'block_public_access', 'bucket_key_enabled', 'bucket_name', 'cors', 'encryption', 'encryption_key', 'enforce_ssl', 'event_bridge_enabled', 'intelligent_tiering_configurations', 'inventories', 'lifecycle_rules', 'metrics', 'minimum_tls_version', 'notifications_handler_role', 'object_lock_default_retention', 'object_lock_enabled', 'object_ownership', 'public_read_access', 'removal_policy', 'server_access_logs_bucket', 'server_access_logs_prefix', 'transfer_acceleration', 'versioned', 'website_error_document', 'website_index_document', 'website_redirect', 'website_routing_rules']
+    _init_params: typing.ClassVar[list[str]] = ['access_control', 'auto_delete_objects', 'block_public_access', 'bucket_key_enabled', 'bucket_name', 'cors', 'encryption', 'encryption_key', 'enforce_ssl', 'event_bridge_enabled', 'intelligent_tiering_configurations', 'inventories', 'lifecycle_rules', 'metrics', 'minimum_tls_version', 'notifications_handler_role', 'object_lock_default_retention', 'object_lock_enabled', 'object_ownership', 'public_read_access', 'removal_policy', 'server_access_logs_bucket', 'server_access_logs_prefix', 'target_object_key_format', 'transfer_acceleration', 'versioned', 'website_error_document', 'website_index_document', 'website_redirect', 'website_routing_rules']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.BucketProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrant.AccessGrantsLocationConfigurationProperty
+class CfnAccessGrant_AccessGrantsLocationConfigurationPropertyDef(BaseStruct):
+    s3_sub_prefix: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The ``S3SubPrefix`` is appended to the location scope creating the grant scope. Use this field to narrow the scope of the grant to a subset of the location scope. This field is required if the location scope is the default location ``s3://`` because you cannot create a grant for all of your S3 data in the Region and must narrow the scope. For example, if the location scope is the default location ``s3://`` , the ``S3SubPrefx`` can be a ``<bucket-name>/*`` , so the full grant scope path would be ``s3://<bucket-name>/*`` . Or the ``S3SubPrefx`` can be ``<bucket-name>/<prefix-name>*`` , so the full grant scope path would be ``s3://<bucket-name>/<prefix-name>*`` . If the ``S3SubPrefix`` includes a prefix, append the wildcard character ``*`` after the prefix to indicate that you want to include all object key names in the bucket that start with that prefix.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accessgrant-accessgrantslocationconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    access_grants_location_configuration_property = s3.CfnAccessGrant.AccessGrantsLocationConfigurationProperty(\n        s3_sub_prefix="s3SubPrefix"\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['s3_sub_prefix']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrant.AccessGrantsLocationConfigurationProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrant.GranteeProperty
+class CfnAccessGrant_GranteePropertyDef(BaseStruct):
+    grantee_identifier: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The unique identifier of the ``Grantee`` . If the grantee type is ``IAM`` , the identifier is the IAM Amazon Resource Name (ARN) of the user or role. If the grantee type is a directory user or group, the identifier is 128-bit universally unique identifier (UUID) in the format ``a1b2c3d4-5678-90ab-cdef-EXAMPLE11111`` . You can obtain this UUID from your AWS IAM Identity Center instance.\n')
+    grantee_type: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The type of the grantee to which access has been granted. It can be one of the following values:. - ``IAM`` - An IAM user or role. - ``DIRECTORY_USER`` - Your corporate directory user. You can use this option if you have added your corporate identity directory to IAM Identity Center and associated the IAM Identity Center instance with your S3 Access Grants instance. - ``DIRECTORY_GROUP`` - Your corporate directory group. You can use this option if you have added your corporate identity directory to IAM Identity Center and associated the IAM Identity Center instance with your S3 Access Grants instance.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-accessgrant-grantee.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    grantee_property = s3.CfnAccessGrant.GranteeProperty(\n        grantee_identifier="granteeIdentifier",\n        grantee_type="granteeType"\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['grantee_identifier', 'grantee_type']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrant.GranteeProperty'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
     ...
 
@@ -930,8 +987,8 @@ class CfnBucket_InventoryConfigurationPropertyDef(BaseStruct):
     destination: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnBucket_DestinationPropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='Contains information about where to publish the inventory results.\n')
     enabled: typing.Union[_REQUIRED_INIT_PARAM, bool, models.UnsupportedResource] = pydantic.Field(REQUIRED_INIT_PARAM, description='Specifies whether the inventory is enabled or disabled. If set to ``True`` , an inventory list is generated. If set to ``False`` , no inventory list is generated.\n')
     included_object_versions: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Object versions to include in the inventory list. If set to ``All`` , the list includes all the object versions, which adds the version-related fields ``VersionId`` , ``IsLatest`` , and ``DeleteMarker`` to the list. If set to ``Current`` , the list does not contain these version-related fields.\n')
-    schedule_frequency: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Specifies the schedule for generating inventory results. *Allowed values* : ``Daily`` | ``Weekly``\n')
-    optional_fields: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Contains the optional fields that are included in the inventory results. *Valid values* : ``Size | LastModifiedDate | StorageClass | ETag | IsMultipartUploaded | ReplicationStatus | EncryptionStatus | ObjectLockRetainUntilDate | ObjectLockMode | ObjectLockLegalHoldStatus | IntelligentTieringAccessTier | BucketKeyStatus``\n')
+    schedule_frequency: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Specifies the schedule for generating inventory results.\n')
+    optional_fields: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Contains the optional fields that are included in the inventory results.\n')
     prefix: typing.Optional[str] = pydantic.Field(None, description='Specifies the inventory filter prefix.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-inventoryconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    inventory_configuration_property = s3.CfnBucket.InventoryConfigurationProperty(\n        destination=s3.CfnBucket.DestinationProperty(\n            bucket_arn="bucketArn",\n            format="format",\n\n            # the properties below are optional\n            bucket_account_id="bucketAccountId",\n            prefix="prefix"\n        ),\n        enabled=False,\n        id="id",\n        included_object_versions="includedObjectVersions",\n        schedule_frequency="scheduleFrequency",\n\n        # the properties below are optional\n        optional_fields=["optionalFields"],\n        prefix="prefix"\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['destination', 'enabled', 'included_object_versions', 'schedule_frequency', 'optional_fields', 'prefix']
     _method_names: typing.ClassVar[list[str]] = []
@@ -974,8 +1031,9 @@ class CfnBucket_LifecycleConfigurationPropertyDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_s3.CfnBucket.LoggingConfigurationProperty
 class CfnBucket_LoggingConfigurationPropertyDef(BaseStruct):
     destination_bucket_name: typing.Optional[str] = pydantic.Field(None, description='The name of the bucket where Amazon S3 should store server access log files. You can store log files in any bucket that you own. By default, logs are stored in the bucket where the ``LoggingConfiguration`` property is defined.\n')
-    log_file_prefix: typing.Optional[str] = pydantic.Field(None, description='A prefix for all log object keys. If you store log files from multiple Amazon S3 buckets in a single bucket, you can use a prefix to distinguish which log files came from which bucket.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    logging_configuration_property = s3.CfnBucket.LoggingConfigurationProperty(\n        destination_bucket_name="destinationBucketName",\n        log_file_prefix="logFilePrefix"\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['destination_bucket_name', 'log_file_prefix']
+    log_file_prefix: typing.Optional[str] = pydantic.Field(None, description='A prefix for all log object keys. If you store log files from multiple Amazon S3 buckets in a single bucket, you can use a prefix to distinguish which log files came from which bucket.\n')
+    target_object_key_format: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_TargetObjectKeyFormatPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Amazon S3 key format for log objects. Only one format, either PartitionedPrefix or SimplePrefix, is allowed.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-loggingconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # simple_prefix: Any\n\n    logging_configuration_property = s3.CfnBucket.LoggingConfigurationProperty(\n        destination_bucket_name="destinationBucketName",\n        log_file_prefix="logFilePrefix",\n        target_object_key_format=s3.CfnBucket.TargetObjectKeyFormatProperty(\n            partitioned_prefix=s3.CfnBucket.PartitionedPrefixProperty(\n                partition_date_source="partitionDateSource"\n            ),\n            simple_prefix=simple_prefix\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['destination_bucket_name', 'log_file_prefix', 'target_object_key_format']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnBucket.LoggingConfigurationProperty'
@@ -1114,11 +1172,24 @@ class CfnBucket_OwnershipControlsPropertyDef(BaseStruct):
 
 #  autogenerated from aws_cdk.aws_s3.CfnBucket.OwnershipControlsRuleProperty
 class CfnBucket_OwnershipControlsRulePropertyDef(BaseStruct):
-    object_ownership: typing.Optional[str] = pydantic.Field(None, description='Specifies an Object Ownership rule. *Allowed values* : ``BucketOwnerEnforced`` | ``ObjectWriter`` | ``BucketOwnerPreferred``\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrolsrule.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    ownership_controls_rule_property = s3.CfnBucket.OwnershipControlsRuleProperty(\n        object_ownership="objectOwnership"\n    )\n')
+    object_ownership: typing.Optional[str] = pydantic.Field(None, description='Specifies an object ownership rule.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-ownershipcontrolsrule.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    ownership_controls_rule_property = s3.CfnBucket.OwnershipControlsRuleProperty(\n        object_ownership="objectOwnership"\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['object_ownership']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnBucket.OwnershipControlsRuleProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnBucket.PartitionedPrefixProperty
+class CfnBucket_PartitionedPrefixPropertyDef(BaseStruct):
+    partition_date_source: typing.Optional[str] = pydantic.Field(None, description='Specifies the partition date source for the partitioned prefix. ``PartitionDateSource`` can be ``EventTime`` or ``DeliveryTime`` . For ``DeliveryTime`` , the time in the log file names corresponds to the delivery time for the log files. For ``EventTime`` , The logs delivered are for a specific day only. The year, month, and day correspond to the day on which the event occurred, and the hour, minutes and seconds are set to 00 in the key.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-partitionedprefix.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    partitioned_prefix_property = s3.CfnBucket.PartitionedPrefixProperty(\n        partition_date_source="partitionDateSource"\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['partition_date_source']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnBucket.PartitionedPrefixProperty'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
     ...
 
@@ -1379,7 +1450,7 @@ class CfnBucket_S3KeyFilterPropertyDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_s3.CfnBucket.ServerSideEncryptionByDefaultProperty
 class CfnBucket_ServerSideEncryptionByDefaultPropertyDef(BaseStruct):
     sse_algorithm: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='Server-side encryption algorithm to use for the default encryption.\n')
-    kms_master_key_id: typing.Optional[str] = pydantic.Field(None, description='KMS key ID to use for the default encryption. This parameter is allowed if SSEAlgorithm is aws:kms. You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the CMK. However, if you are using encryption with cross-account operations, you must use a fully qualified CMK ARN. For more information, see `Using encryption for cross-account operations <https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy>`_ . For example: - Key ID: ``1234abcd-12ab-34cd-56ef-1234567890ab`` - Key ARN: ``arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`` .. epigraph:: Amazon S3 only supports symmetric KMS keys and not asymmetric KMS keys. For more information, see `Using Symmetric and Asymmetric Keys <https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html>`_ in the *AWS Key Management Service Developer Guide* .\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    server_side_encryption_by_default_property = s3.CfnBucket.ServerSideEncryptionByDefaultProperty(\n        sse_algorithm="sseAlgorithm",\n\n        # the properties below are optional\n        kms_master_key_id="kmsMasterKeyId"\n    )\n')
+    kms_master_key_id: typing.Optional[str] = pydantic.Field(None, description='AWS Key Management Service (KMS) customer AWS KMS key ID to use for the default encryption. This parameter is allowed if and only if ``SSEAlgorithm`` is set to ``aws:kms`` or ``aws:kms:dsse`` . You can specify the key ID, key alias, or the Amazon Resource Name (ARN) of the KMS key. - Key ID: ``1234abcd-12ab-34cd-56ef-1234567890ab`` - Key ARN: ``arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab`` - Key Alias: ``alias/alias-name`` If you use a key ID, you can run into a LogDestination undeliverable error when creating a VPC flow log. If you are using encryption with cross-account or AWS service operations you must use a fully qualified KMS key ARN. For more information, see `Using encryption for cross-account operations <https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html#bucket-encryption-update-bucket-policy>`_ . .. epigraph:: Amazon S3 only supports symmetric encryption KMS keys. For more information, see `Asymmetric keys in AWS KMS <https://docs.aws.amazon.com//kms/latest/developerguide/symmetric-asymmetric.html>`_ in the *AWS Key Management Service Developer Guide* .\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-serversideencryptionbydefault.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    server_side_encryption_by_default_property = s3.CfnBucket.ServerSideEncryptionByDefaultProperty(\n        sse_algorithm="sseAlgorithm",\n\n        # the properties below are optional\n        kms_master_key_id="kmsMasterKeyId"\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['sse_algorithm', 'kms_master_key_id']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -1452,6 +1523,20 @@ class CfnBucket_TagFilterPropertyDef(BaseStruct):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnBucket.TagFilterProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnBucket.TargetObjectKeyFormatProperty
+class CfnBucket_TargetObjectKeyFormatPropertyDef(BaseStruct):
+    partitioned_prefix: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_PartitionedPrefixPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Partitioned S3 key for log objects.\n')
+    simple_prefix: typing.Any = pydantic.Field(None, description='To use the simple format for S3 keys for log objects. To specify SimplePrefix format, set SimplePrefix to {}.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket-targetobjectkeyformat.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # simple_prefix: Any\n\n    target_object_key_format_property = s3.CfnBucket.TargetObjectKeyFormatProperty(\n        partitioned_prefix=s3.CfnBucket.PartitionedPrefixProperty(\n            partition_date_source="partitionDateSource"\n        ),\n        simple_prefix=simple_prefix\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['partitioned_prefix', 'simple_prefix']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnBucket.TargetObjectKeyFormatProperty'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
     ...
 
@@ -1580,8 +1665,9 @@ class CfnStorageLens_AccountLevelPropertyDef(BaseStruct):
     activity_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_ActivityMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of account-level activity metrics for S3 Storage Lens.\n')
     advanced_cost_optimization_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_AdvancedCostOptimizationMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of account-level advanced cost optimization metrics for S3 Storage Lens.\n')
     advanced_data_protection_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_AdvancedDataProtectionMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of account-level advanced data protection metrics for S3 Storage Lens.\n')
-    detailed_status_codes_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_DetailedStatusCodesMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of account-level detailed status code metrics for S3 Storage Lens.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-accountlevel.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    account_level_property = s3.CfnStorageLens.AccountLevelProperty(\n        bucket_level=s3.CfnStorageLens.BucketLevelProperty(\n            activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                is_enabled=False\n            ),\n            detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                is_enabled=False\n            ),\n            prefix_level=s3.CfnStorageLens.PrefixLevelProperty(\n                storage_metrics=s3.CfnStorageLens.PrefixLevelStorageMetricsProperty(\n                    is_enabled=False,\n                    selection_criteria=s3.CfnStorageLens.SelectionCriteriaProperty(\n                        delimiter="delimiter",\n                        max_depth=123,\n                        min_storage_bytes_percentage=123\n                    )\n                )\n            )\n        ),\n\n        # the properties below are optional\n        activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n            is_enabled=False\n        ),\n        advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n            is_enabled=False\n        ),\n        advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n            is_enabled=False\n        ),\n        detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n            is_enabled=False\n        )\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['bucket_level', 'activity_metrics', 'advanced_cost_optimization_metrics', 'advanced_data_protection_metrics', 'detailed_status_codes_metrics']
+    detailed_status_codes_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_DetailedStatusCodesMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of account-level detailed status code metrics for S3 Storage Lens.\n')
+    storage_lens_group_level: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_StorageLensGroupLevelPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property determines the scope of Storage Lens group data that is displayed in the Storage Lens dashboard.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-accountlevel.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    account_level_property = s3.CfnStorageLens.AccountLevelProperty(\n        bucket_level=s3.CfnStorageLens.BucketLevelProperty(\n            activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                is_enabled=False\n            ),\n            detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                is_enabled=False\n            ),\n            prefix_level=s3.CfnStorageLens.PrefixLevelProperty(\n                storage_metrics=s3.CfnStorageLens.PrefixLevelStorageMetricsProperty(\n                    is_enabled=False,\n                    selection_criteria=s3.CfnStorageLens.SelectionCriteriaProperty(\n                        delimiter="delimiter",\n                        max_depth=123,\n                        min_storage_bytes_percentage=123\n                    )\n                )\n            )\n        ),\n\n        # the properties below are optional\n        activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n            is_enabled=False\n        ),\n        advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n            is_enabled=False\n        ),\n        advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n            is_enabled=False\n        ),\n        detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n            is_enabled=False\n        ),\n        storage_lens_group_level=s3.CfnStorageLens.StorageLensGroupLevelProperty(\n            storage_lens_group_selection_criteria=s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty(\n                exclude=["exclude"],\n                include=["include"]\n            )\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['bucket_level', 'activity_metrics', 'advanced_cost_optimization_metrics', 'advanced_data_protection_metrics', 'detailed_status_codes_metrics', 'storage_lens_group_level']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLens.AccountLevelProperty'
@@ -1809,11 +1895,119 @@ class CfnStorageLens_StorageLensConfigurationPropertyDef(BaseStruct):
     data_export: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_DataExportPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description="This property contains the details of this S3 Storage Lens configuration's metrics export.\n")
     exclude: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_BucketsAndRegionsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of the bucket and or Regions excluded for Amazon S3 Storage Lens configuration.\n')
     include: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_BucketsAndRegionsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the details of the bucket and or Regions included for Amazon S3 Storage Lens configuration.\n')
-    storage_lens_arn: typing.Optional[str] = pydantic.Field(None, description='This property contains the details of the ARN of the S3 Storage Lens configuration. This property is read-only.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # sses3: Any\n\n    storage_lens_configuration_property = s3.CfnStorageLens.StorageLensConfigurationProperty(\n        account_level=s3.CfnStorageLens.AccountLevelProperty(\n            bucket_level=s3.CfnStorageLens.BucketLevelProperty(\n                activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                    is_enabled=False\n                ),\n                detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                    is_enabled=False\n                ),\n                prefix_level=s3.CfnStorageLens.PrefixLevelProperty(\n                    storage_metrics=s3.CfnStorageLens.PrefixLevelStorageMetricsProperty(\n                        is_enabled=False,\n                        selection_criteria=s3.CfnStorageLens.SelectionCriteriaProperty(\n                            delimiter="delimiter",\n                            max_depth=123,\n                            min_storage_bytes_percentage=123\n                        )\n                    )\n                )\n            ),\n\n            # the properties below are optional\n            activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                is_enabled=False\n            ),\n            detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                is_enabled=False\n            )\n        ),\n        id="id",\n        is_enabled=False,\n\n        # the properties below are optional\n        aws_org=s3.CfnStorageLens.AwsOrgProperty(\n            arn="arn"\n        ),\n        data_export=s3.CfnStorageLens.DataExportProperty(\n            cloud_watch_metrics=s3.CfnStorageLens.CloudWatchMetricsProperty(\n                is_enabled=False\n            ),\n            s3_bucket_destination=s3.CfnStorageLens.S3BucketDestinationProperty(\n                account_id="accountId",\n                arn="arn",\n                format="format",\n                output_schema_version="outputSchemaVersion",\n\n                # the properties below are optional\n                encryption=s3.CfnStorageLens.EncryptionProperty(\n                    ssekms=s3.CfnStorageLens.SSEKMSProperty(\n                        key_id="keyId"\n                    ),\n                    sses3=sses3\n                ),\n                prefix="prefix"\n            )\n        ),\n        exclude=s3.CfnStorageLens.BucketsAndRegionsProperty(\n            buckets=["buckets"],\n            regions=["regions"]\n        ),\n        include=s3.CfnStorageLens.BucketsAndRegionsProperty(\n            buckets=["buckets"],\n            regions=["regions"]\n        ),\n        storage_lens_arn="storageLensArn"\n    )\n')
+    storage_lens_arn: typing.Optional[str] = pydantic.Field(None, description='This property contains the details of the ARN of the S3 Storage Lens configuration. This property is read-only.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # sses3: Any\n\n    storage_lens_configuration_property = s3.CfnStorageLens.StorageLensConfigurationProperty(\n        account_level=s3.CfnStorageLens.AccountLevelProperty(\n            bucket_level=s3.CfnStorageLens.BucketLevelProperty(\n                activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                    is_enabled=False\n                ),\n                detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                    is_enabled=False\n                ),\n                prefix_level=s3.CfnStorageLens.PrefixLevelProperty(\n                    storage_metrics=s3.CfnStorageLens.PrefixLevelStorageMetricsProperty(\n                        is_enabled=False,\n                        selection_criteria=s3.CfnStorageLens.SelectionCriteriaProperty(\n                            delimiter="delimiter",\n                            max_depth=123,\n                            min_storage_bytes_percentage=123\n                        )\n                    )\n                )\n            ),\n\n            # the properties below are optional\n            activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                is_enabled=False\n            ),\n            advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                is_enabled=False\n            ),\n            detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                is_enabled=False\n            ),\n            storage_lens_group_level=s3.CfnStorageLens.StorageLensGroupLevelProperty(\n                storage_lens_group_selection_criteria=s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty(\n                    exclude=["exclude"],\n                    include=["include"]\n                )\n            )\n        ),\n        id="id",\n        is_enabled=False,\n\n        # the properties below are optional\n        aws_org=s3.CfnStorageLens.AwsOrgProperty(\n            arn="arn"\n        ),\n        data_export=s3.CfnStorageLens.DataExportProperty(\n            cloud_watch_metrics=s3.CfnStorageLens.CloudWatchMetricsProperty(\n                is_enabled=False\n            ),\n            s3_bucket_destination=s3.CfnStorageLens.S3BucketDestinationProperty(\n                account_id="accountId",\n                arn="arn",\n                format="format",\n                output_schema_version="outputSchemaVersion",\n\n                # the properties below are optional\n                encryption=s3.CfnStorageLens.EncryptionProperty(\n                    ssekms=s3.CfnStorageLens.SSEKMSProperty(\n                        key_id="keyId"\n                    ),\n                    sses3=sses3\n                ),\n                prefix="prefix"\n            )\n        ),\n        exclude=s3.CfnStorageLens.BucketsAndRegionsProperty(\n            buckets=["buckets"],\n            regions=["regions"]\n        ),\n        include=s3.CfnStorageLens.BucketsAndRegionsProperty(\n            buckets=["buckets"],\n            regions=["regions"]\n        ),\n        storage_lens_arn="storageLensArn"\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['account_level', 'is_enabled', 'aws_org', 'data_export', 'exclude', 'include', 'storage_lens_arn']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLens.StorageLensConfigurationProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLens.StorageLensGroupLevelProperty
+class CfnStorageLens_StorageLensGroupLevelPropertyDef(BaseStruct):
+    storage_lens_group_selection_criteria: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_StorageLensGroupSelectionCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property indicates which Storage Lens group ARNs to include or exclude in the Storage Lens group aggregation. If this value is left null, then all Storage Lens groups are selected.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensgrouplevel.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    storage_lens_group_level_property = s3.CfnStorageLens.StorageLensGroupLevelProperty(\n        storage_lens_group_selection_criteria=s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty(\n            exclude=["exclude"],\n            include=["include"]\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['storage_lens_group_selection_criteria']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLens.StorageLensGroupLevelProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty
+class CfnStorageLens_StorageLensGroupSelectionCriteriaPropertyDef(BaseStruct):
+    exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property indicates which Storage Lens group ARNs to exclude from the Storage Lens group aggregation.\n')
+    include: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property indicates which Storage Lens group ARNs to include in the Storage Lens group aggregation.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelens-storagelensgroupselectioncriteria.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    storage_lens_group_selection_criteria_property = s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty(\n        exclude=["exclude"],\n        include=["include"]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['exclude', 'include']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroup.AndProperty
+class CfnStorageLensGroup_AndPropertyDef(BaseStruct):
+    match_any_prefix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property contains a list of prefixes. At least one prefix must be specified. Up to 10 prefixes are allowed.\n')
+    match_any_suffix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property contains a list of suffixes. At least one suffix must be specified. Up to 10 suffixes are allowed.\n')
+    match_any_tag: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.CfnTagDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='This property contains the list of object tags. At least one object tag must be specified. Up to 10 object tags are allowed.\n')
+    match_object_age: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains ``DaysGreaterThan`` and ``DaysLessThan`` properties to define the object age range (minimum and maximum number of days).\n')
+    match_object_size: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains ``BytesGreaterThan`` and ``BytesLessThan`` to define the object size range (minimum and maximum number of Bytes).\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-and.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    and_property = s3.CfnStorageLensGroup.AndProperty(\n        match_any_prefix=["matchAnyPrefix"],\n        match_any_suffix=["matchAnySuffix"],\n        match_any_tag=[CfnTag(\n            key="key",\n            value="value"\n        )],\n        match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n            days_greater_than=123,\n            days_less_than=123\n        ),\n        match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n            bytes_greater_than=123,\n            bytes_less_than=123\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['match_any_prefix', 'match_any_suffix', 'match_any_tag', 'match_object_age', 'match_object_size']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroup.AndProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroup.FilterProperty
+class CfnStorageLensGroup_FilterPropertyDef(BaseStruct):
+    and_: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_AndPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the ``And`` logical operator, which allows multiple filter conditions to be joined for more complex comparisons of Storage Lens group data. Objects must match all of the listed filter conditions that are joined by the ``And`` logical operator. Only one of each filter condition is allowed.\n')
+    match_any_prefix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property contains a list of prefixes. At least one prefix must be specified. Up to 10 prefixes are allowed.\n')
+    match_any_suffix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property contains a list of suffixes. At least one suffix must be specified. Up to 10 suffixes are allowed.\n')
+    match_any_tag: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.CfnTagDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='This property contains the list of S3 object tags. At least one object tag must be specified. Up to 10 object tags are allowed.\n')
+    match_object_age: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains ``DaysGreaterThan`` and ``DaysLessThan`` to define the object age range (minimum and maximum number of days).\n')
+    match_object_size: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains ``BytesGreaterThan`` and ``BytesLessThan`` to define the object size range (minimum and maximum number of Bytes).\n')
+    or_: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_OrPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the ``Or`` logical operator, which allows multiple filter conditions to be joined. Objects can match any of the listed filter conditions, which are joined by the ``Or`` logical operator. Only one of each filter condition is allowed.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-filter.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    filter_property = s3.CfnStorageLensGroup.FilterProperty(\n        and=s3.CfnStorageLensGroup.AndProperty(\n            match_any_prefix=["matchAnyPrefix"],\n            match_any_suffix=["matchAnySuffix"],\n            match_any_tag=[CfnTag(\n                key="key",\n                value="value"\n            )],\n            match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n                days_greater_than=123,\n                days_less_than=123\n            ),\n            match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n                bytes_greater_than=123,\n                bytes_less_than=123\n            )\n        ),\n        match_any_prefix=["matchAnyPrefix"],\n        match_any_suffix=["matchAnySuffix"],\n        match_any_tag=[CfnTag(\n            key="key",\n            value="value"\n        )],\n        match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n            days_greater_than=123,\n            days_less_than=123\n        ),\n        match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n            bytes_greater_than=123,\n            bytes_less_than=123\n        ),\n        or=s3.CfnStorageLensGroup.OrProperty(\n            match_any_prefix=["matchAnyPrefix"],\n            match_any_suffix=["matchAnySuffix"],\n            match_any_tag=[CfnTag(\n                key="key",\n                value="value"\n            )],\n            match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n                days_greater_than=123,\n                days_less_than=123\n            ),\n            match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n                bytes_greater_than=123,\n                bytes_less_than=123\n            )\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['and_', 'match_any_prefix', 'match_any_suffix', 'match_any_tag', 'match_object_age', 'match_object_size', 'or_']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroup.FilterProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroup.MatchObjectAgeProperty
+class CfnStorageLensGroup_MatchObjectAgePropertyDef(BaseStruct):
+    days_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='This property indicates the minimum object age in days.\n')
+    days_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='This property indicates the maximum object age in days.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectage.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    match_object_age_property = s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n        days_greater_than=123,\n        days_less_than=123\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['days_greater_than', 'days_less_than']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroup.MatchObjectAgeProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroup.MatchObjectSizeProperty
+class CfnStorageLensGroup_MatchObjectSizePropertyDef(BaseStruct):
+    bytes_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='This property specifies the minimum object size in bytes. The value must be a positive number, greater than 0 and less than 5 TB.\n')
+    bytes_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='This property specifies the maximum object size in bytes. The value must be a positive number, greater than the minimum object size and less than 5 TB.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-matchobjectsize.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    match_object_size_property = s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n        bytes_greater_than=123,\n        bytes_less_than=123\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['bytes_greater_than', 'bytes_less_than']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroup.MatchObjectSizeProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroup.OrProperty
+class CfnStorageLensGroup_OrPropertyDef(BaseStruct):
+    match_any_prefix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property contains a list of prefixes. At least one prefix must be specified. Up to 10 prefixes are allowed.\n')
+    match_any_suffix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='This property contains the list of suffixes. At least one suffix must be specified. Up to 10 suffixes are allowed.\n')
+    match_any_tag: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.CfnTagDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='This property contains the list of S3 object tags. At least one object tag must be specified. Up to 10 object tags are allowed.\n')
+    match_object_age: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property filters objects that match the specified object age range.\n')
+    match_object_size: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='This property contains the ``BytesGreaterThan`` and ``BytesLessThan`` values to define the object size range (minimum and maximum number of Bytes).\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-storagelensgroup-or.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    or_property = s3.CfnStorageLensGroup.OrProperty(\n        match_any_prefix=["matchAnyPrefix"],\n        match_any_suffix=["matchAnySuffix"],\n        match_any_tag=[CfnTag(\n            key="key",\n            value="value"\n        )],\n        match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n            days_greater_than=123,\n            days_less_than=123\n        ),\n        match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n            bytes_greater_than=123,\n            bytes_less_than=123\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['match_any_prefix', 'match_any_suffix', 'match_any_tag', 'match_object_age', 'match_object_size']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroup.OrProperty'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
     ...
 
@@ -1861,7 +2055,7 @@ class InventoryDef(BaseStruct):
     format: typing.Optional[aws_cdk.aws_s3.InventoryFormat] = pydantic.Field(None, description='The format of the inventory. Default: InventoryFormat.CSV\n')
     frequency: typing.Optional[aws_cdk.aws_s3.InventoryFrequency] = pydantic.Field(None, description='Frequency at which the inventory should be generated. Default: InventoryFrequency.WEEKLY\n')
     include_object_versions: typing.Optional[aws_cdk.aws_s3.InventoryObjectVersion] = pydantic.Field(None, description='If the inventory should contain all the object versions or only the current one. Default: InventoryObjectVersion.ALL\n')
-    inventory_id: typing.Optional[str] = pydantic.Field(None, description='The inventory configuration ID. Default: - generated ID.\n')
+    inventory_id: typing.Optional[str] = pydantic.Field(None, description='The inventory configuration ID. Should be limited to 64 characters and can only contain letters, numbers, periods, dashes, and underscores. Default: - generated ID.\n')
     objects_prefix: typing.Optional[str] = pydantic.Field(None, description='The inventory will only include objects that meet the prefix filter criteria. Default: - No objects prefix\n')
     optional_fields: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='A list of optional fields to be included in the inventory result. Default: - No optional fields.\n\n:see: https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # bucket: s3.Bucket\n\n    inventory = s3.Inventory(\n        destination=s3.InventoryDestination(\n            bucket=bucket,\n\n            # the properties below are optional\n            bucket_owner="bucketOwner",\n            prefix="prefix"\n        ),\n\n        # the properties below are optional\n        enabled=False,\n        format=s3.InventoryFormat.CSV,\n        frequency=s3.InventoryFrequency.DAILY,\n        include_object_versions=s3.InventoryObjectVersion.ALL,\n        inventory_id="inventoryId",\n        objects_prefix="objectsPrefix",\n        optional_fields=["optionalFields"]\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['destination', 'enabled', 'format', 'frequency', 'include_object_versions', 'inventory_id', 'objects_prefix', 'optional_fields']
@@ -1904,8 +2098,8 @@ class LifecycleRuleDef(BaseStruct):
     noncurrent_version_expiration: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Time between when a new version of the object is uploaded to the bucket and when old versions of the object expire. For buckets with versioning enabled (or suspended), specifies the time, in days, between when a new version of the object is uploaded to the bucket and when old versions of the object expire. When object versions expire, Amazon S3 permanently deletes them. If you specify a transition and expiration time, the expiration time must be later than the transition time. The underlying configuration is expressed in whole numbers of days. Providing a Duration that does not represent a whole number of days will result in a runtime or deployment error. Default: - No noncurrent version expiration\n')
     noncurrent_versions_to_retain: typing.Union[int, float, None] = pydantic.Field(None, description='Indicates a maximum number of noncurrent versions to retain. If there are this many more noncurrent versions, Amazon S3 permanently deletes them. Default: - No noncurrent versions to retain\n')
     noncurrent_version_transitions: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.NoncurrentVersionTransitionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='One or more transition rules that specify when non-current objects transition to a specified storage class. Only for for buckets with versioning enabled (or suspended). If you specify a transition and expiration time, the expiration time must be later than the transition time.\n')
-    object_size_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the minimum object size in bytes for this rule to apply to. Default: - No rule\n')
-    object_size_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the maximum object size in bytes for this rule to apply to. Default: - No rule\n')
+    object_size_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the minimum object size in bytes for this rule to apply to. Objects must be larger than this value in bytes. Default: - No rule\n')
+    object_size_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='Specifies the maximum object size in bytes for this rule to apply to. Objects must be smaller than this value in bytes. Default: - No rule\n')
     prefix: typing.Optional[str] = pydantic.Field(None, description='Object key prefix that identifies one or more objects to which this rule applies. Default: - Rule applies to all objects\n')
     tag_filters: typing.Optional[typing.Mapping[str, typing.Any]] = pydantic.Field(None, description='The TagFilter property type specifies tags to use to identify a subset of objects for an Amazon S3 bucket. Default: - Rule applies to all objects\n')
     transitions: typing.Optional[typing.Sequence[typing.Union[models.aws_s3.TransitionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='One or more transition rules that specify when an object transitions to a specified storage class. If you specify an expiration and transition time, you must use the same time unit for both properties (either in days or by date). The expiration time must also be later than the transition time. Default: - No transition rules\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    import aws_cdk as cdk\n    from aws_cdk import aws_s3 as s3\n\n    # storage_class: s3.StorageClass\n    # tag_filters: Any\n\n    lifecycle_rule = s3.LifecycleRule(\n        abort_incomplete_multipart_upload_after=cdk.Duration.minutes(30),\n        enabled=False,\n        expiration=cdk.Duration.minutes(30),\n        expiration_date=Date(),\n        expired_object_delete_marker=False,\n        id="id",\n        noncurrent_version_expiration=cdk.Duration.minutes(30),\n        noncurrent_versions_to_retain=123,\n        noncurrent_version_transitions=[s3.NoncurrentVersionTransition(\n            storage_class=storage_class,\n            transition_after=cdk.Duration.minutes(30),\n\n            # the properties below are optional\n            noncurrent_versions_to_retain=123\n        )],\n        object_size_greater_than=123,\n        object_size_less_than=123,\n        prefix="prefix",\n        tag_filters={\n            "tag_filters_key": tag_filters\n        },\n        transitions=[s3.Transition(\n            storage_class=storage_class,\n\n            # the properties below are optional\n            transition_after=cdk.Duration.minutes(30),\n            transition_date=Date()\n        )]\n    )\n')
@@ -1923,7 +2117,7 @@ class LifecycleRuleDef(BaseStruct):
 class LocationDef(BaseStruct):
     bucket_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the S3 Bucket the object is in.\n')
     object_key: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The path inside the Bucket where the object is located at.\n')
-    object_version: typing.Optional[str] = pydantic.Field(None, description='The S3 object version.\n\n:exampleMetadata: lit=aws-codepipeline-actions/test/integ.lambda-deployed-through-codepipeline.lit.ts infused\n\nExample::\n\n    lambda_stack = cdk.Stack(app, "LambdaStack")\n    lambda_code = lambda_.Code.from_cfn_parameters()\n    lambda_.Function(lambda_stack, "Lambda",\n        code=lambda_code,\n        handler="index.handler",\n        runtime=lambda_.Runtime.NODEJS_LATEST\n    )\n    # other resources that your Lambda needs, added to the lambdaStack...\n\n    pipeline_stack = cdk.Stack(app, "PipelineStack")\n    pipeline = codepipeline.Pipeline(pipeline_stack, "Pipeline")\n\n    # add the source code repository containing this code to your Pipeline,\n    # and the source code of the Lambda Function, if they\'re separate\n    cdk_source_output = codepipeline.Artifact()\n    cdk_source_action = codepipeline_actions.CodeCommitSourceAction(\n        repository=codecommit.Repository(pipeline_stack, "CdkCodeRepo",\n            repository_name="CdkCodeRepo"\n        ),\n        action_name="CdkCode_Source",\n        output=cdk_source_output\n    )\n    lambda_source_output = codepipeline.Artifact()\n    lambda_source_action = codepipeline_actions.CodeCommitSourceAction(\n        repository=codecommit.Repository(pipeline_stack, "LambdaCodeRepo",\n            repository_name="LambdaCodeRepo"\n        ),\n        action_name="LambdaCode_Source",\n        output=lambda_source_output\n    )\n    pipeline.add_stage(\n        stage_name="Source",\n        actions=[cdk_source_action, lambda_source_action]\n    )\n\n    # synthesize the Lambda CDK template, using CodeBuild\n    # the below values are just examples, assuming your CDK code is in TypeScript/JavaScript -\n    # adjust the build environment and/or commands accordingly\n    cdk_build_project = codebuild.Project(pipeline_stack, "CdkBuildProject",\n        environment=codebuild.BuildEnvironment(\n            build_image=codebuild.LinuxBuildImage.STANDARD_7_0\n        ),\n        build_spec=codebuild.BuildSpec.from_object({\n            "version": "0.2",\n            "phases": {\n                "install": {\n                    "commands": "npm install"\n                },\n                "build": {\n                    "commands": ["npm run build", "npm run cdk synth LambdaStack -- -o ."\n                    ]\n                }\n            },\n            "artifacts": {\n                "files": "LambdaStack.template.yaml"\n            }\n        })\n    )\n    cdk_build_output = codepipeline.Artifact()\n    cdk_build_action = codepipeline_actions.CodeBuildAction(\n        action_name="CDK_Build",\n        project=cdk_build_project,\n        input=cdk_source_output,\n        outputs=[cdk_build_output]\n    )\n\n    # build your Lambda code, using CodeBuild\n    # again, this example assumes your Lambda is written in TypeScript/JavaScript -\n    # make sure to adjust the build environment and/or commands if they don\'t match your specific situation\n    lambda_build_project = codebuild.Project(pipeline_stack, "LambdaBuildProject",\n        environment=codebuild.BuildEnvironment(\n            build_image=codebuild.LinuxBuildImage.STANDARD_7_0\n        ),\n        build_spec=codebuild.BuildSpec.from_object({\n            "version": "0.2",\n            "phases": {\n                "install": {\n                    "commands": "npm install"\n                },\n                "build": {\n                    "commands": "npm run build"\n                }\n            },\n            "artifacts": {\n                "files": ["index.js", "node_modules/**/*"\n                ]\n            }\n        })\n    )\n    lambda_build_output = codepipeline.Artifact()\n    lambda_build_action = codepipeline_actions.CodeBuildAction(\n        action_name="Lambda_Build",\n        project=lambda_build_project,\n        input=lambda_source_output,\n        outputs=[lambda_build_output]\n    )\n\n    pipeline.add_stage(\n        stage_name="Build",\n        actions=[cdk_build_action, lambda_build_action]\n    )\n\n    # finally, deploy your Lambda Stack\n    pipeline.add_stage(\n        stage_name="Deploy",\n        actions=[\n            codepipeline_actions.CloudFormationCreateUpdateStackAction(\n                action_name="Lambda_CFN_Deploy",\n                template_path=cdk_build_output.at_path("LambdaStack.template.yaml"),\n                stack_name="LambdaStackDeployedName",\n                admin_permissions=True,\n                parameter_overrides=lambda_code.assign(lambda_build_output.s3_location),\n                extra_inputs=[lambda_build_output\n                ]\n            )\n        ]\n    )\n')
+    object_version: typing.Optional[str] = pydantic.Field(None, description='The S3 object version.\n\n:exampleMetadata: lit=aws-codepipeline-actions/test/integ.lambda-deployed-through-codepipeline.lit.ts infused\n\nExample::\n\n    lambda_stack = cdk.Stack(app, "LambdaStack")\n    lambda_code = lambda_.Code.from_cfn_parameters()\n    lambda_.Function(lambda_stack, "Lambda",\n        code=lambda_code,\n        handler="index.handler",\n        runtime=lambda_.Runtime.NODEJS_LATEST\n    )\n    # other resources that your Lambda needs, added to the lambdaStack...\n\n    pipeline_stack = cdk.Stack(app, "PipelineStack")\n    pipeline = codepipeline.Pipeline(pipeline_stack, "Pipeline",\n        cross_account_keys=True\n    )\n\n    # add the source code repository containing this code to your Pipeline,\n    # and the source code of the Lambda Function, if they\'re separate\n    cdk_source_output = codepipeline.Artifact()\n    cdk_source_action = codepipeline_actions.CodeCommitSourceAction(\n        repository=codecommit.Repository(pipeline_stack, "CdkCodeRepo",\n            repository_name="CdkCodeRepo"\n        ),\n        action_name="CdkCode_Source",\n        output=cdk_source_output\n    )\n    lambda_source_output = codepipeline.Artifact()\n    lambda_source_action = codepipeline_actions.CodeCommitSourceAction(\n        repository=codecommit.Repository(pipeline_stack, "LambdaCodeRepo",\n            repository_name="LambdaCodeRepo"\n        ),\n        action_name="LambdaCode_Source",\n        output=lambda_source_output\n    )\n    pipeline.add_stage(\n        stage_name="Source",\n        actions=[cdk_source_action, lambda_source_action]\n    )\n\n    # synthesize the Lambda CDK template, using CodeBuild\n    # the below values are just examples, assuming your CDK code is in TypeScript/JavaScript -\n    # adjust the build environment and/or commands accordingly\n    cdk_build_project = codebuild.Project(pipeline_stack, "CdkBuildProject",\n        environment=codebuild.BuildEnvironment(\n            build_image=codebuild.LinuxBuildImage.STANDARD_7_0\n        ),\n        build_spec=codebuild.BuildSpec.from_object({\n            "version": "0.2",\n            "phases": {\n                "install": {\n                    "commands": "npm install"\n                },\n                "build": {\n                    "commands": ["npm run build", "npm run cdk synth LambdaStack -- -o ."\n                    ]\n                }\n            },\n            "artifacts": {\n                "files": "LambdaStack.template.yaml"\n            }\n        })\n    )\n    cdk_build_output = codepipeline.Artifact()\n    cdk_build_action = codepipeline_actions.CodeBuildAction(\n        action_name="CDK_Build",\n        project=cdk_build_project,\n        input=cdk_source_output,\n        outputs=[cdk_build_output]\n    )\n\n    # build your Lambda code, using CodeBuild\n    # again, this example assumes your Lambda is written in TypeScript/JavaScript -\n    # make sure to adjust the build environment and/or commands if they don\'t match your specific situation\n    lambda_build_project = codebuild.Project(pipeline_stack, "LambdaBuildProject",\n        environment=codebuild.BuildEnvironment(\n            build_image=codebuild.LinuxBuildImage.STANDARD_7_0\n        ),\n        build_spec=codebuild.BuildSpec.from_object({\n            "version": "0.2",\n            "phases": {\n                "install": {\n                    "commands": "npm install"\n                },\n                "build": {\n                    "commands": "npm run build"\n                }\n            },\n            "artifacts": {\n                "files": ["index.js", "node_modules/**/*"\n                ]\n            }\n        })\n    )\n    lambda_build_output = codepipeline.Artifact()\n    lambda_build_action = codepipeline_actions.CodeBuildAction(\n        action_name="Lambda_Build",\n        project=lambda_build_project,\n        input=lambda_source_output,\n        outputs=[lambda_build_output]\n    )\n\n    pipeline.add_stage(\n        stage_name="Build",\n        actions=[cdk_build_action, lambda_build_action]\n    )\n\n    # finally, deploy your Lambda Stack\n    pipeline.add_stage(\n        stage_name="Deploy",\n        actions=[\n            codepipeline_actions.CloudFormationCreateUpdateStackAction(\n                action_name="Lambda_CFN_Deploy",\n                template_path=cdk_build_output.at_path("LambdaStack.template.yaml"),\n                stack_name="LambdaStackDeployedName",\n                admin_permissions=True,\n                parameter_overrides=lambda_code.assign(lambda_build_output.s3_location),\n                extra_inputs=[lambda_build_output\n                ]\n            )\n        ]\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['bucket_name', 'object_key', 'object_version']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -1974,7 +2168,7 @@ class OnCloudTrailBucketEventOptionsDef(BaseStruct):
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
     rule_name: typing.Optional[str] = pydantic.Field(None, description='A name for the rule. Default: AWS CloudFormation generates a unique physical ID.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_events as events\n    from aws_cdk import aws_s3 as s3\n    import constructs as constructs\n\n    # construct: constructs.Construct\n    # detail: Any\n    # rule_target: events.IRuleTarget\n\n    on_cloud_trail_bucket_event_options = s3.OnCloudTrailBucketEventOptions(\n        cross_stack_scope=construct,\n        description="description",\n        event_pattern=events.EventPattern(\n            account=["account"],\n            detail={\n                "detail_key": detail\n            },\n            detail_type=["detailType"],\n            id=["id"],\n            region=["region"],\n            resources=["resources"],\n            source=["source"],\n            time=["time"],\n            version=["version"]\n        ),\n        paths=["paths"],\n        rule_name="ruleName",\n        target=rule_target\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['cross_stack_scope', 'description', 'event_pattern', 'rule_name', 'target', 'paths']
     _method_names: typing.ClassVar[list[str]] = []
@@ -2116,6 +2310,9 @@ class VirtualHostedStyleUrlOptionsDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_s3.ObjectOwnership
 # skipping emum
 
+#  autogenerated from aws_cdk.aws_s3.PartitionDateSource
+# skipping emum
+
 #  autogenerated from aws_cdk.aws_s3.RedirectProtocol
 # skipping emum
 
@@ -2124,6 +2321,320 @@ class VirtualHostedStyleUrlOptionsDef(BaseStruct):
 
 #  autogenerated from aws_cdk.aws_s3.IBucketNotificationDestination
 #  skipping Interface
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrant
+class CfnAccessGrantDef(BaseCfnResource):
+    access_grants_location_id: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID ``default`` to the default location ``s3://`` and assigns an auto-generated ID to other locations that you register.\n')
+    grantee: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnAccessGrant_GranteePropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added your corporate directory to AWS IAM Identity Center and associated your Identity Center instance with your S3 Access Grants instance, the grantee can also be a corporate directory user or group.\n')
+    permission: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The type of access that you are granting to your S3 data, which can be set to one of the following values: - ``READ`` – Grant read-only access to the S3 data. - ``WRITE`` – Grant write-only access to the S3 data. - ``READWRITE`` – Grant both read and write access to the S3 data.\n')
+    access_grants_location_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnAccessGrant_AccessGrantsLocationConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The configuration options of the grant location. The grant location is the S3 path to the data to which you are granting access. It contains the ``S3SubPrefix`` field. The grant scope is the result of appending the subprefix to the location scope of the registered location.\n')
+    application_arn: typing.Optional[str] = pydantic.Field(None, description='The Amazon Resource Name (ARN) of an AWS IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application.\n')
+    s3_prefix_type: typing.Optional[str] = pydantic.Field(None, description='The type of ``S3SubPrefix`` . The only possible value is ``Object`` . Pass this value if the access grant scope is an object. Do not pass this value if the access grant scope is a bucket or a bucket and a prefix.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The AWS resource tags that you are adding to the access grant. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.')
+    _init_params: typing.ClassVar[list[str]] = ['access_grants_location_id', 'grantee', 'permission', 'access_grants_location_configuration', 'application_arn', 's3_prefix_type', 'tags']
+    _method_names: typing.ClassVar[list[str]] = ['AccessGrantsLocationConfigurationProperty', 'GranteeProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrant'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+    resource_config: typing.Optional[models.aws_s3.CfnAccessGrantDefConfig] = pydantic.Field(None)
+
+
+class CfnAccessGrantDefConfig(pydantic.BaseModel):
+    AccessGrantsLocationConfigurationProperty: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAccessgrantslocationconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    GranteeProperty: typing.Optional[list[models.aws_s3.CfnAccessGrantDefGranteepropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_s3.CfnAccessGrantDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
+    get_att: typing.Optional[list[models.aws_s3.CfnAccessGrantDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_s3.CfnAccessGrantDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_s3.CfnAccessGrantDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
+    obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
+    override_logical_id: typing.Optional[list[models.aws_s3.CfnAccessGrantDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
+
+class CfnAccessGrantDefAccessgrantslocationconfigurationpropertyParams(pydantic.BaseModel):
+    s3_sub_prefix: str = pydantic.Field(..., description='')
+    ...
+
+class CfnAccessGrantDefGranteepropertyParams(pydantic.BaseModel):
+    grantee_identifier: str = pydantic.Field(..., description='')
+    grantee_type: str = pydantic.Field(..., description='')
+    ...
+
+class CfnAccessGrantDefAddDeletionOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='The path of the value to delete.')
+    ...
+
+class CfnAccessGrantDefAddDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnAccessGrantDefAddDependsOnParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-\n\n:deprecated: use addDependency\n\n:stability: deprecated\n')
+    ...
+
+class CfnAccessGrantDefAddMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n')
+    value: typing.Any = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnAccessGrantDefAddOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='- The path of the property, you can use dot notation to override values in complex types. Any intermediate keys will be created as needed.\n')
+    value: typing.Any = pydantic.Field(..., description='- The value. Could be primitive or complex.')
+    ...
+
+class CfnAccessGrantDefAddPropertyDeletionOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path to the property.')
+    ...
+
+class CfnAccessGrantDefAddPropertyOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path of the property.\n')
+    value: typing.Any = pydantic.Field(..., description='The value.')
+    ...
+
+class CfnAccessGrantDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='-\n')
+    apply_to_update_replace_policy: typing.Optional[bool] = pydantic.Field(None, description='Apply the same deletion policy to the resource\'s "UpdateReplacePolicy". Default: true\n')
+    default: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description="The default policy to apply in case the removal policy is not defined. Default: - Default value is resource specific. To determine the default value for a resource, please consult that specific resource's documentation.\n\n:see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options\n")
+    ...
+
+class CfnAccessGrantDefGetAttParams(pydantic.BaseModel):
+    attribute_name: str = pydantic.Field(..., description='The name of the attribute.\n')
+    type_hint: typing.Optional[aws_cdk.ResolutionTypeHint] = pydantic.Field(None, description='-')
+    return_config: typing.Optional[list[models.core.ReferenceDefConfig]] = pydantic.Field(None)
+    ...
+
+class CfnAccessGrantDefGetMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnAccessGrantDefInspectParams(pydantic.BaseModel):
+    inspector: models.TreeInspectorDef = pydantic.Field(..., description='tree inspector to collect and process attributes.')
+    ...
+
+class CfnAccessGrantDefOverrideLogicalIdParams(pydantic.BaseModel):
+    new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
+    ...
+
+class CfnAccessGrantDefRemoveDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnAccessGrantDefReplaceDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='The dependency to replace.\n')
+    new_target: models.CfnResourceDef = pydantic.Field(..., description='The new dependency to add.')
+    ...
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrantsInstance
+class CfnAccessGrantsInstanceDef(BaseCfnResource):
+    identity_center_arn: typing.Optional[str] = pydantic.Field(None, description='If you would like to associate your S3 Access Grants instance with an AWS IAM Identity Center instance, use this field to pass the Amazon Resource Name (ARN) of the AWS IAM Identity Center instance that you are associating with your S3 Access Grants instance. An IAM Identity Center instance is your corporate identity directory that you added to the IAM Identity Center.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The AWS resource tags that you are adding to the S3 Access Grants instance. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.')
+    _init_params: typing.ClassVar[list[str]] = ['identity_center_arn', 'tags']
+    _method_names: typing.ClassVar[list[str]] = ['add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrantsInstance'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+    resource_config: typing.Optional[models.aws_s3.CfnAccessGrantsInstanceDefConfig] = pydantic.Field(None)
+
+
+class CfnAccessGrantsInstanceDefConfig(pydantic.BaseModel):
+    add_deletion_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
+    get_att: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
+    obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
+    override_logical_id: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantsInstanceDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
+
+class CfnAccessGrantsInstanceDefAddDeletionOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='The path of the value to delete.')
+    ...
+
+class CfnAccessGrantsInstanceDefAddDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnAccessGrantsInstanceDefAddDependsOnParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-\n\n:deprecated: use addDependency\n\n:stability: deprecated\n')
+    ...
+
+class CfnAccessGrantsInstanceDefAddMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n')
+    value: typing.Any = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnAccessGrantsInstanceDefAddOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='- The path of the property, you can use dot notation to override values in complex types. Any intermediate keys will be created as needed.\n')
+    value: typing.Any = pydantic.Field(..., description='- The value. Could be primitive or complex.')
+    ...
+
+class CfnAccessGrantsInstanceDefAddPropertyDeletionOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path to the property.')
+    ...
+
+class CfnAccessGrantsInstanceDefAddPropertyOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path of the property.\n')
+    value: typing.Any = pydantic.Field(..., description='The value.')
+    ...
+
+class CfnAccessGrantsInstanceDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='-\n')
+    apply_to_update_replace_policy: typing.Optional[bool] = pydantic.Field(None, description='Apply the same deletion policy to the resource\'s "UpdateReplacePolicy". Default: true\n')
+    default: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description="The default policy to apply in case the removal policy is not defined. Default: - Default value is resource specific. To determine the default value for a resource, please consult that specific resource's documentation.\n\n:see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options\n")
+    ...
+
+class CfnAccessGrantsInstanceDefGetAttParams(pydantic.BaseModel):
+    attribute_name: str = pydantic.Field(..., description='The name of the attribute.\n')
+    type_hint: typing.Optional[aws_cdk.ResolutionTypeHint] = pydantic.Field(None, description='-')
+    return_config: typing.Optional[list[models.core.ReferenceDefConfig]] = pydantic.Field(None)
+    ...
+
+class CfnAccessGrantsInstanceDefGetMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnAccessGrantsInstanceDefInspectParams(pydantic.BaseModel):
+    inspector: models.TreeInspectorDef = pydantic.Field(..., description='tree inspector to collect and process attributes.')
+    ...
+
+class CfnAccessGrantsInstanceDefOverrideLogicalIdParams(pydantic.BaseModel):
+    new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
+    ...
+
+class CfnAccessGrantsInstanceDefRemoveDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnAccessGrantsInstanceDefReplaceDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='The dependency to replace.\n')
+    new_target: models.CfnResourceDef = pydantic.Field(..., description='The new dependency to add.')
+    ...
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrantsLocation
+class CfnAccessGrantsLocationDef(BaseCfnResource):
+    iam_role_arn: typing.Optional[str] = pydantic.Field(None, description='The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location.\n')
+    location_scope: typing.Optional[str] = pydantic.Field(None, description='The S3 URI path to the location that you are registering. The location scope can be the default S3 location ``s3://`` , the S3 path to a bucket, or the S3 path to a bucket and prefix. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the ``engineering/`` prefix or object key names that start with the ``marketing/campaigns/`` prefix.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The AWS resource tags that you are adding to the S3 Access Grants location. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.')
+    _init_params: typing.ClassVar[list[str]] = ['iam_role_arn', 'location_scope', 'tags']
+    _method_names: typing.ClassVar[list[str]] = ['add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrantsLocation'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+    resource_config: typing.Optional[models.aws_s3.CfnAccessGrantsLocationDefConfig] = pydantic.Field(None)
+
+
+class CfnAccessGrantsLocationDefConfig(pydantic.BaseModel):
+    add_deletion_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
+    get_att: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
+    obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
+    override_logical_id: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_s3.CfnAccessGrantsLocationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
+
+class CfnAccessGrantsLocationDefAddDeletionOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='The path of the value to delete.')
+    ...
+
+class CfnAccessGrantsLocationDefAddDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnAccessGrantsLocationDefAddDependsOnParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-\n\n:deprecated: use addDependency\n\n:stability: deprecated\n')
+    ...
+
+class CfnAccessGrantsLocationDefAddMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n')
+    value: typing.Any = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnAccessGrantsLocationDefAddOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='- The path of the property, you can use dot notation to override values in complex types. Any intermediate keys will be created as needed.\n')
+    value: typing.Any = pydantic.Field(..., description='- The value. Could be primitive or complex.')
+    ...
+
+class CfnAccessGrantsLocationDefAddPropertyDeletionOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path to the property.')
+    ...
+
+class CfnAccessGrantsLocationDefAddPropertyOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path of the property.\n')
+    value: typing.Any = pydantic.Field(..., description='The value.')
+    ...
+
+class CfnAccessGrantsLocationDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='-\n')
+    apply_to_update_replace_policy: typing.Optional[bool] = pydantic.Field(None, description='Apply the same deletion policy to the resource\'s "UpdateReplacePolicy". Default: true\n')
+    default: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description="The default policy to apply in case the removal policy is not defined. Default: - Default value is resource specific. To determine the default value for a resource, please consult that specific resource's documentation.\n\n:see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options\n")
+    ...
+
+class CfnAccessGrantsLocationDefGetAttParams(pydantic.BaseModel):
+    attribute_name: str = pydantic.Field(..., description='The name of the attribute.\n')
+    type_hint: typing.Optional[aws_cdk.ResolutionTypeHint] = pydantic.Field(None, description='-')
+    return_config: typing.Optional[list[models.core.ReferenceDefConfig]] = pydantic.Field(None)
+    ...
+
+class CfnAccessGrantsLocationDefGetMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnAccessGrantsLocationDefInspectParams(pydantic.BaseModel):
+    inspector: models.TreeInspectorDef = pydantic.Field(..., description='tree inspector to collect and process attributes.')
+    ...
+
+class CfnAccessGrantsLocationDefOverrideLogicalIdParams(pydantic.BaseModel):
+    new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
+    ...
+
+class CfnAccessGrantsLocationDefRemoveDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnAccessGrantsLocationDefReplaceDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='The dependency to replace.\n')
+    new_target: models.CfnResourceDef = pydantic.Field(..., description='The new dependency to add.')
+    ...
+
 
 #  autogenerated from aws_cdk.aws_s3.CfnAccessPoint
 class CfnAccessPointDef(BaseCfnResource):
@@ -2254,7 +2765,7 @@ class CfnBucketDef(BaseCfnResource):
     logging_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_LoggingConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Settings that define where logs are stored.\n')
     metrics_configurations: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_MetricsConfigurationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description="Specifies a metrics configuration for the CloudWatch request metrics (specified by the metrics configuration ID) from an Amazon S3 bucket. If you're updating an existing metrics configuration, note that this is a full replacement of the existing metrics configuration. If you don't include the elements you want to keep, they are erased. For more information, see `PutBucketMetricsConfiguration <https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html>`_ .\n")
     notification_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_NotificationConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configuration that defines how Amazon S3 handles bucket notifications.\n')
-    object_lock_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_ObjectLockConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see `Locking Objects <https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html>`_ . .. epigraph:: - The ``DefaultRetention`` settings require both a mode and a period. - The ``DefaultRetention`` period can be either ``Days`` or ``Years`` but you must select one. You cannot specify ``Days`` and ``Years`` at the same time. - You can only enable Object Lock for new buckets. If you want to turn on Object Lock for an existing bucket, contact AWS Support.\n')
+    object_lock_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_ObjectLockConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='.. epigraph:: This operation is not supported by directory buckets. Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see `Locking Objects <https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html>`_ . .. epigraph:: - The ``DefaultRetention`` settings require both a mode and a period. - The ``DefaultRetention`` period can be either ``Days`` or ``Years`` but you must select one. You cannot specify ``Days`` and ``Years`` at the same time. - You can enable Object Lock for new or existing buckets. For more information, see `Configuring Object Lock <https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html>`_ .\n')
     object_lock_enabled: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether this bucket has an Object Lock configuration enabled. Enable ``ObjectLockEnabled`` when you apply ``ObjectLockConfiguration`` to a bucket.\n')
     ownership_controls: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_OwnershipControlsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configuration that defines how Amazon S3 handles Object Ownership rules.\n')
     public_access_block_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_PublicAccessBlockConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configuration that defines how Amazon S3 handles public access.\n')
@@ -2263,7 +2774,7 @@ class CfnBucketDef(BaseCfnResource):
     versioning_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_VersioningConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them.\n')
     website_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_WebsiteConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Information used to configure the bucket as a static website. For more information, see `Hosting Websites on Amazon S3 <https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html>`_ .')
     _init_params: typing.ClassVar[list[str]] = ['accelerate_configuration', 'access_control', 'analytics_configurations', 'bucket_encryption', 'bucket_name', 'cors_configuration', 'intelligent_tiering_configurations', 'inventory_configurations', 'lifecycle_configuration', 'logging_configuration', 'metrics_configurations', 'notification_configuration', 'object_lock_configuration', 'object_lock_enabled', 'ownership_controls', 'public_access_block_configuration', 'replication_configuration', 'tags', 'versioning_configuration', 'website_configuration']
-    _method_names: typing.ClassVar[list[str]] = ['AbortIncompleteMultipartUploadProperty', 'AccelerateConfigurationProperty', 'AccessControlTranslationProperty', 'AnalyticsConfigurationProperty', 'BucketEncryptionProperty', 'CorsConfigurationProperty', 'CorsRuleProperty', 'DataExportProperty', 'DefaultRetentionProperty', 'DeleteMarkerReplicationProperty', 'DestinationProperty', 'EncryptionConfigurationProperty', 'EventBridgeConfigurationProperty', 'FilterRuleProperty', 'IntelligentTieringConfigurationProperty', 'InventoryConfigurationProperty', 'LambdaConfigurationProperty', 'LifecycleConfigurationProperty', 'LoggingConfigurationProperty', 'MetricsConfigurationProperty', 'MetricsProperty', 'NoncurrentVersionExpirationProperty', 'NoncurrentVersionTransitionProperty', 'NotificationConfigurationProperty', 'NotificationFilterProperty', 'ObjectLockConfigurationProperty', 'ObjectLockRuleProperty', 'OwnershipControlsProperty', 'OwnershipControlsRuleProperty', 'PublicAccessBlockConfigurationProperty', 'QueueConfigurationProperty', 'RedirectAllRequestsToProperty', 'RedirectRuleProperty', 'ReplicaModificationsProperty', 'ReplicationConfigurationProperty', 'ReplicationDestinationProperty', 'ReplicationRuleAndOperatorProperty', 'ReplicationRuleFilterProperty', 'ReplicationRuleProperty', 'ReplicationTimeProperty', 'ReplicationTimeValueProperty', 'RoutingRuleConditionProperty', 'RoutingRuleProperty', 'RuleProperty', 'S3KeyFilterProperty', 'ServerSideEncryptionByDefaultProperty', 'ServerSideEncryptionRuleProperty', 'SourceSelectionCriteriaProperty', 'SseKmsEncryptedObjectsProperty', 'StorageClassAnalysisProperty', 'TagFilterProperty', 'TieringProperty', 'TopicConfigurationProperty', 'TransitionProperty', 'VersioningConfigurationProperty', 'WebsiteConfigurationProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    _method_names: typing.ClassVar[list[str]] = ['AbortIncompleteMultipartUploadProperty', 'AccelerateConfigurationProperty', 'AccessControlTranslationProperty', 'AnalyticsConfigurationProperty', 'BucketEncryptionProperty', 'CorsConfigurationProperty', 'CorsRuleProperty', 'DataExportProperty', 'DefaultRetentionProperty', 'DeleteMarkerReplicationProperty', 'DestinationProperty', 'EncryptionConfigurationProperty', 'EventBridgeConfigurationProperty', 'FilterRuleProperty', 'IntelligentTieringConfigurationProperty', 'InventoryConfigurationProperty', 'LambdaConfigurationProperty', 'LifecycleConfigurationProperty', 'LoggingConfigurationProperty', 'MetricsConfigurationProperty', 'MetricsProperty', 'NoncurrentVersionExpirationProperty', 'NoncurrentVersionTransitionProperty', 'NotificationConfigurationProperty', 'NotificationFilterProperty', 'ObjectLockConfigurationProperty', 'ObjectLockRuleProperty', 'OwnershipControlsProperty', 'OwnershipControlsRuleProperty', 'PartitionedPrefixProperty', 'PublicAccessBlockConfigurationProperty', 'QueueConfigurationProperty', 'RedirectAllRequestsToProperty', 'RedirectRuleProperty', 'ReplicaModificationsProperty', 'ReplicationConfigurationProperty', 'ReplicationDestinationProperty', 'ReplicationRuleAndOperatorProperty', 'ReplicationRuleFilterProperty', 'ReplicationRuleProperty', 'ReplicationTimeProperty', 'ReplicationTimeValueProperty', 'RoutingRuleConditionProperty', 'RoutingRuleProperty', 'RuleProperty', 'S3KeyFilterProperty', 'ServerSideEncryptionByDefaultProperty', 'ServerSideEncryptionRuleProperty', 'SourceSelectionCriteriaProperty', 'SseKmsEncryptedObjectsProperty', 'StorageClassAnalysisProperty', 'TagFilterProperty', 'TargetObjectKeyFormatProperty', 'TieringProperty', 'TopicConfigurationProperty', 'TransitionProperty', 'VersioningConfigurationProperty', 'WebsiteConfigurationProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnBucket'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
@@ -2303,6 +2814,7 @@ class CfnBucketDefConfig(pydantic.BaseModel):
     ObjectLockRuleProperty: typing.Optional[list[models.aws_s3.CfnBucketDefObjectlockrulepropertyParams]] = pydantic.Field(None, description='')
     OwnershipControlsProperty: typing.Optional[list[models.aws_s3.CfnBucketDefOwnershipcontrolspropertyParams]] = pydantic.Field(None, description='')
     OwnershipControlsRuleProperty: typing.Optional[list[models.aws_s3.CfnBucketDefOwnershipcontrolsrulepropertyParams]] = pydantic.Field(None, description='')
+    PartitionedPrefixProperty: typing.Optional[list[models.aws_s3.CfnBucketDefPartitionedprefixpropertyParams]] = pydantic.Field(None, description='')
     PublicAccessBlockConfigurationProperty: typing.Optional[list[models.aws_s3.CfnBucketDefPublicaccessblockconfigurationpropertyParams]] = pydantic.Field(None, description='')
     QueueConfigurationProperty: typing.Optional[list[models.aws_s3.CfnBucketDefQueueconfigurationpropertyParams]] = pydantic.Field(None, description='')
     RedirectAllRequestsToProperty: typing.Optional[list[models.aws_s3.CfnBucketDefRedirectallrequeststopropertyParams]] = pydantic.Field(None, description='')
@@ -2325,6 +2837,7 @@ class CfnBucketDefConfig(pydantic.BaseModel):
     SseKmsEncryptedObjectsProperty: typing.Optional[list[models.aws_s3.CfnBucketDefSsekmsencryptedobjectspropertyParams]] = pydantic.Field(None, description='')
     StorageClassAnalysisProperty: typing.Optional[list[models.aws_s3.CfnBucketDefStorageclassanalysispropertyParams]] = pydantic.Field(None, description='')
     TagFilterProperty: typing.Optional[list[models.aws_s3.CfnBucketDefTagfilterpropertyParams]] = pydantic.Field(None, description='')
+    TargetObjectKeyFormatProperty: typing.Optional[list[models.aws_s3.CfnBucketDefTargetobjectkeyformatpropertyParams]] = pydantic.Field(None, description='')
     TieringProperty: typing.Optional[list[models.aws_s3.CfnBucketDefTieringpropertyParams]] = pydantic.Field(None, description='')
     TopicConfigurationProperty: typing.Optional[list[models.aws_s3.CfnBucketDefTopicconfigurationpropertyParams]] = pydantic.Field(None, description='')
     TransitionProperty: typing.Optional[list[models.aws_s3.CfnBucketDefTransitionpropertyParams]] = pydantic.Field(None, description='')
@@ -2450,6 +2963,7 @@ class CfnBucketDefLifecycleconfigurationpropertyParams(pydantic.BaseModel):
 class CfnBucketDefLoggingconfigurationpropertyParams(pydantic.BaseModel):
     destination_bucket_name: typing.Optional[str] = pydantic.Field(None, description='')
     log_file_prefix: typing.Optional[str] = pydantic.Field(None, description='')
+    target_object_key_format: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_TargetObjectKeyFormatPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
     ...
 
 class CfnBucketDefMetricsconfigurationpropertyParams(pydantic.BaseModel):
@@ -2501,6 +3015,10 @@ class CfnBucketDefOwnershipcontrolspropertyParams(pydantic.BaseModel):
 
 class CfnBucketDefOwnershipcontrolsrulepropertyParams(pydantic.BaseModel):
     object_ownership: typing.Optional[str] = pydantic.Field(None, description='')
+    ...
+
+class CfnBucketDefPartitionedprefixpropertyParams(pydantic.BaseModel):
+    partition_date_source: typing.Optional[str] = pydantic.Field(None, description='')
     ...
 
 class CfnBucketDefPublicaccessblockconfigurationpropertyParams(pydantic.BaseModel):
@@ -2638,6 +3156,11 @@ class CfnBucketDefStorageclassanalysispropertyParams(pydantic.BaseModel):
 class CfnBucketDefTagfilterpropertyParams(pydantic.BaseModel):
     key: str = pydantic.Field(..., description='')
     value: str = pydantic.Field(..., description='')
+    ...
+
+class CfnBucketDefTargetobjectkeyformatpropertyParams(pydantic.BaseModel):
+    partitioned_prefix: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_PartitionedPrefixPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    simple_prefix: typing.Any = pydantic.Field(None, description='')
     ...
 
 class CfnBucketDefTieringpropertyParams(pydantic.BaseModel):
@@ -3053,7 +3576,7 @@ class CfnStorageLensDef(BaseCfnResource):
     storage_lens_configuration: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnStorageLens_StorageLensConfigurationPropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='This resource contains the details Amazon S3 Storage Lens configuration.\n')
     tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='A set of tags (key–value pairs) to associate with the Storage Lens configuration.')
     _init_params: typing.ClassVar[list[str]] = ['storage_lens_configuration', 'tags']
-    _method_names: typing.ClassVar[list[str]] = ['AccountLevelProperty', 'ActivityMetricsProperty', 'AdvancedCostOptimizationMetricsProperty', 'AdvancedDataProtectionMetricsProperty', 'AwsOrgProperty', 'BucketLevelProperty', 'BucketsAndRegionsProperty', 'CloudWatchMetricsProperty', 'DataExportProperty', 'DetailedStatusCodesMetricsProperty', 'EncryptionProperty', 'PrefixLevelProperty', 'PrefixLevelStorageMetricsProperty', 'S3BucketDestinationProperty', 'SSEKMSProperty', 'SelectionCriteriaProperty', 'StorageLensConfigurationProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    _method_names: typing.ClassVar[list[str]] = ['AccountLevelProperty', 'ActivityMetricsProperty', 'AdvancedCostOptimizationMetricsProperty', 'AdvancedDataProtectionMetricsProperty', 'AwsOrgProperty', 'BucketLevelProperty', 'BucketsAndRegionsProperty', 'CloudWatchMetricsProperty', 'DataExportProperty', 'DetailedStatusCodesMetricsProperty', 'EncryptionProperty', 'PrefixLevelProperty', 'PrefixLevelStorageMetricsProperty', 'S3BucketDestinationProperty', 'SSEKMSProperty', 'SelectionCriteriaProperty', 'StorageLensConfigurationProperty', 'StorageLensGroupLevelProperty', 'StorageLensGroupSelectionCriteriaProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLens'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
@@ -3081,6 +3604,8 @@ class CfnStorageLensDefConfig(pydantic.BaseModel):
     SSEKMSProperty: typing.Optional[list[models.aws_s3.CfnStorageLensDefSsekmspropertyParams]] = pydantic.Field(None, description='')
     SelectionCriteriaProperty: typing.Optional[list[models.aws_s3.CfnStorageLensDefSelectioncriteriapropertyParams]] = pydantic.Field(None, description='')
     StorageLensConfigurationProperty: typing.Optional[list[models.aws_s3.CfnStorageLensDefStoragelensconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    StorageLensGroupLevelProperty: typing.Optional[list[models.aws_s3.CfnStorageLensDefStoragelensgrouplevelpropertyParams]] = pydantic.Field(None, description='')
+    StorageLensGroupSelectionCriteriaProperty: typing.Optional[list[models.aws_s3.CfnStorageLensDefStoragelensgroupselectioncriteriapropertyParams]] = pydantic.Field(None, description='')
     add_deletion_override: typing.Optional[list[models.aws_s3.CfnStorageLensDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
     add_dependency: typing.Optional[list[models.aws_s3.CfnStorageLensDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
     add_depends_on: typing.Optional[list[models.aws_s3.CfnStorageLensDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
@@ -3105,6 +3630,7 @@ class CfnStorageLensDefAccountlevelpropertyParams(pydantic.BaseModel):
     advanced_cost_optimization_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_AdvancedCostOptimizationMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
     advanced_data_protection_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_AdvancedDataProtectionMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
     detailed_status_codes_metrics: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_DetailedStatusCodesMetricsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    storage_lens_group_level: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_StorageLensGroupLevelPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
     ...
 
 class CfnStorageLensDefActivitymetricspropertyParams(pydantic.BaseModel):
@@ -3193,6 +3719,15 @@ class CfnStorageLensDefStoragelensconfigurationpropertyParams(pydantic.BaseModel
     storage_lens_arn: typing.Optional[str] = pydantic.Field(None, description='')
     ...
 
+class CfnStorageLensDefStoragelensgrouplevelpropertyParams(pydantic.BaseModel):
+    storage_lens_group_selection_criteria: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLens_StorageLensGroupSelectionCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnStorageLensDefStoragelensgroupselectioncriteriapropertyParams(pydantic.BaseModel):
+    exclude: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    include: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    ...
+
 class CfnStorageLensDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
     ...
@@ -3258,6 +3793,195 @@ class CfnStorageLensDefReplaceDependencyParams(pydantic.BaseModel):
     ...
 
 
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroup
+class CfnStorageLensGroupDef(BaseCfnResource):
+    filter: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_FilterPropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='This property contains the criteria for the Storage Lens group data that is displayed.\n')
+    name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='This property contains the Storage Lens group name.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description="This property contains the AWS resource tags that you're adding to your Storage Lens group. This parameter is optional.")
+    _init_params: typing.ClassVar[list[str]] = ['filter', 'name', 'tags']
+    _method_names: typing.ClassVar[list[str]] = ['AndProperty', 'FilterProperty', 'MatchObjectAgeProperty', 'MatchObjectSizeProperty', 'OrProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroup'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+    resource_config: typing.Optional[models.aws_s3.CfnStorageLensGroupDefConfig] = pydantic.Field(None)
+
+
+class CfnStorageLensGroupDefConfig(pydantic.BaseModel):
+    AndProperty: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAndpropertyParams]] = pydantic.Field(None, description='')
+    FilterProperty: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefFilterpropertyParams]] = pydantic.Field(None, description='')
+    MatchObjectAgeProperty: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefMatchobjectagepropertyParams]] = pydantic.Field(None, description='')
+    MatchObjectSizeProperty: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefMatchobjectsizepropertyParams]] = pydantic.Field(None, description='')
+    OrProperty: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefOrpropertyParams]] = pydantic.Field(None, description='')
+    add_deletion_override: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
+    add_dependency: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
+    add_depends_on: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
+    add_metadata: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddMetadataParams]] = pydantic.Field(None, description='Add a value to the CloudFormation Resource Metadata.')
+    add_override: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddOverrideParams]] = pydantic.Field(None, description='Adds an override to the synthesized CloudFormation resource.\nTo add a\nproperty override, either use ``addPropertyOverride`` or prefix ``path`` with\n"Properties." (i.e. ``Properties.TopicName``).\n\nIf the override is nested, separate each nested level using a dot (.) in the path parameter.\nIf there is an array as part of the nesting, specify the index in the path.\n\nTo include a literal ``.`` in the property name, prefix with a ``\\``. In most\nprogramming languages you will need to write this as ``"\\\\."`` because the\n``\\`` itself will need to be escaped.\n\nFor example::\n\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes", ["myattribute"])\n   cfn_resource.add_override("Properties.GlobalSecondaryIndexes.1.ProjectionType", "INCLUDE")\n\nwould add the overrides Example::\n\n   "Properties": {\n     "GlobalSecondaryIndexes": [\n       {\n         "Projection": {\n           "NonKeyAttributes": [ "myattribute" ]\n           ...\n         }\n         ...\n       },\n       {\n         "ProjectionType": "INCLUDE"\n         ...\n       },\n     ]\n     ...\n   }\n\nThe ``value`` argument to ``addOverride`` will not be processed or translated\nin any way. Pass raw JSON values in here with the correct capitalization\nfor CloudFormation. If you pass CDK classes or structs, they will be\nrendered with lowercased key names, and CloudFormation will reject the\ntemplate.')
+    add_property_deletion_override: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddPropertyDeletionOverrideParams]] = pydantic.Field(None, description='Adds an override that deletes the value of a property from the resource definition.')
+    add_property_override: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefAddPropertyOverrideParams]] = pydantic.Field(None, description='Adds an override to a resource property.\nSyntactic sugar for ``addOverride("Properties.<...>", value)``.')
+    apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
+    get_att: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefGetAttParams]] = pydantic.Field(None, description='Returns a token for an runtime attribute of this resource.\nIdeally, use generated attribute accessors (e.g. ``resource.arn``), but this can be used for future compatibility\nin case there is no generated attribute.')
+    get_metadata: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefGetMetadataParams]] = pydantic.Field(None, description='Retrieve a value value from the CloudFormation Resource Metadata.')
+    inspect: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefInspectParams]] = pydantic.Field(None, description='Examines the CloudFormation resource and discloses attributes.')
+    obtain_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Retrieves an array of resources this resource depends on.\nThis assembles dependencies on resources across stacks (including nested stacks)\nautomatically.')
+    obtain_resource_dependencies: typing.Optional[bool] = pydantic.Field(None, description='Get a shallow copy of dependencies between this resource and other resources in the same stack.')
+    override_logical_id: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
+    remove_dependency: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
+    replace_dependency: typing.Optional[list[models.aws_s3.CfnStorageLensGroupDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
+
+class CfnStorageLensGroupDefAndpropertyParams(pydantic.BaseModel):
+    match_any_prefix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    match_any_suffix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    match_any_tag: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.CfnTagDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
+    match_object_age: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    match_object_size: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnStorageLensGroupDefFilterpropertyParams(pydantic.BaseModel):
+    and_: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_AndPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    match_any_prefix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    match_any_suffix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    match_any_tag: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.CfnTagDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
+    match_object_age: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    match_object_size: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    or_: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_OrPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnStorageLensGroupDefMatchobjectagepropertyParams(pydantic.BaseModel):
+    days_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='')
+    days_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='')
+    ...
+
+class CfnStorageLensGroupDefMatchobjectsizepropertyParams(pydantic.BaseModel):
+    bytes_greater_than: typing.Union[int, float, None] = pydantic.Field(None, description='')
+    bytes_less_than: typing.Union[int, float, None] = pydantic.Field(None, description='')
+    ...
+
+class CfnStorageLensGroupDefOrpropertyParams(pydantic.BaseModel):
+    match_any_prefix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    match_any_suffix: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    match_any_tag: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.CfnTagDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
+    match_object_age: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    match_object_size: typing.Union[models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnStorageLensGroupDefAddDeletionOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='The path of the value to delete.')
+    ...
+
+class CfnStorageLensGroupDefAddDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnStorageLensGroupDefAddDependsOnParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-\n\n:deprecated: use addDependency\n\n:stability: deprecated\n')
+    ...
+
+class CfnStorageLensGroupDefAddMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n')
+    value: typing.Any = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnStorageLensGroupDefAddOverrideParams(pydantic.BaseModel):
+    path: str = pydantic.Field(..., description='- The path of the property, you can use dot notation to override values in complex types. Any intermediate keys will be created as needed.\n')
+    value: typing.Any = pydantic.Field(..., description='- The value. Could be primitive or complex.')
+    ...
+
+class CfnStorageLensGroupDefAddPropertyDeletionOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path to the property.')
+    ...
+
+class CfnStorageLensGroupDefAddPropertyOverrideParams(pydantic.BaseModel):
+    property_path: str = pydantic.Field(..., description='The path of the property.\n')
+    value: typing.Any = pydantic.Field(..., description='The value.')
+    ...
+
+class CfnStorageLensGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description='-\n')
+    apply_to_update_replace_policy: typing.Optional[bool] = pydantic.Field(None, description='Apply the same deletion policy to the resource\'s "UpdateReplacePolicy". Default: true\n')
+    default: typing.Optional[aws_cdk.RemovalPolicy] = pydantic.Field(None, description="The default policy to apply in case the removal policy is not defined. Default: - Default value is resource specific. To determine the default value for a resource, please consult that specific resource's documentation.\n\n:see: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options\n")
+    ...
+
+class CfnStorageLensGroupDefGetAttParams(pydantic.BaseModel):
+    attribute_name: str = pydantic.Field(..., description='The name of the attribute.\n')
+    type_hint: typing.Optional[aws_cdk.ResolutionTypeHint] = pydantic.Field(None, description='-')
+    return_config: typing.Optional[list[models.core.ReferenceDefConfig]] = pydantic.Field(None)
+    ...
+
+class CfnStorageLensGroupDefGetMetadataParams(pydantic.BaseModel):
+    key: str = pydantic.Field(..., description='-\n\n:see:\n\nhttps://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html\n\nNote that this is a different set of metadata from CDK node metadata; this\nmetadata ends up in the stack template under the resource, whereas CDK\nnode metadata ends up in the Cloud Assembly.\n')
+    ...
+
+class CfnStorageLensGroupDefInspectParams(pydantic.BaseModel):
+    inspector: models.TreeInspectorDef = pydantic.Field(..., description='tree inspector to collect and process attributes.')
+    ...
+
+class CfnStorageLensGroupDefOverrideLogicalIdParams(pydantic.BaseModel):
+    new_logical_id: str = pydantic.Field(..., description='The new logical ID to use for this stack element.')
+    ...
+
+class CfnStorageLensGroupDefRemoveDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='-')
+    ...
+
+class CfnStorageLensGroupDefReplaceDependencyParams(pydantic.BaseModel):
+    target: models.CfnResourceDef = pydantic.Field(..., description='The dependency to replace.\n')
+    new_target: models.CfnResourceDef = pydantic.Field(..., description='The new dependency to add.')
+    ...
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrantProps
+class CfnAccessGrantPropsDef(BaseCfnProperty):
+    access_grants_location_id: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The ID of the registered location to which you are granting access. S3 Access Grants assigns this ID when you register the location. S3 Access Grants assigns the ID ``default`` to the default location ``s3://`` and assigns an auto-generated ID to other locations that you register.\n')
+    grantee: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnAccessGrant_GranteePropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='The user, group, or role to which you are granting access. You can grant access to an IAM user or role. If you have added your corporate directory to AWS IAM Identity Center and associated your Identity Center instance with your S3 Access Grants instance, the grantee can also be a corporate directory user or group.\n')
+    permission: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The type of access that you are granting to your S3 data, which can be set to one of the following values: - ``READ`` – Grant read-only access to the S3 data. - ``WRITE`` – Grant write-only access to the S3 data. - ``READWRITE`` – Grant both read and write access to the S3 data.\n')
+    access_grants_location_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnAccessGrant_AccessGrantsLocationConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The configuration options of the grant location. The grant location is the S3 path to the data to which you are granting access. It contains the ``S3SubPrefix`` field. The grant scope is the result of appending the subprefix to the location scope of the registered location.\n')
+    application_arn: typing.Optional[str] = pydantic.Field(None, description='The Amazon Resource Name (ARN) of an AWS IAM Identity Center application associated with your Identity Center instance. If the grant includes an application ARN, the grantee can only access the S3 data through this application.\n')
+    s3_prefix_type: typing.Optional[str] = pydantic.Field(None, description='The type of ``S3SubPrefix`` . The only possible value is ``Object`` . Pass this value if the access grant scope is an object. Do not pass this value if the access grant scope is a bucket or a bucket and a prefix.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The AWS resource tags that you are adding to the access grant. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrant.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    cfn_access_grant_props = s3.CfnAccessGrantProps(\n        access_grants_location_id="accessGrantsLocationId",\n        grantee=s3.CfnAccessGrant.GranteeProperty(\n            grantee_identifier="granteeIdentifier",\n            grantee_type="granteeType"\n        ),\n        permission="permission",\n\n        # the properties below are optional\n        access_grants_location_configuration=s3.CfnAccessGrant.AccessGrantsLocationConfigurationProperty(\n            s3_sub_prefix="s3SubPrefix"\n        ),\n        application_arn="applicationArn",\n        s3_prefix_type="s3PrefixType",\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['access_grants_location_id', 'grantee', 'permission', 'access_grants_location_configuration', 'application_arn', 's3_prefix_type', 'tags']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrantProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrantsInstanceProps
+class CfnAccessGrantsInstancePropsDef(BaseCfnProperty):
+    identity_center_arn: typing.Optional[str] = pydantic.Field(None, description='If you would like to associate your S3 Access Grants instance with an AWS IAM Identity Center instance, use this field to pass the Amazon Resource Name (ARN) of the AWS IAM Identity Center instance that you are associating with your S3 Access Grants instance. An IAM Identity Center instance is your corporate identity directory that you added to the IAM Identity Center.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The AWS resource tags that you are adding to the S3 Access Grants instance. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantsinstance.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    cfn_access_grants_instance_props = s3.CfnAccessGrantsInstanceProps(\n        identity_center_arn="identityCenterArn",\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['identity_center_arn', 'tags']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrantsInstanceProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_s3.CfnAccessGrantsLocationProps
+class CfnAccessGrantsLocationPropsDef(BaseCfnProperty):
+    iam_role_arn: typing.Optional[str] = pydantic.Field(None, description='The Amazon Resource Name (ARN) of the IAM role for the registered location. S3 Access Grants assumes this role to manage access to the registered location.\n')
+    location_scope: typing.Optional[str] = pydantic.Field(None, description='The S3 URI path to the location that you are registering. The location scope can be the default S3 location ``s3://`` , the S3 path to a bucket, or the S3 path to a bucket and prefix. A prefix in S3 is a string of characters at the beginning of an object key name used to organize the objects that you store in your S3 buckets. For example, object key names that start with the ``engineering/`` prefix or object key names that start with the ``marketing/campaigns/`` prefix.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The AWS resource tags that you are adding to the S3 Access Grants location. Each tag is a label consisting of a user-defined key and value. Tags can help you manage, identify, organize, search for, and filter resources.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-accessgrantslocation.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    cfn_access_grants_location_props = s3.CfnAccessGrantsLocationProps(\n        iam_role_arn="iamRoleArn",\n        location_scope="locationScope",\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['iam_role_arn', 'location_scope', 'tags']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnAccessGrantsLocationProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
 #  autogenerated from aws_cdk.aws_s3.CfnAccessPointProps
 class CfnAccessPointPropsDef(BaseCfnProperty):
     bucket: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the bucket associated with this access point.\n')
@@ -3304,7 +4028,7 @@ class CfnBucketPropsDef(BaseCfnProperty):
     logging_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_LoggingConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Settings that define where logs are stored.\n')
     metrics_configurations: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_MetricsConfigurationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description="Specifies a metrics configuration for the CloudWatch request metrics (specified by the metrics configuration ID) from an Amazon S3 bucket. If you're updating an existing metrics configuration, note that this is a full replacement of the existing metrics configuration. If you don't include the elements you want to keep, they are erased. For more information, see `PutBucketMetricsConfiguration <https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html>`_ .\n")
     notification_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_NotificationConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configuration that defines how Amazon S3 handles bucket notifications.\n')
-    object_lock_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_ObjectLockConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see `Locking Objects <https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html>`_ . .. epigraph:: - The ``DefaultRetention`` settings require both a mode and a period. - The ``DefaultRetention`` period can be either ``Days`` or ``Years`` but you must select one. You cannot specify ``Days`` and ``Years`` at the same time. - You can only enable Object Lock for new buckets. If you want to turn on Object Lock for an existing bucket, contact AWS Support.\n')
+    object_lock_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_ObjectLockConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='.. epigraph:: This operation is not supported by directory buckets. Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket. For more information, see `Locking Objects <https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html>`_ . .. epigraph:: - The ``DefaultRetention`` settings require both a mode and a period. - The ``DefaultRetention`` period can be either ``Days`` or ``Years`` but you must select one. You cannot specify ``Days`` and ``Years`` at the same time. - You can enable Object Lock for new or existing buckets. For more information, see `Configuring Object Lock <https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock-configure.html>`_ .\n')
     object_lock_enabled: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether this bucket has an Object Lock configuration enabled. Enable ``ObjectLockEnabled`` when you apply ``ObjectLockConfiguration`` to a bucket.\n')
     ownership_controls: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_OwnershipControlsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configuration that defines how Amazon S3 handles Object Ownership rules.\n')
     public_access_block_configuration: typing.Union[models.UnsupportedResource, models.aws_s3.CfnBucket_PublicAccessBlockConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Configuration that defines how Amazon S3 handles public access.\n')
@@ -3351,10 +4075,25 @@ class CfnMultiRegionAccessPointPropsDef(BaseCfnProperty):
 
 
 
+#  autogenerated from aws_cdk.aws_s3.CfnStorageLensGroupProps
+class CfnStorageLensGroupPropsDef(BaseCfnProperty):
+    filter: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnStorageLensGroup_FilterPropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='This property contains the criteria for the Storage Lens group data that is displayed.\n')
+    name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='This property contains the Storage Lens group name.\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='This property contains the AWS resource tags that you\'re adding to your Storage Lens group. This parameter is optional.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelensgroup.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    cfn_storage_lens_group_props = s3.CfnStorageLensGroupProps(\n        filter=s3.CfnStorageLensGroup.FilterProperty(\n            and=s3.CfnStorageLensGroup.AndProperty(\n                match_any_prefix=["matchAnyPrefix"],\n                match_any_suffix=["matchAnySuffix"],\n                match_any_tag=[CfnTag(\n                    key="key",\n                    value="value"\n                )],\n                match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n                    days_greater_than=123,\n                    days_less_than=123\n                ),\n                match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n                    bytes_greater_than=123,\n                    bytes_less_than=123\n                )\n            ),\n            match_any_prefix=["matchAnyPrefix"],\n            match_any_suffix=["matchAnySuffix"],\n            match_any_tag=[CfnTag(\n                key="key",\n                value="value"\n            )],\n            match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n                days_greater_than=123,\n                days_less_than=123\n            ),\n            match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n                bytes_greater_than=123,\n                bytes_less_than=123\n            ),\n            or=s3.CfnStorageLensGroup.OrProperty(\n                match_any_prefix=["matchAnyPrefix"],\n                match_any_suffix=["matchAnySuffix"],\n                match_any_tag=[CfnTag(\n                    key="key",\n                    value="value"\n                )],\n                match_object_age=s3.CfnStorageLensGroup.MatchObjectAgeProperty(\n                    days_greater_than=123,\n                    days_less_than=123\n                ),\n                match_object_size=s3.CfnStorageLensGroup.MatchObjectSizeProperty(\n                    bytes_greater_than=123,\n                    bytes_less_than=123\n                )\n            )\n        ),\n        name="name",\n\n        # the properties below are optional\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['filter', 'name', 'tags']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_s3.CfnStorageLensGroupProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
 #  autogenerated from aws_cdk.aws_s3.CfnStorageLensProps
 class CfnStorageLensPropsDef(BaseCfnProperty):
     storage_lens_configuration: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, models.aws_s3.CfnStorageLens_StorageLensConfigurationPropertyDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='This resource contains the details Amazon S3 Storage Lens configuration.\n')
-    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='A set of tags (key–value pairs) to associate with the Storage Lens configuration.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelens.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # sses3: Any\n\n    cfn_storage_lens_props = s3.CfnStorageLensProps(\n        storage_lens_configuration=s3.CfnStorageLens.StorageLensConfigurationProperty(\n            account_level=s3.CfnStorageLens.AccountLevelProperty(\n                bucket_level=s3.CfnStorageLens.BucketLevelProperty(\n                    activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                        is_enabled=False\n                    ),\n                    advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                        is_enabled=False\n                    ),\n                    advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                        is_enabled=False\n                    ),\n                    detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                        is_enabled=False\n                    ),\n                    prefix_level=s3.CfnStorageLens.PrefixLevelProperty(\n                        storage_metrics=s3.CfnStorageLens.PrefixLevelStorageMetricsProperty(\n                            is_enabled=False,\n                            selection_criteria=s3.CfnStorageLens.SelectionCriteriaProperty(\n                                delimiter="delimiter",\n                                max_depth=123,\n                                min_storage_bytes_percentage=123\n                            )\n                        )\n                    )\n                ),\n\n                # the properties below are optional\n                activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                    is_enabled=False\n                ),\n                detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                    is_enabled=False\n                )\n            ),\n            id="id",\n            is_enabled=False,\n\n            # the properties below are optional\n            aws_org=s3.CfnStorageLens.AwsOrgProperty(\n                arn="arn"\n            ),\n            data_export=s3.CfnStorageLens.DataExportProperty(\n                cloud_watch_metrics=s3.CfnStorageLens.CloudWatchMetricsProperty(\n                    is_enabled=False\n                ),\n                s3_bucket_destination=s3.CfnStorageLens.S3BucketDestinationProperty(\n                    account_id="accountId",\n                    arn="arn",\n                    format="format",\n                    output_schema_version="outputSchemaVersion",\n\n                    # the properties below are optional\n                    encryption=s3.CfnStorageLens.EncryptionProperty(\n                        ssekms=s3.CfnStorageLens.SSEKMSProperty(\n                            key_id="keyId"\n                        ),\n                        sses3=sses3\n                    ),\n                    prefix="prefix"\n                )\n            ),\n            exclude=s3.CfnStorageLens.BucketsAndRegionsProperty(\n                buckets=["buckets"],\n                regions=["regions"]\n            ),\n            include=s3.CfnStorageLens.BucketsAndRegionsProperty(\n                buckets=["buckets"],\n                regions=["regions"]\n            ),\n            storage_lens_arn="storageLensArn"\n        ),\n\n        # the properties below are optional\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='A set of tags (key–value pairs) to associate with the Storage Lens configuration.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-s3-storagelens.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_s3 as s3\n\n    # sses3: Any\n\n    cfn_storage_lens_props = s3.CfnStorageLensProps(\n        storage_lens_configuration=s3.CfnStorageLens.StorageLensConfigurationProperty(\n            account_level=s3.CfnStorageLens.AccountLevelProperty(\n                bucket_level=s3.CfnStorageLens.BucketLevelProperty(\n                    activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                        is_enabled=False\n                    ),\n                    advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                        is_enabled=False\n                    ),\n                    advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                        is_enabled=False\n                    ),\n                    detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                        is_enabled=False\n                    ),\n                    prefix_level=s3.CfnStorageLens.PrefixLevelProperty(\n                        storage_metrics=s3.CfnStorageLens.PrefixLevelStorageMetricsProperty(\n                            is_enabled=False,\n                            selection_criteria=s3.CfnStorageLens.SelectionCriteriaProperty(\n                                delimiter="delimiter",\n                                max_depth=123,\n                                min_storage_bytes_percentage=123\n                            )\n                        )\n                    )\n                ),\n\n                # the properties below are optional\n                activity_metrics=s3.CfnStorageLens.ActivityMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_cost_optimization_metrics=s3.CfnStorageLens.AdvancedCostOptimizationMetricsProperty(\n                    is_enabled=False\n                ),\n                advanced_data_protection_metrics=s3.CfnStorageLens.AdvancedDataProtectionMetricsProperty(\n                    is_enabled=False\n                ),\n                detailed_status_codes_metrics=s3.CfnStorageLens.DetailedStatusCodesMetricsProperty(\n                    is_enabled=False\n                ),\n                storage_lens_group_level=s3.CfnStorageLens.StorageLensGroupLevelProperty(\n                    storage_lens_group_selection_criteria=s3.CfnStorageLens.StorageLensGroupSelectionCriteriaProperty(\n                        exclude=["exclude"],\n                        include=["include"]\n                    )\n                )\n            ),\n            id="id",\n            is_enabled=False,\n\n            # the properties below are optional\n            aws_org=s3.CfnStorageLens.AwsOrgProperty(\n                arn="arn"\n            ),\n            data_export=s3.CfnStorageLens.DataExportProperty(\n                cloud_watch_metrics=s3.CfnStorageLens.CloudWatchMetricsProperty(\n                    is_enabled=False\n                ),\n                s3_bucket_destination=s3.CfnStorageLens.S3BucketDestinationProperty(\n                    account_id="accountId",\n                    arn="arn",\n                    format="format",\n                    output_schema_version="outputSchemaVersion",\n\n                    # the properties below are optional\n                    encryption=s3.CfnStorageLens.EncryptionProperty(\n                        ssekms=s3.CfnStorageLens.SSEKMSProperty(\n                            key_id="keyId"\n                        ),\n                        sses3=sses3\n                    ),\n                    prefix="prefix"\n                )\n            ),\n            exclude=s3.CfnStorageLens.BucketsAndRegionsProperty(\n                buckets=["buckets"],\n                regions=["regions"]\n            ),\n            include=s3.CfnStorageLens.BucketsAndRegionsProperty(\n                buckets=["buckets"],\n                regions=["regions"]\n            ),\n            storage_lens_arn="storageLensArn"\n        ),\n\n        # the properties below are optional\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
     _init_params: typing.ClassVar[list[str]] = ['storage_lens_configuration', 'tags']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
@@ -3371,6 +4110,7 @@ class ModuleModel(pydantic.BaseModel):
     ObjectLockRetention: typing.Optional[dict[str, models.aws_s3.ObjectLockRetentionDef]] = pydantic.Field(None)
     ReplaceKey: typing.Optional[dict[str, models.aws_s3.ReplaceKeyDef]] = pydantic.Field(None)
     StorageClass: typing.Optional[dict[str, models.aws_s3.StorageClassDef]] = pydantic.Field(None)
+    TargetObjectKeyFormat: typing.Optional[dict[str, models.aws_s3.TargetObjectKeyFormatDef]] = pydantic.Field(None)
     Bucket: typing.Optional[dict[str, models.aws_s3.BucketDef]] = pydantic.Field(None)
     BucketPolicy: typing.Optional[dict[str, models.aws_s3.BucketPolicyDef]] = pydantic.Field(None)
     BlockPublicAccessOptions: typing.Optional[dict[str, models.aws_s3.BlockPublicAccessOptionsDef]] = pydantic.Field(None)
@@ -3379,6 +4119,8 @@ class ModuleModel(pydantic.BaseModel):
     BucketNotificationDestinationConfig: typing.Optional[dict[str, models.aws_s3.BucketNotificationDestinationConfigDef]] = pydantic.Field(None)
     BucketPolicyProps: typing.Optional[dict[str, models.aws_s3.BucketPolicyPropsDef]] = pydantic.Field(None)
     BucketProps: typing.Optional[dict[str, models.aws_s3.BucketPropsDef]] = pydantic.Field(None)
+    CfnAccessGrant_AccessGrantsLocationConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnAccessGrant_AccessGrantsLocationConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnAccessGrant_GranteeProperty: typing.Optional[dict[str, models.aws_s3.CfnAccessGrant_GranteePropertyDef]] = pydantic.Field(None)
     CfnAccessPoint_PublicAccessBlockConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnAccessPoint_PublicAccessBlockConfigurationPropertyDef]] = pydantic.Field(None)
     CfnAccessPoint_VpcConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnAccessPoint_VpcConfigurationPropertyDef]] = pydantic.Field(None)
     CfnBucket_AbortIncompleteMultipartUploadProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_AbortIncompleteMultipartUploadPropertyDef]] = pydantic.Field(None)
@@ -3410,6 +4152,7 @@ class ModuleModel(pydantic.BaseModel):
     CfnBucket_ObjectLockRuleProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_ObjectLockRulePropertyDef]] = pydantic.Field(None)
     CfnBucket_OwnershipControlsProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_OwnershipControlsPropertyDef]] = pydantic.Field(None)
     CfnBucket_OwnershipControlsRuleProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_OwnershipControlsRulePropertyDef]] = pydantic.Field(None)
+    CfnBucket_PartitionedPrefixProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_PartitionedPrefixPropertyDef]] = pydantic.Field(None)
     CfnBucket_PublicAccessBlockConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_PublicAccessBlockConfigurationPropertyDef]] = pydantic.Field(None)
     CfnBucket_QueueConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_QueueConfigurationPropertyDef]] = pydantic.Field(None)
     CfnBucket_RedirectAllRequestsToProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_RedirectAllRequestsToPropertyDef]] = pydantic.Field(None)
@@ -3432,6 +4175,7 @@ class ModuleModel(pydantic.BaseModel):
     CfnBucket_SseKmsEncryptedObjectsProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_SseKmsEncryptedObjectsPropertyDef]] = pydantic.Field(None)
     CfnBucket_StorageClassAnalysisProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_StorageClassAnalysisPropertyDef]] = pydantic.Field(None)
     CfnBucket_TagFilterProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_TagFilterPropertyDef]] = pydantic.Field(None)
+    CfnBucket_TargetObjectKeyFormatProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_TargetObjectKeyFormatPropertyDef]] = pydantic.Field(None)
     CfnBucket_TieringProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_TieringPropertyDef]] = pydantic.Field(None)
     CfnBucket_TopicConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_TopicConfigurationPropertyDef]] = pydantic.Field(None)
     CfnBucket_TransitionProperty: typing.Optional[dict[str, models.aws_s3.CfnBucket_TransitionPropertyDef]] = pydantic.Field(None)
@@ -3457,6 +4201,13 @@ class ModuleModel(pydantic.BaseModel):
     CfnStorageLens_SelectionCriteriaProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLens_SelectionCriteriaPropertyDef]] = pydantic.Field(None)
     CfnStorageLens_SSEKMSProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLens_SSEKMSPropertyDef]] = pydantic.Field(None)
     CfnStorageLens_StorageLensConfigurationProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLens_StorageLensConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnStorageLens_StorageLensGroupLevelProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLens_StorageLensGroupLevelPropertyDef]] = pydantic.Field(None)
+    CfnStorageLens_StorageLensGroupSelectionCriteriaProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLens_StorageLensGroupSelectionCriteriaPropertyDef]] = pydantic.Field(None)
+    CfnStorageLensGroup_AndProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroup_AndPropertyDef]] = pydantic.Field(None)
+    CfnStorageLensGroup_FilterProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroup_FilterPropertyDef]] = pydantic.Field(None)
+    CfnStorageLensGroup_MatchObjectAgeProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroup_MatchObjectAgePropertyDef]] = pydantic.Field(None)
+    CfnStorageLensGroup_MatchObjectSizeProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroup_MatchObjectSizePropertyDef]] = pydantic.Field(None)
+    CfnStorageLensGroup_OrProperty: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroup_OrPropertyDef]] = pydantic.Field(None)
     CorsRule: typing.Optional[dict[str, models.aws_s3.CorsRuleDef]] = pydantic.Field(None)
     IntelligentTieringConfiguration: typing.Optional[dict[str, models.aws_s3.IntelligentTieringConfigurationDef]] = pydantic.Field(None)
     Inventory: typing.Optional[dict[str, models.aws_s3.InventoryDef]] = pydantic.Field(None)
@@ -3473,17 +4224,25 @@ class ModuleModel(pydantic.BaseModel):
     TransferAccelerationUrlOptions: typing.Optional[dict[str, models.aws_s3.TransferAccelerationUrlOptionsDef]] = pydantic.Field(None)
     Transition: typing.Optional[dict[str, models.aws_s3.TransitionDef]] = pydantic.Field(None)
     VirtualHostedStyleUrlOptions: typing.Optional[dict[str, models.aws_s3.VirtualHostedStyleUrlOptionsDef]] = pydantic.Field(None)
+    CfnAccessGrant: typing.Optional[dict[str, models.aws_s3.CfnAccessGrantDef]] = pydantic.Field(None)
+    CfnAccessGrantsInstance: typing.Optional[dict[str, models.aws_s3.CfnAccessGrantsInstanceDef]] = pydantic.Field(None)
+    CfnAccessGrantsLocation: typing.Optional[dict[str, models.aws_s3.CfnAccessGrantsLocationDef]] = pydantic.Field(None)
     CfnAccessPoint: typing.Optional[dict[str, models.aws_s3.CfnAccessPointDef]] = pydantic.Field(None)
     CfnBucket: typing.Optional[dict[str, models.aws_s3.CfnBucketDef]] = pydantic.Field(None)
     CfnBucketPolicy: typing.Optional[dict[str, models.aws_s3.CfnBucketPolicyDef]] = pydantic.Field(None)
     CfnMultiRegionAccessPoint: typing.Optional[dict[str, models.aws_s3.CfnMultiRegionAccessPointDef]] = pydantic.Field(None)
     CfnMultiRegionAccessPointPolicy: typing.Optional[dict[str, models.aws_s3.CfnMultiRegionAccessPointPolicyDef]] = pydantic.Field(None)
     CfnStorageLens: typing.Optional[dict[str, models.aws_s3.CfnStorageLensDef]] = pydantic.Field(None)
+    CfnStorageLensGroup: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroupDef]] = pydantic.Field(None)
+    CfnAccessGrantProps: typing.Optional[dict[str, models.aws_s3.CfnAccessGrantPropsDef]] = pydantic.Field(None)
+    CfnAccessGrantsInstanceProps: typing.Optional[dict[str, models.aws_s3.CfnAccessGrantsInstancePropsDef]] = pydantic.Field(None)
+    CfnAccessGrantsLocationProps: typing.Optional[dict[str, models.aws_s3.CfnAccessGrantsLocationPropsDef]] = pydantic.Field(None)
     CfnAccessPointProps: typing.Optional[dict[str, models.aws_s3.CfnAccessPointPropsDef]] = pydantic.Field(None)
     CfnBucketPolicyProps: typing.Optional[dict[str, models.aws_s3.CfnBucketPolicyPropsDef]] = pydantic.Field(None)
     CfnBucketProps: typing.Optional[dict[str, models.aws_s3.CfnBucketPropsDef]] = pydantic.Field(None)
     CfnMultiRegionAccessPointPolicyProps: typing.Optional[dict[str, models.aws_s3.CfnMultiRegionAccessPointPolicyPropsDef]] = pydantic.Field(None)
     CfnMultiRegionAccessPointProps: typing.Optional[dict[str, models.aws_s3.CfnMultiRegionAccessPointPropsDef]] = pydantic.Field(None)
+    CfnStorageLensGroupProps: typing.Optional[dict[str, models.aws_s3.CfnStorageLensGroupPropsDef]] = pydantic.Field(None)
     CfnStorageLensProps: typing.Optional[dict[str, models.aws_s3.CfnStorageLensPropsDef]] = pydantic.Field(None)
     ...
 

@@ -26,6 +26,8 @@ ResourceTypeT: typing.TypeAlias = typing.Literal[
 
 NEWLINE = '\n'
 
+MODEL_NAMESPACE = 'models'
+
 def navsubgroup(tag: bs4.Tag) -> bool:
     if tag.name == 'div':
         classes = tag.get('class', '')
@@ -62,7 +64,7 @@ class APIResource:
     @property
     def model_class_fullname(self) -> str:
         mod = modules[self.module_name]
-        return f'models.{mod.namespace}.{self.model_class_name}'
+        return f'{MODEL_NAMESPACE}.{mod.namespace}.{self.model_class_name}'
 
     @property
     def config_class_name(self) -> str | None:
@@ -81,7 +83,7 @@ class APIResource:
             return None
         else:
             mod = modules[self.module_name]
-            return f'models.{mod.namespace}.{name}'
+            return f'{MODEL_NAMESPACE}.{mod.namespace}.{name}'
 
 
 
@@ -176,11 +178,11 @@ class APIResource:
     @property
     def _basename(self):
         if self.module_name == 'aws_cdk':
-            basename = f'models.core.{self.name.replace(".", "_")}'
+            basename = f'{MODEL_NAMESPACE}.core.{self.name.replace(".", "_")}'
         elif self.module_name.startswith('constructs'):
-            basename = f'models.constructs.{self.name.replace(".", "_")}'
+            basename = f'{MODEL_NAMESPACE}.constructs.{self.name.replace(".", "_")}'
         else:
-            basename = f'{self.module_name.replace("aws-cdk-lib", "models")}.{self.name.replace(".", "_")}'
+            basename = f'{self.module_name.replace("aws-cdk-lib", MODEL_NAMESPACE)}.{self.name.replace(".", "_")}'
         return basename
 
     def as_python_annotation(self) -> str:
@@ -190,13 +192,13 @@ class APIResource:
         elif self.resource_type == 'Interface':
             # XXX: Interface finding is flaky, due to implementation details in AWS CDK for Python.
             if self.obj in (constructs.IConstruct, aws_cdk.IResource, aws_cdk.aws_iam.IGrantable):  # TODO: figure out better way for IGrantable
-                return 'models.AnyResource'
+                return f'{MODEL_NAMESPACE}.AnyResource'
             if self.obj in (aws_cdk.IResolvable, constructs.IDependable):
-                return 'models.UnsupportedResource'
+                return f'{MODEL_NAMESPACE}.UnsupportedResource'
             ret = _implementations.get(self.obj)
             if not ret:
                 ... # TODO: find 'obtainable from' classes
-                return 'models.UnsupportedResource'
+                return f'{MODEL_NAMESPACE}.UnsupportedResource'
             # if len(ret) > 20:
             #     print('overloaded', basename)
             #     return 'models.UnsupportedResource'
@@ -621,12 +623,12 @@ def render_module(mod: Module) -> str:
             continue
         attrname = f'{resource.name.replace(".", "_")}'
         class_name = f'{attrname}Def'
-        fullname = f'models.{mod.namespace}.{class_name}'
+        fullname = f'{MODEL_NAMESPACE}.{mod.namespace}.{class_name}'
         s += f'\n    {attrname}: typing.Optional[dict[str, {fullname}]] = pydantic.Field(None)'
     s += '\n    ...'
     s += '\n'
 
-    s += '\nimport models\n'
+    s += f'\nimport {MODEL_NAMESPACE}\n'
 
     return s
 
@@ -674,7 +676,7 @@ def render_pydantic(resource: APIResource) -> str:
 
     return s
 
-_pydantic_reserved_words = {'schema', 'json', 'construct', 'validate', 'copy', 'register', 'model_fields', 'model_construct', 'model_copy', 'model_dump', 'model_json_schema', 'model_dump_json', 'model_validate', 'list', 'dict', 'models'}
+_pydantic_reserved_words = {'schema', 'json', 'construct', 'validate', 'copy', 'register', 'model_fields', 'model_construct', 'model_copy', 'model_dump', 'model_json_schema', 'model_dump_json', 'model_validate', 'list', 'dict', 'models', MODEL_NAMESPACE}
 
 def _render_class_head(resource: APIResource, class_name: str, base_classes: list[str]) -> str:
     # print('rendering class head', resource)
@@ -796,7 +798,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
             is_reserved = False
         meth_param_model_name = f'{class_name}{snake_to_camel(method.method_name)}Params'
         mod = modules[method.module_name]
-        fullname = f'models.{mod.namespace}.{meth_param_model_name}'
+        fullname = f'{MODEL_NAMESPACE}.{mod.namespace}.{meth_param_model_name}'
         _module_param_classes[resource.module_name].append(fullname)
         s += f'\n    {method_name}: typing.Optional[{fullname}] = pydantic.Field(None, description={method.docstring!r}'
         if is_reserved:
@@ -828,10 +830,10 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
             if method.parameters(exclude=['self']) or method.clean_return_type in reverse_resources:
                 meth_param_model_name = f'{class_name}{snake_to_camel(method.method_name)}Params'
                 mod = modules[method.module_name]
-                fullname = f'models.{mod.namespace}.{meth_param_model_name}'
+                fullname = f'{MODEL_NAMESPACE}.{mod.namespace}.{meth_param_model_name}'
                 _module_param_classes[resource.module_name].append(fullname)
                 if method.method_name == 'apply_removal_policy':
-                    s += f'\n    {method_name}: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None'
+                    s += f'\n    {method_name}: typing.Optional[list[{MODEL_NAMESPACE}.GenericApplyRemovalPolicyParams]] = pydantic.Field(None'
                 else:
                     s += f'\n    {method_name}: typing.Optional[list[{fullname}]] = pydantic.Field(None, description={method.docstring!r}'
             else:
@@ -841,7 +843,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
             s += ')'
         for property_name, return_resource in resource.configurable_properties.items():
             if return_resource.resource_type == 'Interface' and return_resource.nonconstructor_methods:
-                prop_config_name = f'models._interface_methods.{return_resource.config_class_name}'
+                prop_config_name = f'{MODEL_NAMESPACE}._interface_methods.{return_resource.config_class_name}'
             else:
                 prop_config_name = return_resource.config_class_fullname
             if prop_config_name is not None:
@@ -915,7 +917,7 @@ def _render_methods(resource: APIResource, class_name: str) -> str:
             if rtype_resource.resource_type == 'Interface':
                 if rtype_resource.nonconstructor_methods:
 
-                    rtype_config_type_name = f'models._interface_methods.{rtype_resource.config_class_name}'
+                    rtype_config_type_name = f'{MODEL_NAMESPACE}._interface_methods.{rtype_resource.config_class_name}'
                 else:
                     rtype_config_type_name = None
             else:
@@ -941,7 +943,7 @@ def render_iface_methods(resource: APIResource) -> str:
         # _iface_method_config_class_names[resource.obj] = None
         return f'\n#  {resource.qualname} skipped\n'
     s += f'\n\nclass {config_class_name}(pydantic.BaseModel):'
-    _module_param_classes['_interface_methods'].append(f'models._interface_methods.{config_class_name}')
+    _module_param_classes['_interface_methods'].append(f'{MODEL_NAMESPACE}._interface_methods.{config_class_name}')
     i = 0
     n = 0
     for method in resource.nonconstructor_methods:
@@ -956,7 +958,7 @@ def render_iface_methods(resource: APIResource) -> str:
             i += 1
             meth_param_model_name = f'{class_name}{snake_to_camel(method.method_name)}Params'
             mod = modules[method.module_name]
-            fullname = f'models._interface_methods.{meth_param_model_name}'
+            fullname = f'{MODEL_NAMESPACE}._interface_methods.{meth_param_model_name}'
             _module_param_classes['_interface_methods'].append(fullname)
             s += f'\n    {method_name}: typing.Optional[list[{fullname}]] = pydantic.Field(None, description={method.docstring!r}'
         else:
@@ -1022,7 +1024,7 @@ def render_iface_methods(resource: APIResource) -> str:
         if rtype in reverse_resources:
             rtype_resource = reverse_resources[rtype]
             if rtype_resource.resource_type == 'Interface' and rtype_resource.nonconstructor_methods:
-                rtype_config_type_name = f'models._interface_methods.{rtype_resource.config_class_name}'
+                rtype_config_type_name = f'{MODEL_NAMESPACE}._interface_methods.{rtype_resource.config_class_name}'
             else:
                 rtype_config_type_name = rtype_resource.config_class_fullname
 
@@ -1177,14 +1179,14 @@ def write_modules(mods: list[Module], outdir: str) -> None:
         f.write('from __future__ import annotations\n')
         f.write('import pydantic\nimport aws_cdk\nimport typing\nimport datetime\n\n')
         f.write(s)
-        f.write('\n\nimport models')
+        f.write(f'\n\nimport {MODEL_NAMESPACE}')
 
     for mod in mods:
         mod_code = render_module(mod)
         outfile = os.path.join(outdir, mod.namespace) + '.py'
         with open(outfile, 'w', encoding='utf-8') as f:
             f.write(mod_code)
-    initfile = os.path.join(outdir, '_init.py')
+    initfile = os.path.join(outdir, '__init__.py')
     with open(initfile, 'w') as f:
         f.write('import sys\nimport typing\nimport pydantic\nfrom ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM\nfrom .core import *\n')
         for mod in mods:

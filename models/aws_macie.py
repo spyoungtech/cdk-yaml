@@ -228,6 +228,7 @@ class CfnCustomDataIdentifierDefConfig(pydantic.BaseModel):
     override_logical_id: typing.Optional[list[models.aws_macie.CfnCustomDataIdentifierDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
     remove_dependency: typing.Optional[list[models.aws_macie.CfnCustomDataIdentifierDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_macie.CfnCustomDataIdentifierDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnCustomDataIdentifierDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -334,6 +335,7 @@ class CfnFindingsFilterDefConfig(pydantic.BaseModel):
     remove_dependency: typing.Optional[list[models.aws_macie.CfnFindingsFilterDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_macie.CfnFindingsFilterDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
     attr_findings_filter_list_items_config: typing.Optional[models._interface_methods.CoreIResolvableDefConfig] = pydantic.Field(None)
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnFindingsFilterDefCriterionadditionalpropertiespropertyParams(pydantic.BaseModel):
     eq: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')

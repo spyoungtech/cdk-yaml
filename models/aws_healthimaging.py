@@ -39,6 +39,7 @@ class CfnDatastoreDefConfig(pydantic.BaseModel):
     override_logical_id: typing.Optional[list[models.aws_healthimaging.CfnDatastoreDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
     remove_dependency: typing.Optional[list[models.aws_healthimaging.CfnDatastoreDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_healthimaging.CfnDatastoreDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDatastoreDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')

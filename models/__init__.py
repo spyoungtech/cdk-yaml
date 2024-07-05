@@ -1,3 +1,4 @@
+import sys
 import typing
 import pydantic
 from ._base import BaseClass, BaseStruct, BaseCfnResource, BaseCfnProperty, BaseConstruct, UnsupportedResource, AnyResource, REQUIRED_INIT_PARAM, _REQUIRED_INIT_PARAM
@@ -13,25 +14,32 @@ from . import aws_amplify
 from . import aws_amplifyuibuilder
 from . import aws_apigateway
 from . import aws_apigatewayv2
+from . import aws_apigatewayv2_authorizers
+from . import aws_apigatewayv2_integrations
 from . import aws_appconfig
 from . import aws_appflow
 from . import aws_appintegrations
 from . import aws_applicationautoscaling
 from . import aws_applicationinsights
+from . import aws_applicationsignals
 from . import aws_appmesh
 from . import aws_apprunner
 from . import aws_appstream
 from . import aws_appsync
 from . import aws_aps
+from . import aws_arczonalshift
 from . import aws_athena
 from . import aws_auditmanager
 from . import aws_autoscaling
 from . import aws_autoscaling_common
 from . import aws_autoscaling_hooktargets
 from . import aws_autoscalingplans
+from . import aws_b2bi
 from . import aws_backup
 from . import aws_backupgateway
 from . import aws_batch
+from . import aws_bcmdataexports
+from . import aws_bedrock
 from . import aws_billingconductor
 from . import aws_budgets
 from . import aws_cassandra
@@ -39,6 +47,7 @@ from . import aws_ce
 from . import aws_certificatemanager
 from . import aws_chatbot
 from . import aws_cleanrooms
+from . import aws_cleanroomsml
 from . import aws_cloud9
 from . import aws_cloudformation
 from . import aws_cloudfront
@@ -48,6 +57,7 @@ from . import aws_cloudwatch
 from . import aws_cloudwatch_actions
 from . import aws_codebuild
 from . import aws_codecommit
+from . import aws_codeconnections
 from . import aws_codedeploy
 from . import aws_codeguruprofiler
 from . import aws_codegurureviewer
@@ -67,7 +77,9 @@ from . import aws_customerprofiles
 from . import aws_databrew
 from . import aws_datapipeline
 from . import aws_datasync
+from . import aws_datazone
 from . import aws_dax
+from . import aws_deadline
 from . import aws_detective
 from . import aws_devicefarm
 from . import aws_devopsguru
@@ -172,6 +184,7 @@ from . import aws_memorydb
 from . import aws_msk
 from . import aws_mwaa
 from . import aws_neptune
+from . import aws_neptunegraph
 from . import aws_networkfirewall
 from . import aws_networkmanager
 from . import aws_nimblestudio
@@ -184,12 +197,14 @@ from . import aws_opsworkscm
 from . import aws_organizations
 from . import aws_osis
 from . import aws_panorama
+from . import aws_paymentcryptography
 from . import aws_pcaconnectorad
 from . import aws_personalize
 from . import aws_pinpoint
 from . import aws_pinpointemail
 from . import aws_pipes
 from . import aws_proton
+from . import aws_qbusiness
 from . import aws_qldb
 from . import aws_quicksight
 from . import aws_ram
@@ -206,6 +221,7 @@ from . import aws_rolesanywhere
 from . import aws_route53
 from . import aws_route53_patterns
 from . import aws_route53_targets
+from . import aws_route53profiles
 from . import aws_route53recoverycontrol
 from . import aws_route53recoveryreadiness
 from . import aws_route53resolver
@@ -214,6 +230,7 @@ from . import aws_s3
 from . import aws_s3_assets
 from . import aws_s3_deployment
 from . import aws_s3_notifications
+from . import aws_s3express
 from . import aws_s3objectlambda
 from . import aws_s3outposts
 from . import aws_sagemaker
@@ -222,6 +239,7 @@ from . import aws_scheduler
 from . import aws_sdb
 from . import aws_secretsmanager
 from . import aws_securityhub
+from . import aws_securitylake
 from . import aws_servicecatalog
 from . import aws_servicecatalogappregistry
 from . import aws_servicediscovery
@@ -252,6 +270,7 @@ from . import aws_wafregional
 from . import aws_wafv2
 from . import aws_wisdom
 from . import aws_workspaces
+from . import aws_workspacesthinclient
 from . import aws_workspacesweb
 from . import aws_xray
 from . import cloud_assembly_schema
@@ -268,8 +287,6 @@ from . import constructs
 from . import _interface_methods
 from . import core
 
-
-import sys
 _old_limit = sys.getrecursionlimit()
 sys.setrecursionlimit(10000)
 
@@ -284,25 +301,32 @@ class MegaModel(pydantic.BaseModel):
     aws_amplifyuibuilder_: typing.Optional[aws_amplifyuibuilder.ModuleModel] = pydantic.Field(None, alias='aws_amplifyuibuilder')
     aws_apigateway_: typing.Optional[aws_apigateway.ModuleModel] = pydantic.Field(None, alias='aws_apigateway')
     aws_apigatewayv2_: typing.Optional[aws_apigatewayv2.ModuleModel] = pydantic.Field(None, alias='aws_apigatewayv2')
+    aws_apigatewayv2_authorizers_: typing.Optional[aws_apigatewayv2_authorizers.ModuleModel] = pydantic.Field(None, alias='aws_apigatewayv2_authorizers')
+    aws_apigatewayv2_integrations_: typing.Optional[aws_apigatewayv2_integrations.ModuleModel] = pydantic.Field(None, alias='aws_apigatewayv2_integrations')
     aws_appconfig_: typing.Optional[aws_appconfig.ModuleModel] = pydantic.Field(None, alias='aws_appconfig')
     aws_appflow_: typing.Optional[aws_appflow.ModuleModel] = pydantic.Field(None, alias='aws_appflow')
     aws_appintegrations_: typing.Optional[aws_appintegrations.ModuleModel] = pydantic.Field(None, alias='aws_appintegrations')
     aws_applicationautoscaling_: typing.Optional[aws_applicationautoscaling.ModuleModel] = pydantic.Field(None, alias='aws_applicationautoscaling')
     aws_applicationinsights_: typing.Optional[aws_applicationinsights.ModuleModel] = pydantic.Field(None, alias='aws_applicationinsights')
+    aws_applicationsignals_: typing.Optional[aws_applicationsignals.ModuleModel] = pydantic.Field(None, alias='aws_applicationsignals')
     aws_appmesh_: typing.Optional[aws_appmesh.ModuleModel] = pydantic.Field(None, alias='aws_appmesh')
     aws_apprunner_: typing.Optional[aws_apprunner.ModuleModel] = pydantic.Field(None, alias='aws_apprunner')
     aws_appstream_: typing.Optional[aws_appstream.ModuleModel] = pydantic.Field(None, alias='aws_appstream')
     aws_appsync_: typing.Optional[aws_appsync.ModuleModel] = pydantic.Field(None, alias='aws_appsync')
     aws_aps_: typing.Optional[aws_aps.ModuleModel] = pydantic.Field(None, alias='aws_aps')
+    aws_arczonalshift_: typing.Optional[aws_arczonalshift.ModuleModel] = pydantic.Field(None, alias='aws_arczonalshift')
     aws_athena_: typing.Optional[aws_athena.ModuleModel] = pydantic.Field(None, alias='aws_athena')
     aws_auditmanager_: typing.Optional[aws_auditmanager.ModuleModel] = pydantic.Field(None, alias='aws_auditmanager')
     aws_autoscaling_: typing.Optional[aws_autoscaling.ModuleModel] = pydantic.Field(None, alias='aws_autoscaling')
     aws_autoscaling_common_: typing.Optional[aws_autoscaling_common.ModuleModel] = pydantic.Field(None, alias='aws_autoscaling_common')
     aws_autoscaling_hooktargets_: typing.Optional[aws_autoscaling_hooktargets.ModuleModel] = pydantic.Field(None, alias='aws_autoscaling_hooktargets')
     aws_autoscalingplans_: typing.Optional[aws_autoscalingplans.ModuleModel] = pydantic.Field(None, alias='aws_autoscalingplans')
+    aws_b2bi_: typing.Optional[aws_b2bi.ModuleModel] = pydantic.Field(None, alias='aws_b2bi')
     aws_backup_: typing.Optional[aws_backup.ModuleModel] = pydantic.Field(None, alias='aws_backup')
     aws_backupgateway_: typing.Optional[aws_backupgateway.ModuleModel] = pydantic.Field(None, alias='aws_backupgateway')
     aws_batch_: typing.Optional[aws_batch.ModuleModel] = pydantic.Field(None, alias='aws_batch')
+    aws_bcmdataexports_: typing.Optional[aws_bcmdataexports.ModuleModel] = pydantic.Field(None, alias='aws_bcmdataexports')
+    aws_bedrock_: typing.Optional[aws_bedrock.ModuleModel] = pydantic.Field(None, alias='aws_bedrock')
     aws_billingconductor_: typing.Optional[aws_billingconductor.ModuleModel] = pydantic.Field(None, alias='aws_billingconductor')
     aws_budgets_: typing.Optional[aws_budgets.ModuleModel] = pydantic.Field(None, alias='aws_budgets')
     aws_cassandra_: typing.Optional[aws_cassandra.ModuleModel] = pydantic.Field(None, alias='aws_cassandra')
@@ -310,6 +334,7 @@ class MegaModel(pydantic.BaseModel):
     aws_certificatemanager_: typing.Optional[aws_certificatemanager.ModuleModel] = pydantic.Field(None, alias='aws_certificatemanager')
     aws_chatbot_: typing.Optional[aws_chatbot.ModuleModel] = pydantic.Field(None, alias='aws_chatbot')
     aws_cleanrooms_: typing.Optional[aws_cleanrooms.ModuleModel] = pydantic.Field(None, alias='aws_cleanrooms')
+    aws_cleanroomsml_: typing.Optional[aws_cleanroomsml.ModuleModel] = pydantic.Field(None, alias='aws_cleanroomsml')
     aws_cloud9_: typing.Optional[aws_cloud9.ModuleModel] = pydantic.Field(None, alias='aws_cloud9')
     aws_cloudformation_: typing.Optional[aws_cloudformation.ModuleModel] = pydantic.Field(None, alias='aws_cloudformation')
     aws_cloudfront_: typing.Optional[aws_cloudfront.ModuleModel] = pydantic.Field(None, alias='aws_cloudfront')
@@ -319,6 +344,7 @@ class MegaModel(pydantic.BaseModel):
     aws_cloudwatch_actions_: typing.Optional[aws_cloudwatch_actions.ModuleModel] = pydantic.Field(None, alias='aws_cloudwatch_actions')
     aws_codebuild_: typing.Optional[aws_codebuild.ModuleModel] = pydantic.Field(None, alias='aws_codebuild')
     aws_codecommit_: typing.Optional[aws_codecommit.ModuleModel] = pydantic.Field(None, alias='aws_codecommit')
+    aws_codeconnections_: typing.Optional[aws_codeconnections.ModuleModel] = pydantic.Field(None, alias='aws_codeconnections')
     aws_codedeploy_: typing.Optional[aws_codedeploy.ModuleModel] = pydantic.Field(None, alias='aws_codedeploy')
     aws_codeguruprofiler_: typing.Optional[aws_codeguruprofiler.ModuleModel] = pydantic.Field(None, alias='aws_codeguruprofiler')
     aws_codegurureviewer_: typing.Optional[aws_codegurureviewer.ModuleModel] = pydantic.Field(None, alias='aws_codegurureviewer')
@@ -338,7 +364,9 @@ class MegaModel(pydantic.BaseModel):
     aws_databrew_: typing.Optional[aws_databrew.ModuleModel] = pydantic.Field(None, alias='aws_databrew')
     aws_datapipeline_: typing.Optional[aws_datapipeline.ModuleModel] = pydantic.Field(None, alias='aws_datapipeline')
     aws_datasync_: typing.Optional[aws_datasync.ModuleModel] = pydantic.Field(None, alias='aws_datasync')
+    aws_datazone_: typing.Optional[aws_datazone.ModuleModel] = pydantic.Field(None, alias='aws_datazone')
     aws_dax_: typing.Optional[aws_dax.ModuleModel] = pydantic.Field(None, alias='aws_dax')
+    aws_deadline_: typing.Optional[aws_deadline.ModuleModel] = pydantic.Field(None, alias='aws_deadline')
     aws_detective_: typing.Optional[aws_detective.ModuleModel] = pydantic.Field(None, alias='aws_detective')
     aws_devicefarm_: typing.Optional[aws_devicefarm.ModuleModel] = pydantic.Field(None, alias='aws_devicefarm')
     aws_devopsguru_: typing.Optional[aws_devopsguru.ModuleModel] = pydantic.Field(None, alias='aws_devopsguru')
@@ -443,6 +471,7 @@ class MegaModel(pydantic.BaseModel):
     aws_msk_: typing.Optional[aws_msk.ModuleModel] = pydantic.Field(None, alias='aws_msk')
     aws_mwaa_: typing.Optional[aws_mwaa.ModuleModel] = pydantic.Field(None, alias='aws_mwaa')
     aws_neptune_: typing.Optional[aws_neptune.ModuleModel] = pydantic.Field(None, alias='aws_neptune')
+    aws_neptunegraph_: typing.Optional[aws_neptunegraph.ModuleModel] = pydantic.Field(None, alias='aws_neptunegraph')
     aws_networkfirewall_: typing.Optional[aws_networkfirewall.ModuleModel] = pydantic.Field(None, alias='aws_networkfirewall')
     aws_networkmanager_: typing.Optional[aws_networkmanager.ModuleModel] = pydantic.Field(None, alias='aws_networkmanager')
     aws_nimblestudio_: typing.Optional[aws_nimblestudio.ModuleModel] = pydantic.Field(None, alias='aws_nimblestudio')
@@ -455,12 +484,14 @@ class MegaModel(pydantic.BaseModel):
     aws_organizations_: typing.Optional[aws_organizations.ModuleModel] = pydantic.Field(None, alias='aws_organizations')
     aws_osis_: typing.Optional[aws_osis.ModuleModel] = pydantic.Field(None, alias='aws_osis')
     aws_panorama_: typing.Optional[aws_panorama.ModuleModel] = pydantic.Field(None, alias='aws_panorama')
+    aws_paymentcryptography_: typing.Optional[aws_paymentcryptography.ModuleModel] = pydantic.Field(None, alias='aws_paymentcryptography')
     aws_pcaconnectorad_: typing.Optional[aws_pcaconnectorad.ModuleModel] = pydantic.Field(None, alias='aws_pcaconnectorad')
     aws_personalize_: typing.Optional[aws_personalize.ModuleModel] = pydantic.Field(None, alias='aws_personalize')
     aws_pinpoint_: typing.Optional[aws_pinpoint.ModuleModel] = pydantic.Field(None, alias='aws_pinpoint')
     aws_pinpointemail_: typing.Optional[aws_pinpointemail.ModuleModel] = pydantic.Field(None, alias='aws_pinpointemail')
     aws_pipes_: typing.Optional[aws_pipes.ModuleModel] = pydantic.Field(None, alias='aws_pipes')
     aws_proton_: typing.Optional[aws_proton.ModuleModel] = pydantic.Field(None, alias='aws_proton')
+    aws_qbusiness_: typing.Optional[aws_qbusiness.ModuleModel] = pydantic.Field(None, alias='aws_qbusiness')
     aws_qldb_: typing.Optional[aws_qldb.ModuleModel] = pydantic.Field(None, alias='aws_qldb')
     aws_quicksight_: typing.Optional[aws_quicksight.ModuleModel] = pydantic.Field(None, alias='aws_quicksight')
     aws_ram_: typing.Optional[aws_ram.ModuleModel] = pydantic.Field(None, alias='aws_ram')
@@ -477,6 +508,7 @@ class MegaModel(pydantic.BaseModel):
     aws_route53_: typing.Optional[aws_route53.ModuleModel] = pydantic.Field(None, alias='aws_route53')
     aws_route53_patterns_: typing.Optional[aws_route53_patterns.ModuleModel] = pydantic.Field(None, alias='aws_route53_patterns')
     aws_route53_targets_: typing.Optional[aws_route53_targets.ModuleModel] = pydantic.Field(None, alias='aws_route53_targets')
+    aws_route53profiles_: typing.Optional[aws_route53profiles.ModuleModel] = pydantic.Field(None, alias='aws_route53profiles')
     aws_route53recoverycontrol_: typing.Optional[aws_route53recoverycontrol.ModuleModel] = pydantic.Field(None, alias='aws_route53recoverycontrol')
     aws_route53recoveryreadiness_: typing.Optional[aws_route53recoveryreadiness.ModuleModel] = pydantic.Field(None, alias='aws_route53recoveryreadiness')
     aws_route53resolver_: typing.Optional[aws_route53resolver.ModuleModel] = pydantic.Field(None, alias='aws_route53resolver')
@@ -485,6 +517,7 @@ class MegaModel(pydantic.BaseModel):
     aws_s3_assets_: typing.Optional[aws_s3_assets.ModuleModel] = pydantic.Field(None, alias='aws_s3_assets')
     aws_s3_deployment_: typing.Optional[aws_s3_deployment.ModuleModel] = pydantic.Field(None, alias='aws_s3_deployment')
     aws_s3_notifications_: typing.Optional[aws_s3_notifications.ModuleModel] = pydantic.Field(None, alias='aws_s3_notifications')
+    aws_s3express_: typing.Optional[aws_s3express.ModuleModel] = pydantic.Field(None, alias='aws_s3express')
     aws_s3objectlambda_: typing.Optional[aws_s3objectlambda.ModuleModel] = pydantic.Field(None, alias='aws_s3objectlambda')
     aws_s3outposts_: typing.Optional[aws_s3outposts.ModuleModel] = pydantic.Field(None, alias='aws_s3outposts')
     aws_sagemaker_: typing.Optional[aws_sagemaker.ModuleModel] = pydantic.Field(None, alias='aws_sagemaker')
@@ -493,6 +526,7 @@ class MegaModel(pydantic.BaseModel):
     aws_sdb_: typing.Optional[aws_sdb.ModuleModel] = pydantic.Field(None, alias='aws_sdb')
     aws_secretsmanager_: typing.Optional[aws_secretsmanager.ModuleModel] = pydantic.Field(None, alias='aws_secretsmanager')
     aws_securityhub_: typing.Optional[aws_securityhub.ModuleModel] = pydantic.Field(None, alias='aws_securityhub')
+    aws_securitylake_: typing.Optional[aws_securitylake.ModuleModel] = pydantic.Field(None, alias='aws_securitylake')
     aws_servicecatalog_: typing.Optional[aws_servicecatalog.ModuleModel] = pydantic.Field(None, alias='aws_servicecatalog')
     aws_servicecatalogappregistry_: typing.Optional[aws_servicecatalogappregistry.ModuleModel] = pydantic.Field(None, alias='aws_servicecatalogappregistry')
     aws_servicediscovery_: typing.Optional[aws_servicediscovery.ModuleModel] = pydantic.Field(None, alias='aws_servicediscovery')
@@ -523,6 +557,7 @@ class MegaModel(pydantic.BaseModel):
     aws_wafv2_: typing.Optional[aws_wafv2.ModuleModel] = pydantic.Field(None, alias='aws_wafv2')
     aws_wisdom_: typing.Optional[aws_wisdom.ModuleModel] = pydantic.Field(None, alias='aws_wisdom')
     aws_workspaces_: typing.Optional[aws_workspaces.ModuleModel] = pydantic.Field(None, alias='aws_workspaces')
+    aws_workspacesthinclient_: typing.Optional[aws_workspacesthinclient.ModuleModel] = pydantic.Field(None, alias='aws_workspacesthinclient')
     aws_workspacesweb_: typing.Optional[aws_workspacesweb.ModuleModel] = pydantic.Field(None, alias='aws_workspacesweb')
     aws_xray_: typing.Optional[aws_xray.ModuleModel] = pydantic.Field(None, alias='aws_xray')
     cloud_assembly_schema_: typing.Optional[cloud_assembly_schema.ModuleModel] = pydantic.Field(None, alias='cloud_assembly_schema')

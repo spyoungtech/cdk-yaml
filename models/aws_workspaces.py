@@ -151,7 +151,7 @@ class CfnConnectionAliasDefReplaceDependencyParams(pydantic.BaseModel):
 class CfnWorkspaceDef(BaseCfnResource):
     bundle_id: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The identifier of the bundle for the WorkSpace.\n')
     directory_id: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The identifier of the AWS Directory Service directory for the WorkSpace.\n')
-    user_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The user name of the user for the WorkSpace. This user name must exist in the AWS Directory Service directory for the WorkSpace.\n')
+    user_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The user name of the user for the WorkSpace. This user name must exist in the AWS Directory Service directory for the WorkSpace. The reserved keyword, ``[UNDEFINED]`` , is used when creating user-decoupled WorkSpaces.\n')
     root_volume_encryption_enabled: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether the data stored on the root volume is encrypted.\n')
     tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The tags for the WorkSpace.\n')
     user_volume_encryption_enabled: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether the data stored on the user volume is encrypted.\n')
@@ -279,7 +279,7 @@ class CfnConnectionAliasPropsDef(BaseCfnProperty):
 class CfnWorkspacePropsDef(BaseCfnProperty):
     bundle_id: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The identifier of the bundle for the WorkSpace.\n')
     directory_id: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The identifier of the AWS Directory Service directory for the WorkSpace.\n')
-    user_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The user name of the user for the WorkSpace. This user name must exist in the AWS Directory Service directory for the WorkSpace.\n')
+    user_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The user name of the user for the WorkSpace. This user name must exist in the AWS Directory Service directory for the WorkSpace. The reserved keyword, ``[UNDEFINED]`` , is used when creating user-decoupled WorkSpaces.\n')
     root_volume_encryption_enabled: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether the data stored on the root volume is encrypted.\n')
     tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The tags for the WorkSpace.\n')
     user_volume_encryption_enabled: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether the data stored on the user volume is encrypted.\n')

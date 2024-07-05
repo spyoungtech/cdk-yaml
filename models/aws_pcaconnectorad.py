@@ -560,6 +560,7 @@ class CfnConnectorDefConfig(pydantic.BaseModel):
     override_logical_id: typing.Optional[list[models.aws_pcaconnectorad.CfnConnectorDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
     remove_dependency: typing.Optional[list[models.aws_pcaconnectorad.CfnConnectorDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_pcaconnectorad.CfnConnectorDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnConnectorDefVpcinformationpropertyParams(pydantic.BaseModel):
     security_group_ids: typing.Sequence[str] = pydantic.Field(..., description='')
@@ -662,6 +663,7 @@ class CfnDirectoryRegistrationDefConfig(pydantic.BaseModel):
     override_logical_id: typing.Optional[list[models.aws_pcaconnectorad.CfnDirectoryRegistrationDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
     remove_dependency: typing.Optional[list[models.aws_pcaconnectorad.CfnDirectoryRegistrationDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_pcaconnectorad.CfnDirectoryRegistrationDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnDirectoryRegistrationDefAddDeletionOverrideParams(pydantic.BaseModel):
     path: str = pydantic.Field(..., description='The path of the value to delete.')
@@ -891,6 +893,7 @@ class CfnTemplateDefConfig(pydantic.BaseModel):
     override_logical_id: typing.Optional[list[models.aws_pcaconnectorad.CfnTemplateDefOverrideLogicalIdParams]] = pydantic.Field(None, description='Overrides the auto-generated logical ID with a specific ID.')
     remove_dependency: typing.Optional[list[models.aws_pcaconnectorad.CfnTemplateDefRemoveDependencyParams]] = pydantic.Field(None, description='Indicates that this resource no longer depends on another resource.\nThis can be used for resources across stacks (including nested stacks)\nand the dependency will automatically be removed from the relevant scope.')
     replace_dependency: typing.Optional[list[models.aws_pcaconnectorad.CfnTemplateDefReplaceDependencyParams]] = pydantic.Field(None, description='Replaces one dependency with another.')
+    cdk_tag_manager_config: typing.Optional[models.core.TagManagerDefConfig] = pydantic.Field(None)
 
 class CfnTemplateDefApplicationpoliciespropertyParams(pydantic.BaseModel):
     policies: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_pcaconnectorad.CfnTemplate_ApplicationPolicyPropertyDef, dict[str, typing.Any]]]] = pydantic.Field(..., description='')

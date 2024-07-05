@@ -32,11 +32,11 @@ class ActionDefBindParams(pydantic.BaseModel):
 
 class ActionDefOnStateChangeParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='-\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='-\n')
     enabled: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the rule is enabled. Default: true\n')
     event_bus: typing.Optional[typing.Union[models.aws_events.EventBusDef]] = pydantic.Field(None, description='The event bus to associate with this rule. Default: - The default event bus.\n')
     schedule: typing.Optional[models.aws_events.ScheduleDef] = pydantic.Field(None, description='The schedule or rate (frequency) that determines when EventBridge runs the rule. You must specify this property, the ``eventPattern`` property, or both. For more information, see Schedule Expression Syntax for Rules in the Amazon EventBridge User Guide. Default: - None.\n')
-    targets: typing.Optional[typing.Sequence[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]]] = pydantic.Field(None, description='Targets to invoke when this rule matches an event. Input will be the full matched event. If you wish to specify custom target input, use ``addTarget(target[, inputOptions])``. Default: - No targets.\n')
+    targets: typing.Optional[typing.Sequence[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]]] = pydantic.Field(None, description='Targets to invoke when this rule matches an event. Input will be the full matched event. If you wish to specify custom target input, use ``addTarget(target[, inputOptions])``. Default: - No targets.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -129,6 +129,40 @@ class GlobalVariablesDef(BaseClass):
 
 
 
+#  autogenerated from aws_cdk.aws_codepipeline.Trigger
+class TriggerDef(BaseClass):
+    provider_type: typing.Union[aws_cdk.aws_codepipeline.ProviderType, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The source provider for the event, such as connections configured for a repository with Git tags, for the specified trigger configuration.')
+    git_configuration: typing.Union[models.aws_codepipeline.GitConfigurationDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Provides the filter criteria and the source stage for the repository event that starts the pipeline, such as Git tags. Default: - no configuration.')
+    _init_params: typing.ClassVar[list[str]] = ['provider_type', 'git_configuration']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.Trigger'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.Variable
+class VariableDef(BaseClass):
+    variable_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of a pipeline-level variable.')
+    default_value: typing.Optional[str] = pydantic.Field(None, description='The default value of a pipeline-level variable. Default: - No default value.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description="The description of a pipeline-level variable. It's used to add additional context about the variable, and not being used at time when pipeline executes. Default: - No description.")
+    _init_params: typing.ClassVar[list[str]] = ['variable_name', 'default_value', 'description']
+    _method_names: typing.ClassVar[list[str]] = ['reference']
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.Variable'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+    resource_config: typing.Optional[models.aws_codepipeline.VariableDefConfig] = pydantic.Field(None)
+
+
+class VariableDefConfig(pydantic.BaseModel):
+    reference: typing.Optional[bool] = pydantic.Field(None, description='Reference the variable name at Pipeline actions.\n:return: The variable name in a format that can be referenced at Pipeline actions')
+
+
 #  autogenerated from aws_cdk.aws_codepipeline.CustomActionRegistration
 class CustomActionRegistrationDef(BaseConstruct):
     artifact_bounds: typing.Union[_REQUIRED_INIT_PARAM, models.aws_codepipeline.ActionArtifactBoundsDef, dict[str, typing.Any]] = pydantic.Field(REQUIRED_INIT_PARAM, description='The artifact bounds of the Action.\n')
@@ -151,16 +185,20 @@ class CustomActionRegistrationDef(BaseConstruct):
 #  autogenerated from aws_cdk.aws_codepipeline.Pipeline
 class PipelineDef(BaseConstruct):
     artifact_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description='The S3 bucket used by this Pipeline to store artifacts. Default: - A new S3 bucket will be created.\n')
-    cross_account_keys: typing.Optional[bool] = pydantic.Field(None, description='Create KMS keys for cross-account deployments. This controls whether the pipeline is enabled for cross-account deployments. By default cross-account deployments are enabled, but this feature requires that KMS Customer Master Keys are created which have a cost of $1/month. If you do not need cross-account deployments, you can set this to ``false`` to not create those keys and save on that cost (the artifact bucket will be encrypted with an AWS-managed key). However, cross-account deployments will no longer be possible. Default: true\n')
+    cross_account_keys: typing.Optional[bool] = pydantic.Field(None, description='Create KMS keys for cross-account deployments. This controls whether the pipeline is enabled for cross-account deployments. By default cross-account deployments are enabled, but this feature requires that KMS Customer Master Keys are created which have a cost of $1/month. If you do not need cross-account deployments, you can set this to ``false`` to not create those keys and save on that cost (the artifact bucket will be encrypted with an AWS-managed key). However, cross-account deployments will no longer be possible. Default: false - false if the feature flag ``CODEPIPELINE_CROSS_ACCOUNT_KEYS_DEFAULT_VALUE_TO_FALSE`` is true, true otherwise\n')
     cross_region_replication_buckets: typing.Optional[typing.Mapping[str, typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description="A map of region to S3 bucket name used for cross-region CodePipeline. For every Action that you specify targeting a different region than the Pipeline itself, if you don't provide an explicit Bucket for that region using this property, the construct will automatically create a Stack containing an S3 Bucket in that region. Default: - None.\n")
     enable_key_rotation: typing.Optional[bool] = pydantic.Field(None, description='Enable KMS key rotation for the generated KMS keys. By default KMS key rotation is disabled, but will add an additional $1/month for each year the key exists when enabled. Default: - false (key rotation is disabled)\n')
+    execution_mode: typing.Optional[aws_cdk.aws_codepipeline.ExecutionMode] = pydantic.Field(None, description='The method that the pipeline will use to handle multiple executions. Default: - ExecutionMode.SUPERSEDED\n')
     pipeline_name: typing.Optional[str] = pydantic.Field(None, description='Name of the pipeline. Default: - AWS CloudFormation generates an ID and uses that for the pipeline name.\n')
+    pipeline_type: typing.Optional[aws_cdk.aws_codepipeline.PipelineType] = pydantic.Field(None, description='Type of the pipeline. Default: - PipelineType.V2 if the feature flag ``CODEPIPELINE_DEFAULT_PIPELINE_TYPE_TO_V2`` is true, PipelineType.V1 otherwise\n')
     restart_execution_on_update: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether to rerun the AWS CodePipeline pipeline after you update it. Default: false\n')
     reuse_cross_region_support_stacks: typing.Optional[bool] = pydantic.Field(None, description='Reuse the same cross region support stack for all pipelines in the App. Default: - true (Use the same support stack for all pipelines in App)\n')
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The IAM role to be assumed by this Pipeline. Default: a new IAM role will be created.\n')
-    stages: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.StagePropsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The list of Stages, in order, to create this Pipeline with. You can always add more Stages later by calling ``Pipeline#addStage``. Default: - None.')
-    _init_params: typing.ClassVar[list[str]] = ['artifact_bucket', 'cross_account_keys', 'cross_region_replication_buckets', 'enable_key_rotation', 'pipeline_name', 'restart_execution_on_update', 'reuse_cross_region_support_stacks', 'role', 'stages']
-    _method_names: typing.ClassVar[list[str]] = ['add_stage', 'add_to_role_policy', 'apply_removal_policy', 'bind_as_notification_rule_source', 'notify_on', 'notify_on_any_action_state_change', 'notify_on_any_manual_approval_state_change', 'notify_on_any_stage_state_change', 'notify_on_execution_state_change', 'on_event', 'on_state_change', 'stage']
+    stages: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.StagePropsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The list of Stages, in order, to create this Pipeline with. You can always add more Stages later by calling ``Pipeline#addStage``. Default: - None.\n')
+    triggers: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.TriggerPropsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline. When a trigger configuration is specified, default change detection for repository and branch commits is disabled. ``triggers`` can only be used when ``pipelineType`` is set to ``PipelineType.V2``. You can always add more triggers later by calling ``Pipeline#addTrigger``. Default: - No triggers\n')
+    variables: typing.Optional[typing.Sequence[models.aws_codepipeline.VariableDef]] = pydantic.Field(None, description='A list that defines the pipeline variables for a pipeline resource. ``variables`` can only be used when ``pipelineType`` is set to ``PipelineType.V2``. You can always add more variables later by calling ``Pipeline#addVariable``. Default: - No variables')
+    _init_params: typing.ClassVar[list[str]] = ['artifact_bucket', 'cross_account_keys', 'cross_region_replication_buckets', 'enable_key_rotation', 'execution_mode', 'pipeline_name', 'pipeline_type', 'restart_execution_on_update', 'reuse_cross_region_support_stacks', 'role', 'stages', 'triggers', 'variables']
+    _method_names: typing.ClassVar[list[str]] = ['add_stage', 'add_to_role_policy', 'add_trigger', 'add_variable', 'apply_removal_policy', 'bind_as_notification_rule_source', 'notify_on', 'notify_on_any_action_state_change', 'notify_on_any_manual_approval_state_change', 'notify_on_any_stage_state_change', 'notify_on_execution_state_change', 'on_event', 'on_state_change', 'stage']
     _classmethod_names: typing.ClassVar[list[str]] = ['from_pipeline_arn']
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.Pipeline'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = ['from_pipeline_arn']
@@ -174,6 +212,8 @@ class PipelineDef(BaseConstruct):
 class PipelineDefConfig(pydantic.BaseModel):
     add_stage: typing.Optional[list[models.aws_codepipeline.PipelineDefAddStageParams]] = pydantic.Field(None, description='Creates a new Stage, and adds it to this Pipeline.')
     add_to_role_policy: typing.Optional[list[models.aws_codepipeline.PipelineDefAddToRolePolicyParams]] = pydantic.Field(None, description='Adds a statement to the pipeline role.')
+    add_trigger: typing.Optional[list[models.aws_codepipeline.PipelineDefAddTriggerParams]] = pydantic.Field(None, description='Adds a new Trigger to this Pipeline.')
+    add_variable: typing.Optional[list[models.aws_codepipeline.PipelineDefAddVariableParams]] = pydantic.Field(None, description='Adds a new Variable to this Pipeline.')
     apply_removal_policy: typing.Optional[list[models.GenericApplyRemovalPolicyParams]] = pydantic.Field(None)
     bind_as_notification_rule_source: typing.Optional[list[models.aws_codepipeline.PipelineDefBindAsNotificationRuleSourceParams]] = pydantic.Field(None, description='Returns a source configuration for notification rule.')
     notify_on: typing.Optional[list[models.aws_codepipeline.PipelineDefNotifyOnParams]] = pydantic.Field(None, description='Defines a CodeStar notification rule triggered when the pipeline events emitted by you specified, it very similar to ``onEvent`` API.\nYou can also use the methods ``notifyOnExecutionStateChange``, ``notifyOnAnyStageStateChange``,\n``notifyOnAnyActionStateChange`` and ``notifyOnAnyManualApprovalStateChange``\nto define rules for these specific event emitted.')
@@ -198,6 +238,16 @@ class PipelineDefAddStageParams(pydantic.BaseModel):
 
 class PipelineDefAddToRolePolicyParams(pydantic.BaseModel):
     statement: models.aws_iam.PolicyStatementDef = pydantic.Field(..., description='-')
+    ...
+
+class PipelineDefAddTriggerParams(pydantic.BaseModel):
+    provider_type: aws_cdk.aws_codepipeline.ProviderType = pydantic.Field(..., description='The source provider for the event, such as connections configured for a repository with Git tags, for the specified trigger configuration.\n')
+    git_configuration: typing.Union[models.aws_codepipeline.GitConfigurationDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Provides the filter criteria and the source stage for the repository event that starts the pipeline, such as Git tags. Default: - no configuration.\n')
+    ...
+
+class PipelineDefAddVariableParams(pydantic.BaseModel):
+    variable: models.aws_codepipeline.VariableDef = pydantic.Field(..., description='Variable instance to add to this Pipeline.\n')
+    return_config: typing.Optional[list[models.aws_codepipeline.VariableDefConfig]] = pydantic.Field(None)
     ...
 
 class PipelineDefApplyRemovalPolicyParams(pydantic.BaseModel):
@@ -261,7 +311,7 @@ class PipelineDefNotifyOnExecutionStateChangeParams(pydantic.BaseModel):
 
 class PipelineDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='Identifier for this event handler.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -271,7 +321,7 @@ class PipelineDefOnEventParams(pydantic.BaseModel):
 
 class PipelineDefOnStateChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='Identifier for this event handler.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -419,8 +469,9 @@ class CfnPipeline_ActionDeclarationPropertyDef(BaseStruct):
     output_artifacts: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_OutputArtifactPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='The name or ID of the result of the action declaration, such as a test or build artifact. While the field is not a required parameter, most actions have an action configuration that requires a specified quantity of output artifacts. To refer to the action configuration specification by action provider, see the `Action structure reference <https://docs.aws.amazon.com/codepipeline/latest/userguide/action-reference.html>`_ in the *AWS CodePipeline User Guide* .\n')
     region: typing.Optional[str] = pydantic.Field(None, description="The action declaration's AWS Region, such as us-east-1.\n")
     role_arn: typing.Optional[str] = pydantic.Field(None, description='The ARN of the IAM service role that performs the declared action. This is assumed through the roleArn for the pipeline.\n')
-    run_order: typing.Union[int, float, None] = pydantic.Field(None, description='The order in which actions are run.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    # configuration: Any\n\n    action_declaration_property = codepipeline.CfnPipeline.ActionDeclarationProperty(\n        action_type_id=codepipeline.CfnPipeline.ActionTypeIdProperty(\n            category="category",\n            owner="owner",\n            provider="provider",\n            version="version"\n        ),\n        name="name",\n\n        # the properties below are optional\n        configuration=configuration,\n        input_artifacts=[codepipeline.CfnPipeline.InputArtifactProperty(\n            name="name"\n        )],\n        namespace="namespace",\n        output_artifacts=[codepipeline.CfnPipeline.OutputArtifactProperty(\n            name="name"\n        )],\n        region="region",\n        role_arn="roleArn",\n        run_order=123\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['action_type_id', 'name', 'configuration', 'input_artifacts', 'namespace', 'output_artifacts', 'region', 'role_arn', 'run_order']
+    run_order: typing.Union[int, float, None] = pydantic.Field(None, description='The order in which actions are run.\n')
+    timeout_in_minutes: typing.Union[int, float, None] = pydantic.Field(None, description='A timeout duration in minutes that can be applied against the ActionType’s default timeout value specified in `Quotas for AWS CodePipeline <https://docs.aws.amazon.com/codepipeline/latest/userguide/limits.html>`_ . This attribute is available only to the manual approval ActionType.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-actiondeclaration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    # configuration: Any\n\n    action_declaration_property = codepipeline.CfnPipeline.ActionDeclarationProperty(\n        action_type_id=codepipeline.CfnPipeline.ActionTypeIdProperty(\n            category="category",\n            owner="owner",\n            provider="provider",\n            version="version"\n        ),\n        name="name",\n\n        # the properties below are optional\n        configuration=configuration,\n        input_artifacts=[codepipeline.CfnPipeline.InputArtifactProperty(\n            name="name"\n        )],\n        namespace="namespace",\n        output_artifacts=[codepipeline.CfnPipeline.OutputArtifactProperty(\n            name="name"\n        )],\n        region="region",\n        role_arn="roleArn",\n        run_order=123,\n        timeout_in_minutes=123\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['action_type_id', 'name', 'configuration', 'input_artifacts', 'namespace', 'output_artifacts', 'region', 'role_arn', 'run_order', 'timeout_in_minutes']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.ActionDeclarationProperty'
@@ -502,6 +553,106 @@ class CfnPipeline_EncryptionKeyPropertyDef(BaseStruct):
 
 
 
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.FailureConditionsProperty
+class CfnPipeline_FailureConditionsPropertyDef(BaseStruct):
+    result: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The specified result for when the failure conditions are met, such as rolling back the stage.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-failureconditions.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    failure_conditions_property = codepipeline.CfnPipeline.FailureConditionsProperty(\n        result="result"\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['result']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.FailureConditionsProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty
+class CfnPipeline_GitBranchFilterCriteriaPropertyDef(BaseStruct):
+    excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git branches that, when a commit is pushed, are to be excluded from starting the pipeline.\n')
+    includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git branches that, when a commit is pushed, are to be included as criteria that starts the pipeline.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitbranchfiltercriteria.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_branch_filter_criteria_property = codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n        excludes=["excludes"],\n        includes=["includes"]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['excludes', 'includes']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.GitConfigurationProperty
+class CfnPipeline_GitConfigurationPropertyDef(BaseStruct):
+    source_action_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the pipeline source action where the trigger configuration, such as Git tags, is specified. The trigger configuration will start the pipeline upon the specified change only. .. epigraph:: You can only specify one trigger configuration per source action.\n')
+    pull_request: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitPullRequestFilterPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='The field where the repository event that will start the pipeline is specified as pull requests.\n')
+    push: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitPushFilterPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitconfiguration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_configuration_property = codepipeline.CfnPipeline.GitConfigurationProperty(\n        source_action_name="sourceActionName",\n\n        # the properties below are optional\n        pull_request=[codepipeline.CfnPipeline.GitPullRequestFilterProperty(\n            branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n                excludes=["excludes"],\n                includes=["includes"]\n            ),\n            events=["events"],\n            file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n                excludes=["excludes"],\n                includes=["includes"]\n            )\n        )],\n        push=[codepipeline.CfnPipeline.GitPushFilterProperty(\n            branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n                excludes=["excludes"],\n                includes=["includes"]\n            ),\n            file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n                excludes=["excludes"],\n                includes=["includes"]\n            ),\n            tags=codepipeline.CfnPipeline.GitTagFilterCriteriaProperty(\n                excludes=["excludes"],\n                includes=["includes"]\n            )\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['source_action_name', 'pull_request', 'push']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.GitConfigurationProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty
+class CfnPipeline_GitFilePathFilterCriteriaPropertyDef(BaseStruct):
+    excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git repository file paths that, when a commit is pushed, are to be excluded from starting the pipeline.\n')
+    includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git repository file paths that, when a commit is pushed, are to be included as criteria that starts the pipeline.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitfilepathfiltercriteria.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_file_path_filter_criteria_property = codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n        excludes=["excludes"],\n        includes=["includes"]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['excludes', 'includes']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.GitPullRequestFilterProperty
+class CfnPipeline_GitPullRequestFilterPropertyDef(BaseStruct):
+    branches: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitBranchFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The field that specifies to filter on branches for the pull request trigger configuration.\n')
+    events: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The field that specifies which pull request events to filter on (opened, updated, closed) for the trigger configuration.\n')
+    file_paths: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitFilePathFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The field that specifies to filter on file paths for the pull request trigger configuration.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitpullrequestfilter.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_pull_request_filter_property = codepipeline.CfnPipeline.GitPullRequestFilterProperty(\n        branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n            excludes=["excludes"],\n            includes=["includes"]\n        ),\n        events=["events"],\n        file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n            excludes=["excludes"],\n            includes=["includes"]\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['branches', 'events', 'file_paths']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.GitPullRequestFilterProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.GitPushFilterProperty
+class CfnPipeline_GitPushFilterPropertyDef(BaseStruct):
+    branches: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitBranchFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The field that specifies to filter on branches for the push trigger configuration.\n')
+    file_paths: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitFilePathFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The field that specifies to filter on file paths for the push trigger configuration.\n')
+    tags: typing.Union[models.aws_codepipeline.CfnPipeline_GitTagFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The field that contains the details for the Git tags trigger configuration.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gitpushfilter.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_push_filter_property = codepipeline.CfnPipeline.GitPushFilterProperty(\n        branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n            excludes=["excludes"],\n            includes=["includes"]\n        ),\n        file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n            excludes=["excludes"],\n            includes=["includes"]\n        ),\n        tags=codepipeline.CfnPipeline.GitTagFilterCriteriaProperty(\n            excludes=["excludes"],\n            includes=["includes"]\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['branches', 'file_paths', 'tags']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.GitPushFilterProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.GitTagFilterCriteriaProperty
+class CfnPipeline_GitTagFilterCriteriaPropertyDef(BaseStruct):
+    excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git tags that, when pushed, are to be excluded from starting the pipeline.\n')
+    includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git tags that, when pushed, are to be included as criteria that starts the pipeline.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-gittagfiltercriteria.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_tag_filter_criteria_property = codepipeline.CfnPipeline.GitTagFilterCriteriaProperty(\n        excludes=["excludes"],\n        includes=["includes"]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['excludes', 'includes']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.GitTagFilterCriteriaProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
 #  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.InputArtifactProperty
 class CfnPipeline_InputArtifactPropertyDef(BaseStruct):
     name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the artifact to be worked on (for example, "My App"). Artifacts are the files that are worked on by actions in the pipeline. See the action configuration for each action for details about artifact parameters. For example, the S3 source action input artifact is a file name (or file path), and the files are generally provided as a ZIP file. Example artifact name: SampleApp_Windows.zip The input artifact of an action must exactly match the output artifact declared in a preceding action, but the input artifact does not have to be the next action in strict sequence from the action that provided the output artifact. Actions in parallel can declare different output artifacts, which are in turn consumed by different following actions.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-inputartifact.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    input_artifact_property = codepipeline.CfnPipeline.InputArtifactProperty(\n        name="name"\n    )\n')
@@ -528,12 +679,27 @@ class CfnPipeline_OutputArtifactPropertyDef(BaseStruct):
 
 
 
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.PipelineTriggerDeclarationProperty
+class CfnPipeline_PipelineTriggerDeclarationPropertyDef(BaseStruct):
+    provider_type: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The source provider for the event, such as connections configured for a repository with Git tags, for the specified trigger configuration.\n')
+    git_configuration: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Provides the filter criteria and the source stage for the repository event that starts the pipeline, such as Git tags.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-pipelinetriggerdeclaration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    pipeline_trigger_declaration_property = codepipeline.CfnPipeline.PipelineTriggerDeclarationProperty(\n        provider_type="providerType",\n\n        # the properties below are optional\n        git_configuration=codepipeline.CfnPipeline.GitConfigurationProperty(\n            source_action_name="sourceActionName",\n\n            # the properties below are optional\n            pull_request=[codepipeline.CfnPipeline.GitPullRequestFilterProperty(\n                branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n                    excludes=["excludes"],\n                    includes=["includes"]\n                ),\n                events=["events"],\n                file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n                    excludes=["excludes"],\n                    includes=["includes"]\n                )\n            )],\n            push=[codepipeline.CfnPipeline.GitPushFilterProperty(\n                branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n                    excludes=["excludes"],\n                    includes=["includes"]\n                ),\n                file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n                    excludes=["excludes"],\n                    includes=["includes"]\n                ),\n                tags=codepipeline.CfnPipeline.GitTagFilterCriteriaProperty(\n                    excludes=["excludes"],\n                    includes=["includes"]\n                )\n            )]\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['provider_type', 'git_configuration']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.PipelineTriggerDeclarationProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
 #  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.StageDeclarationProperty
 class CfnPipeline_StageDeclarationPropertyDef(BaseStruct):
     actions: typing.Union[_REQUIRED_INIT_PARAM, models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_ActionDeclarationPropertyDef, dict[str, typing.Any]]]] = pydantic.Field(REQUIRED_INIT_PARAM, description='The actions included in a stage.\n')
     name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of the stage.\n')
-    blockers: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_BlockerDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='Reserved for future use.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    # configuration: Any\n\n    stage_declaration_property = codepipeline.CfnPipeline.StageDeclarationProperty(\n        actions=[codepipeline.CfnPipeline.ActionDeclarationProperty(\n            action_type_id=codepipeline.CfnPipeline.ActionTypeIdProperty(\n                category="category",\n                owner="owner",\n                provider="provider",\n                version="version"\n            ),\n            name="name",\n\n            # the properties below are optional\n            configuration=configuration,\n            input_artifacts=[codepipeline.CfnPipeline.InputArtifactProperty(\n                name="name"\n            )],\n            namespace="namespace",\n            output_artifacts=[codepipeline.CfnPipeline.OutputArtifactProperty(\n                name="name"\n            )],\n            region="region",\n            role_arn="roleArn",\n            run_order=123\n        )],\n        name="name",\n\n        # the properties below are optional\n        blockers=[codepipeline.CfnPipeline.BlockerDeclarationProperty(\n            name="name",\n            type="type"\n        )]\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['actions', 'name', 'blockers']
+    blockers: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_BlockerDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='Reserved for future use.\n')
+    on_failure: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_FailureConditionsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The method to use when a stage has not completed successfully. For example, configuring this field for rollback will roll back a failed stage automatically to the last successful pipeline execution in the stage.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-stagedeclaration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    # configuration: Any\n\n    stage_declaration_property = codepipeline.CfnPipeline.StageDeclarationProperty(\n        actions=[codepipeline.CfnPipeline.ActionDeclarationProperty(\n            action_type_id=codepipeline.CfnPipeline.ActionTypeIdProperty(\n                category="category",\n                owner="owner",\n                provider="provider",\n                version="version"\n            ),\n            name="name",\n\n            # the properties below are optional\n            configuration=configuration,\n            input_artifacts=[codepipeline.CfnPipeline.InputArtifactProperty(\n                name="name"\n            )],\n            namespace="namespace",\n            output_artifacts=[codepipeline.CfnPipeline.OutputArtifactProperty(\n                name="name"\n            )],\n            region="region",\n            role_arn="roleArn",\n            run_order=123,\n            timeout_in_minutes=123\n        )],\n        name="name",\n\n        # the properties below are optional\n        blockers=[codepipeline.CfnPipeline.BlockerDeclarationProperty(\n            name="name",\n            type="type"\n        )],\n        on_failure=codepipeline.CfnPipeline.FailureConditionsProperty(\n            result="result"\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['actions', 'name', 'blockers', 'on_failure']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.StageDeclarationProperty'
@@ -551,6 +717,21 @@ class CfnPipeline_StageTransitionPropertyDef(BaseStruct):
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.StageTransitionProperty'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.CfnPipeline.VariableDeclarationProperty
+class CfnPipeline_VariableDeclarationPropertyDef(BaseStruct):
+    name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of a pipeline-level variable.\n')
+    default_value: typing.Optional[str] = pydantic.Field(None, description='The value of a pipeline-level variable.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='The description of a pipeline-level variable. It\'s used to add additional context about the variable, and not being used at time when pipeline executes.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codepipeline-pipeline-variabledeclaration.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    variable_declaration_property = codepipeline.CfnPipeline.VariableDeclarationProperty(\n        name="name",\n\n        # the properties below are optional\n        default_value="defaultValue",\n        description="description"\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['name', 'default_value', 'description']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline.VariableDeclarationProperty'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
     ...
 
@@ -674,6 +855,52 @@ class CustomActionRegistrationPropsDef(BaseStruct):
 
 
 
+#  autogenerated from aws_cdk.aws_codepipeline.GitConfiguration
+class GitConfigurationDef(BaseStruct):
+    source_action: typing.Union[_REQUIRED_INIT_PARAM, models.aws_codepipeline.ActionDef, models.aws_codepipeline_actions.ActionDef, models.aws_codepipeline_actions.AlexaSkillDeployActionDef, models.aws_codepipeline_actions.CloudFormationCreateReplaceChangeSetActionDef, models.aws_codepipeline_actions.CloudFormationCreateUpdateStackActionDef, models.aws_codepipeline_actions.CloudFormationDeleteStackActionDef, models.aws_codepipeline_actions.CloudFormationDeployStackInstancesActionDef, models.aws_codepipeline_actions.CloudFormationDeployStackSetActionDef, models.aws_codepipeline_actions.CloudFormationExecuteChangeSetActionDef, models.aws_codepipeline_actions.CodeBuildActionDef, models.aws_codepipeline_actions.CodeCommitSourceActionDef, models.aws_codepipeline_actions.CodeDeployEcsDeployActionDef, models.aws_codepipeline_actions.CodeDeployServerDeployActionDef, models.aws_codepipeline_actions.CodeStarConnectionsSourceActionDef, models.aws_codepipeline_actions.EcrSourceActionDef, models.aws_codepipeline_actions.EcsDeployActionDef, models.aws_codepipeline_actions.ElasticBeanstalkDeployActionDef, models.aws_codepipeline_actions.GitHubSourceActionDef, models.aws_codepipeline_actions.JenkinsActionDef, models.aws_codepipeline_actions.LambdaInvokeActionDef, models.aws_codepipeline_actions.ManualApprovalActionDef, models.aws_codepipeline_actions.S3DeployActionDef, models.aws_codepipeline_actions.S3SourceActionDef, models.aws_codepipeline_actions.ServiceCatalogDeployActionBeta1Def, models.aws_codepipeline_actions.StepFunctionInvokeActionDef] = pydantic.Field(REQUIRED_INIT_PARAM, description='The pipeline source action where the trigger configuration, such as Git tags. The trigger configuration will start the pipeline upon the specified change only. You can only specify one trigger configuration per source action. Since the provider for ``sourceAction`` must be ``CodeStarSourceConnection``, you can use ``CodeStarConnectionsSourceAction`` construct in ``aws-codepipeline-actions`` module.\n')
+    pull_request_filter: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.GitPullRequestFilterDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The field where the repository event that will start the pipeline is specified as pull requests. The length must be less than or equal to 3. Default: - no filter.\n')
+    push_filter: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.GitPushFilterDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The field where the repository event that will start the pipeline, such as pushing Git tags, is specified with details. Git tags is the only supported event type. The length must be less than or equal to 3. Default: - no filter.\n\n:exampleMetadata: infused\n\nExample::\n\n    # source_action: codepipeline_actions.CodeStarConnectionsSourceAction\n    # build_action: codepipeline_actions.CodeBuildAction\n\n\n    codepipeline.Pipeline(self, "Pipeline",\n        pipeline_type=codepipeline.PipelineType.V2,\n        stages=[codepipeline.StageProps(\n            stage_name="Source",\n            actions=[source_action]\n        ), codepipeline.StageProps(\n            stage_name="Build",\n            actions=[build_action]\n        )\n        ],\n        triggers=[codepipeline.TriggerProps(\n            provider_type=codepipeline.ProviderType.CODE_STAR_SOURCE_CONNECTION,\n            git_configuration=codepipeline.GitConfiguration(\n                source_action=source_action,\n                push_filter=[codepipeline.GitPushFilter(\n                    tags_excludes=["exclude1", "exclude2"],\n                    tags_includes=["include*"]\n                )]\n            )\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['source_action', 'pull_request_filter', 'push_filter']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.GitConfiguration'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.GitPullRequestFilter
+class GitPullRequestFilterDef(BaseStruct):
+    branches_excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git branches that, when pull request events occurs, are to be excluded from starting the pipeline. You can filter with glob patterns. The ``branchesExcludes`` takes priority over the ``branchesIncludes``. Maximum length of this array is 8. Default: - no branches.\n')
+    branches_includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git branches that, when pull request events occurs, are to be included as criteria that starts the pipeline. You can filter with glob patterns. The ``branchesExcludes`` takes priority over the ``branchesIncludes``. Maximum length of this array is 8. Default: - no branches.\n')
+    events: typing.Optional[typing.Sequence[aws_cdk.aws_codepipeline.GitPullRequestEvent]] = pydantic.Field(None, description='The field that specifies which pull request events to filter on (opened, updated, closed) for the trigger configuration. Default: - all events.\n')
+    file_paths_excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git repository file paths that, when pull request events occurs, are to be excluded from starting the pipeline. You can filter with glob patterns. The ``filePathsExcludes`` takes priority over the ``filePathsIncludes``. Maximum length of this array is 8. Default: - no filePaths.\n')
+    file_paths_includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git repository file paths that, when pull request events occurs, are to be included as criteria that starts the pipeline. You can filter with glob patterns. The ``filePathsExcludes`` takes priority over the ``filePathsIncludes``. Maximum length of this array is 8. Default: - no filePaths.\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_pull_request_filter = codepipeline.GitPullRequestFilter(\n        branches_excludes=["branchesExcludes"],\n        branches_includes=["branchesIncludes"],\n        events=[codepipeline.GitPullRequestEvent.OPEN],\n        file_paths_excludes=["filePathsExcludes"],\n        file_paths_includes=["filePathsIncludes"]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['branches_excludes', 'branches_includes', 'events', 'file_paths_excludes', 'file_paths_includes']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.GitPullRequestFilter'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.GitPushFilter
+class GitPushFilterDef(BaseStruct):
+    tags_excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git tags that, when pushed, are to be excluded from starting the pipeline. You can filter with glob patterns. The ``tagsExcludes`` takes priority over the ``tagsIncludes``. Maximum length of this array is 8. Default: - no tags.\n')
+    tags_includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The list of patterns of Git tags that, when pushed, are to be included as criteria that starts the pipeline. You can filter with glob patterns. The ``tagsExcludes`` takes priority over the ``tagsIncludes``. Maximum length of this array is 8. Default: - no tags.\n\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    git_push_filter = codepipeline.GitPushFilter(\n        tags_excludes=["tagsExcludes"],\n        tags_includes=["tagsIncludes"]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['tags_excludes', 'tags_includes']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.GitPushFilter'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
 #  autogenerated from aws_cdk.aws_codepipeline.PipelineNotifyOnOptions
 class PipelineNotifyOnOptionsDef(BaseStruct):
     detail_type: typing.Optional[aws_cdk.aws_codestarnotifications.DetailType] = pydantic.Field(None, description='The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created. Default: DetailType.FULL\n')
@@ -693,15 +920,19 @@ class PipelineNotifyOnOptionsDef(BaseStruct):
 #  autogenerated from aws_cdk.aws_codepipeline.PipelineProps
 class PipelinePropsDef(BaseStruct):
     artifact_bucket: typing.Optional[typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]] = pydantic.Field(None, description='The S3 bucket used by this Pipeline to store artifacts. Default: - A new S3 bucket will be created.')
-    cross_account_keys: typing.Optional[bool] = pydantic.Field(None, description='Create KMS keys for cross-account deployments. This controls whether the pipeline is enabled for cross-account deployments. By default cross-account deployments are enabled, but this feature requires that KMS Customer Master Keys are created which have a cost of $1/month. If you do not need cross-account deployments, you can set this to ``false`` to not create those keys and save on that cost (the artifact bucket will be encrypted with an AWS-managed key). However, cross-account deployments will no longer be possible. Default: true\n')
+    cross_account_keys: typing.Optional[bool] = pydantic.Field(None, description='Create KMS keys for cross-account deployments. This controls whether the pipeline is enabled for cross-account deployments. By default cross-account deployments are enabled, but this feature requires that KMS Customer Master Keys are created which have a cost of $1/month. If you do not need cross-account deployments, you can set this to ``false`` to not create those keys and save on that cost (the artifact bucket will be encrypted with an AWS-managed key). However, cross-account deployments will no longer be possible. Default: false - false if the feature flag ``CODEPIPELINE_CROSS_ACCOUNT_KEYS_DEFAULT_VALUE_TO_FALSE`` is true, true otherwise\n')
     cross_region_replication_buckets: typing.Optional[typing.Mapping[str, typing.Union[models.aws_s3.BucketBaseDef, models.aws_s3.BucketDef]]] = pydantic.Field(None, description="A map of region to S3 bucket name used for cross-region CodePipeline. For every Action that you specify targeting a different region than the Pipeline itself, if you don't provide an explicit Bucket for that region using this property, the construct will automatically create a Stack containing an S3 Bucket in that region. Default: - None.\n")
     enable_key_rotation: typing.Optional[bool] = pydantic.Field(None, description='Enable KMS key rotation for the generated KMS keys. By default KMS key rotation is disabled, but will add an additional $1/month for each year the key exists when enabled. Default: - false (key rotation is disabled)\n')
+    execution_mode: typing.Optional[aws_cdk.aws_codepipeline.ExecutionMode] = pydantic.Field(None, description='The method that the pipeline will use to handle multiple executions. Default: - ExecutionMode.SUPERSEDED\n')
     pipeline_name: typing.Optional[str] = pydantic.Field(None, description='Name of the pipeline. Default: - AWS CloudFormation generates an ID and uses that for the pipeline name.\n')
+    pipeline_type: typing.Optional[aws_cdk.aws_codepipeline.PipelineType] = pydantic.Field(None, description='Type of the pipeline. Default: - PipelineType.V2 if the feature flag ``CODEPIPELINE_DEFAULT_PIPELINE_TYPE_TO_V2`` is true, PipelineType.V1 otherwise\n')
     restart_execution_on_update: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether to rerun the AWS CodePipeline pipeline after you update it. Default: false\n')
     reuse_cross_region_support_stacks: typing.Optional[bool] = pydantic.Field(None, description='Reuse the same cross region support stack for all pipelines in the App. Default: - true (Use the same support stack for all pipelines in App)\n')
     role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The IAM role to be assumed by this Pipeline. Default: a new IAM role will be created.\n')
-    stages: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.StagePropsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The list of Stages, in order, to create this Pipeline with. You can always add more Stages later by calling ``Pipeline#addStage``. Default: - None.\n\n:exampleMetadata: infused\n\nExample::\n\n    # project: codebuild.PipelineProject\n\n    repository = codecommit.Repository(self, "MyRepository",\n        repository_name="MyRepository"\n    )\n    project = codebuild.PipelineProject(self, "MyProject")\n\n    source_output = codepipeline.Artifact()\n    source_action = codepipeline_actions.CodeCommitSourceAction(\n        action_name="CodeCommit",\n        repository=repository,\n        output=source_output\n    )\n    build_action = codepipeline_actions.CodeBuildAction(\n        action_name="CodeBuild",\n        project=project,\n        input=source_output,\n        outputs=[codepipeline.Artifact()],  # optional\n        execute_batch_build=True,  # optional, defaults to false\n        combine_batch_build_artifacts=True\n    )\n\n    codepipeline.Pipeline(self, "MyPipeline",\n        stages=[codepipeline.StageProps(\n            stage_name="Source",\n            actions=[source_action]\n        ), codepipeline.StageProps(\n            stage_name="Build",\n            actions=[build_action]\n        )\n        ]\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['artifact_bucket', 'cross_account_keys', 'cross_region_replication_buckets', 'enable_key_rotation', 'pipeline_name', 'restart_execution_on_update', 'reuse_cross_region_support_stacks', 'role', 'stages']
+    stages: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.StagePropsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The list of Stages, in order, to create this Pipeline with. You can always add more Stages later by calling ``Pipeline#addStage``. Default: - None.\n')
+    triggers: typing.Optional[typing.Sequence[typing.Union[models.aws_codepipeline.TriggerPropsDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline. When a trigger configuration is specified, default change detection for repository and branch commits is disabled. ``triggers`` can only be used when ``pipelineType`` is set to ``PipelineType.V2``. You can always add more triggers later by calling ``Pipeline#addTrigger``. Default: - No triggers\n')
+    variables: typing.Optional[typing.Sequence[models.aws_codepipeline.VariableDef]] = pydantic.Field(None, description='A list that defines the pipeline variables for a pipeline resource. ``variables`` can only be used when ``pipelineType`` is set to ``PipelineType.V2``. You can always add more variables later by calling ``Pipeline#addVariable``. Default: - No variables\n\n:exampleMetadata: infused\n\nExample::\n\n    # source_action: codepipeline_actions.S3SourceAction\n    # source_output: codepipeline.Artifact\n    # deploy_bucket: s3.Bucket\n\n\n    # Pipeline-level variable\n    variable = codepipeline.Variable(\n        variable_name="bucket-var",\n        description="description",\n        default_value="sample"\n    )\n\n    codepipeline.Pipeline(self, "Pipeline",\n        pipeline_type=codepipeline.PipelineType.V2,\n        variables=[variable],\n        stages=[codepipeline.StageProps(\n            stage_name="Source",\n            actions=[source_action]\n        ), codepipeline.StageProps(\n            stage_name="Deploy",\n            actions=[\n                codepipeline_actions.S3DeployAction(\n                    action_name="DeployAction",\n                    # can reference the variables\n                    object_key=f"{variable.reference()}.txt",\n                    input=source_output,\n                    bucket=deploy_bucket\n                )\n            ]\n        )\n        ]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['artifact_bucket', 'cross_account_keys', 'cross_region_replication_buckets', 'enable_key_rotation', 'execution_mode', 'pipeline_name', 'pipeline_type', 'restart_execution_on_update', 'reuse_cross_region_support_stacks', 'role', 'stages', 'triggers', 'variables']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.PipelineProps'
@@ -758,10 +989,51 @@ class StagePropsDef(BaseStruct):
 
 
 
+#  autogenerated from aws_cdk.aws_codepipeline.TriggerProps
+class TriggerPropsDef(BaseStruct):
+    provider_type: typing.Union[aws_cdk.aws_codepipeline.ProviderType, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The source provider for the event, such as connections configured for a repository with Git tags, for the specified trigger configuration.\n')
+    git_configuration: typing.Union[models.aws_codepipeline.GitConfigurationDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Provides the filter criteria and the source stage for the repository event that starts the pipeline, such as Git tags. Default: - no configuration.\n\n:exampleMetadata: infused\n\nExample::\n\n    # pipeline: codepipeline.Pipeline\n    # source_action: codepipeline_actions.CodeStarConnectionsSourceAction\n\n\n    pipeline.add_trigger(\n        provider_type=codepipeline.ProviderType.CODE_STAR_SOURCE_CONNECTION,\n        git_configuration=codepipeline.GitConfiguration(\n            source_action=source_action,\n            push_filter=[codepipeline.GitPushFilter(\n                tags_excludes=["exclude1", "exclude2"],\n                tags_includes=["include*"]\n            )]\n        )\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['provider_type', 'git_configuration']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.TriggerProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
+#  autogenerated from aws_cdk.aws_codepipeline.VariableProps
+class VariablePropsDef(BaseStruct):
+    variable_name: typing.Union[str, _REQUIRED_INIT_PARAM] = pydantic.Field(REQUIRED_INIT_PARAM, description='The name of a pipeline-level variable.\n')
+    default_value: typing.Optional[str] = pydantic.Field(None, description='The default value of a pipeline-level variable. Default: - No default value.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='The description of a pipeline-level variable. It\'s used to add additional context about the variable, and not being used at time when pipeline executes. Default: - No description.\n\n:exampleMetadata: infused\n\nExample::\n\n    # source_action: codepipeline_actions.S3SourceAction\n    # source_output: codepipeline.Artifact\n    # deploy_bucket: s3.Bucket\n\n\n    # Pipeline-level variable\n    variable = codepipeline.Variable(\n        variable_name="bucket-var",\n        description="description",\n        default_value="sample"\n    )\n\n    codepipeline.Pipeline(self, "Pipeline",\n        pipeline_type=codepipeline.PipelineType.V2,\n        variables=[variable],\n        stages=[codepipeline.StageProps(\n            stage_name="Source",\n            actions=[source_action]\n        ), codepipeline.StageProps(\n            stage_name="Deploy",\n            actions=[\n                codepipeline_actions.S3DeployAction(\n                    action_name="DeployAction",\n                    # can reference the variables\n                    object_key=f"{variable.reference()}.txt",\n                    input=source_output,\n                    bucket=deploy_bucket\n                )\n            ]\n        )\n        ]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['variable_name', 'default_value', 'description']
+    _method_names: typing.ClassVar[list[str]] = []
+    _classmethod_names: typing.ClassVar[list[str]] = []
+    _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.VariableProps'
+    _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
+    ...
+
+
+
+
 #  autogenerated from aws_cdk.aws_codepipeline.ActionCategory
 # skipping emum
 
+#  autogenerated from aws_cdk.aws_codepipeline.ExecutionMode
+# skipping emum
+
+#  autogenerated from aws_cdk.aws_codepipeline.GitPullRequestEvent
+# skipping emum
+
 #  autogenerated from aws_cdk.aws_codepipeline.PipelineNotificationEvents
+# skipping emum
+
+#  autogenerated from aws_cdk.aws_codepipeline.PipelineType
+# skipping emum
+
+#  autogenerated from aws_cdk.aws_codepipeline.ProviderType
 # skipping emum
 
 #  autogenerated from aws_cdk.aws_codepipeline.IAction
@@ -910,11 +1182,15 @@ class CfnPipelineDef(BaseCfnResource):
     artifact_store: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_ArtifactStorePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The S3 bucket where artifacts for the pipeline are stored. .. epigraph:: You must include either ``artifactStore`` or ``artifactStores`` in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use ``artifactStores`` .\n')
     artifact_stores: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_ArtifactStoreMapPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='A mapping of ``artifactStore`` objects and their corresponding AWS Regions. There must be an artifact store for the pipeline Region and for each cross-region action in the pipeline. .. epigraph:: You must include either ``artifactStore`` or ``artifactStores`` in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use ``artifactStores`` .\n')
     disable_inbound_stage_transitions: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_StageTransitionPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='Represents the input of a ``DisableStageTransition`` action.\n')
+    execution_mode: typing.Optional[str] = pydantic.Field(None, description='The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED.\n')
     name: typing.Optional[str] = pydantic.Field(None, description='The name of the pipeline.\n')
+    pipeline_type: typing.Optional[str] = pydantic.Field(None, description='CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications. - V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters. - V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration. .. epigraph:: Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs. For information about pricing for CodePipeline, see `Pricing <https://docs.aws.amazon.com/codepipeline/pricing/>`_ . For information about which type of pipeline to choose, see `What type of pipeline is right for me? <https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html>`_ .\n')
     restart_execution_on_update: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether to rerun the CodePipeline pipeline after you update it.\n')
-    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specifies the tags applied to the pipeline.')
-    _init_params: typing.ClassVar[list[str]] = ['role_arn', 'stages', 'artifact_store', 'artifact_stores', 'disable_inbound_stage_transitions', 'name', 'restart_execution_on_update', 'tags']
-    _method_names: typing.ClassVar[list[str]] = ['ActionDeclarationProperty', 'ActionTypeIdProperty', 'ArtifactStoreMapProperty', 'ArtifactStoreProperty', 'BlockerDeclarationProperty', 'EncryptionKeyProperty', 'InputArtifactProperty', 'OutputArtifactProperty', 'StageDeclarationProperty', 'StageTransitionProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specifies the tags applied to the pipeline.\n')
+    triggers: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_PipelineTriggerDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline. .. epigraph:: When a trigger configuration is specified, default change detection for repository and branch commits is disabled.\n')
+    variables: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_VariableDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match ``[A-Za-z0-9@\\-_]+`` .')
+    _init_params: typing.ClassVar[list[str]] = ['role_arn', 'stages', 'artifact_store', 'artifact_stores', 'disable_inbound_stage_transitions', 'execution_mode', 'name', 'pipeline_type', 'restart_execution_on_update', 'tags', 'triggers', 'variables']
+    _method_names: typing.ClassVar[list[str]] = ['ActionDeclarationProperty', 'ActionTypeIdProperty', 'ArtifactStoreMapProperty', 'ArtifactStoreProperty', 'BlockerDeclarationProperty', 'EncryptionKeyProperty', 'FailureConditionsProperty', 'GitBranchFilterCriteriaProperty', 'GitConfigurationProperty', 'GitFilePathFilterCriteriaProperty', 'GitPullRequestFilterProperty', 'GitPushFilterProperty', 'GitTagFilterCriteriaProperty', 'InputArtifactProperty', 'OutputArtifactProperty', 'PipelineTriggerDeclarationProperty', 'StageDeclarationProperty', 'StageTransitionProperty', 'VariableDeclarationProperty', 'add_deletion_override', 'add_dependency', 'add_depends_on', 'add_metadata', 'add_override', 'add_property_deletion_override', 'add_property_override', 'apply_removal_policy', 'get_att', 'get_metadata', 'inspect', 'obtain_dependencies', 'obtain_resource_dependencies', 'override_logical_id', 'remove_dependency', 'replace_dependency']
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipeline'
     _alternate_constructor_method_names: typing.ClassVar[list[str]] = []
@@ -931,10 +1207,19 @@ class CfnPipelineDefConfig(pydantic.BaseModel):
     ArtifactStoreProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefArtifactstorepropertyParams]] = pydantic.Field(None, description='')
     BlockerDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefBlockerdeclarationpropertyParams]] = pydantic.Field(None, description='')
     EncryptionKeyProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefEncryptionkeypropertyParams]] = pydantic.Field(None, description='')
+    FailureConditionsProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefFailureconditionspropertyParams]] = pydantic.Field(None, description='')
+    GitBranchFilterCriteriaProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGitbranchfiltercriteriapropertyParams]] = pydantic.Field(None, description='')
+    GitConfigurationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGitconfigurationpropertyParams]] = pydantic.Field(None, description='')
+    GitFilePathFilterCriteriaProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGitfilepathfiltercriteriapropertyParams]] = pydantic.Field(None, description='')
+    GitPullRequestFilterProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGitpullrequestfilterpropertyParams]] = pydantic.Field(None, description='')
+    GitPushFilterProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGitpushfilterpropertyParams]] = pydantic.Field(None, description='')
+    GitTagFilterCriteriaProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefGittagfiltercriteriapropertyParams]] = pydantic.Field(None, description='')
     InputArtifactProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefInputartifactpropertyParams]] = pydantic.Field(None, description='')
     OutputArtifactProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefOutputartifactpropertyParams]] = pydantic.Field(None, description='')
+    PipelineTriggerDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefPipelinetriggerdeclarationpropertyParams]] = pydantic.Field(None, description='')
     StageDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefStagedeclarationpropertyParams]] = pydantic.Field(None, description='')
     StageTransitionProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefStagetransitionpropertyParams]] = pydantic.Field(None, description='')
+    VariableDeclarationProperty: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefVariabledeclarationpropertyParams]] = pydantic.Field(None, description='')
     add_deletion_override: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddDeletionOverrideParams]] = pydantic.Field(None, description='Syntactic sugar for ``addOverride(path, undefined)``.')
     add_dependency: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddDependencyParams]] = pydantic.Field(None, description='Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.\nThis can be used for resources across stacks (or nested stack) boundaries\nand the dependency will automatically be transferred to the relevant scope.')
     add_depends_on: typing.Optional[list[models.aws_codepipeline.CfnPipelineDefAddDependsOnParams]] = pydantic.Field(None, description='(deprecated) Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.')
@@ -963,6 +1248,7 @@ class CfnPipelineDefActiondeclarationpropertyParams(pydantic.BaseModel):
     region: typing.Optional[str] = pydantic.Field(None, description='')
     role_arn: typing.Optional[str] = pydantic.Field(None, description='')
     run_order: typing.Union[int, float, None] = pydantic.Field(None, description='')
+    timeout_in_minutes: typing.Union[int, float, None] = pydantic.Field(None, description='')
     ...
 
 class CfnPipelineDefActiontypeidpropertyParams(pydantic.BaseModel):
@@ -993,6 +1279,43 @@ class CfnPipelineDefEncryptionkeypropertyParams(pydantic.BaseModel):
     type: str = pydantic.Field(..., description='')
     ...
 
+class CfnPipelineDefFailureconditionspropertyParams(pydantic.BaseModel):
+    result: str = pydantic.Field(..., description='')
+    ...
+
+class CfnPipelineDefGitbranchfiltercriteriapropertyParams(pydantic.BaseModel):
+    excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    ...
+
+class CfnPipelineDefGitconfigurationpropertyParams(pydantic.BaseModel):
+    source_action_name: str = pydantic.Field(..., description='')
+    pull_request: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitPullRequestFilterPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
+    push: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitPushFilterPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnPipelineDefGitfilepathfiltercriteriapropertyParams(pydantic.BaseModel):
+    excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    ...
+
+class CfnPipelineDefGitpullrequestfilterpropertyParams(pydantic.BaseModel):
+    branches: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitBranchFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    events: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    file_paths: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitFilePathFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnPipelineDefGitpushfilterpropertyParams(pydantic.BaseModel):
+    branches: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitBranchFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    file_paths: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitFilePathFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    tags: typing.Union[models.aws_codepipeline.CfnPipeline_GitTagFilterCriteriaPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
+class CfnPipelineDefGittagfiltercriteriapropertyParams(pydantic.BaseModel):
+    excludes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    includes: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='')
+    ...
+
 class CfnPipelineDefInputartifactpropertyParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='')
     ...
@@ -1001,15 +1324,27 @@ class CfnPipelineDefOutputartifactpropertyParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='')
     ...
 
+class CfnPipelineDefPipelinetriggerdeclarationpropertyParams(pydantic.BaseModel):
+    provider_type: str = pydantic.Field(..., description='')
+    git_configuration: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_GitConfigurationPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
+    ...
+
 class CfnPipelineDefStagedeclarationpropertyParams(pydantic.BaseModel):
     actions: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_ActionDeclarationPropertyDef, dict[str, typing.Any]]]] = pydantic.Field(..., description='')
     name: str = pydantic.Field(..., description='')
     blockers: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_BlockerDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='')
+    on_failure: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_FailureConditionsPropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='')
     ...
 
 class CfnPipelineDefStagetransitionpropertyParams(pydantic.BaseModel):
     reason: str = pydantic.Field(..., description='')
     stage_name: str = pydantic.Field(..., description='')
+    ...
+
+class CfnPipelineDefVariabledeclarationpropertyParams(pydantic.BaseModel):
+    name: str = pydantic.Field(..., description='')
+    default_value: typing.Optional[str] = pydantic.Field(None, description='')
+    description: typing.Optional[str] = pydantic.Field(None, description='')
     ...
 
 class CfnPipelineDefAddDeletionOverrideParams(pydantic.BaseModel):
@@ -1220,10 +1555,14 @@ class CfnPipelinePropsDef(BaseCfnProperty):
     artifact_store: typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_ArtifactStorePropertyDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The S3 bucket where artifacts for the pipeline are stored. .. epigraph:: You must include either ``artifactStore`` or ``artifactStores`` in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use ``artifactStores`` .\n')
     artifact_stores: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_ArtifactStoreMapPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='A mapping of ``artifactStore`` objects and their corresponding AWS Regions. There must be an artifact store for the pipeline Region and for each cross-region action in the pipeline. .. epigraph:: You must include either ``artifactStore`` or ``artifactStores`` in your pipeline, but you cannot use both. If you create a cross-region action in your pipeline, you must use ``artifactStores`` .\n')
     disable_inbound_stage_transitions: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_StageTransitionPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='Represents the input of a ``DisableStageTransition`` action.\n')
+    execution_mode: typing.Optional[str] = pydantic.Field(None, description='The method that the pipeline will use to handle multiple executions. The default mode is SUPERSEDED.\n')
     name: typing.Optional[str] = pydantic.Field(None, description='The name of the pipeline.\n')
+    pipeline_type: typing.Optional[str] = pydantic.Field(None, description='CodePipeline provides the following pipeline types, which differ in characteristics and price, so that you can tailor your pipeline features and cost to the needs of your applications. - V1 type pipelines have a JSON structure that contains standard pipeline, stage, and action-level parameters. - V2 type pipelines have the same structure as a V1 type, along with additional parameters for release safety and trigger configuration. .. epigraph:: Including V2 parameters, such as triggers on Git tags, in the pipeline JSON when creating or updating a pipeline will result in the pipeline having the V2 type of pipeline and the associated costs. For information about pricing for CodePipeline, see `Pricing <https://docs.aws.amazon.com/codepipeline/pricing/>`_ . For information about which type of pipeline to choose, see `What type of pipeline is right for me? <https://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-types-planning.html>`_ .\n')
     restart_execution_on_update: typing.Union[bool, models.UnsupportedResource, None] = pydantic.Field(None, description='Indicates whether to rerun the CodePipeline pipeline after you update it.\n')
-    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specifies the tags applied to the pipeline.\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    # configuration: Any\n\n    cfn_pipeline_props = codepipeline.CfnPipelineProps(\n        role_arn="roleArn",\n        stages=[codepipeline.CfnPipeline.StageDeclarationProperty(\n            actions=[codepipeline.CfnPipeline.ActionDeclarationProperty(\n                action_type_id=codepipeline.CfnPipeline.ActionTypeIdProperty(\n                    category="category",\n                    owner="owner",\n                    provider="provider",\n                    version="version"\n                ),\n                name="name",\n\n                # the properties below are optional\n                configuration=configuration,\n                input_artifacts=[codepipeline.CfnPipeline.InputArtifactProperty(\n                    name="name"\n                )],\n                namespace="namespace",\n                output_artifacts=[codepipeline.CfnPipeline.OutputArtifactProperty(\n                    name="name"\n                )],\n                region="region",\n                role_arn="roleArn",\n                run_order=123\n            )],\n            name="name",\n\n            # the properties below are optional\n            blockers=[codepipeline.CfnPipeline.BlockerDeclarationProperty(\n                name="name",\n                type="type"\n            )]\n        )],\n\n        # the properties below are optional\n        artifact_store=codepipeline.CfnPipeline.ArtifactStoreProperty(\n            location="location",\n            type="type",\n\n            # the properties below are optional\n            encryption_key=codepipeline.CfnPipeline.EncryptionKeyProperty(\n                id="id",\n                type="type"\n            )\n        ),\n        artifact_stores=[codepipeline.CfnPipeline.ArtifactStoreMapProperty(\n            artifact_store=codepipeline.CfnPipeline.ArtifactStoreProperty(\n                location="location",\n                type="type",\n\n                # the properties below are optional\n                encryption_key=codepipeline.CfnPipeline.EncryptionKeyProperty(\n                    id="id",\n                    type="type"\n                )\n            ),\n            region="region"\n        )],\n        disable_inbound_stage_transitions=[codepipeline.CfnPipeline.StageTransitionProperty(\n            reason="reason",\n            stage_name="stageName"\n        )],\n        name="name",\n        restart_execution_on_update=False,\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )]\n    )\n')
-    _init_params: typing.ClassVar[list[str]] = ['role_arn', 'stages', 'artifact_store', 'artifact_stores', 'disable_inbound_stage_transitions', 'name', 'restart_execution_on_update', 'tags']
+    tags: typing.Optional[typing.Sequence[typing.Union[models.CfnTagDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specifies the tags applied to the pipeline.\n')
+    triggers: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_PipelineTriggerDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='The trigger configuration specifying a type of event, such as Git tags, that starts the pipeline. .. epigraph:: When a trigger configuration is specified, default change detection for repository and branch commits is disabled.\n')
+    variables: typing.Union[models.UnsupportedResource, typing.Sequence[typing.Union[models.UnsupportedResource, models.aws_codepipeline.CfnPipeline_VariableDeclarationPropertyDef, dict[str, typing.Any]]], None] = pydantic.Field(None, description='A list that defines the pipeline variables for a pipeline resource. Variable names can have alphanumeric and underscore characters, and the values must match ``[A-Za-z0-9@\\-_]+`` .\n\n:see: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html\n:exampleMetadata: fixture=_generated\n\nExample::\n\n    # The code below shows an example of how to instantiate this type.\n    # The values are placeholders you should change.\n    from aws_cdk import aws_codepipeline as codepipeline\n\n    # configuration: Any\n\n    cfn_pipeline_props = codepipeline.CfnPipelineProps(\n        role_arn="roleArn",\n        stages=[codepipeline.CfnPipeline.StageDeclarationProperty(\n            actions=[codepipeline.CfnPipeline.ActionDeclarationProperty(\n                action_type_id=codepipeline.CfnPipeline.ActionTypeIdProperty(\n                    category="category",\n                    owner="owner",\n                    provider="provider",\n                    version="version"\n                ),\n                name="name",\n\n                # the properties below are optional\n                configuration=configuration,\n                input_artifacts=[codepipeline.CfnPipeline.InputArtifactProperty(\n                    name="name"\n                )],\n                namespace="namespace",\n                output_artifacts=[codepipeline.CfnPipeline.OutputArtifactProperty(\n                    name="name"\n                )],\n                region="region",\n                role_arn="roleArn",\n                run_order=123,\n                timeout_in_minutes=123\n            )],\n            name="name",\n\n            # the properties below are optional\n            blockers=[codepipeline.CfnPipeline.BlockerDeclarationProperty(\n                name="name",\n                type="type"\n            )],\n            on_failure=codepipeline.CfnPipeline.FailureConditionsProperty(\n                result="result"\n            )\n        )],\n\n        # the properties below are optional\n        artifact_store=codepipeline.CfnPipeline.ArtifactStoreProperty(\n            location="location",\n            type="type",\n\n            # the properties below are optional\n            encryption_key=codepipeline.CfnPipeline.EncryptionKeyProperty(\n                id="id",\n                type="type"\n            )\n        ),\n        artifact_stores=[codepipeline.CfnPipeline.ArtifactStoreMapProperty(\n            artifact_store=codepipeline.CfnPipeline.ArtifactStoreProperty(\n                location="location",\n                type="type",\n\n                # the properties below are optional\n                encryption_key=codepipeline.CfnPipeline.EncryptionKeyProperty(\n                    id="id",\n                    type="type"\n                )\n            ),\n            region="region"\n        )],\n        disable_inbound_stage_transitions=[codepipeline.CfnPipeline.StageTransitionProperty(\n            reason="reason",\n            stage_name="stageName"\n        )],\n        execution_mode="executionMode",\n        name="name",\n        pipeline_type="pipelineType",\n        restart_execution_on_update=False,\n        tags=[CfnTag(\n            key="key",\n            value="value"\n        )],\n        triggers=[codepipeline.CfnPipeline.PipelineTriggerDeclarationProperty(\n            provider_type="providerType",\n\n            # the properties below are optional\n            git_configuration=codepipeline.CfnPipeline.GitConfigurationProperty(\n                source_action_name="sourceActionName",\n\n                # the properties below are optional\n                pull_request=[codepipeline.CfnPipeline.GitPullRequestFilterProperty(\n                    branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n                        excludes=["excludes"],\n                        includes=["includes"]\n                    ),\n                    events=["events"],\n                    file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n                        excludes=["excludes"],\n                        includes=["includes"]\n                    )\n                )],\n                push=[codepipeline.CfnPipeline.GitPushFilterProperty(\n                    branches=codepipeline.CfnPipeline.GitBranchFilterCriteriaProperty(\n                        excludes=["excludes"],\n                        includes=["includes"]\n                    ),\n                    file_paths=codepipeline.CfnPipeline.GitFilePathFilterCriteriaProperty(\n                        excludes=["excludes"],\n                        includes=["includes"]\n                    ),\n                    tags=codepipeline.CfnPipeline.GitTagFilterCriteriaProperty(\n                        excludes=["excludes"],\n                        includes=["includes"]\n                    )\n                )]\n            )\n        )],\n        variables=[codepipeline.CfnPipeline.VariableDeclarationProperty(\n            name="name",\n\n            # the properties below are optional\n            default_value="defaultValue",\n            description="description"\n        )]\n    )\n')
+    _init_params: typing.ClassVar[list[str]] = ['role_arn', 'stages', 'artifact_store', 'artifact_stores', 'disable_inbound_stage_transitions', 'execution_mode', 'name', 'pipeline_type', 'restart_execution_on_update', 'tags', 'triggers', 'variables']
     _method_names: typing.ClassVar[list[str]] = []
     _classmethod_names: typing.ClassVar[list[str]] = []
     _cdk_class_fqn: typing.ClassVar[str] = 'aws_cdk.aws_codepipeline.CfnPipelineProps'
@@ -1258,6 +1597,8 @@ class ModuleModel(pydantic.BaseModel):
     Artifact: typing.Optional[dict[str, models.aws_codepipeline.ArtifactDef]] = pydantic.Field(None)
     ArtifactPath: typing.Optional[dict[str, models.aws_codepipeline.ArtifactPathDef]] = pydantic.Field(None)
     GlobalVariables: typing.Optional[dict[str, models.aws_codepipeline.GlobalVariablesDef]] = pydantic.Field(None)
+    Trigger: typing.Optional[dict[str, models.aws_codepipeline.TriggerDef]] = pydantic.Field(None)
+    Variable: typing.Optional[dict[str, models.aws_codepipeline.VariableDef]] = pydantic.Field(None)
     CustomActionRegistration: typing.Optional[dict[str, models.aws_codepipeline.CustomActionRegistrationDef]] = pydantic.Field(None)
     Pipeline: typing.Optional[dict[str, models.aws_codepipeline.PipelineDef]] = pydantic.Field(None)
     ActionArtifactBounds: typing.Optional[dict[str, models.aws_codepipeline.ActionArtifactBoundsDef]] = pydantic.Field(None)
@@ -1273,10 +1614,19 @@ class ModuleModel(pydantic.BaseModel):
     CfnPipeline_ArtifactStoreProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_ArtifactStorePropertyDef]] = pydantic.Field(None)
     CfnPipeline_BlockerDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_BlockerDeclarationPropertyDef]] = pydantic.Field(None)
     CfnPipeline_EncryptionKeyProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_EncryptionKeyPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_FailureConditionsProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_FailureConditionsPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_GitBranchFilterCriteriaProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_GitBranchFilterCriteriaPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_GitConfigurationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_GitConfigurationPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_GitFilePathFilterCriteriaProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_GitFilePathFilterCriteriaPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_GitPullRequestFilterProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_GitPullRequestFilterPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_GitPushFilterProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_GitPushFilterPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_GitTagFilterCriteriaProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_GitTagFilterCriteriaPropertyDef]] = pydantic.Field(None)
     CfnPipeline_InputArtifactProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_InputArtifactPropertyDef]] = pydantic.Field(None)
     CfnPipeline_OutputArtifactProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_OutputArtifactPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_PipelineTriggerDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_PipelineTriggerDeclarationPropertyDef]] = pydantic.Field(None)
     CfnPipeline_StageDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_StageDeclarationPropertyDef]] = pydantic.Field(None)
     CfnPipeline_StageTransitionProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_StageTransitionPropertyDef]] = pydantic.Field(None)
+    CfnPipeline_VariableDeclarationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnPipeline_VariableDeclarationPropertyDef]] = pydantic.Field(None)
     CfnWebhook_WebhookAuthConfigurationProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhook_WebhookAuthConfigurationPropertyDef]] = pydantic.Field(None)
     CfnWebhook_WebhookFilterRuleProperty: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhook_WebhookFilterRulePropertyDef]] = pydantic.Field(None)
     CommonActionProps: typing.Optional[dict[str, models.aws_codepipeline.CommonActionPropsDef]] = pydantic.Field(None)
@@ -1284,11 +1634,16 @@ class ModuleModel(pydantic.BaseModel):
     CrossRegionSupport: typing.Optional[dict[str, models.aws_codepipeline.CrossRegionSupportDef]] = pydantic.Field(None)
     CustomActionProperty: typing.Optional[dict[str, models.aws_codepipeline.CustomActionPropertyDef]] = pydantic.Field(None)
     CustomActionRegistrationProps: typing.Optional[dict[str, models.aws_codepipeline.CustomActionRegistrationPropsDef]] = pydantic.Field(None)
+    GitConfiguration: typing.Optional[dict[str, models.aws_codepipeline.GitConfigurationDef]] = pydantic.Field(None)
+    GitPullRequestFilter: typing.Optional[dict[str, models.aws_codepipeline.GitPullRequestFilterDef]] = pydantic.Field(None)
+    GitPushFilter: typing.Optional[dict[str, models.aws_codepipeline.GitPushFilterDef]] = pydantic.Field(None)
     PipelineNotifyOnOptions: typing.Optional[dict[str, models.aws_codepipeline.PipelineNotifyOnOptionsDef]] = pydantic.Field(None)
     PipelineProps: typing.Optional[dict[str, models.aws_codepipeline.PipelinePropsDef]] = pydantic.Field(None)
     StageOptions: typing.Optional[dict[str, models.aws_codepipeline.StageOptionsDef]] = pydantic.Field(None)
     StagePlacement: typing.Optional[dict[str, models.aws_codepipeline.StagePlacementDef]] = pydantic.Field(None)
     StageProps: typing.Optional[dict[str, models.aws_codepipeline.StagePropsDef]] = pydantic.Field(None)
+    TriggerProps: typing.Optional[dict[str, models.aws_codepipeline.TriggerPropsDef]] = pydantic.Field(None)
+    VariableProps: typing.Optional[dict[str, models.aws_codepipeline.VariablePropsDef]] = pydantic.Field(None)
     CfnCustomActionType: typing.Optional[dict[str, models.aws_codepipeline.CfnCustomActionTypeDef]] = pydantic.Field(None)
     CfnPipeline: typing.Optional[dict[str, models.aws_codepipeline.CfnPipelineDef]] = pydantic.Field(None)
     CfnWebhook: typing.Optional[dict[str, models.aws_codepipeline.CfnWebhookDef]] = pydantic.Field(None)

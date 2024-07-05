@@ -37,6 +37,7 @@ class CoreIBoundStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel)
     docker_build_secrets: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build secrets to pass to the ``docker build`` command. Since Docker build secrets are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build secrets are passed\n')
     docker_build_ssh: typing.Optional[str] = pydantic.Field(None, description='SSH agent socket or keys to pass to the ``docker buildx`` command. Default: - no ssh arg is passed\n')
     docker_build_target: typing.Optional[str] = pydantic.Field(None, description='Docker target to build to. Only allowed when ``directoryName`` is specified. Default: - no target\n')
+    docker_cache_disabled: typing.Optional[bool] = pydantic.Field(None, description='Disable the cache and pass ``--no-cache`` to the ``docker build`` command. Default: - cache is used\n')
     docker_cache_from: typing.Optional[typing.Sequence[typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Cache from options to pass to the ``docker build`` command. Default: - no cache from args are passed\n')
     docker_cache_to: typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Cache to options to pass to the ``docker build`` command. Default: - no cache to args are passed\n')
     docker_file: typing.Optional[str] = pydantic.Field(None, description='Path to the Dockerfile (relative to the directory). Only allowed when ``directoryName`` is specified. Default: - no file\n')
@@ -184,6 +185,7 @@ class CoreIReusableStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseMod
     docker_build_secrets: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build secrets to pass to the ``docker build`` command. Since Docker build secrets are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build secrets are passed\n')
     docker_build_ssh: typing.Optional[str] = pydantic.Field(None, description='SSH agent socket or keys to pass to the ``docker buildx`` command. Default: - no ssh arg is passed\n')
     docker_build_target: typing.Optional[str] = pydantic.Field(None, description='Docker target to build to. Only allowed when ``directoryName`` is specified. Default: - no target\n')
+    docker_cache_disabled: typing.Optional[bool] = pydantic.Field(None, description='Disable the cache and pass ``--no-cache`` to the ``docker build`` command. Default: - cache is used\n')
     docker_cache_from: typing.Optional[typing.Sequence[typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Cache from options to pass to the ``docker build`` command. Default: - no cache from args are passed\n')
     docker_cache_to: typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Cache to options to pass to the ``docker build`` command. Default: - no cache to args are passed\n')
     docker_file: typing.Optional[str] = pydantic.Field(None, description='Path to the Dockerfile (relative to the directory). Only allowed when ``directoryName`` is specified. Default: - no file\n')
@@ -240,6 +242,7 @@ class CoreIStackSynthesizerDefAddDockerImageAssetParams(pydantic.BaseModel):
     docker_build_secrets: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Build secrets to pass to the ``docker build`` command. Since Docker build secrets are resolved before deployment, keys and values cannot refer to unresolved tokens (such as ``lambda.functionArn`` or ``queue.queueUrl``). Only allowed when ``directoryName`` is specified. Default: - no build secrets are passed\n')
     docker_build_ssh: typing.Optional[str] = pydantic.Field(None, description='SSH agent socket or keys to pass to the ``docker buildx`` command. Default: - no ssh arg is passed\n')
     docker_build_target: typing.Optional[str] = pydantic.Field(None, description='Docker target to build to. Only allowed when ``directoryName`` is specified. Default: - no target\n')
+    docker_cache_disabled: typing.Optional[bool] = pydantic.Field(None, description='Disable the cache and pass ``--no-cache`` to the ``docker build`` command. Default: - cache is used\n')
     docker_cache_from: typing.Optional[typing.Sequence[typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Cache from options to pass to the ``docker build`` command. Default: - no cache from args are passed\n')
     docker_cache_to: typing.Union[models.DockerCacheOptionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Cache to options to pass to the ``docker build`` command. Default: - no cache to args are passed\n')
     docker_file: typing.Optional[str] = pydantic.Field(None, description='Path to the Dockerfile (relative to the directory). Only allowed when ``directoryName`` is specified. Default: - no file\n')
@@ -458,6 +461,698 @@ class AwsApigatewayIVpcLinkDefConfig(pydantic.BaseModel):
 class AwsApigatewayIVpcLinkDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
+class AwsApigatewayv2IApiDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsApigatewayv2IApiDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Api Gateway.')
+
+
+class AwsApigatewayv2IApiDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IApiDefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - average over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IApiMappingDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IApiMappingDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IApiMappingDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IAuthorizerDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IAuthorizerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IAuthorizerDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IDomainNameDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IDomainNameDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IDomainNameDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IHttpApiDefConfig(pydantic.BaseModel):
+    add_vpc_link: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefAddVpcLinkParams]] = pydantic.Field(None, description='Add a new VpcLink.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    arn_for_execute_api: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefArnForExecuteApiParams]] = pydantic.Field(None, description='Get the "execute-api" ARN.\nWhen \'ANY\' is passed to the method, an ARN with the method set to \'*\' is obtained.')
+    metric: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Api Gateway.')
+    metric_client_error: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
+    metric_count: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
+    metric_data_processed: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricDataProcessedParams]] = pydantic.Field(None, description='Metric for the amount of data processed in bytes.')
+    metric_integration_latency: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
+    metric_latency: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
+    metric_server_error: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpApiDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
+
+
+class AwsApigatewayv2IHttpApiDefAddVpcLinkParams(pydantic.BaseModel):
+    vpc: typing.Union[models.aws_ec2.VpcDef] = pydantic.Field(..., description='The VPC in which the private resources reside.\n')
+    security_groups: typing.Optional[typing.Sequence[typing.Union[models.aws_ec2.SecurityGroupDef]]] = pydantic.Field(None, description='A list of security groups for the VPC link. Default: - no security groups. Use ``addSecurityGroups`` to add security groups\n')
+    subnets: typing.Union[models.aws_ec2.SubnetSelectionDef, dict[str, typing.Any], None] = pydantic.Field(None, description='A list of subnets for the VPC link. Default: - private subnets of the provided VPC. Use ``addSubnets`` to add more subnets\n')
+    vpc_link_name: typing.Optional[str] = pydantic.Field(None, description='The name used to label and identify the VPC link. Default: - automatically generated name')
+    return_config: typing.Optional[list[models.aws_apigatewayv2.VpcLinkDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IHttpApiDefArnForExecuteApiParams(pydantic.BaseModel):
+    method: typing.Optional[str] = pydantic.Field(None, description='-\n')
+    path: typing.Optional[str] = pydantic.Field(None, description='-\n')
+    stage: typing.Optional[str] = pydantic.Field(None, description="-\n\n:default:\n\n- The default behavior applies when no specific method, path, or stage is provided.\nIn this case, the ARN will cover all methods, all resources, and all stages of this API.\nSpecifically, if 'method' is not specified, it defaults to '*', representing all methods.\nIf 'path' is not specified, it defaults to '/*', representing all paths.\nIf 'stage' is not specified, it also defaults to '*', representing all stages.\n")
+
+class AwsApigatewayv2IHttpApiDefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - average over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefMetricClientErrorParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - sum over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefMetricCountParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - SampleCount over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefMetricDataProcessedParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - sum over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefMetricIntegrationLatencyParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - no statistic\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefMetricLatencyParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - no statistic\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpApiDefMetricServerErrorParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - sum over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpAuthorizerDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpAuthorizerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IHttpAuthorizerDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IHttpIntegrationDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpIntegrationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IHttpIntegrationDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IHttpRouteDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_invoke: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpRouteDefGrantInvokeParams]] = pydantic.Field(None, description='Grant access to invoke the route.\nThis method requires that the authorizer of the route is undefined or is\nan ``HttpIamAuthorizer``.')
+
+
+class AwsApigatewayv2IHttpRouteDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IHttpRouteDefGrantInvokeParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='-\n')
+    http_methods: typing.Optional[typing.Sequence[aws_cdk.aws_apigatewayv2.HttpMethod]] = pydantic.Field(None, description='The HTTP methods to allow. Default: - the HttpMethod of the route')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpRouteAuthorizerDefConfig(pydantic.BaseModel):
+    bind: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpRouteAuthorizerDefBindParams]] = pydantic.Field(None, description='Bind this authorizer to a specified Http route.')
+
+
+class AwsApigatewayv2IHttpRouteAuthorizerDefBindParams(pydantic.BaseModel):
+    route: typing.Union[models.aws_apigatewayv2.HttpRouteDef] = pydantic.Field(..., description='The route to which the authorizer is being bound.\n')
+    scope: models.constructs.ConstructDef = pydantic.Field(..., description='The scope for any constructs created as part of the bind.')
+
+class AwsApigatewayv2IHttpStageDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this HTTP Api Gateway Stage.')
+    metric_client_error: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricClientErrorParams]] = pydantic.Field(None, description='Metric for the number of client-side errors captured in a given period.')
+    metric_count: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricCountParams]] = pydantic.Field(None, description='Metric for the total number API requests in a given period.')
+    metric_data_processed: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricDataProcessedParams]] = pydantic.Field(None, description='Metric for the amount of data processed in bytes.')
+    metric_integration_latency: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricIntegrationLatencyParams]] = pydantic.Field(None, description='Metric for the time between when API Gateway relays a request to the backend and when it receives a response from the backend.')
+    metric_latency: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricLatencyParams]] = pydantic.Field(None, description='The time between when API Gateway receives a request from a client and when it returns a response to the client.\nThe latency includes the integration latency and other API Gateway overhead.')
+    metric_server_error: typing.Optional[list[models._interface_methods.AwsApigatewayv2IHttpStageDefMetricServerErrorParams]] = pydantic.Field(None, description='Metric for the number of server-side errors captured in a given period.')
+
+
+class AwsApigatewayv2IHttpStageDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IHttpStageDefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - average over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpStageDefMetricClientErrorParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - sum over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpStageDefMetricCountParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - SampleCount over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpStageDefMetricDataProcessedParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - sum over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpStageDefMetricIntegrationLatencyParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - no statistic\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpStageDefMetricLatencyParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - no statistic\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IHttpStageDefMetricServerErrorParams(pydantic.BaseModel):
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - sum over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IIntegrationDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IIntegrationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IIntegrationDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+#  aws-cdk-lib.aws_apigatewayv2.IMappingValue skipped
+
+
+class AwsApigatewayv2IRouteDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IRouteDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IStageDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IStageDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsApigatewayv2IStageDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this HTTP Api Gateway Stage.')
+
+
+class AwsApigatewayv2IStageDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IStageDefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - average over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IVpcLinkDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IVpcLinkDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IVpcLinkDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IWebSocketApiDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketApiDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Api Gateway.')
+
+
+class AwsApigatewayv2IWebSocketApiDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IWebSocketApiDefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - average over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsApigatewayv2IWebSocketAuthorizerDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketAuthorizerDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IWebSocketAuthorizerDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IWebSocketIntegrationDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketIntegrationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IWebSocketIntegrationDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IWebSocketRouteDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketRouteDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsApigatewayv2IWebSocketRouteDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IWebSocketRouteAuthorizerDefConfig(pydantic.BaseModel):
+    bind: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketRouteAuthorizerDefBindParams]] = pydantic.Field(None, description='Bind this authorizer to a specified WebSocket route.')
+
+
+class AwsApigatewayv2IWebSocketRouteAuthorizerDefBindParams(pydantic.BaseModel):
+    route: typing.Union[models.aws_apigatewayv2.WebSocketRouteDef] = pydantic.Field(..., description='The route to which the authorizer is being bound.\n')
+    scope: models.constructs.ConstructDef = pydantic.Field(..., description='The scope for any constructs created as part of the bind.')
+
+class AwsApigatewayv2IWebSocketStageDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketStageDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    metric: typing.Optional[list[models._interface_methods.AwsApigatewayv2IWebSocketStageDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this HTTP Api Gateway Stage.')
+
+
+class AwsApigatewayv2IWebSocketStageDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsApigatewayv2IWebSocketStageDefMetricParams(pydantic.BaseModel):
+    metric_name: str = pydantic.Field(..., description='-\n')
+    account: typing.Optional[str] = pydantic.Field(None, description='Account which this metric comes from. Default: - Deployment account.\n')
+    color: typing.Optional[str] = pydantic.Field(None, description="The hex color code, prefixed with '#' (e.g. '#00ff00'), to use when this metric is rendered on a graph. The ``Color`` class has a set of standard colors that can be used here. Default: - Automatic color\n")
+    dimensions_map: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Dimensions of the metric. Default: - No dimensions.\n')
+    label: typing.Optional[str] = pydantic.Field(None, description="Label for this metric when added to a Graph in a Dashboard. You can use `dynamic labels <https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/graph-dynamic-labels.html>`_ to show summary information about the entire displayed time series in the legend. For example, if you use:: [max: ${MAX}] MyMetric As the metric label, the maximum value in the visible range will be shown next to the time series name in the graph's legend. Default: - No label\n")
+    period: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The period over which the specified statistic is applied. Default: Duration.minutes(5)\n')
+    region: typing.Optional[str] = pydantic.Field(None, description='Region which this metric comes from. Default: - Deployment region.\n')
+    statistic: typing.Optional[str] = pydantic.Field(None, description='What function to use for aggregating. Use the ``aws_cloudwatch.Stats`` helper class to construct valid input strings. Can be one of the following: - "Minimum" | "min" - "Maximum" | "max" - "Average" | "avg" - "Sum" | "sum" - "SampleCount | "n" - "pNN.NN" - "tmNN.NN" | "tm(NN.NN%:NN.NN%)" - "iqm" - "wmNN.NN" | "wm(NN.NN%:NN.NN%)" - "tcNN.NN" | "tc(NN.NN%:NN.NN%)" - "tsNN.NN" | "ts(NN.NN%:NN.NN%)" Default: Average\n')
+    unit: typing.Optional[aws_cdk.aws_cloudwatch.Unit] = pydantic.Field(None, description='Unit used to filter the metric stream. Only refer to datums emitted to the metric stream with the given unit and ignore all others. Only useful when datums are being emitted to the same metric stream under different units. The default is to use all matric datums in the stream, regardless of unit, which is recommended in nearly all cases. CloudWatch does not honor this property for graphs. Default: - All metric datums in the given metric stream\n\n:default: - average over 5 minutes\n')
+    return_config: typing.Optional[list[models.aws_cloudwatch.MetricDefConfig]] = pydantic.Field(None)
+
+class AwsAppconfigIApplicationDefConfig(pydantic.BaseModel):
+    add_environment: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefAddEnvironmentParams]] = pydantic.Field(None, description='Adds an environment.')
+    add_existing_environment: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefAddExistingEnvironmentParams]] = pydantic.Field(None, description='Adds an existing environment.')
+    add_extension: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefAddExtensionParams]] = pydantic.Field(None, description='Adds an extension association to the application.')
+    add_hosted_configuration: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefAddHostedConfigurationParams]] = pydantic.Field(None, description='Adds a hosted configuration.')
+    add_sourced_configuration: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefAddSourcedConfigurationParams]] = pydantic.Field(None, description='Adds a sourced configuration.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    environments: typing.Optional[bool] = pydantic.Field(None, description='Returns the list of associated environments.')
+    on: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefOnParams]] = pydantic.Field(None, description='Adds an extension defined by the action point and event destination and also creates an extension association to an application.')
+    on_deployment_baking: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefOnDeploymentBakingParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_BAKING extension with the provided event destination and also creates an extension association to an application.')
+    on_deployment_complete: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefOnDeploymentCompleteParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_COMPLETE extension with the provided event destination and also creates an extension association to an application.')
+    on_deployment_rolled_back: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefOnDeploymentRolledBackParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_ROLLED_BACK extension with the provided event destination and also creates an extension association to an application.')
+    on_deployment_start: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefOnDeploymentStartParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_START extension with the provided event destination and also creates an extension association to an application.')
+    on_deployment_step: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefOnDeploymentStepParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_STEP extension with the provided event destination and also creates an extension association to an application.')
+    pre_create_hosted_configuration_version: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefPreCreateHostedConfigurationVersionParams]] = pydantic.Field(None, description='Adds a PRE_CREATE_HOSTED_CONFIGURATION_VERSION extension with the provided event destination and also creates an extension association to an application.')
+    pre_start_deployment: typing.Optional[list[models._interface_methods.AwsAppconfigIApplicationDefPreStartDeploymentParams]] = pydantic.Field(None, description='Adds a PRE_START_DEPLOYMENT extension with the provided event destination and also creates an extension association to an application.')
+
+
+class AwsAppconfigIApplicationDefAddEnvironmentParams(pydantic.BaseModel):
+    id: str = pydantic.Field(..., description='The name of the environment construct.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='The description of the environment. Default: - No description.\n')
+    environment_name: typing.Optional[str] = pydantic.Field(None, description='The name of the environment. Default: - A name is generated.\n')
+    monitors: typing.Optional[typing.Sequence[models.aws_appconfig.MonitorDef]] = pydantic.Field(None, description='The monitors for the environment. Default: - No monitors.')
+    return_config: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefConfig]] = pydantic.Field(None)
+
+class AwsAppconfigIApplicationDefAddExistingEnvironmentParams(pydantic.BaseModel):
+    environment: typing.Union[models.aws_appconfig.EnvironmentDef] = pydantic.Field(..., description='The environment.')
+
+class AwsAppconfigIApplicationDefAddExtensionParams(pydantic.BaseModel):
+    extension: typing.Union[models.aws_appconfig.ExtensionDef] = pydantic.Field(..., description='The extension to create an association for.')
+
+class AwsAppconfigIApplicationDefAddHostedConfigurationParams(pydantic.BaseModel):
+    id: str = pydantic.Field(..., description='The name of the hosted configuration construct.\n')
+    content: models.aws_appconfig.ConfigurationContentDef = pydantic.Field(..., description='The content of the hosted configuration.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the hosted configuration. Default: - None.\n')
+    version_label: typing.Optional[str] = pydantic.Field(None, description='The version label of the hosted configuration. Default: - None.\n')
+    deployment_key: typing.Optional[typing.Union[models.aws_kms.KeyDef]] = pydantic.Field(None, description='The deployment key of the configuration. Default: - None.\n')
+    deployment_strategy: typing.Optional[typing.Union[models.aws_appconfig.DeploymentStrategyDef]] = pydantic.Field(None, description='The deployment strategy for the configuration. Default: - A deployment strategy with the rollout strategy set to RolloutStrategy.CANARY_10_PERCENT_20_MINUTES\n')
+    deploy_to: typing.Optional[typing.Sequence[typing.Union[models.aws_appconfig.EnvironmentDef]]] = pydantic.Field(None, description='The list of environments to deploy the configuration to. If this parameter is not specified, then there will be no deployment created alongside this configuration. Deployments can be added later using the ``IEnvironment.addDeployment`` or ``IEnvironment.addDeployments`` methods. Default: - None.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='The description of the configuration. Default: - No description.\n')
+    name: typing.Optional[str] = pydantic.Field(None, description='The name of the configuration. Default: - A name is generated.\n')
+    type: typing.Optional[aws_cdk.aws_appconfig.ConfigurationType] = pydantic.Field(None, description='The type of configuration. Default: ConfigurationType.FREEFORM\n')
+    validators: typing.Optional[typing.Sequence[typing.Union[models.aws_appconfig.JsonSchemaValidatorDef, models.aws_appconfig.LambdaValidatorDef]]] = pydantic.Field(None, description='The validators for the configuration. Default: - No validators.')
+    return_config: typing.Optional[list[models.aws_appconfig.HostedConfigurationDefConfig]] = pydantic.Field(None)
+
+class AwsAppconfigIApplicationDefAddSourcedConfigurationParams(pydantic.BaseModel):
+    id: str = pydantic.Field(..., description='The name of the sourced configuration construct.\n')
+    location: models.aws_appconfig.ConfigurationSourceDef = pydantic.Field(..., description='The location where the configuration is stored.\n')
+    retrieval_role: typing.Optional[typing.Union[models.aws_iam.LazyRoleDef, models.aws_iam.RoleDef]] = pydantic.Field(None, description='The IAM role to retrieve the configuration. Default: - A role is generated.\n')
+    version_number: typing.Optional[str] = pydantic.Field(None, description='The version number of the sourced configuration to deploy. If this is not specified, then there will be no deployment. Default: - None.\n')
+    deployment_key: typing.Optional[typing.Union[models.aws_kms.KeyDef]] = pydantic.Field(None, description='The deployment key of the configuration. Default: - None.\n')
+    deployment_strategy: typing.Optional[typing.Union[models.aws_appconfig.DeploymentStrategyDef]] = pydantic.Field(None, description='The deployment strategy for the configuration. Default: - A deployment strategy with the rollout strategy set to RolloutStrategy.CANARY_10_PERCENT_20_MINUTES\n')
+    deploy_to: typing.Optional[typing.Sequence[typing.Union[models.aws_appconfig.EnvironmentDef]]] = pydantic.Field(None, description='The list of environments to deploy the configuration to. If this parameter is not specified, then there will be no deployment created alongside this configuration. Deployments can be added later using the ``IEnvironment.addDeployment`` or ``IEnvironment.addDeployments`` methods. Default: - None.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='The description of the configuration. Default: - No description.\n')
+    name: typing.Optional[str] = pydantic.Field(None, description='The name of the configuration. Default: - A name is generated.\n')
+    type: typing.Optional[aws_cdk.aws_appconfig.ConfigurationType] = pydantic.Field(None, description='The type of configuration. Default: ConfigurationType.FREEFORM\n')
+    validators: typing.Optional[typing.Sequence[typing.Union[models.aws_appconfig.JsonSchemaValidatorDef, models.aws_appconfig.LambdaValidatorDef]]] = pydantic.Field(None, description='The validators for the configuration. Default: - No validators.')
+    return_config: typing.Optional[list[models.aws_appconfig.SourcedConfigurationDefConfig]] = pydantic.Field(None)
+
+class AwsAppconfigIApplicationDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsAppconfigIApplicationDefOnParams(pydantic.BaseModel):
+    action_point: aws_cdk.aws_appconfig.ActionPoint = pydantic.Field(..., description='The action point which triggers the event.\n')
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefOnDeploymentBakingParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefOnDeploymentCompleteParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefOnDeploymentRolledBackParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefOnDeploymentStartParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefOnDeploymentStepParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefPreCreateHostedConfigurationVersionParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIApplicationDefPreStartDeploymentParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+#  aws-cdk-lib.aws_appconfig.IConfiguration skipped
+
+
+class AwsAppconfigIDeploymentStrategyDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppconfigIDeploymentStrategyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsAppconfigIDeploymentStrategyDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsAppconfigIEnvironmentDefConfig(pydantic.BaseModel):
+    add_deployment: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefAddDeploymentParams]] = pydantic.Field(None, description='Creates a deployment of the supplied configuration to this environment.\nNote that you can only deploy one configuration at a time to an environment.\nHowever, you can deploy one configuration each to different environments at the same time.\nIf more than one deployment is requested for this environment, they will occur in the same order they were provided.')
+    add_deployments: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefAddDeploymentsParams]] = pydantic.Field(None, description='Creates a deployment for each of the supplied configurations to this environment.\nThese configurations will be deployed in the same order as the input array.')
+    add_extension: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefAddExtensionParams]] = pydantic.Field(None, description='Adds an extension association to the environment.')
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this environment to an IAM principal's policy.")
+    grant_read_config: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefGrantReadConfigParams]] = pydantic.Field(None, description="Permits an IAM principal to perform read operations on this environment's configurations.\nActions: GetLatestConfiguration, StartConfigurationSession.")
+    on: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefOnParams]] = pydantic.Field(None, description='Adds an extension defined by the action point and event destination and also creates an extension association to the environment.')
+    on_deployment_baking: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefOnDeploymentBakingParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_BAKING extension with the provided event destination and also creates an extension association to the environment.')
+    on_deployment_complete: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefOnDeploymentCompleteParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_COMPLETE extension with the provided event destination and also creates an extension association to the environment.')
+    on_deployment_rolled_back: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefOnDeploymentRolledBackParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_ROLLED_BACK extension with the provided event destination and also creates an extension association to the environment.')
+    on_deployment_start: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefOnDeploymentStartParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_START extension with the provided event destination and also creates an extension association to the environment.')
+    on_deployment_step: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefOnDeploymentStepParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_STEP extension with the provided event destination and also creates an extension association to the environment.')
+    pre_create_hosted_configuration_version: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefPreCreateHostedConfigurationVersionParams]] = pydantic.Field(None, description='Adds a PRE_CREATE_HOSTED_CONFIGURATION_VERSION extension with the provided event destination and also creates an extension association to the environment.')
+    pre_start_deployment: typing.Optional[list[models._interface_methods.AwsAppconfigIEnvironmentDefPreStartDeploymentParams]] = pydantic.Field(None, description='Adds a PRE_START_DEPLOYMENT extension with the provided event destination and also creates an extension association to the environment.')
+
+
+class AwsAppconfigIEnvironmentDefAddDeploymentParams(pydantic.BaseModel):
+    configuration: typing.Union[models.aws_appconfig.HostedConfigurationDef, models.aws_appconfig.SourcedConfigurationDef] = pydantic.Field(..., description='The configuration that will be deployed to this environment.')
+
+class AwsAppconfigIEnvironmentDefAddDeploymentsParams(pydantic.BaseModel):
+    configurations: list[typing.Union[models.aws_appconfig.HostedConfigurationDef, models.aws_appconfig.SourcedConfigurationDef]] = pydantic.Field(...)
+
+class AwsAppconfigIEnvironmentDefAddExtensionParams(pydantic.BaseModel):
+    extension: typing.Union[models.aws_appconfig.ExtensionDef] = pydantic.Field(..., description='The extension to create an association for.')
+
+class AwsAppconfigIEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsAppconfigIEnvironmentDefGrantParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal (no-op if undefined).\n')
+    actions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsAppconfigIEnvironmentDefGrantReadConfigParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='Principal to grant read rights to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsAppconfigIEnvironmentDefOnParams(pydantic.BaseModel):
+    action_point: aws_cdk.aws_appconfig.ActionPoint = pydantic.Field(..., description='The action point which triggers the event.\n')
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefOnDeploymentBakingParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefOnDeploymentCompleteParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefOnDeploymentRolledBackParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefOnDeploymentStartParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefOnDeploymentStepParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefPreCreateHostedConfigurationVersionParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIEnvironmentDefPreStartDeploymentParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+#  aws-cdk-lib.aws_appconfig.IEventDestination skipped
+
+
+class AwsAppconfigIExtensibleDefConfig(pydantic.BaseModel):
+    add_extension: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefAddExtensionParams]] = pydantic.Field(None, description='Adds an extension association to the derived resource.')
+    on: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefOnParams]] = pydantic.Field(None, description='Adds an extension defined by the action point and event destination and also creates an extension association to the derived resource.')
+    on_deployment_baking: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefOnDeploymentBakingParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_BAKING extension with the provided event destination and also creates an extension association to the derived resource.')
+    on_deployment_complete: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefOnDeploymentCompleteParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_COMPLETE extension with the provided event destination and also creates an extension association to the derived resource.')
+    on_deployment_rolled_back: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefOnDeploymentRolledBackParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_ROLLED_BACK extension with the provided event destination and also creates an extension association to the derived resource.')
+    on_deployment_start: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefOnDeploymentStartParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_START extension with the provided event destination and also creates an extension association to the derived resource.')
+    on_deployment_step: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefOnDeploymentStepParams]] = pydantic.Field(None, description='Adds an ON_DEPLOYMENT_STEP extension with the provided event destination and also creates an extension association to the derived resource.')
+    pre_create_hosted_configuration_version: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefPreCreateHostedConfigurationVersionParams]] = pydantic.Field(None, description='Adds a PRE_CREATE_HOSTED_CONFIGURATION_VERSION extension with the provided event destination and also creates an extension association to the derived resource.')
+    pre_start_deployment: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensibleDefPreStartDeploymentParams]] = pydantic.Field(None, description='Adds a PRE_START_DEPLOYMENT extension with the provided event destination and also creates an extension association to the derived resource.')
+
+
+class AwsAppconfigIExtensibleDefAddExtensionParams(pydantic.BaseModel):
+    extension: typing.Union[models.aws_appconfig.ExtensionDef] = pydantic.Field(..., description='The extension to create an association for.')
+
+class AwsAppconfigIExtensibleDefOnParams(pydantic.BaseModel):
+    action_point: aws_cdk.aws_appconfig.ActionPoint = pydantic.Field(..., description='The action point which triggers the event.\n')
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefOnDeploymentBakingParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefOnDeploymentCompleteParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefOnDeploymentRolledBackParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefOnDeploymentStartParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefOnDeploymentStepParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefPreCreateHostedConfigurationVersionParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensibleDefPreStartDeploymentParams(pydantic.BaseModel):
+    event_destination: typing.Union[models.aws_appconfig.EventBridgeDestinationDef, models.aws_appconfig.LambdaDestinationDef, models.aws_appconfig.SnsDestinationDef, models.aws_appconfig.SqsDestinationDef] = pydantic.Field(..., description='The event that occurs during the extension.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='A description of the extension. Default: - No description.\n')
+    extension_name: typing.Optional[str] = pydantic.Field(None, description='The name of the extension. Default: - A name is generated.\n')
+    latest_version_number: typing.Union[int, float, None] = pydantic.Field(None, description='The latest version number of the extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field. Default: - None.\n')
+    parameters: typing.Optional[typing.Sequence[models.aws_appconfig.ParameterDef]] = pydantic.Field(None, description='The parameters accepted for the extension. Default: - None.')
+
+class AwsAppconfigIExtensionDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppconfigIExtensionDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsAppconfigIExtensionDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+#  aws-cdk-lib.aws_appconfig.IValidator skipped
+
+
 class AwsApplicationautoscalingIScalableTargetDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsApplicationautoscalingIScalableTargetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
@@ -581,9 +1276,14 @@ class AwsAppsyncIGraphqlApiDefConfig(pydantic.BaseModel):
     add_none_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddNoneDataSourceParams]] = pydantic.Field(None, description="add a new dummy data source to this API.\nUseful for pipeline resolvers\nand for backend changes that don't require a data source.")
     add_open_search_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddOpenSearchDataSourceParams]] = pydantic.Field(None, description='Add a new OpenSearch data source to this API.')
     add_rds_data_source: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddRdsDataSourceParams]] = pydantic.Field(None, description='add a new Rds data source to this API.')
+    add_rds_data_source_v2: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddRdsDataSourceV2Params]] = pydantic.Field(None, description='add a new Rds Serverless V2 data source to this API.')
     add_schema_dependency: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefAddSchemaDependencyParams]] = pydantic.Field(None, description='Add schema dependency if not imported.')
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     create_resolver: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefCreateResolverParams]] = pydantic.Field(None, description='creates a new resolver for this datasource and API using the given properties.')
+    grant: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this GraphQLApi to an IAM principal's policy.")
+    grant_mutation: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefGrantMutationParams]] = pydantic.Field(None, description="Adds an IAM policy statement for Mutation access to this GraphQLApi to an IAM principal's policy.")
+    grant_query: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefGrantQueryParams]] = pydantic.Field(None, description="Adds an IAM policy statement for Query access to this GraphQLApi to an IAM principal's policy.")
+    grant_subscription: typing.Optional[list[models._interface_methods.AwsAppsyncIGraphqlApiDefGrantSubscriptionParams]] = pydantic.Field(None, description="Adds an IAM policy statement for Subscription access to this GraphQLApi to an IAM principal's policy.")
 
 
 class AwsAppsyncIGraphqlApiDefAddDynamoDbDataSourceParams(pydantic.BaseModel):
@@ -644,6 +1344,15 @@ class AwsAppsyncIGraphqlApiDefAddRdsDataSourceParams(pydantic.BaseModel):
     name: typing.Optional[str] = pydantic.Field(None, description='The name of the data source, overrides the id given by cdk. Default: - generated by cdk given the id')
     return_config: typing.Optional[list[models.aws_appsync.RdsDataSourceDefConfig]] = pydantic.Field(None)
 
+class AwsAppsyncIGraphqlApiDefAddRdsDataSourceV2Params(pydantic.BaseModel):
+    id: str = pydantic.Field(..., description="The data source's id.\n")
+    serverless_cluster: typing.Union[models.aws_rds.DatabaseClusterBaseDef, models.aws_rds.DatabaseClusterDef, models.aws_rds.DatabaseClusterFromSnapshotDef] = pydantic.Field(..., description='The serverless V2 cluster to interact with this data source.\n')
+    secret_store: typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef] = pydantic.Field(..., description='The secret store that contains the username and password for the serverless cluster.\n')
+    database_name: typing.Optional[str] = pydantic.Field(None, description='The optional name of the database to use within the cluster.\n')
+    description: typing.Optional[str] = pydantic.Field(None, description='The description of the data source. Default: - No description\n')
+    name: typing.Optional[str] = pydantic.Field(None, description='The name of the data source, overrides the id given by cdk. Default: - generated by cdk given the id')
+    return_config: typing.Optional[list[models.aws_appsync.RdsDataSourceDefConfig]] = pydantic.Field(None)
+
 class AwsAppsyncIGraphqlApiDefAddSchemaDependencyParams(pydantic.BaseModel):
     construct_: models.CfnResourceDef = pydantic.Field(..., description='the dependee.', alias='construct')
 
@@ -662,6 +1371,27 @@ class AwsAppsyncIGraphqlApiDefCreateResolverParams(pydantic.BaseModel):
     request_mapping_template: typing.Optional[models.aws_appsync.MappingTemplateDef] = pydantic.Field(None, description='The request mapping template for this resolver. Default: - No mapping template\n')
     response_mapping_template: typing.Optional[models.aws_appsync.MappingTemplateDef] = pydantic.Field(None, description='The response mapping template for this resolver. Default: - No mapping template\n')
     runtime: typing.Optional[models.aws_appsync.FunctionRuntimeDef] = pydantic.Field(None, description='The functions runtime. Default: - no function runtime, VTL mapping templates used')
+
+class AwsAppsyncIGraphqlApiDefGrantParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal.\n')
+    resources: models.aws_appsync.IamResourceDef = pydantic.Field(..., description='The set of resources to allow (i.e. ...:[region]:[accountId]:apis/GraphQLId/...).\n')
+    actions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsAppsyncIGraphqlApiDefGrantMutationParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal.\n')
+    fields: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsAppsyncIGraphqlApiDefGrantQueryParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal.\n')
+    fields: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsAppsyncIGraphqlApiDefGrantSubscriptionParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal.\n')
+    fields: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsAppsyncISchemaDefConfig(pydantic.BaseModel):
     bind: typing.Optional[list[models._interface_methods.AwsAppsyncISchemaDefBindParams]] = pydantic.Field(None, description='Binds a schema string to a GraphQlApi.')
@@ -736,8 +1466,9 @@ class AwsAutoscalingIAutoScalingGroupDefScaleOnMetricParams(pydantic.BaseModel):
     scaling_steps: typing.Sequence[typing.Union[models.aws_autoscaling.ScalingIntervalDef, dict[str, typing.Any]]] = pydantic.Field(..., description='The intervals for scaling. Maps a range of metric values to a particular scaling behavior. Must be between 2 and 40 steps.\n')
     adjustment_type: typing.Optional[aws_cdk.aws_autoscaling.AdjustmentType] = pydantic.Field(None, description="How the adjustment numbers inside 'intervals' are interpreted. Default: ChangeInCapacity\n")
     cooldown: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Grace period after scaling activity. Default: Default cooldown period on your AutoScalingGroup\n')
+    datapoints_to_alarm: typing.Union[int, float, None] = pydantic.Field(None, description='The number of data points out of the evaluation periods that must be breaching to trigger a scaling action. Creates an "M out of N" alarm, where this property is the M and the value set for ``evaluationPeriods`` is the N value. Only has meaning if ``evaluationPeriods != 1``. Must be less than or equal to ``evaluationPeriods``. Default: - Same as ``evaluationPeriods``\n')
     estimated_instance_warmup: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Estimated time until a newly launched instance can send metrics to CloudWatch. Default: Same as the cooldown\n')
-    evaluation_periods: typing.Union[int, float, None] = pydantic.Field(None, description='How many evaluation periods of the metric to wait before triggering a scaling action. Raising this value can be used to smooth out the metric, at the expense of slower response times. Default: 1\n')
+    evaluation_periods: typing.Union[int, float, None] = pydantic.Field(None, description='How many evaluation periods of the metric to wait before triggering a scaling action. Raising this value can be used to smooth out the metric, at the expense of slower response times. If ``datapointsToAlarm`` is not set, then all data points in the evaluation period must meet the criteria to trigger a scaling action. Default: 1\n')
     metric_aggregation_type: typing.Optional[aws_cdk.aws_autoscaling.MetricAggregationType] = pydantic.Field(None, description='Aggregation to apply to all data points over the evaluation periods. Only has meaning if ``evaluationPeriods != 1``. Default: - The statistic from the metric if applicable (MIN, MAX, AVERAGE), otherwise AVERAGE.\n')
     min_adjustment_magnitude: typing.Union[int, float, None] = pydantic.Field(None, description='Minimum absolute number to adjust capacity with as result of percentage scaling. Only when using AdjustmentType = PercentChangeInCapacity, this number controls the minimum absolute effect size. Default: No minimum scaling effect')
 
@@ -937,6 +1668,8 @@ class AwsBatchIUnmanagedComputeEnvironmentDefConfig(pydantic.BaseModel):
 
 class AwsBatchIUnmanagedComputeEnvironmentDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+#  aws-cdk-lib.aws_bedrock.IModel skipped
+
 
 class AwsCertificatemanagerICertificateDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCertificatemanagerICertificateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
@@ -1017,6 +1750,13 @@ class AwsCloudfrontIKeyGroupDefConfig(pydantic.BaseModel):
 
 
 class AwsCloudfrontIKeyGroupDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsCloudfrontIKeyValueStoreDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCloudfrontIKeyValueStoreDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsCloudfrontIKeyValueStoreDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCloudfrontIOriginDefConfig(pydantic.BaseModel):
@@ -1106,10 +1846,11 @@ class AwsCodebuildIBindableBuildImageDefRunScriptBuildspecParams(pydantic.BaseMo
     entrypoint: str = pydantic.Field(..., description='-')
 
 class AwsCodebuildIBindableBuildImageDefValidateParams(pydantic.BaseModel):
-    build_image: typing.Optional[typing.Union[models.aws_codebuild.LinuxArmBuildImageDef, models.aws_codebuild.LinuxBuildImageDef, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None, description='The image used for the builds. Default: LinuxBuildImage.STANDARD_1_0\n')
+    build_image: typing.Optional[typing.Union[models.aws_codebuild.LinuxArmBuildImageDef, models.aws_codebuild.LinuxArmLambdaBuildImageDef, models.aws_codebuild.LinuxBuildImageDef, models.aws_codebuild.LinuxLambdaBuildImageDef, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None, description='The image used for the builds. Default: LinuxBuildImage.STANDARD_1_0\n')
     certificate: typing.Union[models.aws_codebuild.BuildEnvironmentCertificateDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The location of the PEM-encoded certificate for the build project. Default: - No external certificate is added to the project\n')
     compute_type: typing.Optional[aws_cdk.aws_codebuild.ComputeType] = pydantic.Field(None, description='The type of compute to use for this build. See the ``ComputeType`` enum for the possible values. Default: taken from ``#buildImage#defaultComputeType``\n')
     environment_variables: typing.Optional[typing.Mapping[str, typing.Union[models.aws_codebuild.BuildEnvironmentVariableDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The environment variables that your builds can use.\n')
+    fleet: typing.Optional[typing.Union[models.aws_codebuild.FleetDef]] = pydantic.Field(None, description='Fleet resource for a reserved capacity CodeBuild project. Fleets allow for process builds or tests to run immediately and reduces build durations, by reserving compute resources for your projects. You will be charged for the resources in the fleet, even if they are idle. Default: - No fleet will be attached to the project, which will remain on-demand.\n')
     privileged: typing.Optional[bool] = pydantic.Field(None, description='Indicates how the project builds Docker images. Specify true to enable running the Docker daemon inside a Docker container. This value must be set to true only if this build project will be used to build Docker images, and the specified build environment image is not one provided by AWS CodeBuild with Docker support. Otherwise, all associated builds that attempt to interact with the Docker daemon will fail. Default: false')
 
 class AwsCodebuildIBuildImageDefConfig(pydantic.BaseModel):
@@ -1121,10 +1862,11 @@ class AwsCodebuildIBuildImageDefRunScriptBuildspecParams(pydantic.BaseModel):
     entrypoint: str = pydantic.Field(..., description='-')
 
 class AwsCodebuildIBuildImageDefValidateParams(pydantic.BaseModel):
-    build_image: typing.Optional[typing.Union[models.aws_codebuild.LinuxArmBuildImageDef, models.aws_codebuild.LinuxBuildImageDef, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None, description='The image used for the builds. Default: LinuxBuildImage.STANDARD_1_0\n')
+    build_image: typing.Optional[typing.Union[models.aws_codebuild.LinuxArmBuildImageDef, models.aws_codebuild.LinuxArmLambdaBuildImageDef, models.aws_codebuild.LinuxBuildImageDef, models.aws_codebuild.LinuxLambdaBuildImageDef, models.aws_codebuild.WindowsBuildImageDef]] = pydantic.Field(None, description='The image used for the builds. Default: LinuxBuildImage.STANDARD_1_0\n')
     certificate: typing.Union[models.aws_codebuild.BuildEnvironmentCertificateDef, dict[str, typing.Any], None] = pydantic.Field(None, description='The location of the PEM-encoded certificate for the build project. Default: - No external certificate is added to the project\n')
     compute_type: typing.Optional[aws_cdk.aws_codebuild.ComputeType] = pydantic.Field(None, description='The type of compute to use for this build. See the ``ComputeType`` enum for the possible values. Default: taken from ``#buildImage#defaultComputeType``\n')
     environment_variables: typing.Optional[typing.Mapping[str, typing.Union[models.aws_codebuild.BuildEnvironmentVariableDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='The environment variables that your builds can use.\n')
+    fleet: typing.Optional[typing.Union[models.aws_codebuild.FleetDef]] = pydantic.Field(None, description='Fleet resource for a reserved capacity CodeBuild project. Fleets allow for process builds or tests to run immediately and reduces build durations, by reserving compute resources for your projects. You will be charged for the resources in the fleet, even if they are idle. Default: - No fleet will be attached to the project, which will remain on-demand.\n')
     privileged: typing.Optional[bool] = pydantic.Field(None, description='Indicates how the project builds Docker images. Specify true to enable running the Docker daemon inside a Docker container. This value must be set to true only if this build project will be used to build Docker images, and the specified build environment image is not one provided by AWS CodeBuild with Docker support. Otherwise, all associated builds that attempt to interact with the Docker daemon will fail. Default: false')
 
 class AwsCodebuildIFileSystemLocationDefConfig(pydantic.BaseModel):
@@ -1134,6 +1876,13 @@ class AwsCodebuildIFileSystemLocationDefConfig(pydantic.BaseModel):
 class AwsCodebuildIFileSystemLocationDefBindParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-\n')
     project: typing.Union[models.aws_codebuild.PipelineProjectDef, models.aws_codebuild.ProjectDef] = pydantic.Field(..., description='-')
+
+class AwsCodebuildIFleetDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsCodebuildIFleetDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsCodebuildIFleetDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsCodebuildIProjectDefConfig(pydantic.BaseModel):
     add_to_role_policy: typing.Optional[list[models._interface_methods.AwsCodebuildIProjectDefAddToRolePolicyParams]] = pydantic.Field(None, description='')
@@ -1248,7 +1997,7 @@ class AwsCodebuildIProjectDefNotifyOnBuildSucceededParams(pydantic.BaseModel):
 
 class AwsCodebuildIProjectDefOnBuildFailedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1257,7 +2006,7 @@ class AwsCodebuildIProjectDefOnBuildFailedParams(pydantic.BaseModel):
 
 class AwsCodebuildIProjectDefOnBuildStartedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1266,7 +2015,7 @@ class AwsCodebuildIProjectDefOnBuildStartedParams(pydantic.BaseModel):
 
 class AwsCodebuildIProjectDefOnBuildSucceededParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1275,7 +2024,7 @@ class AwsCodebuildIProjectDefOnBuildSucceededParams(pydantic.BaseModel):
 
 class AwsCodebuildIProjectDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1284,7 +2033,7 @@ class AwsCodebuildIProjectDefOnEventParams(pydantic.BaseModel):
 
 class AwsCodebuildIProjectDefOnPhaseChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1293,7 +2042,7 @@ class AwsCodebuildIProjectDefOnPhaseChangeParams(pydantic.BaseModel):
 
 class AwsCodebuildIProjectDefOnStateChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1436,7 +2185,7 @@ class AwsCodecommitIRepositoryDefNotifyOnPullRequestMergedParams(pydantic.BaseMo
 
 class AwsCodecommitIRepositoryDefOnCommentOnCommitParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1445,7 +2194,7 @@ class AwsCodecommitIRepositoryDefOnCommentOnCommitParams(pydantic.BaseModel):
 
 class AwsCodecommitIRepositoryDefOnCommentOnPullRequestParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1455,7 +2204,7 @@ class AwsCodecommitIRepositoryDefOnCommentOnPullRequestParams(pydantic.BaseModel
 class AwsCodecommitIRepositoryDefOnCommitParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
     branches: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='The branch to monitor. Default: - All branches\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1464,7 +2213,7 @@ class AwsCodecommitIRepositoryDefOnCommitParams(pydantic.BaseModel):
 
 class AwsCodecommitIRepositoryDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1473,7 +2222,7 @@ class AwsCodecommitIRepositoryDefOnEventParams(pydantic.BaseModel):
 
 class AwsCodecommitIRepositoryDefOnPullRequestStateChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1482,7 +2231,7 @@ class AwsCodecommitIRepositoryDefOnPullRequestStateChangeParams(pydantic.BaseMod
 
 class AwsCodecommitIRepositoryDefOnReferenceCreatedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1491,7 +2240,7 @@ class AwsCodecommitIRepositoryDefOnReferenceCreatedParams(pydantic.BaseModel):
 
 class AwsCodecommitIRepositoryDefOnReferenceDeletedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1500,7 +2249,7 @@ class AwsCodecommitIRepositoryDefOnReferenceDeletedParams(pydantic.BaseModel):
 
 class AwsCodecommitIRepositoryDefOnReferenceUpdatedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1509,7 +2258,7 @@ class AwsCodecommitIRepositoryDefOnReferenceUpdatedParams(pydantic.BaseModel):
 
 class AwsCodecommitIRepositoryDefOnStateChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1596,11 +2345,11 @@ class AwsCodepipelineIActionDefBindParams(pydantic.BaseModel):
 
 class AwsCodepipelineIActionDefOnStateChangeParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='the name to use for the new Event.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='the optional target for the Event.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='the optional target for the Event.\n')
     enabled: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the rule is enabled. Default: true\n')
     event_bus: typing.Optional[typing.Union[models.aws_events.EventBusDef]] = pydantic.Field(None, description='The event bus to associate with this rule. Default: - The default event bus.\n')
     schedule: typing.Optional[models.aws_events.ScheduleDef] = pydantic.Field(None, description='The schedule or rate (frequency) that determines when EventBridge runs the rule. You must specify this property, the ``eventPattern`` property, or both. For more information, see Schedule Expression Syntax for Rules in the Amazon EventBridge User Guide. Default: - None.\n')
-    targets: typing.Optional[typing.Sequence[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]]] = pydantic.Field(None, description='Targets to invoke when this rule matches an event. Input will be the full matched event. If you wish to specify custom target input, use ``addTarget(target[, inputOptions])``. Default: - No targets.\n')
+    targets: typing.Optional[typing.Sequence[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]]] = pydantic.Field(None, description='Targets to invoke when this rule matches an event. Input will be the full matched event. If you wish to specify custom target input, use ``addTarget(target[, inputOptions])``. Default: - No targets.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1668,7 +2417,7 @@ class AwsCodepipelineIPipelineDefNotifyOnExecutionStateChangeParams(pydantic.Bas
 
 class AwsCodepipelineIPipelineDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='Identifier for this event handler.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1677,7 +2426,7 @@ class AwsCodepipelineIPipelineDefOnEventParams(pydantic.BaseModel):
 
 class AwsCodepipelineIPipelineDefOnStateChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='Identifier for this event handler.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1694,16 +2443,18 @@ class AwsCodepipelineIStageDefAddActionParams(pydantic.BaseModel):
 
 class AwsCodepipelineIStageDefOnStateChangeParams(pydantic.BaseModel):
     name: str = pydantic.Field(..., description='-')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='-\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='-\n')
     enabled: typing.Optional[bool] = pydantic.Field(None, description='Indicates whether the rule is enabled. Default: true\n')
     event_bus: typing.Optional[typing.Union[models.aws_events.EventBusDef]] = pydantic.Field(None, description='The event bus to associate with this rule. Default: - The default event bus.\n')
     schedule: typing.Optional[models.aws_events.ScheduleDef] = pydantic.Field(None, description='The schedule or rate (frequency) that determines when EventBridge runs the rule. You must specify this property, the ``eventPattern`` property, or both. For more information, see Schedule Expression Syntax for Rules in the Amazon EventBridge User Guide. Default: - None.\n')
-    targets: typing.Optional[typing.Sequence[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]]] = pydantic.Field(None, description='Targets to invoke when this rule matches an event. Input will be the full matched event. If you wish to specify custom target input, use ``addTarget(target[, inputOptions])``. Default: - No targets.\n')
+    targets: typing.Optional[typing.Sequence[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]]] = pydantic.Field(None, description='Targets to invoke when this rule matches an event. Input will be the full matched event. If you wish to specify custom target input, use ``addTarget(target[, inputOptions])``. Default: - No targets.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
     rule_name: typing.Optional[str] = pydantic.Field(None, description='A name for the rule. Default: AWS CloudFormation generates a unique physical ID.')
     return_config: typing.Optional[list[models.aws_events.RuleDefConfig]] = pydantic.Field(None)
+#  aws-cdk-lib.aws_codepipeline_actions.ICustomEventRule skipped
+
 #  aws-cdk-lib.aws_codepipeline_actions.IJenkinsProvider skipped
 
 
@@ -1751,6 +2502,7 @@ class AwsCognitoIUserPoolDefAddClientParams(pydantic.BaseModel):
     auth_flows: typing.Union[models.aws_cognito.AuthFlowDef, dict[str, typing.Any], None] = pydantic.Field(None, description="The set of OAuth authentication flows to enable on the client. Default: - If you don't specify a value, your user client supports ALLOW_REFRESH_TOKEN_AUTH, ALLOW_USER_SRP_AUTH, and ALLOW_CUSTOM_AUTH.\n")
     auth_session_validity: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Cognito creates a session token for each API request in an authentication flow. AuthSessionValidity is the duration, in minutes, of that session token. see defaults in ``AuthSessionValidity``. Valid duration is from 3 to 15 minutes. Default: - Duration.minutes(3)\n')
     disable_o_auth: typing.Optional[bool] = pydantic.Field(None, description='Turns off all OAuth interactions for this client. Default: false\n')
+    enable_propagate_additional_user_context_data: typing.Optional[bool] = pydantic.Field(None, description='Enable the propagation of additional user context data. You can only activate enablePropagateAdditionalUserContextData in an app client that has a client secret. Default: false for new user pool clients\n')
     enable_token_revocation: typing.Optional[bool] = pydantic.Field(None, description='Enable token revocation for this client. Default: true for new user pool clients\n')
     generate_secret: typing.Optional[bool] = pydantic.Field(None, description='Whether to generate a client secret. Default: false\n')
     id_token_validity: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Validity of the ID token. Values between 5 minutes and 1 day are valid. The duration can not be longer than the refresh token validity. Default: Duration.minutes(60)\n')
@@ -1827,7 +2579,7 @@ class AwsConfigIRuleDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 class AwsConfigIRuleDefOnComplianceChangeParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1836,7 +2588,7 @@ class AwsConfigIRuleDefOnComplianceChangeParams(pydantic.BaseModel):
 
 class AwsConfigIRuleDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1845,7 +2597,7 @@ class AwsConfigIRuleDefOnEventParams(pydantic.BaseModel):
 
 class AwsConfigIRuleDefOnReEvaluationStatusParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -1884,7 +2636,8 @@ class AwsDynamodbIScalableTableAttributeDefScaleOnScheduleParams(pydantic.BaseMo
     end_time: typing.Optional[datetime.datetime] = pydantic.Field(None, description='When this scheduled action expires. Default: The rule never expires.\n')
     max_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The new maximum capacity. During the scheduled time, the current capacity is above the maximum capacity, Application Auto Scaling scales in to the maximum capacity. At least one of maxCapacity and minCapacity must be supplied. Default: No new maximum capacity\n')
     min_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The new minimum capacity. During the scheduled time, if the current capacity is below the minimum capacity, Application Auto Scaling scales out to the minimum capacity. At least one of maxCapacity and minCapacity must be supplied. Default: No new minimum capacity\n')
-    start_time: typing.Optional[datetime.datetime] = pydantic.Field(None, description='When this scheduled action becomes active. Default: The rule is activate immediately')
+    start_time: typing.Optional[datetime.datetime] = pydantic.Field(None, description='When this scheduled action becomes active. Default: The rule is activate immediately\n')
+    time_zone: typing.Optional[models.TimeZoneDef] = pydantic.Field(None, description='The time zone used when referring to the date and time of a scheduled action, when the scheduled action uses an at or cron expression. Default: - UTC')
 
 class AwsDynamodbIScalableTableAttributeDefScaleOnUtilizationParams(pydantic.BaseModel):
     target_utilization_percent: typing.Union[int, float] = pydantic.Field(..., description='Target utilization percentage for the attribute.\n')
@@ -2261,6 +3014,33 @@ class AwsEc2IIpAddressesDefAllocateSubnetsCidrParams(pydantic.BaseModel):
     requested_subnets: typing.Sequence[typing.Union[models.aws_ec2.RequestedSubnetDef, dict[str, typing.Any]]] = pydantic.Field(..., description='The Subnets to be allocated.\n')
     vpc_cidr: str = pydantic.Field(..., description='The IPv4 CIDR block for this Vpc.')
 
+class AwsEc2IIpv6AddressesDefConfig(pydantic.BaseModel):
+    allocate_subnets_ipv6_cidr: typing.Optional[list[models._interface_methods.AwsEc2IIpv6AddressesDefAllocateSubnetsIpv6CidrParams]] = pydantic.Field(None, description='Allocates Subnets IPv6 CIDRs. Called by VPC when creating subnets with IPv6 enabled.\nNote this is specific to the IPv6 CIDR.')
+    allocate_vpc_ipv6_cidr: typing.Optional[list[models._interface_methods.AwsEc2IIpv6AddressesDefAllocateVpcIpv6CidrParams]] = pydantic.Field(None, description='Called by VPC to allocate IPv6 CIDR.\nNote this is specific to the IPv6 CIDR.')
+    create_ipv6_cidr_blocks: typing.Optional[list[models._interface_methods.AwsEc2IIpv6AddressesDefCreateIpv6CidrBlocksParams]] = pydantic.Field(None, description='Split IPv6 CIDR block up for subnets.\nNote this is specific to the IPv6 CIDR.')
+
+
+class AwsEc2IIpv6AddressesDefAllocateSubnetsIpv6CidrParams(pydantic.BaseModel):
+    allocated_subnets: typing.Sequence[typing.Union[models.aws_ec2.AllocatedSubnetDef, dict[str, typing.Any]]] = pydantic.Field(..., description='List of subnets allocated with IPv4 CIDRs.\n')
+    ipv6_cidrs: typing.Sequence[str] = pydantic.Field(..., description='The IPv6 CIDRs to be allocated to the subnets.')
+
+class AwsEc2IIpv6AddressesDefAllocateVpcIpv6CidrParams(pydantic.BaseModel):
+    scope: models.constructs.ConstructDef = pydantic.Field(..., description='The VPC construct to attach to.\n')
+    vpc_id: str = pydantic.Field(..., description='The id of the VPC.')
+    return_config: typing.Optional[list[models.aws_ec2.CfnVPCCidrBlockDefConfig]] = pydantic.Field(None)
+
+class AwsEc2IIpv6AddressesDefCreateIpv6CidrBlocksParams(pydantic.BaseModel):
+    ipv6_selected_cidr: str = pydantic.Field(..., description='The IPv6 CIDR block string representation.\n')
+    subnet_count: typing.Union[int, float] = pydantic.Field(..., description='The number of subnets to assign CIDRs to.\n')
+    size_mask: typing.Optional[str] = pydantic.Field(None, description='Size of the covered bits in the CIDR. Default: - 128 - 64 = /64 CIDR.')
+
+class AwsEc2IKeyPairDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2IKeyPairDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsEc2IKeyPairDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
 class AwsEc2ILaunchTemplateDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEc2ILaunchTemplateDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
 
@@ -2453,8 +3233,8 @@ class AwsEc2IVpcDefAddFlowLogParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
     destination: typing.Optional[models.aws_ec2.FlowLogDestinationDef] = pydantic.Field(None, description='Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3 Default: FlowLogDestinationType.toCloudWatchLogs()\n')
     log_format: typing.Optional[typing.Sequence[models.aws_ec2.LogFormatDef]] = pydantic.Field(None, description='The fields to include in the flow log record, in the order in which they should appear. If multiple fields are specified, they will be separated by spaces. For full control over the literal log format string, pass a single field constructed with ``LogFormat.custom()``. See https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html#flow-log-records Default: - default log format is used.\n')
-    max_aggregation_interval: typing.Optional[aws_cdk.aws_ec2.FlowLogMaxAggregationInterval] = pydantic.Field(None, description='The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. Default: FlowLogMaxAggregationInterval.TEN_MINUTES\n')
-    traffic_type: typing.Optional[aws_cdk.aws_ec2.FlowLogTrafficType] = pydantic.Field(None, description='The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic. Default: ALL')
+    max_aggregation_interval: typing.Optional[aws_cdk.aws_ec2.FlowLogMaxAggregationInterval] = pydantic.Field(None, description='The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record. When creating flow logs for a Transit Gateway or Transit Gateway Attachment, this property must be ONE_MINUTES. Default: - FlowLogMaxAggregationInterval.ONE_MINUTES if creating flow logs for Transit Gateway, otherwise FlowLogMaxAggregationInterval.TEN_MINUTES.\n')
+    traffic_type: typing.Optional[aws_cdk.aws_ec2.FlowLogTrafficType] = pydantic.Field(None, description='The type of traffic to log. You can log traffic that the resource accepts or rejects, or all traffic. When the target is either ``TransitGateway`` or ``TransitGatewayAttachment``, setting the traffic type is not possible. Default: ALL')
     return_config: typing.Optional[list[models.aws_ec2.FlowLogDefConfig]] = pydantic.Field(None)
 
 class AwsEc2IVpcDefAddGatewayEndpointParams(pydantic.BaseModel):
@@ -2622,7 +3402,7 @@ class AwsEcrIRepositoryDefGrantReadParams(pydantic.BaseModel):
 
 class AwsEcrIRepositoryDefOnCloudTrailEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -2632,7 +3412,7 @@ class AwsEcrIRepositoryDefOnCloudTrailEventParams(pydantic.BaseModel):
 class AwsEcrIRepositoryDefOnCloudTrailImagePushedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     image_tag: typing.Optional[str] = pydantic.Field(None, description='Only watch changes to this image tag. Default: - Watch changes to all tags\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -2641,7 +3421,7 @@ class AwsEcrIRepositoryDefOnCloudTrailImagePushedParams(pydantic.BaseModel):
 
 class AwsEcrIRepositoryDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -2651,7 +3431,7 @@ class AwsEcrIRepositoryDefOnEventParams(pydantic.BaseModel):
 class AwsEcrIRepositoryDefOnImageScanCompletedParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     image_tags: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to the image tags specified. Leave it undefined to watch the full repository. Default: - Watch the changes to the repository with all image tags\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -2798,6 +3578,15 @@ class AwsEfsIFileSystemDefGrantRootAccessParams(pydantic.BaseModel):
     grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant root access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
+class AwsEksIAccessEntryDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEksIAccessEntryDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsEksIAccessEntryDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+#  aws-cdk-lib.aws_eks.IAccessPolicy skipped
+
+
 class AwsEksIClusterDefConfig(pydantic.BaseModel):
     add_cdk8s_chart: typing.Optional[list[models._interface_methods.AwsEksIClusterDefAddCdk8SChartParams]] = pydantic.Field(None, description='Defines a CDK8s chart in this cluster.')
     add_helm_chart: typing.Optional[list[models._interface_methods.AwsEksIClusterDefAddHelmChartParams]] = pydantic.Field(None, description='Defines a Helm chart in this cluster.')
@@ -2817,6 +3606,7 @@ class AwsEksIClusterDefAddCdk8SChartParams(pydantic.BaseModel):
 
 class AwsEksIClusterDefAddHelmChartParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='logical id of this chart.\n')
+    atomic: typing.Optional[bool] = pydantic.Field(None, description='Whether or not Helm should treat this operation as atomic; if set, upgrade process rolls back changes made in case of failed upgrade. The --wait flag will be set automatically if --atomic is used. Default: false\n')
     chart: typing.Optional[str] = pydantic.Field(None, description='The name of the chart. Either this or ``chartAsset`` must be specified. Default: - No chart name. Implies ``chartAsset`` is used.\n')
     chart_asset: typing.Optional[models.aws_s3_assets.AssetDef] = pydantic.Field(None, description='The chart in the form of an asset. Either this or ``chart`` must be specified. Default: - No chart asset. Implies ``chart`` is used.\n')
     create_namespace: typing.Optional[bool] = pydantic.Field(None, description='create namespace if not exist. Default: true\n')
@@ -2836,6 +3626,7 @@ class AwsEksIClusterDefAddManifestParams(pydantic.BaseModel):
 class AwsEksIClusterDefAddServiceAccountParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='logical id of service account.\n')
     annotations: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Additional annotations of the service account. Default: - no additional annotations\n')
+    identity_type: typing.Optional[aws_cdk.aws_eks.IdentityType] = pydantic.Field(None, description='The identity type to use for the service account. Default: IdentityType.IRSA\n')
     labels: typing.Optional[typing.Mapping[str, str]] = pydantic.Field(None, description='Additional labels of the service account. Default: - no additional labels\n')
     name: typing.Optional[str] = pydantic.Field(None, description='The name of the service account. The name of a ServiceAccount object must be a valid DNS subdomain name. https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/ Default: - If no name is given, it will use the id of the resource.\n')
     namespace: typing.Optional[str] = pydantic.Field(None, description='The namespace of the service account. All namespace names must be valid RFC 1123 DNS labels. https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/#namespaces-and-dns Default: "default"')
@@ -2880,6 +3671,7 @@ class AwsElasticloadbalancingv2IApplicationListenerDefConfig(pydantic.BaseModel)
 class AwsElasticloadbalancingv2IApplicationListenerDefAddActionParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
     action: models.aws_elasticloadbalancingv2.ListenerActionDef = pydantic.Field(..., description='Action to perform.\n')
+    remove_suffix: typing.Optional[bool] = pydantic.Field(None, description='``ListenerRule``s have a ``Rule`` suffix on their logicalId by default. This allows you to remove that suffix. Legacy behavior of the ``addTargetGroups()`` convenience method did not include the ``Rule`` suffix on the logicalId of the generated ``ListenerRule``. At some point, increasing complexity of requirements can require users to switch from the ``addTargetGroups()`` method to the ``addAction()`` method. When migrating ``ListenerRule``s deployed by a legacy version of ``addTargetGroups()``, you will need to enable this flag to avoid changing the logicalId of your resource. Otherwise Cfn will attempt to replace the ``ListenerRule`` and fail. Default: - use standard logicalId with the ``Rule`` suffix\n')
     conditions: typing.Optional[typing.Sequence[models.aws_elasticloadbalancingv2.ListenerConditionDef]] = pydantic.Field(None, description='Rule applies if matches the conditions. Default: - No conditions.\n')
     priority: typing.Union[int, float, None] = pydantic.Field(None, description='Priority of this target group. The rule with the lowest priority will be used for every request. If priority is not given, these target groups will be added as defaults, and must not have conditions. Priorities must be unique. Default: Target groups are used as defaults')
 
@@ -2914,7 +3706,7 @@ class AwsElasticloadbalancingv2IApplicationListenerDefApplyRemovalPolicyParams(p
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationListenerDefRegisterConnectableParams(pydantic.BaseModel):
-    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_synthetics.CanaryDef] = pydantic.Field(..., description='-\n')
+    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.NatInstanceProviderV2Def, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_synthetics.CanaryDef] = pydantic.Field(..., description='-\n')
     port_range: models.aws_ec2.PortDef = pydantic.Field(..., description='-')
 
 class AwsElasticloadbalancingv2IApplicationLoadBalancerDefConfig(pydantic.BaseModel):
@@ -3235,7 +4027,7 @@ class AwsElasticloadbalancingv2IApplicationTargetGroupDefAddTargetParams(pydanti
     targets: list[typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ecs.BaseServiceDef, models.aws_ecs.Ec2ServiceDef, models.aws_ecs.ExternalServiceDef, models.aws_ecs.FargateServiceDef, models.aws_elasticloadbalancingv2_targets.InstanceIdTargetDef, models.aws_elasticloadbalancingv2_targets.InstanceTargetDef, models.aws_elasticloadbalancingv2_targets.IpTargetDef, models.aws_elasticloadbalancingv2_targets.LambdaTargetDef]] = pydantic.Field(...)
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterConnectableParams(pydantic.BaseModel):
-    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_synthetics.CanaryDef] = pydantic.Field(..., description='-\n')
+    connectable: typing.Union[models.aws_autoscaling.AutoScalingGroupDef, models.aws_ec2.ConnectionsDef, models.aws_ec2.NatInstanceProviderDef, models.aws_ec2.NatInstanceProviderV2Def, models.aws_ec2.LaunchTemplateDef, models.aws_elasticloadbalancing.ListenerPortDef, models.aws_elasticloadbalancing.LoadBalancerDef, models.aws_elasticsearch.DomainDef, models.aws_opensearchservice.DomainDef, models.aws_rds.DatabaseProxyDef, models.aws_secretsmanager.HostedRotationDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_synthetics.CanaryDef] = pydantic.Field(..., description='-\n')
     port_range: typing.Optional[models.aws_ec2.PortDef] = pydantic.Field(None, description='-')
 
 class AwsElasticloadbalancingv2IApplicationTargetGroupDefRegisterListenerParams(pydantic.BaseModel):
@@ -3874,6 +4666,13 @@ class AwsEventsIRuleTargetDefConfig(pydantic.BaseModel):
 class AwsEventsIRuleTargetDefBindParams(pydantic.BaseModel):
     rule: typing.Union[models.aws_events.RuleDef] = pydantic.Field(..., description='The EventBridge Rule that would trigger this target.\n')
     id: typing.Optional[str] = pydantic.Field(None, description='The id of the target that will be attached to the rule.')
+
+class AwsEventsTargetsIDeliveryStreamDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsEventsTargetsIDeliveryStreamDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsEventsTargetsIDeliveryStreamDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
 #  aws-cdk-lib.aws_fsx.IFileSystem skipped
 
 
@@ -4449,7 +5248,9 @@ class AwsLambdaIAliasDefConfig(pydantic.BaseModel):
     configure_async_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
     grant_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
     grant_invoke_composite_principal: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_latest_version: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeLatestVersionParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke the $LATEST version or unqualified version of this Lambda.')
     grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    grant_invoke_version: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefGrantInvokeVersionParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke the given version of this Lambda.')
     metric: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
     metric_duration: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
     metric_errors: typing.Optional[list[models._interface_methods.AwsLambdaIAliasDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
@@ -4458,7 +5259,7 @@ class AwsLambdaIAliasDefConfig(pydantic.BaseModel):
 
 
 class AwsLambdaIAliasDefAddEventSourceParams(pydantic.BaseModel):
-    source: typing.Union[models.aws_lambda_event_sources.ApiEventSourceDef, models.aws_lambda_event_sources.DynamoEventSourceDef, models.aws_lambda_event_sources.KinesisEventSourceDef, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef, models.aws_lambda_event_sources.S3EventSourceDef, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef, models.aws_lambda_event_sources.SnsEventSourceDef, models.aws_lambda_event_sources.SqsEventSourceDef, models.aws_lambda_event_sources.StreamEventSourceDef] = pydantic.Field(..., description='-')
+    source: typing.Union[models.aws_lambda_event_sources.ApiEventSourceDef, models.aws_lambda_event_sources.DynamoEventSourceDef, models.aws_lambda_event_sources.KinesisEventSourceDef, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef, models.aws_lambda_event_sources.S3EventSourceDef, models.aws_lambda_event_sources.S3EventSourceV2Def, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef, models.aws_lambda_event_sources.SnsEventSourceDef, models.aws_lambda_event_sources.SqsEventSourceDef, models.aws_lambda_event_sources.StreamEventSourceDef] = pydantic.Field(..., description='-')
 
 class AwsLambdaIAliasDefAddEventSourceMappingParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='construct ID.\n')
@@ -4473,13 +5274,14 @@ class AwsLambdaIAliasDefAddEventSourceMappingParams(pydantic.BaseModel):
     max_batching_window: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The maximum amount of time to gather records before invoking the function. Maximum of Duration.minutes(5) Default: Duration.seconds(0)\n')
     max_concurrency: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum concurrency setting limits the number of concurrent instances of the function that an Amazon SQS event source can invoke. Default: - No specific limit.\n')
     max_record_age: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The maximum age of a record that Lambda sends to a function for processing. Valid Range: - Minimum value of 60 seconds - Maximum value of 7 days Default: - infinite or until the record expires.\n')
-    on_failure: typing.Optional[typing.Union[models.aws_lambda_event_sources.SnsDlqDef, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None, description='An Amazon SQS queue or Amazon SNS topic destination for discarded records. Default: discarded records are ignored\n')
+    on_failure: typing.Optional[typing.Union[models.aws_lambda_event_sources.S3OnFailureDestinationDef, models.aws_lambda_event_sources.SnsDlqDef, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None, description='An Amazon SQS queue or Amazon SNS topic destination for discarded records. Default: discarded records are ignored\n')
     parallelization_factor: typing.Union[int, float, None] = pydantic.Field(None, description='The number of batches to process from each shard concurrently. Valid Range: - Minimum value of 1 - Maximum value of 10 Default: 1\n')
     report_batch_item_failures: typing.Optional[bool] = pydantic.Field(None, description='Allow functions to return partially successful responses for a batch of records. Default: false\n')
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Set to ``undefined`` if you want lambda to keep retrying infinitely or until the record expires. Valid Range: - Minimum value of 0 - Maximum value of 10000 Default: - infinite or until the record expires.\n')
     source_access_configurations: typing.Optional[typing.Sequence[typing.Union[models.aws_lambda.SourceAccessConfigurationDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specific settings like the authentication protocol or the VPC components to secure access to your event source. Default: - none\n')
     starting_position: typing.Optional[aws_cdk.aws_lambda.StartingPosition] = pydantic.Field(None, description='The position in the DynamoDB, Kinesis or MSK stream where AWS Lambda should start reading. Default: - no starting position\n')
     starting_position_timestamp: typing.Union[int, float, None] = pydantic.Field(None, description='The time from which to start reading, in Unix time seconds. Default: - no timestamp\n')
+    support_s3_on_failure_destination: typing.Optional[bool] = pydantic.Field(None, description='Check if support S3 onfailure destination(ODF). Currently only MSK and self managed kafka event support S3 ODF Default: false\n')
     tumbling_window: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The size of the tumbling windows to group records sent to DynamoDB or Kinesis. Default: - None')
     return_config: typing.Optional[list[models.aws_lambda.EventSourceMappingDefConfig]] = pydantic.Field(None)
 
@@ -4519,8 +5321,17 @@ class AwsLambdaIAliasDefGrantInvokeParams(pydantic.BaseModel):
 class AwsLambdaIAliasDefGrantInvokeCompositePrincipalParams(pydantic.BaseModel):
     composite_principal: models.aws_iam.CompositePrincipalDef = pydantic.Field(..., description='-')
 
+class AwsLambdaIAliasDefGrantInvokeLatestVersionParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsLambdaIAliasDefGrantInvokeUrlParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsLambdaIAliasDefGrantInvokeVersionParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-\n')
+    version: typing.Union[models.aws_lambda.VersionDef] = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIAliasDefMetricParams(pydantic.BaseModel):
@@ -4627,7 +5438,9 @@ class AwsLambdaIFunctionDefConfig(pydantic.BaseModel):
     configure_async_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
     grant_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
     grant_invoke_composite_principal: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_latest_version: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeLatestVersionParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke the $LATEST version or unqualified version of this Lambda.')
     grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    grant_invoke_version: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefGrantInvokeVersionParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke the given version of this Lambda.')
     metric: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
     metric_duration: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
     metric_errors: typing.Optional[list[models._interface_methods.AwsLambdaIFunctionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
@@ -4636,7 +5449,7 @@ class AwsLambdaIFunctionDefConfig(pydantic.BaseModel):
 
 
 class AwsLambdaIFunctionDefAddEventSourceParams(pydantic.BaseModel):
-    source: typing.Union[models.aws_lambda_event_sources.ApiEventSourceDef, models.aws_lambda_event_sources.DynamoEventSourceDef, models.aws_lambda_event_sources.KinesisEventSourceDef, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef, models.aws_lambda_event_sources.S3EventSourceDef, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef, models.aws_lambda_event_sources.SnsEventSourceDef, models.aws_lambda_event_sources.SqsEventSourceDef, models.aws_lambda_event_sources.StreamEventSourceDef] = pydantic.Field(..., description='-')
+    source: typing.Union[models.aws_lambda_event_sources.ApiEventSourceDef, models.aws_lambda_event_sources.DynamoEventSourceDef, models.aws_lambda_event_sources.KinesisEventSourceDef, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef, models.aws_lambda_event_sources.S3EventSourceDef, models.aws_lambda_event_sources.S3EventSourceV2Def, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef, models.aws_lambda_event_sources.SnsEventSourceDef, models.aws_lambda_event_sources.SqsEventSourceDef, models.aws_lambda_event_sources.StreamEventSourceDef] = pydantic.Field(..., description='-')
 
 class AwsLambdaIFunctionDefAddEventSourceMappingParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='construct ID.\n')
@@ -4651,13 +5464,14 @@ class AwsLambdaIFunctionDefAddEventSourceMappingParams(pydantic.BaseModel):
     max_batching_window: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The maximum amount of time to gather records before invoking the function. Maximum of Duration.minutes(5) Default: Duration.seconds(0)\n')
     max_concurrency: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum concurrency setting limits the number of concurrent instances of the function that an Amazon SQS event source can invoke. Default: - No specific limit.\n')
     max_record_age: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The maximum age of a record that Lambda sends to a function for processing. Valid Range: - Minimum value of 60 seconds - Maximum value of 7 days Default: - infinite or until the record expires.\n')
-    on_failure: typing.Optional[typing.Union[models.aws_lambda_event_sources.SnsDlqDef, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None, description='An Amazon SQS queue or Amazon SNS topic destination for discarded records. Default: discarded records are ignored\n')
+    on_failure: typing.Optional[typing.Union[models.aws_lambda_event_sources.S3OnFailureDestinationDef, models.aws_lambda_event_sources.SnsDlqDef, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None, description='An Amazon SQS queue or Amazon SNS topic destination for discarded records. Default: discarded records are ignored\n')
     parallelization_factor: typing.Union[int, float, None] = pydantic.Field(None, description='The number of batches to process from each shard concurrently. Valid Range: - Minimum value of 1 - Maximum value of 10 Default: 1\n')
     report_batch_item_failures: typing.Optional[bool] = pydantic.Field(None, description='Allow functions to return partially successful responses for a batch of records. Default: false\n')
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Set to ``undefined`` if you want lambda to keep retrying infinitely or until the record expires. Valid Range: - Minimum value of 0 - Maximum value of 10000 Default: - infinite or until the record expires.\n')
     source_access_configurations: typing.Optional[typing.Sequence[typing.Union[models.aws_lambda.SourceAccessConfigurationDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specific settings like the authentication protocol or the VPC components to secure access to your event source. Default: - none\n')
     starting_position: typing.Optional[aws_cdk.aws_lambda.StartingPosition] = pydantic.Field(None, description='The position in the DynamoDB, Kinesis or MSK stream where AWS Lambda should start reading. Default: - no starting position\n')
     starting_position_timestamp: typing.Union[int, float, None] = pydantic.Field(None, description='The time from which to start reading, in Unix time seconds. Default: - no timestamp\n')
+    support_s3_on_failure_destination: typing.Optional[bool] = pydantic.Field(None, description='Check if support S3 onfailure destination(ODF). Currently only MSK and self managed kafka event support S3 ODF Default: false\n')
     tumbling_window: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The size of the tumbling windows to group records sent to DynamoDB or Kinesis. Default: - None')
     return_config: typing.Optional[list[models.aws_lambda.EventSourceMappingDefConfig]] = pydantic.Field(None)
 
@@ -4697,8 +5511,17 @@ class AwsLambdaIFunctionDefGrantInvokeParams(pydantic.BaseModel):
 class AwsLambdaIFunctionDefGrantInvokeCompositePrincipalParams(pydantic.BaseModel):
     composite_principal: models.aws_iam.CompositePrincipalDef = pydantic.Field(..., description='-')
 
+class AwsLambdaIFunctionDefGrantInvokeLatestVersionParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsLambdaIFunctionDefGrantInvokeUrlParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsLambdaIFunctionDefGrantInvokeVersionParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-\n')
+    version: typing.Union[models.aws_lambda.VersionDef] = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIFunctionDefMetricParams(pydantic.BaseModel):
@@ -4793,7 +5616,8 @@ class AwsLambdaIScalableFunctionAttributeDefScaleOnScheduleParams(pydantic.BaseM
     end_time: typing.Optional[datetime.datetime] = pydantic.Field(None, description='When this scheduled action expires. Default: The rule never expires.\n')
     max_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The new maximum capacity. During the scheduled time, the current capacity is above the maximum capacity, Application Auto Scaling scales in to the maximum capacity. At least one of maxCapacity and minCapacity must be supplied. Default: No new maximum capacity\n')
     min_capacity: typing.Union[int, float, None] = pydantic.Field(None, description='The new minimum capacity. During the scheduled time, if the current capacity is below the minimum capacity, Application Auto Scaling scales out to the minimum capacity. At least one of maxCapacity and minCapacity must be supplied. Default: No new minimum capacity\n')
-    start_time: typing.Optional[datetime.datetime] = pydantic.Field(None, description='When this scheduled action becomes active. Default: The rule is activate immediately')
+    start_time: typing.Optional[datetime.datetime] = pydantic.Field(None, description='When this scheduled action becomes active. Default: The rule is activate immediately\n')
+    time_zone: typing.Optional[models.TimeZoneDef] = pydantic.Field(None, description='The time zone used when referring to the date and time of a scheduled action, when the scheduled action uses an at or cron expression. Default: - UTC')
 
 class AwsLambdaIScalableFunctionAttributeDefScaleOnUtilizationParams(pydantic.BaseModel):
     utilization_target: typing.Union[int, float] = pydantic.Field(..., description='Utilization target for the attribute. For example, .5 indicates that 50 percent of allocated provisioned concurrency is in use.\n')
@@ -4813,7 +5637,9 @@ class AwsLambdaIVersionDefConfig(pydantic.BaseModel):
     configure_async_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefConfigureAsyncInvokeParams]] = pydantic.Field(None, description='Configures options for asynchronous invocation.')
     grant_invoke: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda.')
     grant_invoke_composite_principal: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeCompositePrincipalParams]] = pydantic.Field(None, description='Grant multiple principals the ability to invoke this Lambda via CompositePrincipal.')
+    grant_invoke_latest_version: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeLatestVersionParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke the $LATEST version or unqualified version of this Lambda.')
     grant_invoke_url: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeUrlParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke this Lambda Function URL.')
+    grant_invoke_version: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefGrantInvokeVersionParams]] = pydantic.Field(None, description='Grant the given identity permissions to invoke the given version of this Lambda.')
     metric: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Lambda Return the given named metric for this Function.')
     metric_duration: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricDurationParams]] = pydantic.Field(None, description='Metric for the Duration of this Lambda How long execution of this Lambda takes.\nAverage over 5 minutes')
     metric_errors: typing.Optional[list[models._interface_methods.AwsLambdaIVersionDefMetricErrorsParams]] = pydantic.Field(None, description='How many invocations of this Lambda fail.\nSum over 5 minutes')
@@ -4833,7 +5659,7 @@ class AwsLambdaIVersionDefAddAliasParams(pydantic.BaseModel):
     return_config: typing.Optional[list[models.aws_lambda.AliasDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIVersionDefAddEventSourceParams(pydantic.BaseModel):
-    source: typing.Union[models.aws_lambda_event_sources.ApiEventSourceDef, models.aws_lambda_event_sources.DynamoEventSourceDef, models.aws_lambda_event_sources.KinesisEventSourceDef, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef, models.aws_lambda_event_sources.S3EventSourceDef, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef, models.aws_lambda_event_sources.SnsEventSourceDef, models.aws_lambda_event_sources.SqsEventSourceDef, models.aws_lambda_event_sources.StreamEventSourceDef] = pydantic.Field(..., description='-')
+    source: typing.Union[models.aws_lambda_event_sources.ApiEventSourceDef, models.aws_lambda_event_sources.DynamoEventSourceDef, models.aws_lambda_event_sources.KinesisEventSourceDef, models.aws_lambda_event_sources.ManagedKafkaEventSourceDef, models.aws_lambda_event_sources.S3EventSourceDef, models.aws_lambda_event_sources.S3EventSourceV2Def, models.aws_lambda_event_sources.SelfManagedKafkaEventSourceDef, models.aws_lambda_event_sources.SnsEventSourceDef, models.aws_lambda_event_sources.SqsEventSourceDef, models.aws_lambda_event_sources.StreamEventSourceDef] = pydantic.Field(..., description='-')
 
 class AwsLambdaIVersionDefAddEventSourceMappingParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='construct ID.\n')
@@ -4848,13 +5674,14 @@ class AwsLambdaIVersionDefAddEventSourceMappingParams(pydantic.BaseModel):
     max_batching_window: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The maximum amount of time to gather records before invoking the function. Maximum of Duration.minutes(5) Default: Duration.seconds(0)\n')
     max_concurrency: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum concurrency setting limits the number of concurrent instances of the function that an Amazon SQS event source can invoke. Default: - No specific limit.\n')
     max_record_age: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The maximum age of a record that Lambda sends to a function for processing. Valid Range: - Minimum value of 60 seconds - Maximum value of 7 days Default: - infinite or until the record expires.\n')
-    on_failure: typing.Optional[typing.Union[models.aws_lambda_event_sources.SnsDlqDef, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None, description='An Amazon SQS queue or Amazon SNS topic destination for discarded records. Default: discarded records are ignored\n')
+    on_failure: typing.Optional[typing.Union[models.aws_lambda_event_sources.S3OnFailureDestinationDef, models.aws_lambda_event_sources.SnsDlqDef, models.aws_lambda_event_sources.SqsDlqDef]] = pydantic.Field(None, description='An Amazon SQS queue or Amazon SNS topic destination for discarded records. Default: discarded records are ignored\n')
     parallelization_factor: typing.Union[int, float, None] = pydantic.Field(None, description='The number of batches to process from each shard concurrently. Valid Range: - Minimum value of 1 - Maximum value of 10 Default: 1\n')
     report_batch_item_failures: typing.Optional[bool] = pydantic.Field(None, description='Allow functions to return partially successful responses for a batch of records. Default: false\n')
     retry_attempts: typing.Union[int, float, None] = pydantic.Field(None, description='The maximum number of times to retry when the function returns an error. Set to ``undefined`` if you want lambda to keep retrying infinitely or until the record expires. Valid Range: - Minimum value of 0 - Maximum value of 10000 Default: - infinite or until the record expires.\n')
     source_access_configurations: typing.Optional[typing.Sequence[typing.Union[models.aws_lambda.SourceAccessConfigurationDef, dict[str, typing.Any]]]] = pydantic.Field(None, description='Specific settings like the authentication protocol or the VPC components to secure access to your event source. Default: - none\n')
     starting_position: typing.Optional[aws_cdk.aws_lambda.StartingPosition] = pydantic.Field(None, description='The position in the DynamoDB, Kinesis or MSK stream where AWS Lambda should start reading. Default: - no starting position\n')
     starting_position_timestamp: typing.Union[int, float, None] = pydantic.Field(None, description='The time from which to start reading, in Unix time seconds. Default: - no timestamp\n')
+    support_s3_on_failure_destination: typing.Optional[bool] = pydantic.Field(None, description='Check if support S3 onfailure destination(ODF). Currently only MSK and self managed kafka event support S3 ODF Default: false\n')
     tumbling_window: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The size of the tumbling windows to group records sent to DynamoDB or Kinesis. Default: - None')
     return_config: typing.Optional[list[models.aws_lambda.EventSourceMappingDefConfig]] = pydantic.Field(None)
 
@@ -4894,8 +5721,17 @@ class AwsLambdaIVersionDefGrantInvokeParams(pydantic.BaseModel):
 class AwsLambdaIVersionDefGrantInvokeCompositePrincipalParams(pydantic.BaseModel):
     composite_principal: models.aws_iam.CompositePrincipalDef = pydantic.Field(..., description='-')
 
+class AwsLambdaIVersionDefGrantInvokeLatestVersionParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsLambdaIVersionDefGrantInvokeUrlParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsLambdaIVersionDefGrantInvokeVersionParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-\n')
+    version: typing.Union[models.aws_lambda.VersionDef] = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsLambdaIVersionDefMetricParams(pydantic.BaseModel):
@@ -5008,6 +5844,7 @@ class AwsLogsILogGroupDefAddSubscriptionFilterParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='Unique identifier for the construct in its parent.\n')
     destination: typing.Union[models.aws_logs.CrossAccountDestinationDef, models.aws_logs_destinations.KinesisDestinationDef, models.aws_logs_destinations.LambdaDestinationDef] = pydantic.Field(..., description='The destination to send the filtered events to. For example, a Kinesis stream or a Lambda function.\n')
     filter_pattern: typing.Union[models.aws_logs.JsonPatternDef, models.aws_logs.SpaceDelimitedTextPatternDef] = pydantic.Field(..., description='Log events matching this pattern will be sent to the destination.\n')
+    distribution: typing.Optional[aws_cdk.aws_logs.Distribution] = pydantic.Field(None, description='The method used to distribute log data to the destination. This property can only be used with KinesisDestination. Default: Distribution.BY_LOG_STREAM\n')
     filter_name: typing.Optional[str] = pydantic.Field(None, description='The name of the subscription filter. Default: Automatically generated')
     return_config: typing.Optional[list[models.aws_logs.SubscriptionFilterDefConfig]] = pydantic.Field(None)
 
@@ -5336,6 +6173,8 @@ class AwsRdsIClusterInstanceDefBindParams(pydantic.BaseModel):
 class AwsRdsIDatabaseClusterDefConfig(pydantic.BaseModel):
     add_proxy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefAddProxyParams]] = pydantic.Field(None, description='Add a new db proxy to this cluster.')
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_connect: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefGrantConnectParams]] = pydantic.Field(None, description='Grant the given identity connection access to the Cluster.')
+    grant_data_api_access: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefGrantDataApiAccessParams]] = pydantic.Field(None, description='Grant the given identity to access to the Data API.')
     metric: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this DBCluster.')
     metric_cpu_utilization: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricCpuUtilizationParams]] = pydantic.Field(None, description='The percentage of CPU utilization.\nAverage over 5 minutes')
     metric_database_connections: typing.Optional[list[models._interface_methods.AwsRdsIDatabaseClusterDefMetricDatabaseConnectionsParams]] = pydantic.Field(None, description='The number of database connections in use.\nAverage over 5 minutes')
@@ -5358,6 +6197,7 @@ class AwsRdsIDatabaseClusterDefAddProxyParams(pydantic.BaseModel):
     secrets: typing.Sequence[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(..., description='The secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. One or more secrets are required.\n')
     vpc: typing.Union[models.aws_ec2.VpcDef] = pydantic.Field(..., description='The VPC to associate with the new proxy.\n')
     borrow_timeout: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The duration for a proxy to wait for a connection to become available in the connection pool. Only applies when the proxy has opened its maximum number of connections and all connections are busy with client sessions. Value must be between 1 second and 1 hour, or ``Duration.seconds(0)`` to represent unlimited. Default: cdk.Duration.seconds(120)\n')
+    client_password_auth_type: typing.Optional[aws_cdk.aws_rds.ClientPasswordAuthType] = pydantic.Field(None, description='Specifies the details of authentication used by a proxy to log in as a specific database user. Default: - CloudFormation defaults will apply given the specified database engine.\n')
     db_proxy_name: typing.Optional[str] = pydantic.Field(None, description="The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens. Default: - Generated by CloudFormation (recommended)\n")
     debug_logging: typing.Optional[bool] = pydantic.Field(None, description='Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs. Default: false\n')
     iam_auth: typing.Optional[bool] = pydantic.Field(None, description='Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. Default: false\n')
@@ -5374,6 +6214,15 @@ class AwsRdsIDatabaseClusterDefAddProxyParams(pydantic.BaseModel):
 
 class AwsRdsIDatabaseClusterDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsRdsIDatabaseClusterDefGrantConnectParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='the Principal to grant the permissions to.\n')
+    db_user: str = pydantic.Field(..., description='the name of the database user to allow connecting.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsRdsIDatabaseClusterDefGrantDataApiAccessParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsRdsIDatabaseClusterDefMetricParams(pydantic.BaseModel):
     metric_name: str = pydantic.Field(..., description='-\n')
@@ -5560,6 +6409,7 @@ class AwsRdsIDatabaseInstanceDefAddProxyParams(pydantic.BaseModel):
     secrets: typing.Sequence[typing.Union[models.aws_docdb.DatabaseSecretDef, models.aws_rds.DatabaseSecretDef, models.aws_secretsmanager.SecretDef, models.aws_secretsmanager.SecretTargetAttachmentDef]] = pydantic.Field(..., description='The secret that the proxy uses to authenticate to the RDS DB instance or Aurora DB cluster. These secrets are stored within Amazon Secrets Manager. One or more secrets are required.\n')
     vpc: typing.Union[models.aws_ec2.VpcDef] = pydantic.Field(..., description='The VPC to associate with the new proxy.\n')
     borrow_timeout: typing.Optional[models.DurationDef] = pydantic.Field(None, description='The duration for a proxy to wait for a connection to become available in the connection pool. Only applies when the proxy has opened its maximum number of connections and all connections are busy with client sessions. Value must be between 1 second and 1 hour, or ``Duration.seconds(0)`` to represent unlimited. Default: cdk.Duration.seconds(120)\n')
+    client_password_auth_type: typing.Optional[aws_cdk.aws_rds.ClientPasswordAuthType] = pydantic.Field(None, description='Specifies the details of authentication used by a proxy to log in as a specific database user. Default: - CloudFormation defaults will apply given the specified database engine.\n')
     db_proxy_name: typing.Optional[str] = pydantic.Field(None, description="The identifier for the proxy. This name must be unique for all proxies owned by your AWS account in the specified AWS Region. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens. Default: - Generated by CloudFormation (recommended)\n")
     debug_logging: typing.Optional[bool] = pydantic.Field(None, description='Whether the proxy includes detailed information about SQL statements in its logs. This information helps you to debug issues involving SQL behavior or the performance and scalability of the proxy connections. The debug information includes the text of SQL statements that you submit through the proxy. Thus, only enable this setting when needed for debugging, and only when you have security measures in place to safeguard any sensitive information that appears in the logs. Default: false\n')
     iam_auth: typing.Optional[bool] = pydantic.Field(None, description='Whether to require or disallow AWS Identity and Access Management (IAM) authentication for connections to the proxy. Default: false\n')
@@ -5662,7 +6512,7 @@ class AwsRdsIDatabaseInstanceDefMetricWriteIopsParams(pydantic.BaseModel):
 
 class AwsRdsIDatabaseInstanceDefOnEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -5765,6 +6615,13 @@ class AwsRoute53IHostedZoneDefGrantDelegationParams(pydantic.BaseModel):
     grantee: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
+class AwsRoute53IKeySigningKeyDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRoute53IKeySigningKeyDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+
+
+class AwsRoute53IKeySigningKeyDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
 class AwsRoute53IPrivateHostedZoneDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsRoute53IPrivateHostedZoneDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     grant_delegation: typing.Optional[list[models._interface_methods.AwsRoute53IPrivateHostedZoneDefGrantDelegationParams]] = pydantic.Field(None, description='Grant permissions to add delegation records to this zone.')
@@ -5844,7 +6701,7 @@ class AwsS3IBucketDefArnForObjectsParams(pydantic.BaseModel):
 
 class AwsS3IBucketDefGrantDeleteParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantPublicAccessParams(pydantic.BaseModel):
@@ -5854,7 +6711,7 @@ class AwsS3IBucketDefGrantPublicAccessParams(pydantic.BaseModel):
 
 class AwsS3IBucketDefGrantPutParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantPutAclParams(pydantic.BaseModel):
@@ -5864,24 +6721,24 @@ class AwsS3IBucketDefGrantPutAclParams(pydantic.BaseModel):
 
 class AwsS3IBucketDefGrantReadParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantReadWriteParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.")
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefGrantWriteParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='The principal.\n')
-    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*').\n")
+    objects_key_pattern: typing.Any = pydantic.Field(None, description="Restrict the permission to a certain key pattern (default '*'). Parameter type is ``any`` but ``string`` should be passed in.\n")
     allowed_action_patterns: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Restrict the permissions to certain list of action patterns.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsS3IBucketDefOnCloudTrailEventParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -5891,7 +6748,7 @@ class AwsS3IBucketDefOnCloudTrailEventParams(pydantic.BaseModel):
 class AwsS3IBucketDefOnCloudTrailPutObjectParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -5901,7 +6758,7 @@ class AwsS3IBucketDefOnCloudTrailPutObjectParams(pydantic.BaseModel):
 class AwsS3IBucketDefOnCloudTrailWriteObjectParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='The id of the rule.\n')
     paths: typing.Optional[typing.Sequence[str]] = pydantic.Field(None, description='Only watch changes to these object paths. Default: - Watch changes to all objects\n')
-    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
+    target: typing.Optional[typing.Union[models.aws_events_targets.ApiDestinationDef, models.aws_events_targets.ApiGatewayDef, models.aws_events_targets.AppSyncDef, models.aws_events_targets.AwsApiDef, models.aws_events_targets.BatchJobDef, models.aws_events_targets.CloudWatchLogGroupDef, models.aws_events_targets.CodeBuildProjectDef, models.aws_events_targets.CodePipelineDef, models.aws_events_targets.EcsTaskDef, models.aws_events_targets.EventBusDef, models.aws_events_targets.KinesisFirehoseStreamDef, models.aws_events_targets.KinesisFirehoseStreamV2Def, models.aws_events_targets.KinesisStreamDef, models.aws_events_targets.LambdaFunctionDef, models.aws_events_targets.SfnStateMachineDef, models.aws_events_targets.SnsTopicDef, models.aws_events_targets.SqsQueueDef]] = pydantic.Field(None, description='The target to register for the event. Default: - No target is added to the rule. Use ``addTarget()`` to add a target.\n')
     cross_stack_scope: typing.Optional[models.constructs.ConstructDef] = pydantic.Field(None, description='The scope to use if the source of the rule and its target are in different Stacks (but in the same account & region). This helps dealing with cycles that often arise in these situations. Default: - none (the main scope will be used, even for cross-stack Events)\n')
     description: typing.Optional[str] = pydantic.Field(None, description="A description of the rule's purpose. Default: - No description\n")
     event_pattern: typing.Union[models.aws_events.EventPatternDef, dict[str, typing.Any], None] = pydantic.Field(None, description='Additional restrictions for the event to route to the specified target. The method that generates the rule probably imposes some type of event filtering. The filtering implied by what you pass here is added on top of that filtering. Default: - No additional filtering based on an event pattern.\n')
@@ -5951,6 +6808,18 @@ class AwsSagemakerIEndpointDefGrantInvokeParams(pydantic.BaseModel):
     grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
+class AwsSagemakerIPipelineDefConfig(pydantic.BaseModel):
+    apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSagemakerIPipelineDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant_start_pipeline_execution: typing.Optional[list[models._interface_methods.AwsSagemakerIPipelineDefGrantStartPipelineExecutionParams]] = pydantic.Field(None, description='Permits an IAM principal to start this pipeline execution.')
+
+
+class AwsSagemakerIPipelineDefApplyRemovalPolicyParams(pydantic.BaseModel):
+    policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsSagemakerIPipelineDefGrantStartPipelineExecutionParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='The principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
 class AwsSecretsmanagerISecretDefConfig(pydantic.BaseModel):
     add_rotation_schedule: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefAddRotationScheduleParams]] = pydantic.Field(None, description='Adds a rotation schedule to the secret.')
     add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSecretsmanagerISecretDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this secret.\nIf this secret was created in this stack, a resource policy will be\nautomatically created upon the first call to ``addToResourcePolicy``. If\nthe secret is imported, then this is a no-op.')
@@ -5964,7 +6833,7 @@ class AwsSecretsmanagerISecretDefConfig(pydantic.BaseModel):
 
 class AwsSecretsmanagerISecretDefAddRotationScheduleParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. The maximum value is 1000 days. A value of zero (``Duration.days(0)``) will not create RotationRules. Default: Duration.days(30)\n')
+    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. The minimum value is 4 hours. The maximum value is 1000 days. A value of zero (``Duration.days(0)``) will not create RotationRules. Default: Duration.days(30)\n')
     hosted_rotation: typing.Optional[models.aws_secretsmanager.HostedRotationDef] = pydantic.Field(None, description='Hosted rotation. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified\n')
     rotate_immediately_on_update: typing.Optional[bool] = pydantic.Field(None, description='Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window. Default: true\n')
     rotation_lambda: typing.Optional[typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef]] = pydantic.Field(None, description='A Lambda function that can rotate the secret. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified')
@@ -6008,7 +6877,7 @@ class AwsSecretsmanagerISecretTargetAttachmentDefConfig(pydantic.BaseModel):
 
 class AwsSecretsmanagerISecretTargetAttachmentDefAddRotationScheduleParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. The maximum value is 1000 days. A value of zero (``Duration.days(0)``) will not create RotationRules. Default: Duration.days(30)\n')
+    automatically_after: typing.Optional[models.DurationDef] = pydantic.Field(None, description='Specifies the number of days after the previous rotation before Secrets Manager triggers the next automatic rotation. The minimum value is 4 hours. The maximum value is 1000 days. A value of zero (``Duration.days(0)``) will not create RotationRules. Default: Duration.days(30)\n')
     hosted_rotation: typing.Optional[models.aws_secretsmanager.HostedRotationDef] = pydantic.Field(None, description='Hosted rotation. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified\n')
     rotate_immediately_on_update: typing.Optional[bool] = pydantic.Field(None, description='Specifies whether to rotate the secret immediately or wait until the next scheduled rotation window. Default: true\n')
     rotation_lambda: typing.Optional[typing.Union[models.aws_lambda.FunctionBaseDef, models.aws_lambda.QualifiedFunctionBaseDef, models.aws_lambda.AliasDef, models.aws_lambda.DockerImageFunctionDef, models.aws_lambda.FunctionDef, models.aws_lambda.SingletonFunctionDef, models.aws_lambda.VersionDef, models.aws_lambda_nodejs.NodejsFunctionDef, models.triggers.TriggerFunctionDef]] = pydantic.Field(None, description='A Lambda function that can rotate the secret. Default: - either ``rotationLambda`` or ``hostedRotation`` must be specified')
@@ -6200,10 +7069,21 @@ class AwsSesIDedicatedIpPoolDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 class AwsSesIEmailIdentityDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIEmailIdentityDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
+    grant: typing.Optional[list[models._interface_methods.AwsSesIEmailIdentityDefGrantParams]] = pydantic.Field(None, description="Adds an IAM policy statement associated with this email identity to an IAM principal's policy.")
+    grant_send_email: typing.Optional[list[models._interface_methods.AwsSesIEmailIdentityDefGrantSendEmailParams]] = pydantic.Field(None, description='Permits an IAM principal the send email action.\nActions: SendEmail.')
 
 
 class AwsSesIEmailIdentityDefApplyRemovalPolicyParams(pydantic.BaseModel):
     policy: aws_cdk.RemovalPolicy = pydantic.Field(..., description='-')
+
+class AwsSesIEmailIdentityDefGrantParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal (no-op if undefined).\n')
+    actions: list[str] = pydantic.Field(...)
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsSesIEmailIdentityDefGrantSendEmailParams(pydantic.BaseModel):
+    grantee: models.AnyResource = pydantic.Field(..., description='the principal to grant access to.')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
 class AwsSesIReceiptRuleDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSesIReceiptRuleDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
@@ -6226,7 +7106,7 @@ class AwsSesIReceiptRuleSetDefConfig(pydantic.BaseModel):
 
 class AwsSesIReceiptRuleSetDefAddRuleParams(pydantic.BaseModel):
     id: str = pydantic.Field(..., description='-\n')
-    actions: typing.Optional[typing.Sequence[typing.Union[models.aws_ses_actions.AddHeaderDef, models.aws_ses_actions.BounceDef, models.aws_ses_actions.LambdaDef, models.aws_ses_actions.S3Def, models.aws_ses_actions.SnsDef, models.aws_ses_actions.StopDef]]] = pydantic.Field(None, description='An ordered list of actions to perform on messages that match at least one of the recipient email addresses or domains specified in the receipt rule. Default: - No actions.\n')
+    actions: typing.Optional[typing.Sequence[typing.Union[models.aws_ses_actions.AddHeaderDef, models.aws_ses_actions.BounceDef, models.aws_ses_actions.LambdaDef, models.aws_ses_actions.S3Def, models.aws_ses_actions.SnsDef, models.aws_ses_actions.StopDef, models.aws_ses_actions.WorkMailDef]]] = pydantic.Field(None, description='An ordered list of actions to perform on messages that match at least one of the recipient email addresses or domains specified in the receipt rule. Default: - No actions.\n')
     after: typing.Optional[typing.Union[models.aws_ses.ReceiptRuleDef]] = pydantic.Field(None, description='An existing rule after which the new rule will be placed. Default: - The new rule is inserted at the beginning of the rule list.\n')
     enabled: typing.Optional[bool] = pydantic.Field(None, description='Whether the rule is active. Default: true\n')
     receipt_rule_name: typing.Optional[str] = pydantic.Field(None, description='The name for the rule. Default: - A CloudFormation generated name.\n')
@@ -6254,10 +7134,11 @@ class AwsSignerISigningProfileDefApplyRemovalPolicyParams(pydantic.BaseModel):
 
 class AwsSnsITopicDefConfig(pydantic.BaseModel):
     add_subscription: typing.Optional[list[models._interface_methods.AwsSnsITopicDefAddSubscriptionParams]] = pydantic.Field(None, description='Subscribe some endpoint to this topic.')
-    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSnsITopicDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToPolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
+    add_to_resource_policy: typing.Optional[list[models._interface_methods.AwsSnsITopicDefAddToResourcePolicyParams]] = pydantic.Field(None, description='Adds a statement to the IAM resource policy associated with this topic.\nIf this topic was created in this stack (``new Topic``), a topic policy\nwill be automatically created upon the first call to ``addToResourcePolicy``. If\nthe topic is imported (``Topic.import``), then this is a no-op.')
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSnsITopicDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
     bind_as_notification_rule_target: typing.Optional[list[models._interface_methods.AwsSnsITopicDefBindAsNotificationRuleTargetParams]] = pydantic.Field(None, description='Returns a target configuration for notification rule.')
     grant_publish: typing.Optional[list[models._interface_methods.AwsSnsITopicDefGrantPublishParams]] = pydantic.Field(None, description='Grant topic publishing permissions to the given identity.')
+    grant_subscribe: typing.Optional[list[models._interface_methods.AwsSnsITopicDefGrantSubscribeParams]] = pydantic.Field(None, description='Grant topic subscribing permissions to the given identity.')
     metric: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricParams]] = pydantic.Field(None, description='Return the given named metric for this Topic.')
     metric_number_of_messages_published: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfMessagesPublishedParams]] = pydantic.Field(None, description='The number of messages published to your Amazon SNS topics.\nSum over 5 minutes')
     metric_number_of_notifications_delivered: typing.Optional[list[models._interface_methods.AwsSnsITopicDefMetricNumberOfNotificationsDeliveredParams]] = pydantic.Field(None, description='The number of messages successfully delivered from your Amazon SNS topics to subscribing endpoints.\nSum over 5 minutes')
@@ -6284,6 +7165,10 @@ class AwsSnsITopicDefBindAsNotificationRuleTargetParams(pydantic.BaseModel):
     scope: models.constructs.ConstructDef = pydantic.Field(..., description='-')
 
 class AwsSnsITopicDefGrantPublishParams(pydantic.BaseModel):
+    identity: models.AnyResource = pydantic.Field(..., description='-')
+    return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
+
+class AwsSnsITopicDefGrantSubscribeParams(pydantic.BaseModel):
     identity: models.AnyResource = pydantic.Field(..., description='-')
     return_config: typing.Optional[list[models.aws_iam.GrantDefConfig]] = pydantic.Field(None)
 
@@ -6560,7 +7445,7 @@ class AwsSqsIQueueDefMetricSentMessageSizeParams(pydantic.BaseModel):
 
 class AwsSsmIParameterDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameters, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
     grant_write: typing.Optional[list[models._interface_methods.AwsSsmIParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
 
 
@@ -6577,7 +7462,7 @@ class AwsSsmIParameterDefGrantWriteParams(pydantic.BaseModel):
 
 class AwsSsmIStringListParameterDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameters, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
     grant_write: typing.Optional[list[models._interface_methods.AwsSsmIStringListParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
 
 
@@ -6594,7 +7479,7 @@ class AwsSsmIStringListParameterDefGrantWriteParams(pydantic.BaseModel):
 
 class AwsSsmIStringParameterDefConfig(pydantic.BaseModel):
     apply_removal_policy: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefApplyRemovalPolicyParams]] = pydantic.Field(None, description="Apply the given removal policy to this resource.\nThe Removal Policy controls what happens to this resource when it stops\nbeing managed by CloudFormation, either because you've removed it from the\nCDK application or because you've made a change that requires the resource\nto be replaced.\n\nThe resource can be deleted (``RemovalPolicy.DESTROY``), or left in your AWS\naccount for data recovery and cleanup later (``RemovalPolicy.RETAIN``).")
-    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
+    grant_read: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefGrantReadParams]] = pydantic.Field(None, description='Grants read (DescribeParameter, GetParameters, GetParameter, GetParameterHistory) permissions on the SSM Parameter.')
     grant_write: typing.Optional[list[models._interface_methods.AwsSsmIStringParameterDefGrantWriteParams]] = pydantic.Field(None, description='Grants write (PutParameter) permissions on the SSM Parameter.')
 
 
@@ -6618,12 +7503,17 @@ class AwsStepfunctionsIActivityDefApplyRemovalPolicyParams(pydantic.BaseModel):
 #  aws-cdk-lib.aws_stepfunctions.IChainable skipped
 
 
+class AwsStepfunctionsIItemReaderDefConfig(pydantic.BaseModel):
+    provide_policy_statements: typing.Optional[bool] = pydantic.Field(None, description='Compile policy statements to provide relevent permissions to the state machine.')
+    render: typing.Optional[bool] = pydantic.Field(None, description='Render the ItemReader as JSON object.')
+
+
 class AwsStepfunctionsINextableDefConfig(pydantic.BaseModel):
     next: typing.Optional[list[models._interface_methods.AwsStepfunctionsINextableDefNextParams]] = pydantic.Field(None, description='Go to the indicated state after this state.')
 
 
 class AwsStepfunctionsINextableDefNextParams(pydantic.BaseModel):
-    state: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
+    state: typing.Union[models.aws_stepfunctions.ChainDef, models.aws_stepfunctions.MapBaseDef, models.aws_stepfunctions.StateDef, models.aws_stepfunctions.StateMachineFragmentDef, models.aws_stepfunctions.TaskStateBaseDef, models.aws_stepfunctions.ChoiceDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.CustomStateDef, models.aws_stepfunctions.DistributedMapDef, models.aws_stepfunctions.FailDef, models.aws_stepfunctions.MapDef, models.aws_stepfunctions.ParallelDef, models.aws_stepfunctions.PassDef, models.aws_stepfunctions.SucceedDef, models.aws_stepfunctions.WaitDef, models.aws_stepfunctions_tasks.AthenaGetQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaGetQueryResultsDef, models.aws_stepfunctions_tasks.AthenaStartQueryExecutionDef, models.aws_stepfunctions_tasks.AthenaStopQueryExecutionDef, models.aws_stepfunctions_tasks.BatchSubmitJobDef, models.aws_stepfunctions_tasks.BedrockInvokeModelDef, models.aws_stepfunctions_tasks.CallApiGatewayHttpApiEndpointDef, models.aws_stepfunctions_tasks.CallApiGatewayRestApiEndpointDef, models.aws_stepfunctions_tasks.CallAwsServiceDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildDef, models.aws_stepfunctions_tasks.CodeBuildStartBuildBatchDef, models.aws_stepfunctions_tasks.DynamoDeleteItemDef, models.aws_stepfunctions_tasks.DynamoGetItemDef, models.aws_stepfunctions_tasks.DynamoPutItemDef, models.aws_stepfunctions_tasks.DynamoUpdateItemDef, models.aws_stepfunctions_tasks.EcsRunTaskDef, models.aws_stepfunctions_tasks.EksCallDef, models.aws_stepfunctions_tasks.EmrAddStepDef, models.aws_stepfunctions_tasks.EmrCancelStepDef, models.aws_stepfunctions_tasks.EmrContainersCreateVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersDeleteVirtualClusterDef, models.aws_stepfunctions_tasks.EmrContainersStartJobRunDef, models.aws_stepfunctions_tasks.EmrCreateClusterDef, models.aws_stepfunctions_tasks.EmrModifyInstanceFleetByNameDef, models.aws_stepfunctions_tasks.EmrModifyInstanceGroupByNameDef, models.aws_stepfunctions_tasks.EmrSetClusterTerminationProtectionDef, models.aws_stepfunctions_tasks.EmrTerminateClusterDef, models.aws_stepfunctions_tasks.EvaluateExpressionDef, models.aws_stepfunctions_tasks.EventBridgePutEventsDef, models.aws_stepfunctions_tasks.GlueDataBrewStartJobRunDef, models.aws_stepfunctions_tasks.GlueStartCrawlerRunDef, models.aws_stepfunctions_tasks.GlueStartJobRunDef, models.aws_stepfunctions_tasks.HttpInvokeDef, models.aws_stepfunctions_tasks.LambdaInvokeDef, models.aws_stepfunctions_tasks.MediaConvertCreateJobDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointDef, models.aws_stepfunctions_tasks.SageMakerCreateEndpointConfigDef, models.aws_stepfunctions_tasks.SageMakerCreateModelDef, models.aws_stepfunctions_tasks.SageMakerCreateTrainingJobDef, models.aws_stepfunctions_tasks.SageMakerCreateTransformJobDef, models.aws_stepfunctions_tasks.SageMakerUpdateEndpointDef, models.aws_stepfunctions_tasks.SnsPublishDef, models.aws_stepfunctions_tasks.SqsSendMessageDef, models.aws_stepfunctions_tasks.StepFunctionsInvokeActivityDef, models.aws_stepfunctions_tasks.StepFunctionsStartExecutionDef] = pydantic.Field(..., description='-\n')
     return_config: typing.Optional[list[models.aws_stepfunctions.ChainDefConfig]] = pydantic.Field(None)
 
 class AwsStepfunctionsIStateMachineDefConfig(pydantic.BaseModel):
